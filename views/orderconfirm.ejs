@@ -1,0 +1,240 @@
+<!doctype html>
+<html>
+   <head>
+      <meta charset='utf-8'>
+      <meta name='viewport' content='width=device-width, initial-scale=1'>
+      <title>Order confirmation Page</title>
+      <link href='https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css' rel='stylesheet'>
+      <link href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css' rel='stylesheet'>
+      <style>@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+         * {
+         padding: 0;
+         margin: 0;
+         box-sizing: border-box;
+         font-family: 'Roboto', sans-serif
+         }
+         body {
+         background-color: #000;
+         }
+         #order-heading {
+         background-color: #edf4f7;
+         position: relative;
+         border-top-left-radius: 25px;
+         border-top-right-radius: 25px;
+         max-width: 800px;
+         padding-top: 20px;
+         margin: 30px auto 0px
+         }
+         #order-heading .text-uppercase {
+         font-size: 0.9rem;
+         color: #777;
+         font-weight: 600
+         }
+         #order-heading .h4 {
+         font-weight: 600
+         }
+         #order-heading .h4+div p {
+         font-size: 0.8rem;
+         color: #777
+         }
+         .close {
+         padding: 10px 15px;
+         background-color: #777;
+         border-radius: 50%;
+         position: absolute;
+         right: -15px;
+         display: none;
+         top: -20px
+         }
+         .wrapper {
+         padding: 0px 50px 50px;
+         max-width: 800px;
+         margin: 0px auto 40px;
+         border-bottom-left-radius: 25px;
+         border-bottom-right-radius: 25px
+         }
+         .table th {
+         border-top: none
+         }
+         .table thead tr.text-uppercase th {
+         font-size: 0.8rem;
+         padding-left: 0px;
+         padding-right: 0px
+         }
+         .table tbody tr th,
+         .table tbody tr td {
+         font-size: 0.9rem;
+         padding-left: 0px;
+         padding-right: 0px;
+         padding-bottom: 5px
+         }
+         .table-responsive {
+         height: 100px
+         }
+         .list div b {
+         font-size: 0.8rem
+         }
+         .list .order-item {
+         font-weight: 600;
+         color: #6db3ec
+         }
+         .list:hover {
+         background-color: #f4f4f4;
+         cursor: pointer;
+         border-radius: 5px
+         }
+         label {
+         margin-bottom: 0;
+         padding: 0;
+         font-weight: 900
+         }
+         button.btn {
+         font-size: 0.9rem;
+         }
+         .price {
+         color: #5cb99a;
+         font-weight: 700
+         }
+         p.text-justify {
+         font-size: 0.9rem;
+         margin: 0
+         }
+         .row {
+         margin: 0px
+         }
+         .subscriptions {
+         border: 1px solid #ddd;
+         border-left: 5px solid #ffa500;
+         padding: 10px
+         }
+         .subscriptions div {
+         font-size: 0.9rem
+         }
+         @media(max-width: 425px) {
+         .wrapper {
+         padding: 20px
+         }
+         body {
+         font-size: 0.85rem;
+         padding: 2rem;
+         }
+         .subscriptions div {
+         padding-left: 5px
+         }
+         img+label {
+         font-size: 0.75rem
+         }
+         }
+      </style>
+      <script type='text/javascript' src=''></script>
+      <script type='text/javascript' src='https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js'></script>
+      <script type='text/javascript' src='https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.min.js'></script>
+   </head>
+   <body oncontextmenu='return false' class='snippet-body'>
+      <div class="d-flex flex-column justify-content-center align-items-center" id="order-heading">
+         <div class="text-uppercase">
+            <p>Order confirmation</p>
+         </div>
+         <div class="h4">Monday, November 27, 2023</div>
+         <div class="pt-1">
+            <p>Your Order Id is <b>#12615.</b></p>
+         </div>
+         <div class="btn close text-white"> &times; </div>
+      </div>
+      <div class="wrapper bg-white pt-3">
+        <table class="table table-bordered table-striped table-responsive">
+            <thead>
+                <tr>
+                    <th scope="col">Sr. No</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Price</th>
+                    <th scope="col">Quantity</th>
+                    <th scope="col">Total (₹)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>Beard Oil</td>
+                    <td>49.00</td>
+                    <td>2</td>
+                    <td>98.00</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>Beard Oil</td>
+                    <td>49.00</td>
+                    <td>2</td>
+                    <td>98.00</td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>Face Wash</td>
+                    <td>49.00</td>
+                    <td>3</td>
+                    <td>147.00</td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td>Hair Wash</td>
+                    <td>49.00</td>
+                    <td>1</td>
+                    <td>49.00</td>
+                </tr>
+            </tbody>
+        </table>
+         <div class="table-responsive">
+            <table class="table table-borderless">
+               <thead>
+                  <tr class="text-uppercase text-muted">
+                     <th scope="col"></th>
+                     <th scope="col" class="text-right">total</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr>
+                     <th scope="row"></th>
+                     <td class="text-right"><b>&#8377;199</b></td>
+                  </tr>
+               </tbody>
+            </table>
+         </div>
+         <div class="pt-2 border-bottom mb-3"></div>
+         <div class="d-flex justify-content-start align-items-center pl-3">
+            <div class="text-muted">Payment Method</div>
+            <div class="ml-auto"> <img src="https://www.freepnglogos.com/uploads/mastercard-png/mastercard-logo-logok-15.png" alt="" width="30" height="30"> <label>Mastercard ******5342</label> </div>
+         </div>
+         <div class="d-flex justify-content-start align-items-center py-1 pl-3">
+            <div class="text-muted">Shipping</div>
+            <div class="ml-auto"> <label>Free</label> </div>
+         </div>
+         <div class="d-flex justify-content-start align-items-center pb-4 pl-3 border-bottom">
+            <div class="text-muted"> <button class="text-white btn btn-dark">25% Discount</button> </div>
+            <div class="ml-auto price"> -&#8377;47 </div>
+         </div>
+         <div class="d-flex justify-content-start align-items-center pl-3 py-3 mb-4 border-bottom">
+            <div class="text-muted">Total Amount Paid </div>
+            <div class="ml-auto h5"> &#8377;149 </div>
+         </div>
+         <div class="row border rounded p-1 my-3">
+            <div class="col-md-6 py-3">
+               <div class="d-flex flex-column align-items start">
+                  <b>Shipping Address</b>
+                  <p class="text-justify pt-2">Bartala Yadgar Saharanpur</p>
+                  <p class="text-justify">247001, Uttar Pradesh</p>
+               </div>
+            </div>
+         </div>
+         <div class="d-sm-flex justify-content-between rounded text-center subscriptions">
+            <div>Thank you for you order. Redirecting you to home screen in 5 seconds.</div>
+         </div>
+      </div>
+
+      <script>
+
+        setTimeout(function() {
+            window.location.href = "index.html"; 
+        }, 10000); 
+    </script>
+   </body>
+</html>

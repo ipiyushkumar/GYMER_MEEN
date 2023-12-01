@@ -1,0 +1,60 @@
+<div class="promo-strip">
+    Get 25% Off on Every Purchase
+</div>
+
+<nav class="navbar navbar-expand-lg navbar-dark" style="padding: 1rem">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="/">WhiteWolf</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="#">About Us</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/product_listing">Best Sellers</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Face Care</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Hair Care</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Body Care</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">New Launches</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Offers</a>
+                </li>
+            </ul>
+
+            <ul class="navbar-nav ms-auto">
+
+                <form class="d-flex">
+                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-light" type="submit"><i class="fas fa-search"></i></button>
+                </form>
+                <% if (content.isLoggedIn === true) { %>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/cart"><i class="fas fa-cart-plus" style="color: #fff;"></i> Your Cart</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/profile"><i class="fas fa-user" style="color: #fff;"></i> Profile</a>
+                    </li>
+                  <% } else { %>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/login" ><i class="fas fa-user" style="color: #fff;"></i>Login</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/signup" >SignUp</a>
+                    </li>
+                  <% } %> 
+            </ul>
+        </div>
+    </div>
+</nav>

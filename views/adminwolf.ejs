@@ -1,0 +1,885 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="/css/adminstyle.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        .form-container {
+            display: block;
+
+            padding: 1rem;
+            background-color: white;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            box-sizing: border-box;
+        }
+
+        @media only screen and (max-width: 768px) {
+            #productsSection {
+                padding: 2rem;
+            }
+        }
+
+        .form-container {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .form-container > div {
+            width: 48%; 
+        }
+
+        .form-container input,
+        .form-container textarea,
+        .form-container select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            box-sizing: border-box;
+            border: 1px solid lightgrey;
+            border-radius: 1rem;
+        }
+
+        .form-container button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+</style>
+</head>
+
+<body>
+    <div class="container">
+        <nav>
+            <ul>
+                <li><a href="#" class="logo">
+                    <img src="assets/logo.PNG" alt="">
+                    <span class="nav-item admin">Admin Panel</span>
+                </a></li>
+                <li><a href="#" onclick="showDashboard()" id="dashboardTab">
+                    <i class="fas fa-id-card"></i>
+                    <span class="nav-item">Dashboard</span>
+                </a></li>
+                <li><a href="#" onclick="showAnalytics()" id="analyticsTab">
+                    <i class="fas fa-user"></i>
+                    <span class="nav-item">Users</span>
+                </a></li>
+                <li><a href="#" onclick="showOrders()" id="ordersTab">
+                    <i class="fas fa-store"></i>
+                    <span class="nav-item">Orders</span>
+                </a></li>
+                <li><a href="#" onclick="showProducts()" id="productsTab">
+                    <i class="fas fa-shopping-bag"></i>
+                    <span class="nav-item">Add Products</span>
+                </a></li>
+                <li><a href="#" onclick="showCategories()" id="categoriesTab">
+                    <i class="fas fa-chart-line"></i>
+                    <span class="nav-item">Categories</span>
+                </a></li>
+                <li><a href="#" onclick="showInventory()" id="inventoryTab">
+                    <i class="fas fa-warehouse"></i>
+                    <span class="nav-item">Inventory</span>
+                </a></li>
+                <li><a href="#" onclick="showPayments()" id="paymentsTab">
+                    <i class="fas fa-wallet"></i>
+                    <span class="nav-item">Payments</span>
+                </a></li>
+                <li><a href="#" onclick="showSettings()" id="settingsTab">
+                    <i class="fas fa-cog"></i>
+                    <span class="nav-item">Settings</span>
+                </a></li>
+                <li><a href="#" onclick="showLogout()" id="logoutTab" class="logout">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span class="nav-item">Log out</span>
+                </a></li>
+            </ul>
+        </nav>        
+
+        <section class="main" id="dashboardSection">
+            <div class="main-top">
+                <h1>Summary</h1>
+                <i class="fas fa-user-cog used"></i>
+            </div>
+            <div class="main-skills">
+                <div class="card">
+                    <i class="fas fa-star"></i>
+                    <h2>Rs 11,200</h2>
+                    <h4>Today Sales</h4>
+                </div>
+                <div class="card">
+                    <i class="fas fa-shopping-bag"></i>
+                    <h2>65</h2>
+                    <h4>Today Orders</h4>
+                </div>
+                <div class="card">
+                    <i class="fas fa-clock"></i>
+                    <h2>20</h2>
+                    <h4>Pending Orders</h4>
+                </div>
+                <div class="card">
+                    <i class="fas fa-money-bill"></i>
+                    <h2>Rs 1,43,000</h2>
+                    <h4>Monthly Sales</h4>
+                </div>
+            </div>
+
+            <section class="main-course">
+                <h1>Analytics</h1>
+                <div class="course-box">
+                    <ul>
+                        <li class="active">Latest Orders</li>
+
+                    </ul>
+                    <div class="course">
+                        <div class="box">
+                            <div class="table-responsive">
+                                <table class="table table-bordered table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th>Order Id</th>
+                                            <th>Customer Email</th>
+                                            <th>Product Name</th>
+                                            <th>Category</th>
+                                            <th>Total</th>
+                                            <th>Date</th>
+                                            <th>Status</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>1</td>
+                                            <td>customer@example.com</td>
+                                            <td>Product A</td>
+                                            <td>Category 1</td>
+                                            <td>$100.00</td>
+                                            <td>2023-01-01</td>
+                                            <td>Shipped</td>
+                                        </tr>
+                                        <tr>
+                                            <td>2</td>
+                                            <td>anothercustomer@example.com</td>
+                                            <td>Product B</td>
+                                            <td>Category 2</td>
+                                            <td>$150.00</td>
+                                            <td>2023-01-02</td>
+                                            <td>Delivered</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <button class="btn btn-primary">View All Orders</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </section>
+
+        <section class="main" id="ordersSection" style="display:none;">
+            <section class="main-orders">
+                <h1>Orders</h1>
+                <div class="course-box">
+                    <ul>
+                        <li class="active" onclick="showOrderTab('allOrders')" data-tab="allOrders">All Orders</li>
+                        <li onclick="showOrderTab('pendingOrders')" data-tab="pendingOrders">Pending Orders</li>
+                        <li onclick="showOrderTab('completedOrders')" data-tab="completedOrders">Completed Orders</li>
+                    </ul>
+                    <div class="course">
+                        <div class="box" id="allOrdersTab">
+                            <table class="table table-bordered table-striped">
+                                <thead>
+                                    <tr>
+                                        <th style="width: 15%;">Order Id</th>
+                                        <th style="width: 15%;">User Name</th>
+                                        <th style="width: 20%;">Product Name</th>
+                                        <th style="width: 15%;">Category</th>
+                                        <th style="width: 15%;">Price</th>
+                                        <th style="width: 15%;">Date</th>
+                                        <th style="width: 20%;">Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="allOrdersBody"></tbody>
+                            </table>
+                        </div>
+                        <div class="box" id="pendingOrdersTab" style="display: none;">
+                            <table class="table table-bordered table-striped">
+                                <thead>
+                                    <tr>
+                                        <th style="width: 15%;">Order Id</th>
+                                        <th style="width: 15%;">User Name</th>
+                                        <th style="width: 20%;">Product Name</th>
+                                        <th style="width: 15%;">Category</th>
+                                        <th style="width: 15%;">Price</th>
+                                        <th style="width: 15%;">Date</th>
+                                        <th style="width: 20%;">Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="pendingOrdersBody">
+
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="box" id="completedOrdersTab" style="display: none;"></div>
+                    </div>
+                </div>
+            </section>
+        </section>
+
+        <section class="main" id="productsSection" style="display: none;">
+            <section class="main-orders">
+            <h1 style="margin-bottom: 0.3rem;">Add Product</h1>
+                <div class="form-container">
+                    <div>
+                        <label for="productId">Product Id:</label>
+                        <input type="text" id="productId" name="productId" required>
+
+                        <label for="productName">Product Name:</label>
+                        <input type="text" id="productName" name="productName" required>
+
+                        <label for="productDescription">Product Description:</label>
+                        <textarea id="productDescription" name="productDescription" rows="4" required></textarea>
+
+                        <label for="originalPrice">Original Price (₹):</label>
+                        <input type="number" id="originalPrice" name="originalPrice" required>
+
+                        <label for="offeredPrice">Offered Price (₹):</label>
+                        <input type="number" id="offeredPrice" name="offeredPrice" required>
+
+                        <label for="category">Category:</label>
+                        <select id="category" name="category" required>
+                            <option value="electronics">Electronics</option>
+                            <option value="clothing">Clothing</option>
+
+                        </select>
+
+                        <label for="stock">Stock:</label>
+                        <input type="number" id="stock" name="stock" required>
+                    </div>
+
+                    <div>
+                        <label for="mainImage">Main Image (250x250):</label>
+                        <input type="file" id="mainImage" name="mainImage" accept="image/*" required onchange="previewImage('mainImage')" style="border: none; padding: 0.5rem; background-color: #f0f0f0;">
+                        <img id="mainImagePreview" alt="Preview" style="max-width: 50%; height: 20vh; margin-top: 1rem; margin-bottom: 1rem; border: 1px solid lightgrey; padding: 1rem; border-radius: 1rem;">
+                        <br>
+                        <label for="additionalImages">Additional Images (250x250, max 3):</label>
+                        <input type="file" id="additionalImages" name="additionalImages" accept="image/*" multiple required onchange="previewImages('additionalImages')" style="border: none; padding: 0.5rem; background-color: #f0f0f0;">
+                        <div id="additionalImagesPreview" style="width:30vw;height: 15vh;overflow:hidden;display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; flex-wrap: wrap;"></div>
+
+                        <button onclick="addProduct()" style="margin-top: 1rem;">Publish Product</button>
+                    </div>
+                </div>
+            </section>
+        </section>
+
+        <section class="main" id="categoriesSection">
+            <section class="main-orders">
+                <h1>Add/View Categories</h1>
+                <div class="category-container">
+                    <div class="category-input">
+                        <input type="text" id="categoryName" placeholder="Category Name">
+                        <div id="currentDateTime" style="display: none;"></div>
+                        <button onclick="addCategory()" class="add-category">Add Category</button>
+                    </div>
+        
+                    <table class="category-table">
+                        <thead>
+                            <tr>
+                                <th>Serial Number</th>
+                                <th>Category Name</th>
+                                <th>Date of Adding</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody id="categoryTableBody">
+        
+                            <tr>
+                                <td>1</td>
+                                <td>Electronics</td>
+                                <td>2023-11-28</td>
+                                <td>
+                                    <button onclick="editCategory(this.parentNode.parentNode)">Edit</button>
+                                    <button onclick="deleteCategory(this.parentNode.parentNode)">Delete</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td>Clothing</td>
+                                <td>2023-11-27</td>
+                                <td>
+                                    <button onclick="editCategory(this.parentNode.parentNode)">Edit</button>
+                                    <button onclick="deleteCategory(this.parentNode.parentNode)">Delete</button>
+                                </td>
+                            </tr>
+        
+                            <!-- Add more rows as needed -->
+        
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+        </section>
+
+        <section class="main" id="analyticsSection" style="display: none;">
+            <section class="main-orders">
+                <h1>User Analytics</h1>
+                <div class="user-container">
+                    <table class="user-table">
+                        <thead>
+                            <tr>
+                                <th>User Name</th>
+                                <th>Phone Number</th>
+                                <th>Pin Code</th>
+                                <th>Account Created</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody id="userTableBody">
+                            <tr>
+                                <td>John Doe</td>
+                                <td>123-456-7890</td>
+                                <td>12345</td>
+                                <td>2023-11-27</td>
+                                <td>
+                                    <button onclick="toggleUserBlock('John Doe')" class="block-button">Block</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Jane Smith</td>
+                                <td>987-654-3210</td>
+                                <td>54321</td>
+                                <td>2023-11-27</td>
+                                <td>
+                                    <button onclick="toggleUserBlock('Jane Smith')" class="block-button">Block</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+        </section>   
+        
+        <section class="main" id="inventorySection" style="display: none;">
+            <section class="main-orders">
+                <h1>Products Grid</h1>
+                <div class="product-grid" id="productGrid">
+        
+                    <!-- Sample Product Cards -->
+                    <div class="product-card">
+                        <img class="product-image" src="assets/spray/spray1.jpg" alt="Product 1">
+                        <div class="product-name">Product 1</div>
+                        <div class="product-actions">
+                            <button onclick="editProduct(1)">Edit</button>
+                            <button onclick="deleteProduct(1)">Delete</button>
+                        </div>
+                    </div>
+        
+                    <div class="product-card">
+                        <img class="product-image" src="assets/spray/spray2.jpg" alt="Product 2">
+                        <div class="product-name">Product 2</div>
+                        <div class="product-actions">
+                            <button onclick="editProduct(2)">Edit</button>
+                            <button onclick="deleteProduct(2)">Delete</button>
+                        </div>
+                    </div>
+        
+                    <!-- Add more product cards as needed -->
+        
+                </div>
+            </section>
+        </section>
+
+
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script>
+        function showDashboard() {
+        showSection('dashboardSection');
+        setActiveTab('dashboardTab');
+    }
+
+    function showAnalytics() {
+        showSection('analyticsSection');
+        setActiveTab('analyticsTab');
+    }
+
+    function showOrders() {
+        showSection('ordersSection');
+        setActiveTab('ordersTab');
+    }
+
+    function showProducts() {
+        showSection('productsSection');
+        setActiveTab('productsTab');
+    }
+
+    function showCategories() {
+        showSection('categoriesSection');
+        setActiveTab('categoriesTab');
+    }
+
+    function showInventory() {
+        showSection('inventorySection');
+        setActiveTab('inventoryTab');
+    }
+
+    function showPayments() {
+        showSection('paymentsSection');
+        setActiveTab('paymentsTab');
+    }
+
+    function showSettings() {
+        showSection('settingsSection');
+        setActiveTab('settingsTab');
+    }
+
+    function showLogout() {
+        showSection('logoutSection');
+        setActiveTab('logoutTab');
+    }
+
+
+        function showSection(sectionId) {
+
+            var sections = document.getElementsByClassName('main');
+            for (var i = 0; i < sections.length; i++) {
+                sections[i].style.display = 'none';
+            }
+
+            var selectedSection = document.getElementById(sectionId);
+            if (selectedSection) {
+                selectedSection.style.display = 'block';
+            }
+        }
+
+        var orders = [
+            {
+                orderId: 1,
+                userName: 'john.doe@example.com',
+                productName: 'Laptop',
+                category: 'Electronics',
+                price: '$1200.00',
+                date: '2023-11-25',
+                status: 'Shipped'
+            },
+            {
+                orderId: 2,
+                userName: 'jane.smith@example.com',
+                productName: 'Smartphone',
+                category: 'Electronics',
+                price: '$800.00',
+                date: '2023-11-24',
+                status: 'Delivered'
+            },
+            {
+                orderId: 3,
+                userName: 'bob.jones@example.com',
+                productName: 'Headphones',
+                category: 'Audio',
+                price: '$150.00',
+                date: '2023-11-23',
+                status: 'Pending'
+            },
+            {
+                orderId: 4,
+                userName: 'alice.johnson@example.com',
+                productName: 'Camera',
+                category: 'Photography',
+                price: '$500.00',
+                date: '2023-11-22',
+                status: 'Shipped'
+            }
+        ];
+
+    function initOrders() {
+
+        renderOrders('allOrders');
+    }
+
+    function showOrderTab(tabName) {
+    // Hide all tabs
+    document.getElementById('allOrdersTab').style.display = 'none';
+    document.getElementById('pendingOrdersTab').style.display = 'none';
+    document.getElementById('completedOrdersTab').style.display = 'none';
+
+    // Show the selected tab
+    document.getElementById(tabName + 'Tab').style.display = 'block';
+
+    // Render orders based on the selected tab
+    renderOrders(tabName);
+}
+
+// ... (Your existing functions)
+
+document.addEventListener('DOMContentLoaded', function () {
+    showSection('dashboardSection');
+    initOrders();
+    showOrderTab('allOrders'); // Show the "All Orders" tab by default
+});
+
+    function renderOrders(tabName) {
+        var ordersToDisplay = [];
+
+        switch (tabName) {
+            case 'allOrders':
+                ordersToDisplay = orders;
+                break;
+            case 'pendingOrders':
+                ordersToDisplay = orders.filter(order => order.status === 'Pending');
+                break;
+            case 'completedOrders':
+                ordersToDisplay = orders.filter(order => order.status === 'Delivered');
+                break;
+        }
+
+        var tableBody = document.getElementById(tabName + 'Body');
+        tableBody.innerHTML = '';
+
+        ordersToDisplay.forEach(order => {
+            var row = document.createElement('tr');
+            row.innerHTML = `
+                <td>${order.orderId}</td>
+                <td>${order.userName}</td>
+                <td>${order.productName}</td>
+                <td>${order.category}</td>
+                <td>${order.price}</td>
+                <td>${order.date}</td>
+                <td>${tabName === 'allOrders' ? order.status : createStatusDropdown(order)}</td>
+            `;
+            tableBody.appendChild(row);
+        });
+    }
+
+    function createStatusDropdown(order) {
+        var selectElement = document.createElement('select');
+        selectElement.className = 'form-select';
+        selectElement.style = 'padding: 0.3rem; border-radius: 0.5rem;';
+        selectElement.onchange = function () {
+            confirmStatusChange(selectElement, order.orderId);
+        };
+
+        var statusOptions = ['preparing', 'shipped', 'out_for_delivery', 'delivered'];
+
+        statusOptions.forEach(status => {
+            var option = document.createElement('option');
+            option.value = status;
+            option.text = status.charAt(0).toUpperCase() + status.slice(1);
+            if (status === order.status) {
+                option.selected = true;
+            }
+            selectElement.appendChild(option);
+        });
+
+        return selectElement.outerHTML;
+    }
+
+    function confirmStatusChange(selectElement, orderId) {
+        var confirmation = confirm("Are you sure you want to change the status?");
+
+        if (confirmation) {
+            var selectedIndex = selectElement.selectedIndex;
+
+            for (var i = 0; i < selectedIndex; i++) {
+                selectElement.options[i].disabled = true;
+            }
+
+            var newStatus = selectElement.value;
+
+            updateOrderStatus(orderId, newStatus);
+        } else {
+            selectElement.selectedIndex = 0;
+        }
+    }
+
+    function updateOrderStatus(orderId, newStatus) {
+        for (var i = 0; i < orders.length; i++) {
+            if (orders[i].orderId === orderId) {
+                orders[i].status = newStatus;
+                break;
+            }
+        }
+
+        renderOrders('pendingOrders');
+    }
+
+    document.addEventListener('DOMContentLoaded', function () {
+        initOrders();
+    });
+
+    function previewImage(inputId) {
+        const input = document.getElementById(inputId);
+        const preview = document.getElementById(`${inputId}Preview`);
+
+        if (input.files && input.files[0]) {
+            const reader = new FileReader();
+
+            reader.onload = function (e) {
+                preview.src = e.target.result;
+            };
+
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+
+    function previewImages(inputId) {
+        const input = document.getElementById(inputId);
+        const previewContainer = document.getElementById(`${inputId}Preview`);
+        previewContainer.innerHTML = '';
+
+        if (input.files && input.files.length > 0 && input.files.length <= 3) {
+            Array.from(input.files).forEach((file, index) => {
+                const reader = new FileReader();
+                reader.onload = function (e) {
+                    const img = document.createElement('img');
+                    img.src = e.target.result;
+                    img.className = 'image-preview-small';
+                    previewContainer.appendChild(img);
+                };
+                reader.readAsDataURL(file);
+            });
+        } else {
+            alert("Please upload between 1 and 3 additional images.");
+            input.value = ''; 
+        }
+    }
+
+    function addProduct() {
+        const itemId = document.getElementById('productId').value;
+        const name = document.getElementById('productName').value;
+        const description = document.getElementById('productDescription').value;
+        const originalPrice = document.getElementById('originalPrice').value;
+        const offeredPrice = document.getElementById('offeredPrice').value;
+        const category = document.getElementById('category').value;
+        const stock = document.getElementById('stock').value;
+        const mainImage = document.getElementById('mainImage').files[0]; // Use files[0] to get the first file
+        const additionalImages = document.getElementById('additionalImages').files; // Use files to get all files
+
+        if (
+            itemId &&
+            name &&
+            description &&
+            originalPrice &&
+            offeredPrice &&
+            category &&
+            stock &&
+            mainImage &&
+            additionalImages.length > 0
+        ) {
+            let imageLink = [];
+
+            // Add the main image
+            imageLink.push(URL.createObjectURL(mainImage));
+
+            // Add additional images
+            for (const file of additionalImages) {
+                imageLink.push(URL.createObjectURL(file));
+            }
+
+            let formData = {
+                itemId,
+                name,
+                description,
+                originalPrice,
+                offeredPrice,
+                category,
+                stock,
+                imageLink,
+            };
+
+            axios
+                .post('/api/products', formData)
+                .then((response) => {
+                    alert('Product added successfully:', response.data);
+                })
+                .catch((error) => {
+                    console.error('Error adding product:', error);
+                });
+        } else {
+            alert('Please fill in all the details before adding the product.');
+        }
+    }
+    document.addEventListener('DOMContentLoaded', function () {
+        updateDateTime();
+    });
+
+    function showSection(sectionId) {
+        var sections = document.getElementsByClassName('main');
+        for (var i = 0; i < sections.length; i++) {
+            sections[i].style.display = 'none';
+        }
+
+        var selectedSection = document.getElementById(sectionId);
+        if (selectedSection) {
+            selectedSection.style.display = 'block';
+        }
+    }
+
+    var categories = [
+        { serialNumber: 1, categoryName: 'Electronics', dateOfAdding: '2023-11-28' },
+        { serialNumber: 2, categoryName: 'Clothing', dateOfAdding: '2023-11-27' }
+
+    ];
+
+    document.addEventListener('DOMContentLoaded', function () {
+        updateDateTime();
+        renderCategories();
+    });
+
+    function renderCategories() {
+        var categoryTableBody = document.getElementById('categoryTableBody');
+        categoryTableBody.innerHTML = '';
+
+        categories.forEach(function (category) {
+            var row = categoryTableBody.insertRow();
+            var serialNumberCell = row.insertCell(0);
+            var categoryNameCell = row.insertCell(1);
+            var dateOfAddingCell = row.insertCell(2);
+            var actionCell = row.insertCell(3);
+
+            serialNumberCell.textContent = category.serialNumber;
+            categoryNameCell.textContent = category.categoryName;
+            dateOfAddingCell.textContent = category.dateOfAdding;
+
+            var editButton = document.createElement('button');
+            editButton.textContent = 'Edit';
+            editButton.onclick = function () {
+                editCategory(row);
+            };
+
+            var deleteButton = document.createElement('button');
+            deleteButton.textContent = 'Delete';
+            deleteButton.onclick = function () {
+                deleteCategory(row);
+            };
+
+            actionCell.appendChild(editButton);
+            actionCell.appendChild(deleteButton);
+        });
+    }
+
+    function updateDateTime() {
+        var currentDateTimeElement = document.getElementById('currentDateTime');
+        var now = new Date();
+        var formattedDateTime = now.toLocaleString();
+        currentDateTimeElement.textContent = formattedDateTime;
+    }
+
+    function addCategory() {
+        var categoryName = document.getElementById('categoryName').value;
+        if (categoryName.trim() === '') {
+            alert('Please enter a category name.');
+            return;
+        }
+
+        var categoryTableBody = document.getElementById('categoryTableBody');
+        var row = categoryTableBody.insertRow();
+        var serialNumberCell = row.insertCell(0);
+        var categoryNameCell = row.insertCell(1);
+        var dateOfAddingCell = row.insertCell(2);
+        var actionCell = row.insertCell(3);
+
+        serialNumberCell.textContent = categoryTableBody.rows.length;
+        categoryNameCell.textContent = categoryName;
+        dateOfAddingCell.textContent = new Date().toLocaleString();
+
+        var editButton = document.createElement('button');
+        editButton.textContent = 'Edit';
+        editButton.className = 'edit-button';
+        editButton.onclick = function () {
+            editCategory(row);
+        };
+
+        var deleteButton = document.createElement('button');
+        deleteButton.textContent = 'Delete';
+        deleteButton.className = 'delete-button';
+        deleteButton.onclick = function () {
+            deleteCategory(row);
+        };
+
+        actionCell.appendChild(editButton);
+        actionCell.appendChild(deleteButton);
+
+        document.getElementById('categoryName').value = '';
+    }
+
+    function editCategory(row) {
+
+        alert('Edit category functionality will be implemented here.');
+    }
+
+    function deleteCategory(row) {
+        var confirmation = confirm("Are you sure you want to delete this category?");
+        if (confirmation) {
+            row.remove();
+            updateSerialNumbers();
+        }
+    }
+
+    function updateSerialNumbers() {
+        var categoryTableBody = document.getElementById('categoryTableBody');
+        for (var i = 0; i < categoryTableBody.rows.length; i++) {
+            categoryTableBody.rows[i].cells[0].textContent = i + 1;
+        }
+    }
+
+    var users = [
+    { name: 'John Doe', phoneNumber: '123-456-7890', pinCode: '12345', accountCreated: '2023-11-27', blocked: false },
+    { name: 'Jane Smith', phoneNumber: '987-654-3210', pinCode: '54321', accountCreated: '2023-11-27', blocked: false }
+
+];
+
+function renderUsers() {
+    var tableBody = document.getElementById('userTableBody');
+    tableBody.innerHTML = '';
+
+    users.forEach(user => {
+        var row = document.createElement('tr');
+        row.innerHTML = `
+            <td>${user.name}</td>
+            <td>${user.phoneNumber}</td>
+            <td>${user.pinCode}</td>
+            <td>${user.accountCreated}</td>
+            <td>
+                <button onclick="toggleUserBlock('${user.name}')" class="${user.blocked ? 'unblock-button' : 'block-button'}">
+                    ${user.blocked ? 'Unblock' : 'Block'}
+                </button>
+            </td>
+        `;
+        tableBody.appendChild(row);
+    });
+}
+
+function toggleUserBlock(userName) {
+    var user = users.find(u => u.name === userName);
+    if (user) {
+        user.blocked = !user.blocked;
+        renderUsers(); 
+        alert(`${user.name} is ${user.blocked ? 'blocked' : 'unblocked'}`);
+    }
+}
+
+function setActiveTab(tabId) {
+    // Remove 'active' class from all tabs
+    var tabs = document.querySelectorAll('nav ul li a');
+    tabs.forEach(tab => {
+        tab.classList.remove('active');
+    });
+
+    // Add 'active' class to the selected tab
+    var activeTab = document.getElementById(tabId);
+    if (activeTab) {
+        activeTab.classList.add('active');
+    }
+}
+
+
+renderUsers();
+    </script>
+</body>
+
+</html> 

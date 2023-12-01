@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Profile Edit - Bootdey.com</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap">
+    <style type="text/css">
+        body {
+            background: #000;
+            padding: 2rem;
+            font-family: 'Poppins', sans-serif;
+        }
+    
+        .card {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            min-width: 0;
+            word-wrap: break-word;
+            background-color: #fff;
+            background-clip: border-box;
+            border: 0 solid transparent;
+            border-radius: .25rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 1px 5px #f2f2f2;
+        }
+    
+        .me-2 {
+            margin-right: .5rem!important;
+        }
+    
+    
+        .product-table img {
+            max-width: 50px;
+            max-height: 50px;
+        }
+    
+        
+        @media (max-width: 767px) {
+            body{
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                padding: 1rem;
+            }
+            .d-flex.flex-column.align-items-center.text-center p.text-left {
+                display: none;
+            }
+            .tabs-buttons .nav-item {
+            margin-bottom: 15px; 
+            width: 100%; 
+        }
+        .tabs-buttons .nav-link {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+        }
+        .tabs-buttons .nav-link i {
+            margin-right: 8px; 
+        }
+        .table-responsive table{
+            font-size: .7rem;
+        }
+    
+            .d-flex.flex-column.mt-3 {
+                margin-top: 0;
+            }
+    
+            .nav.nav-tabs.flex-column {
+                flex-direction: row;
+                align-items: center;
+            }
+    
+            .nav-item.mb-2 {
+                margin-bottom: 0;
+                margin-right: 15px; 
+            }
+        }
+    </style> 
+</head>
+<body>
+    <div class="container">
+        <div class="main-body">
+            <div class="row">
+                <div class="col-lg-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="d-flex flex-column align-items-center text-center">
+                                <img src="assets/logo.PNG" alt="Admin" class="rounded-circle p-1 bg-dark" width="110">
+                                <div class="mt-3">
+                                    <h4 class="username"></h4>
+                                    <p class="text-secondary mb-1">WhiteWolf Customer</p>
+                                </div>
+                                <p class="text-left mt-3">About Us - WhiteWolf, a cutting-edge company specializing in men's grooming, redefines personal care with a premium range of products designed for skin, hair, and beard care.</p>
+                            </div>
+                            <div class="d-flex flex-column tabs-buttons mt-3">
+                                <ul class="nav nav-tabs flex-column" id="myTabs">
+                                    <li class="nav-item mb-2">
+                                        <a class="nav-link active d-flex align-items-center" data-toggle="tab" href="#myOrders">
+                                            <i class="fas fa-shopping-bag mr-2"></i>My Orders
+                                        </a>
+                                    </li>
+                                    <li class="nav-item mb-2">
+                                        <a class="nav-link d-flex align-items-center" data-toggle="tab" href="#accountInfo">
+                                            <i class="fas fa-user mr-2"></i>Account Information
+                                        </a>
+                                    </li>
+                                    <li class="nav-item mb-2">
+                                        <a class="nav-link d-flex align-items-center" data-toggle="tab" href="#help">
+                                            <i class="fas fa-question-circle mr-2"></i>Help
+                                        </a>
+                                    </li>
+                                    <li class="nav-item mb-2">
+                                        <a class="nav-link d-flex align-items-center" data-toggle="tab" href="#logout">
+                                            <i class="fas fa-sign-out-alt mr-2"></i>Logout
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>                     
+                </div>
+                <div class="col-lg-8 tabs-part">
+                    <div class="tab-content">
+                        <div class="tab-pane fade show active" id="myOrders" style="overflow-y: auto;">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h5 class="d-flex align-items-center mb-3">My Orders</h5>
+                        
+                                    <div class="table-responsive">
+                                        <table class="table product-table">
+                                            <thead>
+                                                <tr>
+                                                    <th>Order ID</th>
+                                                    <th>Product Image</th>
+                                                    <th>Product Name</th>
+                                                    <th>Product Price</th>
+                                                    <th>Delivery Date</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>12345</td>
+                                                    <td><img src="assets/spray//spray1.jpg" alt="Product 1"></td>
+                                                    <td>Product 1</td>
+                                                    <td>$50.00</td>
+                                                    <td>2023-12-01</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>9876543210</td>
+                                                    <td><img src="assets/spray/spray2.jpg" alt="Product 2"></td>
+                                                    <td>Product 2</td>
+                                                    <td>$30.00</td>
+                                                    <td>2023-12-05</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>                          
+                        <div class="tab-pane fade" id="accountInfo">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h5 class="d-flex align-items-center mb-3">Account Information</h5>
+                                    <form>
+                                        <div class="row mb-3">
+                                            <div class="col-sm-6">
+                                                <input type="text" class="form-control name" placeholder="Name">
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <input type="email" class="form-control email" placeholder="Email">
+                                            </div>
+                                        </div>
+                                        <div class="row mb-3">
+                                            <div class="col-sm-6">
+                                                <input type="tel" class="form-control phone" placeholder="Phone Number">
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <input type="text" class="form-control pincode" placeholder="Pincode">
+                                            </div>
+                                        </div>
+                                        <div class="row mb-3">
+                                            <div class="col-sm-6">
+                                                <input type="text" class="form-control locality" placeholder="Locality">
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <input type="text" class="form-control landmark" placeholder="Landmark (optional)">
+                                            </div>
+                                        </div>
+                                        <div class="row mb-3">
+                                            <div class="col-sm-6">
+                                                <input type="text" class="form-control city" placeholder="City/Town">
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <select class="form-control" placeholder="Select State">
+                                                    <option value="Andhra Pradesh">Andhra Pradesh</option>
+                                                    <option value="Arunachal Pradesh">Arunachal Pradesh</option>
+                                                    <option value="Assam">Assam</option>
+                                                    <option value="Bihar">Bihar</option>
+                                                    <option value="Chhattisgarh">Chhattisgarh</option>
+                                                    <option value="Goa">Goa</option>
+                                                    <option value="Gujarat">Gujarat</option>
+                                                    <option value="Haryana">Haryana</option>
+                                                    <option value="Himachal Pradesh">Himachal Pradesh</option>
+                                                    <option value="Jharkhand">Jharkhand</option>
+                                                    <option value="Karnataka">Karnataka</option>
+                                                    <option value="Kerala">Kerala</option>
+                                                    <option value="Madhya Pradesh">Madhya Pradesh</option>
+                                                    <option value="Maharashtra">Maharashtra</option>
+                                                    <option value="Manipur">Manipur</option>
+                                                    <option value="Meghalaya">Meghalaya</option>
+                                                    <option value="Mizoram">Mizoram</option>
+                                                    <option value="Nagaland">Nagaland</option>
+                                                    <option value="Odisha">Odisha</option>
+                                                    <option value="Punjab">Punjab</option>
+                                                    <option value="Rajasthan">Rajasthan</option>
+                                                    <option value="Sikkim">Sikkim</option>
+                                                    <option value="Tamil Nadu">Tamil Nadu</option>
+                                                    <option value="Telangana">Telangana</option>
+                                                    <option value="Tripura">Tripura</option>
+                                                    <option value="Uttar Pradesh">Uttar Pradesh</option>
+                                                    <option value="Uttarakhand">Uttarakhand</option>
+                                                    <option value="West Bengal">West Bengal</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="row mb-3">
+                                            <div class="col-sm-12">
+                                                <textarea class="form-control address" rows="2" placeholder="Address (Area and Street)"></textarea>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-12">
+                                                <button type="button" class="btn btn-primary px-4 form-submit-button">Save Changes</button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="help">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h5 class="d-flex align-items-center mb-3">Help</h5>
+                                    <p>If you need assistance, please feel free to contact our helpline:</p>
+                                    <div class="d-flex align-items-center">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-phone-call me-2 icon-inline text-primary">
+                                            <path d="M23 1l-6 6"></path>
+                                            <path d="M17 11l6 6"></path>
+                                            <path d="M1 7l6 6"></path>
+                                            <path d="M7 11l6 6"></path>
+                                        </svg>
+                                        <span>Helpline Number: 1800-123-4567</span>
+                                    </div>
+                                    <div class="mt-3">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-mail me-2 icon-inline text-primary">
+                                            <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                                            <line x1="8" y1="14" x2="16" y2="14"></line>
+                                            <line x1="2" y1="8" x2="8" y2="8"></line>
+                                            <line x1="16" y1="8" x2="22" y2="8"></line>
+                                            <line x1="8" y1="2" x2="16" y2="2"></line>
+                                        </svg>
+                                        <span>Email: support@example.com</span>
+                                    </div>
+                                    <p class="mt-3">Office Address:</p>
+                                    <p>123 Main Street, Cityville, State, Country</p>
+                                    <p class="mt-3">Feel free to reach out to us anytime. We are here to help!</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="logout">
+                            <div class="card">
+                                <div class="card-body">
+                                    <button class="btn btn-danger" onclick="confirmLogout()">Logout</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#myTabs a').click(function (e) {
+                e.preventDefault();
+                $(this).tab('show');
+            });
+        });
+    async function confirmLogout() {
+        if (confirm("Are you sure you want to logout?")) {
+            const response = await axios.get('/logout')
+            .then(response => {
+                if (response.status === 200) {
+                    window.location.href = "/";
+                }
+            })
+            .catch(error => {
+                console.error('Logout failed', response.data.message);
+            })
+        } else {
+            alert("Logout canceled.");
+        }
+    }
+    document.addEventListener('DOMContentLoaded',async function () {
+        await axios.get('/getprofile')
+        .then(response => response.data.userProfile)
+        .then(data => {
+            document.querySelector(".username").textContent = data.name
+
+            // Account Information
+            document.querySelector(".name").value = data.name || ""
+            document.querySelector(".email").value = data.email || ""
+            document.querySelector(".phone").value = data.phone || ""
+            document.querySelector(".pincode").value = data.pincode || ""
+            document.querySelector(".locality").value = data.locality || ""
+            document.querySelector(".landmark").value = data.landmark || ""
+            document.querySelector(".city").value = data.city || ""
+            document.querySelector(".address").value = data.address || ""
+            // purchasedProducts
+            // cart
+        })
+        .catch(err => {console.log("error fetching profile" + err)}) 
+    });
+    document.querySelector('.form-submit-button').addEventListener('click',async () => {
+        const name = document.querySelector(".name").value 
+        const email = document.querySelector(".email").value
+        const phone = document.querySelector(".phone").value
+        const pincode = document.querySelector(".pincode").value 
+        const locality = document.querySelector(".locality").value
+        const landmark = document.querySelector(".landmark").value
+        const city = document.querySelector(".city").value
+        const address = document.querySelector(".address").value
+        const userProfile = {name, email, phone, pincode, locality, landmark, city, address}
+
+        await axios.put('/updateUserProfile',{userProfile})
+        .then(response => alert("user data updated successfully"))
+        .catch(err => alert("an error occured" + error))
+
+    })
+    </script>
+</body>
+</html>

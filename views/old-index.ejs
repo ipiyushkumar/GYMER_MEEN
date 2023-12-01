@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <title>Body Section</title>
+</head>
+    <div class="navBar">
+    <%- include('partials/nav') %> 
+    </div>
+    <div class="mainPage">
+        <style>
+            body {
+                font-family: 'Poppins', sans-serif !important;
+            }
+
+            .product-image {
+            position: relative;
+            }
+
+            image {
+            width: 30%;
+            height: 100px;
+            }
+            .image img {
+            width: 100%;
+            height: auto;
+            -webkit-box-reflect: below 0px linear-gradient(transparent 75%, rgba(0, 0, 0, 0.60));
+            }
+
+            .star-rating {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            }
+
+            .star {
+            color: gold;
+            }
+
+            .reviews-text {
+            margin-left: 10px;
+            font-size: 14px;
+            }
+
+            .promo-strip {
+                    background-color: #ffcc00;
+                    text-align: center;
+                    padding: 0.5rem 0;
+                    color: #000;
+                    font-weight: bold;
+                }
+
+                nav {
+                    background-color: #000;
+                    padding: 1rem;
+                }
+
+                @media (max-width: 576px) {
+                    body {
+                        padding-top: 0;
+                    }
+
+                    form.d-flex {
+                        max-width: 70%;
+                    }
+                }
+            </style>
+            <div class="container-fluid text-white p-5 col-md-12" style="background-color: #000;">
+            <div class="d-flex flex-column align-items-center">
+
+                <img src="assets/hero1.PNG" alt="Hero Image" class="img-fluid" style="width: 90%; margin-bottom: 20px;">
+
+                <p class="text-center" style="font-size: 4vh;color:000">
+                This Face - The Holidays Set is Yours FREE with Rs.500+ Purchase<br>
+                Use Code: WW016
+                </p>
+
+                <div class="container d-flex justify-content-between">
+                <button type="button" class="btn btn-light mr-2">Get 10% OFF</button>
+                <button type="button" class="btn btn-light mr-2">SHOP NOW</button>
+                <button type="button" class="btn btn-light">MORE <i class="fas fa-arrow-right"></i></button>
+                </div>
+
+            </div>
+            </div>
+
+            <div style="width: 100%; height: 80vh; background-color: black; display: flex; position: relative; overflow: hidden;">
+            <div class="d-flex flex-column align-items-center justify-content-center" style="flex: 1; padding: 20px; box-sizing: border-box; color: white; position: relative; z-index: 1; overflow: hidden;">
+
+                <h2 style="font-size: 10vh; font-weight: 900;color: #b3b2b2;">30% OFF <br><span style="color: #fff;">BEARD CARE</span></h2>
+                <br>
+                <br>
+                <br>
+                <button type="button" class="btn btn-light mr-2">SHOP NOW</button>
+                <img src="assets/spray/spray1.png" alt="Image 1" style="width: 100%; height: 100%; object-fit: cover; position: absolute; top: 0; left: 0; z-index: -1;">
+            </div>
+
+            <div class="d-flex flex-column align-items-center justify-content-center" style="flex: 1; padding: 20px; box-sizing: border-box; color: white; position: relative; z-index: 1; overflow: hidden;">
+
+                <h2 style="font-size: 10vh; font-weight: 900;color: #b3b2b2;">BODY <br>CARE</h2>
+                <br>
+                <br>
+                <br>
+                <button type="button" class="btn btn-light mr-2">SHOP NOW</button>
+                <img src="assets/spray/spray2.png" alt="Image 1" style="width: 100%; height: 100%; object-fit: cover; position: absolute; top: 0; left: 0; z-index: -1;">
+            </div>
+            </div>
+
+            <div class="container-fluid text-white p-5 col-md-12" style="background-color: #000;">
+            <div class="d-flex flex-column align-items-center text-center">
+                <h3>HERE'S THE DEAL</h3>
+                <br>
+                <h2>So, Why White Wolf?</h2>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed dapibus quam ut turpis laoreet, ut feugiat ligula tincidunt. <br>Fusce ut tortor sit amet purus dictum tristique. Quisque vel ultrices nisi. Nulla facilisi. Integer vehicula enim vel magna ullamcorper,<br> id cursus nisi feugiat. Vivamus a turpis at justo bibendum posuere.<br> Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. In hac habitasse platea dictumst. </p>
+
+            </div>
+            </div>
+
+            <div class="container-fluid p-4" style="background-color:#f3f1ed">
+            <div class="row justify-content-around align-items-center">
+                <div class="col-auto">
+                <img src="assets/logo1.png" alt="Brand 1" class="img-fluid" style="max-height: 50px;">
+                </div>
+                <div class="col-auto">
+                <img src="assets/logo1.png" alt="Brand 2" class="img-fluid" style="max-height: 50px;">
+                </div>
+                <div class="col-auto">
+                <img src="assets/logo1.png" alt="Brand 3" class="img-fluid" style="max-height: 50px;">
+                </div>
+
+            </div>
+            </div>
+
+            <div class="container mt-4 mb-4">
+            <div class="row">
+                <div class="col-md-4 mb-4">
+                <div class="product-card">
+                    <div class="product-image">
+                    <div class="image">
+                        <img src="assets/si.png" alt="Product 1" class="img-fluid">
+                    </div>
+                    </div>
+                    <br>
+                    <br>
+                    <br>
+                    <div class="product-details text-center">
+                    <p class="star-rating">
+                        <span class="star">&#9733;</span>
+                        <span class="star">&#9733;</span>
+                        <span class="star">&#9733;</span>
+                        <span class="star">&#9733;</span>
+                        <span class="star">&#9733;</span>
+                        <span class="reviews-text">1020 Reviews</span>
+                    </p>            
+                    <p class="product-description">PURE 100% NO HARM FOR MEN</p>
+                    <br>
+                    <button class="btn btn-outline-dark pt-1 pb-2 pl-5 pr-5">Quick Add - Rs. 12,00.00</button>
+                    </div>
+                </div>
+                </div>
+            </div>
+            </div>
+
+            <div class="container mt-4 mb-4">
+            <p class="text-center">@whitewolfinternational</p>
+            <h3 class="font-weight-bolder text-center mb-5" >Let Be Social</h3>
+            <div class="row">
+
+                <div class="col-md-3 mb-4">
+                <div class="card">
+                    <img src="assets/social1.jpg" alt="Image 1" class="card-img-top rounded">
+                </div>
+                </div>
+
+                <div class="col-md-3 mb-4">
+                <div class="card">
+                    <img src="assets/social1.jpg" alt="Image 2" class="card-img-top rounded">
+                </div>
+                </div>
+
+                <div class="col-md-3 mb-4">
+                <div class="card">
+                    <img src="assets/social1.jpg" alt="Image 3" class="card-img-top rounded">
+                </div>
+                </div>
+
+                <div class="col-md-3 mb-4">
+                <div class="card">
+                    <img src="assets/social1.jpg" Image 4" class="card-img-top rounded">
+                </div>
+                </div>
+            </div>
+            </div>
+
+            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+            <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+            <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+            <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    </div>
+  
+</body>
+</html>

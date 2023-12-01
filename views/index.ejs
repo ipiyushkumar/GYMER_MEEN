@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="slidercss.css" />
+    <link rel="stylesheet" href="/css/slidercss.css">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: center;
+            background-color: #000;
+        }
+
+        .promo-strip {
+            width: 100%;
+            background-color: #fff;
+            text-align: center;
+            padding: 0.5rem 0;
+            color: #000;
+            font-weight: bold;
+        }
+
+        nav {
+            width: 100%;
+            height: max-content;
+            background-color: #000;
+            padding: 2rem;
+        }
+
+        @media (max-width: 576px) {
+            body {
+                padding-top: 0;
+            }
+
+            form.d-flex {
+                max-width: 70%;
+            }
+        }
+
+        .product-grid{
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr 1fr;
+            grid-column-gap: 1rem;
+        }
+
+        .product-card {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            background-color: #fff;
+            color: #000;
+            margin: 10px;
+            padding: 0.5rem;
+            color: #fff;
+            border-radius: 0.5rem;
+            transition: transform 0.2s;
+            height: auto;
+        }
+
+        .product-card:hover {
+            transform: scale(1.05);
+        }
+
+        .product-image {
+            width: auto;
+            height: 30vh;
+            object-fit: cover;
+            transition: transform 1s ease-in-out;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            border-radius: 10px;
+        }
+
+        .category-badge {
+            padding: 0.8rem 0.8rem;
+            border-radius: 0.3rem;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            width: max-content;
+            margin-top: 0.5rem;
+            background-color: #000;
+        }
+
+        .product-title {
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin-top: 1rem;
+            color: #000;
+        }
+
+        .product-description {
+            font-size: 0.9rem;
+            margin-top: 0.5rem;
+            color: #222;
+        }
+
+        .product-price-discount {
+            margin-top: 10px;
+        }
+
+        .product-price{
+            color: #000;
+            font-weight: bolder;
+        }
+
+        .add-to-cart-btn {
+            display: block;
+            width: 100%;
+            padding: 0.5rem;
+            background-color: #000;
+            color: #fff;
+            text-align: center;
+            text-decoration: none;
+            font-size: 1rem;
+            font-weight: bolder;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            text-transform: uppercase;
+            transition: background-color 0.3s ease-in-out;
+        }
+
+        .add-to-cart-btn:hover{
+            background-color: #fff;
+            border: 1px solid #000;
+        }
+
+        .launch-badge {
+            position: absolute;
+            top: 0rem;
+            left: 0.5rem;
+            width: 40px;
+            height: auto;
+            z-index: 1;
+        }
+
+        .products-bar{
+            width: 100%;
+            padding-right: 1rem;
+            padding-left: 1rem;
+            color: #000;
+            background-color: #000;
+        }
+
+        .products-bar buttons{
+            font-size: 0.7rem;
+        }
+
+        .banner-section {
+            position: relative;
+        }
+
+        .banner-image {
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+        }
+
+        .banner-content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            color: #fff;
+        }
+
+        .through img{
+            border-top-left-radius: 1rem;
+            border-top-right-radius: 1rem;
+        }
+
+        .carousel {
+            width: 100%;
+            overflow: hidden;
+            height: auto 
+        }
+
+        .carousel-inner {
+            width: 100%;
+            height: 100%; 
+            transition: transform 1s ease-in-out;
+        }
+
+        .carousel-item {
+            float: left;
+            width: 100%;
+            height: 100%; 
+            box-sizing: border-box;
+        }
+
+        .img-fluid {
+            width: 100%;
+            height: 100%; 
+            object-fit: cover;
+        }
+
+        .footer-menu a{
+            text-decoration: none;
+        }
+
+        @media (max-width: 576px){
+            .product-grid{
+                padding: 2rem;
+                padding-right: 3rem;
+                grid-template-columns: 1fr;
+                grid-column-gap: 1.5rem;
+            }
+
+            .footer{
+                margin-left: -1rem;
+            }
+        }
+    </style>
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap">
+</head>
+<body>
+
+<div class="promo-strip">
+    Get 25% Off on Every Purchase
+</div>
+
+<nav class="navbar navbar-expand-lg navbar-dark" style="padding: 1rem">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#">WhiteWolf</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="#">About Us</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/product_listing">Best Sellers</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Face Care</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Hair Care</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Body Care</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">New Launches</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Offers</a>
+                </li>
+            </ul>
+
+            <ul class="navbar-nav ms-auto">
+
+                <% if (content.isLoggedIn === true) { %>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/cart"><i class="fas fa-cart-plus" style="color: #fff;"></i> Your Cart</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/profile"><i class="fas fa-user" style="color: #fff;"></i> Profile</a>
+                    </li>
+                  <% } else { %>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/login" ><i class="fas fa-user" style="color: #fff;"></i>Login</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/signup" >SignUp</a>
+                    </li>
+                  <% } %> 
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div class="container">
+    <div class="slider-wrapper">
+      <button id="prev-slide" class="slide-button material-symbols-rounded">
+       >
+      </button>
+      <ul class="image-list">
+        <img class="image-item" src="assets/Slider.jpg" alt="img-1" />
+        <img class="image-item" src="assets/Slider1.jpg" alt="img-2" />
+        <img class="image-item" src="assets/Slider2.jpg" alt="img-3" />
+      </ul>
+      <button id="next-slide" class="slide-button material-symbols-rounded">
+        >
+      </button>
+    </div>
+    <div class="slider-scrollbar">
+      <div class="scrollbar-track">
+        <div class="scrollbar-thumb"></div>
+      </div>
+    </div>
+</div>
+
+<div class="container">
+    <button class="btn btn-secondary align-left">Explore Now</button>
+</div>
+
+<div class="container products-bar mt-4">
+
+    <div class="mb-2 filters d-flex justify-content-between align-items-center text-uppercase">
+        <button class="btn btn-light category-btn m-1" onclick="filterProducts('all')">HAIR CARE</button>
+        <button class="btn btn-light category-btn m-1" onclick="filterProducts('cream')">SKIN CARE</button>
+        <button class="btn btn-light category-btn m-1" onclick="filterProducts('oil')">BODY CARE</button>
+        <button class="btn btn-light category-btn m-1" onclick="filterProducts('powder')">COMING SOON</button>
+    </div>
+
+    <div id="productGrid" class="row product-grid">
+
+    </div>
+
+    <div class="d-flex justify-content-center p-4">
+        <button class="btn btn-warning">Show More</button>
+    </div>
+</div>
+
+<div class="container-fluid mt-2 mb-2 p-0 banner-section">
+    <img class="banner-image" src="assets/black-friday.jpg" alt="Banner Image">
+</div>
+
+<div class="container mt-5 mb-5">
+    <h2 class="text-center text-white mb-4">Search Through Category</h2>
+
+    <div class="row through align-items-stretch">
+        <div class="col-md-4 mt-2">
+            <div class="card bg-white text-center p-0 border-0 d-flex flex-column" style="border-radius: 1rem;">
+                <img src="assets/category1.jpg" class="card-img-top flex-grow-1" alt="Image 1">
+                <div class="card-body">
+                    <h3 class="card-text font-weight-bold">Face Care</h3>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4 mt-2">
+            <div class="card bg-white text-center p-0 border-0 d-flex flex-column" style="border-radius: 1rem;">
+                <img src="assets/category3.jpg" class="card-img-top flex-grow-1" alt="Image 2">
+                <div class="card-body">
+                    <h3 class="card-text font-weight-bold">Hair Care</h3>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4 mt-2">
+            <div class="card bg-white text-center p-0 border-0 d-flex flex-column" style="border-radius: 1rem;">
+                <img src="assets/category2.jpg" class="card-img-top flex-grow-1" alt="Image 3">
+                <div class="card-body">
+                    <h3 class="card-text font-weight-bold">Body Care</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="customSlider mt-5 mb-5" class="carousel slide" data-bs-ride="carousel">
+    <h2 class="text-center text-white mb-4">See What Our Customers Say</h2>
+    <div class="carousel-inner">
+        <div class="carousel-item active">
+            <img src="assets/Bloges assets 1.jpg" alt="Slide 1" class="img-fluid">
+        </div>
+        <div class="carousel-item">
+            <img src="assets/Bloges assets-1 1.jpg" alt="Slide 2" class="img-fluid">
+        </div>
+        <div class="carousel-item">
+            <img src="assets/Bloges assets-2 1.jpg" alt="Slide 2" class="img-fluid">
+        </div>
+        <div class="carousel-item">
+            <img src="assets/Bloges assets-3 1.jpg" alt="Slide 2" class="img-fluid">
+        </div>
+
+    </div>
+</div>
+
+<footer class="container-fluid text-white p-3 footer"style="background-color: #000;">
+    <div class="container upperdiv p-5" style="background-color: #111;">
+      <div class="row">
+        <div class="col-md-3">
+          <img src="assets/logo.PNG" alt="Logo" class="img-fluid mb-3" style="width: auto;height: 10vh;">
+        </div>
+  
+        <div class="col-md-6 d-flex footer-menu">
+          <div class="col-md-6 mr-3 list-unstyled">
+            <li><a href="#" class="text-white">About us</a></li>
+            <li><a href="#" class="text-white">FAQ</a></li>
+            <li><a href="#" class="text-white">Shipping and Payment</a></li>
+            <li><a href="#" class="text-white">Partners</a></li>
+            <li><a href="#" class="text-white">Blog</a></li>
+            <li><a href="#" class="text-white">Contact Us</a></li>
+          </div>
+          <div class="col-md-6 ml-3 list-unstyled">
+            <li><a href="#" class="text-white">Customer Reviews</a></li>
+            <li><a href="#" class="text-white">Hair Care</a></li>
+            <li><a href="#" class="text-white">Skin Care</a></li>
+            <li><a href="#" class="text-white">Face Care</a></li>
+          </div>
+        </div>
+  
+        <div class="col-md-3 d-flex flex-column align-items-end">
+          <button class="btn btn-light mb-2">Shop Now</button>
+          <p>+(123) 123-99-999</p>
+          <p>info@WhiteWolf.com</p>
+        </div>
+  
+      </div>
+      <div class="row mt-5">
+  
+        <div class="col-md-3">
+          <ul class="list-unstyled">
+            <a href="#" class="text-white mr-2"><i class="fab fa-instagram"></i></a>
+            <a href="#" class="text-white mr-2"><i class="fab fa-whatsapp"></i></a>
+          </ul>
+        </div>
+  
+        <div class="col-md-6 d-flex">
+          <p>The Hive Co Working and Business Center<br>Industiral Area Phase-2, Chandigarh</p>
+        </div>
+  
+        <div class="col-md-3 d-flex flex-column align-items-end">
+        </div>
+  
+      </div>
+    </div>
+
+    <div class="container mt-5">
+        <div class="row d-flex justify-content-between">
+            <div class="col-md-5">
+                <h3>If you didn't find the products you are interested in or have questions?</h3>
+            </div>
+            <div class="col-md-6">
+                    <p>Enter your email:</p>
+                    <div class="input-group mb-3">
+                        <input type="email" class="form-control" placeholder="Your email here" aria-label="Your email" aria-describedby="basic-addon2">
+                        <button class="btn btn-outline-secondary" type="button" id="basic-addon2">
+                            <i class="fa fa-arrow-circle-right"></i> <!-- Font Awesome arrow icon -->
+                        </button>
+                    </div>
+            </div> 
+        </div>
+    </div>
+
+    <p class="pl-5">2023 - Copyright, All Rights Reserved.</p>
+</footer>
+
+<script>
+    const products = [
+        { category: 'cream', rating: 4, discount: 0.1, price: 499, originalPrice: 799, title: 'Product 1', description: 'Description of Product 1 goes here.', image: 'assets/Product1.jpg' },
+        { category: 'oil', rating: 3, discount: 0.2, price: 39, originalPrice: 100, title: 'Product 2', description: 'Description of Product 2 goes here.', image: 'assets/Product1.jpg' },
+        { category: 'spray', rating: 5, discount: 0.3, price: 299, originalPrice: 499, title: 'Product 3', description: 'Description of Product 3 goes here.', image: 'assets/Product1.jpg' },
+        { category: 'powder', rating: 4, discount: 0.4, price: 199, originalPrice: 299, title: 'Product 4', description: 'Description of Product 4 goes here.', image: 'assets/Product1.jpg' },
+    ];
+
+    renderProducts('all');
+
+    function renderProducts(categoryFilter) {
+        const productGrid = document.getElementById('productGrid');
+        productGrid.innerHTML = '';
+
+        const filteredProducts = categoryFilter === 'all' ? products : products.filter(product => product.category === categoryFilter);
+
+        filteredProducts.forEach(product => {
+            const productCard = createProductCard(product);
+            productGrid.appendChild(productCard);
+        });
+    }
+
+    function filterProducts(category) {
+        renderProducts(category);
+    }
+
+    function createProductCard(product) {
+        const productCard = document.createElement('div');
+        productCard.className = 'col-md-4 product-card';
+        productCard.innerHTML = `
+            <img class="product-image" src="${product.image}" alt="${product.title}">
+            <div class="product-details">
+                <div class="category-badge text-white corner-round p-1">${product.category}</div>
+                <div class="product-title">${product.title}</div>
+                <div class="product-description">${product.description}</div>
+                <div class="mb-2">
+                    <div class="d-flex justify-content-between bolder product-price-discount">
+                        <div class="product-price">&#8377; ${product.price}</div>
+                        <div class="original-price text-secondary text-decoration-line-through">&#8377;${product.originalPrice || ''}</div>
+                        <div class="product-discount text-success">${product.discount * 100}% Off</div>
+                    </div>
+                </div>
+                <button class="btn btn-light add-to-cart-btn"><i class="fas fa-cart"></i> Add to Cart</button>
+                <img class="launch-badge" src="newly.PNG" alt="New Launch" />
+            </div>
+        `;
+
+        return productCard;
+    }
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+
+    $(document).ready(function(){
+        setInterval(function(){
+            $('#customSlider .carousel-inner').animate({marginLeft: '-=100%'}, 1000, function(){
+
+                $(this).find('.carousel-item:first').appendTo(this);
+                $(this).css({marginLeft: 0});
+            });
+        }, 1000); 
+    });
+</script>
+<script src="/js/slider.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+</body>
+</html>
