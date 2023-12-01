@@ -6,6 +6,7 @@
     <title>Dashboard</title>
     <link rel="stylesheet" href="/css/adminstyle.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    
     <style>
         .form-container {
             display: block;
@@ -105,26 +106,25 @@
         <section class="main" id="dashboardSection">
             <div class="main-top">
                 <h1>Summary</h1>
-                <i class="fas fa-user-cog used"></i>
             </div>
             <div class="main-skills">
                 <div class="card">
-                    <i class="fas fa-star"></i>
+                    <iconify-icon class="icon" icon="emojione:money-bag"></iconify-icon>
                     <h2>Rs 11,200</h2>
                     <h4>Today Sales</h4>
                 </div>
                 <div class="card">
-                    <i class="fas fa-shopping-bag"></i>
+                    <iconify-icon class="icon" icon="emojione-v1:shopping-bags"></iconify-icon>
                     <h2>65</h2>
                     <h4>Today Orders</h4>
                 </div>
                 <div class="card">
-                    <i class="fas fa-clock"></i>
+                    <iconify-icon class="icon" icon="openmoji:timer"></iconify-icon>
                     <h2>20</h2>
                     <h4>Pending Orders</h4>
                 </div>
                 <div class="card">
-                    <i class="fas fa-money-bill"></i>
+                    <iconify-icon class="icon" icon="emojione:shopping-cart"></iconify-icon>
                     <h2>Rs 1,43,000</h2>
                     <h4>Monthly Sales</h4>
                 </div>
@@ -133,51 +133,37 @@
             <section class="main-course">
                 <h1>Analytics</h1>
                 <div class="course-box">
-                    <ul>
-                        <li class="active">Latest Orders</li>
-
-                    </ul>
-                    <div class="course">
-                        <div class="box">
-                            <div class="table-responsive">
-                                <table class="table table-bordered table-striped">
-                                    <thead>
-                                        <tr>
-                                            <th>Order Id</th>
-                                            <th>Customer Email</th>
-                                            <th>Product Name</th>
-                                            <th>Category</th>
-                                            <th>Total</th>
-                                            <th>Date</th>
-                                            <th>Status</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td>1</td>
-                                            <td>customer@example.com</td>
-                                            <td>Product A</td>
-                                            <td>Category 1</td>
-                                            <td>$100.00</td>
-                                            <td>2023-01-01</td>
-                                            <td>Shipped</td>
-                                        </tr>
-                                        <tr>
-                                            <td>2</td>
-                                            <td>anothercustomer@example.com</td>
-                                            <td>Product B</td>
-                                            <td>Category 2</td>
-                                            <td>$150.00</td>
-                                            <td>2023-01-02</td>
-                                            <td>Delivered</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                            <button class="btn btn-primary">View All Orders</button>
-                        </div>
+                    <div>
+                        <canvas id="myChart" class="chart"></canvas>
                     </div>
-                </div>
+                    <div>
+                        <h2>Top Selling Products</h2>
+                        <table style="width: 100%; border-collapse: collapse; margin-top: 20px;">
+                          <tbody>
+                            
+                            <tr>
+                              <td style="border: 1px solid #ddd; padding: 8px; text-align: center;"><img src="assets/Product1.jpg" alt="Product 1" style="max-width: 50px; max-height: 50px;"></td>
+                              <td style="border: 1px solid #ddd; padding: 8px; text-align: left;">Product 1 Name</td>
+                              <td style="border: 1px solid #ddd; padding: 8px; text-align: left;">1000 Units Sold</td>
+                            </tr>
+
+                            
+                            <tr>
+                              <td style="border: 1px solid #ddd; padding: 8px; text-align: center;"><img src="assets/Product2.jpg" alt="Product 2" style="max-width: 50px; max-height: 50px;"></td>
+                              <td style="border: 1px solid #ddd; padding: 8px; text-align: left;">Product 2 Name</td>
+                              <td style="border: 1px solid #ddd; padding: 8px; text-align: left;">800 Units Sold</td>
+                            </tr>
+
+                            
+                            <tr>
+                              <td style="border: 1px solid #ddd; padding: 8px; text-align: center;"><img src="assets/Product3.jpg" alt="Product 3" style="max-width: 50px; max-height: 50px;"></td>
+                              <td style="border: 1px solid #ddd; padding: 8px; text-align: left;">Product 3 Name</td>
+                              <td style="border: 1px solid #ddd; padding: 8px; text-align: left;">700 Units Sold</td>
+                            </tr>
+
+                          </tbody>
+                        </table>
+                      </div>
             </section>
         </section>
 
@@ -397,6 +383,16 @@
 
     </div>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
+
     <script>
         function showDashboard() {
         showSection('dashboardSection');
