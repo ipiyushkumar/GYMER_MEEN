@@ -6,7 +6,7 @@ const productSchema = new mongoose.Schema({
     description: { type: String, required: true },
     ratings: [
         {
-            user: { type: mongoose.Schema.Types.ObjectId, ref: 'user' },
+            user: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
             rating: { type: Number, min:0, max:10, default:8 }
         }
     ],
