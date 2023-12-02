@@ -2,8 +2,6 @@ const express = require('express');
 const router = express.Router();
 // Schema and Model definitions here...
 
-const Sales = require('../schemas/sales_schema'); // Assuming Sales model is defined
-
 const controllers = require('../controllers/order_controllers')
 
 // Routes for Sales Schema:
