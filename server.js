@@ -39,8 +39,8 @@ app.use(user)
 const products = require('./routes/product_routes')
 app.use(products)
 
-const sales = require('./routes/sales_routes')
-app.use(sales)
+const orders = require('./routes/order_routes')
+app.use(orders)
 
 app.listen(port, () => {
   console.log(`Server Listen On ${port}`)
