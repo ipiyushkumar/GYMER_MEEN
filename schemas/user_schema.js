@@ -20,9 +20,7 @@ const userSchema = new mongoose.Schema({
     ],
     purchasedProducts: [
         {
-            product: { type: mongoose.Schema.Types.ObjectId, ref: 'Product' },
-            quantity: { type: Number, default: 1 },
-            deliveryDate: {type:Date, required: true}
+            product: { type: mongoose.Schema.Types.ObjectId, ref: 'Order' },
         }
     ]
 });
