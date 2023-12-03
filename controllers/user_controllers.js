@@ -57,7 +57,7 @@ const authLogin = async (req, res) => {
 
 const authSignUp = async (req, res) => {
     try {
-        const { name, email, phone, password } = req.body;
+        const { name, email, phone, address, password } = req.body;
 
         // Check if the name or email is already registered
         const existingUser = await User.findOne({ $or: [{ email }] });
@@ -73,6 +73,7 @@ const authSignUp = async (req, res) => {
             name,
             email,
             phone,
+            address,
             password: hashedPassword,
         });
 

@@ -37,7 +37,7 @@ const getItemPage = async (req, res) => {
     const content = {
       isLoggedIn : req.session.isLoggedIn,
     }
-    res.render('product_description',{item,content})
+    res.render('Product_Description_page',{item,content})
   } catch (error) {
     res.status(500).json({ error: 'Internal Server Error' });
   }

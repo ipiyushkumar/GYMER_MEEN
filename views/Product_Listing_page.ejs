@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/ProductStyle.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap"/>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-alpha2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <title>Product Listing</title>
+    <style>
+
+        body {
+            font-family: 'Poppins', sans-serif;
+        }
+        a {
+            color: inherit; /* Use the color inherited from the parent */
+            text-decoration: none; /* Remove underline */
+        }
+        .promo-strip {
+            background-color: #fff;
+            text-align: center;
+            padding: 0.5rem 0;
+            color: #000;
+            font-weight: bold;
+        }
+
+        nav {
+            background-color: #000;
+            padding: 1rem;
+        }
+
+        @media (max-width: 576px) {
+            body {
+                padding-top: 0;
+            }
+
+            form.d-flex {
+                max-width: 70%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <%- include('partials/nav') %> 
+    <%- include('partials/cart') %> 
+     <div class="container-fluid product-container">
+        <div class="filters">
+            <h4>Filters</h4>
+    
+            <div class="mb-3">
+                <label for="categoryFilter" class="form-label">Select Category</label>
+                <select class="form-select" id="categoryFilter">
+                    <option class="header-filter" value="all">All Categories</option>
+                    <option value="cream">Cream</option>
+                    <option value="oil">Oil</option>
+                    <option value="spray">Spray</option>
+                    <option value="powder">Powder</option>
+                    <option value="wax">Wax</option>
+                </select>
+            </div>
+    
+            <div class="mb-3">
+                <label for="sortFilter" class="form-label">Sort by</label>
+                <select class="form-select" id="sortFilter">
+                    <option class="header-filter" value="low">Price Low to High</option>
+                    <option value="high">Price High to Low</option>
+                    <option value="popularity">Popularity</option>
+                    <option value="relevance">Relevance</option>
+                </select>
+            </div>
+    
+            <div class="mb-3">
+                <label for="ratingFilter" class="form-label">Ratings</label>
+                <select class="form-select" id="ratingFilter">
+                    <option class="header-filter" value="all">All Ratings</option>
+                    <option value="4">4 stars &amp; above</option>
+                    <option value="3">3 stars &amp; above</option>
+                    <option value="2">2 stars &amp; above</option>
+                    <option value="1">1 star &amp; above</option>
+                </select>
+            </div>
+    
+            <div class="mb-3">
+                <label for="discountFilter" class="form-label">Discount</label>
+                <select class="form-select" id="discountFilter">
+                    <option class="header-filter" value="all">All Discounts</option>
+                    <option value="0.1">10% and above</option>
+                    <option value="0.2">20% and above</option>
+                    <option value="0.3">30% and above</option>
+                    <option value="0.4">40% and above</option>
+                    <option value="0.5">50% and above</option>
+                </select>
+            </div>
+    
+            <div class="mb-3 min-max">
+                <label class="form-label">Price</label>
+                <div class="input-group">
+                    <input type="number" class="form-control" id="minPrice" placeholder="Min">
+                    <input type="number" class="form-control" id="maxPrice" placeholder="Max">
+                </div>
+            </div>
+    
+        </div>
+    
+        <div class="product-grid" id="productGrid">
+    
+        </div>
+    </div>
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-alpha2/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script>
+        let products;
+        async function getProducts() {
+            try {
+                const response = await axios.get('/api/products');
+                return response.data;
+            } catch (error) {
+                console.error('Error fetching products:', error);
+                return [];
+            }
+        }
+        async function initializeProducts() {
+            products = await getProducts();
+            renderProducts(products, 'all', 'all', '', '', 'low');
+        }
+    
+        function initializeImageSlider(productCard) {
+            const productImage = productCard.querySelector('.product-image');
+            const launchBadge = productCard.querySelector('.launch-badge');
+    
+            productImage.addEventListener('mouseenter', () => {
+                productImage.src = 'assets/spray/spray2.jpg'; 
+                launchBadge.style.display = 'none';
+            });
+    
+            productImage.addEventListener('mouseleave', () => {
+                productImage.src = 'assets/spray/spray1.jpg'; 
+                launchBadge.style.display = 'block';
+            });
+        }
+    
+        function createProductCard(product) {
+            const productCard = document.createElement('div');
+            productCard.className = 'product-card';
+            productCard.innerHTML = `
+            <a href="/search/${product.itemId}" >
+                <img class="product-image" src="${product.imageLink[0]}" alt="${product.name}">
+                <div class="product-details">
+                    <div class="category-badge text-white corner-round p-1">${product.category}</div>
+                    <div class="product-title">${product.name}</div>
+                    <div class="product-description">${product.description}</div>
+                    <div class="mb-2">
+                        <div class="d-flex justify-content-between bolder product-price-discount">
+                            <div class="product-price">&#8377; ${product.offeredPrice}</div>
+                            <div class="original-price text-secondary text-decoration-line-through">&#8377;${product.originalPrice || ''}</div>
+                            <div class="product-discount text-success">${((product.originalPrice - product.offeredPrice) / product.originalPrice * 100).toFixed(0)}% Off</div>
+                        </div>
+                    </div>
+                    <button class="add-to-cart-btn add${product.itemId}"><i class="bi bi-cart"></i> Add to Cart</button>
+                    <img class="launch-badge" src="newly.PNG" alt="New Launch" />
+                </div>
+            </a>
+            `;
+    
+            
+            initializeImageSlider(productCard);
+    
+            return productCard;
+        }
+    
+        function renderProducts() {
+            document.getElementById('productGrid').innerHTML = `
+                <div class="loading-spinner">
+                    <div class="spinner"></div>
+                    <p>Loading...</p>
+                </div>
+            `;
+    
+            setTimeout(() => {
+                const productGrid = document.getElementById('productGrid');
+                productGrid.innerHTML = '';
+    
+                products.forEach(product => {
+                    const productCard = createProductCard(product);
+                    productGrid.appendChild(productCard);
+                });
+    
+                products.forEach(product => {
+                    document.querySelector(`.add${product.itemId}`).addEventListener('click', async () => {
+                        event.preventDefault();
+                        try {
+                            const response = await axios.post('/addItem', { itemId: product.itemId });
+    
+                            if (response.status === 200) {
+                                console.log(response.data.message);
+                                addToCart('Product 1', '44.00');
+                                // Optionally, update the UI to reflect the item being added to the cart
+                            } else {
+                                console.error('Error adding item to cart:', response.data.message);
+                                // Optionally, handle the error and update the UI accordingly
+                            }
+                        } catch (error) {
+                            console.error('Error adding item to cart:', error.message);
+                        }
+                    });
+                })
+            }, 1000);
+        }
+    
+        function updateFilters() {
+            const categoryFilter = document.getElementById('categoryFilter').value;
+            const ratingFilter = document.getElementById('ratingFilter').value;
+            const minPrice = document.getElementById('minPrice').value;
+            const maxPrice = document.getElementById('maxPrice').value;
+            const discountFilter = document.getElementById('discountFilter').value;
+            const sortFilter = document.getElementById('sortFilter').value;
+    
+            renderProducts(categoryFilter, ratingFilter, minPrice, maxPrice, discountFilter, sortFilter);
+        }
+    
+        document.getElementById('categoryFilter').addEventListener('change', updateFilters);
+        document.getElementById('ratingFilter').addEventListener('change', updateFilters);
+        document.getElementById('minPrice').addEventListener('input', updateFilters);
+        document.getElementById('maxPrice').addEventListener('input', updateFilters);
+        document.getElementById('discountFilter').addEventListener('change', updateFilters);
+        document.getElementById('sortFilter').addEventListener('change', updateFilters);
+    
+        initializeProducts();
+</script>    
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+      <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+      <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+
+</body>
+</html>

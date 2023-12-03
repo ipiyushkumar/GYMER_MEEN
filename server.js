@@ -1,6 +1,7 @@
 const express = require('express');
 const session = require('express-session');
 const cors = require('cors');
+const morgan = require('morgan');
 const mongoose = require('mongoose')
 const env = require('dotenv');
 const path = require('path');
@@ -15,9 +16,15 @@ app.use(session({
   saveUninitialized: true
 }));
 
+app.use(morgan('dev'));
+
+mongo_url = process.env.MongoDB_URL || "mongodb://127.0.0.1:27017/GYMER?retryWrites=true&w=majority"
 mongoose
-.connect(process.env.MongoDB_URL)
-.then(console.log("MongoDB Conneted.."));
+.connect(mongo_url)
+.then(console.log(`MongoDB Conneted (${mongo_url})`))
+.catch(err => {
+  console.log("An error occured at Mongo Connection\n" + err)
+})
 
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');

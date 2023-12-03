@@ -7,16 +7,12 @@ router.get('/',(req, res) => {
     const content = {
         isLoggedIn : req.session.isLoggedIn,
     }
-    res.render('index',{content})
+    res.render('Home_page',{content})
 })
 
 // authentication
 router.get('/login',(req, res) => {
-    res.render('login');
-})
-
-router.get('/signup',(req, res) => {
-    res.render('signup');
+    res.render('Auth_page');
 })
 
 // user pages
@@ -25,8 +21,10 @@ router.get('/product_listing',(req, res) => {
     const content = {
         isLoggedIn : req.session.isLoggedIn,
     }
-    res.render('product_listing',{content});
+    res.render('Product_Listing_page',{content});
 })
+
+// change it in product controller
 router.get('/product_description',(req, res) => {
     res.render('product_description');
 })
@@ -34,15 +32,16 @@ router.get('/cart',(req, res) => {
     res.render('cart');
 })
 router.get('/confirm', (req, res) => {
-    res.render('orderconfirm')
+    res.render('Order_Confirm_page')
 })
+
 router.get('/profile',(req, res) => {
-    res.render('user_profile');
+    res.render('User_Profile_page');
 })
 
 // admin tab
 router.get('/adminwolf',(req, res) => {
-    res.render('adminwolf');
+    res.render('Admin_page');
 })
 
 module.exports = router;

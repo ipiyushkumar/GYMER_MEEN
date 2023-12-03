@@ -325,13 +325,25 @@ a:hover {
     text-decoration: underline;
 }
 
-.user-container,.form-container,.orders-container,.category-container,.wallet {
+.user-container,.form-container,.orders-container,.category-container,.wallet,.coupon-container{
     height: 85vh;
     margin: 1rem;
     padding: 20px;
     border-radius: 10px;
     background-color: #fff;
     box-shadow: 0 20px 35px rgba(0, 0, 0, 0.1);
+}
+
+.coupon-container   table {
+    width: 100%;
+    margin-top: 20px;
+    border-collapse: collapse;
+}
+
+.coupon-container    th, td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: left;
 }
 
 .order-table{
@@ -346,6 +358,20 @@ a:hover {
   border-radius: 0.2rem;
   color: #fff;
   font-weight: bolder;
+}
+
+.coupon-container button{
+    padding: 0.5rem;
+    background-color: slateblue;
+    border-radius: 0.2rem;
+    color: #fff;
+    font-weight: 400;
+  }
+
+.coupon-container button:hover{
+    color: slateblue;
+    background-color: #fff;
+    border: 1px solid slateblue;
 }
 
 .category-container .add-category:hover{

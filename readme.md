@@ -1,5 +1,5 @@
-# Project Feedbacker
-this is a project to provide a feedback application to an authority running over an education institution
+# Project GYMER
+
 
 ### Installtion and run
 1. download repo

@@ -10,7 +10,10 @@
     - update a product
     - delete a product
     - update inventory of the product
+
 ### update pages
-- login.ejs
-- sign up .ejs
-- index.ejs
+implement checkout
+implement product description
+
+nav component
+cart component

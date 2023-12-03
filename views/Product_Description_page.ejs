@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<link rel="stylesheet" href="Product_Desc.css">
+<title>Product Description</title>
+<script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+<style>
+  .promo-strip {
+    width: 100%;
+    background-color: #fff;
+    text-align: center;
+    padding: 0.5rem 0;
+    color: #000;
+    font-weight: bold;
+    }
+</style>
+  </head>
+  <body>
+    <div class="promo-strip">
+      Get 25% Off on Every Purchase
+    </div>
+
+    <div style="background-color: #000; height: 60px; display: flex; align-items: center; padding:1rem">
+      <img style="width: 100px; height: auto; max-height: 100%;" src="images/logo.PNG" alt="Logo">
+  </div>
+
+    <div id="cartSidebar" class="text-white" style="padding: 1rem; position: fixed; top: 0; right: -400px; height: 100vh; width: 400px; transition: right 0.3s ease-in-out; background-color: #000; z-index: 1;">
+
+      <button type="button" class="text-white close" style="margin-top: 1rem; background-color: transparent; color: #fff; padding: 0.5rem; font-size: 2rem;" aria-label="Close" onclick="closeCart()">
+          <span aria-hidden="true">&times;</span>
+      </button>
+
+      <h4 class="p-3" style="padding: 1rem; font-size: 1.5rem;">Your Cart</h4>
+
+      <table class="list-group" style="width: 100%; border-collapse: collapse; margin-bottom: 1rem;">
+          <tbody style="color: #000; background-color: #fff; display: table; width: 100%; font-size: 1.2rem;border-radius: 1rem;">
+
+          </tbody>
+      </table>
+
+      <div class="mb-3 mt-5" style="margin-bottom: 1rem; margin-top: 1rem;">
+          <h4 class="d-flex justify-content-between align-items-center">
+              <span class="text-white" >Order Summary</span>
+          </h4>
+
+          <table style="width: 100%; color: #000;background-color: #fff;padding: 1rem;border-radius: 1rem;">
+              <tbody>
+                  <tr>
+                      <td>Total (INR)</td>
+                      <td style="text-align: right;"><strong>&#8377;99.00</strong></td>
+                  </tr>
+                  <tr>
+                      <td>Shipping</td>
+                      <td style="text-align: right;"><strong>&#8377;20.00</strong></td>
+                  </tr>
+                  <tr>
+                    <td>
+                        <div style="margin: 1rem; width: 100%; display: flex; justify-content: space-between; align-items: center;">
+
+                            <input type="text" style="width:20vw;flex: 1; padding: 10px; border: 1px solid #ccc; border-radius: 5px 0 0 5px; outline: none; width: calc(100% - 80px);" placeholder="Enter discount code" class="form-control">
+
+                            <button style="background-color: #4CAF50; color: #fff; border: none; padding: 10px; border-radius: 0 5px 5px 0; cursor: pointer; width: 80px;" class="btn btn-outline-secondary" type="button">Apply</button>
+
+                        </div>
+                    </td>
+                </tr>
+                  <tr>
+                      <td>Total Payable</td>
+                      <td style="text-align: right;"><strong>&#8377;119.00</strong></td>
+                  </tr>
+              </tbody>
+          </table>
+      </div>
+      <button style="width: 100%; background-color: #343a40; color: #fff; padding: 10px; border: none; border-radius: 5px; cursor: pointer;" class="btn btn-dark btn-lg btn-block">Proceed to Checkout</button>
+  </div>
+
+    <div class = "card-wrapper">
+      <div class = "card">
+
+        <div class = "product-imgs">
+          <div class = "img-display">
+            <div class = "img-showcase">
+              <img src = "images/spray1.jpg" alt = "shoe image">
+              <img src = "images/spray2.jpg" alt = "shoe image">
+              <img src = "images/spray3.jpg" alt = "shoe image">
+              <img src = "images/spray4.jpg" alt = "shoe image">
+            </div>
+          </div>
+          <div class = "img-select">
+            <div class = "img-item">
+              <a href = "#" data-id = "1">
+                <img src = "images/spray1.jpg" alt = "shoe image">
+              </a>
+            </div>
+            <div class = "img-item">
+              <a href = "#" data-id = "2">
+                <img src = "images/spray1.jpg" alt = "shoe image">
+              </a>
+            </div>
+            <div class = "img-item">
+              <a href = "#" data-id = "3">
+                <img src = "images/spray1.jpg" alt = "shoe image">
+              </a>
+            </div>
+            <div class = "img-item">
+              <a href = "#" data-id = "4">
+                <img src = "images/spray1.jpg" alt = "shoe image">
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class = "product-content">
+          <h2 class = "product-title">Hair Removal Spray</h2>
+          <a href = "#" class = "product-link">WhiteWolf Originals</a>
+          <div class = "product-rating">
+            <iconify-icon icon="noto:star"></iconify-icon>
+            <iconify-icon icon="noto:star"></iconify-icon>
+            <iconify-icon icon="noto:star"></iconify-icon>
+            <iconify-icon icon="noto:star"></iconify-icon>
+            <iconify-icon icon="noto:star"></iconify-icon>
+            <span>4.7(21)</span>
+          </div>
+
+          <div class = "product-detail">
+            <h2>about this item: </h2>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo eveniet veniam tempora fuga tenetur placeat sapiente architecto illum soluta consequuntur, aspernatur quidem at sequi ipsa!</p>
+            <ul>
+              <li>Contents: <span>Aqua, Potassium Thioglycolate, LPG, Calcium Hydroxide, Urea, Glycerin.</span></li>
+              <li>Available: <span>in stock</span></li>
+              <li>Category: <span>Hair</span></li>
+            </ul>
+          </div>
+
+          <div class = "product-price">
+            <p class = "last-price">MRP: <span>&#8377;500.00</span></p>
+            <p class = "new-price">Offer Price: <span>&#8377;349.00</span></p>
+          </div>
+
+          <div class = "purchase-info">
+            <button type="button" class="btn" onclick="addToCart()"><iconify-icon icon="icon-park:shopping-cart"></iconify-icon> Add to Cart</button>
+          </div>
+
+          <div class="social-links">
+            <p>Share This Product : </p>
+            <a href = "#">
+              <iconify-icon icon="logos:facebook"></iconify-icon>
+            </a>
+            <a href = "#">
+              <iconify-icon icon="devicon:twitter"></iconify-icon>
+            </a>
+            <a href = "#">
+              <iconify-icon icon="skill-icons:instagram"></iconify-icon>
+            </a>
+            <a href = "#">
+              <iconify-icon icon="logos:whatsapp-icon"></iconify-icon>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="product-container">
+      <div class="product-header">
+          <div class="view-related-products text-white">View Related Products</div>
+          <button class="view-all-btn">View All</button>
+      </div>
+
+      <div class="product-grid" id="productGrid">
+      </div>
+  </div>
+
+    <script>
+      const imgs = document.querySelectorAll('.img-select a');
+      const imgBtns = [...imgs];
+      let imgId = 1;
+
+      imgBtns.forEach((imgItem) => {
+          imgItem.addEventListener('click', (event) => {
+              event.preventDefault();
+              imgId = imgItem.dataset.id;
+              slideImage();
+          });
+      });
+
+      function slideImage(){
+          const displayWidth = document.querySelector('.img-showcase img:first-child').clientWidth;
+
+          document.querySelector('.img-showcase').style.transform = `translateX(${- (imgId - 1) * displayWidth}px)`;
+      }
+
+      window.addEventListener('resize', slideImage);
+    </script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+  function addToCart() {
+      var cartContent = document.getElementById('cartSidebar').querySelector('tbody');
+      var listItem = document.createElement('tr');
+      listItem.innerHTML = `
+      <td style="padding: 1rem;">
+          <div style="display: flex; flex-direction: row;align-items:center; margin-bottom: 1rem;">
+              <div style="flex: 1; margin-right: 20px;">
+                  <h6 style="margin: 0;font-size:1rem">Product 1</h6>
+              </div>
+              <div style="display: flex; align-items: center; color: #000;">
+                  <a href="#" style="text-decoration: none; margin: 0 5px; color: #000; padding: 5px; border-radius: 1rem;">-</a>
+                  <a href="#" style="text-decoration: none; border: 1px solid #000; padding: 5px; border-radius: 1rem;">1</a>
+                  <a href="#" style="text-decoration: none; margin: 0 5px; color: #000; padding: 5px; border-radius: 1rem;">+</a>
+              </div>
+          </div>
+      </td>
+      <td style="padding: 10px; text-align: right;">
+          <span style="color: #555;">&#8377;44.00</span>
+      </td>
+  `;
+  cartContent.appendChild(listItem);
+
+  document.getElementById('cartSidebar').style.right = '0';
+}
+
+function closeCart() {
+  document.getElementById('cartSidebar').style.right = '-400px';
+}
+</script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+  </body>
+</html>
