@@ -36,7 +36,10 @@ router.get('/confirm', (req, res) => {
 })
 
 router.get('/profile',(req, res) => {
-    res.render('User_Profile_page');
+    const content = {
+        isLoggedIn : req.session.isLoggedIn,
+    }
+    res.render('User_Profile_page',{content});
 })
 
 // admin tab

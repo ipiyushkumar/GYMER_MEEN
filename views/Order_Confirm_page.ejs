@@ -135,52 +135,20 @@
          <div class="text-uppercase">
             <p>Order confirmation</p>
          </div>
-         <div class="h4">Monday, November 27, 2023</div>
-         <div class="pt-1">
-            <p>Your Order Id is <b>#12615.</b></p>
-         </div>
+         <div class="h4 date">Monday, November 27, 2023</div>
          <div class="btn close text-white"> &times; </div>
       </div>
       <div class="wrapper bg-white pt-3">
         <table class="table table-bordered table-striped table-responsive">
             <thead>
                 <tr>
-                    <th scope="col">Sr. No</th>
                     <th scope="col">Name</th>
                     <th scope="col">Price</th>
                     <th scope="col">Quantity</th>
                     <th scope="col">Total (₹)</th>
                 </tr>
             </thead>
-            <tbody>
-                <tr>
-                    <td>1</td>
-                    <td>Beard Oil</td>
-                    <td>49.00</td>
-                    <td>2</td>
-                    <td>98.00</td>
-                </tr>
-                <tr>
-                    <td>2</td>
-                    <td>Beard Oil</td>
-                    <td>49.00</td>
-                    <td>2</td>
-                    <td>98.00</td>
-                </tr>
-                <tr>
-                    <td>3</td>
-                    <td>Face Wash</td>
-                    <td>49.00</td>
-                    <td>3</td>
-                    <td>147.00</td>
-                </tr>
-                <tr>
-                    <td>4</td>
-                    <td>Hair Wash</td>
-                    <td>49.00</td>
-                    <td>1</td>
-                    <td>49.00</td>
-                </tr>
+            <tbody class="allItems">
             </tbody>
         </table>
          <div class="table-responsive">
@@ -194,12 +162,12 @@
                <tbody>
                   <tr>
                      <th scope="row"></th>
-                     <td class="text-right"><b>&#8377;199</b></td>
+                     <td class="text-right total"><b>&#8377;199</b></td>
                   </tr>
                </tbody>
             </table>
          </div>
-         <div class="pt-2 border-bottom mb-3"></div>
+         <!-- <div class="pt-2 border-bottom mb-3"></div>
          <div class="d-flex justify-content-start align-items-center pl-3">
             <div class="text-muted">Payment Method</div>
             <div class="ml-auto"> <img src="https://www.freepnglogos.com/uploads/mastercard-png/mastercard-logo-logok-15.png" alt="" width="30" height="30"> <label>Mastercard ******5342</label> </div>
@@ -215,26 +183,76 @@
          <div class="d-flex justify-content-start align-items-center pl-3 py-3 mb-4 border-bottom">
             <div class="text-muted">Total Amount Paid </div>
             <div class="ml-auto h5"> &#8377;149 </div>
-         </div>
+         </div> -->
+         <p>Only Cash on Delivery. Online Payment in Development</p>
          <div class="row border rounded p-1 my-3">
             <div class="col-md-6 py-3">
-               <div class="d-flex flex-column align-items start">
-                  <b>Shipping Address</b>
-                  <p class="text-justify pt-2">Bartala Yadgar Saharanpur</p>
-                  <p class="text-justify">247001, Uttar Pradesh</p>
-               </div>
+               <div class="d-flex flex-column align-items start Shipping_Address"></div>
             </div>
          </div>
-         <div class="d-sm-flex justify-content-between rounded text-center subscriptions">
+         <!-- <div class="d-sm-flex justify-content-between rounded text-center subscriptions">
             <div>Thank you for you order. Redirecting you to home screen in 5 seconds.</div>
-         </div>
+         </div> -->
+         <button class="btn btn-primary">proceed</button>
       </div>
+      <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 
       <script>
+            function dataCell (content) {
+               var item = document.createElement('td')
+               item.textContent = content;
+               return item
+            }
+            function addTableRow(name, price, quantity) {
+               // Get the table body
+               var tableBody = document.querySelector('.allItems')
 
-        setTimeout(function() {
-            window.location.href = "index.html"; 
-        }, 10000); 
+               var row = document.createElement('tr')
+               row.append(dataCell(name))
+               row.append(dataCell(price))
+               row.append(dataCell(quantity))
+               row.append(dataCell((price*quantity)))
+
+               tableBody.append(row)
+            }
+         document.addEventListener('DOMContentLoaded', async () => {
+            let Total = 0;
+            await axios.get('/getprofile')
+            .then(response => response.data.userProfile)
+            .then(profile => {
+            // name: newUser.name,
+            // email: newUser.email,
+            // phone: newUser.phone,
+            // purchasedProducts: newUser.purchasedProducts
+               profile.cart.forEach(async cartItem => {
+                  await axios.get(`/api/products/${cartItem.itemId}`)
+                    .then(response => response.data)
+                    .then(productDetails => {
+                     addTableRow(productDetails.name, productDetails.offeredPrice,cartItem.quantity)
+                     Total += productDetails.offeredPrice*cartItem.quantity;
+                     document.querySelector('.total').innerHTML = `<b>&#8377;${Total}</b>`;
+                    })
+                    .catch(err => console.log("could not fetch product\n" + err))
+               })
+               document.querySelector('.Shipping_Address').innerHTML = `
+                  <b>Shipping Address</b>
+                  <p class="text-justify pt-2">${profile.pincode || ""}</p>
+                  <p class="text-justify">${profile.address || ""} ${profile.city || `<a href="/profile">Please Add a City</a>`}</p>
+                  <p class="text-justify">${profile.locality || ""} ${profile.landmark || ""}</p>
+                  <p class="text-justify">${profile.email}</p>
+               `;
+
+                  // Create a new Date object
+                  var today = new Date();
+                  var year = today.getFullYear();
+                  var month = today.getMonth() + 1;
+                  var day = today.getDate();
+                  var formattedDate = year + '/' + (month < 10 ? '0' + month : month) + '/' + (day < 10 ? '0' + day : day);
+
+                  document.querySelector('.date').textContent = formattedDate;
+            })
+            .catch(err => {console.log("could not fetch profile\n"+ err)})
+         })
     </script>
    </body>
 </html>

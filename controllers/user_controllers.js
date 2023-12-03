@@ -52,9 +52,7 @@ const authLogin = async (req, res) => {
         console.error(error);
         res.status(500).json({ message: 'Internal server error' });
     }
-}
-
-
+};
 const authSignUp = async (req, res) => {
     try {
         const { name, email, phone, address, password } = req.body;
@@ -110,8 +108,6 @@ const authSignUp = async (req, res) => {
         res.status(500).json({ message: 'Internal server error' });
     }
 };
-
-
 const authLogout = (req, res) => {
     req.session.destroy((err) => {
         if (err) {
@@ -121,7 +117,6 @@ const authLogout = (req, res) => {
         }
     });
 };
-
 const saveUserProfile = async (req,res) => {
     const token = req.session.token;
     try {
@@ -158,7 +153,6 @@ const saveUserProfile = async (req,res) => {
         console.error('Error updating user data:', error);
     }
 };
-
 const updateProfile = async (req,res) => {
     try {
         req.session.userProfile = req.body.userProfile;
@@ -169,11 +163,9 @@ const updateProfile = async (req,res) => {
     }
 
 }
-
 const getProfile = async (req, res) => {
     res.status(200).json({ message: 'User profile loaded successfully', userProfile: req.session.userProfile });
 };
-
 const addCartItem = async (req, res) => {
     const { itemId } = req.body;
     const userProfile = req.session.userProfile;
@@ -211,7 +203,6 @@ const addCartItem = async (req, res) => {
         res.status(500).json({ message: 'Internal server error' });
     }
 };
-
 const removeCartItem = (req, res) => {
     const { itemId } = req.body;
     const userProfile = req.session.userProfile;
@@ -242,7 +233,6 @@ const removeCartItem = (req, res) => {
         res.status(500).json({ message: 'Internal server error' });
     }
 };
-
 const increaseCartItemQuantity = (req, res) => {
     const { itemId } = req.body;
     const userProfile = req.session.userProfile;
@@ -272,7 +262,6 @@ const increaseCartItemQuantity = (req, res) => {
         res.status(500).json({ message: 'Internal server error' });
     }
 };
-
 const decreaseCartItemQuantity = (req, res) => {
     const { itemId } = req.body;
     const userProfile = req.session.userProfile;
@@ -318,7 +307,6 @@ const decreaseCartItemQuantity = (req, res) => {
         res.status(500).json({ message: 'Internal server error' });
     }
 };
-
 module.exports = { 
     authSignUp, 
     authLogin, 
