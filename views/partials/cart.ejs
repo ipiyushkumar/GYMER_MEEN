@@ -33,6 +33,11 @@
             const cartItemsContainer = document.getElementById('cartItemsContainer');
             cartItemsContainer.innerHTML = ''; // Clear existing content
 
+            if (userProfile.cart.length === 0){
+                alert("cart is empty")
+                return 0;
+            }
+            openCart();
             userProfile.cart.forEach(async cartItem => {
                 await axios.get(`/api/products/${cartItem.itemId}`)
                     .then(response => response.data)

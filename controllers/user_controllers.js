@@ -43,7 +43,6 @@ const authLogin = async (req, res) => {
             city: user.city,
             address: user.address,
             cart: user.cart,
-            purchasedProducts: user.purchasedProducts
         };
 
         console.log("a user logged in " + email)
@@ -98,7 +97,6 @@ const authSignUp = async (req, res) => {
             city: newUser.city,
             address: newUser.address,
             cart: newUser.cart,
-            purchasedProducts: newUser.purchasedProducts
         };
 
         console.log("a user signed up " + email)
@@ -143,7 +141,6 @@ const saveUserProfile = async (req,res) => {
         userData.city = city || userData.city;
         userData.address = address || userData.address;
         userData.cart = cart || userData.cart;
-        userData.purchasedProducts = purchasedProducts || userData.purchasedProducts;
 
         // Save the updated user data
         await userData.save();
@@ -155,7 +152,14 @@ const saveUserProfile = async (req,res) => {
 };
 const updateProfile = async (req,res) => {
     try {
-        req.session.userProfile = req.body.userProfile;
+        const {name, email, phone, pincode, locality, landmark, city, address} = req.body.userProfile;
+        req.session.userProfile.name = name;
+        req.session.userProfile.phone = phone;
+        req.session.userProfile.pincode = pincode;
+        req.session.userProfile.locality = locality;
+        req.session.userProfile.landmark = landmark;
+        req.session.userProfile.city = city;
+        req.session.userProfile.address = address;
         saveUserProfile(req, res)
         res.status(200).json({message : "user profile updated successfully"})
     } catch (error) {

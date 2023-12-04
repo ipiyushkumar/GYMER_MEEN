@@ -12,13 +12,9 @@
     - update inventory of the product
 
 ### update pages
-implement checkout
-implement product description
-
-pages left:
-Face Care and three other pages of other categories
-product description for each product
-fix the home page
+product description for each product // fix images uploading
+Face Care and three other pages of other categories // make them dynamic
+Make the home page dynamic
 
 
     <div class="mb-3 mt-5">

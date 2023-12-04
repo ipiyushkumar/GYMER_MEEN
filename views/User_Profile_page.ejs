@@ -185,7 +185,7 @@
                     <div class="card">
                         <div class="card-body">
                             <div class="d-flex flex-column align-items-center text-center">
-                                <img src="images/logo.PNG" alt="Admin" class="rounded-circle p-1 bg-dark" width="110">
+                                <img src="assets/logo.PNG" alt="Admin" class="rounded-circle p-1 bg-dark" width="110">
                                 <div class="mt-3">
                                     <h4 class="username"></h4>
                                     <p class="text-secondary mb-1">WhiteWolf Customer</p>
@@ -231,31 +231,15 @@
                                             <thead>
                                                 <tr>
                                                     <th>Order ID</th>
-                                                    <th>Product Image</th>
-                                                    <th>Product Name</th>
-                                                    <th>Product Price</th>
-                                                    <th>Status</th>
+                                                    <th>Order Items</th>
+                                                    <th>Order Payment</th>
+                                                    <th>Order Status</th>
                                                 </tr>
                                             </thead>
-                                            <tbody>
-                                                <tr>
-                                                    <td>12345</td>
-                                                    <td><img src="assets/spray/spray1.jpg" alt="Product 1"></td>
-                                                    <td>Product 1</td>
-                                                    <td>$50.00</td>
-                                                    <td>In Transit</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>9876543210</td>
-                                                    <td><img src="assets/spray/spray2.jpg" alt="Product 2"></td>
-                                                    <td>Product 2</td>
-                                                    <td>$30.00</td>
-                                                    <td>Delivered</td>
-                                                </tr>
+                                            <tbody class="orders">
                                             </tbody>
                                         </table>
                                     </div>
-
                                 </div>
                             </div>
                         </div>                          
@@ -269,7 +253,7 @@
                                                 <input type="text" class="form-control name" placeholder="Name">
                                             </div>
                                             <div class="col-sm-6">
-                                                <input type="email" class="form-control email" placeholder="Email">
+                                                <input type="email" class="form-control email" placeholder="Email" disabled>
                                             </div>
                                         </div>
                                         <div class="row mb-3">
@@ -406,10 +390,26 @@
             alert("Logout canceled.");
         }
     }
+    function createTableCell (content){
+        let cell = document.createElement('td');
+        cell.textContent = content;
+        return cell
+    }
+    function createTableRow (orderId, orderItems, OrderPayment, OrderStatus) {
+        let row = document.createElement('tr')
+
+        row.append(createTableCell(orderId))
+        row.append(createTableCell(orderItems))
+        row.append(createTableCell(OrderPayment))
+        row.append(createTableCell(OrderStatus))
+
+        return row;
+
+    }
     document.addEventListener('DOMContentLoaded',async function () {
         await axios.get('/getprofile')
         .then(response => response.data.userProfile)
-        .then(data => {
+        .then(async data => {
             document.querySelector(".username").textContent = data.name
 
             document.querySelector(".name").value = data.name || ""
@@ -420,6 +420,27 @@
             document.querySelector(".landmark").value = data.landmark || ""
             document.querySelector(".city").value = data.city || ""
             document.querySelector(".address").value = data.address || ""
+
+           
+
+            await axios.get('/api/order')
+                .then(response => response.data)
+                .then(async orders => {
+                    const orderPromises = orders.map(async order => {
+                        let names = "";
+                        await Promise.all(order.products.map(async product => {
+                            try {
+                                const response = await axios.get(`/api/products/${product.itemId}`);
+                                names += ` ${response.data.name}`;
+                            } catch (err) {
+                                console.log("error fetching products", err);
+                            }
+                        }));
+                        document.querySelector('.orders').append(createTableRow(order._id, names, order.totalPayment, order.status));
+                    });
+                    await Promise.all(orderPromises);
+                })
+            .catch(err => console.log("error fetching orders " + err))
 
         })
         .catch(err => {console.log("error fetching profile" + err)}) 
@@ -434,6 +455,7 @@
         const city = document.querySelector(".city").value
         const address = document.querySelector(".address").value
         const userProfile = {name, email, phone, pincode, locality, landmark, city, address}
+
 
         await axios.put('/updateUserProfile',{userProfile})
         .then(response => alert("user data updated successfully"))

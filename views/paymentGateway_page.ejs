@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment gateway</title>
+</head>
+<body>
+    <h2 class="message"></h2>
+    <button class="pay">Payhere</button>
+</body>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script>
+        document.querySelector('.pay').addEventListener('click', async () => {
+            await axios.post('/processPayment')
+            .then(response => {
+                document.querySelector('.message').textContent = response.data.message;
+                setTimeout(()=> {
+                    window.location.href = "/";
+                },3000);
+            })
+            .catch(err => alert("error:\n" +err))
+        })
+    </script>
+</html>l

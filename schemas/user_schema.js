@@ -18,11 +18,6 @@ const userSchema = new mongoose.Schema({
             dateAdded: {type: Date, required: true, default : Date.now}
         }
     ],
-    purchasedProducts: [
-        {
-            product: { type: mongoose.Schema.Types.ObjectId, ref: 'Order' },
-        }
-    ]
 });
 
 const user = mongoose.model("User", userSchema);

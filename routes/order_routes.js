@@ -15,19 +15,16 @@ const isAuthenticated = (req, res, next) => {
   }
 };
 
-// 1. Get all sales
 router.get('/api/orders', controllers.getAllOrders);
 
-// 2. Get sales by date
 router.get('/api/order/:date', controllers.getOrderByDate);
 
-// 3. Get all sold products
-router.get('/api/order', controllers.getOrderByEmail);
+// done
+router.get('/api/order',isAuthenticated, controllers.getOrderByEmail);
 
-// 5. Add a new sale
-router.post('/api/placeOrder', isAuthenticated, controllers.placeNewOrder);
-
-// 6. Update a sale by ID
 router.put('/api/Status', controllers.updateOrderStatus);
+
+// add a new order
+router.post("/processPayment",isAuthenticated, controllers.paymentGateway);
 
 module.exports = router;

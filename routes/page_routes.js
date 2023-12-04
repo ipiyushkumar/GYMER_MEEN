@@ -25,12 +25,10 @@ router.get('/product_listing',(req, res) => {
 })
 
 // change it in product controller
-router.get('/product_description',(req, res) => {
-    res.render('product_description');
-})
-router.get('/cart',(req, res) => {
-    res.render('cart');
-})
+// router.get('/product_description',(req, res) => {
+//     res.render('product_description');
+// })
+
 router.get('/confirm', (req, res) => {
     res.render('Order_Confirm_page')
 })
@@ -45,6 +43,10 @@ router.get('/profile',(req, res) => {
 // admin tab
 router.get('/adminwolf',(req, res) => {
     res.render('Admin_page');
+})
+
+router.get('/paymentGateway', (req, res) => {
+    res.render('paymentGateway_page')
 })
 
 module.exports = router;

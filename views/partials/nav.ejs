@@ -5,9 +5,10 @@
     <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
     <a href="#">About Us</a>
     <a href="/product_listing">Best Sellers</a>
-    <a href="#">Face Care</a>
-    <a href="#">Hair Care</a>
-    <a href="#">Body Care</a>
+    <a href="/face_care">Face Care</a>
+    <a href="/hair_care">Hair Care</a>
+    <a href="/body_care">Body Care</a>
+    <a href="/beard_care">Beard Care</a>
     <a href="#">New Launches</a>
  </div>
 
@@ -27,7 +28,7 @@
        </form>
        <div class="custom-nav d-flex justify-content-end" style="width: 30%; font-size: 1rem;">
         <% if (content.isLoggedIn === true) { %>
-            <a class="nav-link cartButtom" onclick="openCart()" style="color: #fff; font-size: 1.2rem;">
+            <a class="nav-link cartButtom" style="color: #fff; font-size: 1.2rem;">
             <i class="fas fa-cart-plus"></i>
             <span style="margin-left: 5px;">Cart</span>
             </a>

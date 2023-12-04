@@ -156,13 +156,13 @@
                <thead>
                   <tr class="text-uppercase text-muted">
                      <th scope="col"></th>
-                     <th scope="col" class="text-right">total</th>
+                     <th scope="col" class="text-right">Total</th>
                   </tr>
                </thead>
                <tbody>
                   <tr>
                      <th scope="row"></th>
-                     <td class="text-right total"><b>&#8377;199</b></td>
+                     <td class="text-right total"><b>&#8377;</b></td>
                   </tr>
                </tbody>
             </table>
@@ -184,7 +184,7 @@
             <div class="text-muted">Total Amount Paid </div>
             <div class="ml-auto h5"> &#8377;149 </div>
          </div> -->
-         <p>Only Cash on Delivery. Online Payment in Development</p>
+         <p>Online Payment gateway in Development</p>
          <div class="row border rounded p-1 my-3">
             <div class="col-md-6 py-3">
                <div class="d-flex flex-column align-items start Shipping_Address"></div>
@@ -193,7 +193,7 @@
          <!-- <div class="d-sm-flex justify-content-between rounded text-center subscriptions">
             <div>Thank you for you order. Redirecting you to home screen in 5 seconds.</div>
          </div> -->
-         <button class="btn btn-primary">proceed</button>
+         <button class="btn btn-primary proceedToPay">proceed</button>
       </div>
       <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 
@@ -252,6 +252,9 @@
                   document.querySelector('.date').textContent = formattedDate;
             })
             .catch(err => {console.log("could not fetch profile\n"+ err)})
+         })
+         document.querySelector('.proceedToPay').addEventListener('click', () => {
+            window.location.href = '/paymentGateway';
          })
     </script>
    </body>

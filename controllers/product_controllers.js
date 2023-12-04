@@ -27,22 +27,6 @@ const getProductUsingId = async (req, res) => {
     }
   }
 
-const getItemPage = async (req, res) => {
-  try {
-    const itemId = req.params.itemId
-    const item = await Product.findOne({itemId});
-    if (!item) {
-      return res.status(404).json({ error: 'Product not found' });
-    }
-    const content = {
-      isLoggedIn : req.session.isLoggedIn,
-    }
-    res.render('Product_Description_page',{item,content})
-  } catch (error) {
-    res.status(500).json({ error: 'Internal Server Error' });
-  }
-}
-
 const addNewItem = async (req, res) => {
   try {
     const newProduct = new Product(req.body);
@@ -78,11 +62,56 @@ const deleteProduct = async (req, res) => {
     res.status(500).json({ error: 'Internal Server Error' });
   }
 }
+
+const face_care = (req, res) => {
+  const content = {
+      isLoggedIn : req.session.isLoggedIn,
+  }
+  res.render('Face_Care_page',{content})
+}
+const hair_care = (req, res) => {
+  const content = {
+      isLoggedIn : req.session.isLoggedIn,
+  }
+  res.render('Hair_Care_page',{content})
+}
+const body_care = (req, res) => {
+  const content = {
+      isLoggedIn : req.session.isLoggedIn,
+  }
+  res.render('Body_Care_page',{content})
+}
+const beard_care = (req, res) => {
+  const content = {
+      isLoggedIn : req.session.isLoggedIn,
+  }
+  res.render('Beard_Care_page',{content})
+}
+
+const getItemPage = async (req, res) => {
+  try {
+    const itemId = req.params.itemId
+    const item = await Product.findOne({itemId});
+    if (!item) {
+      return res.status(404).json({ error: 'Product not found' });
+    }
+    const content = {
+      isLoggedIn : req.session.isLoggedIn,
+    }
+    res.render('Product_Description_page',{item,content})
+  } catch (error) {
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+}
 module.exports = {
     getAllProducts,
     getProductUsingId,
     getItemPage,
     addNewItem,
     updateProduct,
-    deleteProduct
+    deleteProduct,
+    face_care,
+    hair_care,
+    body_care,
+    beard_care
 }

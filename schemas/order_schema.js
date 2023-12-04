@@ -3,8 +3,8 @@ const mongoose = require("mongoose");
 const orderSchema = new mongoose.Schema({
     Date: { type: Date, default: Date.now },
     email: { type: String, required: true},
-    product: [{ 
-        type: mongoose.Schema.Types.ObjectId, ref: 'Product',
+    products: [{
+        itemId: {type: String},
         quantity: { type: Number, required: true, default: 1 },
         dateAdded: {type: Date, required: true, default : Date.now}
     }],
