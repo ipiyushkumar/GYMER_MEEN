@@ -40,11 +40,6 @@ router.get('/profile',(req, res) => {
     res.render('User_Profile_page',{content});
 })
 
-// admin tab
-router.get('/adminwolf',(req, res) => {
-    res.render('Admin_page');
-})
-
 router.get('/paymentGateway', (req, res) => {
     res.render('paymentGateway_page')
 })

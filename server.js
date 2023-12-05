@@ -29,6 +29,7 @@ mongoose
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 app.use('/assets', express.static(path.join(__dirname, 'assets')));
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(cors());
@@ -48,6 +49,9 @@ app.use(products)
 
 const orders = require('./routes/order_routes')
 app.use(orders)
+
+const admin = require('./routes/admin_routes')
+app.use(admin)
 
 app.listen(port, () => {
   console.log(`Server Listen On ${port}`)

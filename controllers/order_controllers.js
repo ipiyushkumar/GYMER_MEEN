@@ -1,28 +1,8 @@
-const Orders = require('../schemas/order_schema');
-
-
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const User = require('../schemas/user_schema');
 const Product = require('../schemas/product_schema');
-
-const getAllOrders = async (req, res) => {
-  try {
-    const allOrders = await Orders.find();
-    res.json(allOrders);
-  } catch (error) {
-    res.status(500).json({ error: 'Internal Server Error' });
-  }
-}
-
-const getOrderByDate = async (req, res) => {
-  try {
-    const ordersByDate = await Orders.find({ Date: new Date(req.params.date) });
-    res.json(ordersByDate);
-  } catch (error) {
-    res.status(500).json({ error: 'Internal Server Error' });
-  }
-}
+const Orders = require('../schemas/order_schema');
 
 // email
 const getOrderByEmail = async (req, res) => {
@@ -33,16 +13,6 @@ const getOrderByEmail = async (req, res) => {
     res.status(500).json({ error: 'Internal Server Error' });
   }
 }
-
-const updateOrderStatus = async (req, res) => {
-  try {
-    const updatedOrder = await Orders.findByIdAndUpdate(req.params.orderId, req.body, { new: true });
-    res.json(updatedOrder);
-  } catch (error) {
-    res.status(500).json({ error: 'Internal Server Error' });
-  }
-}
-
 
 // done
 const paymentGateway = async (req, res) => {
@@ -81,9 +51,6 @@ const paymentGateway = async (req, res) => {
 }
 
 module.exports = {
-  getAllOrders,
-  getOrderByDate,
   getOrderByEmail,
-  updateOrderStatus,
   paymentGateway
 };

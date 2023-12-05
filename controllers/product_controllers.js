@@ -27,16 +27,6 @@ const getProductUsingId = async (req, res) => {
     }
   }
 
-const addNewItem = async (req, res) => {
-  try {
-    const newProduct = new Product(req.body);
-    const savedProduct = await newProduct.save();
-    res.json(savedProduct);
-  } catch (error) {
-    res.status(500).json({ error: 'Internal Server Error' });
-  }
-}
-
 // under development
 
 const updateProduct = async (req, res) => {
@@ -107,7 +97,6 @@ module.exports = {
     getAllProducts,
     getProductUsingId,
     getItemPage,
-    addNewItem,
     updateProduct,
     deleteProduct,
     face_care,

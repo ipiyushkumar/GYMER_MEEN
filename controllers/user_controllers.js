@@ -32,6 +32,10 @@ const authLogin = async (req, res) => {
         req.session.token = token;
         req.session.isLoggedIn = true;
 
+        if (user.admin === true){
+            req.session.admin = true;
+        }
+
         req.session.userProfile = {
             name: user.name,
             email: user.email,

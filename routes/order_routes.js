@@ -15,14 +15,8 @@ const isAuthenticated = (req, res, next) => {
   }
 };
 
-router.get('/api/orders', controllers.getAllOrders);
-
-router.get('/api/order/:date', controllers.getOrderByDate);
-
 // done
 router.get('/api/order',isAuthenticated, controllers.getOrderByEmail);
-
-router.put('/api/Status', controllers.updateOrderStatus);
 
 // add a new order
 router.post("/processPayment",isAuthenticated, controllers.paymentGateway);

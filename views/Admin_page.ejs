@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css">
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
@@ -113,8 +114,7 @@
                 </a></li>
             </ul>
         </nav>        
-
-        <section class="main" id="dashboardSection">
+        <section class="main" id="dashboardSection" style="display: none;">
             <div class="main-top">
                 <h1>Summary</h1>
             </div>
@@ -178,6 +178,62 @@
             </section>
         </section>
 
+        <!-- shows all the users -->
+        <section class="main" id="analyticsSection"  >
+            <section class="main-orders">
+                <h1>User Analytics</h1>
+                <div class="user-container">
+                    <table class="user-table">
+                        <thead>
+                            <tr>
+                                <th>User Name</th>
+                                <th>email</th>
+                                <th>Phone Number</th>
+                                <th>Pin Code</th>
+                                <th>Account Created</th>
+                                <!-- <th>Action</th> -->
+                                <!-- <td>
+                                    <button onclick="toggleUserBlock('John Doe')" class="block-button">Block</button>
+                                </td> -->
+                            </tr>
+                        </thead>
+                        <tbody id="userTableBody">
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+            <script>
+
+                document.addEventListener('DOMContentLoaded',async () => {
+                    function createTableCell(content) {
+                        let cell = document.createElement('td')
+                        cell.textContent = content;
+                        return cell;
+                    }
+                    await axios.get('/api/admin/getAllUsers')
+                    .then(response => response.data)
+                    .then(users => {
+                        users.forEach(user => {
+                            let row = document.createElement('tr')
+                            row.append(createTableCell(user.name))
+                            row.append(createTableCell(user.email))
+                            row.append(createTableCell(user.phone))
+                            row.append(createTableCell(user.pincode))
+
+                            const dateTime = new Date(user.joinDate);
+
+                            const formattedDateTime = dateTime.toLocaleString();
+
+                            row.append(createTableCell(formattedDateTime))
+                            document.querySelector('#userTableBody').append(row)
+                        })
+                    })
+                    .catch(err => console.log("oops, an error occured " + err))
+                })
+            </script>
+        </section>   
+
+        <!-- shows all orders : implement a status update -->
         <section class="main" id="ordersSection" style="display:none;">
             <section class="main-orders">
                 <h1>Orders</h1>
@@ -188,14 +244,13 @@
                         <li onclick="showOrderTab('completedOrders')" data-tab="completedOrders">Completed Orders</li>
                     </ul>
                     <div>
-                        <div class="order-table" id="allOrdersTab" style="display: none;">
+                        <div class="order-table" id="allOrdersTab">
                             <table class="table table-bordered table-striped">
                                 <thead>
                                     <tr>
                                         <th style="width: 15%;">Order Id</th>
-                                        <th style="width: 15%;">User Name</th>
-                                        <th style="width: 20%;">Product Name</th>
-                                        <th style="width: 15%;">Category</th>
+                                        <th style="width: 15%;">Email</th>
+                                        <th style="width: 20%;">Products</th>
                                         <th style="width: 15%;">Price</th>
                                         <th style="width: 15%;">Date</th>
                                         <th style="width: 20%;">Status</th>
@@ -204,29 +259,57 @@
                                 <tbody id="allOrdersBody"></tbody>
                             </table>
                         </div>
-                        <div class="order-table" id="pendingOrdersTab" style="display: none;">
-                            <table class="table table-bordered table-striped">
-                                <thead>
-                                    <tr>
-                                        <th style="width: 15%;">Order Id</th>
-                                        <th style="width: 15%;">User Name</th>
-                                        <th style="width: 20%;">Product Name</th>
-                                        <th style="width: 15%;">Category</th>
-                                        <th style="width: 15%;">Price</th>
-                                        <th style="width: 15%;">Date</th>
-                                        <th style="width: 20%;">Action</th>
-                                    </tr>
-                                </thead>
-                                <tbody id="pendingOrdersBody">
-                                </tbody>
-                            </table>
-                        </div>
-                        <div class="order-table" id="completedOrdersTab" style="display: none;"></div>
                     </div>
                 </div>
             </section>
+            <script>
+                document.addEventListener('DOMContentLoaded', async () => {
+                    function createTableCell(content) {
+                        let cell = document.createElement('td')
+                        cell.textContent = content;
+                        return cell;
+                    }
+
+                    await axios.get('/api/admin/getAllOrders')
+                        .then(response => response.data)
+                        .then(orders => {
+                            orders.forEach(async order => {
+                                let row = document.createElement('tr')
+                                row.append(createTableCell(order._id))
+                                row.append(createTableCell(order.email))
+
+                                let names = "";
+
+                                await Promise.all(order.products.map(async product => {
+                                    try {
+                                        const response = await axios.get(`/api/products/${product.itemId}`);
+                                        names += ` ${response.data.name}`;
+                                    } catch (err) {
+                                        console.log("error fetching products", err);
+                                    }
+                                }));
+
+                                row.append(createTableCell(names)) // Correct variable name here
+                                row.append(createTableCell(order.totalPayment))
+
+                                const dateTime = new Date(order.Date);
+
+                                // Get date and time
+                                const formattedDateTime = dateTime.toLocaleString();
+
+                                row.append(createTableCell(formattedDateTime))
+
+                                row.append(createTableCell(order.status))
+
+                                document.querySelector('#allOrdersBody').append(row);
+                            })
+                        })
+                        .catch(err => console.log("server refused on order data"))
+                })
+            </script>
         </section>
 
+        <!-- only need to fix the image link issue -->
         <section class="main" id="productsSection" style="display: none;">
             <section class="main-orders">
             <h1 style="margin-bottom: 0.3rem;">Add Product</h1>
@@ -275,9 +358,96 @@
                     </div>
                 </div>
             </section>
+            <script>    
+                function previewImage(inputId) {
+                    const input = document.getElementById(inputId);
+                    const preview = document.getElementById(`${inputId}Preview`);
+
+                    if (input.files && input.files[0]) {
+                        const reader = new FileReader();
+
+                        reader.onload = function (e) {
+                            preview.src = e.target.result;
+                        };
+
+                        reader.readAsDataURL(input.files[0]);
+                    }
+                }
+                function previewImages(inputId) {
+                    const input = document.getElementById(inputId);
+                    const previewContainer = document.getElementById(`${inputId}Preview`);
+                    previewContainer.innerHTML = '';
+
+                    if (input.files && input.files.length > 0 && input.files.length <= 3) {
+                        Array.from(input.files).forEach((file, index) => {
+                            const reader = new FileReader();
+                            reader.onload = function (e) {
+                                const img = document.createElement('img');
+                                img.src = e.target.result;
+                                img.className = 'image-preview-small';
+                                previewContainer.appendChild(img);
+                            };
+                            reader.readAsDataURL(file);
+                        });
+                    } else {
+                        alert("Please upload between 1 and 3 additional images.");
+                        input.value = ''; 
+                    }
+                }
+                function addProduct() {
+                    const itemId = document.getElementById('productId').value;
+                    const name = document.getElementById('productName').value;
+                    const description = document.getElementById('productDescription').value;
+                    const originalPrice = document.getElementById('originalPrice').value;
+                    const offeredPrice = document.getElementById('offeredPrice').value;
+                    const category = document.getElementById('category').value;
+                    const stock = document.getElementById('stock').value;
+                    const mainImage = document.getElementById('mainImage').files[0];
+                    const additionalImages = document.getElementById('files').files;
+
+                    if (
+                        itemId &&
+                        name &&
+                        description &&
+                        originalPrice &&
+                        offeredPrice &&
+                        category &&
+                        stock &&
+                        mainImage &&
+                        additionalImages.length > 0
+                    ) {
+                        let formData = new FormData();
+
+                        formData.append('itemId', itemId);
+                        formData.append('name', name);
+                        formData.append('description', description);
+                        formData.append('originalPrice', originalPrice);
+                        formData.append('offeredPrice', offeredPrice);
+                        formData.append('category', category);
+                        formData.append('stock', stock);
+                        formData.append('files', mainImage);
+
+                        for (const file of additionalImages) {
+                            formData.append('files', file);
+                        }
+
+                        axios
+                            .post('/api/products', formData)
+                            .then((response) => {
+                                alert('Product added successfully:', response.data);
+                            })
+                            .catch((error) => {
+                                console.error('Error adding product:', error);
+                            });
+                    } else {
+                        alert('Please fill in all the details before adding the product.');
+                    }
+                }
+            </script>
         </section>
 
-        <section class="main" id="categoriesSection">
+        <!-- deprecated -->
+        <section class="main" id="categoriesSection"style="display: none;">
             <section class="main-orders">
                 <h1>Add/View Categories</h1>
                 <div class="category-container">
@@ -322,45 +492,6 @@
                 </div>
             </section>
         </section>
-
-        <section class="main" id="analyticsSection" style="display: none;">
-            <section class="main-orders">
-                <h1>User Analytics</h1>
-                <div class="user-container">
-                    <table class="user-table">
-                        <thead>
-                            <tr>
-                                <th>User Name</th>
-                                <th>Phone Number</th>
-                                <th>Pin Code</th>
-                                <th>Account Created</th>
-                                <th>Action</th>
-                            </tr>
-                        </thead>
-                        <tbody id="userTableBody">
-                            <tr>
-                                <td>John Doe</td>
-                                <td>123-456-7890</td>
-                                <td>12345</td>
-                                <td>2023-11-27</td>
-                                <td>
-                                    <button onclick="toggleUserBlock('John Doe')" class="block-button">Block</button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Jane Smith</td>
-                                <td>987-654-3210</td>
-                                <td>54321</td>
-                                <td>2023-11-27</td>
-                                <td>
-                                    <button onclick="toggleUserBlock('Jane Smith')" class="block-button">Block</button>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </section>
-        </section>   
 
         <section class="main" id="inventorySection" style="display: none;">
             <section class="main-orders">
@@ -487,7 +618,7 @@
             </section>
         </section>
 
-        <section class="main" id="coupon">
+        <section class="main" id="coupon" style="display: none;">
             <section class="main-orders">
                 <h1>Add/Delete Coupons</h1>
     
@@ -543,7 +674,6 @@
     
 
     </div>
-    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script>
         function showDashboard() {
         showSection('dashboardSection');
@@ -595,7 +725,7 @@
         setActiveTab('couponTab');
     }
 
-        function showSection(sectionId) {
+    function showSection(sectionId) {
 
             var sections = document.getElementsByClassName('main');
             for (var i = 0; i < sections.length; i++) {
@@ -607,478 +737,7 @@
                 selectedSection.style.display = 'block';
             }
         }
-
-        var orders = [
-            {
-                orderId: 1,
-                userName: 'john.doe@example.com',
-                productName: 'Laptop',
-                category: 'Electronics',
-                price: '$1200.00',
-                date: '2023-11-25',
-                status: 'Shipped'
-            },
-            {
-                orderId: 2,
-                userName: 'jane.smith@example.com',
-                productName: 'Smartphone',
-                category: 'Electronics',
-                price: '$800.00',
-                date: '2023-11-24',
-                status: 'Delivered'
-            },
-            {
-                orderId: 3,
-                userName: 'bob.jones@example.com',
-                productName: 'Headphones',
-                category: 'Audio',
-                price: '$150.00',
-                date: '2023-11-23',
-                status: 'Pending'
-            },
-            {
-                orderId: 4,
-                userName: 'alice.johnson@example.com',
-                productName: 'Camera',
-                category: 'Photography',
-                price: '$500.00',
-                date: '2023-11-22',
-                status: 'Shipped'
-            }
-        ];
-
-    function initOrders() {
-
-        // renderOrders('allOrders');
-    }
-
-    function showOrderTab(tabName) {
-
-    document.getElementById('allOrdersTab').style.display = 'none';
-    document.getElementById('pendingOrdersTab').style.display = 'none';
-    document.getElementById('completedOrdersTab').style.display = 'none';
-
-    document.getElementById(tabName + 'Tab').style.display = 'block';
-
-}
-
-document.addEventListener('DOMContentLoaded', function () {
-    showSection('dashboardSection');
-    initOrders();
-    showOrderTab('allOrders'); 
-});
-
-    function previewImage(inputId) {
-        const input = document.getElementById(inputId);
-        const preview = document.getElementById(`${inputId}Preview`);
-
-        if (input.files && input.files[0]) {
-            const reader = new FileReader();
-
-            reader.onload = function (e) {
-                preview.src = e.target.result;
-            };
-
-            reader.readAsDataURL(input.files[0]);
-        }
-    }
-
-    function previewImages(inputId) {
-        const input = document.getElementById(inputId);
-        const previewContainer = document.getElementById(`${inputId}Preview`);
-        previewContainer.innerHTML = '';
-
-        if (input.files && input.files.length > 0 && input.files.length <= 3) {
-            Array.from(input.files).forEach((file, index) => {
-                const reader = new FileReader();
-                reader.onload = function (e) {
-                    const img = document.createElement('img');
-                    img.src = e.target.result;
-                    img.className = 'image-preview-small';
-                    previewContainer.appendChild(img);
-                };
-                reader.readAsDataURL(file);
-            });
-        } else {
-            alert("Please upload between 1 and 3 additional images.");
-            input.value = ''; 
-        }
-    }
-
-    function addProduct() {
-        const itemId = document.getElementById('productId').value;
-        const name = document.getElementById('productName').value;
-        const description = document.getElementById('productDescription').value;
-        const originalPrice = document.getElementById('originalPrice').value;
-        const offeredPrice = document.getElementById('offeredPrice').value;
-        const category = document.getElementById('category').value;
-        const stock = document.getElementById('stock').value;
-        const mainImage = document.getElementById('mainImage').files[0]; // Use files[0] to get the first file
-        const additionalImages = document.getElementById('files').files; // Use files to get all files
-
-        if (
-            itemId &&
-            name &&
-            description &&
-            originalPrice &&
-            offeredPrice &&
-            category &&
-            stock &&
-            mainImage &&
-            additionalImages.length > 0
-        ) {
-            let imageLink = [];
-
-            // Add the main image
-            imageLink.push(URL.createObjectURL(mainImage));
-
-            // Add additional images
-            for (const file of additionalImages) {
-                imageLink.push(URL.createObjectURL(file));
-            }
-
-            let formData = {
-                itemId,
-                name,
-                description,
-                originalPrice,
-                offeredPrice,
-                category,
-                stock,
-                imageLink,
-            };
-
-            axios
-                .post('/api/products', formData)
-                .then((response) => {
-                    alert('Product added successfully:', response.data);
-                })
-                .catch((error) => {
-                    console.error('Error adding product:', error);
-                });
-        } else {
-            alert('Please fill in all the details before adding the product.');
-        }
-    }
-    document.addEventListener('DOMContentLoaded', function () {
-        updateDateTime();
-    });
-
-    function showSection(sectionId) {
-        var sections = document.getElementsByClassName('main');
-        for (var i = 0; i < sections.length; i++) {
-            sections[i].style.display = 'none';
-        }
-
-        var selectedSection = document.getElementById(sectionId);
-        if (selectedSection) {
-            selectedSection.style.display = 'block';
-        }
-    }
-
-    var categories = [
-        { serialNumber: 1, categoryName: 'Electronics', dateOfAdding: '2023-11-28' },
-        { serialNumber: 2, categoryName: 'Clothing', dateOfAdding: '2023-11-27' }
-
-    ];
-
-    document.addEventListener('DOMContentLoaded', function () {
-        updateDateTime();
-        renderCategories();
-    });
-
-    function renderCategories() {
-        var categoryTableBody = document.getElementById('categoryTableBody');
-        categoryTableBody.innerHTML = '';
-
-        categories.forEach(function (category) {
-            var row = categoryTableBody.insertRow();
-            var serialNumberCell = row.insertCell(0);
-            var categoryNameCell = row.insertCell(1);
-            var dateOfAddingCell = row.insertCell(2);
-            var actionCell = row.insertCell(3);
-
-            serialNumberCell.textContent = category.serialNumber;
-            categoryNameCell.textContent = category.categoryName;
-            dateOfAddingCell.textContent = category.dateOfAdding;
-
-            var editButton = document.createElement('button');
-            editButton.textContent = 'Edit';
-            editButton.onclick = function () {
-                editCategory(row);
-            };
-
-            var deleteButton = document.createElement('button');
-            deleteButton.textContent = 'Delete';
-            deleteButton.onclick = function () {
-                deleteCategory(row);
-            };
-
-            actionCell.appendChild(editButton);
-            actionCell.appendChild(deleteButton);
-        });
-    }
-
-    function updateDateTime() {
-        var currentDateTimeElement = document.getElementById('currentDateTime');
-        var now = new Date();
-        var formattedDateTime = now.toLocaleString();
-        currentDateTimeElement.textContent = formattedDateTime;
-    }
-
-    function addCategory() {
-        var categoryName = document.getElementById('categoryName').value;
-        if (categoryName.trim() === '') {
-            alert('Please enter a category name.');
-            return;
-        }
-
-        var categoryTableBody = document.getElementById('categoryTableBody');
-        var row = categoryTableBody.insertRow();
-        var serialNumberCell = row.insertCell(0);
-        var categoryNameCell = row.insertCell(1);
-        var dateOfAddingCell = row.insertCell(2);
-        var actionCell = row.insertCell(3);
-
-        serialNumberCell.textContent = categoryTableBody.rows.length;
-        categoryNameCell.textContent = categoryName;
-        dateOfAddingCell.textContent = new Date().toLocaleString();
-
-        var editButton = document.createElement('button');
-        editButton.textContent = 'Edit';
-        editButton.className = 'edit-button';
-        editButton.onclick = function () {
-            editCategory(row);
-        };
-
-        var deleteButton = document.createElement('button');
-        deleteButton.textContent = 'Delete';
-        deleteButton.className = 'delete-button';
-        deleteButton.onclick = function () {
-            deleteCategory(row);
-        };
-
-        actionCell.appendChild(editButton);
-        actionCell.appendChild(deleteButton);
-
-        document.getElementById('categoryName').value = '';
-    }
-
-    function editCategory(row) {
-
-        alert('Edit category functionality will be implemented here.');
-    }
-
-    function deleteCategory(row) {
-        var confirmation = confirm("Are you sure you want to delete this category?");
-        if (confirmation) {
-            row.remove();
-            updateSerialNumbers();
-        }
-    }
-
-    function updateSerialNumbers() {
-        var categoryTableBody = document.getElementById('categoryTableBody');
-        for (var i = 0; i < categoryTableBody.rows.length; i++) {
-            categoryTableBody.rows[i].cells[0].textContent = i + 1;
-        }
-    }
-
-    var users = [
-    { name: 'John Doe', phoneNumber: '123-456-7890', pinCode: '12345', accountCreated: '2023-11-27', blocked: false },
-    { name: 'Jane Smith', phoneNumber: '987-654-3210', pinCode: '54321', accountCreated: '2023-11-27', blocked: false }
-
-];
-
-function renderUsers() {
-    var tableBody = document.getElementById('userTableBody');
-    tableBody.innerHTML = '';
-
-    users.forEach(user => {
-        var row = document.createElement('tr');
-        row.innerHTML = `
-            <td>${user.name}</td>
-            <td>${user.phoneNumber}</td>
-            <td>${user.pinCode}</td>
-            <td>${user.accountCreated}</td>
-            <td>
-                <button onclick="toggleUserBlock('${user.name}')" class="${user.blocked ? 'unblock-button' : 'block-button'}">
-                    ${user.blocked ? 'Unblock' : 'Block'}
-                </button>
-            </td>
-        `;
-        tableBody.appendChild(row);
-    });
-}
-
-function toggleUserBlock(userName) {
-    var user = users.find(u => u.name === userName);
-    if (user) {
-        user.blocked = !user.blocked;
-        renderUsers(); 
-        alert(`${user.name} is ${user.blocked ? 'blocked' : 'unblocked'}`);
-    }
-}
-
-function setActiveTab(tabId) {
-
-    var tabs = document.querySelectorAll('nav ul li a');
-    tabs.forEach(tab => {
-        tab.classList.remove('active');
-    });
-
-    var activeTab = document.getElementById(tabId);
-    if (activeTab) {
-        activeTab.classList.add('active');
-    }
-}
-
-renderUsers();
     </script>
-
-<script>
-    $(document).ready(function () {
-
-        $('#datePicker').datepicker();
-
-        $('#btnToday').on('click', function () {
-
-            $('#datePicker').datepicker('setDate', new Date());
-        });
-
-        $('#btnLast7Days').on('click', function () {
-
-            var last7Days = new Date();
-            last7Days.setDate(last7Days.getDate() - 7);
-            $('#datePicker').datepicker('setDate', last7Days);
-        });
-
-        $('#btnLast30Days').on('click', function () {
-
-            var last30Days = new Date();
-            last30Days.setDate(last30Days.getDate() - 30);
-            $('#datePicker').datepicker('setDate', last30Days);
-        });
-
-        $('#btnShow').on('click', function () {
-
-            var selectedDate = $('#datePicker').datepicker('getDate');
-
-            console.log('Selected Date:', selectedDate);
-        });
-    });
-</script>
-
-    <script>
-    var xValues = ["Monday", "Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"];
-    var yValues = [55, 49, 44, 24, 15,21,30];
-    var barColors = ["red", "green","blue","orange","brown","purple","maroon"];
-
-    new Chart("myChart", {
-      type: "bar",
-      data: {
-        labels: xValues,
-        datasets: [{
-          backgroundColor: barColors,
-          data: yValues
-        }]
-      },
-      options: {
-        legend: {display: false},
-        title: {
-          display: true,
-          text: "Last 7 Days Sales"
-        }
-      }
-    });
-
-    </script>
-
-<script>
-    // Function to limit the number of uploaded files to 3
-    function limitFiles(files) {
-        var maxFiles = 3;
-        return Array.from(files).slice(0, maxFiles);
-    }
-
-    window.onload = function () {
-        // Check File API support
-        if (window.File && window.FileList && window.FileReader) {
-            var filesInput = document.getElementById("files");
-            var output = document.getElementById("result");
-            var uploadedFiles = [];
-
-            filesInput.addEventListener("change", function (event) {
-                var files = event.target.files; // FileList object
-                var newFiles = limitFiles(files);
-
-                if (files.length > 3) {
-                    alert("You can upload a maximum of 3 files.");
-                    // Clear the file input to prevent additional files from being selected
-                    filesInput.value = "";
-                    return;
-                }
-
-                newFiles.forEach(function (file) {
-                    // Only pics
-                    if (!file.type.match('image')) return;
-
-                    var picReader = new FileReader();
-                    picReader.addEventListener("load", function (event) {
-                        var picFile = event.target;
-                        var img = document.createElement("img");
-                        img.className = 'thumbnail';
-                        img.src = picFile.result;
-                        img.title = picFile.name;
-                        output.appendChild(img);
-                        uploadedFiles.push(file);
-                    });
-
-                    // Read the image
-                    picReader.readAsDataURL(file);
-                });
-            });
-        } else {
-            console.log("Your browser does not support File API");
-        }
-    }
-</script>
-
-<script>
-    // Function to add a coupon
-    function addCoupon() {
-        var couponName = document.getElementById('couponName').value;
-        var discountPercentage = document.getElementById('discountPercentage').value;
-        var validityStart = document.getElementById('validityStart').value;
-        var validityEnd = document.getElementById('validityEnd').value;
-
-        // You can perform validation and formatting of data here
-
-        // Create coupon item
-        var couponList = document.getElementById('couponList');
-        var newRow = couponList.insertRow(-1);
-        var cell1 = newRow.insertCell(0);
-        var cell2 = newRow.insertCell(1);
-        var cell3 = newRow.insertCell(2);
-        var cell4 = newRow.insertCell(3);
-        var cell5 = newRow.insertCell(4);
-
-        cell1.innerHTML = couponName;
-        cell2.innerHTML = discountPercentage + "%";
-        cell3.innerHTML = validityStart;
-        cell4.innerHTML = validityEnd;
-        cell5.innerHTML = "<button onclick='deleteCoupon(this)'>Delete</button>";
-
-        // Clear the form
-        document.getElementById('couponForm').reset();
-    }
-
-    // Function to delete a coupon
-    function deleteCoupon(button) {
-        var row = button.parentNode.parentNode;
-        row.parentNode.removeChild(row);
-    }
-</script>
 
 </body>
 
