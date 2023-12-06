@@ -209,6 +209,7 @@
                         let cell = document.createElement('td')
                         cell.textContent = content;
                         return cell;
+                        document.querySelector('#userTableBody').innerHTML = ''
                     }
                     await axios.get('/api/admin/getAllUsers')
                     .then(response => response.data)
@@ -263,13 +264,13 @@
                 </div>
             </section>
             <script>
-                document.querySelector('#ordersTab').addEventListener('DOMContentLoaded', async () => {
+                document.querySelector('#ordersTab').addEventListener('click', async () => {
                     function createTableCell(content) {
                         let cell = document.createElement('td')
                         cell.textContent = content;
                         return cell;
                     }
-
+                    document.querySelector('#allOrdersBody').innerHTML = ''
                     await axios.get('/api/admin/getAllOrders')
                         .then(response => response.data)
                         .then(orders => {
@@ -489,6 +490,7 @@
             </section>
         </section>
 
+        <!-- implement a stock update -->
         <section class="main" id="inventorySection" >
             <section class="main-orders">
                 <h1>Products Grid</h1>
@@ -505,6 +507,7 @@
                     .catch(err => alert("some error occured when removing the product\n" + err))
                 }
                 async function loadAllProducts () {
+                    document.querySelector('.product-grid').innerHTML = ''
                     await axios.get('/api/products')
                     .then(response => response.data)
                     .then(products => {
@@ -532,7 +535,7 @@
                 });
             </script>
         </section>
-
+        
         <section class="main" id="paymentsSection" style="display: none;">
             <section class="main-orders">
                 <h1>My Wallet</h1>
