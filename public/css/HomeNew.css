@@ -1,0 +1,426 @@
+body {
+    font-family: 'Outfit', sans-serif;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    background-color: #000;
+    }
+    .promo-strip {
+    width: 100%;
+    text-transform: uppercase;
+    background-color: #fff;
+    text-align: center;
+    padding: 0.5rem 0;
+    color: #000;
+    font-weight: regular;
+    }
+
+    .social ul a {
+        width: 0.5rem;
+        height: 0.5rem;
+        padding: 1rem;
+        font-size: 1.5rem; /* Adjust the font size accordingly */
+        background-color: #fff;
+        border-radius: 50%;
+        color: #000;
+    }
+    
+
+
+    .category-btn{
+    background-color: transparent;
+    color: #fff;
+    font-size: 1.5rem;
+    font-weight: 300;
+    }
+
+    @media (max-width: 767.98px) {
+        
+    .navbar-brand {
+    width: 45%;
+    }
+    footer .upper-div{
+    text-align: center;
+    }
+    .custom-nav {
+    width: 70%; 
+    display: flex;
+    justify-content: flex-end;
+    }
+    .custom-nav a {
+    margin-right: 10px; 
+    display: flex; 
+    align-items: center; 
+    }
+    .category-btn{
+    border: none;
+    font-size: 1rem;
+    }
+    }
+    @media (max-width: 576px) {.slider img{
+        height: 30vh;
+    }
+
+    .slider .slick-slide{
+        margin-right: 2rem !important;
+        margin-left: 2rem!important;
+    }
+
+    body {
+    padding-top: 0;
+    }
+    form.d-flex {
+    max-width: 70%;
+    }
+    }
+    .product-grid{
+        padding: 1rem;
+        width: 100%;
+        /* background-color: red; */
+        overflow-x: scroll;
+        scrollbar-width: 1px;
+    display: flex;
+    flex-wrap: nowrap;
+    flex-direction: row;
+    }
+
+    #productGrid {
+        overflow: hidden;
+        -ms-overflow-style: none;  /* IE and Edge */
+        scrollbar-width: none;  /* Firefox */
+    }
+    
+    #productGrid::-webkit-scrollbar {
+        display: none;
+    }
+    
+    
+    
+    .product-card {
+        width: 30%;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #fff;
+    color: #000;
+    margin: 10px;
+    padding: 1rem;
+    color: #fff;
+    border-radius: 0.5rem;
+    transition: transform 0.2s;
+    height: auto;
+    }
+
+    .product-details{
+        text-align: left;
+        width: 100%;
+        flex-wrap: wrap;
+    }
+
+    .product-card:hover {
+    transform: scale(1.05);
+    }
+    .product-image {
+    width: 100%;
+    height: 50vh;
+    object-fit: cover;
+    transition: transform 1s ease-in-out;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 10px;
+    }
+
+    .filters button {
+        font-size: 1.3rem;
+        text-decoration: none; /* Remove default underline */
+        position: relative;
+        border: none;
+        transition: text-decoration 1s ease;
+    }
+    
+    .filters button:hover {
+        text-decoration: underline; /* Add underline on hover */
+    }
+    .category-badge {
+    padding: 0.8rem 0.8rem;
+    border-radius: 0.3rem;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    width: max-content;
+    margin-top: 0.5rem;
+    background-color: #000;
+    }
+    .product-title {
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-top: 1rem;
+    color: #000;
+    }
+    .product-description {
+    font-size: 0.9rem;
+    margin-top: 0.5rem;
+    color: #222;
+    }
+    .product-price-discount {
+    margin-top: 10px;
+    }
+    .product-price{
+    color: #000;
+    font-weight: bolder;
+    }
+    .add-to-cart-btn {
+    margin-top: 1rem;
+    display: inline-block;
+    width: 100%;
+    padding: 0.5rem 1rem;
+    background-color: burlywood;
+    color: #fff;
+    text-align: center;
+    text-decoration: none;
+    font-size: 1rem;
+    border: none;
+    border-radius: 1rem;
+    cursor: pointer;
+    text-transform: uppercase;
+    transition: background-color 0.3s ease-in-out;
+    }
+    .add-to-cart-btn:hover{
+    background-color: #fff;
+    border: 1px solid burlywood;
+    color: burlywood;
+    }
+    .launch-badge {
+    position: absolute;
+    top: 0rem;
+    left: 0.5rem;
+    width: 40px;
+    height: auto;
+    z-index: 1;
+    }
+    .products-bar{
+    width: 90%;
+    padding-right: 1rem;
+    padding-left: 1rem;
+    color: #000;
+    background-color: #000;
+    }
+    .products-bar buttons{
+    font-size: 0.7rem;
+    }
+    .banner-section {
+    position: relative;
+    }
+    .banner-image {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    }
+    .banner-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    color: #fff;
+    }
+    .through img{
+    border-top-left-radius: 1rem;
+    border-top-right-radius: 1rem;
+    }
+    .carousel {
+    width: 100%;
+    overflow: hidden;
+    height: auto 
+    }
+    .carousel-inner {
+    width: 100%;
+    height: 100%; 
+    transition: transform 1s ease-in-out;
+    }
+    .carousel-item {
+    float: left;
+    width: 100%;
+    height: 100%; 
+    box-sizing: border-box;
+    }
+    .img-fluid {
+    width: 100%;
+    height: 100%; 
+    object-fit: cover;
+    }
+    .footer-menu a{
+    text-decoration: none;
+    }
+    .sidenav {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: #111;
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 60px;
+    }
+    .sidenav a {
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 1.2rem;
+    color: #fff;
+    display: block;
+    transition: 0.3s;
+    }
+    .sidenav a:hover {
+    background-color: #fff;
+    color: #000;
+    }
+    .sidenav .closebtn {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
+    }
+    .sidenav .closebtn:hover{
+    background-color: #111;
+    color: #fff;
+    }
+    #main {
+    transition: margin-left .5s;
+    padding: 16px;
+    }
+    @media screen and (max-height: 450px) {
+        
+    .sidenav {padding-top: 15px;}
+    .sidenav a {font-size: 1rem;}
+    }
+    @media (max-width: 576px){
+    .product-grid{
+    padding: 2rem;
+    padding-right: 3rem;
+    grid-column-gap: 1.5rem;
+    }
+
+    .product-card{
+        width: 100%;
+    }
+
+    .products-bar{
+        padding: 0;
+    }
+
+    .filters button {
+        font-size: 0.5rem;
+       
+    }
+    
+    .profile {
+    grid-column: 1 / span 3;
+    margin-left: auto;
+    margin-right: auto;
+    }
+    /* .footer{
+    margin-left: -1rem;
+    } */
+    }
+
+    .upperdiv {
+        margin-right: 0; /* Reset margin-right */
+        margin-left: 0; /* Reset margin-left */
+    }
+    
+    /* If the issue persists, you can also try resetting padding */
+    .upperdiv {
+        padding-right: 0;
+        padding-left: 0;
+    }
+    
+
+    a {
+        text-decoration: none; /* Remove underline */
+        color: inherit; /* Inherit text color from the parent */
+        cursor: pointer; /* Add pointer cursor for better user experience */
+     }
+
+     .slider{
+    width:100%;
+    padding: 0;
+    margin:0 auto;
+    background-color: #000;
+}
+
+.review{
+    width:100%;
+    padding: 2rem;
+    margin: 0 auto;
+    background-color: #000;
+}
+
+.review-fit{
+   width: 80%;
+   display: flex !important;
+   flex-direction: column;
+   justify-content: center;
+   align-items: center;
+   background-color: #fff;
+   backdrop-filter: blur(10px);
+   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+   padding: 1rem;
+   border-radius: 1rem;
+   box-shadow: 0px 0px 5px 0px #fff;
+}
+
+
+.review .slick-slide{
+   margin-left: 1rem !important;
+   margin-right: 1rem !important;
+}
+
+.review-fit img{
+   width: 150px;
+   border-radius: 35%;
+   height: auto;
+}
+
+.review-fit h5{
+  font-style:italic;
+}
+
+.review-fit i{
+   margin-bottom: 1rem;
+   color: goldenrod;
+   margin-top: 1rem;
+}
+
+.review-fit .insta-id i{
+   color: #000;
+   margin-right: 0.4rem;
+}
+
+
+.slider img{
+    width: 100%;
+    height:auto;
+}
+.slider .slick-slide{
+    height:auto!important;
+}
+.slider .slick-arrow{
+    display: none;
+}
+.slider .slick-next{
+    display: none;
+}
+.slider .slick-prev{
+    display: none;
+}
+
+.slider .slick-slide{
+margin-right: 2rem !important;
+margin-left: 2rem!important;
+}

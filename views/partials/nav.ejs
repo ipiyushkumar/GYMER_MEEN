@@ -1,3 +1,4 @@
+
 <div class="promo-strip">
     Get 25% Off on Every Purchase
  </div>
@@ -13,10 +14,10 @@
  </div>
 
  <nav class="navbar navbar-expand-lg" style="padding: 1rem;background-color: #000;width: 100%;">
-    <div class="container-fluid">
+   <div class="container-fluid">
        <div class="navbar-brand d-flex justify-content-start align-items-center" style="width: 30%;">
-          <span style="font-size: 2rem; cursor: pointer; color: #fff;" onclick="openNav()">&#9776; </span>
-          <a href="/" class="navbar-brand ml-2" style="color: #fff; font-size: 1.2rem;">Logo</a>
+           <span style="font-size: 2rem; cursor: pointer; color: #fff;" onclick="openNavPartial()">&#9776; </span>
+           <a href="/" class="navbar-brand ml-2" style="color: #fff; font-size: 1.2rem;">Logo</a>
        </div>
        <form class="d-none d-lg-flex" style="width: 30%;">
           <div class="input-group" style="width: 100%;">
@@ -29,16 +30,16 @@
        <div class="custom-nav d-flex justify-content-end" style="width: 30%; font-size: 1rem;">
         <% if (content.isLoggedIn === true) { %>
             <a class="nav-link cartButtom" style="color: #fff; font-size: 1.2rem;">
-            <i class="fas fa-cart-plus"></i>
+              <iconify-icon icon="bxs:cart-add"></iconify-icon>
             <span style="margin-left: 5px;">Cart</span>
             </a>
             <a class="nav-link" href="/profile" style="color: #fff; font-size: 1.2rem;">
-            <i class="fas fa-user" ></i>
+            <iconify-icon icon="gg:profile"></iconify-icon>
             <span style="margin-left: 5px;">Profile</span>
             </a>
           <% } else { %>
             <a class="nav-link cartButtom" style="color: #fff; font-size: 1.2rem;" onclick="alert(`login to access this feature`)">
-               <i class="fas fa-cart-plus"></i>
+              <iconify-icon icon="bxs:cart-add"></iconify-icon>
                <span style="margin-left: 5px;">Cart</span>
             </a>
             <a class="nav-link" href="/login" style="color: #fff; font-size: 1.2rem;">
@@ -49,11 +50,11 @@
     </div>
  </nav>
  <script>
-   function openNav() {
-     document.getElementById("mySidenav").style.width = "250px";
+   function openNavPartial() {
+       document.getElementById("mySidenav").style.width = "250px";
    }
-   
-   function closeNav() {
-     document.getElementById("mySidenav").style.width = "0";
+
+   function closeNavPartial() {
+       document.getElementById("mySidenav").style.width = "0";
    }
 </script>

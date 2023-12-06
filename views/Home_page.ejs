@@ -3,44 +3,111 @@
    <head>
       <meta charset="UTF-8">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
       <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css">
+      <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.css"/>
+      <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick-theme.css">
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-      <link rel="stylesheet" href="/css/slidercss.css" />
-      <link rel="stylesheet" href="/css/Home.css">
-      <script src="/js/slider.js" defer></script>
-      <title>WhiteWolf International - Home</title>
+      <link rel="stylesheet" href="/css/HomeNew.css">
       <link rel="preconnect" href="https://fonts.googleapis.com">
       <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
       <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@200;400;500&display=swap">
-      <style>
-         a {
-            text-decoration: none; /* Remove underline */
-            color: inherit; /* Inherit text color from the parent */
-            cursor: pointer; /* Add pointer cursor for better user experience */
-         }
-      </style>
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.js"></script>
+      <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+  </head>
    </head>
+   <style>
+       .slider{
+        width:100%;
+        padding: 0;
+        margin:0 auto;
+        background-color: #000;
+    }
+
+    .review{
+        width:100%;
+        padding: 2rem;
+        margin: 0 auto;
+        background-color: #000;
+    }
+
+    .review-fit{
+       width: 80%;
+       display: flex !important;
+       flex-direction: column;
+       justify-content: center;
+       align-items: center;
+       background-color: #fff;
+       backdrop-filter: blur(10px);
+       box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+       padding: 1rem;
+       border-radius: 1rem;
+       box-shadow: 0px 0px 5px 0px #fff;
+    }
+
+
+    .review .slick-slide{
+       margin-left: 1rem !important;
+       margin-right: 1rem !important;
+    }
+
+    .review-fit img{
+       width: 150px;
+       border-radius: 35%;
+       height: auto;
+    }
+
+    .review-fit h5{
+      font-style:italic;
+    }
+
+    .review-fit i{
+       margin-bottom: 1rem;
+       color: goldenrod;
+       margin-top: 1rem;
+    }
+
+    .review-fit .insta-id i{
+       color: #000;
+       margin-right: 0.4rem;
+    }
+
+
+    .slider img{
+        width: 100%;
+        height:auto;
+    }
+    .slider .slick-slide{
+        height:auto!important;
+    }
+    .slider .slick-arrow{
+        display: none;
+    }
+    .slider .slick-next{
+        display: none;
+    }
+    .slider .slick-prev{
+        display: none;
+    }
+
+    .slider .slick-slide{
+    margin-right: 2rem !important;
+    margin-left: 2rem!important;
+   }
+   
+   </style>
    <body>
       <%- include('partials/nav') %> 
-      <%- include('partials/cart') %> 
-      <div class="container" style="width:100%;">
-         <div id="customSlider mt-5 mb-5" class="carousel slide" data-bs-ride="carousel">
-            <div class="carousel-inner">
-               <div class="carousel-item active">
-                  <img src="assets/Slider1.jpg" alt="Slide 1" class="img-fluid">
-               </div>
-               <div class="carousel-item">
-                  <img src="assets/Slider.jpg" alt="Slide 2" class="img-fluid">
-               </div>
-               <div class="carousel-item">
-                  <img src="assets/Slider2.jpg" alt="Slide 2" class="img-fluid">
-               </div>
-            </div>
-         </div>
-      </div>
+      <%- include('partials/cart') %>
+         <div class="slider mt-5">   
+            <div><img src="../assets/Slider.jpg"></div>
+            <div><img src="../assets/Slider2.jpg"></div>
+            <div><img src="../assets/Slider.jpg"></div>   
+            <div><img src="../assets/Slider2.jpg"></div>
+        </div>
+
       <div class="container">
-         <button class="btn btn-light align-left">Explore Now</button>
+         <button class="btn btn-light align-left"><a href="Product_Listing.html" style="text-decoration: none;color: #000;">Explore Now</a></button>
       </div>
       <div class="container products-bar mt-4">
          <div class="mb-2 filters d-flex justify-content-around align-items-center text-uppercase">
@@ -49,9 +116,10 @@
             <button class="category-btn m-1" onclick="renderProducts('Hair Care')">Hair Care</button>
             <button class="category-btn m-1" onclick="renderProducts('Body Care')">Body Care</button>
             <button class="category-btn m-1" onclick="renderProducts('Beard Care')">Beard Care</button>
+         </div>   
+         <div id="productGrid" class="row product-grid" onmousedown="startScroll(event)" onmouseup="stopScroll()" ontouchstart="startScroll(event)" ontouchend="stopScroll()">
          </div>
-         <div id="productGrid" class="row product-grid">
-         </div>
+
          <div class="d-flex justify-content-center p-4">
             <button class="category-btn">Show More</button>
          </div>
@@ -61,52 +129,107 @@
       </div>
       <div class="container mt-5 mb-5">
          <h2 class="text-center text-white mb-4">Search Through Category</h2>
-         <div class="row through align-items-stretch">
-            <div class="col-md-4 mt-2">
-               <div class="card bg-white text-center p-0 border-0 d-flex flex-column" style="border-radius: 1rem;">
-                  <img src="assets/category1.jpg" class="card-img-top flex-grow-1" alt="Image 1">
-                  <div class="card-body">
-                     <h3 class="card-text font-weight-bold">Face Care</h3>
-                  </div>
-               </div>
+         <div class="row align-items-stretch">
+             <div class="col-md-4 col-4 mt-2">
+                 <div class="card bg-white text-center p-0 d-flex flex-column" style="border-radius: 1rem;">
+                     <img src="assets/category1.jpg" class="card-img-top flex-grow-1" alt="Image 1" style="border-radius: 1rem 1rem 0 0">
+                     <div class="card-body">
+                         <h3 class="card-text font-weight-bold">Face Care</h3>
+                     </div>
+                 </div>
+             </div>
+             <div class="col-md-4 col-4 mt-2">
+                 <div class="card bg-white text-center p-0 border-0 d-flex flex-column" style="border-radius: 1rem;">
+                     <img src="assets/category3.jpg" class="card-img-top flex-grow-1" alt="Image 2" style="border-radius: 1rem 1rem 0 0">
+                     <div class="card-body">
+                         <h3 class="card-text font-weight-bold">Hair Care</h3>
+                     </div>
+                 </div>
+             </div>
+             <div class="col-md-4 col-4 mt-2">
+                 <div class="card bg-white text-center p-0 border-0 d-flex flex-column" style="border-radius: 1rem;" style="border-radius: 1rem 1rem 0 0">
+                     <img src="assets/category2.jpg" class="card-img-top flex-grow-1" alt="Image 3" style="border-radius: 1rem 1rem 0 0">
+                     <div class="card-body">
+                         <h3 class="card-text font-weight-bold">Body Care</h3>
+                     </div>
+                 </div>
+             </div>
+         </div>
+     </div>
+     <h2 class="text-center text-white mt-5 mb-0">See What Our Customers Say</h2>
+     <div class="review mt-3">   
+         <div class="review-fit" style="display: flex;flex-direction: column;">
+            <img src="assets/spray1.jpg">
+            <div class="icons">
+               <i class="fas fa-star"></i>
+               <i class="fas fa-star"></i>
+               <i class="fas fa-star"></i>
+               <i class="fas fa-star"></i>
+               <i class="fas fa-star"></i>
             </div>
-            <div class="col-md-4 mt-2" style="height: 100%;">
-               <div class="card bg-white text-center p-0 border-0 d-flex flex-column" style="border-radius: 1rem;">
-                  <img src="assets/category3.jpg" class="card-img-top flex-grow-1" alt="Image 2">
-                  <div class="card-body">
-                     <h3 class="card-text font-weight-bold">Hair Care</h3>
-                  </div>
-               </div>
-            </div>
-            <div class="col-md-4 mt-2" style="height: 100%;">
-               <div class="card bg-white text-center p-0 border-0 d-flex flex-column" style="border-radius: 1rem;">
-                  <img src="assets/category2.jpg" class="card-img-top flex-grow-1" alt="Image 3">
-                  <div class="card-body">
-                     <h3 class="card-text font-weight-bold">Body Care</h3>
-                  </div>
-               </div>
+            <p>User 1 Review Text Goes Here...</p>
+            <h5 class="user-name" >User 1</h5>
+            <div class="insta-id">
+                  <i class="fab fa-instagram"></i>
+                  <span >user1_insta</span>
             </div>
          </div>
-      </div>
-      <div id="customSlider mt-5 mb-5" class="carousel slide" data-bs-ride="carousel">
-         <h2 class="text-center text-white mb-4">See What Our Customers Say</h2>
-         <div class="carousel-inner">
-            <div class="carousel-item active">
-               <img src="assets/Bloges assets 1.jpg" alt="Slide 1" class="img-fluid">
+
+         <div class="review-fit" style="display: flex;flex-direction: column;">
+            <img src="assets/spray1.jpg">
+            <div class="icons">
+               <i class="fas fa-star"></i>
+               <i class="fas fa-star"></i>
+               <i class="fas fa-star"></i>
+               <i class="fas fa-star"></i>
+               <i class="fas fa-star"></i>
             </div>
-            <div class="carousel-item">
-               <img src="assets/Bloges assets-1 1.jpg" alt="Slide 2" class="img-fluid">
-            </div>
-            <div class="carousel-item">
-               <img src="assets/Bloges assets-2 1.jpg" alt="Slide 2" class="img-fluid">
-            </div>
-            <div class="carousel-item">
-               <img src="assets/Bloges assets-3 1.jpg" alt="Slide 2" class="img-fluid">
+            <p>User 1 Review Text Goes Here...</p>
+            <h5 class="user-name" >User 1</h5>
+            <div class="insta-id">
+                  <i class="fab fa-instagram"></i>
+                  <span >user1_insta</span>
             </div>
          </div>
-      </div>
-      <footer class="container-fluid text-white p-3 footer"style="background-color: #000;">
-         <div class="container upperdiv p-5" style="background-color: #111;">
+
+         <div class="review-fit" style="display: flex;flex-direction: column;">
+            <img src="assets/spray1.jpg">
+            <div class="icons">
+               <i class="fas fa-star"></i>
+               <i class="fas fa-star"></i>
+               <i class="fas fa-star"></i>
+               <i class="fas fa-star"></i>
+               <i class="fas fa-star"></i>
+            </div>
+            <p>User 1 Review Text Goes Here...</p>
+            <h5 class="user-name" >User 1</h5>
+            <div class="insta-id">
+                  <i class="fab fa-instagram"></i>
+                  <span >user1_insta</span>
+            </div>
+         </div>
+      
+
+         <div class="review-fit" style="display: flex;flex-direction: column;">
+            <img src="assets/spray1.jpg">
+            <div class="icons">
+               <i class="fas fa-star"></i>
+               <i class="fas fa-star"></i>
+               <i class="fas fa-star"></i>
+               <i class="fas fa-star"></i>
+               <i class="fas fa-star"></i>
+            </div>
+            <p>User 1 Review Text Goes Here...</p>
+            <h5 class="user-name" >User 1</h5>
+            <div class="insta-id">
+                  <i class="fab fa-instagram"></i>
+                  <span >user1_insta</span>
+            </div>
+         </div>
+  </div>
+      
+      <footer class="container-fluid d-flex flex-column container text-white p-3 footer"style="background-color: #000;">
+         <div class=" text-left mt-3 p-5" style="background-color: #070707;">
             <div class="row">
                <div class="col-md-3">
                   <img src="assets/logo.PNG" alt="Logo" class="img-fluid mb-3" style="width: auto;height: 10vh;">
@@ -122,10 +245,9 @@
                   </div>
                   <div class="col-md-6 ml-3 list-unstyled">
                      <li><a href="#" class="text-white">Customer Reviews</a></li>
-                     <li><a href="#" class="text-white">Face Care</a></li>
                      <li><a href="#" class="text-white">Hair Care</a></li>
-                     <li><a href="#" class="text-white">Body Care</a></li>
-                     <li><a href="#" class="text-white">Beard Care</a></li>
+                     <li><a href="#" class="text-white">Skin Care</a></li>
+                     <li><a href="#" class="text-white">Face Care</a></li>
                   </div>
                </div>
                <div class="col-md-3 d-flex flex-column align-items-end">
@@ -156,7 +278,7 @@
                <div class="col-md-6">
                   <p>Enter your email:</p>
                   <div class="input-group mb-3">
-                     <input type="email" class="form-control" placeholder="Your email here" aria-label="Your email" aria-describedby="basic-addon2">
+                     <input type="email" class="form-control" placeholder="Your email here" aria-label="Your email" aria-describedby="basic-addon2" style="background-color: #000;">
                      <button class="btn btn-outline-secondary" type="button" id="basic-addon2">
                      <i class="fa fa-arrow-circle-right"></i> 
                      </button>
@@ -166,13 +288,9 @@
          </div>
          <p class="pl-5">2023 - Copyright, All Rights Reserved.</p>
       </footer>
-         <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-      <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-      <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
-      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
-
       <script>
          let products = [];
+
          document.addEventListener('DOMContentLoaded', async () => {
             try {
                const response = await fetchProducts('/api/products');
@@ -186,45 +304,6 @@
          async function fetchProducts(apiEndpoint) {
             const response = await axios.get(apiEndpoint);
             return response.data;
-         }
-
-         function renderProducts(categoryFilter) {
-            const productGrid = document.getElementById('productGrid');
-            productGrid.innerHTML = '';
-
-            const filteredProducts = categoryFilter === 'all' ? products : products.filter(product => product.category === categoryFilter);
-
-            filteredProducts.forEach(product => {
-                  const productCard = createProductCard(product);
-                  productGrid.appendChild(productCard);
-            });
-
-            attachAddToCartListeners(filteredProducts);
-         }
-
-         function createProductCard(product) {
-            const productCard = document.createElement('div');
-            productCard.className = 'col-md-4 product-card';
-            productCard.innerHTML = `
-            <a href="/search/${product.itemId}" >
-                <img class="product-image" src="${product.imageLink[0]}" alt="${product.name}">
-                <div class="product-details">
-                    <div class="category-badge text-white corner-round p-1">${product.category}</div>
-                    <div class="product-title">${product.name}</div>
-                    <div class="product-description">${product.description}</div>
-                    <div class="mb-2">
-                        <div class="d-flex justify-content-between bolder product-price-discount">
-                            <div class="product-price">&#8377; ${product.offeredPrice}</div>
-                            <div class="original-price text-secondary text-decoration-line-through">&#8377;${product.originalPrice || ''}</div>
-                            <div class="product-discount text-success">${((product.originalPrice - product.offeredPrice) / product.originalPrice * 100).toFixed(0)}% Off</div>
-                        </div>
-                    </div>
-                    <button class="add-to-cart-btn add${product.itemId}"><i class="bi bi-cart"></i> Add to Cart</button>
-                    <img class="launch-badge" src="newly.PNG" alt="New Launch" />
-                </div>
-            </a>
-            `;
-            return productCard;
          }
 
          function attachAddToCartListeners(products) {
@@ -241,7 +320,6 @@
                   });
             });
          }
-
          async function addToCart(apiEndpoint, data) {
             return await axios.post(apiEndpoint, data);
          }
@@ -256,17 +334,178 @@
                   // Optionally, handle the error and update the UI accordingly
             }
          }
-      </script>
 
+         function renderProducts(categoryFilter) {
+            const productGrid = document.getElementById('productGrid');
+            productGrid.innerHTML = '';
+
+            const filteredProducts = categoryFilter === 'all' ? products : products.filter(product => product.category === categoryFilter);
+
+            filteredProducts.forEach(product => {
+                  const productCard = createProductCard(product);
+                  productGrid.appendChild(productCard);
+            });
+
+            attachAddToCartListeners(filteredProducts);
+         }
+         function createProductCard(product) {
+         const productCard = document.createElement('div');
+         productCard.className = 'col-md-4 product-card product';
+         productCard.innerHTML = `
+         <a href="/search/${product.itemId}" >
+            <div class="product-image-container">
+                  <img class="product-image" src="${product.imageLink[0]}" alt="${product.name}">
+                  <img class="product-image hover-image" src="${product.imageLink[1] || product.imageLink[0]}" alt="${product.name}" style="display:none">
+            </div>
+            <div class="product-details">
+                  <div class="category-badge text-white corner-round p-1" style="display:none;">${product.category}</div>
+                  <div class="product-title"><a href="Product_Description.html" style="text-decoration:none;color:#000">${product.name}</a></div>
+                  <div class="product-description">${product.description}</div>
+                  <div class="mb-2">
+                     <div class="d-flex justify-content-between bolder product-price-discount">
+                        <div class="product-price">&#8377; ${product.offeredPrice}</div>
+                        <div class="original-price text-secondary text-decoration-line-through">&#8377;${product.originalPrice || ''}</div>
+                        <div class="product-discount text-success">${((product.originalPrice - product.offeredPrice) / product.originalPrice * 100).toFixed(0)}% Off</div>
+                     </div>
+                  </div>
+                  <button class="add-to-cart-btn add${product.itemId}"><i class="fas fa-cart"></i> Add to Cart</button>
+            </div>
+         </a>
+         `;
+
+         const productImageContainer = productCard.querySelector('.product-image-container');
+         const mainImage = productImageContainer.querySelector('.product-image');
+         const hoverImage = productImageContainer.querySelector('.hover-image');
+
+         productImageContainer.addEventListener('mouseenter', function () {
+            mainImage.style.display = 'none';
+            hoverImage.style.display = 'block';
+         });
+
+         productImageContainer.addEventListener('mouseleave', function () {
+            mainImage.style.display = 'block';
+            hoverImage.style.display = 'none';
+         });
+
+         
+
+         return productCard;
+      }
+
+      // Example usage
+      const container = document.getElementById('productContainer'); // Replace with the actual container element ID
+      products.forEach(product => {
+         const productCard = createProductCard(product);
+         container.appendChild(productCard);
+      });
+      </script>
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.js"></script>
       <script>
-         $(document).ready(function () {
-            setInterval(function () {
-                  $('#customSlider .carousel-inner').animate({ marginLeft: '-=100%' }, 1000, function () {
+         
+         $(document).ready(function(){
+             setInterval(function(){
+                 $('#customSlider .carousel-inner').animate({marginLeft: '-=100%'}, 1000, function(){
+         
                      $(this).find('.carousel-item:first').appendTo(this);
-                     $(this).css({ marginLeft: 0 });
-                  });
-            }, 3000); // Adjust the interval to your preference
+                     $(this).css({marginLeft: 0});
+                 });
+             }, 1000); 
          });
       </script>
+<script>
+   $('.slider').slick({
+   autoplay: true,
+   dots: false,
+   infinite: true,
+   pauseOnHover: true,
+   centerMode:true,        //added
+   centerPadding:"5%", 
+   arrows: false,   //added
+})
+</script>
+
+<script>
+   $('.review').slick({
+      slidesToShow: 3,
+        slidesToScroll: 1,
+        autoplay: true,
+        autoplaySpeed: 3000,
+        dots: false,
+        infinite: true,
+        pauseOnHover: true,
+        centerPadding: "5%",
+        arrows:false,
+        responsive: [
+            {
+                breakpoint: 768,
+                settings: {
+                    slidesToShow: 1,
+                    slidesToScroll: 1
+                }
+            }
+            // Add more breakpoints as needed
+        ]
+})
+</script>
+
+<script>
+   let isScrolling = false;
+
+   function startScroll(event) {
+       isScrolling = true;
+       const scrollContainer = document.getElementById('productGrid');
+       const startX = event.pageX || event.touches[0].pageX;
+       let scrollLeft = scrollContainer.scrollLeft;
+
+       function handleMouseMove(e) {
+           const x = e.pageX || e.touches[0].pageX;
+           const delta = x - startX;
+           scrollContainer.scrollLeft = scrollLeft - delta;
+       }
+
+       function handleMouseUp() {
+           isScrolling = false;
+           document.removeEventListener('mousemove', handleMouseMove);
+           document.removeEventListener('mouseup', handleMouseUp);
+           document.removeEventListener('touchmove', handleMouseMove);
+           document.removeEventListener('touchend', handleMouseUp);
+       }
+
+       document.addEventListener('mousemove', handleMouseMove);
+       document.addEventListener('mouseup', handleMouseUp);
+       document.addEventListener('touchmove', handleMouseMove);
+       document.addEventListener('touchend', handleMouseUp);
+   }
+
+   function stopScroll() {
+       isScrolling = false;
+   }
+
+   // Optional: Auto-hide scrollbar after a few seconds of inactivity
+   let timeoutId;
+
+   function hideScrollbar() {
+       if (!isScrolling) {
+           document.getElementById('productGrid').style.overflow = 'hidden';
+       }
+   }
+
+   function showScrollbar() {
+       document.getElementById('productGrid').style.overflow = 'auto';
+   }
+
+   document.getElementById('productGrid').addEventListener('scroll', function() {
+       showScrollbar();
+       clearTimeout(timeoutId);
+       timeoutId = setTimeout(hideScrollbar, 2000); // Adjust the time as needed
+   });
+
+</script>
+
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+      <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+      <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
    </body>
 </html>

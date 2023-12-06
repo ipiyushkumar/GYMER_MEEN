@@ -27,31 +27,6 @@ const getProductUsingId = async (req, res) => {
     }
   }
 
-// under development
-
-const updateProduct = async (req, res) => {
-  try {
-    const updatedProduct = await Product.findByIdAndUpdate(req.params.productId, req.body, { new: true });
-    if (!updatedProduct) {
-      return res.status(404).json({ error: 'Product not found' });
-    }
-    res.json(updatedProduct);
-  } catch (error) {
-    res.status(500).json({ error: 'Internal Server Error' });
-  }
-}
-
-const deleteProduct = async (req, res) => {
-  try {
-    const deletedProduct = await Product.findByIdAndRemove(req.params.productId);
-    if (!deletedProduct) {
-      return res.status(404).json({ error: 'Product not found' });
-    }
-    res.json(deletedProduct);
-  } catch (error) {
-    res.status(500).json({ error: 'Internal Server Error' });
-  }
-}
 
 const face_care = (req, res) => {
   const content = {
@@ -97,8 +72,6 @@ module.exports = {
     getAllProducts,
     getProductUsingId,
     getItemPage,
-    updateProduct,
-    deleteProduct,
     face_care,
     hair_care,
     body_care,

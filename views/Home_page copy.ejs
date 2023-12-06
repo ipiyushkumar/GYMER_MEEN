@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+      <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.css" />
+      <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick-theme.css">
+      <link rel="stylesheet" href="/css/slidercss.css" />
+      <link rel="stylesheet" href="/css/Home.css">
+      <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+      <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+      <script src="https://cdn.jsdelivr.net/npm/slick-carousel@1.9.0/slick.min.js"></script>
+      <script src="/js/slider.js" defer></script>
+      <title>WhiteWolf International - Home</title>
+      <link rel="preconnect" href="https://fonts.googleapis.com">
+      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@200;400;500&display=swap">
+  </head>
+   <body>
+      <%- include('partials/nav') %> 
+      <%- include('partials/cart') %> 
+     
+      <div class="slider mt-5">   
+        <div><img src="../assets/Slider.jpg"></div>
+        <div><img src="../assets/Slider1.jpg"></div>   
+        <div><img src="../assets/Slider2.jpg"></div>
+    </div>
+      <div class="container">
+         <button class="btn btn-light align-left">Explore Now</button>
+      </div>
+      <div class="container products-bar mt-4">
+         <div class="mb-2 filters d-flex justify-content-around align-items-center text-uppercase">
+            <button class="category-btn m-1" onclick="renderProducts('all')">All</button>
+            <button class="category-btn m-1" onclick="renderProducts('Face Care')">Face Care</button>
+            <button class="category-btn m-1" onclick="renderProducts('Hair Care')">Hair Care</button>
+            <button class="category-btn m-1" onclick="renderProducts('Body Care')">Body Care</button>
+            <button class="category-btn m-1" onclick="renderProducts('Beard Care')">Beard Care</button>
+         </div>
+         <div id="productGrid" class="row product-grid" onmousedown="startScroll(event)" onmouseup="stopScroll()" ontouchstart="startScroll(event)" ontouchend="stopScroll()">
+         </div>
+
+         <div class="d-flex justify-content-center p-4">
+            <button class="category-btn">Show More</button>
+         </div>
+      </div>
+      <div class="container-fluid mt-2 mb-2 p-0 banner-section">
+         <img class="banner-image" src="images/black-friday.jpg" alt="Banner Image">
+      </div>
+      <div class="container mt-5 mb-5">
+         <h2 class="text-center text-white mb-4">Search Through Category</h2>
+         <div class="row align-items-stretch">
+             <div class="col-md-4 col-4 mt-2">
+                 <div class="card bg-white text-center p-0 d-flex flex-column" style="border-radius: 1rem;">
+                     <img src="../assets/category1.jpg" class="card-img-top flex-grow-1" alt="Image 1" style="border-radius: 1rem 1rem 0 0">
+                     <div class="card-body">
+                         <h3 class="card-text font-weight-bold">Face Care</h3>
+                     </div>
+                 </div>
+             </div>
+             <div class="col-md-4 col-4 mt-2">
+                 <div class="card bg-white text-center p-0 border-0 d-flex flex-column" style="border-radius: 1rem;">
+                     <img src="../assets/category3.jpg" class="card-img-top flex-grow-1" alt="Image 2" style="border-radius: 1rem 1rem 0 0">
+                     <div class="card-body">
+                         <h3 class="card-text font-weight-bold">Hair Care</h3>
+                     </div>
+                 </div>
+             </div>
+             <div class="col-md-4 col-4 mt-2">
+                 <div class="card bg-white text-center p-0 border-0 d-flex flex-column" style="border-radius: 1rem;" style="border-radius: 1rem 1rem 0 0">
+                     <img src="../assets/category2.jpg" class="card-img-top flex-grow-1" alt="Image 3" style="border-radius: 1rem 1rem 0 0">
+                     <div class="card-body">
+                         <h3 class="card-text font-weight-bold">Body Care</h3>
+                     </div>
+                 </div>
+             </div>
+         </div>
+     </div>
+     <h2 class="text-center text-white mt-5 mb-0">See What Our Customers Say</h2>
+     <div class="review mt-3">   
+         <div class="review-fit" style="display: flex;flex-direction: column;">
+            <img src="images/spray1.jpg">
+            <div class="icons">
+               <i class="fas fa-star"></i>
+               <i class="fas fa-star"></i>
+               <i class="fas fa-star"></i>
+               <i class="fas fa-star"></i>
+               <i class="fas fa-star"></i>
+            </div>
+            <p>User 1 Review Text Goes Here...</p>
+            <h5 class="user-name" >User 1</h5>
+            <div class="insta-id">
+                  <i class="fab fa-instagram"></i>
+                  <span >user1_insta</span>
+            </div>
+         </div>
+
+         <div class="review-fit" style="display: flex;flex-direction: column;">
+            <img src="images/spray1.jpg">
+            <div class="icons">
+               <i class="fas fa-star"></i>
+               <i class="fas fa-star"></i>
+               <i class="fas fa-star"></i>
+               <i class="fas fa-star"></i>
+               <i class="fas fa-star"></i>
+            </div>
+            <p>User 1 Review Text Goes Here...</p>
+            <h5 class="user-name" >User 1</h5>
+            <div class="insta-id">
+                  <i class="fab fa-instagram"></i>
+                  <span >user1_insta</span>
+            </div>
+         </div>
+
+         <div class="review-fit" style="display: flex;flex-direction: column;">
+            <img src="images/spray1.jpg">
+            <div class="icons">
+               <i class="fas fa-star"></i>
+               <i class="fas fa-star"></i>
+               <i class="fas fa-star"></i>
+               <i class="fas fa-star"></i>
+               <i class="fas fa-star"></i>
+            </div>
+            <p>User 1 Review Text Goes Here...</p>
+            <h5 class="user-name" >User 1</h5>
+            <div class="insta-id">
+                  <i class="fab fa-instagram"></i>
+                  <span >user1_insta</span>
+            </div>
+         </div>
+      
+
+         <div class="review-fit" style="display: flex;flex-direction: column;">
+            <img src="images/spray1.jpg">
+            <div class="icons">
+               <i class="fas fa-star"></i>
+               <i class="fas fa-star"></i>
+               <i class="fas fa-star"></i>
+               <i class="fas fa-star"></i>
+               <i class="fas fa-star"></i>
+            </div>
+            <p>User 1 Review Text Goes Here...</p>
+            <h5 class="user-name" >User 1</h5>
+            <div class="insta-id">
+                  <i class="fab fa-instagram"></i>
+                  <span >user1_insta</span>
+            </div>
+         </div>
+  </div>
+      <footer class="container-fluid d-flex flex-column container text-white p-3 footer"style="background-color: #000;">
+        <div class=" text-left mt-3 p-5" style="background-color: #070707;">
+           <div class="row">
+              <div class="col-md-3">
+                 <img src="../assets/logo.PNG" alt="Logo" class="img-fluid mb-3" style="width: auto;height: 10vh;">
+              </div>
+              <div class="col-md-6 d-flex footer-menu">
+                 <div class="col-md-6 mr-3 list-unstyled">
+                    <li><a href="#" class="text-white">About us</a></li>
+                    <li><a href="#" class="text-white">FAQ</a></li>
+                    <li><a href="#" class="text-white">Shipping and Payment</a></li>
+                    <li><a href="#" class="text-white">Partners</a></li>
+                    <li><a href="#" class="text-white">Blog</a></li>
+                    <li><a href="#" class="text-white">Contact Us</a></li>
+                 </div>
+                 <div class="col-md-6 ml-3 list-unstyled">
+                    <li><a href="#" class="text-white">Customer Reviews</a></li>
+                    <li><a href="#" class="text-white">Hair Care</a></li>
+                    <li><a href="#" class="text-white">Skin Care</a></li>
+                    <li><a href="#" class="text-white">Face Care</a></li>
+                 </div>
+              </div>
+              <div class="col-md-3 d-flex flex-column align-items-end">
+                 <button class="btn btn-light mb-2">Shop Now</button>
+                 <p>+(123) 123-99-999</p>
+                 <p>info@WhiteWolf.com</p>
+              </div>
+           </div>
+           <div class="row mt-5">
+              <div class="col-md-3 social">
+                 <ul class="list-unstyled">
+                    <a href="#" class="mr-2"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="mr-2"><i class="fab fa-whatsapp"></i></a>
+                 </ul>
+              </div>
+              <div class="col-md-6 d-flex">
+                 <p>The Hive Co Working and Business Center<br>Industiral Area Phase-2, Chandigarh</p>
+              </div>
+              <div class="col-md-3 d-flex flex-column align-items-end">
+              </div>
+           </div>
+        </div>
+        <div class="container mt-5">
+           <div class="row d-flex justify-content-between">
+              <div class="col-md-5">
+                 <h3>If you didn't find the products you are interested in or have questions?</h3>
+              </div>
+              <div class="col-md-6">
+                 <p>Enter your email:</p>
+                 <div class="input-group mb-3">
+                    <input type="email" class="form-control" placeholder="Your email here" aria-label="Your email" aria-describedby="basic-addon2" style="background-color: #000;">
+                    <button class="btn btn-outline-secondary" type="button" id="basic-addon2">
+                    <i class="fa fa-arrow-circle-right"></i> 
+                    </button>
+                 </div>
+              </div>
+           </div>
+        </div>
+        <p class="pl-5">2023 - Copyright, All Rights Reserved.</p>
+     </footer>
+      <script>
+         let products = [];
+         document.addEventListener('DOMContentLoaded', async () => {
+            try {
+               const response = await fetchProducts('/api/products');
+               let products = response;
+               renderProducts('all');
+            } catch (error) {
+               console.error("Error fetching products data", error);
+            }
+         });
+
+         async function fetchProducts(apiEndpoint) {
+            const response = await axios.get(apiEndpoint);
+            return response.data;
+         }
+
+         function renderProducts(categoryFilter) {
+            const productGrid = document.getElementById('productGrid');
+            productGrid.innerHTML = '';
+
+            const filteredProducts = categoryFilter === 'all' ? products : products.filter(product => product.category === categoryFilter);
+
+            filteredProducts.forEach(product => {
+                  const productCard = createProductCard(product);
+                  productGrid.appendChild(productCard);
+            });
+
+            attachAddToCartListeners(filteredProducts);
+         }
+
+         function createProductCard(product) {
+            const productCard = document.createElement('div');
+            productCard.className = 'col-md-4 product-card product';
+            productCard.innerHTML = `
+            <a href="/search/${product.itemId}" >
+                <img class="product-image" src="${product.imageLink[0]}" alt="${product.name}">
+                <div class="product-details">
+                    <div class="category-badge text-white corner-round p-1">${product.category}</div>
+                    <div class="product-title">${product.name}</div>
+                    <div class="product-description">${product.description}</div>
+                    <div class="mb-2">
+                        <div class="d-flex justify-content-between bolder product-price-discount">
+                            <div class="product-price">&#8377; ${product.offeredPrice}</div>
+                            <div class="original-price text-secondary text-decoration-line-through">&#8377;${product.originalPrice || ''}</div>
+                            <div class="product-discount text-success">${((product.originalPrice - product.offeredPrice) / product.originalPrice * 100).toFixed(0)}% Off</div>
+                        </div>
+                    </div>
+                    <button class="add-to-cart-btn add${product.itemId}"><i class="bi bi-cart"></i> Add to Cart</button>
+                    <img class="launch-badge" src="newly.PNG" alt="New Launch" />
+                </div>
+            </a>
+            `;
+            return productCard;
+         }
+
+         function attachAddToCartListeners(products) {
+            products.forEach(product => {
+                  const addButton = document.querySelector(`.add${product.itemId}`);
+                  addButton.addEventListener('click', async (event) => {
+                     event.preventDefault();
+                     try {
+                        const response = await addToCart('/addItem', { itemId: product.itemId });
+                        handleAddToCartResponse(response);
+                     } catch (error) {
+                        console.error('Error adding item to cart:', error.message);
+                     }
+                  });
+            });
+         }
+
+         // async function addToCart(apiEndpoint, data) {
+         //    return await axios.post(apiEndpoint, data);
+         // }
+
+         // function handleAddToCartResponse(response) {
+         //    if (response.status === 200) {
+         //          console.log(response.data.message);
+         //          addToCart('Product 1', '44.00');
+         //          // Optionally, update the UI to reflect the item being added to the cart
+         //    } else {
+         //          console.error('Error adding item to cart:', response.data.message);
+         //          // Optionally, handle the error and update the UI accordingly
+         //    }
+         // }
+      </script>
+
+<script>
+    $(document).ready(function () {
+    $('.slider').slick({
+        autoplay: true,
+        dots: false,
+        infinite: true,
+        pauseOnHover: true,
+        centerMode: true,
+        centerPadding: "5%",
+        arrows: false
+    });
+
+    $('.review').slick({
+        slidesToShow: 3,
+        slidesToScroll: 1,
+        autoplay: true,
+        autoplaySpeed: 3000,
+        dots: false,
+        infinite: true,
+        pauseOnHover: true,
+        centerPadding: "5%",
+        arrows: false,
+        responsive: [
+            {
+                breakpoint: 768,
+                settings: {
+                    slidesToShow: 1,
+                    slidesToScroll: 1
+                }
+            }
+            // Add more breakpoints as needed
+        ]
+    });
+});
+
+ </script>
+ <script>
+    let isScrolling = false;
+ 
+    function startScroll(event) {
+        isScrolling = true;
+        const scrollContainer = document.getElementById('productGrid');
+        const startX = event.pageX || event.touches[0].pageX;
+        let scrollLeft = scrollContainer.scrollLeft;
+ 
+        function handleMouseMove(e) {
+            const x = e.pageX || e.touches[0].pageX;
+            const delta = x - startX;
+            scrollContainer.scrollLeft = scrollLeft - delta;
+        }
+ 
+        function handleMouseUp() {
+            isScrolling = false;
+            document.removeEventListener('mousemove', handleMouseMove);
+            document.removeEventListener('mouseup', handleMouseUp);
+            document.removeEventListener('touchmove', handleMouseMove);
+            document.removeEventListener('touchend', handleMouseUp);
+        }
+ 
+        document.addEventListener('mousemove', handleMouseMove);
+        document.addEventListener('mouseup', handleMouseUp);
+        document.addEventListener('touchmove', handleMouseMove);
+        document.addEventListener('touchend', handleMouseUp);
+    }
+ 
+    function stopScroll() {
+        isScrolling = false;
+    }
+ 
+    // Optional: Auto-hide scrollbar after a few seconds of inactivity
+    let timeoutId;
+ 
+    function hideScrollbar() {
+        if (!isScrolling) {
+            document.getElementById('productGrid').style.overflow = 'hidden';
+        }
+    }
+ 
+    function showScrollbar() {
+        document.getElementById('productGrid').style.overflow = 'auto';
+    }
+ 
+    document.getElementById('productGrid').addEventListener('scroll', function() {
+        showScrollbar();
+        clearTimeout(timeoutId);
+        timeoutId = setTimeout(hideScrollbar, 2000); // Adjust the time as needed
+    });
+ 
+ </script>
+
+      <script>
+         $(document).ready(function () {
+            setInterval(function () {
+                  $('#customSlider .carousel-inner').animate({ marginLeft: '-=100%' }, 1000, function () {
+                     $(this).find('.carousel-item:first').appendTo(this);
+                     $(this).css({ marginLeft: 0 });
+                  });
+            }, 3000); // Adjust the interval to your preference
+         });
+      </script>
+   </body>
+</html>
