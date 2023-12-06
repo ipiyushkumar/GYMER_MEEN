@@ -179,7 +179,7 @@
         </section>
 
         <!-- shows all the users -->
-        <section class="main" id="analyticsSection"  >
+        <section class="main" id="analyticsSection" style="display: none;" >
             <section class="main-orders">
                 <h1>User Analytics</h1>
                 <div class="user-container">
@@ -489,22 +489,48 @@
             </section>
         </section>
 
-        <section class="main" id="inventorySection" style="display: none;">
+        <section class="main" id="inventorySection" >
             <section class="main-orders">
                 <h1>Products Grid</h1>
                 <div class="product-grid" id="productGrid">
-
-                    <div class="product-card">
-                        <img class="product-image" src="shoes_images/spray1.jpg" alt="Product 1">
-                        <div class="product-name">Product 1</div>
-                        <div class="product-actions">
-                            <button onclick="editProduct(1)">Edit</button>
-                            <button onclick="deleteProduct(1)">Delete</button>
-                        </div>
-                    </div>
-                    
                 </div>
             </section>
+            <script>
+                async function deleteProduct(itemId) {
+                    await axios.delete(`/api/products/${itemId}`)
+                    .then(response => {
+                        document.querySelector("."+itemId).innerHTML = ''
+                        alert(response.data.message)
+                    })
+                    .catch(err => alert("some error occured when removing the product\n" + err))
+                }
+                async function loadAllProducts () {
+                    await axios.get('/api/products')
+                    .then(response => response.data)
+                    .then(products => {
+                        let mainGrid = document.querySelector('.product-grid')
+                        products.forEach(product => {
+                            let productDiv = document.createElement('div')
+                            productDiv.innerHTML = `
+                            <div class="product-card ${product.itemId}">
+                                <img class="product-image" src="${product.imageLink[0]}" alt="Product 1">
+                                <div class="product-name">${product.name}</div>
+                                <div class="product-actions">
+                                    <button onclick="editProduct(${product.itemId})">Edit</button>
+                                    <button onclick="deleteProduct('${product.itemId}')">Delete</button>
+                                </div>
+                            </div>
+                            `
+                            mainGrid.append(productDiv)
+                        })
+
+                    })
+                    .catch( err => console.log("Error fetching products data", err))
+                }
+                document.addEventListener('DOMContentLoaded', async () => {
+                    loadAllProducts();
+                });
+            </script>
         </section>
 
         <section class="main" id="paymentsSection" style="display: none;">

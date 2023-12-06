@@ -20,13 +20,18 @@ const paymentGateway = async (req, res) => {
 
   const token = req.session.token;
 
-  const payment = req.body.payment || 8968;
   // Verify the token to get the user's information
   const decodedToken = jwt.verify(token, process.env.Secret_KEY);
 
   // Find the user data by ID using the decoded information from the token
   const userData = await User.findById(decodedToken.userId);
 
+  let payment = 0;
+  userData.cart.forEach(async product => {
+    let item = await Product.findOne({itemId : product.itemId})
+    payment += product.quantity*item.offeredPrice
+  })
+  
   if (!userData) {
       console.log("user not found")
       return res.status(404).json({ message: 'User data not found' });

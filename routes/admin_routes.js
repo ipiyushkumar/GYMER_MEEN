@@ -65,8 +65,6 @@ router.post('/api/products', multerMiddleware.array('files', 3), async (req, res
   }
 });
 
-// under development
-
 
 // under development
 router.put('/api/products/:productId', async (req, res) => {
@@ -82,14 +80,17 @@ router.put('/api/products/:productId', async (req, res) => {
 }
 );
 
-router.delete('/api/products/:productId', async (req, res) => {
+router.delete('/api/products/:itemId', async (req, res) => {
   try {
-    const deletedProduct = await Product.findByIdAndRemove(req.params.productId);
+    const deletedProduct = await Product.findOneAndDelete({ itemId: req.params.itemId });
+
     if (!deletedProduct) {
       return res.status(404).json({ error: 'Product not found' });
     }
-    res.json(deletedProduct);
+
+    res.status(200).json({ message: 'Product removed successfully' });
   } catch (error) {
+    console.error(error);
     res.status(500).json({ error: 'Internal Server Error' });
   }
 });
