@@ -67,18 +67,18 @@ router.post('/api/products', multerMiddleware.array('files', 3), async (req, res
 
 
 // under development
-router.put('/api/products/:productId', async (req, res) => {
-  try {
-    const updatedProduct = await Product.findByIdAndUpdate(req.params.productId, req.body, { new: true });
-    if (!updatedProduct) {
-      return res.status(404).json({ error: 'Product not found' });
-    }
-    res.json(updatedProduct);
-  } catch (error) {
-    res.status(500).json({ error: 'Internal Server Error' });
-  }
-}
-);
+// router.put('/api/products/:productId', async (req, res) => {
+//   try {
+//     const updatedProduct = await Product.findByIdAndUpdate(req.params.productId, req.body, { new: true });
+//     if (!updatedProduct) {
+//       return res.status(404).json({ error: 'Product not found' });
+//     }
+//     res.json(updatedProduct);
+//   } catch (error) {
+//     res.status(500).json({ error: 'Internal Server Error' });
+//   }
+// }
+// );
 
 router.delete('/api/products/:itemId', async (req, res) => {
   try {

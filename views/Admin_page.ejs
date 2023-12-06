@@ -204,7 +204,7 @@
             </section>
             <script>
 
-                document.addEventListener('DOMContentLoaded',async () => {
+                document.querySelector('#analyticsTab').addEventListener('click',async () => {
                     function createTableCell(content) {
                         let cell = document.createElement('td')
                         cell.textContent = content;
@@ -263,7 +263,7 @@
                 </div>
             </section>
             <script>
-                document.addEventListener('DOMContentLoaded', async () => {
+                document.querySelector('#ordersTab').addEventListener('DOMContentLoaded', async () => {
                     function createTableCell(content) {
                         let cell = document.createElement('td')
                         cell.textContent = content;
@@ -309,7 +309,7 @@
             </script>
         </section>
 
-        <!-- only need to fix the image link issue -->
+        <!-- completed in all regards -->
         <section class="main" id="productsSection" style="display: none;">
             <section class="main-orders">
             <h1 style="margin-bottom: 0.3rem;">Add Product</h1>
@@ -516,7 +516,7 @@
                                 <img class="product-image" src="${product.imageLink[0]}" alt="Product 1">
                                 <div class="product-name">${product.name}</div>
                                 <div class="product-actions">
-                                    <button onclick="editProduct(${product.itemId})">Edit</button>
+                                    <button onclick="editStock(${product.itemId})">Edit Stock</button>
                                     <button onclick="deleteProduct('${product.itemId}')">Delete</button>
                                 </div>
                             </div>
@@ -527,7 +527,7 @@
                     })
                     .catch( err => console.log("Error fetching products data", err))
                 }
-                document.addEventListener('DOMContentLoaded', async () => {
+                document.querySelector('#inventoryTab').addEventListener('click', async () => {
                     loadAllProducts();
                 });
             </script>

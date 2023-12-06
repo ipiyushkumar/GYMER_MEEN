@@ -26,34 +26,41 @@ const paymentGateway = async (req, res) => {
   // Find the user data by ID using the decoded information from the token
   const userData = await User.findById(decodedToken.userId);
 
-  let payment = 0;
-  userData.cart.forEach(async product => {
-    let item = await Product.findOne({itemId : product.itemId})
-    payment += product.quantity*item.offeredPrice
-  })
-  
   if (!userData) {
-      console.log("user not found")
-      return res.status(404).json({ message: 'User data not found' });
+    console.log("user not found");
+    return res.status(404).json({ message: 'User data not found' });
+  }
+
+  let payment = 0;
+
+  for (const product of userData.cart) {
+    try {
+      const item = await Product.findOne({ itemId: product.itemId });
+      payment += product.quantity * item.offeredPrice;
+    } catch (error) {
+      console.error(error);
+      return res.status(500).json({ error: 'Internal Server Error' });
+    }
   }
 
   try {
     const newOrder = new Orders({
       email: userData.email,
       products: userData.cart,
-      totalPayment: payment
+      totalPayment: payment,
     });
+
     await newOrder.save();
     userData.cart = [];
     req.session.userProfile.cart = [];
     await userData.save();
 
+    res.status(200).json({ message: 'The item has been ordered' });
   } catch (error) {
+    console.error(error);
     res.status(500).json({ error: 'Internal Server Error' });
   }
-
-  res.status(200).json({message : "The item has been ordered"})
-}
+};
 
 module.exports = {
   getOrderByEmail,
