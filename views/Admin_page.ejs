@@ -209,8 +209,8 @@
                         let cell = document.createElement('td')
                         cell.textContent = content;
                         return cell;
-                        document.querySelector('#userTableBody').innerHTML = ''
                     }
+                    document.querySelector('#userTableBody').innerHTML = ''
                     await axios.get('/api/admin/getAllUsers')
                     .then(response => response.data)
                     .then(users => {
@@ -535,7 +535,7 @@
                 });
             </script>
         </section>
-        
+
         <section class="main" id="paymentsSection" style="display: none;">
             <section class="main-orders">
                 <h1>My Wallet</h1>
