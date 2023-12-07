@@ -2,6 +2,8 @@
 - complete cash on delivery gateway
 - use coupons in payment gateway
 
+### prepare an AMC
+
 ### in admin panel
 - completely implement order management
     - update inventory of the product

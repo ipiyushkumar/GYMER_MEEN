@@ -1,11 +1,71 @@
 body {
     margin: 0;
     padding: 0;
+    height: 100vh;
     background-color: #000;
-    font-family: 'Poppins', sans-serif !important;
+    font-family: 'Outfit', sans-serif !important;
 }
 
-    .product-container {
+.promo-strip {
+    width: 100%;
+    text-transform: uppercase;
+    background-color: #fff;
+    text-align: center;
+    padding: 0.5rem 0;
+    color: #000;
+    font-weight: regular;
+    }
+
+.banner-image {
+    width: 100%;
+    height: auto;
+  }
+
+  .sidenav {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: #111;
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 60px;
+    }
+    .sidenav a {
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 1.2rem;
+    color: #fff;
+    display: block;
+    transition: 0.3s;
+    }
+    .sidenav a:hover {
+    background-color: #fff;
+    color: #000;
+    }
+    .sidenav .closebtn {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
+    }
+    .sidenav .closebtn:hover{
+    background-color: #111;
+    color: #fff;
+    }
+    #main {
+    transition: margin-left .5s;
+    padding: 16px;
+    }
+    @media screen and (max-height: 450px) {
+    .sidenav {padding-top: 15px;}
+    .sidenav a {font-size: 1rem;}
+    }
+
+    /* .product-container {
         background-color: #000;
         display: flex;
         justify-content: space-between;
@@ -15,11 +75,48 @@ body {
     .filters {
         height: max-content;
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-        background-color: #fff;
+        color: #fff;
         padding: 1.5rem;
         width: 22%;
         border-radius: 1rem;
         padding-right: 20px;
+    }
+
+    .filters select{
+        color: transparent;
+        cursor: pointer;
+        border: none;
+        padding: 1.5rem;
+        outline: none;
+        box-shadow: none;
+        margin-top: -4rem;
+        width: 100%;
+        background-color: #000;
+    }
+
+    .filters select:active {
+        color: #000;
+        cursor: pointer;
+        border: none;
+        outline: none;
+        width: 100%;
+        box-shadow: none;
+    }
+
+    .filters .form-label{
+        border-bottom: 1px solid #f7f7f7;
+        cursor: pointer;
+        font-size: 1.3rem;
+        padding: 1rem;
+        color: #fff;
+    }
+
+
+    .filters .form-select option{
+        background-color: #000;
+        box-shadow: none;
+        color: #fff;
+        font-size: 1.2rem;
     }
 
     .product-grid {
@@ -30,50 +127,6 @@ body {
         flex-wrap: wrap;
         gap: 30px;
     }
-
-    .sidenav {
-        height: 100%;
-        width: 0;
-        position: fixed;
-        z-index: 1;
-        top: 0;
-        left: 0;
-        background-color: #111;
-        overflow-x: hidden;
-        transition: 0.5s;
-        padding-top: 60px;
-        }
-        .sidenav a {
-        padding: 8px 8px 8px 32px;
-        text-decoration: none;
-        font-size: 1.2rem;
-        color: #fff;
-        display: block;
-        transition: 0.3s;
-        }
-        .sidenav a:hover {
-        background-color: #fff;
-        color: #000;
-        }
-        .sidenav .closebtn {
-        position: absolute;
-        top: 0;
-        right: 25px;
-        font-size: 36px;
-        margin-left: 50px;
-        }
-        .sidenav .closebtn:hover{
-        background-color: #111;
-        color: #fff;
-        }
-        #main {
-        transition: margin-left .5s;
-        padding: 16px;
-        }
-        @media screen and (max-height: 450px) {
-        .sidenav {padding-top: 15px;}
-        .sidenav a {font-size: 1rem;}
-        }
 
     .product-card {
         height: max-content;
@@ -208,7 +261,7 @@ body {
 }
 
 @media (max-width: 991px) {
-    /* Adjust styles for medium screens */
+   
     .product-container {
         flex-direction: column;
         align-items: center;
@@ -249,4 +302,4 @@ body {
     .product-grid {
         width: 100%;
     }
-}
+} */
