@@ -37,6 +37,8 @@ const paymentGateway = async (req, res) => {
     try {
       const item = await Product.findOne({ itemId: product.itemId });
       payment += product.quantity * item.offeredPrice;
+      item.stock = item.stock - product.quantity;
+      await item.save()
     } catch (error) {
       console.error(error);
       return res.status(500).json({ error: 'Internal Server Error' });
