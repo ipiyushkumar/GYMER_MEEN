@@ -436,7 +436,7 @@
                                 console.log("error fetching products", err);
                             }
                         }));
-                        document.querySelector('.orders').append(createTableRow(order._id, names, order.totalPayment, order.status));
+                        document.querySelector('.orders').append(createTableRow(order.razorpay_order_id, names, order.totalPayment, order.status));
                     });
                     await Promise.all(orderPromises);
                 })

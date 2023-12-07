@@ -54,8 +54,14 @@ router.get('/profile',isAuthenticated, (req, res) => {
     res.render('User_Profile_page',{content});
 })
 
-// router.get('/paymentGateway',isAuthenticated, (req, res) => {
-//     res.render('paymentGateway_page')
-// })
+router.get('/success',isAuthenticated, (req, res) => {
+    const content = {
+        orderId : req.session.recentOrder
+    }
+    res.render('thank_you_page',{content});
+})
+router.get('/failure',isAuthenticated, (req, res) => {
+    res.render('Order_failed');
+})
 
 module.exports = router;

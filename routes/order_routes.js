@@ -21,4 +21,6 @@ router.get('/api/order',isAuthenticated, controllers.getOrderByEmail);
 // add a new order
 router.post("/processPayment",isAuthenticated, controllers.paymentGateway);
 
+router.post("/save/order",isAuthenticated, controllers.saveOrder);
+
 module.exports = router;

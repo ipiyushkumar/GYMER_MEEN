@@ -1,6 +1,3 @@
-### integrate order routes in all the pages
-- use coupons in payment gateway
-
 ### prepare an AMC
 
 ### in admin panel

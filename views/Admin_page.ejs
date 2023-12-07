@@ -178,7 +178,7 @@
             </section>
         </section>
 
-        <!-- shows all the users -->
+        <!-- done -->
         <section class="main" id="analyticsSection" style="display: none;" >
             <section class="main-orders">
                 <h1>User Analytics</h1>
@@ -276,7 +276,7 @@
                         .then(orders => {
                             orders.forEach(async order => {
                                 let row = document.createElement('tr')
-                                row.append(createTableCell(order._id))
+                                row.append(createTableCell(order.razorpay_order_id))
                                 row.append(createTableCell(order.email))
 
                                 let names = "";

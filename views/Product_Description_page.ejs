@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="/css/Product_Desc.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@200;400;500&display=swap">
     <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <title>Product Description</title>
     <style>
@@ -78,6 +79,7 @@
                    <span style="margin-left: 5px;">Cart</span>
                 </a>
                 <a class="nav-link" href="/login" style="color: #fff; font-size: 1.2rem;">
+                  <iconify-icon icon="material-symbols:login-sharp"></iconify-icon>
                 <span style="margin-left: 5px;">Login</span>
                 </a>
               <% } %>
@@ -112,7 +114,7 @@
                 <a href="#" class="product-link">WhiteWolf Originals</a>
                 <div class = "product-rating">
                     <iconify-icon icon="noto:star"></iconify-icon>
-                    <span>4.7(21 Reviews)</span>
+                    <span>4.7 | (21 Reviews)</span>
                 </div>
                
                <div class="product-price">
@@ -157,7 +159,7 @@
         </div>
     </div>
 
-    <div class="faq-section">
+    <div class="faq-section mt-5 mb-5">
         <div class="faq-question" onclick="toggleFAQ(this)">
             <span>FAQ</span>
             <span class="icon">+</span>
@@ -181,6 +183,28 @@
         <div class="faq-answer">
             <p>A: Currently, the product is available in one color option.</p>
         </div>
+    </div>
+
+    <div class="parent-container mt-5 mb-5">
+      <div class="left-container">
+        <div>
+          <h2>4.0</h2>
+        </div>
+        <div>
+          <p>
+            <iconify-icon icon="material-symbols:star"></iconify-icon>
+            <iconify-icon icon="material-symbols:star"></iconify-icon>
+            <iconify-icon icon="material-symbols:star"></iconify-icon>
+            <iconify-icon icon="material-symbols:star"></iconify-icon>
+          </p>
+        </div>
+        <div>
+          <h4>(120 Verified Reviews)</h4>
+        </div>
+      </div>
+      <div class="right-container">
+        <canvas id="ratingsChart"></canvas>
+      </div>
     </div>
 
     <div class="product-container">
@@ -287,6 +311,50 @@
             icon.innerHTML = '❌';
         }
     }
+</script>
+
+<script>
+  // Sample data for the chart
+  var ctx = document.getElementById('ratingsChart').getContext('2d');
+  var ratingsChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+      labels: ['1 Star', '2 Stars', '3 Stars', '4 Stars', '5 Stars'],
+      datasets: [{
+        label: '',
+        data: [10, 20, 30, 25, 15], // Replace with your actual data
+        backgroundColor: [
+          '#FF5733',
+          '#FFD933',
+          '#33FF57',
+          '#33B5FF',
+          '#8333FF'
+        ],
+        borderColor: [
+          '#FF5733',
+          '#FFD933',
+          '#33FF57',
+          '#33B5FF',
+          '#8333FF'
+        ],
+        borderWidth: 1
+      }]
+    },
+    options: {
+      scales: {
+        y: {
+          display: false, // Hide the y-axis labels
+          beginAtZero: true,
+          max: 40 // Adjust as needed based on your data
+        },
+        x: {
+          grid: {
+            display: false // Hide the x-axis background lines
+          }
+        }
+      }
+    }
+  });
 </script>
 
 </body>
