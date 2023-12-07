@@ -1,21 +1,37 @@
 <!DOCTYPE html>
-<html>
-  <head>
+<html lang="en">
+<head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<!-- Bootstrap CSS -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-<!-- Your custom CSS -->
-<link rel="stylesheet" href="/css/Product_Desc.css">
-
-<title>Product Description</title>
-<script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@200;400;500&display=swap">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="/css/Product_Desc.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@200;400;500&display=swap">
+    <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <title>Product Description</title>
+    <style>
+      .card-wrapper{
+    background-color: #000;
+    width: 90%;
+    margin-top: 0;
+}
+    .social-links{
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      text-align: center;
+    }
+    .social-links a{
+      font-size: 2rem;
+      padding: 2rem;
+      color: #000;
+    }
+    </style>
 </head>
 <body>
+    
     <div class="promo-strip">
         Get 25% Off on Every Purchase
       </div>
@@ -45,68 +61,58 @@
               </li>
             </ul>
           </div>
-      
           <!-- Cart and Profile aligned to the right -->
-          <div class="col-md-4 d-flex justify-content-end">
-            <ul class="navbar-nav">
-              <li class="nav-item d-flex flex-column align-items-center" style="font-size: 1.2rem; color: #fff;">
+          <div class="custom-nav d-flex justify-content-end" style="width: 30%; font-size: 1rem;">
+            <% if (content.isLoggedIn === true) { %>
+                <a class="nav-link cartButtom" style="color: #fff; font-size: 1.2rem;">
                 <iconify-icon icon="bxs:cart-add"></iconify-icon>
-                <a class="nav-link" href="#">Cart</a>
-              </li>
-              <li class="nav-item d-flex flex-column align-items-center" style="font-size: 1.2rem; color: #fff;">
+                <span style="margin-left: 5px;">Cart</span>
+                </a>
+                <a class="nav-link" href="/profile" style="color: #fff; font-size: 1.2rem;">
                 <iconify-icon icon="gg:profile"></iconify-icon>
-                <a class="nav-link" href="User_Profile_page.ejs">Profile</a>
-              </li>
-            </ul>
-          </div>
+                <span style="margin-left: 5px;">Profile</span>
+                </a>
+              <% } else { %>
+                <a class="nav-link cartButtom" style="color: #fff; font-size: 1.2rem;" onclick="alert(`login to access this feature`)">
+                   <iconify-icon icon="bxs:cart-add"></iconify-icon>
+                   <span style="margin-left: 5px;">Cart</span>
+                </a>
+                <a class="nav-link" href="/login" style="color: #fff; font-size: 1.2rem;">
+                <span style="margin-left: 5px;">Login</span>
+                </a>
+              <% } %>
+           </div>
         </div>
-      </nav>
+      </nav> 
+    <%- include('partials/cart') %>
 
-    <div class="card-wrapper" style="background-color: #000;">
+    <div class="card-wrapper mt-5" style="width: 100%;height: max-content;">
 
-        <div class="cardio">
-            <!-- <div class="product-imgs">
-                <div class="img-display">
-                    <div class="img-showcase">
-                        <% item.imageLink.forEach((image, index) => { %>
-                            <img src="../assets/spray2.jpg" alt="shoe image">
-                        <% }); %>
-                    </div>
+        <div class="cardio" style="width: 100%;grid-column-gap: 10vh;height: 100%;">
+            <div class="product-imgs" style="align-self: start;">
+                <div class="main-image">
+                    <img id="mainProductImage" src='<%= item.imageLink[0] %>' alt="Main Product Image">
                 </div>
-                <div class="img-select">
+                <div class="additional-images">
                     <% item.imageLink.forEach((image, index) => { %>
-                        <div class="img-item">
-                            <a href="#" data-id="<%= index + 1 %>">
-                                <img src="../assets/spray2.jpg" alt="shoe image">
-                            </a>
+                        <div class="additional-image" onclick="loadImage('<%= image %>')" style="background-color: #fff;height: 25vh;">
+                            <img src="<%= image %>" alt="shoe image" style="height:13vh">
                         </div>
                     <% }); %>
                 </div>
-            </div> -->
-
-            <div class="product-imgs">
-                <div class="main-image">
-                    <img src="../assets/Product3.jpg" alt="Main Product Image">
-                </div>
-                <div class="additional-images">
-                    <div class="additional-image">
-                        <img src="../assets/Product2.jpg" alt="Additional Image 1">
-                    </div>
-                    <div class="additional-image">
-                        <img src="../assets/Product2.jpg" alt="Additional Image 2">
-                    </div>
-                    <div class="additional-image">
-                        <img src="../assets/Product2.jpg" alt="Additional Image 3">
-                    </div>
-                </div>
+                <script>
+                    function loadImage(image) {
+                        document.getElementById('mainProductImage').src = image;
+                    }
+                </script>
             </div>      
 
-            <div class="product-content">
+            <div class="product-content" style="align-self: start;">
                 <h2 class="product-title"><%= item.name %></h2>
                 <a href="#" class="product-link">WhiteWolf Originals</a>
-                <div class = "product-rating" style="font-weight: 400;">
+                <div class = "product-rating">
                     <iconify-icon icon="noto:star"></iconify-icon>
-                    <span>4.7 | (21 Reviews)</span>
+                    <span>4.7(21 Reviews)</span>
                 </div>
                
                <div class="product-price">
@@ -124,7 +130,7 @@
                 <p class="tax">Inclusive of all taxes</p>
 
                 <div class="purchase-info">
-                    <button type="button" class="btn addCartButton">Add to Cart</button>
+                    <button type="button" class="btn addCartButton" style="font-size: 5vh;padding: 1vh 2vh;">Add to Cart</button>
                 </div>
 
                 <div class="product-detail">
@@ -134,16 +140,16 @@
                 <div class="social-links">
                     <p>Share This Product : </p>
                     <a href = "#">
-                      <iconify-icon icon="logos:facebook"></iconify-icon>
+                      <iconify-icon icon="bi:facebook"></iconify-icon>
                     </a>
                     <a href = "#">
-                      <iconify-icon icon="devicon:twitter"></iconify-icon>
+                      <iconify-icon icon="pajamas:twitter"></iconify-icon>
                     </a>
                     <a href = "#">
-                      <iconify-icon icon="skill-icons:instagram"></iconify-icon>
+                      <iconify-icon icon="lucide:instagram"></iconify-icon>
                     </a>
                     <a href = "#">
-                      <iconify-icon icon="logos:whatsapp-icon"></iconify-icon>
+                      <iconify-icon icon="ic:sharp-whatsapp"></iconify-icon>
                     </a>
                   </div>
             </div>
@@ -240,7 +246,6 @@
         </div>
         <p class="pl-3">2023 - Copyright, All Rights Reserved.</p>
      </footer>
-    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script>
         document.querySelector(`.addCartButton`).addEventListener('click', async () => {
             event.preventDefault();
@@ -279,7 +284,7 @@
             const answer = question.nextElementSibling;
             answer.style.maxHeight = answer.scrollHeight + 'px';
             const icon = question.querySelector('.icon');
-            icon.innerHTML = '-';
+            icon.innerHTML = '❌';
         }
     }
 </script>

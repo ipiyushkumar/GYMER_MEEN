@@ -2,6 +2,16 @@ const express = require('express');
 
 const router = express.Router();
 
+
+// Define a middleware to check if the user is authenticated
+const isAuthenticated = (req, res, next) => {
+    if (req.session.isLoggedIn) {
+        next(); // User is authenticated, proceed to the next middleware or route
+    } else {
+        res.status(401).json({ message: 'Unauthorized' });
+    }
+};
+
 // home
 router.get('/',(req, res) => {
     const content = {
@@ -24,24 +34,28 @@ router.get('/product_listing',(req, res) => {
     res.render('Product_Listing_page',{content});
 })
 
-// change it in product controller
-// router.get('/product_description',(req, res) => {
-//     res.render('product_description');
-// })
 
-router.get('/confirm', (req, res) => {
-    res.render('Order_Confirm_page')
+router.get('/confirm',isAuthenticated, (req, res) => {
+    let {pincode, locality, landmark, city, address} = req.session.userProfile;
+    if (!req.session.userProfile.cart[0]){
+        res.status(502).json({message : "Please Add Items in cart"})
+
+    } else if (!pincode || !locality || !landmark || !city || !address) {
+        res.status(503).json({message : "Please Add Items in cart"})
+    } else {
+        res.render('Order_Confirm_page')
+    }
 })
 
-router.get('/profile',(req, res) => {
+router.get('/profile',isAuthenticated, (req, res) => {
     const content = {
         isLoggedIn : req.session.isLoggedIn,
     }
     res.render('User_Profile_page',{content});
 })
 
-router.get('/paymentGateway', (req, res) => {
-    res.render('paymentGateway_page')
-})
+// router.get('/paymentGateway',isAuthenticated, (req, res) => {
+//     res.render('paymentGateway_page')
+// })
 
 module.exports = router;

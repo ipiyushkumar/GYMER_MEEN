@@ -17,7 +17,7 @@ router.post('/auth/login',controllers.authLogin);
 
 router.post('/auth/signup',controllers.authSignUp);
 
-router.get('/logout',controllers.authLogout);
+router.get('/logout',isAuthenticated, controllers.authLogout);
 
 router.put('/updateUserProfile',isAuthenticated, controllers.updateProfile)
 

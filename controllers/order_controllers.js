@@ -3,6 +3,8 @@ const jwt = require('jsonwebtoken');
 const User = require('../schemas/user_schema');
 const Product = require('../schemas/product_schema');
 const Orders = require('../schemas/order_schema');
+const Coupons = require('../schemas/coupons_schema');
+
 
 // email
 const getOrderByEmail = async (req, res) => {
@@ -14,53 +16,80 @@ const getOrderByEmail = async (req, res) => {
   }
 }
 
+const Razorpay = require('razorpay'); 
+const { RAZORPAY_ID_KEY, RAZORPAY_SECRET_KEY } = process.env;
+
+const razorpayInstance = new Razorpay({
+    key_id: RAZORPAY_ID_KEY,
+    key_secret: RAZORPAY_SECRET_KEY
+});
+
+
 // done
 const paymentGateway = async (req, res) => {
-  // check if the payment is been done
-
-  const token = req.session.token;
-
-  // Verify the token to get the user's information
-  const decodedToken = jwt.verify(token, process.env.Secret_KEY);
-
-  // Find the user data by ID using the decoded information from the token
-  const userData = await User.findById(decodedToken.userId);
-
-  if (!userData) {
-    console.log("user not found");
-    return res.status(404).json({ message: 'User data not found' });
-  }
-
-  let payment = 0;
-
-  for (const product of userData.cart) {
     try {
-      const item = await Product.findOne({ itemId: product.itemId });
-      payment += product.quantity * item.offeredPrice;
-      item.stock = item.stock - product.quantity;
-      await item.save()
-    } catch (error) {
-      console.error(error);
-      return res.status(500).json({ error: 'Internal Server Error' });
-    }
-  }
+      // loading user data
+      const token = req.session.token;
+      const decodedToken = jwt.verify(token, process.env.Secret_KEY);
+      const userData = await User.findById(decodedToken.userId);
 
-  try {
-    const newOrder = new Orders({
-      email: userData.email,
-      products: userData.cart,
-      totalPayment: payment,
-    });
+      // checking if user exists
+      if (!userData) {
+        console.log("user not found");
+        return res.status(404).json({ message: 'User data not found' });
+      }
 
-    await newOrder.save();
-    userData.cart = [];
-    req.session.userProfile.cart = [];
-    await userData.save();
+      // recalculating amount
+      let amount = 0;
+      for (const product of userData.cart) {
+        try {
+          const item = await Product.findOne({ itemId: product.itemId });
+          amount += product.quantity * item.offeredPrice;
+        } catch (error) {
+          console.error(error);
+          return res.status(500).json({ error: 'Internal Server Error' });
+        }
+      }
 
-    res.status(200).json({ message: 'The item has been ordered' });
+      // loading discount code and discounting the prics
+      const coupon = await Coupons.findOne({ code: req.body.couponCode });
+      if (coupon) {
+        amount = amount - amount*(coupon.discount/100)
+      }
+
+      // loading razor amount
+      amount = amount*100;
+
+      const options = {
+          amount: amount,
+          currency: 'INR',
+          receipt: "piyushat115@gmail.com"
+      }
+
+      razorpayInstance.orders.create(options, 
+          async (err, order)=>{
+              if(!err){
+                  res.status(200).send({
+                    success:true,
+                    msg:'Order Created',
+                    order_id:order.id,
+                    amount:amount,
+                    key_id:RAZORPAY_ID_KEY,
+                    product_name:req.body.name,
+                    description:req.body.description,
+                    contact: userData.phone,
+                    name: userData.name,
+                    email: userData.email
+                });
+              }
+              else{
+                  res.status(400).send({success:false,msg:'Something went wrong!'});
+              }
+          }
+      );
+
   } catch (error) {
-    console.error(error);
-    res.status(500).json({ error: 'Internal Server Error' });
+      console.log(error.message);
   }
 };
 

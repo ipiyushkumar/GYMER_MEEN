@@ -9,12 +9,25 @@
             <strong>&#8377;20.00</strong>
         </li>
     </ul>
-    <a href="/confirm">
-    <button class="btn btn-light btn-lg btn-block">Proceed to Checkout</button>
-    </a>
+    <button class="btn btn-light btn-lg btn-block" onclick="proceedToCheckOut()">Proceed to Checkout</button>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 <script>
+    async function proceedToCheckOut () {
+        await axios.get('/confirm')
+        .then(response => {
+            window.location.href = '/confirm';
+        })
+        .catch(err => {
+            if (err.response.status === 502){
+                alert("Please add items to cart")
+            } else if (err.response.status === 503){
+                alert("Please Complete your profile before proceeding")
+            } else {
+                alert("something happened at server end - "+ err)
+            }
+        })
+    }
     // Function to add items to the cart
     function openCart() {
         document.getElementById('cartSidebar').style.right = '0';
@@ -62,7 +75,7 @@
                                 </div>
                             </div>
                             <div class="mb-2 mt-2 single_item_total${cartItem.itemId}" style="font-size:1.3rem;font-weight:bolder;">&#8377;${(productDetails.offeredPrice * cartItem.quantity)}</div>
-                            <button class="btn btn-warning ${cartItem.itemId}">Delete</button>
+                            <button class="btn btn-warning deleteButton${cartItem.itemId}">Delete</button>
                         </li>
                         `;
                         cartItemsContainer.append(cartItemElement);
@@ -111,4 +124,4 @@
         // Assuming each cart item has a field named 'price'
         return cartItem.price * cartItem.quantity;
     }
-</script>
+</script

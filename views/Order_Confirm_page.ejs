@@ -6,12 +6,13 @@
       <title>Order confirmation Page</title>
       <link href='https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css' rel='stylesheet'>
       <link href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css' rel='stylesheet'>
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@200;400;500&display=swap">
       <style>@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
          * {
          padding: 0;
          margin: 0;
          box-sizing: border-box;
-         font-family: 'Roboto', sans-serif
+         font-family: 'Outfit', sans-serif;
          }
          body {
          background-color: #000;
@@ -46,6 +47,11 @@
          display: none;
          top: -20px
          }
+
+         .Shipping_Address p{
+            font-size: 2rem;
+         }
+
          .wrapper {
          padding: 0px 50px 50px;
          max-width: 800px;
@@ -132,8 +138,9 @@
    </head>
    <body oncontextmenu='return false' class='snippet-body'>
       <div class="d-flex flex-column justify-content-center align-items-center" id="order-heading">
-         <div class="text-uppercase">
-            <p>Order confirmation</p>
+         <div class="d-flex flex-column justify-content-center align-items-center m-2">
+            <img src="../assets/logo.png" style="height: 5vh;margin-bottom: 1rem;">
+            <h1 style="font-size: 2rem;">WhiteWolf International - Confirm Order</h1>
          </div>
          <div class="h4 date">Monday, November 27, 2023</div>
          <div class="btn close text-white"> &times; </div>
@@ -151,6 +158,21 @@
             <tbody class="allItems">
             </tbody>
         </table>
+        <div class="d-flex justify-content-start align-items-center  pl-3">
+         <div class="text-muted">Shipping</div>
+         <div class="ml-auto"> <label>Free</label> </div>
+      </div>
+      <div class="d-flex justify-content-between align-items-center mt-2 pb-4 pl-3">
+         <div class="text-muted w-100">
+             <input type="text" class="form-control" id="couponInput" placeholder="Enter Coupon">
+         </div>
+         <div class="ml-3">
+             <button class="btn btn-dark btn-apply-coupon coupon_Button">Apply</button>
+         </div>
+         <div class="ml-4">
+            <button class="btn btn-dark btn-apply-coupon coupon_remove_Button">Remove</button>
+         </div>
+     </div>
          <div class="table-responsive">
             <table class="table table-borderless">
                <thead>
@@ -167,37 +189,32 @@
                </tbody>
             </table>
          </div>
-         <!-- <div class="pt-2 border-bottom mb-3"></div>
-         <div class="d-flex justify-content-start align-items-center pl-3">
-            <div class="text-muted">Payment Method</div>
-            <div class="ml-auto"> <img src="https://www.freepnglogos.com/uploads/mastercard-png/mastercard-logo-logok-15.png" alt="" width="30" height="30"> <label>Mastercard ******5342</label> </div>
-         </div>
-         <div class="d-flex justify-content-start align-items-center py-1 pl-3">
-            <div class="text-muted">Shipping</div>
-            <div class="ml-auto"> <label>Free</label> </div>
-         </div>
-         <div class="d-flex justify-content-start align-items-center pb-4 pl-3 border-bottom">
-            <div class="text-muted"> <button class="text-white btn btn-dark">25% Discount</button> </div>
-            <div class="ml-auto price"> -&#8377;47 </div>
-         </div>
-         <div class="d-flex justify-content-start align-items-center pl-3 py-3 mb-4 border-bottom">
-            <div class="text-muted">Total Amount Paid </div>
-            <div class="ml-auto h5"> &#8377;149 </div>
-         </div> -->
          <p>Online Payment gateway in Development</p>
          <div class="row border rounded p-1 my-3">
             <div class="col-md-6 py-3">
                <div class="d-flex flex-column align-items start Shipping_Address"></div>
             </div>
          </div>
-         <!-- <div class="d-sm-flex justify-content-between rounded text-center subscriptions">
-            <div>Thank you for you order. Redirecting you to home screen in 5 seconds.</div>
-         </div> -->
-         <button class="btn btn-primary proceedToPay">proceed</button>
+         <button class="btn btn-dark proceedToPay">Proceed</button>
       </div>
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
       <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-
+      <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
       <script>
+         let Total = 0;
+            document.querySelector('.coupon_Button').addEventListener('click', async (req, res) => {
+               let code = document.querySelector('#couponInput').value;
+               await axios.get(`/coupons/${code}`)
+               .then(response => response.data)
+               .then(coupon => {
+                  document.querySelector('.total').innerHTML = `<b>&#8377;${Total} -> ${Total - Total*((coupon.discount)/100)}</b>`;
+               })
+               .catch(err => console.log(err))
+            })
+            document.querySelector('.coupon_remove_Button').addEventListener('click', async (req, res) => {
+               document.querySelector('#couponInput').value = ''
+               document.querySelector('.total').innerHTML = `<b>&#8377;${Total}</b>`;
+            })
             function dataCell (content) {
                var item = document.createElement('td')
                item.textContent = content;
@@ -216,7 +233,6 @@
                tableBody.append(row)
             }
          document.addEventListener('DOMContentLoaded', async () => {
-            let Total = 0;
             await axios.get('/getprofile')
             .then(response => response.data.userProfile)
             .then(profile => {
@@ -253,9 +269,64 @@
             })
             .catch(err => {console.log("could not fetch profile\n"+ err)})
          })
-         document.querySelector('.proceedToPay').addEventListener('click', () => {
-            window.location.href = '/paymentGateway';
-         })
-    </script>
+
+         document.addEventListener('DOMContentLoaded', function(){
+            document.querySelector('.proceedToPay').addEventListener('click',function(e){
+               e.preventDefault();
+
+               const amount = Total;
+               let code = document.querySelector('#couponInput').value;
+
+               var formData = {
+                  couponCode: code,
+                  name: "Wolf Cart Payment",
+                  description:"Thank you for your patronage"
+               }
+         
+               $.ajax({
+                  url:"/processPayment",
+                  type:"POST",
+                  data: formData,
+                  success:function(res){
+                     if(res.success){
+                        var options = {
+                           "key": ""+res.key_id+"",
+                           "amount": ""+res.amount+"",
+                           "currency": "INR",
+                           "name": ""+res.product_name+"",
+                           "description": ""+res.description+"",
+                           "image": "https://dummyimage.com/600x400/000/fff",
+                           "order_id": ""+res.order_id+"",
+                           "handler": function (response){
+                              alert("Payment Succeeded");
+                              // window.open("/","_self")
+                           },
+                           "prefill": {
+                              "contact":""+res.contact+"",
+                              "name": ""+res.name+"",
+                              "email": ""+res.email+""
+                           },
+                           "notes" : {
+                              "description":""+res.description+""
+                           },
+                           "theme": {
+                              "color": "#2300a3"
+                           }
+                        };
+                        var razorpayObject = new Razorpay(options);
+                        razorpayObject.on('payment.failed', function (response){
+                              alert("Payment Failed");
+                        });
+                        razorpayObject.open();
+                     }
+                     else{
+                        alert(res.msg);
+                     }
+                  }
+               })
+         
+            });
+         });
+      </script>
    </body>
 </html>
