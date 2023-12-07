@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css">
+      <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.css"/>
+      <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick-theme.css">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+      <link rel="stylesheet" href="/css/Home.css">
+      <link rel="preconnect" href="https://fonts.googleapis.com">
+      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@200;400;500&display=swap">
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.js"></script>
+      <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+  </head>
+   </head>
+   <style>
+       .slider{
+        width:100%;
+        padding: 0;
+        margin:0 auto;
+        margin-top: 5vh;
+        background-color: #000;
+    }
+
+    .review{
+        width:100%;
+        padding: 2rem;
+        margin: 0 auto;
+        background-color: #000;
+    }
+
+    .review-fit{
+       width: 80%;
+       display: flex !important;
+       flex-direction: column;
+       justify-content: center;
+       align-items: center;
+       background-color: #fff;
+       backdrop-filter: blur(10px);
+       box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+       padding: 1rem;
+       border-radius: 1rem;
+       box-shadow: 0px 0px 5px 0px #fff;
+    }
+
+
+    .review .slick-slide{
+       margin-left: 1rem !important;
+       margin-right: 1rem !important;
+    }
+
+    .review-fit img{
+       width: 150px;
+       border-radius: 35%;
+       height: auto;
+    }
+
+    .alert {
+    position: fixed;
+    top: 1rem;
+    right: 1rem;
+    z-index: 1;
+    padding: 0.75rem 1.25rem;
+    margin-bottom: 1rem;
+    border: 1px solid transparent;
+    border-radius: 0.25rem;
+    transition: 0.3s ease-in-out;
+  }
+
+  .alert.success {
+    color: #155724;
+    background-color: #d4edda;
+    border-color: #c3e6cb;
+  }
+
+  .close {
+    cursor: pointer;
+  }
+
+    .review-fit h5{
+      font-style:italic;
+    }
+
+    .review-fit i{
+       margin-bottom: 1rem;
+       color: goldenrod;
+       margin-top: 1rem;
+    }
+
+    .review-fit .insta-id i{
+       color: #000;
+       margin-right: 0.4rem;
+    }
+
+
+    .slider img{
+        width: 100%;
+        height:auto;
+    }
+    .slider .slick-slide{
+        height:auto!important;
+    }
+    .slider .slick-arrow{
+        display: none;
+    }
+    .slider .slick-next{
+        display: none;
+    }
+    .slider .slick-prev{
+        display: none;
+    }
+
+    .slider .slick-slide{
+    margin-right: 2rem !important;
+    margin-left: 2rem!important;
+   }
+
+   @media (max-width: 576px){
+      .slider{
+         margin-top: 2vh;
+      }
+   }
+   
+   </style>
+   <body>
+      <%- include('partials/nav') %> 
+      <%- include('partials/cart') %>
+
+      <div id="alertContainer"></div>
+
+         <div class="slider">   
+            <div><img src="../assets/Slider.jpg"></div>
+            <div><img src="../assets/Slider2.jpg"></div>
+            <div><img src="../assets/Slider.jpg"></div>   
+            <div><img src="../assets/Slider2.jpg"></div>
+        </div>
+
+      <div class="container">
+         <button class="btn btn-light align-left mt-5 mb-5"><a href="Product_Listing.html" style="text-decoration: none;color: #000;font-weight: 500;font-size: 3vh;">Explore Now</a></button>
+      </div>
+      <div class="container products-bar mt-4">
+         <div class="mb-2 filters d-flex justify-content-around align-items-center text-uppercase">
+            <button class="category-btn m-1" onclick="renderProducts('all')">All</button>
+            <button class="category-btn m-1" onclick="renderProducts('Face Care')">Face Care</button>
+            <button class="category-btn m-1" onclick="renderProducts('Hair Care')">Hair Care</button>
+            <button class="category-btn m-1" onclick="renderProducts('Body Care')">Body Care</button>
+            <button class="category-btn m-1" onclick="renderProducts('Beard Care')">Beard Care</button>
+         </div>   
+         <div id="productGrid" class="row product-grid" onmousedown="startScroll(event)" onmouseup="stopScroll()" ontouchstart="startScroll(event)" ontouchend="stopScroll()">
+         </div>
+
+         <div class="d-flex justify-content-center p-4 mt-5 mb-5" >
+            <button class="show-btn"><a href="/product_listing">Show More</a></button>
+         </div>
+      </div>
+      <div class="container-fluid mt-2 mb-2 p-0 banner-section">
+         <img class="banner-image" src="assets/black-friday.jpg" alt="Banner Image">
+      </div>
+      <div class="container mt-5 mb-5">
+         <h2 class="text-center text-white mb-4">Search Through Category</h2>
+         <div class="row align-items-stretch">
+             <div class="col-md-4 col-4 mt-2">
+                 <div class="card bg-white text-center p-0 d-flex flex-column" style="border-radius: 1rem;">
+                     <img src="assets/category1.jpg" class="card-img-top flex-grow-1" alt="Image 1" style="border-radius: 1rem 1rem 0 0">
+                     <div class="card-body">
+                         <h3 class="card-text font-weight-bold">Face Care</h3>
+                     </div>
+                 </div>
+             </div>
+             <div class="col-md-4 col-4 mt-2">
+                 <div class="card bg-white text-center p-0 border-0 d-flex flex-column" style="border-radius: 1rem;">
+                     <img src="assets/category3.jpg" class="card-img-top flex-grow-1" alt="Image 2" style="border-radius: 1rem 1rem 0 0">
+                     <div class="card-body">
+                         <h3 class="card-text font-weight-bold">Hair Care</h3>
+                     </div>
+                 </div>
+             </div>
+             <div class="col-md-4 col-4 mt-2">
+                 <div class="card bg-white text-center p-0 border-0 d-flex flex-column" style="border-radius: 1rem;" style="border-radius: 1rem 1rem 0 0">
+                     <img src="assets/category2.jpg" class="card-img-top flex-grow-1" alt="Image 3" style="border-radius: 1rem 1rem 0 0">
+                     <div class="card-body">
+                         <h3 class="card-text font-weight-bold">Body Care</h3>
+                     </div>
+                 </div>
+             </div>
+         </div>
+     </div>
+
+
+     <h2 class="text-center text-white mt-5 mb-0">See What Our Customers Say</h2>
+     <div class="review mt-3">   
+         <div class="review-fit" style="display: flex;flex-direction: column;">
+            <img src="assets/spray1.jpg">
+            <div class="icons">
+               <i class="fas fa-star"></i>
+               <i class="fas fa-star"></i>
+               <i class="fas fa-star"></i>
+               <i class="fas fa-star"></i>
+               <i class="fas fa-star"></i>
+            </div>
+            <p>User 1 Review Text Goes Here...</p>
+            <h5 class="user-name" >User 1</h5>
+            <div class="insta-id">
+                  <i class="fab fa-instagram"></i>
+                  <span >user1_insta</span>
+            </div>
+         </div>
+
+         <div class="review-fit" style="display: flex;flex-direction: column;">
+            <img src="assets/spray1.jpg">
+            <div class="icons">
+               <i class="fas fa-star"></i>
+               <i class="fas fa-star"></i>
+               <i class="fas fa-star"></i>
+               <i class="fas fa-star"></i>
+               <i class="fas fa-star"></i>
+            </div>
+            <p>User 1 Review Text Goes Here...</p>
+            <h5 class="user-name" >User 1</h5>
+            <div class="insta-id">
+                  <i class="fab fa-instagram"></i>
+                  <span >user1_insta</span>
+            </div>
+         </div>
+
+         <div class="review-fit" style="display: flex;flex-direction: column;">
+            <img src="assets/spray1.jpg">
+            <div class="icons">
+               <i class="fas fa-star"></i>
+               <i class="fas fa-star"></i>
+               <i class="fas fa-star"></i>
+               <i class="fas fa-star"></i>
+               <i class="fas fa-star"></i>
+            </div>
+            <p>User 1 Review Text Goes Here...</p>
+            <h5 class="user-name" >User 1</h5>
+            <div class="insta-id">
+                  <i class="fab fa-instagram"></i>
+                  <span >user1_insta</span>
+            </div>
+         </div>
+      
+
+         <div class="review-fit" style="display: flex;flex-direction: column;">
+            <img src="assets/spray1.jpg">
+            <div class="icons">
+               <i class="fas fa-star"></i>
+               <i class="fas fa-star"></i>
+               <i class="fas fa-star"></i>
+               <i class="fas fa-star"></i>
+               <i class="fas fa-star"></i>
+            </div>
+            <p>User 1 Review Text Goes Here...</p>
+            <h5 class="user-name" >User 1</h5>
+            <div class="insta-id">
+                  <i class="fab fa-instagram"></i>
+                  <span >user1_insta</span>
+            </div>
+         </div>
+  </div>
+
+      
+      <footer class="container-fluid d-flex flex-column container text-white p-3 footer"style="background-color: #000;">
+         <div class=" text-left mt-3 p-5" style="background-color: #070707;">
+            <div class="row">
+               <div class="col-md-3">
+                  <img src="assets/logo.PNG" alt="Logo" class="img-fluid mb-3" style="width: auto;height: 10vh;">
+               </div>
+               <div class="col-md-6 d-flex footer-menu">
+                  <div class="col-md-6 mr-3 list-unstyled">
+                     <li><a href="#" class="text-white">About us</a></li>
+                     <li><a href="#" class="text-white">FAQ</a></li>
+                     <li><a href="#" class="text-white">Shipping and Payment</a></li>
+                     <li><a href="#" class="text-white">Partners</a></li>
+                     <li><a href="#" class="text-white">Blog</a></li>
+                     <li><a href="#" class="text-white">Contact Us</a></li>
+                  </div>
+                  <div class="col-md-6 ml-3 list-unstyled">
+                     <li><a href="#" class="text-white">Customer Reviews</a></li>
+                     <li><a href="#" class="text-white">Hair Care</a></li>
+                     <li><a href="#" class="text-white">Skin Care</a></li>
+                     <li><a href="#" class="text-white">Face Care</a></li>
+                  </div>
+               </div>
+               <div class="col-md-3 d-flex flex-column align-items-end">
+                  <button class="btn btn-light mb-2">Shop Now</button>
+                  <p>+(123) 123-99-999</p>
+                  <p>info@WhiteWolf.com</p>
+               </div>
+            </div>
+            <div class="row mt-5">
+               <div class="col-md-3 social">
+                  <ul class="list-unstyled">
+                     <a href="#" class="mr-2"><i class="fab fa-instagram"></i></a>
+                     <a href="#" class="mr-2"><i class="fab fa-whatsapp"></i></a>
+                  </ul>
+               </div>
+               <div class="col-md-6 d-flex">
+                  <p>The Hive Co Working and Business Center<br>Industiral Area Phase-2, Chandigarh</p>
+               </div>
+               <div class="col-md-3 d-flex flex-column align-items-end">
+               </div>
+            </div>
+         </div>
+         <div class="container mt-5">
+            <div class="row d-flex justify-content-between">
+               <div class="col-md-5">
+                  <h3>If you didn't find the products you are interested in or have questions?</h3>
+               </div>
+               <div class="col-md-6">
+                  <p>Enter your email:</p>
+                  <div class="input-group mb-3">
+                     <input type="email" class="form-control" placeholder="Your email here" aria-label="Your email" aria-describedby="basic-addon2" style="background-color: #000;">
+                     <button class="btn btn-outline-secondary" type="button" id="basic-addon2">
+                     <i class="fa fa-arrow-circle-right"></i> 
+                     </button>
+                  </div>
+               </div>
+            </div>
+         </div>
+         <p class="pl-5">2023 - Copyright, All Rights Reserved.</p>
+      </footer>
+      <script>
+         let products = [];
+
+         document.addEventListener('DOMContentLoaded', async () => {
+            try {
+               const response = await fetchProducts('/api/products');
+               products = response;
+               renderProducts('all');
+            } catch (error) {
+               console.error("Error fetching products data", error);
+            }
+         });
+
+         async function fetchProducts(apiEndpoint) {
+            const response = await axios.get(apiEndpoint);
+            return response.data;
+         }
+
+         function attachAddToCartListeners(products) {
+            products.forEach(product => {
+                  const addButton = document.querySelector(`.add${product.itemId}`);
+                  addButton.addEventListener('click', async (event) => {
+                     event.preventDefault();
+                     try {
+                        const response = await addToCart('/addItem', { itemId: product.itemId });
+                        handleAddToCartResponse(response);
+                     } catch (error) {
+                        console.error('Error adding item to cart:', error.message);
+                     }
+                  });
+            });
+         }
+         async function addToCart(apiEndpoint, data) {
+            return await axios.post(apiEndpoint, data);
+         }
+
+         function handleAddToCartResponse(response) {
+            if (response.status === 200) {
+                  console.log(response.data.message);
+                  addToCart('Product 1', '44.00');
+                  // Optionally, update the UI to reflect the item being added to the cart
+            } else {
+                  console.error('Error adding item to cart:', response.data.message);
+                  // Optionally, handle the error and update the UI accordingly
+            }
+         }
+
+         function renderProducts(categoryFilter) {
+            const productGrid = document.getElementById('productGrid');
+            productGrid.innerHTML = '';
+
+            const filteredProducts = categoryFilter === 'all' ? products : products.filter(product => product.category === categoryFilter);
+
+            filteredProducts.forEach(product => {
+                  const productCard = createProductCard(product);
+                  productGrid.appendChild(productCard);
+            });
+
+            attachAddToCartListeners(filteredProducts);
+         }
+         function createProductCard(product) {
+         const productCard = document.createElement('div');
+         productCard.className = 'col-md-4 product-card product';
+         productCard.innerHTML = `
+         <a href="/search/${product.itemId}" >
+            <div class="product-image-container">
+                  <img class="product-image" src="${product.imageLink[0]}" alt="${product.name}">
+                  <img class="product-image hover-image" src="${product.imageLink[1] || product.imageLink[0]}" alt="${product.name}" style="display:none">
+            </div>
+            <div class="product-details">
+                  <div class="category-badge text-white corner-round p-1" style="display:none;">${product.category}</div>
+                  <div class="product-title"><a href="Product_Description.html" style="text-decoration:none;color:#000">${product.name}</a></div>
+                  <div class="product-description">${product.description}</div>
+                  <div class="mb-2">
+                     <div class="d-flex justify-content-between bolder product-price-discount">
+                        <div class="product-price">&#8377; ${product.offeredPrice}</div>
+                        <div class="original-price text-secondary text-decoration-line-through">&#8377;${product.originalPrice || ''}</div>
+                        <div class="product-discount text-success">${((product.originalPrice - product.offeredPrice) / product.originalPrice * 100).toFixed(0)}% Off</div>
+                     </div>
+                  </div>
+                  <button onclick="showNotification()" class="add-to-cart-btn add${product.itemId}" id="liveToastBtn"><i class="fas fa-cart"></i> Add to Cart</button>
+            </div>
+         </a>
+         `;
+
+         const productImageContainer = productCard.querySelector('.product-image-container');
+         const mainImage = productImageContainer.querySelector('.product-image');
+         const hoverImage = productImageContainer.querySelector('.hover-image');
+
+         productImageContainer.addEventListener('mouseenter', function () {
+            mainImage.style.display = 'none';
+            hoverImage.style.display = 'block';
+         });
+
+         productImageContainer.addEventListener('mouseleave', function () {
+            mainImage.style.display = 'block';
+            hoverImage.style.display = 'none';
+         });
+
+         
+
+         return productCard;
+      }
+
+      // Example usage
+      const container = document.getElementById('productContainer'); // Replace with the actual container element ID
+      products.forEach(product => {
+         const productCard = createProductCard(product);
+         container.appendChild(productCard);
+      });
+      </script>
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.js"></script>
+      <script>
+         
+         $(document).ready(function(){
+             setInterval(function(){
+                 $('#customSlider .carousel-inner').animate({marginLeft: '-=100%'}, 1000, function(){
+         
+                     $(this).find('.carousel-item:first').appendTo(this);
+                     $(this).css({marginLeft: 0});
+                 });
+             }, 1000); 
+         });
+      </script>
+<script>
+   $('.slider').slick({
+   autoplay: true,
+   dots: false,
+   infinite: true,
+   pauseOnHover: true,
+   centerMode:true,        //added
+   centerPadding:"5%", 
+   arrows: false,   //added
+})
+</script>
+
+<script>
+   $('.review').slick({
+  centerMode: true,
+  centerPadding: '20vw',
+  slidesToShow: 1,
+  autoplay:true,
+  arrows:false,
+  responsive: [
+    {
+      breakpoint: 768,
+      settings: {
+        arrows: false,
+        centerMode: true,
+        centerPadding: '40px',
+        slidesToShow: 3
+      }
+    },
+    {
+      breakpoint: 480,
+      settings: {
+        arrows: false,
+        centerMode: true,
+        centerPadding: '40px',
+        slidesToShow: 1
+      }
+    }
+  ]
+});
+</script>
+
+<script>
+   function showAlert(message, type = "success") {
+     const alertContainer = document.getElementById("alertContainer");
+ 
+     // Create alert element
+     const alert = document.createElement("div");
+     alert.className = `alert ${type}`;
+     alert.innerHTML = `${message}<span class="close" onclick="closeAlert(this)">×</span>`;
+ 
+     // Append alert to container
+     alertContainer.appendChild(alert);
+ 
+     // Set timeout to remove the alert after 5 seconds
+     setTimeout(() => {
+       closeAlert(alert.querySelector(".close"));
+     }, 5000);
+   }
+ 
+   function closeAlert(closeButton) {
+     const alert = closeButton.parentElement;
+     alert.style.display = "none";
+   }
+ 
+   // Example usage
+   function showNotification() {
+     showAlert("Product Added to Cart ");
+   }
+ </script>
+
+<script>
+   let isScrolling = false;
+
+   function startScroll(event) {
+       isScrolling = true;
+       const scrollContainer = document.getElementById('productGrid');
+       const startX = event.pageX || event.touches[0].pageX;
+       let scrollLeft = scrollContainer.scrollLeft;
+
+       function handleMouseMove(e) {
+           const x = e.pageX || e.touches[0].pageX;
+           const delta = x - startX;
+           scrollContainer.scrollLeft = scrollLeft - delta;
+       }
+
+       function handleMouseUp() {
+           isScrolling = false;
+           document.removeEventListener('mousemove', handleMouseMove);
+           document.removeEventListener('mouseup', handleMouseUp);
+           document.removeEventListener('touchmove', handleMouseMove);
+           document.removeEventListener('touchend', handleMouseUp);
+       }
+
+       document.addEventListener('mousemove', handleMouseMove);
+       document.addEventListener('mouseup', handleMouseUp);
+       document.addEventListener('touchmove', handleMouseMove);
+       document.addEventListener('touchend', handleMouseUp);
+   }
+
+   function stopScroll() {
+       isScrolling = false;
+   }
+
+   // Optional: Auto-hide scrollbar after a few seconds of inactivity
+   let timeoutId;
+
+   function hideScrollbar() {
+       if (!isScrolling) {
+           document.getElementById('productGrid').style.overflow = 'hidden';
+       }
+   }
+
+   function showScrollbar() {
+       document.getElementById('productGrid').style.overflow = 'auto';
+   }
+
+   document.getElementById('productGrid').addEventListener('scroll', function() {
+       showScrollbar();
+       clearTimeout(timeoutId);
+       timeoutId = setTimeout(hideScrollbar, 2000); // Adjust the time as needed
+   });
+
+</script>
+
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+      <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+      <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+   </body>
+</html>

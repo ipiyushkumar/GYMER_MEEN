@@ -1,46 +1,19 @@
 ### integrate order routes in all the pages
 - complete cash on delivery gateway
-- update checkout screen in order confirm
-- in user profile show placed orders
-- get all the orders data in admin panel
+- use coupons in payment gateway
 
 ### in admin panel
 - completely implement order management
-    - add a new product
-    - update a product
-    - delete a product
     - update inventory of the product
+    - implement dashboard
+    - implement logout
+    - implemebt wallet
+    - shows all orders : implement a status update
+    - implement a product update
 
-### update pages
-product description for each product // fix images uploading
-Face Care and three other pages of other categories // make them dynamic
-Make the home page dynamic
+Or Bhai thode se setting lgani h 
+Like cart m delete function work ni krra
 
+Cart empty hone p bhi checkout p click hora 
 
-    <div class="mb-3 mt-5">
-        <h4 class="d-flex justify-content-between align-items-center">
-            <span class="text-white">Order Summary</span>
-        </h4>
-        <ul class="list-group mb-3" style="color: #000;">
-            <li class="list-group-item d-flex justify-content-between">
-                <span>Total (INR)</span>
-                <strong>&#8377;99.00</strong>
-            </li>
-            <li class="list-group-item d-flex justify-content-between">
-                <span>Shipping</span>
-                <strong>&#8377;20.00</strong>
-            </li>
-            <li class="list-group-item d-flex justify-content-between">
-                <div class="input-group input-group-sm">
-                    <input type="text" class="form-control" placeholder="Enter discount code">
-                    <div class="input-group-append">
-                        <button class="btn btn-outline-secondary" type="button">Apply</button>
-                    </div>
-                </div>
-            </li>
-            <li class="list-group-item d-flex justify-content-between">
-                <span>Total Payable</span>
-                <strong>&#8377;119.00</strong>
-            </li>
-        </ul>
-    </div>
+Address details empty hone p checkout p click hora
