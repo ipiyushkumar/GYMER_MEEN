@@ -17,6 +17,7 @@ const getOrderByEmail = async (req, res) => {
 }
 
 const Razorpay = require('razorpay'); 
+const user = require('../schemas/user_schema');
 const { RAZORPAY_ID_KEY, RAZORPAY_SECRET_KEY } = process.env;
 
 const razorpayInstance = new Razorpay({
@@ -35,6 +36,15 @@ const paymentGateway = async (req, res) => {
           console.log("user not found");
           return res.status(404).json({ message: 'User data not found' });
       }
+
+      const {pincode, address, city, locality, landmark} = req.body;
+      userData.pincode = pincode;
+      userData.address = address;
+      userData.city = city;
+      userData.locality = locality;
+      userData.landmark = landmark;
+
+      userData.save();
 
       let amount = 0;
       for (const product of userData.cart) {

@@ -552,6 +552,54 @@ main.sign-up-mode .carousel {
         </div>
       </div>
     </main>
+    <div id="alertContainer"></div>
+    <style>
+    .alert {
+        position: fixed;
+        top: 1rem;
+        right: 1rem;
+        z-index: 1;
+        padding: 0.75rem 1.25rem;
+        margin-bottom: 1rem;
+        border: 1px solid transparent;
+        border-radius: 0.25rem;
+        transition: 0.3s ease-in-out;
+      }
+
+      .alert.success {
+        color: #155724;
+        background-color: #d4edda;
+        border-color: #c3e6cb;
+      }
+      .alert.danger {
+        color: #721c24;
+        background-color: #f8d7da;
+        border-color: #f5c6cb;
+      }
+    </style>
+    <script>
+      function showAlert(message, type) {
+        const alertContainer = document.getElementById("alertContainer");
+    
+        // Create alert element
+        const alert = document.createElement("div");
+        alert.className = `alert ${type}`;
+        alert.innerHTML = `${message}<span class="close" onclick="closeAlert(this)">×</span>`;
+    
+        // Append alert to container
+        alertContainer.appendChild(alert);
+    
+        // Set timeout to remove the alert after 5 seconds
+        setTimeout(() => {
+          closeAlert(alert.querySelector(".close"));
+        }, 4000);
+      }
+    
+      function closeAlert(closeButton) {
+        const alert = closeButton.parentElement;
+        alert.style.display = "none";
+      }
+    </script>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script>
       const inputs = document.querySelectorAll(".input-field");
@@ -598,18 +646,18 @@ main.sign-up-mode .carousel {
         const email = document.querySelector('.loginEmail').value
         const password = document.querySelector('.loginPassword').value
         if (!email || !password) {
-            alert("Please fill in all the details.");
+            showAlert("Please fill in all the details.","danger");
             return false; 
         }
         const response = await axios.post('/auth/login', { email, password })
         .then(response => {
             if (response.status === 200) {
+                showAlert("Login Successful","success")
                 window.location.href = "/";
             }
         })
         .catch(error => {
-            console.error('Registration failed:', response.data.message);
-            alert("email or password is wrong \nor maybe both");
+            showAlert("Wrong Id or password","danger")
         })
         return true; 
       })
@@ -629,11 +677,15 @@ main.sign-up-mode .carousel {
             password
         }).then(response => {  
           if (response.status === 200) {
+            showAlert("SignUp Successful","success")
               window.location.href = "/";
           } else {
               console.error('Registration failed:', response.data.message);
           }
-        }).catch(error => {console.log("A error occured while signing in" + error)})
+        }).catch(error => {
+          console.log("A error occured while signing in" + error)
+          showAlert("An Error Occured while signing up","danger")
+        })
       })
     </script>
   </body>

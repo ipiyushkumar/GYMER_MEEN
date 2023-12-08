@@ -380,10 +380,12 @@
             const response = await axios.get('/logout')
             .then(response => {
                 if (response.status === 200) {
+                    showAlert("logged out successfully","success")
                     window.location.href = "/";
                 }
             })
             .catch(error => {
+                showAlert("Failed to logout","danger")
                 console.error('Logout failed', response.data.message);
             })
         } else {
@@ -440,7 +442,10 @@
                     });
                     await Promise.all(orderPromises);
                 })
-            .catch(err => console.log("error fetching orders " + err))
+            .catch(err => {
+                console.log("error fetching orders " + err)
+                showAlert("Failed to fetch orders","danger")
+            })
 
         })
         .catch(err => {console.log("error fetching profile" + err)}) 
@@ -458,8 +463,8 @@
 
 
         await axios.put('/updateUserProfile',{userProfile})
-        .then(response => alert("user data updated successfully"))
-        .catch(err => alert("an error occured" + error))
+        .then(response => showAlert("user data updated successfully","success"))
+        .catch(err => showAlert("an error occured","danger"))
 
     })
     </script>

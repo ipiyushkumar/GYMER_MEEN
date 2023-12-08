@@ -178,7 +178,7 @@
             </section>
         </section>
 
-        <!-- done -->
+        <!-- shows all the users -->
         <section class="main" id="analyticsSection" style="display: none;" >
             <section class="main-orders">
                 <h1>User Analytics</h1>
@@ -246,7 +246,7 @@
                     </ul>
                     <div>
                         <div class="order-table" id="allOrdersTab">
-                            <table class="table table-bordered table-striped">
+                            <table class="table table-bordered table-striped" style="overflow-y: auto;">
                                 <thead>
                                     <tr>
                                         <th style="width: 15%;">Order Id</th>
@@ -257,7 +257,7 @@
                                         <th style="width: 20%;">Status</th>
                                     </tr>
                                 </thead>
-                                <tbody id="allOrdersBody"></tbody>
+                                <tbody id="allOrdersBody" style="overflow-y: auto;"></tbody>
                             </table>
                         </div>
                     </div>
@@ -276,7 +276,7 @@
                         .then(orders => {
                             orders.forEach(async order => {
                                 let row = document.createElement('tr')
-                                row.append(createTableCell(order.razorpay_order_id))
+                                row.append(createTableCell(order._id))
                                 row.append(createTableCell(order.email))
 
                                 let names = "";
@@ -565,12 +565,11 @@
                         products.forEach(product => {
                             let productDiv = document.createElement('div')
                             productDiv.innerHTML = `
-                            <div class="product-card ${product.itemId}">
+                            <div class="product-card ${product.itemId}" style="text-transform:Capitalize;text-align:left;padding:1rem">
                                 <img class="product-image" src="${product.imageLink[0]}" alt="Product 1">
                                 <div class="product-name">${product.name}</div>
                                 <div class="product-stock">Stock Left : ${product.stock}</div>
-                                <div class="product-stock">Offered Price : ${product.offeredPrice}</div>
-                                <div class="product-stock">Original Price : ${product.originalPrice}</div>
+                                <div class="product-stock">Price : &#8377;${product.originalPrice}</div>
                                 <div class="product-actions">
                                     <button onclick="openEditModal('${product.itemId}')">Edit</button>
                                     <button onclick="deleteProduct('${product.itemId}')">Delete</button>

@@ -59,3 +59,52 @@
     document.getElementById("mySidenav").style.width = "0";
   }
 </script>
+
+<div id="alertContainer"></div>
+<style>
+   .alert {
+       position: fixed;
+       top: 1rem;
+       right: 1rem;
+       z-index: 1;
+       padding: 0.75rem 1.25rem;
+       margin-bottom: 1rem;
+       border: 1px solid transparent;
+       border-radius: 0.25rem;
+       transition: 0.3s ease-in-out;
+     }
+
+     .alert.success {
+       color: #155724;
+       background-color: #d4edda;
+       border-color: #c3e6cb;
+     }
+     .alert.danger {
+       color: #721c24;
+       background-color: #f8d7da;
+       border-color: #f5c6cb;
+     }
+   </style>
+   <script>
+     function showAlert(message, type) {
+       const alertContainer = document.getElementById("alertContainer");
+   
+       // Create alert element
+       const alert = document.createElement("div");
+       alert.className = `alert ${type}`;
+       alert.innerHTML = `${message}<span class="close" onclick="closeAlert(this)">×</span>`;
+   
+       // Append alert to container
+       alertContainer.appendChild(alert);
+   
+       // Set timeout to remove the alert after 5 seconds
+       setTimeout(() => {
+         closeAlert(alert.querySelector(".close"));
+       }, 4000);
+     }
+   
+     function closeAlert(closeButton) {
+       const alert = closeButton.parentElement;
+       alert.style.display = "none";
+     }
+   </script>

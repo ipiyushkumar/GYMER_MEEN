@@ -4,6 +4,7 @@
       <meta charset='utf-8'>
       <meta name='viewport' content='width=device-width, initial-scale=1'>
       <title>Order confirmation Page</title>
+      <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
       <link href='https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css' rel='stylesheet'>
       <link href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css' rel='stylesheet'>
       <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@200;400;500&display=swap">
@@ -55,6 +56,7 @@
          .wrapper {
          padding: 0px 50px 50px;
          max-width: 800px;
+         height: max-content;
          margin: 0px auto 40px;
          border-bottom-left-radius: 25px;
          border-bottom-right-radius: 25px
@@ -139,7 +141,7 @@
    <body oncontextmenu='return false' class='snippet-body'>
       <div class="d-flex flex-column justify-content-center align-items-center" id="order-heading">
          <div class="d-flex flex-column justify-content-center align-items-center m-2">
-            <img src="../assets/logo.png" style="height: 5vh;margin-bottom: 1rem;">
+            <img src="../assets/logo.PNG" style="height: 5vh;margin-bottom: 1rem;">
             <h1 style="font-size: 2rem;">WhiteWolf International - Confirm Order</h1>
          </div>
          <div class="h4 date">Monday, November 27, 2023</div>
@@ -152,15 +154,21 @@
                     <th scope="col">Name</th>
                     <th scope="col">Price</th>
                     <th scope="col">Quantity</th>
-                    <th scope="col">Total (₹)</th>
+                    <th scope="col">Price (₹)</th>
                 </tr>
             </thead>
             <tbody class="allItems">
             </tbody>
         </table>
-        <div class="d-flex justify-content-start align-items-center  pl-3">
-         <div class="text-muted">Shipping</div>
-         <div class="ml-auto"> <label>Free</label> </div>
+        <div class="d-flex align-items-center justify-content-between mt-2 pb-4 pl-3" style="font-size: 2vh;">
+         <div class="d-flex justify-content-center">
+            <iconify-icon icon="la:shipping-fast"  style="font-size: 5vh;margin-right: 3vh;"></iconify-icon>
+           <p>FREE STANDARD DELIVERY APPLICABLE</p>
+         </div>
+         <div class="d-flex">
+         <p><del>₹99</del></p>
+           <p class="ml-3">₹0</p>
+         </div>
       </div>
       <div class="d-flex justify-content-between align-items-center mt-2 pb-4 pl-3">
          <div class="text-muted w-100">
@@ -170,21 +178,21 @@
              <button class="btn btn-dark btn-apply-coupon coupon_Button">Apply</button>
          </div>
          <div class="ml-4">
-            <button class="btn btn-dark btn-apply-coupon coupon_remove_Button">Remove</button>
+            <button class="btn btn-dark btn-apply-coupon coupon_remove_Button" style="display: none;">Remove</button>
          </div>
      </div>
-         <div class="table-responsive">
-            <table class="table table-borderless">
+         <div class="table-responsive" style="height: max-content;">
+            <table class="table table-borderless" >
                <thead>
                   <tr class="text-uppercase text-muted">
                      <th scope="col"></th>
-                     <th scope="col" class="text-right">Total</th>
+                     <th scope="col" class="text-right" style="font-size: 2vh;">Total</th>
                   </tr>
                </thead>
                <tbody>
                   <tr>
                      <th scope="row"></th>
-                     <td class="text-right total"><b>&#8377;</b></td>
+                     <td class="text-right total" style="font-size: 3vh;"><b>&#8377;</b></td>
                   </tr>
                </tbody>
             </table>
@@ -197,6 +205,54 @@
          </div>
          <button class="btn btn-dark proceedToPay">Proceed</button>
       </div>
+      <div id="alertContainer"></div>
+      <style>
+         .alert {
+            position: fixed;
+            top: 1rem;
+            right: 1rem;
+            z-index: 1;
+            padding: 0.75rem 1.25rem;
+            margin-bottom: 1rem;
+            border: 1px solid transparent;
+            border-radius: 0.25rem;
+            transition: 0.3s ease-in-out;
+         }
+
+         .alert.success {
+            color: #155724;
+            background-color: #d4edda;
+            border-color: #c3e6cb;
+         }
+         .alert.danger {
+            color: #721c24;
+            background-color: #f8d7da;
+            border-color: #f5c6cb;
+         }
+         </style>
+         <script>
+         function showAlert(message, type) {
+            const alertContainer = document.getElementById("alertContainer");
+         
+            // Create alert element
+            const alert = document.createElement("div");
+            alert.className = `alert ${type}`;
+            alert.innerHTML = `${message}<span class="close" onclick="closeAlert(this)">×</span>`;
+         
+            // Append alert to container
+            alertContainer.appendChild(alert);
+         
+            // Set timeout to remove the alert after 5 seconds
+            setTimeout(() => {
+               closeAlert(alert.querySelector(".close"));
+            }, 4000);
+         }
+         
+         function closeAlert(closeButton) {
+            const alert = closeButton.parentElement;
+            alert.style.display = "none";
+         }
+         </script>
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
       <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
       <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
@@ -207,13 +263,17 @@
                await axios.get(`/coupons/${code}`)
                .then(response => response.data)
                .then(coupon => {
-                  document.querySelector('.total').innerHTML = `<b>&#8377;${Total} -> ${Total - Total*((coupon.discount)/100)}</b>`;
+                  document.querySelector('.total').innerHTML = `<b>&#8377;<del>${Total}<del> <br> ${Total - Total*((coupon.discount)/100)}</b>`;
+                  document.querySelector('.coupon_remove_Button').style.display = "block"
+                  document.querySelector('.coupon_Button').style.display = "none"
                })
                .catch(err => console.log(err))
             })
             document.querySelector('.coupon_remove_Button').addEventListener('click', async (req, res) => {
                document.querySelector('#couponInput').value = ''
                document.querySelector('.total').innerHTML = `<b>&#8377;${Total}</b>`;
+               document.querySelector('.coupon_remove_Button').style.display = "none"
+               document.querySelector('.coupon_Button').style.display = "block"
             })
             function dataCell (content) {
                var item = document.createElement('td')
@@ -248,14 +308,23 @@
                      Total += productDetails.offeredPrice*cartItem.quantity;
                      document.querySelector('.total').innerHTML = `<b>&#8377;${Total}</b>`;
                     })
-                    .catch(err => console.log("could not fetch product\n" + err))
+                    .catch(err => {
+                     showAlert("Error Fetching from cart","danger")
+                    })
                })
                document.querySelector('.Shipping_Address').innerHTML = `
                   <b>Shipping Address</b>
-                  <p class="text-justify pt-2">${profile.pincode || ""}</p>
-                  <p class="text-justify">${profile.address || ""} ${profile.city || `<a href="/profile">Please Add a City</a>`}</p>
-                  <p class="text-justify">${profile.locality || ""} ${profile.landmark || ""}</p>
-                  <p class="text-justify">${profile.email}</p>
+                  <label for="pincode">pincode</label>
+                  <input type="text" id="pincode" class="text-justify" placeholder="Enter pincode" value="${profile.pincode || ""}">
+                  <label for="address">address</label>
+                  <input type="text" id="address" class="text-justify" placeholder="Enter address" value="${profile.address || ""}">
+                  <label for="city">city</label>
+                  <input type="text" id="city" class="text-justify" placeholder="Enter City" value="${profile.city || ""}">
+                  <label for="locality">locality</label>
+                  <input type="text" id="locality" class="text-justify" placeholder="Enter Locality" value="${profile.locality || ""}">
+                  <label for="landmark">landmark</label>
+                  <input type="test" id="landmark" class="text-justify" placeholder="Enter Landmark" value="${profile.landmark || ""}">
+                  <p type="text" class="text-justify">Email : ${profile.email || ""}</p>
                `;
 
                   // Create a new Date object
@@ -267,67 +336,83 @@
 
                   document.querySelector('.date').textContent = formattedDate;
             })
-            .catch(err => {console.log("could not fetch profile\n"+ err)})
+            .catch(err => {
+               console.log("could not fetch profile\n"+ err)
+               showAlert("Error Fetching profile","danger")
+            })
          })
 
          document.addEventListener('DOMContentLoaded', function(){
             document.querySelector('.proceedToPay').addEventListener('click',function(e){
                e.preventDefault();
 
-               const amount = Total;
-               let code = document.querySelector('#couponInput').value;
+               const pincode = document.getElementById("pincode").value;
+               const address = document.getElementById("address").value;
+               const city = document.getElementById("city").value;
+               const locality = document.getElementById("locality").value;
+               const landmark = document.getElementById("landmark").value;
+               if (pincode && address && city && locality && landmark) {
+                  let code = document.querySelector('#couponInput').value;
 
-               var formData = {
-                  couponCode: code,
-                  name: "Wolf Cart Payment",
-                  description:"Thank you for your patronage"
-               }
-         
-               $.ajax({
-                  url:"/processPayment",
-                  type:"POST",
-                  data: formData,
-                  success:function(res){
-                     if(res.success){
-                        var options = {
-                           "key": ""+res.key_id+"",
-                           "amount": ""+res.amount+"",
-                           "currency": "INR",
-                           "name": ""+res.product_name+"",
-                           "description": ""+res.description+"",
-                           "image": "https://dummyimage.com/600x400/000/fff",
-                           "order_id": ""+res.order_id+"",
-                           "handler": function (response){
-                              axios.post('/save/order',{ data : response, couponCode: code})
-                              .then(res => {
-                                window.location.href = '/success'; 
-                              })
-                              .catch(err => console.log(err))
-                           },
-                           "prefill": {
-                              "contact":""+res.contact+"",
-                              "name": ""+res.name+"",
-                              "email": ""+res.email+""
-                           },
-                           "notes" : {
-                              "description":""+res.description+""
-                           },
-                           "theme": {
-                              "color": "#2300a3"
-                           }
-                        };
-                        var razorpayObject = new Razorpay(options);
-                        razorpayObject.on('payment.failed', function (response){
-                              window.location.href = '/failure'
-                        });
-                        razorpayObject.open();
-                     }
-                     else{
-                        alert(res.msg);
-                     }
+                  var formData = {
+                     couponCode: code,
+                     name: "Wolf Cart Payment",
+                     description:"Thank you for your patronage",
+                     pincode,
+                     address,
+                     city,
+                     locality,
+                     landmark
                   }
-               })
-         
+
+                  $.ajax({
+                     url:"/processPayment",
+                     type:"POST",
+                     data: formData,
+                     success:function(res){
+                        if(res.success){
+                           var options = {
+                              "key": ""+res.key_id+"",
+                              "amount": ""+res.amount+"",
+                              "currency": "INR",
+                              "name": ""+res.product_name+"",
+                              "description": ""+res.description+"",
+                              "image": "https://dummyimage.com/600x400/000/fff",
+                              "order_id": ""+res.order_id+"",
+                              "handler": function (response){
+                                 axios.post('/save/order',{ data : response, couponCode: code})
+                                 .then(res => {
+                                 window.location.href = '/success'; 
+                                 })
+                                 .catch(err => console.log(err))
+                              },
+                              "prefill": {
+                                 "contact":""+res.contact+"",
+                                 "name": ""+res.name+"",
+                                 "email": ""+res.email+""
+                              },
+                              "notes" : {
+                                 "description":""+res.description+""
+                              },
+                              "theme": {
+                                 "color": "#2300a3"
+                              }
+                           };
+                           var razorpayObject = new Razorpay(options);
+                           razorpayObject.on('payment.failed', function (response){
+                                 showAlert("show Alert")
+                           });
+                           razorpayObject.open();
+                        }
+                        else{
+                           alert(res.msg);
+                        }
+                     }
+                  })
+               } else {
+
+                  showAlert("please complete address details","danger")
+               }
             });
          });
       </script>
