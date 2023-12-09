@@ -36,12 +36,9 @@ router.get('/product_listing',(req, res) => {
 
 
 router.get('/confirm',isAuthenticated, (req, res) => {
-    let {pincode, locality, landmark, city, address} = req.session.userProfile;
     if (!req.session.userProfile.cart[0]){
         res.status(502).json({message : "Please Add Items in cart"})
 
-    } else if (!pincode || !locality || !landmark || !city || !address) {
-        res.status(503).json({message : "Please Add Items in cart"})
     } else {
         res.render('Order_Confirm_page')
     }

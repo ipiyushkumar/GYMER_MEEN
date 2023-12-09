@@ -232,7 +232,7 @@
            </div>
          <div class="d-flex flex-column justify-content-start align-items-center mt-5">
             <p>We Accept All Payment Methods :</p>
-            <img src="../assets/payments.PNG" style="height: 7vh;width: auto;"/>
+            <img src="/assets/payments.PNG" style="height: 7vh;width: auto;"/>
          </div>
          
       </div>
@@ -294,13 +294,15 @@
                await axios.get(`/coupons/${code}`)
                .then(response => response.data)
                .then(coupon => {
+                  showAlert("coupon loaded successfully","success")
                   document.querySelector('.total').innerHTML = `<b>&#8377;<del>${Total}/-</del></b> <br><span class="text-muted" style="font-size:1rem;">${((coupon.discount))}%OFF APPLIED</span> <b> <br><span style="font-size:2.5rem;"> &#8377;${Total - Total*((coupon.discount)/100)}/</span></b>-<br>`;
                   document.querySelector('.coupon_remove_Button').style.display = "block"
                   document.querySelector('.coupon_Button').style.display = "none"
                })
-               .catch(err => console.log(err))
+               .catch(err => showAlert("coupon is invalid", "danger"))
             })
             document.querySelector('.coupon_remove_Button').addEventListener('click', async (req, res) => {
+               showAlert("coupon removed successfully","success")
                document.querySelector('#couponInput').value = ''
                document.querySelector('.total').innerHTML = `<b>&#8377;${Total}</b>`;
                document.querySelector('.coupon_remove_Button').style.display = "none"

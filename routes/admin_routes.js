@@ -65,7 +65,6 @@ router.post('/api/products', multerMiddleware.array('files', 3), async (req, res
   }
 });
 
-
 // under development
 // router.put('/api/products/:productId', async (req, res) => {
 //   try {
@@ -115,72 +114,13 @@ router.get('/api/admin/getAllUsers',controllers.getAllUsers)
 
 router.get('/api/admin/getAllOrders',controllers.getAllOrders)
 
+router.get("/coupons", controllers.getAllCoupons);
 
-const Coupons = require('../schemas/coupons_schema');
+// user route
+router.get("/coupons/:code", controllers.getCouponsByCode);
 
-// done
-router.get("/coupons", async (req, res) => {
-  try {
-      const allCoupons = await Coupons.find();
-      res.status(200).json(allCoupons);
-  } catch (error) {
-      res.status(500).json({ error: "Internal Server Error" });
-  }
-});
+router.post("/coupons", controllers.addNewCoupon);
 
-// Get a specific coupon by code
-// this route is not hindered by admin priviledges
-router.get("/coupons/:code", async (req, res) => {
-  try {
-      const coupon = await Coupons.findOne({ code: req.params.code });
-      if (!coupon) {
-          return res.status(404).json({ error: "Coupon not found" });
-      }
-      res.status(200).json(coupon);
-  } catch (error) {
-      res.status(500).json({ error: "Internal Server Error" });
-  }
-});
-
-// done
-router.post("/coupons", async (req, res) => {
-  try {
-      const newCoupon = new Coupons(req.body);
-      const savedCoupon = await newCoupon.save();
-      res.status(201).json({message : "coupon successfully created"});
-  } catch (error) {
-      res.status(500).json({ error: "Internal Server Error" });
-  }
-});
-
-// // Update a coupon by code
-// router.put("/coupons/:code", async (req, res) => {
-//   try {
-//       const updatedCoupon = await Coupons.findOneAndUpdate(
-//           { code: req.params.code },
-//           req.body,
-//           { new: true }
-//       );
-//       if (!updatedCoupon) {
-//           return res.status(404).json({ error: "Coupon not found" });
-//       }
-//       res.status(200).json(updatedCoupon);
-//   } catch (error) {
-//       res.status(500).json({ error: "Internal Server Error" });
-//   }
-// });
-
-// done
-router.delete("/coupons/:code", async (req, res) => {
-  try {
-      const deletedCoupon = await Coupons.findOneAndDelete({ code: req.params.code });
-      if (!deletedCoupon) {
-          return res.status(404).json({ error: "Coupon not found" });
-      }
-      res.status(200).json({ message: "Coupon deleted successfully" });
-  } catch (error) {
-      res.status(500).json({ error: "Internal Server Error" });
-  }
-});
+router.delete("/coupons/:code", controllers.deleteCouponByCode);
 
 module.exports = router;
