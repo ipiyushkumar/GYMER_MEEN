@@ -49,6 +49,8 @@
          top: -20px
          }
 
+         
+
          .Shipping_Address p{
             font-size: 2rem;
          }
@@ -91,14 +93,35 @@
          cursor: pointer;
          border-radius: 5px
          }
-         label {
-         margin-bottom: 0;
-         padding: 0;
-         font-weight: 900
-         }
          button.btn {
          font-size: 0.9rem;
          }
+
+         .Shipping_Address{
+            display: flex;
+            
+         }
+
+         .Shipping_Address .labels{
+            display: flex;
+            margin: 1vh;
+            justify-content: space-between;
+            text-transform: capitalize;
+         }
+
+         .labels label{
+            width: 50%;
+         }
+
+         .labels input{
+            width: 50%;
+            border: none;
+            text-transform: capitalize;
+            border-bottom: 1px solid #999;
+            padding-left: 2vw;
+         }
+
+
          .price {
          color: #5cb99a;
          font-weight: 700
@@ -142,7 +165,7 @@
       <div class="d-flex flex-column justify-content-center align-items-center" id="order-heading">
          <div class="d-flex flex-column justify-content-center align-items-center m-2">
             <img src="../assets/logo.PNG" style="height: 5vh;margin-bottom: 1rem;">
-            <h1 style="font-size: 2rem;">WhiteWolf International - Confirm Order</h1>
+            <h1 style="font-size: 3vh;text-align: center;">WhiteWolf International - Confirm Order</h1>
          </div>
          <div class="h4 date">Monday, November 27, 2023</div>
          <div class="btn close text-white"> &times; </div>
@@ -160,14 +183,21 @@
             <tbody class="allItems">
             </tbody>
         </table>
-        <div class="d-flex align-items-center justify-content-between mt-2 pb-4 pl-3" style="font-size: 2vh;">
-         <div class="d-flex justify-content-center">
+        <div class="d-flex align-items-center justify-content-between pb-4 pl-3" style="font-size: 2vh;">
+         <div class="d-flex justify-content-center mt-3">
             <iconify-icon icon="la:shipping-fast"  style="font-size: 5vh;margin-right: 3vh;"></iconify-icon>
            <p>FREE STANDARD DELIVERY APPLICABLE</p>
          </div>
          <div class="d-flex">
          <p><del>₹99</del></p>
            <p class="ml-3">₹0</p>
+         </div>
+      </div>
+      <div class="border rounded .ship p-2 my-3 w-100">
+         <b>Shipping Address</b>
+         <div class="col-md-6 py-3">
+            <div class="d-flex flex-column align-items start Shipping_Address"></div>
+            
          </div>
       </div>
       <div class="d-flex justify-content-between align-items-center mt-2 pb-4 pl-3">
@@ -186,7 +216,7 @@
                <thead>
                   <tr class="text-uppercase text-muted">
                      <th scope="col"></th>
-                     <th scope="col" class="text-right" style="font-size: 2vh;">Total</th>
+                     <th scope="col" class="text-right" style="font-size: 2vh;">Total Amount to Pay</th>
                   </tr>
                </thead>
                <tbody>
@@ -197,13 +227,14 @@
                </tbody>
             </table>
          </div>
-         <p>Online Payment gateway in Development</p>
-         <div class="row border rounded p-1 my-3">
-            <div class="col-md-6 py-3">
-               <div class="d-flex flex-column align-items start Shipping_Address"></div>
-            </div>
+         <div class="d-flex align-items-end justify-content-end mb-5">
+            <button class="btn btn-success proceedToPay" style="font-size: 1.3rem;">Proceed To Pay</button>
+           </div>
+         <div class="d-flex flex-column justify-content-start align-items-center mt-5">
+            <p>We Accept All Payment Methods :</p>
+            <img src="../assets/payments.PNG" style="height: 7vh;width: auto;"/>
          </div>
-         <button class="btn btn-dark proceedToPay">Proceed</button>
+         
       </div>
       <div id="alertContainer"></div>
       <style>
@@ -263,7 +294,7 @@
                await axios.get(`/coupons/${code}`)
                .then(response => response.data)
                .then(coupon => {
-                  document.querySelector('.total').innerHTML = `<b>&#8377;<del>${Total}<del> <br> ${Total - Total*((coupon.discount)/100)}</b>`;
+                  document.querySelector('.total').innerHTML = `<b>&#8377;<del>${Total}/-</del></b> <br><span class="text-muted" style="font-size:1rem;">${((coupon.discount))}%OFF APPLIED</span> <b> <br><span style="font-size:2.5rem;"> &#8377;${Total - Total*((coupon.discount)/100)}/</span></b>-<br>`;
                   document.querySelector('.coupon_remove_Button').style.display = "block"
                   document.querySelector('.coupon_Button').style.display = "none"
                })
@@ -313,18 +344,28 @@
                     })
                })
                document.querySelector('.Shipping_Address').innerHTML = `
-                  <b>Shipping Address</b>
+               <p type="text" class="text-justify mb-3">Your Email : ${profile.email || ""}</p>
+                 <div class="labels">
                   <label for="pincode">pincode</label>
                   <input type="text" id="pincode" class="text-justify" placeholder="Enter pincode" value="${profile.pincode || ""}">
-                  <label for="address">address</label>
-                  <input type="text" id="address" class="text-justify" placeholder="Enter address" value="${profile.address || ""}">
-                  <label for="city">city</label>
-                  <input type="text" id="city" class="text-justify" placeholder="Enter City" value="${profile.city || ""}">
-                  <label for="locality">locality</label>
+                  </div>
+                  <div class="labels">
+                     <label for="address">address</label>
+                     <input type="text" id="address" class="text-justify" placeholder="Enter address" value="${profile.address || ""}">
+                  </div>
+                  <div class="labels">
+                     <label for="city">city</label>
+                     <input type="text" id="city" class="text-justify" placeholder="Enter City" value="${profile.city || ""}">
+                  </div>
+                  <div class="labels">
+                     <label for="locality">locality</label>
                   <input type="text" id="locality" class="text-justify" placeholder="Enter Locality" value="${profile.locality || ""}">
-                  <label for="landmark">landmark</label>
+                  </div>
+                  <div class="labels">
+                     <label for="landmark">landmark</label>
                   <input type="test" id="landmark" class="text-justify" placeholder="Enter Landmark" value="${profile.landmark || ""}">
-                  <p type="text" class="text-justify">Email : ${profile.email || ""}</p>
+                  </div class="labels">
+                  
                `;
 
                   // Create a new Date object
