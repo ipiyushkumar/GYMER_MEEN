@@ -66,18 +66,27 @@ router.post('/api/products', multerMiddleware.array('files', 3), async (req, res
 });
 
 // under development
-// router.put('/api/products/:productId', async (req, res) => {
-//   try {
-//     const updatedProduct = await Product.findByIdAndUpdate(req.params.productId, req.body, { new: true });
-//     if (!updatedProduct) {
-//       return res.status(404).json({ error: 'Product not found' });
-//     }
-//     res.json(updatedProduct);
-//   } catch (error) {
-//     res.status(500).json({ error: 'Internal Server Error' });
-//   }
-// }
-// );
+router.put('/api/products', async (req, res) => {
+    const {itemId, offeredPrice, originalPrice, stock} = req.body.formdata
+    try {
+      console.log(req.body.formdata)
+      const updateItem = await Product.findOne({itemId : itemId});
+      if (!updateItem) {
+        return res.status(404).json({ error: 'Product not found' });
+      }
+      console.log("yes2")      
+      updateItem.offeredPrice = offeredPrice || updateItem.offeredPrice;
+      updateItem.originalPrice = originalPrice || updateItem.offeredPrice;
+      updateItem.stock = stock || updateItem.stock;
+
+      await updateItem.save();
+
+      res.status(200).json({message : "Product Update successfully"})
+    } catch (error) {
+      res.status(500).json({ error: 'Internal Server Error' });
+    }
+  }
+);
 
 const fs = require('fs').promises;
 

@@ -367,7 +367,7 @@
                         const response = await addToCart('/addItem', { itemId: product.itemId });
                         handleAddToCartResponse(response);
                      } catch (error) {
-                        showAlert("Error while adding to cart","danger")
+                        showAlert("Item already in cart","success")
                      }
                   });
             });
