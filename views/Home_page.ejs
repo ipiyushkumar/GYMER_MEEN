@@ -365,10 +365,19 @@
                      event.preventDefault();
                      try {
                         const response = await addToCart('/addItem', { itemId: product.itemId });
-                        handleAddToCartResponse(response);
+                        if (response.status === 200) {
+                              console.log(response.data.message);
+                              showAlert('item added to cart','success')
+                              openCart()
+                              // Optionally, update the UI to reflect the item being added to the cart
+                        } else {
+                              console.error('Error adding item to cart:', response.data.message);
+                              // Optionally, handle the error and update the UI accordingly
+                        }
                      } catch (err) {
                         if (err.response.status === 400){
                            showAlert("Item already in cart","success")
+                           openCart()
                         } else {
                            window.location.href = "/login"
                         }
@@ -378,17 +387,6 @@
          }
          async function addToCart(apiEndpoint, data) {
             return await axios.post(apiEndpoint, data);
-         }
-
-         function handleAddToCartResponse(response) {
-            if (response.status === 200) {
-                  console.log(response.data.message);
-                  showAlert('item added to cart','success')
-                  // Optionally, update the UI to reflect the item being added to the cart
-            } else {
-                  console.error('Error adding item to cart:', response.data.message);
-                  // Optionally, handle the error and update the UI accordingly
-            }
          }
 
          function renderProducts(categoryFilter) {

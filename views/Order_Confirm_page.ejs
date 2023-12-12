@@ -394,6 +394,7 @@
                const city = document.getElementById("city").value;
                const locality = document.getElementById("locality").value;
                const landmark = document.getElementById("landmark").value;
+               console.log('one')
                if (pincode && address && city && locality && landmark) {
                   let code = document.querySelector('#couponInput').value;
 
@@ -407,6 +408,7 @@
                      locality,
                      landmark
                   }
+               console.log('two')
 
                   $.ajax({
                      url:"/processPayment",

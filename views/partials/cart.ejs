@@ -27,16 +27,8 @@
         })
     }
     // Function to add items to the cart
-    function openCart() {
+    async function openCart() {
         document.getElementById('cartSidebar').style.right = '0';
-    }
-
-    // Function to close the cart
-    function closeCart() {
-        document.getElementById('cartSidebar').style.right = '-400px'; 
-    }
-    document.querySelector('.cartButtom').addEventListener('click', async function () {
-        openCart();
         try {
             // Fetch user profile
             const response = await axios.get('/getprofile');
@@ -117,8 +109,12 @@
         } catch (error) {
             console.log("Error fetching profile: ", error);
         }
-    });
+    }
 
+    // Function to close the cart
+    function closeCart() {
+        document.getElementById('cartSidebar').style.right = '-400px'; 
+    }
 
     function calculateCartItemTotal(cartItem) {
         // Assuming each cart item has a field named 'price'

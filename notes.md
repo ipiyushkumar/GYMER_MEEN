@@ -4,13 +4,8 @@
 - completely implement order management
     - implement dashboard
     - implement logout
-    - shows all orders : implement a status update
 
-No Login Required until confirm order page
-
-<!-- Fetch the product on product listing page so that I can check and refine UI -->
-
-apply offline cart and apply /login after filling it
+show more -> Fetch the product on product listing page so that I can check and refine UI
 
 toast left in
 category care pages

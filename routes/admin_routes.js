@@ -22,6 +22,33 @@ router.get('/adminwolf',(req, res) => {
     res.render('Admin_page');
 })
 
+const Orders = require('../schemas/order_schema');
+
+router.put('/api/update-order-status/:razorpay_order_id', async (req, res) => {
+  const { razorpay_order_id } = req.params;
+  const { status } = req.body;
+
+  try {
+      // Find the order by razorpay_order_id
+      const order = await Orders.findOne({ razorpay_order_id });
+
+      if (!order) {
+          return res.status(404).json({ error: 'Order not found' });
+      }
+
+      // Update the status
+      order.status = status;
+      
+      // Save the updated order
+      await order.save();
+
+      return res.status(200).json({ message: 'Order status updated successfully' });
+  } catch (error) {
+      console.error('Error updating order status:', error);
+      return res.status(500).json({ error: 'Internal Server Error' });
+  }
+});
+
 const Product = require('../schemas/product_schema');
 const multerMiddleware = require('../middlewares/multer');
 

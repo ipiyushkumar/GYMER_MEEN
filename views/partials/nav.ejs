@@ -28,20 +28,16 @@
          </div>
       </form>
       <div class="custom-nav d-flex justify-content-end" style="width: 30%; font-size: 1rem;">
+        <a class="nav-link cartButtom" onclick="openCart()" style="color: #fff; font-size: 1.2rem;">
+          <i class="fas fa-cart-plus"></i>
+          <span style="margin-left: 5px;">Cart</span>
+       </a>
        <% if (content.isLoggedIn === true) { %>
-           <a class="nav-link cartButtom" style="color: #fff; font-size: 1.2rem;">
-           <i class="fas fa-cart-plus"></i>
-           <span style="margin-left: 5px;">Cart</span>
-           </a>
            <a class="nav-link" href="/profile" style="color: #fff; font-size: 1.2rem;">
            <i class="fas fa-user" ></i>
            <span style="margin-left: 5px;">Profile</span>
            </a>
          <% } else { %>
-           <a class="nav-link cartButtom" style="color: #fff; font-size: 1.2rem;">
-              <i class="fas fa-cart-plus"></i>
-              <span style="margin-left: 5px;">Cart</span>
-           </a>
            <a class="nav-link" href="/login" style="color: #fff; font-size: 1.2rem;">
               <i class="fa-solid fa-right-to-bracket"></i>
            <span style="margin-left: 5px;">Login</span>
@@ -54,12 +50,6 @@
   function openNav() {
     document.getElementById("mySidenav").style.width = "250px";
   }
-
-  function openCart() {
-        document.getElementById('cartSidebar').style.right = '0';
-    }
-
-  
   function closeNav() {
     document.getElementById("mySidenav").style.width = "0";
   }

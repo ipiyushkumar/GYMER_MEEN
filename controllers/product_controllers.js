@@ -1,8 +1,3 @@
-const express = require('express');
-const session = require('express-session');
-const bcrypt = require('bcrypt');
-const jwt = require('jsonwebtoken');
-const User = require('../schemas/user_schema');
 const Product = require('../schemas/product_schema');
 
 const getAllProducts = async (req, res) => {

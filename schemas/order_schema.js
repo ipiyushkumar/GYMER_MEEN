@@ -12,7 +12,7 @@ const orderSchema = new mongoose.Schema({
         dateAdded: {type: Date, required: true, default : Date.now}
     }],
     totalPayment: {type : Number},
-    status: {type: String, default: "Pending", enum : ["Pending","Delivery in progress","Completed"]},
+    status: {type: String, default: "Pending", enum : ["Pending","In progress","Completed"]},
 });
 
 const Order = mongoose.model("Order", orderSchema);

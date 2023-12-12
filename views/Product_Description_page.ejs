@@ -32,7 +32,54 @@
     </style>
 </head>
 <body>
-    
+    <div id="alertContainer"></div>
+    <style>
+      .alert {
+          position: fixed;
+          top: 1rem;
+          right: 1rem;
+          z-index: 2;
+          padding: 0.75rem 1.25rem;
+          margin-bottom: 1rem;
+          border: 1px solid transparent;
+          border-radius: 0.25rem;
+          transition: 0.3s ease-in-out;
+        }
+   
+        .alert.success {
+          color: #155724;
+          background-color: #d4edda;
+          border-color: #c3e6cb;
+        }
+        .alert.danger {
+          color: #721c24;
+          background-color: #f8d7da;
+          border-color: #f5c6cb;
+        }
+      </style>
+      <script>
+        function showAlert(message, type) {
+          const alertContainer = document.getElementById("alertContainer");
+      
+          // Create alert element
+          const alert = document.createElement("div");
+          alert.className = `alert ${type}`;
+          alert.innerHTML = `${message}<span class="close" onclick="closeAlert(this)">×</span>`;
+      
+          // Append alert to container
+          alertContainer.appendChild(alert);
+      
+          // Set timeout to remove the alert after 5 seconds
+          setTimeout(() => {
+            closeAlert(alert.querySelector(".close"));
+          }, 4000);
+        }
+      
+        function closeAlert(closeButton) {
+          const alert = closeButton.parentElement;
+          alert.style.display = "none";
+        }
+      </script>
     <div class="promo-strip">
         Get 25% Off on Every Purchase
       </div>
@@ -64,20 +111,17 @@
           </div>
           <!-- Cart and Profile aligned to the right -->
           <div class="custom-nav d-flex justify-content-end" style="width: 30%; font-size: 1rem;">
-            <% if (content.isLoggedIn === true) { %>
-                <a class="nav-link cartButtom d-flex align-items-center" style="color: #fff; font-size: 1.2rem;">
+              <a class="nav-link cartButtom d-flex align-items-center" onclick="openCart()" style="color: #fff; font-size: 1.2rem;">
                 <iconify-icon icon="bxs:cart-add" style="font-size: 2rem;"></iconify-icon>
                 <span style="margin-left: 5px;">Cart</span>
                 </a>
+            <% if (content.isLoggedIn === true) { %>
+                
                 <a class="nav-link d-flex align-items-center" href="/profile" style="color: #fff; font-size: 1.2rem;">
                 <iconify-icon icon="gg:profile" style="font-size: 2rem;"></iconify-icon>
                 <span style="margin-left: 5px;">Profile</span>
                 </a>
               <% } else { %>
-                <a class="nav-link cartButtom d-flex align-items-center" style="color: #fff; font-size: 1.2rem;" onclick="alert(`login to access this feature`)">
-                   <iconify-icon icon="bxs:cart-add" style="font-size: 2rem;"></iconify-icon>
-                   <span style="margin-left: 5px;">Cart</span>
-                </a>
                 <a class="nav-link d-flex align-items-center" href="/login" style="color: #fff; font-size: 1.2rem;">
                   <iconify-icon icon="material-symbols:login-sharp" style="font-size: 2rem;"></iconify-icon>
                 <span style="margin-left: 5px;">Login</span>
@@ -279,15 +323,22 @@
                 const Id = '<%= item.itemId %>';
                 const response = await axios.post('/addItem', { itemId: Id});
                 if (response.status === 200) {
-                    console.log(response.data.message);
-                    // Optionally, update the UI to reflect the item being added to the cart
+                      console.log(response.data.message);
+                      showAlert('item added to cart','success')
+                      openCart()
+                      
+                      // Optionally, update the UI to reflect the item being added to the cart
                 } else {
-                    console.error('Error adding item to cart:', response.data.message);
-                    // Optionally, handle the error and update the UI accordingly
+                      console.error('Error adding item to cart:', response.data.message);
+                      // Optionally, handle the error and update the UI accordingly
                 }
-            } catch (error) {
-                console.error('Error adding item to cart:', error.message);
-                // Optionally, handle the error and update the UI accordingly
+            } catch (err) {
+              if (err.response.status === 400){
+                 showAlert("Item already in cart","success")
+                 openCart()
+              } else {
+                 window.location.href = "/login"
+              }
             }
         });
     </script>
