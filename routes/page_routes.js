@@ -38,7 +38,6 @@ router.get('/product_listing',(req, res) => {
 router.get('/confirm',isAuthenticated, (req, res) => {
     if (!req.session.userProfile.cart[0]){
         res.status(502).json({message : "Please Add Items in cart"})
-
     } else {
         res.render('Order_Confirm_page')
     }

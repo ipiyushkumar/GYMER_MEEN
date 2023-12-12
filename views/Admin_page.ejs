@@ -124,10 +124,10 @@
                     <img src="assets/logo.PNG" alt="">
                     <span class="nav-item admin">Admin Panel</span>
                 </a></li>
-                <li><a href="#" onclick="showDashboard()" id="dashboardTab">
+                <!-- <li><a href="#" onclick="showDashboard()" id="dashboardTab">
                     <i class="fas fa-id-card"></i>
                     <span class="nav-item">Dashboard</span>
-                </a></li>
+                </a></li> -->
                 <li><a href="#" onclick="showAnalytics()" id="analyticsTab">
                     <i class="fas fa-user"></i>
                     <span class="nav-item">Users</span>
@@ -162,7 +162,9 @@
                 </a></li>
             </ul>
         </nav>        
-        <section class="main" id="dashboardSection" style="display: none;">
+
+        <!-- deprecated -->
+        <!-- <section class="main" id="dashboardSection" >
             <div class="main-top">
                 <h1>Summary</h1>
             </div>
@@ -224,7 +226,7 @@
                         </table>
                       </div>
             </section>
-        </section>
+        </section> -->
 
         <!-- shows all the users -->
         <section class="main" id="analyticsSection" style="display: none;" >
@@ -284,7 +286,7 @@
         </section>   
 
         <!-- shows all orders : implement a status update -->
-        <section class="main" id="ordersSection" style="display:none;">
+        <section class="main" id="ordersSection">
             <section class="main-orders">
                 <h1>Orders</h1>
                 <div class="orders-container">
@@ -313,6 +315,50 @@
                 </div>
             </section>
             <script>
+                document.addEventListener('DOMContentLoaded',async (req,res) => {
+                    function createTableCell(content) {
+                        let cell = document.createElement('td')
+                        cell.textContent = content;
+                        return cell;
+                    }
+                    document.querySelector('#allOrdersBody').innerHTML = ''
+                    await axios.get('/api/admin/getAllOrders')
+                        .then(response => response.data)
+                        .then(orders => {
+                            orders.forEach(async order => {
+                                let row = document.createElement('tr')
+                                row.append(createTableCell(order._id))
+                                row.append(createTableCell(order.email))
+
+                                let names = "";
+
+                                await Promise.all(order.products.map(async product => {
+                                    try {
+                                        const response = await axios.get(`/api/products/${product.itemId}`);
+                                        names += ` ${response.data.name}`;
+                                    } catch (err) {
+                                        console.log("error fetching products", err);
+                                    }
+                                }));
+
+                                row.append(createTableCell(names)) // Correct variable name here
+                                row.append(createTableCell(order.totalPayment))
+
+                                const dateTime = new Date(order.Date);
+
+                                // Get date and time
+                                const formattedDateTime = dateTime.toLocaleString();
+
+                                row.append(createTableCell(formattedDateTime))
+
+                                row.append(createTableCell(order.status))
+
+                                document.querySelector('#allOrdersBody').append(row);
+                                showAlert("orders loaded successfully","success")
+                            })
+                        })
+                        .catch(err => showAlert("server refused on order data","danger"))
+                })
                 document.querySelector('#ordersTab').addEventListener('click', async () => {
                     function createTableCell(content) {
                         let cell = document.createElement('td')
@@ -769,7 +815,7 @@
         </section> -->
 
         <!-- done -->
-        <section class="main" id="coupon" >
+        <section class="main" id="coupon" style="display: none;">
             <section class="main-orders">
                 <h1>Add/Delete Coupons</h1>
     

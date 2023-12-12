@@ -366,8 +366,12 @@
                      try {
                         const response = await addToCart('/addItem', { itemId: product.itemId });
                         handleAddToCartResponse(response);
-                     } catch (error) {
-                        showAlert("Item already in cart","success")
+                     } catch (err) {
+                        if (err.response.status === 400){
+                           showAlert("Item already in cart","success")
+                        } else {
+                           window.location.href = "/login"
+                        }
                      }
                   });
             });

@@ -22,7 +22,7 @@
             if (err.response.status === 502){
                 showAlert("Please add items to cart","danger")
             } else {
-                showAlert("something happened at server end - ","danger")
+                window.location.href = "/login"
             }
         })
     }
