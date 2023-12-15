@@ -13,6 +13,7 @@ const orderSchema = new mongoose.Schema({
     }],
     totalPayment: {type : Number},
     status: {type: String, default: "Pending", enum : ["Pending","In progress","Completed"]},
+    createdDate: {type: Date, default: Date.now}
 });
 
 const Order = mongoose.model("Order", orderSchema);

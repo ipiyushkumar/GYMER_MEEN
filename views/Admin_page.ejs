@@ -163,7 +163,7 @@
             </ul>
         </nav>        
 
-        <!-- underConstruction -->
+        <!-- completed -->
         <section class="main" id="dashboardSection" >
             <div class="main-top">
                 <h1>Summary</h1>
@@ -171,69 +171,232 @@
             <div class="main-skills">
                 <div class="card">
                     <iconify-icon class="icon" icon="emojione:money-bag"></iconify-icon>
-                    <h2>Rs 11,200</h2>
-                    <h4>Today Sales</h4>
+                    <h2 class="sales_today">Rs 0</h2>
+                    <h4>Sales today</h4>
                 </div>
                 <div class="card">
                     <iconify-icon class="icon" icon="emojione-v1:shopping-bags"></iconify-icon>
-                    <h2>65</h2>
-                    <h4>Today Orders</h4>
+                    <h2 class="completed_orders">65</h2>
+                    <h4>Completed orders</h4>
                 </div>
                 <div class="card">
                     <iconify-icon class="icon" icon="openmoji:timer"></iconify-icon>
-                    <h2>20</h2>
+                    <h2 class="pending_orders">0</h2>
                     <h4>Pending Orders</h4>
                 </div>
                 <div class="card">
                     <iconify-icon class="icon" icon="emojione:shopping-cart"></iconify-icon>
-                    <h2>Rs 1,43,000</h2>
-                    <h4>Monthly Sales</h4>
+                    <h2 class="total_sales">Rs 0</h2>
+                    <h4>Total Sales</h4>
                 </div>
             </div>
 
             <section class="main-course">
                 <h1>Analytics</h1>
                 <div class="course-box">
+                    
                     <div>
+                        <select name="graphSelect" id="graphSelect">
+                            <option value="7">last 7 days</option>
+                            <option value="30">last 30 days</option>
+                            <option value="100">last 100 days</option>
+                            <option value="365">last 365 days</option>
+                            <option value="1780">last 4 years</option>
+                        </select>
                         <canvas id="myChart" class="chart"></canvas>
                     </div>
                     <div>
                         <h2>Top Selling Products</h2>
                         <table style="width: 100%; border-collapse: collapse; margin-top: 20px;">
-                          <tbody>
-                            
-                            <tr>
-                              <td style="border: 1px solid #ddd; padding: 8px; text-align: center;"><img src="images/Product1.jpg" alt="Product 1" style="max-width: 50px; max-height: 50px;"></td>
-                              <td style="border: 1px solid #ddd; padding: 8px; text-align: left;">Product 1 Name</td>
-                              <td style="border: 1px solid #ddd; padding: 8px; text-align: left;">1000 Units Sold</td>
-                            </tr>
-
-                            
-                            <tr>
-                              <td style="border: 1px solid #ddd; padding: 8px; text-align: center;"><img src="images/Product2.jpg" alt="Product 2" style="max-width: 50px; max-height: 50px;"></td>
-                              <td style="border: 1px solid #ddd; padding: 8px; text-align: left;">Product 2 Name</td>
-                              <td style="border: 1px solid #ddd; padding: 8px; text-align: left;">800 Units Sold</td>
-                            </tr>
-
-                            
-                            <tr>
-                              <td style="border: 1px solid #ddd; padding: 8px; text-align: center;"><img src="images/Product3.jpg" alt="Product 3" style="max-width: 50px; max-height: 50px;"></td>
-                              <td style="border: 1px solid #ddd; padding: 8px; text-align: left;">Product 3 Name</td>
-                              <td style="border: 1px solid #ddd; padding: 8px; text-align: left;">700 Units Sold</td>
-                            </tr>
-
+                          <tbody id="topSellingProductsBody">
                           </tbody>
                         </table>
                       </div>
             </section>
+            <!-- Add this script to your HTML file -->
             <script>
-                document.addEventListener('DOMContentLoaded', () => {
-                    showAlert("welcome back admin", "success")
-                })
+                let orders = []
+                let users = []
+
+                document.addEventListener('DOMContentLoaded', async () => {
+                    // Fetch orders
+                    const ordersResponse = await axios.get('/api/admin/getAllOrders');
+                    orders = ordersResponse.data;
+
+                    // Fetch users
+                    const usersResponse = await axios.get('/api/admin/getAllUsers');
+                    users = usersResponse.data;
+                   
+                    drawGraph(7)
+
+                    // Update the main skills cards
+                    updateMainSkills();
+
+                    updateTopSellingProducts();
+                });
+
+                function drawGraph(lastDays) {
+                    // Calculate statistics
+                    const today = new Date();
+                    const startDate = new Date();
+                    startDate.setDate(today.getDate() - lastDays + 1);
+                    const endDate = today;
+
+                    const ordersPerDay = Array.from({ length: lastDays }, (_, i) => {
+                        const date = new Date(startDate);
+                        date.setDate(startDate.getDate() + i);
+
+                        const dayOrders = orders.filter(order => {
+                            const orderDate = new Date(order.createdDate);
+
+                            // Compare the year and month without considering the day
+                            return orderDate.getFullYear() === date.getFullYear() && orderDate.getMonth() === date.getMonth() && orderDate.getDate() === date.getDate();
+
+                        });
+
+                        return { date, count: dayOrders.length };
+                    });
+
+                    // Generate line graph using Chart.js
+                    const ctx = document.getElementById('myChart').getContext('2d');
+                    const chart = new Chart(ctx, {
+                        type: 'line',
+                        data: {
+                            labels: ordersPerDay.map(item => item.date.toDateString()),
+                            datasets: [{
+                                label: 'Orders per Day',
+                                data: ordersPerDay.map(item => item.count),
+                                backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                                borderColor: 'rgba(75, 192, 192, 1)',
+                                borderWidth: 1
+                            }]
+                        },
+                        options: {
+                            scales: {
+                                y: {
+                                    beginAtZero: true
+                                }
+                            }
+                        }
+                    });
+                }
+
+                document.querySelector(`#graphSelect`).addEventListener('change', async event => {
+                    drawGraph(event.target.value)
+                });
+
+
+                function updateMainSkills() {
+                    const salesToday = calculateSalesToday();
+                    const completedOrders = calculateCompletedOrders();
+                    const pendingOrders = calculatePendingOrders();
+                    const totalSales = calculateTotalSales();
+
+                    // Update the HTML elements with the calculated values
+                    document.querySelector('.sales_today').textContent = `Rs ${salesToday}`;
+                    document.querySelector('.completed_orders').textContent = completedOrders;
+                    document.querySelector('.pending_orders').textContent = pendingOrders;
+                    document.querySelector('.total_sales').textContent = `Rs ${totalSales}`;
+                }
+
+                function calculateSalesToday() {
+                    // Calculate sales for today
+                    const today = new Date();
+                    const todayOrders = orders.filter(order => {
+                        const orderDate = new Date(order.Date);
+                        return orderDate.getDate() === today.getDate() &&
+                            orderDate.getMonth() === today.getMonth() &&
+                            orderDate.getFullYear() === today.getFullYear();
+                    });
+
+                    return todayOrders.reduce((total, order) => total + order.totalPayment, 0);
+                }
+
+                function calculateCompletedOrders() {
+                    // Calculate completed orders count
+                    const completedOrders = orders.filter(order => order.status === 'Completed');
+                    return completedOrders.length;
+                }
+
+                function calculatePendingOrders() {
+                    // Calculate pending orders count
+                    const pendingOrders = orders.filter(order => order.status === 'Pending');
+                    return pendingOrders.length;
+                }
+
+                function calculateTotalSales() {
+                    // Calculate total sales
+                    const totalSales = orders.reduce((total, order) => total + order.totalPayment, 0);
+                    return totalSales;
+                }
+
+                async function updateTopSellingProducts() {
+                    const tableBody = document.querySelector('#topSellingProductsBody');
+                    tableBody.innerHTML = '';
+                    calculateTopSellingProducts(5)
+                    .then (topSellingProducts => {
+                        topSellingProducts.forEach(async (product) => {
+                            console.log(product)
+                            const row = document.createElement('tr');
+                            row.innerHTML = `
+                                <td style="border: 1px solid #ddd; padding: 8px; text-align: center;">
+                                    <img src="${product.image}" alt="${product.name}" style="max-width: 50px; max-height: 50px;">
+                                </td>
+                                <td style="border: 1px solid #ddd; padding: 8px; text-align: left;">${product.name}</td>
+                                <td style="border: 1px solid #ddd; padding: 8px; text-align: left;">${product.unitsSold} Units Sold</td>
+                            `;
+                            tableBody.appendChild(row);
+                        });
+                    })
+                }
+
+                async function calculateTopSellingProducts(numProducts) {
+                    // Calculate top-selling products based on units sold
+                    const productSalesMap = new Map();
+
+                    orders.forEach(order => {
+                        order.products.forEach(product => {
+                            const productId = product.itemId;
+                            const unitsSold = product.quantity;
+
+                            if (productSalesMap.has(productId)) {
+                                productSalesMap.set(productId, productSalesMap.get(productId) + unitsSold);
+                            } else {
+                                productSalesMap.set(productId, unitsSold);
+                            }
+                        });
+                    });
+
+                    // Sort products by units sold in descending order
+                    const sortedProducts = [...productSalesMap.entries()]
+                        .sort((a, b) => b[1] - a[1])
+                        .slice(0, numProducts);
+
+                    // Fetch product details from your API and return the results
+                    const topSellingProducts = await Promise.all(sortedProducts.map(async ([productId, unitsSold]) => {
+                        try {
+                            const response = await axios.get(`/api/products/${productId}`);
+                            const productDetails = response.data;
+
+                            return {
+                                name: productDetails.name,
+                                image: productDetails.imageLink[0],
+                                unitsSold: unitsSold
+                            };
+                        } catch (error) {
+                            console.error(`Error fetching product details for productId ${productId}:`, error);
+                            // Handle error appropriately
+                            return {};
+                        }
+                    }));
+
+                    return topSellingProducts;
+                }
             </script>
+
         </section>
 
-        <!-- shows all the users -->
+        <!-- shows all the users : completed -->
         <section class="main" id="analyticsSection" style="display: none;" >
             <section class="main-orders">
                 <h1>User Analytics</h1>
@@ -290,7 +453,7 @@
             </script>
         </section>   
 
-        <!-- shows all orders : implement a status update -->
+        <!-- shows all orders : completed -->
         <section class="main" id="ordersSection" style="display: none;" >
             <section class="main-orders">
                 <h1>Orders</h1>
@@ -515,6 +678,15 @@
                             .post('/api/products', formData)
                             .then((response) => {
                                 showAlert('Product added successfully:',"success");
+                                document.getElementById('productName').value = '';
+                                document.getElementById('productDescription').value = '';
+                                document.getElementById('originalPrice').value = '';
+                                document.getElementById('offeredPrice').value = '';
+                                document.getElementById('category').value = '';
+                                document.getElementById('stock').value = '';
+                                document.getElementById('Image1').files[0] = '';
+                                document.getElementById('Image2').files[0] = '';
+                                document.getElementById('Image3').files[0] = '';
                             })
                             .catch((error) => {
                                 showAlert('Error adding product:', "danger");
