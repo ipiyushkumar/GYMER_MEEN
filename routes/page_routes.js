@@ -20,12 +20,31 @@ router.get('/',(req, res) => {
     res.render('Home_page',{content})
 })
 
-// authentication
-router.get('/login',(req, res) => {
-    res.render('Auth_page');
+router.get('/face_care', (req, res) => {
+    const content = {
+        isLoggedIn : req.session.isLoggedIn,
+    }
+    res.render('Face_Care_page',{content})
+})
+router.get('/hair_care', (req, res) => {
+    const content = {
+        isLoggedIn : req.session.isLoggedIn,
+    }
+    res.render('Hair_Care_page',{content})
+})
+router.get('/body_care',(req, res) => {
+    const content = {
+        isLoggedIn : req.session.isLoggedIn,
+    }
+    res.render('Body_Care_page',{content})
+})
+router.get('/beard_care',(req, res) => {
+    const content = {
+        isLoggedIn : req.session.isLoggedIn,
+    }
+    res.render('Beard_Care_page',{content})
 })
 
-// user pages
 
 router.get('/product_listing',(req, res) => {
     const content = {
@@ -34,6 +53,12 @@ router.get('/product_listing',(req, res) => {
     res.render('Product_Listing_page',{content});
 })
 
+
+
+// authentication
+router.get('/login',(req, res) => {
+    res.render('Auth_page');
+})
 
 router.get('/confirm',isAuthenticated, (req, res) => {
     if (!req.session.userProfile.cart[0]){

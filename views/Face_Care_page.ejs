@@ -170,78 +170,117 @@
          <p class="pl-5">2023 - Copyright, All Rights Reserved.</p>
       </footer>
       <script>
-         const products = [
-    { category: 'cream', rating: 4, discount: 0.1, price: 499, originalPrice: 799, title: 'Product 1', description: 'Description of Product 1 goes here.', image:  'assets/Product1.jpg', secondImage:  'assets/Product2.jpg' },
-    { category: 'oil', rating: 3, discount: 0.2, price: 39, originalPrice: 100, title: 'Product 2', description: 'Description of Product 2 goes here.', image:     'assets/Product1.jpg', secondImage:     'assets/Product2.jpg' },
-    { category: 'spray', rating: 5, discount: 0.3, price: 299, originalPrice: 499, title: 'Product 3', description: 'Description of Product 3 goes here.', image:  'assets/Product1.jpg', secondImage:  'assets/Product2.jpg' },
-    { category: 'powder', rating: 4, discount: 0.4, price: 199, originalPrice: 299, title: 'Product 4', description: 'Description of Product 4 goes here.', image: 'assets/Product1.jpg', secondImage: 'assets/Product2.jpg' },
-];
+      let products = [];
 
-         
-         renderProducts('all');
-         
-         function renderProducts(categoryFilter) {
-             const productGrid = document.getElementById('productGrid');
-             productGrid.innerHTML = '';
-         
-             const filteredProducts = categoryFilter === 'all' ? products : products.filter(product => product.category === categoryFilter);
-         
-             filteredProducts.forEach(product => {
-                 const productCard = createProductCard(product);
-                 productGrid.appendChild(productCard);
-             });
+      document.addEventListener('DOMContentLoaded', async () => {
+         try {
+            const response = await fetchProducts('/api/products');
+            products = response;
+            renderProducts('Face Care');
+         } catch (error) {
+            showAlert("error while fetching the products","danger")
          }
-         
-         function filterProducts(category) {
-             renderProducts(category);
-         }
-         
-         function createProductCard(product) {
-    const productCard = document.createElement('div');
-    productCard.className = 'col-md-4 product-card';
-    productCard.innerHTML = `
-        <div class="product-image-container">
-            <img class="product-image" src="${product.image}" alt="${product.title}">
-            <img class="product-image hover-image" src="${product.secondImage || product.image}" alt="${product.title}" style="display:none">
-        </div>
-        <div class="product-details">
-            <div class="category-badge text-white corner-round p-1" style="display:none;">${product.category}</div>
-            <div class="product-title">${product.title}</div>
-            <div class="product-description">${product.description}</div>
-            <div class="mb-2">
-                <div class="d-flex justify-content-between bolder product-price-discount">
-                    <div class="product-price">&#8377; ${product.price}</div>
-                    <div class="original-price text-secondary text-decoration-line-through">&#8377;${product.originalPrice || ''}</div>
-                    <div class="product-discount text-success">${product.discount * 100}% Off</div>
-                </div>
-            </div>
-            <button class="add-to-cart-btn" onclick="addToCart()"><i class="fas fa-cart"></i> Add to Cart</button>
-        </div>
-    `;
+      });
 
-    const productImageContainer = productCard.querySelector('.product-image-container');
-    const mainImage = productImageContainer.querySelector('.product-image');
-    const hoverImage = productImageContainer.querySelector('.hover-image');
+      async function fetchProducts(apiEndpoint) {
+         const response = await axios.get(apiEndpoint);
+         return response.data;
+      }
 
-    productImageContainer.addEventListener('mouseenter', function () {
-        mainImage.style.display = 'none';
-        hoverImage.style.display = 'block';
-    });
+      function attachAddToCartListeners(products) {
+         products.forEach(product => {
+               const addButton = document.querySelector(`.add${product.itemId}`);
+               addButton.addEventListener('click', async (event) => {
+                  event.preventDefault();
+                  try {
+                     const response = await addToCart('/addItem', { itemId: product.itemId });
+                     if (response.status === 200) {
+                           console.log(response.data.message);
+                           showAlert('item added to cart','success')
+                           openCart()
+                           // Optionally, update the UI to reflect the item being added to the cart
+                     } else {
+                           console.error('Error adding item to cart:', response.data.message);
+                           // Optionally, handle the error and update the UI accordingly
+                     }
+                  } catch (err) {
+                     if (err.response.status === 400){
+                        showAlert("Item already in cart","success")
+                        openCart()
+                     } else {
+                        window.location.href = "/login"
+                     }
+                  }
+               });
+         });
+      }
+      async function addToCart(apiEndpoint, data) {
+         return await axios.post(apiEndpoint, data);
+      }
 
-    productImageContainer.addEventListener('mouseleave', function () {
-        mainImage.style.display = 'block';
-        hoverImage.style.display = 'none';
-    });
+      function renderProducts(categoryFilter) {
+         const productGrid = document.getElementById('productGrid');
+         productGrid.innerHTML = '';
 
-    return productCard;
-}
+         const filteredProducts = categoryFilter === 'all' ? products : products.filter(product => product.category === categoryFilter);
 
-// Example usage
-const container = document.getElementById('productContainer'); // Replace with the actual container element ID
-products.forEach(product => {
-    const productCard = createProductCard(product);
-    container.appendChild(productCard);
-});
+         filteredProducts.forEach(product => {
+               const productCard = createProductCard(product);
+               productGrid.appendChild(productCard);
+         });
+
+         attachAddToCartListeners(filteredProducts);
+      }
+      function createProductCard(product) {
+      const productCard = document.createElement('div');
+      productCard.className = 'col-md-4 product-card product';
+      productCard.innerHTML = `
+      <a href="/search/${product.itemId}" >
+         <div class="product-image-container">
+               <img class="product-image" src="${product.imageLink[0]}" alt="${product.name}">
+               <img class="product-image hover-image" src="${product.imageLink[1] || product.imageLink[0]}" alt="${product.name}" style="display:none">
+         </div>
+         <div class="product-details">
+               <div class="category-badge text-white corner-round p-1" style="display:none;">${product.category}</div>
+               <div class="product-title"><a href="Product_Description.html" style="text-decoration:none;color:#000">${product.name}</a></div>
+               <div class="product-description">${product.description}</div>
+               <div class="mb-2">
+                  <div class="d-flex justify-content-between bolder product-price-discount">
+                     <div class="product-price">&#8377; ${product.offeredPrice}</div>
+                     <div class="original-price text-secondary text-decoration-line-through">&#8377;${product.originalPrice || ''}</div>
+                     <div class="product-discount text-success">${((product.originalPrice - product.offeredPrice) / product.originalPrice * 100).toFixed(0)}% Off</div>
+                  </div>
+               </div>
+               <button onclick="showNotification()" class="add-to-cart-btn add${product.itemId}" id="liveToastBtn"><i class="fas fa-cart"></i> Add to Cart</button>
+         </div>
+      </a>
+      `;
+
+      const productImageContainer = productCard.querySelector('.product-image-container');
+      const mainImage = productImageContainer.querySelector('.product-image');
+      const hoverImage = productImageContainer.querySelector('.hover-image');
+
+      productImageContainer.addEventListener('mouseenter', function () {
+         mainImage.style.display = 'none';
+         hoverImage.style.display = 'block';
+      });
+
+      productImageContainer.addEventListener('mouseleave', function () {
+         mainImage.style.display = 'block';
+         hoverImage.style.display = 'none';
+      });
+
+
+
+      return productCard;
+      }
+
+      // Example usage
+      const container = document.getElementById('productContainer'); // Replace with the actual container element ID
+      products.forEach(product => {
+      const productCard = createProductCard(product);
+      container.appendChild(productCard);
+      });
       </script>
       <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
       <script>

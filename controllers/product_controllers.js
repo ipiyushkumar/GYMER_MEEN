@@ -22,32 +22,6 @@ const getProductUsingId = async (req, res) => {
     }
   }
 
-
-const face_care = (req, res) => {
-  const content = {
-      isLoggedIn : req.session.isLoggedIn,
-  }
-  res.render('Face_Care_page',{content})
-}
-const hair_care = (req, res) => {
-  const content = {
-      isLoggedIn : req.session.isLoggedIn,
-  }
-  res.render('Hair_Care_page',{content})
-}
-const body_care = (req, res) => {
-  const content = {
-      isLoggedIn : req.session.isLoggedIn,
-  }
-  res.render('Body_Care_page',{content})
-}
-const beard_care = (req, res) => {
-  const content = {
-      isLoggedIn : req.session.isLoggedIn,
-  }
-  res.render('Beard_Care_page',{content})
-}
-
 const getItemPage = async (req, res) => {
   try {
     const itemId = req.params.itemId
@@ -67,8 +41,4 @@ module.exports = {
     getAllProducts,
     getProductUsingId,
     getItemPage,
-    face_care,
-    hair_care,
-    body_care,
-    beard_care
 }

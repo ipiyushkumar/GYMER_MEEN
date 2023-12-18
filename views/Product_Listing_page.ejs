@@ -150,7 +150,30 @@ footer a{
 
     
 }
+    .product {
+        background-color: aliceblue;
+        border-radius: 1em;
+        margin: 1em;
+        padding: 1em;
 
+        display: flex;
+        flex-direction: column;
+        justify-content:space-between;
+        align-items: center;
+    }
+    .product img {
+        width: 20em;
+    }
+    .product button {
+        background-color: burlywood;
+        color: #fff;
+        border-radius: 1em;
+
+        border-style: none;
+        width: 20em;
+        margin: 1em;
+        padding: 1em;
+    }
     </style>
 </head>
 <body>
@@ -177,10 +200,10 @@ footer a{
                             </h2>
                             <div id="categoryFilterCollapse" class="accordion-collapse collapse" aria-labelledby="categoryFilterHeader">
                                 <div class="accordion-body">
-                                    <a class="nav-link" href="#" data-filter="face-care">Face Care</a>
-                                    <a class="nav-link" href="#" data-filter="hair-care">Hair Care</a>
-                                    <a class="nav-link" href="#" data-filter="body-care">Body Care</a>
-                                    <a class="nav-link" href="#" data-filter="beard-care">Beard Care</a>
+                                    <a class="nav-link" href="#" data-filter="face-care" onclick="renderProducts('Face Care')">Face Care</a>
+                                    <a class="nav-link" href="#" data-filter="hair-care" onclick="renderProducts('Hair Care')">Hair Care</a>
+                                    <a class="nav-link" href="#" data-filter="body-care" onclick="renderProducts('Body Care')">Body Care</a>
+                                    <a class="nav-link" href="#" data-filter="beard-care" onclick="renderProducts('Beard Care')">Beard Care</a>
                                 </div>
                             </div>
                         </div>
@@ -247,27 +270,7 @@ footer a{
                         </div> 
                     </div> 
                 </div>
-                <div class="grids mt-5 mr-2 ml-2 p-2" style="background-color: red;">
-                    <div class="product-card product d-flex flex-column">
-                        <div class="product-image-container">
-                            <img class="product-image" src="${product.imageLink[0]}" alt="${product.name}">
-                            <img class="product-image hover-image" src="${product.imageLink[1] || product.imageLink[0]}" alt="${product.name}" style="display:none">
-                      </div>
-                      <div class="product-details">
-                            <div class="category-badge text-white corner-round p-1" style="display:none;">${product.category}</div>
-                            <div class="product-title"><a href="Product_Description.html" style="text-decoration:none;color:#000">${product.name}</a></div>
-                            <div class="product-description">${product.description}</div>
-                            <div class="mb-2">
-                               <div class="d-flex justify-content-between bolder product-price-discount">
-                                  <div class="product-price">&#8377; ${product.offeredPrice}</div>
-                                  <div class="original-price text-secondary text-decoration-line-through">&#8377;${product.originalPrice || ''}</div>
-                                  <div class="product-discount text-success">${((product.originalPrice - product.offeredPrice) / product.originalPrice * 100).toFixed(0)}% Off</div>
-                               </div>
-                            </div>
-                            <button class="add-to-cart-btn add${product.itemId}" id="liveToastBtn"><i class="fas fa-cart"></i> Add to Cart</button>
-                      </div>
-                    </div>
-                </div>
+                <div id="productGrid" class="row"></div>
             </div>
             
         </div>
@@ -363,6 +366,119 @@ footer a{
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script>
+        let products = [];
 
+        document.addEventListener('DOMContentLoaded', async () => {
+        try {
+            const response = await fetchProducts('/api/products');
+            products = response;
+            renderProducts('all');
+        } catch (error) {
+            showAlert("error while fetching the products","danger")
+        }
+        });
+
+        async function fetchProducts(apiEndpoint) {
+        const response = await axios.get(apiEndpoint);
+        return response.data;
+        }
+
+        function attachAddToCartListeners(products) {
+        products.forEach(product => {
+                const addButton = document.querySelector(`.add${product.itemId}`);
+                addButton.addEventListener('click', async (event) => {
+                    event.preventDefault();
+                    try {
+                    const response = await addToCart('/addItem', { itemId: product.itemId });
+                    if (response.status === 200) {
+                            console.log(response.data.message);
+                            showAlert('item added to cart','success')
+                            openCart()
+                            // Optionally, update the UI to reflect the item being added to the cart
+                    } else {
+                            console.error('Error adding item to cart:', response.data.message);
+                            // Optionally, handle the error and update the UI accordingly
+                    }
+                    } catch (err) {
+                    if (err.response.status === 400){
+                        showAlert("Item already in cart","success")
+                        openCart()
+                    } else {
+                        window.location.href = "/login"
+                    }
+                    }
+                });
+        });
+        }
+        async function addToCart(apiEndpoint, data) {
+        return await axios.post(apiEndpoint, data);
+        }
+
+        function renderProducts(categoryFilter) {
+        const productGrid = document.getElementById('productGrid');
+        productGrid.innerHTML = '';
+
+        const filteredProducts = categoryFilter === 'all' ? products : products.filter(product => product.category === categoryFilter);
+
+        filteredProducts.forEach(product => {
+                const productCard = createProductCard(product);
+                productGrid.appendChild(productCard);
+        });
+
+        attachAddToCartListeners(filteredProducts);
+        }
+        function createProductCard(product) {
+        const productCard = document.createElement('div');
+        productCard.className = 'col-md-4 product-card product';
+        productCard.innerHTML = `
+        <a href="/search/${product.itemId}" >
+        <div class="product-image-container">
+                <img class="product-image" src="${product.imageLink[0]}" alt="${product.name}">
+                <img class="product-image hover-image" src="${product.imageLink[1] || product.imageLink[0]}" alt="${product.name}" style="display:none">
+        </div>
+        <div class="product-details">
+                <div class="category-badge text-white corner-round p-1" style="display:none;">${product.category}</div>
+                <div class="product-title"><a href="Product_Description.html" style="text-decoration:none;color:#000">${product.name}</a></div>
+                <div class="product-description">${product.description}</div>
+                <div class="mb-2">
+                    <div class="d-flex justify-content-between bolder product-price-discount">
+                    <div class="product-price">&#8377; ${product.offeredPrice}</div>
+                    <div class="original-price text-secondary text-decoration-line-through">&#8377;${product.originalPrice || ''}</div>
+                    <div class="product-discount text-success">${((product.originalPrice - product.offeredPrice) / product.originalPrice * 100).toFixed(0)}% Off</div>
+                    </div>
+                </div>
+                <button onclick="showNotification()" class="add-to-cart-btn add${product.itemId}" id="liveToastBtn"><i class="fas fa-cart"></i> Add to Cart</button>
+        </div>
+        </a>
+        `;
+
+        const productImageContainer = productCard.querySelector('.product-image-container');
+        const mainImage = productImageContainer.querySelector('.product-image');
+        const hoverImage = productImageContainer.querySelector('.hover-image');
+
+        productImageContainer.addEventListener('mouseenter', function () {
+        mainImage.style.display = 'none';
+        hoverImage.style.display = 'block';
+        });
+
+        productImageContainer.addEventListener('mouseleave', function () {
+        mainImage.style.display = 'block';
+        hoverImage.style.display = 'none';
+        });
+
+
+
+        return productCard;
+        }
+
+        // Example usage
+        const container = document.getElementById('productContainer'); // Replace with the actual container element ID
+        products.forEach(product => {
+        const productCard = createProductCard(product);
+        container.appendChild(productCard);
+        });
+
+    </script>
 </body>
 </html>

@@ -1,368 +1,301 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/css/ProductStyle.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap"/>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@200;400;500&display=swap">
-
-    <title>Beard Care - WhiteWolf International</title>
-    <style>
-        body{
-            background-color: #000;
-        }
-    .banner{
-        background-color: #000;
-        padding: 5vh;
-    }
-    .page{
-        width: 100%;
-        padding: 2rem;
-        min-height: 80vh;
-    }
-        .accordion {
-    background-color: black;
-}
-
-footer a{
-    text-decoration: none;
-}
-
-.social ul a {
-    width: 0.5rem;
-    height: 0.5rem;
-    padding: 1rem;
-    font-size: 1.5rem; /* Adjust the font size accordingly */
-    background-color: #fff;
-    border-radius: 50%;
-    color: #000;
-}
-
-.accordion-button {
-    color: white;
-    font-size: 3vh;
-    border-radius: 0 !important;
-}
-
-.accordion-button:active {
-    color: #000 !important;
-    box-shadow: none;
-    font-size: 3vh;
-    border-radius: 0 !important;
-}
-
-.accordion-item {
-    margin-top: 1rem;
-    border: none;
-    border-radius: 0 !important;
-    border-bottom: 1px solid white;
-    box-shadow: none !important;
-    outline: none !important;
-}
-
-.accordion-item:active{
-    color: #000 !important;
-    background-color: #000;
-    box-shadow: none !important;
-    outline: none !important;
-
-}
-
-.accordion-body {
-    padding: 1rem;
-    border: none;
-    font-size: 2vh;
-    background-color: #000;
-    color: #fff; 
-}
-
-.accordion a{
-    text-decoration: none;
-    color: #fff;
-}
-
-.accordion-button.collapsed {
-    background-color: black;
-}
-
-.filters h4{
-    font-size: 7vh;
-}
-
-.grids{
-    height: auto;
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    overflow: hidden;
-    grid-column-gap: 1rem;
-}
-
-.Liked{
-    margin-top: 2rem;
-    margin-bottom: 2rem;
-}
-
-@media (max-width: 576px) {
-    .accordion {
-        margin-top: 0.5rem; 
-        margin-bottom: 0.5rem; 
-    }
-
-    .banner{
-        background-color: #000;
-        padding: 1vh;
-    }
-
-    .page{
-        margin-top: 0rem;
-        padding: 1rem;
-    }
-
-    .page .filters{
-        margin-top: -10vh;
-    }
-
-    .filters h4{
-        font-size: 5    vh;
-    }
-
-    .accordion-button {
-        font-size: 1.2rem; 
-    }
-
-    .accordion-item {
-        margin-top: 0.5rem; 
-    }
-
-    .accordion-body {
-        padding: 0.5rem; 
-        font-size: 3vh; 
-    }
-
-    .Liked h2 {
-        font-size: 2rem; 
-    }
-
-    
-}
-
-    </style>
-</head>
-<body>
-    <%- include('partials/nav') %> 
-    <%- include('partials/cart') %> 
-    <div class="container-fluid banner">
-        <img src="../assets/Beard_Care.jpeg" alt="Banner Image" class="banner-image">
+   <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+      <link rel="stylesheet" href="/css/slidercss.css" />
+      <link rel="stylesheet" href="/css/Home.css">
+      <script src="slider.js" defer></script>
+      <title>Face Care - WhiteWolf International</title>
+      <link rel="preconnect" href="https://fonts.googleapis.com">
+      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@200;400;500&display=swap">
+   </head>
+   <body>
+      <%- include('partials/nav') %> 
+      <%- include('partials/cart') %> 
+       <div class="container" style="width:100%;">
+        <h1 class="text-center text-white">WhiteWolf Face Care</h1>
     </div>
+      
+      <div class="container products-bar mt-2">
+         
+         <div id="productGrid" class="row product-grid">
+         </div>
+         <div class="d-flex justify-content-center p-4">
+            <button class="category-btn">Show More</button>
+         </div>
+      </div>
 
-    <div class="container-fluid page" style="background-color: #000;">
-        <div class="row">
-            
-            <div class="col-md-3 mt-0 mr-3">
-                <div class="filters mt-1 mb-5">
-                    <h4 class="text-white">Filter</h4>
-            
-                    
-                    <div class="accordion" id="categoryFilterAccordion">
-                        <div class="accordion-item">
-                            <h2 class="accordion-header" id="categoryFilterHeader">
-                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#categoryFilterCollapse" aria-expanded="false" aria-controls="categoryFilterCollapse">
-                                    Category
-                                </button>
-                            </h2>
-                            <div id="categoryFilterCollapse" class="accordion-collapse collapse" aria-labelledby="categoryFilterHeader">
-                                <div class="accordion-body">
-                                    <a class="nav-link" href="#" data-filter="face-care">Face Care</a>
-                                    <a class="nav-link" href="#" data-filter="hair-care">Hair Care</a>
-                                    <a class="nav-link" href="#" data-filter="body-care">Body Care</a>
-                                    <a class="nav-link" href="#" data-filter="beard-care">Beard Care</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="accordion" id="discountFilterAccordion">
-                        <div class="accordion-item">
-                            <h2 class="accordion-header" id="discountFilterHeader">
-                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#discountFilterCollapse" aria-expanded="false" aria-controls="discountFilterCollapse">
-                                    Discount
-                                </button>
-                            </h2>
-                            <div id="discountFilterCollapse" class="accordion-collapse collapse" aria-labelledby="discountFilterHeader">
-                                <div class="accordion-body">
-                                    <a class="nav-link" href="#" data-filter="discount10">10%</a>
-                                    <a class="nav-link" href="#" data-filter="discount20">20%</a>
-                                    <a class="nav-link" href="#" data-filter="discount30">30%</a>
-                                    <a class="nav-link" href="#" data-filter="discount40">40%</a>
-                                    <a class="nav-link" href="#" data-filter="discount50">50% and above</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="accordion" id="ratingFilterAccordion">
-                        <div class="accordion-item">
-                            <h2 class="accordion-header" id="ratingFilterHeader">
-                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#ratingFilterCollapse" aria-expanded="false" aria-controls="ratingFilterCollapse">
-                                    Rating
-                                </button>
-                            </h2>
-                            <div id="ratingFilterCollapse" class="accordion-collapse collapse" aria-labelledby="ratingFilterHeader">
-                                <div class="accordion-body">
-                                    <a class="nav-link" href="#" data-filter="rating4">4 stars & above</a>
-                                    <a class="nav-link" href="#" data-filter="rating3">3 stars & above</a>
-                                    <a class="nav-link" href="#" data-filter="rating2">2 stars & above</a>
-                                    <a class="nav-link" href="#" data-filter="rating1">1 star & above</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>                    
-            
-                    
-                </div>
-            </div>
-            
-            
-            <div class="col-md-9 ml-3">
-                <div class="left-product">
-                    <div class="d-flex justify-content-between m-3">
-                        
-                        <div class="products-found-text">
-                            <p class="mb-0 text-white" style="font-size: 1.5rem;">4 products found</p>
-                        </div>
-            
-                        
-                        <div class="sort-filter row ">
-                            
-                            <div class="col-auto">
-                                <select class="form-select text-white w-100" id="sortFilter" style="background-color: #000;">
-                                    <option>Sort By</option>
-                                </select>
-                            </div>
-                        </div> 
-                    </div> 
-                </div>
-                <div class="grids mt-5 mr-2 ml-2 p-2" style="background-color: red;">
-                    <div class="product-card product d-flex flex-column">
-                        <div class="product-image-container">
-                            <img class="product-image" src="${product.imageLink[0]}" alt="${product.name}">
-                            <img class="product-image hover-image" src="${product.imageLink[1] || product.imageLink[0]}" alt="${product.name}" style="display:none">
-                      </div>
-                      <div class="product-details">
-                            <div class="category-badge text-white corner-round p-1" style="display:none;">${product.category}</div>
-                            <div class="product-title"><a href="Product_Description.html" style="text-decoration:none;color:#000">${product.name}</a></div>
-                            <div class="product-description">${product.description}</div>
-                            <div class="mb-2">
-                               <div class="d-flex justify-content-between bolder product-price-discount">
-                                  <div class="product-price">&#8377; ${product.offeredPrice}</div>
-                                  <div class="original-price text-secondary text-decoration-line-through">&#8377;${product.originalPrice || ''}</div>
-                                  <div class="product-discount text-success">${((product.originalPrice - product.offeredPrice) / product.originalPrice * 100).toFixed(0)}% Off</div>
-                               </div>
-                            </div>
-                            <button class="add-to-cart-btn add${product.itemId}" id="liveToastBtn"><i class="fas fa-cart"></i> Add to Cart</button>
-                      </div>
-                    </div>
-                </div>
-            </div>
-            
+      <section id="face-care-products" class="container mt-1 text-white">
+        <div class="text-center">
+            <h1 class="mb-4">Discover Radiant Skin with Our Face Care Products</h1>
+            <p class="lead">Transform your skincare routine with our premium selection of face care products. At WhiteWolf International, we understand the importance of nurturing your skin, and our curated collection is designed to bring out the natural beauty in you.</p>
         </div>
-    </div>
-    
-    <div class="container-fluid Liked mb-5" style="width: 90%;height: 80vh;">
-        <h2 class="text-white text-center " style="font-size: 7vh;">Your May Also Like</h2>
-        <div class="grids mt-5" style="background-color: red;">
-            <div class="product-card product d-flex flex-column">
-                <div class="product-image-container">
-                    <img class="product-image" src="${product.imageLink[0]}" alt="${product.name}">
-                    <img class="product-image hover-image" src="${product.imageLink[1] || product.imageLink[0]}" alt="${product.name}" style="display:none">
-              </div>
-              <div class="product-details">
-                    <div class="category-badge text-white corner-round p-1" style="display:none;">${product.category}</div>
-                    <div class="product-title"><a href="Product_Description.html" style="text-decoration:none;color:#000">${product.name}</a></div>
-                    <div class="product-description">${product.description}</div>
-                    <div class="mb-2">
-                       <div class="d-flex justify-content-between bolder product-price-discount">
-                          <div class="product-price">&#8377; ${product.offeredPrice}</div>
-                          <div class="original-price text-secondary text-decoration-line-through">&#8377;${product.originalPrice || ''}</div>
-                          <div class="product-discount text-success">${((product.originalPrice - product.offeredPrice) / product.originalPrice * 100).toFixed(0)}% Off</div>
-                       </div>
-                    </div>
-                    <button class="add-to-cart-btn add${product.itemId}" id="liveToastBtn"><i class="fas fa-cart"></i> Add to Cart</button>
-              </div>
-            </div>
-        </div>
-    </div>
 
-    <footer class="container-fluid d-flex flex-column container text-white p-3 footer"style="background-color: #000;">
-        <div class=" text-left mt-3 p-5" style="background-color: #070707;">
-           <div class="row">
-              <div class="col-md-3">
-                 <img src="assets/logo.PNG" alt="Logo" class="img-fluid mb-3" style="width: auto;height: 10vh;">
-              </div>
-              <div class="col-md-5 d-flex justify-content-between footer-menu">
-                 <div class="col-md-6 mr-3 list-unstyled">
-                    <li><a href="#" class="text-white">About us</a></li>
-                    <li><a href="#" class="text-white">FAQ</a></li>
-                    <li><a href="#" class="text-white">Shipping & Payment</a></li>
-                    <li><a href="#" class="text-white">Partners</a></li>
-                    <li><a href="#" class="text-white">Blog</a></li>
-                    <li><a href="#" class="text-white">Contact Us</a></li>
+        <div class="row mt-5">
+         <div class="col-md-6">
+             <div class="card-deck">
+                 <div class="card">
+                     <img src="assets/spray1.jpg" class="card-img-top h-100" alt="Product Image">
                  </div>
-                 <div class="col-md-5 ml-3 list-unstyled">
-                    <li><a href="#" class="text-white">Customer Reviews</a></li>
-                    <li><a href="#" class="text-white">Hair Care</a></li>
-                    <li><a href="#" class="text-white">Skin Care</a></li>
-                    <li><a href="#" class="text-white">Face Care</a></li>
-                 </div>
-              </div>
-              <div class="col-md-3 d-flex flex-column align-items-end">
-                 <button class="btn btn-light mb-2">Shop Now</button>
-                 <p>+(123) 123-99-999</p>
-                 <p>info@WhiteWolf.com</p>
-              </div>
-           </div>
-           <div class="row mt-5">
-              <div class="col-md-3 social">
-                 <ul class="list-unstyled">
-                    <a href="#" class="mr-2"><i class="fab fa-instagram"></i></a>
-                    <a href="#" class="mr-2"><i class="fab fa-whatsapp"></i></a>
-                 </ul>
-              </div>
-              <div class="col-md-6 d-flex">
-                 <p>The Hive Co Working and Business Center<br>Industiral Area Phase-2, Chandigarh</p>
-              </div>
-              <div class="col-md-3 d-flex flex-column align-items-end">
-              </div>
-           </div>
-        </div>
-        <div class="container mt-5">
-           <div class="row d-flex justify-content-between">
-              <div class="col-md-5">
-                 <h3>If you didn't find the products you are interested in or have questions?</h3>
-              </div>
-              <div class="col-md-6">
-                 <p>Enter your email:</p>
-                 <div class="input-group mb-3">
-                    <input type="email" class="form-control" placeholder="Your email here" aria-label="Your email" aria-describedby="basic-addon2" style="background-color: #000;">
-                    <button class="btn btn-outline-secondary" type="button" id="basic-addon2">
-                    <i class="fa fa-arrow-circle-right"></i> 
-                    </button>
-                 </div>
-              </div>
-              <p class="pl-2">2023 - Copyright, All Rights Reserved.</p>
-           </div>
-           
-        </div>
-     </footer>
-       
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+             </div>
+         </div>
+         <div class="col-md-6 d-flex flex-column h-100">
+             <h2>Why Choose Our Face Care Products?</h2>
+             <ul class=" p-2 d-flex flex-column justify-content-between align-items-center" style="font-size: 1.2rem;margin: 1rem;list-style-type: number;">
+                 <li><strong>Premium Formulas:</strong> Our face care products feature premium formulations enriched with natural ingredients, vitamins, and antioxidants to nourish and revitalize your skin.</li>
+                 <li><strong>Tailored Solutions:</strong> Whether you're looking to cleanse, hydrate, or target specific skin concerns, our range offers tailored solutions for every step of your skincare routine.</li>
+                 <li><strong>Cruelty-Free:</strong> We are committed to cruelty-free beauty. Our products are not tested on animals, providing you with guilt-free indulgence in self-care.</li>
+                 <li><strong>Cruelty-Free:</strong> We are committed to cruelty-free beauty. Our products are not tested on animals, providing you with guilt-free indulgence in self-care.</li>
+             </ul>
+         </div>
+     </div>
+     
 
-</body>
+        <div class="text-left mt-5">
+            <p class="lead">Enhance your daily skincare ritual with WhiteWolf International's Face Care collection. Elevate your natural beauty and embrace a radiant complexion. Shop our products now and experience the difference!</p>
+        </div>
+    </section>
+      <div class="container-fluid mt-2 mb-2 p-0 banner-section">
+         <img class="banner-image" src="assets/black-friday.jpg" alt="Banner Image">
+      </div>
+      <div class="container mt-5 mb-5">
+         <h2 class="text-center text-white mb-4">Search Through Category</h2>
+         <div class="row through align-items-stretch">
+            <div class="col-md-4 mt-2">
+               <div class="card bg-white text-center p-0 border-0 d-flex flex-column" style="border-radius: 1rem;">
+                  <img src="assets/category1.jpg" class="card-img-top flex-grow-1" alt="Image 1">
+                  <div class="card-body">
+                     <h3 class="card-text font-weight-bold">Face Care</h3>
+                  </div>
+               </div>
+            </div>
+            <div class="col-md-4 mt-2" style="height: 100%;">
+               <div class="card bg-white text-center p-0 border-0 d-flex flex-column" style="border-radius: 1rem;">
+                  <img src="assets/category3.jpg" class="card-img-top flex-grow-1" alt="Image 2">
+                  <div class="card-body">
+                     <h3 class="card-text font-weight-bold">Hair Care</h3>
+                  </div>
+               </div>
+            </div>
+            <div class="col-md-4 mt-2" style="height: 100%;">
+               <div class="card bg-white text-center p-0 border-0 d-flex flex-column" style="border-radius: 1rem;">
+                  <img src="assets/category2.jpg" class="card-img-top flex-grow-1" alt="Image 3">
+                  <div class="card-body">
+                     <h3 class="card-text font-weight-bold">Body Care</h3>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+      <div id="customSlider mt-5 mb-5" class="carousel slide" data-bs-ride="carousel">
+         <h2 class="text-center text-white mb-4">See What Our Customers Say</h2>
+         <div class="carousel-inner">
+            <div class="carousel-item active">
+               <img src="/assets/Bloges images 1.jpg" alt="Slide 1" class="img-fluid">
+            </div>
+            <div class="carousel-item">
+               <img src="/assets/Bloges images-1 1.jpg" alt="Slide 2" class="img-fluid">
+            </div>
+            <div class="carousel-item">
+               <img src="/assets/Bloges images-2 1.jpg" alt="Slide 2" class="img-fluid">
+            </div>
+            <div class="carousel-item">
+               <img src="/assets/Bloges images-3 1.jpg" alt="Slide 2" class="img-fluid">
+            </div>
+         </div>
+      </div>
+      <footer class="container-fluid text-white p-3 footer"style="background-color: #000;">
+         <div class="container upperdiv p-5" style="background-color: #111;">
+            <div class="row">
+               <div class="col-md-3">
+                  <img src="/assets/logo.PNG" alt="Logo" class="img-fluid mb-3" style="width: auto;height: 10vh;">
+               </div>
+               <div class="col-md-6 d-flex footer-menu">
+                  <div class="col-md-6 mr-3 list-unstyled">
+                     <li><a href="#" class="text-white">About us</a></li>
+                     <li><a href="#" class="text-white">FAQ</a></li>
+                     <li><a href="#" class="text-white">Shipping and Payment</a></li>
+                     <li><a href="#" class="text-white">Partners</a></li>
+                     <li><a href="#" class="text-white">Blog</a></li>
+                     <li><a href="#" class="text-white">Contact Us</a></li>
+                  </div>
+                  <div class="col-md-6 ml-3 list-unstyled">
+                     <li><a href="#" class="text-white">Customer Reviews</a></li>
+                     <li><a href="#" class="text-white">Hair Care</a></li>
+                     <li><a href="#" class="text-white">Skin Care</a></li>
+                     <li><a href="#" class="text-white">Face Care</a></li>
+                  </div>
+               </div>
+               <div class="col-md-3 d-flex flex-column align-items-end">
+                  <button class="btn btn-light mb-2">Shop Now</button>
+                  <p>+(123) 123-99-999</p>
+                  <p>info@WhiteWolf.com</p>
+               </div>
+            </div>
+            <div class="row mt-5">
+               <div class="col-md-3">
+                  <ul class="list-unstyled">
+                     <a href="#" class="text-white mr-2"><i class="fab fa-instagram"></i></a>
+                     <a href="#" class="text-white mr-2"><i class="fab fa-whatsapp"></i></a>
+                  </ul>
+               </div>
+               <div class="col-md-6 d-flex">
+                  <p>The Hive Co Working and Business Center<br>Industiral Area Phase-2, Chandigarh</p>
+               </div>
+               <div class="col-md-3 d-flex flex-column align-items-end">
+               </div>
+            </div>
+         </div>
+         <div class="container mt-5">
+            <div class="row d-flex justify-content-between">
+               <div class="col-md-5">
+                  <h3>If you didn't find the products you are interested in or have questions?</h3>
+               </div>
+               <div class="col-md-6">
+                  <p>Enter your email:</p>
+                  <div class="input-group mb-3">
+                     <input type="email" class="form-control" placeholder="Your email here" aria-label="Your email" aria-describedby="basic-addon2">
+                     <button class="btn btn-outline-secondary" type="button" id="basic-addon2">
+                     <i class="fa fa-arrow-circle-right"></i> 
+                     </button>
+                  </div>
+               </div>
+            </div>
+         </div>
+         <p class="pl-5">2023 - Copyright, All Rights Reserved.</p>
+      </footer>
+      <script>
+      let products = [];
+
+      document.addEventListener('DOMContentLoaded', async () => {
+         try {
+            const response = await fetchProducts('/api/products');
+            products = response;
+            renderProducts('Beard Care');
+         } catch (error) {
+            showAlert("error while fetching the products","danger")
+         }
+      });
+
+      async function fetchProducts(apiEndpoint) {
+         const response = await axios.get(apiEndpoint);
+         return response.data;
+      }
+
+      function attachAddToCartListeners(products) {
+         products.forEach(product => {
+               const addButton = document.querySelector(`.add${product.itemId}`);
+               addButton.addEventListener('click', async (event) => {
+                  event.preventDefault();
+                  try {
+                     const response = await addToCart('/addItem', { itemId: product.itemId });
+                     if (response.status === 200) {
+                           console.log(response.data.message);
+                           showAlert('item added to cart','success')
+                           openCart()
+                           // Optionally, update the UI to reflect the item being added to the cart
+                     } else {
+                           console.error('Error adding item to cart:', response.data.message);
+                           // Optionally, handle the error and update the UI accordingly
+                     }
+                  } catch (err) {
+                     if (err.response.status === 400){
+                        showAlert("Item already in cart","success")
+                        openCart()
+                     } else {
+                        window.location.href = "/login"
+                     }
+                  }
+               });
+         });
+      }
+      async function addToCart(apiEndpoint, data) {
+         return await axios.post(apiEndpoint, data);
+      }
+
+      function renderProducts(categoryFilter) {
+         const productGrid = document.getElementById('productGrid');
+         productGrid.innerHTML = '';
+
+         const filteredProducts = categoryFilter === 'all' ? products : products.filter(product => product.category === categoryFilter);
+
+         filteredProducts.forEach(product => {
+               const productCard = createProductCard(product);
+               productGrid.appendChild(productCard);
+         });
+
+         attachAddToCartListeners(filteredProducts);
+      }
+      function createProductCard(product) {
+      const productCard = document.createElement('div');
+      productCard.className = 'col-md-4 product-card product';
+      productCard.innerHTML = `
+      <a href="/search/${product.itemId}" >
+         <div class="product-image-container">
+               <img class="product-image" src="${product.imageLink[0]}" alt="${product.name}">
+               <img class="product-image hover-image" src="${product.imageLink[1] || product.imageLink[0]}" alt="${product.name}" style="display:none">
+         </div>
+         <div class="product-details">
+               <div class="category-badge text-white corner-round p-1" style="display:none;">${product.category}</div>
+               <div class="product-title"><a href="Product_Description.html" style="text-decoration:none;color:#000">${product.name}</a></div>
+               <div class="product-description">${product.description}</div>
+               <div class="mb-2">
+                  <div class="d-flex justify-content-between bolder product-price-discount">
+                     <div class="product-price">&#8377; ${product.offeredPrice}</div>
+                     <div class="original-price text-secondary text-decoration-line-through">&#8377;${product.originalPrice || ''}</div>
+                     <div class="product-discount text-success">${((product.originalPrice - product.offeredPrice) / product.originalPrice * 100).toFixed(0)}% Off</div>
+                  </div>
+               </div>
+               <button onclick="showNotification()" class="add-to-cart-btn add${product.itemId}" id="liveToastBtn"><i class="fas fa-cart"></i> Add to Cart</button>
+         </div>
+      </a>
+      `;
+
+      const productImageContainer = productCard.querySelector('.product-image-container');
+      const mainImage = productImageContainer.querySelector('.product-image');
+      const hoverImage = productImageContainer.querySelector('.hover-image');
+
+      productImageContainer.addEventListener('mouseenter', function () {
+         mainImage.style.display = 'none';
+         hoverImage.style.display = 'block';
+      });
+
+      productImageContainer.addEventListener('mouseleave', function () {
+         mainImage.style.display = 'block';
+         hoverImage.style.display = 'none';
+      });
+
+
+
+      return productCard;
+      }
+
+      // Example usage
+      const container = document.getElementById('productContainer'); // Replace with the actual container element ID
+      products.forEach(product => {
+      const productCard = createProductCard(product);
+      container.appendChild(productCard);
+      });
+      </script>
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+      <script>
+         $(document).ready(function(){
+             setInterval(function(){
+                 $('#customSlider .carousel-inner').animate({marginLeft: '-=100%'}, 1000, function(){
+         
+                     $(this).find('.carousel-item:first').appendTo(this);
+                     $(this).css({marginLeft: 0});
+                 });
+             }, 1000); 
+         });
+      </script>
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+      <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+      <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+   </body>
 </html>
