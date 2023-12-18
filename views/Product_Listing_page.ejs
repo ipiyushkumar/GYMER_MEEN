@@ -11,7 +11,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@200;400;500&display=swap">
 
-    <title>Explore - WhiteWolf International</title>
+    <title><%= content.context %> - WhiteWolf International</title>
     <style>
         body{
             background-color: #000;
@@ -373,7 +373,7 @@ footer a{
         try {
             const response = await fetchProducts('/api/products');
             products = response;
-            renderProducts('all');
+            renderProducts('<%= content.context %>');
         } catch (error) {
             showAlert("error while fetching the products","danger")
         }

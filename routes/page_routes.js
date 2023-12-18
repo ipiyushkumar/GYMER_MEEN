@@ -20,35 +20,24 @@ router.get('/',(req, res) => {
     res.render('Home_page',{content})
 })
 
-router.get('/face_care', (req, res) => {
-    const content = {
-        isLoggedIn : req.session.isLoggedIn,
+router.get('/product_listing/:page',(req, res) => {
+    const { page } = req.params
+    let pageContext;
+    if (page === "face_care"){
+        pageContext = 'Face Care'
+    } else if (page === "hair_care") {
+        pageContext = 'Hair Care'
+    } else if (page === "beard_care") {
+        pageContext = 'Beard Care'
+    } else if (page === "body_care") {
+        pageContext = 'Body Care'
+    } else {
+        pageContext = 'all'
     }
-    res.render('Face_Care_page',{content})
-})
-router.get('/hair_care', (req, res) => {
-    const content = {
-        isLoggedIn : req.session.isLoggedIn,
-    }
-    res.render('Hair_Care_page',{content})
-})
-router.get('/body_care',(req, res) => {
-    const content = {
-        isLoggedIn : req.session.isLoggedIn,
-    }
-    res.render('Body_Care_page',{content})
-})
-router.get('/beard_care',(req, res) => {
-    const content = {
-        isLoggedIn : req.session.isLoggedIn,
-    }
-    res.render('Beard_Care_page',{content})
-})
 
-
-router.get('/product_listing',(req, res) => {
     const content = {
         isLoggedIn : req.session.isLoggedIn,
+        context: pageContext
     }
     res.render('Product_Listing_page',{content});
 })
