@@ -495,8 +495,9 @@
                         cell.innerHTML = `
                             <select id="myDropdown_${Id}">
                                 <option value="Pending" ${content === 'Pending' ? 'selected' : ''}>Pending</option>
-                                <option value="In progress" ${content === 'In progress' ? 'selected' : ''}>In progress</option>
-                                <option value="Completed" ${content === 'Completed' ? 'selected' : ''}>Completed</option>
+                                <option value="Sent" ${content === 'Sent' ? 'selected' : ''}>Sent</option>
+                                <option value="Delivering" ${content === 'Delivering' ? 'selected' : ''}>Delivering</option>
+                                <option value="Delivered" ${content === 'Delivered' ? 'selected' : ''}>Delivered</option>
                             </select>
                         `;
                         return cell;

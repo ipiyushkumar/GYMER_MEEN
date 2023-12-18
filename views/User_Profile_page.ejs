@@ -400,8 +400,13 @@
     function createTableRow (orderId, orderItems, OrderPayment, OrderStatus) {
         let row = document.createElement('tr')
 
+        // Attach a click event listener to the table row
+        row.addEventListener('click', function() {
+            // Redirect to the specified URL
+            window.location.href = `/order-track/${orderId}`;
+        });
+
         row.append(createTableCell(orderId))
-        row.append(createTableCell(orderItems))
         row.append(createTableCell(OrderPayment))
         row.append(createTableCell(OrderStatus))
 

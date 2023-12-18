@@ -31,4 +31,41 @@ router.post('/removeItem', isAuthenticated, controllers.removeCartItem);
 
 router.post('/decreaseItem', isAuthenticated, controllers.decreaseCartItemQuantity);
 
+const Orders = require('../schemas/order_schema');
+
+// get order track
+router.get('/order-track/:razorpay_order_id',isAuthenticated, async (req, res) => {
+    const { razorpay_order_id } = req.params;
+  
+    try {
+        // Find the order by razorpay_order_id
+        const order = await Orders.findOne({ razorpay_order_id });
+  
+        if (!order) {
+            return res.status(404).json({ error: 'Order not found' });
+        }
+
+        res.render('Order_tracking',{order});
+    } catch (error) {
+        return res.status(500).json({ error: 'Internal Server Error' });
+    }
+});
+
+router.get('/api/order-track/:razorpay_order_id',isAuthenticated, async (req, res) => {
+    const { razorpay_order_id } = req.params;
+  
+    try {
+        // Find the order by razorpay_order_id
+        const order = await Orders.findOne({ razorpay_order_id });
+  
+        if (!order) {
+            return res.status(404).json({ error: 'Order not found' });
+        }
+
+        res.status(200).send({products : order.products})
+    } catch (error) {
+        return res.status(500).json({ error: 'Internal Server Error' });
+    }
+});
+
 module.exports = router;

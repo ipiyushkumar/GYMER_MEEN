@@ -32,67 +32,19 @@
     </style>
 </head>
 <body>
-    <div id="alertContainer"></div>
-    <style>
-      .alert {
-          position: fixed;
-          top: 1rem;
-          right: 1rem;
-          z-index: 2;
-          padding: 0.75rem 1.25rem;
-          margin-bottom: 1rem;
-          border: 1px solid transparent;
-          border-radius: 0.25rem;
-          transition: 0.3s ease-in-out;
-        }
-   
-        .alert.success {
-          color: #155724;
-          background-color: #d4edda;
-          border-color: #c3e6cb;
-        }
-        .alert.danger {
-          color: #721c24;
-          background-color: #f8d7da;
-          border-color: #f5c6cb;
-        }
-      </style>
-      <script>
-        function showAlert(message, type) {
-          const alertContainer = document.getElementById("alertContainer");
-      
-          // Create alert element
-          const alert = document.createElement("div");
-          alert.className = `alert ${type}`;
-          alert.innerHTML = `${message}<span class="close" onclick="closeAlert(this)">×</span>`;
-      
-          // Append alert to container
-          alertContainer.appendChild(alert);
-      
-          // Set timeout to remove the alert after 5 seconds
-          setTimeout(() => {
-            closeAlert(alert.querySelector(".close"));
-          }, 4000);
-        }
-      
-        function closeAlert(closeButton) {
-          const alert = closeButton.parentElement;
-          alert.style.display = "none";
-        }
-      </script>
+
     <div class="promo-strip">
         Get 25% Off on Every Purchase
       </div>
     <nav class="navbar navbar-expand-lg navbar-dark p-3" style="width: 100%; background-color: #000;">
         <div class="container-fluid">
-          <!-- Logo aligned to the right -->
+
           <div class="col-md-4 text-left" style="width: 30%;">
             <a class="navbar-brand" href="/">
               <img src="/assets/newlogo.png"style="width: 10vh; height: auto;" alt="Logo">
             </a>
           </div>
-      
-          <!-- Search bar in the middle -->
+
           <div class="col-md-4 d-flex justify-content-center" style="width: 30%;">
             <ul class="navbar-nav">
               <li class="nav-item">
@@ -109,19 +61,22 @@
               </li>
             </ul>
           </div>
-          <!-- Cart and Profile aligned to the right -->
+
           <div class="custom-nav d-flex justify-content-end" style="width: 30%; font-size: 1rem;">
-              <a class="nav-link cartButtom d-flex align-items-center" onclick="openCart()" style="color: #fff; font-size: 1.2rem;">
+            <% if (content.isLoggedIn === true) { %>
+                <a class="nav-link cartButtom d-flex align-items-center" style="color: #fff; font-size: 1.2rem;">
                 <iconify-icon icon="bxs:cart-add" style="font-size: 2rem;"></iconify-icon>
                 <span style="margin-left: 5px;">Cart</span>
                 </a>
-            <% if (content.isLoggedIn === true) { %>
-                
                 <a class="nav-link d-flex align-items-center" href="/profile" style="color: #fff; font-size: 1.2rem;">
                 <iconify-icon icon="gg:profile" style="font-size: 2rem;"></iconify-icon>
                 <span style="margin-left: 5px;">Profile</span>
                 </a>
               <% } else { %>
+                <a class="nav-link cartButtom d-flex align-items-center" style="color: #fff; font-size: 1.2rem;" onclick="alert(`login to access this feature`)">
+                   <iconify-icon icon="bxs:cart-add" style="font-size: 2rem;"></iconify-icon>
+                   <span style="margin-left: 5px;">Cart</span>
+                </a>
                 <a class="nav-link d-flex align-items-center" href="/login" style="color: #fff; font-size: 1.2rem;">
                   <iconify-icon icon="material-symbols:login-sharp" style="font-size: 2rem;"></iconify-icon>
                 <span style="margin-left: 5px;">Login</span>
@@ -160,7 +115,7 @@
                     <iconify-icon icon="noto:star"></iconify-icon>
                     <span>4.7 | (21 Reviews)</span>
                 </div>
-               
+
                <div class="product-price">
                 <p class="discount-percentage">
                     <% 
@@ -168,7 +123,7 @@
                     %>
                     <span>-<%= discountPercentage.toFixed(0) %>%  </span> 
                     <p class="new-price"><span>&#8377;<%= item.offeredPrice %></span></p>
-                    
+
                     </p>
                 </div>
 
@@ -201,7 +156,7 @@
                     </div>
                   </div>
             </div>
-            
+
         </div>
     </div>
 
@@ -231,7 +186,7 @@
         </div>
     </div>
 
-    <div class="parent-container mt-5 mb-5">
+    <div class="parent-container container mt-5 mb-5">
       <div class="left-container">
         <div>
           <h2>4.0</h2>
@@ -253,8 +208,32 @@
       </div>
     </div>
 
-    <div class="product-container">
-    </div>
+    <div class="review-container container">
+
+      <select id="reviewFilter" onchange="filterReviews()">
+          <option value="recent">Most Recent</option>
+          <option value="positive">Positive First</option>
+          <option value="negative">Negative First</option>
+      </select>
+
+      <div class="review-section" id="positiveReviews">
+
+          <div class="review-item">
+              <div class="review-name">John Doe</div>
+              <div class="review-date">2023/01/01</div>
+              <div class="review-stars">5</div>
+              <div class="review-title">Great Product</div>
+              <div class="review-desc">Lorem ipsum...</div>
+          </div>
+
+          <div class="read-more-button d-flex align-items-center justify-content-center" onclick="showAllPositiveReviews()"><button>Read More</button></div>
+      </div>
+
+  </div>
+
+  <h2 class="people m-2 mt-4">People Also Bought</h2>
+  <div id="productGrid" class="row mb-3 product-grid container onmousedown="startScroll(event)" onmouseup="stopScroll()" ontouchstart="startScroll(event)" ontouchend="stopScroll()">
+  </div>
 
     <footer class="container-fluid mt-5 d-flex flex-column container text-white p-3 footer"style="background-color: #000;">
         <div class=" text-left mt-3 p-5" style="background-color: #070707;">
@@ -323,25 +302,127 @@
                 const Id = '<%= item.itemId %>';
                 const response = await axios.post('/addItem', { itemId: Id});
                 if (response.status === 200) {
-                      console.log(response.data.message);
-                      showAlert('item added to cart','success')
-                      openCart()
-                      
-                      // Optionally, update the UI to reflect the item being added to the cart
+                    console.log(response.data.message);
+
                 } else {
-                      console.error('Error adding item to cart:', response.data.message);
-                      // Optionally, handle the error and update the UI accordingly
+                    console.error('Error adding item to cart:', response.data.message);
+
                 }
-            } catch (err) {
-              if (err.response.status === 400){
-                 showAlert("Item already in cart","success")
-                 openCart()
-              } else {
-                 window.location.href = "/login"
-              }
+            } catch (error) {
+                console.error('Error adding item to cart:', error.message);
+
             }
         });
     </script>
+
+<script>
+  let products = [];
+
+  document.addEventListener('DOMContentLoaded', async () => {
+     try {
+        const response = await fetchProducts('/api/products');
+        products = response;
+        renderProducts('all');
+     } catch (error) {
+        showAlert("error while fetching the products","danger")
+     }
+  });
+
+  async function fetchProducts(apiEndpoint) {
+     const response = await axios.get(apiEndpoint);
+     return response.data;
+  }
+
+  function attachAddToCartListeners(products) {
+     products.forEach(product => {
+           const addButton = document.querySelector(`.add${product.itemId}`);
+           addButton.addEventListener('click', async (event) => {
+              event.preventDefault();
+              try {
+                 const response = await addToCart('/addItem', { itemId: product.itemId });
+                 handleAddToCartResponse(response);
+              } catch (error) {
+                 showAlert("Item already in cart","success")
+              }
+           });
+     });
+  }
+  async function addToCart(apiEndpoint, data) {
+     return await axios.post(apiEndpoint, data);
+  }
+
+  function handleAddToCartResponse(response) {
+     if (response.status === 200) {
+           console.log(response.data.message);
+           showAlert('item added to cart','success')
+
+     } else {
+           console.error('Error adding item to cart:', response.data.message);
+
+     }
+  }
+
+  function renderProducts(categoryFilter) {
+     const productGrid = document.getElementById('productGrid');
+     productGrid.innerHTML = '';
+
+     const filteredProducts = categoryFilter === 'all' ? products : products.filter(product => product.category === categoryFilter);
+
+     filteredProducts.forEach(product => {
+           const productCard = createProductCard(product);
+           productGrid.appendChild(productCard);
+     });
+
+     attachAddToCartListeners(filteredProducts);
+  }
+  function createProductCard(product) {
+  const productCard = document.createElement('div');
+  productCard.className = 'col-md-4 product-card product';
+  productCard.innerHTML = `
+  <a href="/search/${product.itemId}" >
+     <div class="product-image-container">
+           <img class="product-image" src="${product.imageLink[0]}" alt="${product.name}">
+           <img class="product-image hover-image" src="${product.imageLink[1] || product.imageLink[0]}" alt="${product.name}" style="display:none">
+     </div>
+     <div class="product-details">
+           <div class="category-badge text-white corner-round p-1" style="display:none;">${product.category}</div>
+           <div class="product-title"><a href="Product_Description.html" style="text-decoration:none;color:#000">${product.name}</a></div>
+           <div class="product-description">${product.description}</div>
+           <div class="mb-2">
+              <div class="d-flex justify-content-between bolder product-price-discount">
+                 <div class="product-price">&#8377; ${product.offeredPrice}</div>
+                 <div class="original-price text-secondary text-decoration-line-through">&#8377;${product.originalPrice || ''}</div>
+                 <div class="product-discount text-success">${((product.originalPrice - product.offeredPrice) / product.originalPrice * 100).toFixed(0)}% Off</div>
+              </div>
+           </div>
+           <button onclick="showNotification()" class="add-to-cart-btn add${product.itemId}" id="liveToastBtn"><i class="fas fa-cart"></i> Add to Cart</button>
+     </div>
+  </a>
+  `;
+
+  const productImageContainer = productCard.querySelector('.product-image-container');
+  const mainImage = productImageContainer.querySelector('.product-image');
+  const hoverImage = productImageContainer.querySelector('.hover-image');
+
+  productImageContainer.addEventListener('mouseenter', function () {
+     mainImage.style.display = 'none';
+     hoverImage.style.display = 'block';
+  });
+
+  productImageContainer.addEventListener('mouseleave', function () {
+     mainImage.style.display = 'block';
+     hoverImage.style.display = 'none';
+  });
+
+  return productCard;
+}
+
+const container = document.getElementById('productContainer'); 
+products.forEach(product => {
+  const productCard = createProductCard(product);
+  container.appendChild(productCard);
+});
+</script>
 
 <script>
     function toggleFAQ(question) {
@@ -367,7 +448,7 @@
 </script>
 
 <script>
-  // Sample data for the chart
+
   var ctx = document.getElementById('ratingsChart').getContext('2d');
   var ratingsChart = new Chart(ctx, {
     type: 'bar',
@@ -375,7 +456,7 @@
       labels: ['1 Star', '2 Stars', '3 Stars', '4 Stars', '5 Stars'],
       datasets: [{
         label: '',
-        data: [10, 20, 30, 25, 15], // Replace with your actual data
+        data: [10, 20, 30, 25, 15], 
         backgroundColor: [
           '#FF5733',
           '#FFD933',
@@ -396,13 +477,13 @@
     options: {
       scales: {
         y: {
-          display: false, // Hide the y-axis labels
+          display: false, 
           beginAtZero: true,
-          max: 40 // Adjust as needed based on your data
+          max: 40 
         },
         x: {
           grid: {
-            display: false // Hide the x-axis background lines
+            display: false 
           }
         }
       }
@@ -410,6 +491,50 @@
   });
 </script>
 
+<script>
+   function filterReviews() {
+
+            const filterValue = document.getElementById("reviewFilter").value;
+
+            document.querySelectorAll('.review-section').forEach(function (section) {
+                section.classList.remove('active');
+            });
+
+            document.getElementById(`${filterValue}Reviews`).classList.add('active');
+        }
+
+        function showAllPositiveReviews() {
+
+            document.getElementById('positiveReviews').innerHTML = '';
+
+            const positiveReviews = [
+                { user: 'John Doe', date: '2023/01/01', stars: 5, title: 'Great Product', description: 'Lorem ipsum...' },
+                { user: 'Jane Smith', date: '2023/01/01', stars: 4, title: 'Good Product', description: 'Lorem ipsum...' },
+                { user: 'Alice Johnson', date: '2023/01/01', stars: 5, title: 'Excellent Product', description: 'Lorem ipsum...' },
+
+            ];
+
+            positiveReviews.forEach(function (review) {
+
+                const reviewDiv = document.createElement('div');
+                reviewDiv.classList.add('review-item');
+
+                reviewDiv.innerHTML = `
+                    <div class="review-name">${review.user}</div>
+                    <div class="review-date">${review.date}</div>
+                    <div class="review-stars">${review.stars}</div>
+                    <div class="review-title">${review.title}</div>
+                    <div class="review-desc">${review.description}</div>
+                `;
+
+                document.getElementById('positiveReviews').appendChild(reviewDiv);
+            });
+
+            filterReviews();
+        }
+
+        displayReviews();
+</script>
+
 </body>
 </html>
-

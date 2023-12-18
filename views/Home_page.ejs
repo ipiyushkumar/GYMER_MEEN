@@ -14,6 +14,9 @@
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
       <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.js"></script>
       <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+      <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+      <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+
   </head>
    </head>
    <style>
@@ -208,76 +211,209 @@
 
 
      <h2 class="text-center text-white mt-5 mb-0">See What Our Customers Say</h2>
-     <div class="review mt-3">   
-         <div class="review-fit" style="display: flex;flex-direction: column;">
-            <img src="assets/spray1.jpg">
-            <div class="icons">
-               <i class="fas fa-star"></i>
-               <i class="fas fa-star"></i>
-               <i class="fas fa-star"></i>
-               <i class="fas fa-star"></i>
-               <i class="fas fa-star"></i>
-            </div>
-            <p>User 1 Review Text Goes Here...</p>
-            <h5 class="user-name" >User 1</h5>
-            <div class="insta-id">
-                  <i class="fab fa-instagram"></i>
-                  <span >user1_insta</span>
-            </div>
-         </div>
-
-         <div class="review-fit" style="display: flex;flex-direction: column;">
-            <img src="assets/spray1.jpg">
-            <div class="icons">
-               <i class="fas fa-star"></i>
-               <i class="fas fa-star"></i>
-               <i class="fas fa-star"></i>
-               <i class="fas fa-star"></i>
-               <i class="fas fa-star"></i>
-            </div>
-            <p>User 1 Review Text Goes Here...</p>
-            <h5 class="user-name" >User 1</h5>
-            <div class="insta-id">
-                  <i class="fab fa-instagram"></i>
-                  <span >user1_insta</span>
-            </div>
-         </div>
-
-         <div class="review-fit" style="display: flex;flex-direction: column;">
-            <img src="assets/spray1.jpg">
-            <div class="icons">
-               <i class="fas fa-star"></i>
-               <i class="fas fa-star"></i>
-               <i class="fas fa-star"></i>
-               <i class="fas fa-star"></i>
-               <i class="fas fa-star"></i>
-            </div>
-            <p>User 1 Review Text Goes Here...</p>
-            <h5 class="user-name" >User 1</h5>
-            <div class="insta-id">
-                  <i class="fab fa-instagram"></i>
-                  <span >user1_insta</span>
-            </div>
-         </div>
-      
-
-         <div class="review-fit" style="display: flex;flex-direction: column;">
-            <img src="assets/spray1.jpg">
-            <div class="icons">
-               <i class="fas fa-star"></i>
-               <i class="fas fa-star"></i>
-               <i class="fas fa-star"></i>
-               <i class="fas fa-star"></i>
-               <i class="fas fa-star"></i>
-            </div>
-            <p>User 1 Review Text Goes Here...</p>
-            <h5 class="user-name" >User 1</h5>
-            <div class="insta-id">
-                  <i class="fab fa-instagram"></i>
-                  <span >user1_insta</span>
-            </div>
-         </div>
-  </div>
+     <style>
+         .swiper-container {
+            background-color: black;
+            width: 95%;
+            overflow: hidden;
+            padding-bottom: 60px
+         }
+         .swiper-slide {
+            margin-top: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            text-align: center;
+            width: 400px;
+            height: auto;
+            background-color: #fff;
+            padding: 15px;
+            border-radius: 10px;
+         }
+         
+         .swiper-slide .ratings{
+            margin-top: 2vh;
+         }
+         
+         .swiper-slide .ratings .rating-number{
+            font-size: 4vh;
+            font-weight: bolder;
+         }
+         
+         .swiper-slide .user-info .text-muted{
+            margin-top: 2vh;
+         }
+         
+         .swiper-slide .ratings iconify-icon{
+            font-size: 4vh;
+         }
+         .swiper-slide img {
+            width: 30vh;
+            height: 30vh;
+            border-radius: 50%;
+            height: auto;
+            margin-bottom: 5vh;
+            display:block;
+            margin:2vh auto;
+         }
+         
+         .swiper-container-horizontal > .swiper-pagination-bullets{
+            bottom: 0;
+         }
+         
+         .swiper-pagination-bullet {
+            margin: 0 8px!important;
+         }
+         .swiper-pagination-bullet {
+            background: #fff;
+            border: 1px solid #fff;
+            border-radius: 100%;
+            display: inline-block;
+            height: 5px;
+            opacity: 1;
+            -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
+            width: 5px;
+         }
+         .swiper-pagination-bullet-active {
+            background-color: grey;
+            border: medium none;
+            height: 7px;
+            opacity: 1;
+            -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
+            width: 7px;
+         }
+         
+         @media screen and (max-width: 767px){
+            .swiper-slide{
+               width: 300px;
+            }
+         }
+         
+         .swiper-button-next,
+               .swiper-button-prev {
+                     color: #fff;
+                     font-size: 18px;
+                     margin: 0 10px;
+               }
+         
+               .swiper-button-next:hover,
+               .swiper-button-prev:hover {
+                     color: #ee0f6f;
+               }
+         
+      </style>
+     <div class="container py-5">
+		<div class="row">
+			<div class="col-12">
+				<div class="swiper-container mySwiper">
+					<div class="swiper-wrapper">
+					<div class="swiper-slide">
+                        <img src="../assets/spray1.jpg" alt="" class="img-fluid" />
+                        
+                        <div class="user-info">
+                            <small class="text-muted">@username</small>
+                            <div class="ratings d-flex justify-content-center align-items-center">
+                                <span class="rating-number">4.0</span>
+                                <iconify-icon icon="emojione:star"></iconify-icon>
+                                <iconify-icon icon="emojione:star"></iconify-icon>
+                                <iconify-icon icon="emojione:star"></iconify-icon>
+                                <iconify-icon icon="emojione:star"></iconify-icon>
+                            </div>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <img src="../assets/spray1.jpg" alt="" class="img-fluid" />
+                        
+                        <div class="user-info">
+                            <small class="text-muted">@username</small>
+                            <div class="ratings d-flex justify-content-center align-items-center">
+                                <span class="rating-number">4.0</span>
+                                <iconify-icon icon="emojione:star"></iconify-icon>
+                                <iconify-icon icon="emojione:star"></iconify-icon>
+                                <iconify-icon icon="emojione:star"></iconify-icon>
+                                <iconify-icon icon="emojione:star"></iconify-icon>
+                            </div>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <img src="../assets/spray1.jpg" alt="" class="img-fluid" />
+                        
+                        <div class="user-info">
+                            <small class="text-muted">@username</small>
+                            <div class="ratings d-flex justify-content-center align-items-center">
+                                <span class="rating-number">4.0</span>
+                                <iconify-icon icon="emojione:star"></iconify-icon>
+                                <iconify-icon icon="emojione:star"></iconify-icon>
+                                <iconify-icon icon="emojione:star"></iconify-icon>
+                                <iconify-icon icon="emojione:star"></iconify-icon>
+                            </div>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <img src="../assets/spray1.jpg" alt="" class="img-fluid" />
+                        
+                        <div class="user-info">
+                            <small class="text-muted">@username</small>
+                            <div class="ratings d-flex justify-content-center align-items-center">
+                                <span class="rating-number">4.0</span>
+                                <iconify-icon icon="emojione:star"></iconify-icon>
+                                <iconify-icon icon="emojione:star"></iconify-icon>
+                                <iconify-icon icon="emojione:star"></iconify-icon>
+                                <iconify-icon icon="emojione:star"></iconify-icon>
+                            </div>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <img src="../assets/spray1.jpg" alt="" class="img-fluid" />
+                        
+                        <div class="user-info">
+                            <small class="text-muted">@username</small>
+                            <div class="ratings d-flex justify-content-center align-items-center">
+                                <span class="rating-number">4.0</span>
+                                <iconify-icon icon="emojione:star"></iconify-icon>
+                                <iconify-icon icon="emojione:star"></iconify-icon>
+                                <iconify-icon icon="emojione:star"></iconify-icon>
+                                <iconify-icon icon="emojione:star"></iconify-icon>
+                            </div>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                        </div>
+                    </div>
+						
+					</div>
+                    <div class="swiper-button-next"></div>
+                    <div class="swiper-button-prev"></div>
+					<div class="swiper-pagination"></div>
+				</div>
+			</div>
+		</div>
+	</div>
+   <script>
+      var swiper = new Swiper('.mySwiper', {
+          pagination: {
+              el: '.swiper-pagination',
+              clickable: true,
+          },
+          navigation: {
+              nextEl: '.swiper-button-next',
+              prevEl: '.swiper-button-prev',
+          },
+          effect: 'coverflow',
+          loop: true,
+          centeredSlides: true,
+          slidesPerView: 'auto',
+          coverflowEffect: {
+              rotate: 30, 
+              stretch: 80,
+              depth: 300,
+              modifier: 1,
+              slideShadows: false,
+          }
+      });
+  </script>
 
       
       <footer class="container-fluid d-flex flex-column container text-white p-3 footer"style="background-color: #000;">

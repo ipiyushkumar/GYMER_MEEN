@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+
+    <link href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" rel="stylesheet">
+
+    <title>Document</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css?family=Open+Sans&display=swap');
+
+        body {
+            background-color: #000;
+            font-family: 'Open Sans', serif
+        }
+
+        .container {
+            margin-top: 50px;
+            margin-bottom: 50px
+        }
+
+        .card {
+            position: relative;
+            display: -webkit-box;
+            border-radius: 1rem;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-box-orient: vertical;
+            -webkit-box-direction: normal;
+            -ms-flex-direction: column;
+            flex-direction: column;
+            min-width: 0;
+            word-wrap: break-word;
+            background-color: #fff;
+            background-clip: border-box;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            border-radius: 0.10rem;
+        }
+
+        .card-header:first-child {
+            border-radius: calc(0.37rem - 1px) calc(0.37rem - 1px) 0 0
+        }
+
+        .card-header {
+            padding: 0.75rem 1.25rem;
+            margin-bottom: 0;
+            background-color: #fff;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1)
+        }
+
+        .track {
+            position: relative;
+            background-color: #ddd;
+            height: 7px;
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            margin-bottom: 60px;
+            margin-top: 50px
+        }
+
+        .track .step {
+            -webkit-box-flex: 1;
+            -ms-flex-positive: 1;
+            flex-grow: 1;
+            width: 25%;
+            margin-top: -18px;
+            text-align: center;
+            position: relative
+        }
+
+        .track .step.active:before {
+            background: #000
+        }
+
+        .track .step::before {
+            height: 7px;
+            position: absolute;
+            content: "";
+            width: 100%;
+            left: 0;
+            top: 18px
+        }
+
+        .track .step.active .icon {
+            background: #000;
+            color: #fff
+        }
+
+        .track .icon {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            line-height: 40px;
+            position: relative;
+            border-radius: 100%;
+            background: #ddd
+        }
+
+        .track .step.active .text {
+            font-weight: 400;
+            color: #000
+        }
+
+        .track .text {
+            display: block;
+            margin-top: 7px
+        }
+
+        .itemside {
+            position: relative;
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            width: 100%
+        }
+
+        .itemside .aside {
+            position: relative;
+            -ms-flex-negative: 0;
+            flex-shrink: 0
+        }
+
+        .img-sm {
+            width: 80px;
+            height: auto;
+            padding: 7px
+        }
+
+        ul.row,
+        ul.row-sm {
+            list-style: none;
+            padding: 0
+        }
+
+        .itemside .info {
+            padding-left: 15px;
+            padding-right: 7px
+        }
+
+        .itemside .title {
+            display: block;
+            margin-bottom: 5px;
+            color: #212529
+        }
+
+        p {
+            margin-top: 0;
+            margin-bottom: 1rem
+        }
+
+        .btn-warning {
+            color: #ffffff;
+            background-color: #ee5435;
+            border-color: #ee5435;
+            border-radius: 1px
+        }
+
+        .btn-warning:hover {
+            color: #ffffff;
+            background-color: #ff2b00;
+            border-color: #ff2b00;
+            border-radius: 1px
+        }
+
+        .table {
+            width: 100%;
+            margin-bottom: 0;
+            color: #212529;
+            border-collapse: collapse
+        }
+
+        .table img {
+            width: 40px;
+            height: auto
+        }
+
+        .payment-details {
+            margin-top: 20px
+        }
+
+        .payment-details h6 {
+            margin-bottom: 5px
+        }
+
+        .payment-details .details {
+            display: flex;
+            justify-content: space-between
+        }
+
+        .review-section {
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            padding: 1rem;
+            border-radius: 0.10rem;
+            margin-top: 20px;
+        }
+
+        .review-section .star {
+            font-size: 25px;
+            color: #ddd;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+
+        .review-section .star:hover,
+        .review-section .star.active {
+            color: #ffc107;
+        }
+
+        .review-section input[type="text"],
+        .review-section textarea {
+            width: 100%;
+            margin-top: 10px;
+            padding: 10px;
+            font-size: 16px;
+            margin-bottom: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+</head>
+
+<body>
+    <div class="container ">
+        <article class="card">
+            <header class="card-header"> <a href="#" class="btn btn-dark" data-abc="true"> <i class="fa fa-chevron-left"></i></a> My Orders / Tracking </header>
+            <div class="card-body">
+                <h6>Order ID: <%= order.razorpay_order_id %></h6>
+                <article class="card">
+                    <div class="card-body row">
+                        <div class="col"> <strong>Estimated Delivery :</strong> <br>29 nov 2019 </div>
+                        <div class="col"> <strong>Shipped By :</strong> <br> ShipRocket</div>
+
+                        <div class="col"> <strong>AWB No :</strong> <br> BD045903594059 </div>
+                    </div>
+                </article>
+                <div class="track p-0">
+                    <% if (order.status === 'Pending') { %>
+                        <div class="step active"> <span class="icon"> <i class="fa fa-check"></i> </span> <span class="text">Order confirmed</span> </div>
+                        <div class="step"> <span class="icon"> <i class="fa fa-user"></i> </span> <span class="text"> Picked by courier</span> </div>
+                        <div class="step"> <span class="icon"> <i class="fa fa-truck"></i> </span> <span class="text"> On the way </span> </div>
+                        <div class="step"> <span class="icon"> <i class="fa fa-box"></i> </span> <span class="text">Delivered</span> </div>
+                    <% } %>
+                
+                    <% if (order.status === 'Sent') { %>
+                        <div class="step active"> <span class="icon"> <i class="fa fa-check"></i> </span> <span class="text">Order confirmed</span> </div>
+                        <div class="step active"> <span class="icon"> <i class="fa fa-user"></i> </span> <span class="text"> Picked by courier</span> </div>
+                        <div class="step"> <span class="icon"> <i class="fa fa-truck"></i> </span> <span class="text"> On the way </span> </div>
+                        <div class="step"> <span class="icon"> <i class="fa fa-box"></i> </span> <span class="text">Delivered</span> </div>
+
+                    <% } %>
+                
+                    <% if (order.status === 'Delivering') { %>
+                        <div class="step active"> <span class="icon"> <i class="fa fa-check"></i> </span> <span class="text">Order confirmed</span> </div>
+                        <div class="step active"> <span class="icon"> <i class="fa fa-user"></i> </span> <span class="text"> Picked by courier</span> </div>
+                        <div class="step active"> <span class="icon"> <i class="fa fa-truck"></i> </span> <span class="text"> On the way </span> </div>
+                        <div class="step"> <span class="icon"> <i class="fa fa-box"></i> </span> <span class="text">Delivered</span> </div>
+                    <% } %>
+                
+                    <% if (order.status === 'Delivered') { %>
+                        <div class="step active"> <span class="icon"> <i class="fa fa-check"></i> </span> <span class="text">Order confirmed</span> </div>
+                        <div class="step active"> <span class="icon"> <i class="fa fa-user"></i> </span> <span class="text"> Picked by courier</span> </div>
+                        <div class="step active"> <span class="icon"> <i class="fa fa-truck"></i> </span> <span class="text"> On the way </span> </div>
+                        <div class="step active"> <span class="icon"> <i class="fa fa-box"></i> </span> <span class="text">Delivered</span> </div>
+                    <% } %>
+                </div>
+                
+                <hr>
+                <table class="table">
+                    <tbody>
+                        <tr>
+                            <td><img src="../assets/Product1.jpg" alt="Product Image"></td>
+                            <td class="title">WhiteWolf Anti Pollution Face Wash</td>
+                            <td>Beard Care</td>
+                            <td>Quantity: 1</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+                <script>
+                    document.addEventListener("DOMContentLoaded",async function () {
+                        const tableBody = document.querySelector(".table tbody");
+
+                        // Define a function to fetch product details for a specific itemId
+                        const fetchProductDetails = async (itemId) => {
+                            try {
+                                const response = await axios.get(`/api/products/${itemId}`);
+                                return response.data;
+                            } catch (error) {
+                                console.error(error);
+                                return null;
+                            }
+                        };
+
+                        const orderId = 
+                        console.log(orderId)
+
+                        await axios.get('/api/order-track/<%= order.razorpay_order_id %>')
+                        .then(response => console.log(response.data))
+                        .catch(err => console.log('an error occured fetching products'))
+
+                        order.products.forEach(product => {
+                            // For each product, fetch details and update the table
+                            fetchProductDetails(product)
+                                .then(data => {
+                                    if (data) {
+                                        const row = document.createElement("tr");
+                                        row.innerHTML = `
+                                            <td><img src="${data.imageLink[0]}" alt="${data.name} Image"></td>
+                                            <td class="title">${data.name}</td>
+                                            <td>${data.category}</td>
+                                            <td>Quantity: ${product.quantity}</td>
+                                        `;
+                                        tableBody.appendChild(row);
+                                    }
+                                });
+                        });
+                    });
+                </script>
+
+                <hr>
+                <div class="payment-details mb-3 mt-3">
+                    <div class="details">
+                        <div>Razorpay Payment ID:RPY7890123456789</div>
+                        <div><strong>Total Amount Paid: &#8377; <%= order.totalPayment %></strong></div>
+                    </div>
+                    <div class="details">
+                        <div><b>Address</b> : 7/1038 Bartala Yadgar, Saharanpur</div>
+                    </div>
+                </div>
+
+                <div class="review-section">
+                    <h6><strong>Rate This Product :</strong></h6>
+                    <div>
+
+                        <span class="star" onclick="setRating(1)" onmouseover="hoverStar(this)"
+                            onmouseout="leaveStar(this)"><i class="fas fa-star"></i></span>
+                        <span class="star" onclick="setRating(2)" onmouseover="hoverStar(this)"
+                            onmouseout="leaveStar(this)"><i class="fas fa-star"></i></span>
+                        <span class="star" onclick="setRating(3)" onmouseover="hoverStar(this)"
+                            onmouseout="leaveStar(this)"><i class="fas fa-star"></i></span>
+                        <span class="star" onclick="setRating(4)" onmouseover="hoverStar(this)"
+                            onmouseout="leaveStar(this)"><i class="fas fa-star"></i></span>
+                        <span class="star" onclick="setRating(5)" onmouseover="hoverStar(this)"
+                            onmouseout="leaveStar(this)"><i class="fas fa-star"></i></span>
+
+                        <input type="text" placeholder="Title of review">
+                    </div>
+                    <div>
+                        <textarea placeholder="Review in detail"></textarea>
+                    </div>
+                    <button onclick="submitReview()" class="btn btn-warning">Submit Review</button>
+                </div>
+            </div>
+        </article>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
+    <script>
+
+        function setRating(rating) {
+
+            for (let i = 1; i <= rating; i++) {
+                document.querySelector(`.star:nth-child(${i})`).classList.add('active');
+            }
+        }
+
+        function hoverStar(element) {
+            element.classList.add("active");
+            element.previousAll().forEach(function (star) {
+                star.classList.add("active");
+            });
+        }
+
+        function submitReview() {
+
+            const selectedStars = document.querySelectorAll('.star.active').length;
+            const reviewTitle = document.querySelector('input[type="text"]').value;
+            const reviewDetail = document.querySelector('textarea').value;
+
+            console.log('Rating:', selectedStars);
+            console.log('Title:', reviewTitle);
+            console.log('Review Detail:', reviewDetail);
+
+        }
+    </script>
+
+</body>
+
+</html>
