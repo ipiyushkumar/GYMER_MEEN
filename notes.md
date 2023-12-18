@@ -2,20 +2,6 @@
 
 ### in admin panel
 - completely implement order management
-    - implement dashboard
     - implement logout
 
-show more -> Fetch the product on product listing page so that I can check and refine UI
-
-toast left in
-category care pages
-product listing page
-
-ignore Caption - > Ye pages wala footer ka component bnega, isme bs terms & condition ka page nahi h wo chatgpt se uthake disclaimer wale page ke desing pe copy paste mardio
-
-or hn ye hai new slider with buttons match kr lena
-
-or bhai ek kam krio ki footer ka component banake usko call krdio bs
-
-
-add reviews in order tracking
+### add reviews CRUD

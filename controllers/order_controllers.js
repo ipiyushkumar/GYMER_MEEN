@@ -135,7 +135,8 @@ const saveOrder = async (req, res) => {
             totalPayment: amount,
             razorpay_order_id, 
             razorpay_payment_id, 
-            razorpay_signature
+            razorpay_signature,
+            deliveryAddress: `address: ${req.session.userProfile.address}, locality ${req.session.userProfile.locality}, landmark ${req.session.userProfile.landmark}, city, ${req.session.userProfile.city} (Pincode : ${req.session.userProfile.pincode})`
         });
 
         req.session.recentOrder = razorpay_order_id;

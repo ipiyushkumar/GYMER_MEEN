@@ -13,7 +13,8 @@ const orderSchema = new mongoose.Schema({
     }],
     totalPayment: {type : Number},
     status: {type: String, default: "Pending", enum : ["Pending","Sent","Delivering","Delivered"]},
-    createdDate: {type: Date, default: Date.now}
+    createdDate: {type: Date, default: Date.now},
+    deliveryAddress: {type: String, required: true}
 });
 
 const Order = mongoose.model("Order", orderSchema);
