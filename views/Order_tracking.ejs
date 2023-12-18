@@ -276,12 +276,6 @@
                 <hr>
                 <table class="table">
                     <tbody>
-                        <tr>
-                            <td><img src="../assets/Product1.jpg" alt="Product Image"></td>
-                            <td class="title">WhiteWolf Anti Pollution Face Wash</td>
-                            <td>Beard Care</td>
-                            <td>Quantity: 1</td>
-                        </tr>
                     </tbody>
                 </table>
                 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
@@ -301,16 +295,11 @@
                             }
                         };
 
-                        const orderId = 
-                        console.log(orderId)
-
                         await axios.get('/api/order-track/<%= order.razorpay_order_id %>')
-                        .then(response => console.log(response.data))
-                        .catch(err => console.log('an error occured fetching products'))
-
-                        order.products.forEach(product => {
-                            // For each product, fetch details and update the table
-                            fetchProductDetails(product)
+                        .then(response => response.data.products)
+                        .then(products => {
+                            products.forEach (product => {
+                                fetchProductDetails(product.itemId)
                                 .then(data => {
                                     if (data) {
                                         const row = document.createElement("tr");
@@ -322,8 +311,11 @@
                                         `;
                                         tableBody.appendChild(row);
                                     }
-                                });
-                        });
+                                })
+                                .catch(err => console.log('an error occured fetching products'))
+                            })
+                        })
+                        .catch(err => console.log('an error occured while fetching order'))
                     });
                 </script>
 
