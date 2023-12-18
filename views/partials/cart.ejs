@@ -78,9 +78,11 @@
                                 quantity = response.data.newQuantity;
                                 if (quantity === -1){
                                     document.querySelector(`.card_${cartItem.itemId}`).innerHTML = "";
+                                    showAlert("Item removed from cart","success")
                                 } else {
                                     document.querySelector(`.itemQuantity${cartItem.itemId}`).textContent = quantity;
                                     document.querySelector(`.single_item_total${cartItem.itemId}`).textContent = response.data.newQuantity*productDetails.offeredPrice;
+                                    showAlert("Item quantity decreased","success")
                                 }
                             })
                             .catch(err => alert("error " + err))
@@ -90,6 +92,7 @@
                             .then(response => {
                                 document.querySelector(`.itemQuantity${cartItem.itemId}`).textContent = response.data.newQuantity;
                                 document.querySelector(`.single_item_total${cartItem.itemId}`).textContent = response.data.newQuantity*productDetails.offeredPrice;
+                                showAlert("Item quantity increased","success")
                             })
                             .catch(err => alert("error " + err))
                         })
@@ -99,6 +102,7 @@
                                 quantity = response.data.newQuantity;
                                 if (quantity === -1){
                                     document.querySelector(`.card_${cartItem.itemId}`).innerHTML = "";
+                                    showAlert("Item removed from cart","success")
                                 }
                             })
                             .catch(err => alert("error " + err))

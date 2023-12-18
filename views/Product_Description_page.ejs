@@ -372,84 +372,86 @@
   let products = [];
 
   document.addEventListener('DOMContentLoaded', async () => {
-     try {
+    try {
         const response = await fetchProducts('/api/products');
         products = response;
         renderProducts('all');
-     } catch (error) {
+    } catch (error) {
         showAlert("error while fetching the products","danger")
-     }
+    }
   });
 
   async function fetchProducts(apiEndpoint) {
-     const response = await axios.get(apiEndpoint);
-     return response.data;
+    const response = await axios.get(apiEndpoint);
+    return response.data;
   }
 
   function attachAddToCartListeners(products) {
-     products.forEach(product => {
-           const addButton = document.querySelector(`.add${product.itemId}`);
-           addButton.addEventListener('click', async (event) => {
+    products.forEach(product => {
+          const addButton = document.querySelector(`.add${product.itemId}`);
+          addButton.addEventListener('click', async (event) => {
               event.preventDefault();
               try {
-                 const response = await addToCart('/addItem', { itemId: product.itemId });
-                 handleAddToCartResponse(response);
-              } catch (error) {
-                 showAlert("Item already in cart","success")
+                const response = await addToCart('/addItem', { itemId: product.itemId });
+                if (response.status === 200) {
+                      console.log(response.data.message);
+                      showAlert('item added to cart','success')
+                      openCart()
+                      // Optionally, update the UI to reflect the item being added to the cart
+                } else {
+                      console.error('Error adding item to cart:', response.data.message);
+                      // Optionally, handle the error and update the UI accordingly
+                }
+              } catch (err) {
+                if (err.response.status === 400){
+                    showAlert("Item already in cart","success")
+                    openCart()
+                } else {
+                    window.location.href = "/login"
+                }
               }
-           });
-     });
+          });
+    });
   }
   async function addToCart(apiEndpoint, data) {
-     return await axios.post(apiEndpoint, data);
-  }
-
-  function handleAddToCartResponse(response) {
-     if (response.status === 200) {
-           console.log(response.data.message);
-           showAlert('item added to cart','success')
-
-     } else {
-           console.error('Error adding item to cart:', response.data.message);
-
-     }
+    return await axios.post(apiEndpoint, data);
   }
 
   function renderProducts(categoryFilter) {
-     const productGrid = document.getElementById('productGrid');
-     productGrid.innerHTML = '';
+    const productGrid = document.getElementById('productGrid');
+    productGrid.innerHTML = '';
 
-     const filteredProducts = categoryFilter === 'all' ? products : products.filter(product => product.category === categoryFilter);
+    const filteredProducts = categoryFilter === 'all' ? products : products.filter(product => product.category === categoryFilter);
 
-     filteredProducts.forEach(product => {
-           const productCard = createProductCard(product);
-           productGrid.appendChild(productCard);
-     });
+    filteredProducts.forEach(product => {
+          const productCard = createProductCard(product);
+          productGrid.appendChild(productCard);
+    });
 
-     attachAddToCartListeners(filteredProducts);
+    attachAddToCartListeners(filteredProducts);
   }
   function createProductCard(product) {
   const productCard = document.createElement('div');
   productCard.className = 'col-md-4 product-card product';
   productCard.innerHTML = `
   <a href="/search/${product.itemId}" >
-     <div class="product-image-container">
-           <img class="product-image" src="${product.imageLink[0]}" alt="${product.name}">
-           <img class="product-image hover-image" src="${product.imageLink[1] || product.imageLink[0]}" alt="${product.name}" style="display:none">
-     </div>
-     <div class="product-details">
-           <div class="category-badge text-white corner-round p-1" style="display:none;">${product.category}</div>
-           <div class="product-title"><a href="Product_Description.html" style="text-decoration:none;color:#000">${product.name}</a></div>
-           <div class="product-description">${product.description}</div>
-           <div class="mb-2">
+    <div class="product-image-container">
+          <img class="product-image" src="${product.imageLink[0]}" alt="${product.name}">
+          <img class="product-image hover-image" src="${product.imageLink[1] || product.imageLink[0]}" alt="${product.name}" style="display:none">
+    </div>
+    <div class="product-details">
+          <div class="category-badge text-white corner-round p-1" style="display:none;">${product.category}</div>
+          <div class="product-title"><a href="Product_Description.html" style="text-decoration:none;color:#000">${product.name}</a></div>
+          <div class="product-description">${product.description}</div>
+          <div class="mb-2">
               <div class="d-flex justify-content-between bolder product-price-discount">
-                 <div class="product-price">&#8377; ${product.offeredPrice}</div>
-                 <div class="original-price text-secondary text-decoration-line-through">&#8377;${product.originalPrice || ''}</div>
-                 <div class="product-discount text-success">${((product.originalPrice - product.offeredPrice) / product.originalPrice * 100).toFixed(0)}% Off</div>
+                <div class="product-price">&#8377; ${product.offeredPrice}</div>
+                <div class="original-price text-secondary text-decoration-line-through">&#8377;${product.originalPrice || ''}</div>
+                <div class="product-discount text-success">${((product.originalPrice - product.offeredPrice) / product.originalPrice * 100).toFixed(0)}% Off</div>
               </div>
-           </div>
-           <button onclick="showNotification()" class="add-to-cart-btn add${product.itemId}" id="liveToastBtn"><i class="fas fa-cart"></i> Add to Cart</button>
-     </div>
+          </div>
+          <button onclick="showNotification()" class="add-to-cart-btn add${product.itemId}" id="liveToastBtn"><i class="fas fa-cart"></i> Add to Cart</button>
+    </div>
   </a>
   `;
 
@@ -458,23 +460,26 @@
   const hoverImage = productImageContainer.querySelector('.hover-image');
 
   productImageContainer.addEventListener('mouseenter', function () {
-     mainImage.style.display = 'none';
-     hoverImage.style.display = 'block';
+    mainImage.style.display = 'none';
+    hoverImage.style.display = 'block';
   });
 
   productImageContainer.addEventListener('mouseleave', function () {
-     mainImage.style.display = 'block';
-     hoverImage.style.display = 'none';
+    mainImage.style.display = 'block';
+    hoverImage.style.display = 'none';
   });
 
-  return productCard;
-}
 
-const container = document.getElementById('productContainer'); 
-products.forEach(product => {
+
+  return productCard;
+  }
+
+  // Example usage
+  const container = document.getElementById('productContainer'); // Replace with the actual container element ID
+  products.forEach(product => {
   const productCard = createProductCard(product);
   container.appendChild(productCard);
-});
+  });
 </script>
 
 <script>
