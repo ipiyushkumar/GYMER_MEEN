@@ -476,7 +476,7 @@
                                         <th style="width: 20%;">Status</th>
                                     </tr>
                                 </thead>
-                                <tbody id="allOrdersBody" style="overflow-y: auto;"></tbody>
+                                <tbody id="allOrdersBody" style="overflow: hidden;"></tbody>
                             </table>
                         </div>
                     </div>
@@ -596,13 +596,19 @@
                         <input type="file" id="Image1" name="Image1" accept="image/*" required onchange="previewImage('Image1')" style="border: none; padding: 0.5rem; background-color: #f0f0f0;">
                         <img id="Image1Preview" alt="Preview" style="max-width: 50%; height: 15vh; margin-top: 0rem; margin-bottom: 1rem;border-radius: 1rem;">
                         
-                        <label for="Image2">Second Image (250x250):</label>
-                        <input type="file" id="Image2" name="Image2" accept="image/*" required onchange="previewImage('Image2')" style="border: none; padding: 0.5rem; background-color: #f0f0f0;"> 
-                        <img id="Image2Preview" alt="Preview" style="max-width: 50%; height: 15vh; margin-top: 0rem; margin-bottom: 1rem;border-radius: 1rem;">
-
-                        <label for="Image3">Third Image (250x250):</label>
-                        <input type="file" id="Image3" name="Image3" accept="image/*" required onchange="previewImage('Image3')" style="border: none; padding: 0.5rem; background-color: #f0f0f0;">
-                        <img id="Image3Preview" alt="Preview" style="max-width: 50%; height: 15vh; margin-top: 0rem; margin-bottom: 1rem;border-radius: 1rem;">
+                        <div class="addon-images">
+                            <div class="img2">
+                                <label for="Image2">Second Image (250x250):</label>
+                                <input type="file" id="Image2" name="Image2" accept="image/*" required onchange="previewImage('Image2')" style="border: none; padding: 0.5rem; background-color: #f0f0f0;"> 
+                                <img id="Image2Preview" alt="Preview" style="max-width: 50%; height: 20vh; margin-top: 0rem; margin-bottom: 1rem;border-radius: 1rem;">
+                            </div>
+    
+                           <div class="img2">
+                            <label for="Image3">Third Image (250x250):</label>
+                            <input type="file" id="Image3" name="Image3" accept="image/*" required onchange="previewImage('Image3')" style="border: none; padding: 0.5rem; background-color: #f0f0f0;">
+                            <img id="Image3Preview" alt="Preview" style="max-width: 50%; height: 20vh; margin-top: 0rem; margin-bottom: 1rem;border-radius: 1rem;">
+                           </div>
+                        </div>
 
                     </div>
                 </div>

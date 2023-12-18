@@ -347,6 +347,8 @@ a:hover {
 }
 
 .order-table{
+    height: 70vh;
+    overflow-y: scroll;
     background-color: #ebe9e9;
     padding: 1rem;
     border-radius: 1rem;
@@ -547,6 +549,11 @@ a:hover {
     }
 
     .product-card {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: left;
         border: 1px solid #ccc;
         border-radius: 8px;
         padding: 10px;
@@ -568,7 +575,7 @@ a:hover {
     }
 
     .product-image {
-        max-width: 100%;
+        max-width: 50%;
         height: auto;
         border-radius: 8px;
     }
@@ -580,4 +587,14 @@ a:hover {
 
     .product-actions {
         margin-top: 10px;
+    }
+
+    .addon-images{
+        display: flex;
+    }
+
+    .addon-images .img2{
+        padding: 2vh;
+        display: flex;
+        flex-direction: column;
     }
