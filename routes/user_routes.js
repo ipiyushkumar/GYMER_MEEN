@@ -15,7 +15,9 @@ const isAuthenticated = (req, res, next) => {
 
 router.post('/auth/login',controllers.authLogin);
 
-router.post('/auth/signup',controllers.authSignUp);
+router.post('/send-otp',controllers.sendOTP);
+
+// router.post('/auth/signup',controllers.authSignUp);
 
 router.get('/logout',isAuthenticated, controllers.authLogout);
 

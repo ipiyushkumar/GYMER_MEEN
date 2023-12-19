@@ -1,43 +1,38 @@
 const express = require('express');
 const session = require('express-session');
-const bcrypt = require('bcrypt');
-const jwt = require('jsonwebtoken');
+// const bcrypt = require('bcrypt');
+// const jwt = require('jsonwebtoken');
 const User = require('../schemas/user_schema');
 const Product = require('../schemas/product_schema');
 
+const nodemailer = require('nodemailer');
+const randomize = require('randomatic');
+
 const authLogin = async (req, res) => {
     try {
-        const { email, password } = req.body;
+        const { email, otp } = req.body
 
-        // Find the user by phoneNumber (assuming phoneNumber is used for login)
-        const user = await User.findOne({ email });
+        // Verify OTP
+        const storedOTP = req.session.OTP;
+        if (otp !== storedOTP) {
+            console.log("Invalid OTP for user: " + email);
+            return res.status(401).json({ message: 'Invalid OTP' });
+        }
+
+        // Check if the user exists by email
+        let user = await User.findOne({ email });
+
+        // If the user does not exist, create a new user with the email
         if (!user) {
-            console.log("user does not exist "+ email)
-            return res.status(401).json({ message: 'Invalid credentials' });
+            console.log("User does not exist. Adding user with email: " + email);
+            user = new User({ email });
+            await user.save();
         }
 
-        // Check the password
-        const passwordMatch = await bcrypt.compare(password, user.password);
-        if (!passwordMatch) {
-            console.log("password did not match"+ email)
-            return res.status(401).json({ message: 'Invalid credentials' });
-        }
-
-        // Generate JWT token
-        const token = jwt.sign({ userId: user._id, phoneNumber: user.phoneNumber }, process.env.Secret_KEY, {
-            expiresIn: '1h',
-        });
-
-        // Store the token in express-sessions
-        req.session.token = token;
+        // Load necessary data into the session
         req.session.isLoggedIn = true;
-
-        if (user.admin === true){
-            req.session.admin = true;
-        }
-
         req.session.userProfile = {
-            name: user.name,
+            name: user.name,  // <-- Change newUser to user
             email: user.email,
             phone: user.phone,
             joinDate: user.joinDate,
@@ -49,67 +44,52 @@ const authLogin = async (req, res) => {
             cart: user.cart,
         };
 
-        console.log("a user logged in " + email)
-        res.status(200).json({message : "user logged in successfully"})
+        console.log("User logged in successfully: " + email);
+        res.status(200).json({ message: "User logged in successfully" });
     } catch (error) {
         console.error(error);
         res.status(500).json({ message: 'Internal server error' });
     }
 };
-const authSignUp = async (req, res) => {
-    try {
-        const { name, email, phone, address, password } = req.body;
 
-        // Check if the name or email is already registered
-        const existingUser = await User.findOne({ $or: [{ email }] });
-        if (existingUser) {
-            console.log("User already Exists\n"+existingUser)
-            return res.status(409).json({ message: 'email already in use' });
-        }
+const sendOTP = (req, res) => {
+    const userEmail = req.body.email;
+  
+    // Generate OTP
+    const otp = randomize('0', 6);
+  
+    // Send OTP to the user's email
+    const transporter = nodemailer.createTransport({
+      host: process.env.MAIL_HOST, 
+      port: process.env.MAIL_PORT, 
+      secure: true,
+      auth: {
+        user: process.env.MAIL_ID, // replace with your email
+        pass: process.env.MAIL_PASS // replace with your password
+      }
+    });
 
-        // Hash the password
-        const hashedPassword = await bcrypt.hash(password, 10);
-        // Create a new user
-        const newUser = new User({
-            name,
-            email,
-            phone,
-            address,
-            password: hashedPassword,
-        });
-
-        // Save the user to the database
-        await newUser.save();
-
-        // Generate JWT token for the newly registered user
-        const token = jwt.sign({ userId: newUser._id, username: newUser.username }, process.env.Secret_KEY, {
-            expiresIn: '1h',
-        });
-
-        // Store the token in express-sessions
-        req.session.token = token;
-        req.session.isLoggedIn = true;
-
-        req.session.userProfile = {
-            name: newUser.name,
-            email: newUser.email,
-            phone: newUser.phone,
-            joinDate: newUser.joinDate,
-            pincode: newUser.pincode,
-            locality: newUser.locality,
-            landmark: newUser.landmark,
-            city: newUser.city,
-            address: newUser.address,
-            cart: newUser.cart,
-        };
-
-        console.log("a user signed up " + email)
-        res.status(200).json({message : "Signed Up successfully"})
-    } catch (error) {
-        console.error(error);
-        res.status(500).json({ message: 'Internal server error' });
-    }
-};
+    console.log(process.env.MAIL_ID)
+    console.log(process.env.MAIL_PASS)
+  
+    const mailOptions = {
+      from: process.env.MAIL_ID, // replace with your email
+      to: userEmail,
+      subject: 'OTP for Authentication',
+      text: `Your OTP is: ${otp} \n\n\n Thankyou, for using our service`
+    };
+  
+    transporter.sendMail(mailOptions, (error, info) => {
+      if (error) {
+        console.log(error);
+        res.status(500).send('Error sending OTP.');
+      } else {
+        console.log('Email sent: ' + info.response);
+        req.session.OTP = otp;
+        res.status(200).send('OTP sent successfully.');
+      }
+    });
+}
 const authLogout = (req, res) => {
     req.session.destroy((err) => {
         if (err) {
@@ -316,7 +296,8 @@ const decreaseCartItemQuantity = (req, res) => {
     }
 };
 module.exports = { 
-    authSignUp, 
+    // authSignUp, 
+    sendOTP,
     authLogin, 
     authLogout,
     updateProfile,

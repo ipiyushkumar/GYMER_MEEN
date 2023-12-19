@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Sign in & Sign up Form</title>
+    <title>Sign in Form</title>
     <style>
       @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800&display=swap");
 
@@ -414,9 +414,7 @@ main.sign-up-mode .carousel {
               </div>
 
               <div class="heading">
-                <h2>Welcome Back</h2>
-                <h6>Not registred yet?</h6>
-                <a href="#" class="toggle">Sign up</a>
+                <h2>Welcome, Have youself registered</h2>
               </div>
 
               <div class="actual-form">
@@ -435,87 +433,15 @@ main.sign-up-mode .carousel {
                   <input
                     type="password"
                     minlength="4"
-                    class="input-field loginPassword"
+                    class="input-field OTP"
+                    style="display: none;"
                     autocomplete="off"
+                    placeholder="Enter OTP"
                     required
                   />
-                  <label>Password</label>
                 </div>
-
                 <input type="submit" value="Sign In" class="sign-btn loginButton" />
-
-                <p class="text">
-                  <a href="#">Forgot Passowrd?</a>
-                </p>
-              </div>
-            </form>
-
-            <form autocomplete="off" class="sign-up-form">
-              <div class="logo">
-                <img src="assets/logo.PNG" alt="easyclass" />
-                <h4>WhiteWolf International</h4>
-              </div>
-
-              <div class="heading">
-                <h2>Get Started</h2>
-                <h6>Already have an account?</h6>
-                <a href="#" class="toggle">Sign in</a>
-              </div>
-
-              <div class="actual-form">
-                <div class="input-wrap">
-                  <input
-                    type="text"
-                    minlength="4"
-                    class="input-field userName"
-                    autocomplete="off"
-                    required
-                  />
-                  <label>Name</label>
-                </div>
-
-                <div class="input-wrap">
-                  <input
-                    type="email"
-                    class="input-field userEmail"
-                    autocomplete="off"
-                    required
-                  />
-                  <label>Email</label>
-                </div>
-
-                <div class="input-wrap">
-                  <input
-                    type="number"
-                    class="input-field userPhone"
-                    autocomplete="off"
-                    required
-                  />
-                  <label>Phone</label>
-                </div>
-
-                <div class="input-wrap">
-                  <input
-                    type="text"
-                    class="input-field userAddress"
-                    autocomplete="off"
-                    required
-                  />
-                  <label>Address</label>
-                </div>
-
-                <div class="input-wrap">
-                  <input
-                    type="password"
-                    minlength="4"
-                    class="input-field userPassword"
-                    autocomplete="off"
-                    required
-                  />
-                  <label>Password</label>
-                </div>
-
-                <input type="submit" value="Sign Up" class="sign-btn signUpButton" />
+                <input type="submit" value="verifyOTP" class="sign-btn verifyOTP" style="display: none;"/>
 
                 <p class="text">
                   By signing up, I agree to the
@@ -641,19 +567,21 @@ main.sign-up-mode .carousel {
       bullets.forEach((bullet) => {
         bullet.addEventListener("click", moveSlider);
       });
+
       document.querySelector('.loginButton').addEventListener('click',async () => {
         event.preventDefault();
         const email = document.querySelector('.loginEmail').value
-        const password = document.querySelector('.loginPassword').value
-        if (!email || !password) {
+        if (!email) {
             showAlert("Please fill in all the details.","danger");
             return false; 
         }
-        const response = await axios.post('/auth/login', { email, password })
+        const response = await axios.post('/send-otp', { email })
         .then(response => {
             if (response.status === 200) {
-                showAlert("Login Successful","success")
-                window.location.href = "/";
+                showAlert("OTP Sent","success")
+                document.querySelector('.loginButton').style.display = 'none';
+                document.querySelector('.verifyOTP').style.display = 'block';
+                document.querySelector('.OTP').style.display = 'block';
             }
         })
         .catch(error => {
@@ -661,31 +589,27 @@ main.sign-up-mode .carousel {
         })
         return true; 
       })
-      document.querySelector('.signUpButton').addEventListener('click', async () => {
-        event.preventDefault();
-        const name = document.querySelector('.userName').value;
-        const phone = document.querySelector('.userPhone').value;
-        const email = document.querySelector('.userEmail').value;
-        const address = document.querySelector('.userAddress').value;
-        const password = document.querySelector('.userPassword').value;
+      
 
-        const response = await axios.post('/auth/signup', {
-            name,
-            phone,
-            email,
-            address,
-            password
-        }).then(response => {  
-          if (response.status === 200) {
-            showAlert("SignUp Successful","success")
-              window.location.href = "/";
-          } else {
-              console.error('Registration failed:', response.data.message);
-          }
-        }).catch(error => {
-          console.log("A error occured while signing in" + error)
-          showAlert("User Already Exists","danger")
+      document.querySelector('.verifyOTP').addEventListener('click',async () => {
+        event.preventDefault();
+        const email = document.querySelector('.loginEmail').value
+        const otp = document.querySelector('.OTP').value
+        if (!email || !otp) {
+            showAlert("Please fill in all the details.","danger");
+            return false; 
+        }
+        const response = await axios.post('/auth/login', { email, otp })
+        .then(response => {
+            if (response.status === 200) {
+                showAlert("Login Successful","success")
+                window.location.href = "/";
+            }
         })
+        .catch(error => {
+            showAlert("Wrong OTP","danger")
+        })
+        return true; 
       })
     </script>
   </body>
