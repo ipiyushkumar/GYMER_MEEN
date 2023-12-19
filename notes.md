@@ -4,5 +4,5 @@
 - completely implement order management
     - implement logout
 
-review crud
+show reviews in product description
 product description + and - buttons

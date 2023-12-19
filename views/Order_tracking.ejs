@@ -229,6 +229,55 @@
 </head>
 
 <body>
+
+<div id="alertContainer"></div>
+<style>
+   .alert {
+       position: fixed;
+       top: 1rem;
+       right: 1rem;
+       z-index: 2;
+       padding: 0.75rem 1.25rem;
+       margin-bottom: 1rem;
+       border: 1px solid transparent;
+       border-radius: 0.25rem;
+       transition: 0.3s ease-in-out;
+     }
+
+     .alert.success {
+       color: #155724;
+       background-color: #d4edda;
+       border-color: #c3e6cb;
+     }
+     .alert.danger {
+       color: #721c24;
+       background-color: #f8d7da;
+       border-color: #f5c6cb;
+     }
+   </style>
+   <script>
+     function showAlert(message, type) {
+       const alertContainer = document.getElementById("alertContainer");
+   
+       // Create alert element
+       const alert = document.createElement("div");
+       alert.className = `alert ${type}`;
+       alert.innerHTML = `${message}<span class="close" onclick="closeAlert(this)">×</span>`;
+   
+       // Append alert to container
+       alertContainer.appendChild(alert);
+   
+       // Set timeout to remove the alert after 5 seconds
+       setTimeout(() => {
+         closeAlert(alert.querySelector(".close"));
+       }, 4000);
+     }
+   
+     function closeAlert(closeButton) {
+       const alert = closeButton.parentElement;
+       alert.style.display = "none";
+     }
+   </script>
     <div class="container ">
         <article class="card">
             <header class="card-header"> <a href="/profile" class="btn btn-dark" data-abc="true"> <i class="fa fa-chevron-left"></i></a> My Orders / Tracking </header>
@@ -287,46 +336,7 @@
                     <tbody>
                     </tbody>
                 </table>
-                <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-
-                <script>
-                    document.addEventListener("DOMContentLoaded",async function () {
-                        const tableBody = document.querySelector(".table tbody");
-
-                        // Define a function to fetch product details for a specific itemId
-                        const fetchProductDetails = async (itemId) => {
-                            try {
-                                const response = await axios.get(`/api/products/${itemId}`);
-                                return response.data;
-                            } catch (error) {
-                                console.error(error);
-                                return null;
-                            }
-                        };
-
-                        await axios.get('/api/order-track/<%= order.razorpay_order_id %>')
-                        .then(response => response.data.products)
-                        .then(products => {
-                            products.forEach (product => {
-                                fetchProductDetails(product.itemId)
-                                .then(data => {
-                                    if (data) {
-                                        const row = document.createElement("tr");
-                                        row.innerHTML = `
-                                            <td><img src="${data.imageLink[0]}" alt="${data.name} Image"></td>
-                                            <td class="title">${data.name}</td>
-                                            <td>${data.category}</td>
-                                            <td>Quantity: ${product.quantity}</td>
-                                        `;
-                                        tableBody.appendChild(row);
-                                    }
-                                })
-                                .catch(err => console.log('an error occured fetching products'))
-                            })
-                        })
-                        .catch(err => console.log('an error occured while fetching order'))
-                    });
-                </script>
+                
 
                 <hr>
                 <div class="payment-details mb-3 mt-3">
@@ -339,6 +349,8 @@
                     </div>
                 </div>
                 <% if (order.status === 'Delivered') { %>
+                    <select name="" id="reviewItems">
+                    </select>
                     <div class="review-section">
                         <h6><strong>Rate This Product :</strong></h6>
                         <div>
@@ -354,10 +366,10 @@
                             <span class="star" onclick="setRating(5)" onmouseover="hoverStar(this)"
                                 onmouseout="leaveStar(this)"><i class="fas fa-star"></i></span>
     
-                            <input type="text" placeholder="Title of review">
+                            <input type="text" placeholder="Title of review" class="reviewTitle">
                         </div>
                         <div>
-                            <textarea placeholder="Review in detail"></textarea>
+                            <textarea placeholder="Review in detail" class="reviewDetail"></textarea>
                         </div>
                         <button onclick="submitReview()" class="btn btn-warning">Submit Review</button>
                     </div>
@@ -367,34 +379,136 @@
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script>
+        let reviews = {}
+        let selectedItemId = ''
 
         function setRating(rating) {
-
-            for (let i = 1; i <= rating; i++) {
-                document.querySelector(`.star:nth-child(${i})`).classList.add('active');
+            for (let i = 1; i <= 5; i++) {
+                const star = document.querySelector(`.star:nth-child(${i})`);
+                if (i <= rating) {
+                    star.classList.add('active');
+                } else {
+                    star.classList.remove('active');
+                }
             }
         }
-
+    
         function hoverStar(element) {
-            element.classList.add("active");
-            element.previousAll().forEach(function (star) {
-                star.classList.add("active");
+            const starIndex = Array.from(element.parentNode.children).indexOf(element) + 1;
+            for (let i = 1; i <= starIndex; i++) {
+                const star = document.querySelector(`.star:nth-child(${i})`);
+                star.classList.add('active');
+            }
+        }
+    
+        function leaveStar(element) {
+            const starIndex = Array.from(element.parentNode.children).indexOf(element) + 1;
+            for (let i = 1; i <= 5; i++) {
+                const star = document.querySelector(`.star:nth-child(${i})`);
+                if (i > starIndex) {
+                    star.classList.remove('active');
+                }
+            }
+        }
+    
+        async function submitReview() {
+            for (const itemId in reviews) {
+                console.log(itemId)
+                console.log(reviews[itemId])
+                if (reviews[itemId].rating > 0) {
+                    await axios.post(`/products/${itemId}/reviews`,reviews[itemId])
+                    .then(res => showAlert("Thanks for giving us feedback","success"))
+                    .catch(err => showAlert("something went wrong while submitting review","danger"))
+                } else {
+                    showAlert("please add rating before submitting","danger")
+                }
+            }
+
+            // const selectedStars = document.querySelectorAll('.star.active').length;
+            // const reviewTitle = document.querySelector('.reviewTitle').value;
+            // const reviewDetail = document.querySelector('.reviewDetail').value;
+    
+            // console.log('Rating:', selectedStars);
+            // console.log('Title:', reviewTitle);
+            // console.log('Review Detail:', reviewDetail);
+        }
+
+        
+        document.addEventListener("DOMContentLoaded",async function () {
+            const tableBody = document.querySelector(".table tbody");
+            const reviewOptions = document.querySelector('#reviewItems');
+            // Define a function to fetch product details for a specific itemId
+            const fetchProductDetails = async (itemId) => {
+                try {
+                    const response = await axios.get(`/api/products/${itemId}`);
+                    return response.data;
+                } catch (error) {
+                    console.error(error);
+                    return null;
+                }
+            };
+            document.querySelector(`#reviewItems`).addEventListener('change', async event => {
+                const rating = document.querySelectorAll('.star.active').length
+                const title = document.querySelector('.reviewTitle').value;
+                const detail = document.querySelector('.reviewDetail').value;
+
+                reviews[selectedItemId].rating = rating
+                reviews[selectedItemId].title = title
+                reviews[selectedItemId].detail = detail
+
+                const itemId = event.target.value;
+
+                setRating(reviews[itemId].rating)
+                document.querySelector('.reviewTitle').value = reviews[itemId].title
+                document.querySelector('.reviewDetail').value = reviews[itemId].detail
+
+                selectedItemId = itemId;
             });
-        }
 
-        function submitReview() {
+            await axios.get('/api/order-track/<%= order.razorpay_order_id %>')
+            .then(response => response.data.products)
+            .then(products => {
+                products.forEach (product => {
+                    fetchProductDetails(product.itemId)
+                    .then(async data => {
+                        if (data) {
+                            const row = document.createElement("tr");
+                            row.innerHTML = `
+                                <td><img src="${data.imageLink[0]}" alt="${data.name} Image"></td>
+                                <td class="title">${data.name}</td>
+                                <td>${data.category}</td>
+                                <td>Quantity: ${product.quantity}</td>
+                            `;
+                            tableBody.appendChild(row);
+                            const option = document.createElement('option')
 
-            const selectedStars = document.querySelectorAll('.star.active').length;
-            const reviewTitle = document.querySelector('input[type="text"]').value;
-            const reviewDetail = document.querySelector('textarea').value;
+                            await axios.get(`/products/${product.itemId}/reviews`,{orderId : '/<%= order.razorpay_order_id %>'})
+                            .then(res => {
+                                reviews[product.itemId] = res.data.review
+                            })
+                            .catch(err => showAlert("error loading reviews " + err,"danger"))
 
-            console.log('Rating:', selectedStars);
-            console.log('Title:', reviewTitle);
-            console.log('Review Detail:', reviewDetail);
+                            option.value = product.itemId
+                            option.textContent = data.name
+                            reviewOptions.append(option)
+                        }
+                    })
+                    .then(() => {
+                        selectedItemId = document.querySelector(`#reviewItems`).value
 
-        }
+                        setRating(reviews[selectedItemId].rating)
+                        document.querySelector('.reviewTitle').value = reviews[selectedItemId].title
+                        document.querySelector('.reviewDetail').value = reviews[selectedItemId].detail
+                    })
+                    .catch(err => console.log('an error occured fetching products'))
+                })
+            })
+            .catch(err => console.log('an error occured while fetching order'))
+        });
     </script>
+
 
 </body>
 

@@ -10,21 +10,17 @@ env.config()
 const port = process.env.PORT || 3000
 const app = express();
 
-app.use(session({
-  secret: 'your-secret-key',
-  resave: true,
-  saveUninitialized: true
-}));
-
+app.use(
+  session({
+    secret: 'your-secret-key',
+    resave: true,
+    saveUninitialized: true,
+    cookie: {
+      maxAge: 500 * 60 * 60 * 1000, // expires after 500 hours in milliseconds
+    },
+  })
+);
 app.use(morgan('dev'));
-
-mongo_url = process.env.MongoDB_URL || "mongodb://127.0.0.1:27017/GYMER?retryWrites=true&w=majority"
-mongoose
-.connect(mongo_url)
-.then(console.log(`MongoDB Conneted (${mongo_url})`))
-.catch(err => {
-  console.log("An error occured at Mongo Connection\n" + err)
-})
 
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
@@ -53,6 +49,7 @@ app.use(orders)
 const admin = require('./routes/admin_routes')
 app.use(admin)
 
-app.listen(port, () => {
-  console.log(`Server Listen On ${port}`)
-})
+mongoose.connect( process.env.MongoDB_URL || "mongodb://127.0.0.1:27017/GYMER?retryWrites=true&w=majority")
+.then(console.log(`MongoDB Conneted (${process.env.MongoDB_URL || "mongodb://127.0.0.1:27017/GYMER?retryWrites=true&w=majority"})`))
+.then(app.listen(port, () => { console.log(`Server Listen On ${port}`)}))
+.catch(err => {console.log("An error occured at Mongo Connection\n" + err)})

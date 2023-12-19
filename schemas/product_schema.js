@@ -6,8 +6,12 @@ const productSchema = new mongoose.Schema({
     description: { type: String, required: true },
     ratings: [
         {
-            user: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
-            rating: { type: Number, min:0, max:10, default:8 }
+            email: { type: String },
+            orderId: {type: String},
+            rating: { type: Number, default:0 },
+            title: {type : String},
+            detail: {type:String},
+            dateAdded: { type: Date, default: Date.now } 
         }
     ],
     originalPrice: { type: Number, required: true },
