@@ -31,8 +31,8 @@ const authLogin = async (req, res) => {
 
         // Load necessary data into the session
         req.session.isLoggedIn = true;
+        req.session.email = email
         req.session.userProfile = {
-            name: user.name,  // <-- Change newUser to user
             email: user.email,
             phone: user.phone,
             joinDate: user.joinDate,
@@ -51,7 +51,6 @@ const authLogin = async (req, res) => {
         res.status(500).json({ message: 'Internal server error' });
     }
 };
-
 const sendOTP = (req, res) => {
     const userEmail = req.body.email;
   
@@ -102,13 +101,10 @@ const authLogout = (req, res) => {
 const saveUserProfile = async (req,res) => {
     const token = req.session.token;
     try {
-        const {name, email, phone, pincode, locality, landmark, city, address, cart, purchasedProducts} = req.session.userProfile;
-
-        // Verify the token to get the user's information
-        const decodedToken = jwt.verify(token, process.env.Secret_KEY);
+        const {phone, pincode, locality, landmark, city, address, cart} = req.session.userProfile;
 
         // Find the user data by ID using the decoded information from the token
-        const userData = await User.findById(decodedToken.userId);
+        const userData = await User.findOne({ email : req.session.email });
 
         if (!userData) {
             console.log("user not found")
@@ -116,8 +112,6 @@ const saveUserProfile = async (req,res) => {
         }
 
         // Update the user data
-        userData.name = name || userData.name;
-        userData.email = email || userData.email;
         userData.phone = phone || userData.phone;
         userData.pincode = pincode || userData.pincode;
         userData.locality = locality || userData.locality;
@@ -136,8 +130,7 @@ const saveUserProfile = async (req,res) => {
 };
 const updateProfile = async (req,res) => {
     try {
-        const {name, email, phone, pincode, locality, landmark, city, address} = req.body.userProfile;
-        req.session.userProfile.name = name;
+        const {phone, pincode, locality, landmark, city, address} = req.body.userProfile;
         req.session.userProfile.phone = phone;
         req.session.userProfile.pincode = pincode;
         req.session.userProfile.locality = locality;
@@ -296,7 +289,6 @@ const decreaseCartItemQuantity = (req, res) => {
     }
 };
 module.exports = { 
-    // authSignUp, 
     sendOTP,
     authLogin, 
     authLogout,

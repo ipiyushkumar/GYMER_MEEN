@@ -28,9 +28,7 @@ const razorpayInstance = new Razorpay({
 
 const paymentGateway = async (req, res) => {
   try {
-      const token = req.session.token;
-      const decodedToken = jwt.verify(token, process.env.Secret_KEY);
-      const userData = await User.findById(decodedToken.userId);
+      const userData = await User.findOne({email : req.session.email});
 
       if (!userData) {
           console.log("user not found");
@@ -70,9 +68,6 @@ const paymentGateway = async (req, res) => {
           receipt: "piyushat115@gmail.com"
       };
 
-      const key = Date.now() + '-' + Math.round(Math.random() * 1e9);
-      req.session.handshake = key
-
       razorpayInstance.orders.create(options,
           async (err, order) => {
               if (!err) {
@@ -84,9 +79,6 @@ const paymentGateway = async (req, res) => {
                       key_id: RAZORPAY_ID_KEY,
                       product_name: req.body.name,
                       description: req.body.description,
-                      handshake: key,
-                      contact: userData.phone,
-                      name: userData.name,
                       email: userData.email
                   });
               } else {
@@ -103,9 +95,8 @@ const paymentGateway = async (req, res) => {
 const saveOrder = async (req, res) => {
     const {razorpay_order_id, razorpay_payment_id, razorpay_signature} = req.body.data;
         if (razorpay_order_id && razorpay_payment_id && razorpay_signature){
-        const token = req.session.token;
-        const decodedToken = jwt.verify(token, process.env.Secret_KEY);
-        const userData = await User.findById(decodedToken.userId)
+
+        const userData = await User.findOne({email : req.session.email});
 
         if (!userData) {
             console.log("user not found");
