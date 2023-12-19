@@ -284,66 +284,8 @@
   <div id="productGrid" class="row mb-3 product-grid container onmousedown="startScroll(event)" onmouseup="stopScroll()" ontouchstart="startScroll(event)" ontouchend="stopScroll()">
   </div>
 
-    <footer class="container-fluid mt-5 d-flex flex-column container text-white p-3 footer"style="background-color: #000;">
-        <div class=" text-left mt-3 p-5" style="background-color: #070707;">
-           <div class="row">
-              <div class="col-md-3">
-                 <img src="../assets/newlogo.png" alt="Logo" class="img-fluid mb-3" style="width: auto;height: 10vh;">
-              </div>
-              <div class="col-md-6 d-flex footer-menu">
-                 <div class="col-md-6 mr-3 list-unstyled">
-                    <li><a href="#" class="text-white">About us</a></li>
-                    <li><a href="#" class="text-white">FAQ</a></li>
-                    <li><a href="#" class="text-white">Shipping and Payment</a></li>
-                    <li><a href="#" class="text-white">Partners</a></li>
-                    <li><a href="#" class="text-white">Blog</a></li>
-                    <li><a href="#" class="text-white">Contact Us</a></li>
-                 </div>
-                 <div class="col-md-6 ml-3 list-unstyled">
-                    <li><a href="#" class="text-white">Customer Reviews</a></li>
-                    <li><a href="#" class="text-white">Hair Care</a></li>
-                    <li><a href="#" class="text-white">Skin Care</a></li>
-                    <li><a href="#" class="text-white">Face Care</a></li>
-                 </div>
-              </div>
-              <div class="col-md-3 d-flex flex-column align-items-end">
-                 <button class="btn btn-light mb-2">Shop Now</button>
-                 <p>+(123) 123-99-999</p>
-                 <p>info@WhiteWolf.com</p>
-              </div>
-           </div>
-           <div class="row mt-5">
-              <div class="col-md-3 social">
-                 <ul class="list-unstyled">
-                    <a href="#" class="mr-2"><iconify-icon icon="mdi:instagram"></iconify-icon></i></a>
-                    <a href="#" class="mr-2"><iconify-icon icon="ic:baseline-whatsapp"></iconify-icon></i></a>
-                 </ul>
-              </div>
-              <div class="col-md-6 d-flex">
-                 <p>The Hive Co Working and Business Center<br>Industiral Area Phase-2, Chandigarh</p>
-              </div>
-              <div class="col-md-3 d-flex flex-column align-items-end">
-              </div>
-           </div>
-        </div>
-        <div class="container mt-5">
-           <div class="row d-flex justify-content-between">
-              <div class="col-md-5">
-                 <h3>If you didn't find the products you are interested in or have questions?</h3>
-              </div>
-              <div class="col-md-6">
-                 <p>Enter your email:</p>
-                 <div class="input-group mb-3">
-                    <input type="email" class="form-control" placeholder="Your email here" aria-label="Your email" aria-describedby="basic-addon2" style="background-color: #000;">
-                    <button class="btn btn-outline-secondary" type="button" id="basic-addon2">
-                    <iconify-icon icon="ei:arrow-right"></iconify-icon>
-                    </button>
-                 </div>
-              </div>
-           </div>
-        </div>
-        <p class="pl-3">2023 - Copyright, All Rights Reserved.</p>
-     </footer>
+  <%- include('partials/footer') %>
+
     <script>
         document.querySelector(`.addCartButton`).addEventListener('click', async () => {
             event.preventDefault();
