@@ -338,29 +338,30 @@
                         <div><b>Delivery to</b> : <%= order.deliveryAddress %></div>
                     </div>
                 </div>
-
-                <div class="review-section">
-                    <h6><strong>Rate This Product :</strong></h6>
-                    <div>
-
-                        <span class="star" onclick="setRating(1)" onmouseover="hoverStar(this)"
-                            onmouseout="leaveStar(this)"><i class="fas fa-star"></i></span>
-                        <span class="star" onclick="setRating(2)" onmouseover="hoverStar(this)"
-                            onmouseout="leaveStar(this)"><i class="fas fa-star"></i></span>
-                        <span class="star" onclick="setRating(3)" onmouseover="hoverStar(this)"
-                            onmouseout="leaveStar(this)"><i class="fas fa-star"></i></span>
-                        <span class="star" onclick="setRating(4)" onmouseover="hoverStar(this)"
-                            onmouseout="leaveStar(this)"><i class="fas fa-star"></i></span>
-                        <span class="star" onclick="setRating(5)" onmouseover="hoverStar(this)"
-                            onmouseout="leaveStar(this)"><i class="fas fa-star"></i></span>
-
-                        <input type="text" placeholder="Title of review">
+                <% if (order.status === 'Delivered') { %>
+                    <div class="review-section">
+                        <h6><strong>Rate This Product :</strong></h6>
+                        <div>
+    
+                            <span class="star" onclick="setRating(1)" onmouseover="hoverStar(this)"
+                                onmouseout="leaveStar(this)"><i class="fas fa-star"></i></span>
+                            <span class="star" onclick="setRating(2)" onmouseover="hoverStar(this)"
+                                onmouseout="leaveStar(this)"><i class="fas fa-star"></i></span>
+                            <span class="star" onclick="setRating(3)" onmouseover="hoverStar(this)"
+                                onmouseout="leaveStar(this)"><i class="fas fa-star"></i></span>
+                            <span class="star" onclick="setRating(4)" onmouseover="hoverStar(this)"
+                                onmouseout="leaveStar(this)"><i class="fas fa-star"></i></span>
+                            <span class="star" onclick="setRating(5)" onmouseover="hoverStar(this)"
+                                onmouseout="leaveStar(this)"><i class="fas fa-star"></i></span>
+    
+                            <input type="text" placeholder="Title of review">
+                        </div>
+                        <div>
+                            <textarea placeholder="Review in detail"></textarea>
+                        </div>
+                        <button onclick="submitReview()" class="btn btn-warning">Submit Review</button>
                     </div>
-                    <div>
-                        <textarea placeholder="Review in detail"></textarea>
-                    </div>
-                    <button onclick="submitReview()" class="btn btn-warning">Submit Review</button>
-                </div>
+                <% } %>
             </div>
         </article>
     </div>

@@ -156,7 +156,18 @@ const addCartItem = async (req, res) => {
         const existingItem = userProfile.cart.find(item => item.itemId === itemId);
 
         if (existingItem) {
-            res.status(400).json({ message: 'Item already exists in the cart' });
+            // If the item already exists, increase its quantity by one
+            existingItem.quantity += 1;
+
+            // Save the updated user profile in the session
+            req.session.save(err => {
+                if (err) {
+                    console.error('Error saving session:', err);
+                    return res.status(500).json({ message: 'Internal server error' });
+                }
+                saveUserProfile(req, res);
+                res.status(200).json({ message: 'Quantity increased in cart', userProfile });
+            });
         } else {
             // If the item doesn't exist, add it to the cart
             const item = await Product.findOne({ itemId });
