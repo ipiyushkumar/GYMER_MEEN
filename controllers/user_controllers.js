@@ -76,7 +76,7 @@ const sendOTP = (req, res) => {
       from: process.env.MAIL_ID, // replace with your email
       to: userEmail,
       subject: 'OTP for Authentication',
-      text: `Your OTP is: ${otp} \n\n\n Thankyou, for using our service`
+      text: `Your OTP is:<h1> ${otp} </h1>\n\n\n Thankyou, for using our service`
     };
   
     transporter.sendMail(mailOptions, (error, info) => {
