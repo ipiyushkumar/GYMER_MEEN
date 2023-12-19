@@ -43,7 +43,7 @@ const authLogin = async (req, res) => {
             address: user.address,
             cart: user.cart,
         };
-
+        req.session.OTP = '';
         console.log("User logged in successfully: " + email);
         res.status(200).json({ message: "User logged in successfully" });
     } catch (error) {
@@ -75,8 +75,8 @@ const sendOTP = (req, res) => {
     const mailOptions = {
       from: process.env.MAIL_ID, // replace with your email
       to: userEmail,
-      subject: 'OTP for Authentication',
-      text: `Your OTP is:<h1> ${otp} </h1>\n\n\n Thankyou, for using our service`
+      subject: `OTP for Authentication : ${otp}`,
+      text: `Your OTP is: ${otp} \n\n\n Thankyou, for using our service`
     };
   
     transporter.sendMail(mailOptions, (error, info) => {
