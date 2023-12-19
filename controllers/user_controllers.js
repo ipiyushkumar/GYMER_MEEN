@@ -75,7 +75,7 @@ const sendOTP = (req, res) => {
     const mailOptions = {
       from: process.env.MAIL_ID, // replace with your email
       to: userEmail,
-      subject: `OTP for Authentication : ${otp}`,
+      subject: `OTP for Authentication - ${otp}`,
       text: `Your OTP is: ${otp} \n\n\n Thankyou, for using our service`
     };
   

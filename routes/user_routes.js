@@ -17,8 +17,6 @@ router.post('/auth/login',controllers.authLogin);
 
 router.post('/send-otp',controllers.sendOTP);
 
-// router.post('/auth/signup',controllers.authSignUp);
-
 router.get('/logout',isAuthenticated, controllers.authLogout);
 
 router.put('/updateUserProfile',isAuthenticated, controllers.updateProfile)
