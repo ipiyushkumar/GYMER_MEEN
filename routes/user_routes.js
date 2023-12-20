@@ -31,6 +31,10 @@ router.post('/removeItem', isAuthenticated, controllers.removeCartItem);
 
 router.post('/decreaseItem', isAuthenticated, controllers.decreaseCartItemQuantity);
 
+router.post('/products/:itemId/reviews',isAuthenticated, controllers.addOrUpdateReview)
+
+router.get('/products/:itemId/reviews',isAuthenticated, controllers.getReview)
+
 const Orders = require('../schemas/order_schema');
 
 // get order track
