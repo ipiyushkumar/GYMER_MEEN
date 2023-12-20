@@ -694,6 +694,8 @@
                                 document.getElementById('Image1').files[0] = '';
                                 document.getElementById('Image2').files[0] = '';
                                 document.getElementById('Image3').files[0] = '';
+
+                                showInventory();
                             })
                             .catch((error) => {
                                 showAlert('Error adding product:', "danger");
