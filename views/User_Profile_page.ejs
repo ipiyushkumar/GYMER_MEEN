@@ -394,7 +394,7 @@
     }
     function createTableCell (content){
         let cell = document.createElement('td');
-        cell.textContent = content;
+        cell.innerHTML = content;
         return cell
     }
     function createTableRow (orderId, orderItems, OrderPayment, OrderStatus) {
@@ -407,7 +407,7 @@
         });
 
         row.append(createTableCell(orderId))
-        row.append(createTableCell(OrderPayment))
+        row.append(createTableCell("&#8377;"+OrderPayment))
         row.append(createTableCell(OrderStatus))
 
         return row;

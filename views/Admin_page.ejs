@@ -486,7 +486,7 @@
                 const loadOrders = async () => {
                     function createTableCell(content) {
                         let cell = document.createElement('td')
-                        cell.textContent = content;
+                        cell.innerHTML = content;
                         return cell;
                     }
                     function dynamicOrderStatus (Id,content) {
@@ -523,7 +523,7 @@
                                 }));
 
                                 row.append(createTableCell(names)) // Correct variable name here
-                                row.append(createTableCell(order.totalPayment))
+                                row.append(createTableCell("&#8377;" + order.totalPayment))
 
                                 const dateTime = new Date(order.Date);
 
