@@ -680,6 +680,10 @@
                         formData.append('files', Image1);
                         formData.append('files', Image2);
                         formData.append('files', Image3);
+                        if (offeredPrice > originalPrice) {
+                            showAlert("enter valid price", "danger")
+                            return 0;
+                        }
 
                         axios
                             .post('/api/products', formData)
