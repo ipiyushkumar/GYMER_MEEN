@@ -11,6 +11,7 @@
       <link rel="stylesheet" href="/css/Home.css">
       <link rel="preconnect" href="https://fonts.googleapis.com">
       <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+      <link href="https://cdn.jsdelivr.net/npm/aos@2.3.1/dist/aos.css" rel="stylesheet">
       <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@200;400;500&display=swap">
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
       <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.js"></script>
@@ -163,27 +164,27 @@
          <button class="btn btn-light align-left mb-5 mt-5"><a href="/product_listing/explore" style="text-decoration: none;color: #000;font-weight: 500;font-size: 1.2rem">Explore Now</a></button>
       </div>
       <div class="container products-bar mt-4">
-         <div class="mb-2 filters d-flex justify-content-evenly align-items-center text-uppercase">
+         <div class="mb-2 filters d-flex justify-content-evenly align-items-center text-uppercase" data-aos="fade-down">
             <!-- <button class="category-btn m-1" onclick="renderProducts('all')">All</button> -->
             <button class="category-btn m-1" onclick="renderProducts('Face Care')">Face Care</button>
             <button class="category-btn m-1" onclick="renderProducts('Hair Care')">Hair Care</button>
             <button class="category-btn m-1" onclick="renderProducts('Body Care')">Body Care</button>
             <!-- <button class="category-btn m-1" onclick="renderProducts('Beard Care')">Beard Care</button> -->
          </div>   
-         <div id="productGrid" class="row product-grid" onmousedown="startScroll(event)" onmouseup="stopScroll()" ontouchstart="startScroll(event)" ontouchend="stopScroll()">
+         <div id="productGrid" class="row product-grid" data-aos="fade-up" data-aos-duration="1000" onmousedown="startScroll(event)" onmouseup="stopScroll()" ontouchstart="startScroll(event)" ontouchend="stopScroll()">
          </div>
 
          <div class="d-flex justify-content-center p-4 mt-1 mb-5" >
             <button class="show-btn"><a href="/product_listing/all">Show More</a></button>
          </div>
       </div>
-      <div class="container-fluid mt-2 mb-2 p-0 banner-section">
+      <div class="container-fluid mt-2 mb-2 p-0 banner-section" data-aos="zoom-in-up">
          <img class="banner-image" src="assets/black-friday.jpg" alt="Banner Image">
       </div>
       <div class="container mt-5 mb-5">
          <h2 class="text-center text-white mb-4">Search Through Category</h2>
-         <div class="row align-items-stretch">
-             <div class="col-md-4 col-4 mt-2">
+         <div class="d-flex justify-content-center m-2 align-items-center gap-2">
+             <div class="col-md-4 col-4 m-0" data-aos="fade-up" data-aos-duration="1000">
                  <div class="card bg-white text-center p-0 d-flex flex-column" style="border-radius: 10px;">
                      <img src="assets/category1.jpg" class="card-img-top flex-grow-1" alt="Image 1" style="border-radius: 10px 10px 0 0">
                      <div class="card-body">
@@ -191,7 +192,7 @@
                      </div>
                  </div>
              </div>
-             <div class="col-md-4 col-4 mt-2">
+             <div class="col-md-4 col-4 m-0" data-aos="fade-up" data-aos-duration="1000">
                  <div class="card bg-white text-center p-0 border-0 d-flex flex-column" style="border-radius: 10px;">
                      <img src="assets/category3.jpg" class="card-img-top flex-grow-1" alt="Image 2" style="border-radius: 10px 10px 0 0">
                      <div class="card-body">
@@ -199,7 +200,7 @@
                      </div>
                  </div>
              </div>
-             <div class="col-md-4 col-4 mt-2">
+             <div class="col-md-4 col-4 m-0" data-aos="fade-up" data-aos-duration="1000">
                  <div class="card bg-white text-center p-0 border-0 d-flex flex-column" style="border-radius: 10px;" >
                      <img src="assets/category2.jpg" class="card-img-top flex-grow-1" alt="Image 3" style="border-radius: 10px 10px 0 0">
                      <div class="card-body">
@@ -304,12 +305,12 @@
                }
          
       </style>
-     <div class="container py-5" style="width: 100%;">
+     <div class="container py-5" style="width: 100%;" data-aos="flip-down">
 		<div class="row">
 			<div class="col-12">
-				<div class="swiper-container mySwiper">
+				<div class="swiper-container mySwiper" >
 					<div class="swiper-wrapper">
-					<div class="swiper-slide">
+					      <div class="swiper-slide" >
                         <img src="../assets/spray1.jpg" alt="" class="img-fluid" />
                         
                         <div class="user-info">
@@ -490,7 +491,7 @@
             </div>
             <div class="product-details">
                   <div class="category-badge text-white corner-round p-1" style="display:none;">${product.category}</div>
-                  <div class="product-title"><a href="Product_Description.html" style="text-decoration:none;color:#000">${product.name}</a></div>
+                  <div class="product-title"><a href="/search/${product.itemId}" style="text-decoration:none;color:#000">${product.name}</a></div>
                   <div class="product-description">${product.description}</div>
                   <div class="mb-2">
                      <div class="d-flex justify-content-between bolder product-price-discount">
@@ -640,9 +641,15 @@
    });
 
 </script>
+<script>
+   document.addEventListener('DOMContentLoaded', function () {
+       AOS.init();
+   });
+</script>
 
       <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
       <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
       <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+      <script src="https://cdn.jsdelivr.net/npm/aos@2.3.1/dist/aos.js"></script>
    </body>
 </html>

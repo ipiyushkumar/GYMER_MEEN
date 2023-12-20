@@ -220,14 +220,7 @@ body {
     border: 1px solid burlywood;
     color: burlywood;
     }
-    .launch-badge {
-    position: absolute;
-    top: 0rem;
-    left: 0.5rem;
-    width: 40px;
-    height: auto;
-    z-index: 1;
-    }
+  
     .products-bar{
     width: 90%;
     padding-right: 1rem;
@@ -494,3 +487,4 @@ body {
 margin-right: 2rem !important;
 margin-left: 2rem!important;
 }
+
