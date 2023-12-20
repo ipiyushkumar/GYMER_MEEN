@@ -11,24 +11,12 @@
     <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-    <title>Product Description</title>
+    <title>whitewold - <%= item.name %></title>
     <style>
       .card-wrapper{
     background-color: #000;
     width: 90%;
-    margin-top: 0;
 }
-    .social-links{
-      display: flex;
-      justify-content: flex-start;
-      align-items: center;
-      text-align: center;
-    }
-    .social-links a{
-      font-size: 2rem;
-      padding: 2rem;
-      color: #000;
-    }
     </style>
 </head>
 <body>
@@ -134,62 +122,81 @@
       </nav> 
     <%- include('partials/cart') %>
 
-    <div class="card-wrapper mt-5" style="width: 100%;height: max-content;">
+    <div class="card-wrapper mt-3" style="width: 100%;height: max-content;">
 
         <div class="cardio" style="width: 100%;grid-column-gap: 10vh;height: 100%;">
             <div class="product-imgs" style="align-self: start;">
-                <div class="main-image">
-                    <img id="mainProductImage" src='<%= item.imageLink[0] %>' alt="Main Product Image">
-                </div>
-                <div class="additional-images">
-                    <% item.imageLink.forEach((image, index) => { %>
-                        <div class="additional-image" onclick="loadImage('<%= image %>')" style="background-color: #fff;height: 25vh;">
-                            <img src="<%= image %>" alt="shoe image" style="height:13vh">
-                        </div>
-                    <% }); %>
-                </div>
-                <script>
-                    function loadImage(image) {
-                        document.getElementById('mainProductImage').src = image;
-                    }
-                </script>
+              <div class="main-image" id="mainImageContainer">
+                <img id="mainProductImage" src='<%= item.imageLink[0] %>' alt="Main Product Image">
+            </div>
+            <div class="additional-images">
+              <% item.imageLink.forEach((image, index) => { %>
+                  <div class="additional-image" onclick="loadImage('<%= image %>')" style="background-image: url('<%= image %>');">
+                      <!-- You can optionally include an img tag within the div for accessibility -->
+                      <!-- <img src="<%= image %>" alt="shoe image"> -->
+                  </div>
+              <% }); %>
+          </div>
+          
+          <script>
+            function loadImage(image) {
+                var mainProductImage = document.getElementById('mainProductImage');
+                
+                // Add a class to initiate the slide-out effect
+                mainProductImage.classList.add('slide-out');
+        
+                // Wait for the transition to complete before changing the image source
+                setTimeout(function() {
+                    mainProductImage.src = image;
+        
+                    // Remove the class to initiate the slide-in effect
+                    mainProductImage.classList.remove('slide-out');
+                }, 300); // Adjust the time (in milliseconds) based on the transition duration
+            }
+        </script>
             </div>      
 
             <div class="product-content" style="align-self: start;">
-                <h2 class="product-title"><%= item.name %></h2>
-                <a href="#" class="product-link">WhiteWolf Originals</a>
+                <h2 class="product-title" style="color: #fff;"><%= item.name %></h2>
                 <div class = "product-rating">
                     <iconify-icon icon="noto:star"></iconify-icon>
                     <span>4.7 | (21 Reviews)</span>
                 </div>
 
-               <div class="product-price">
-                <p class="discount-percentage">
-                    <% 
-                        const discountPercentage = ((item.originalPrice - item.offeredPrice) / item.originalPrice) * 100;
-                    %>
-                    <span>-<%= discountPercentage.toFixed(0) %>%  </span> 
-                    <p class="new-price"><span>&#8377;<%= item.offeredPrice %></span></p>
-
-                    </p>
+               <div class="butns">
+                <div>
+                  <div class="product-price">
+                    <p class="discount-percentage">
+                        <% 
+                            const discountPercentage = ((item.originalPrice - item.offeredPrice) / item.originalPrice) * 100;
+                        %>
+                        <span>-<%= discountPercentage.toFixed(0) %>%  </span> 
+                        <p class="new-price"><span>&#8377;<%= item.offeredPrice %></span></p>
+    
+                        </p>
+                    </div>
+    
+                    <p class="last-price">M.R.P. : <span>&#8377;<%= item.originalPrice%></span></p>
+                    <p class="tax">Inclusive of all taxes</p>
+                 </div>
+                <div class="quantity-container" style="display: none;">
+                  <button id="minus-btn" class='decrease<%= item.itemId %>desc'>-</button>
+                  <input type="button" id="quantity-input" class='itemQuantity<%= item.itemId %>desc' value="0">
+                  <button id="plus-btn" class='increase<%= item.itemId %>desc'>+</button>
                 </div>
-
-                <p class="last-price">M.R.P. : <span>&#8377;<%= item.originalPrice%></span></p>
-                <p class="tax">Inclusive of all taxes</p>
+              
+               </div>
 
                 <div class="purchase-info">
-                    <!-- <button type="button" class="btn addCartButton" style="font-size: 5vh;padding: 1vh 2vh;">+</button> -->
-                    <button type="button" class="btn addCartButton" style="font-size: 5vh;padding: 1vh 2vh;">Add to Cart</button>
-                    <!-- <button type="button" class="btn addCartButton" style="font-size: 5vh;padding: 1vh 2vh;">-</button> -->
+                    <button type="button" class="btn addCartButton">Add to Cart</button>
                 </div>
 
                 <div class="product-detail">
                     <p><%= item.description %></p>
                 </div>
 
-                <div class="social-links">
-                    <p>Share This Product : </p>
-                    <div class="d-flex flex-row">
+                <div class="social-links d-flex flex-row align-items-center">
+                      <p>Share This Product : </p>
                       <a href = "#">
                         <iconify-icon icon="bi:facebook"></iconify-icon>
                       </a>
@@ -202,7 +209,6 @@
                       <a href = "#">
                         <iconify-icon icon="ic:sharp-whatsapp"></iconify-icon>
                       </a>
-                    </div>
                   </div>
             </div>
 
@@ -284,7 +290,66 @@
   <div id="productGrid" class="row mb-3 product-grid container onmousedown="startScroll(event)" onmouseup="stopScroll()" ontouchstart="startScroll(event)" ontouchend="stopScroll()">
   </div>
 
-  <%- include('partials/footer') %>
+  <footer class="container-fluid mt-5 d-flex flex-column container text-white p-3 footer"style="background-color: #000;">
+    <div class=" text-left mt-3 p-5" style="background-color: #070707;">
+       <div class="row">
+          <div class="col-md-3">
+             <img src="../assets/newlogo.png" alt="Logo" class="img-fluid mb-3" style="width: auto;height: 10vh;">
+          </div>
+          <div class="col-md-6 d-flex footer-menu">
+             <div class="col-md-6 mr-3 list-unstyled">
+                <li><a href="#" class="text-white">About us</a></li>
+                <li><a href="#" class="text-white">FAQ</a></li>
+                <li><a href="#" class="text-white">Shipping and Payment</a></li>
+                <li><a href="#" class="text-white">Partners</a></li>
+                <li><a href="#" class="text-white">Blog</a></li>
+                <li><a href="#" class="text-white">Contact Us</a></li>
+             </div>
+             <div class="col-md-6 ml-3 list-unstyled">
+                <li><a href="#" class="text-white">Customer Reviews</a></li>
+                <li><a href="#" class="text-white">Hair Care</a></li>
+                <li><a href="#" class="text-white">Skin Care</a></li>
+                <li><a href="#" class="text-white">Face Care</a></li>
+             </div>
+          </div>
+          <div class="col-md-3 d-flex flex-column align-items-end">
+             <button class="btn btn-light mb-2">Shop Now</button>
+             <p>+(123) 123-99-999</p>
+             <p>info@WhiteWolf.com</p>
+          </div>
+       </div>
+       <div class="row mt-5">
+          <div class="col-md-3 social">
+             <ul class="list-unstyled">
+                <a href="#" class="mr-2"><iconify-icon icon="mdi:instagram"></iconify-icon></i></a>
+                <a href="#" class="mr-2"><iconify-icon icon="ic:baseline-whatsapp"></iconify-icon></i></a>
+             </ul>
+          </div>
+          <div class="col-md-6 d-flex">
+             <p>The Hive Co Working and Business Center<br>Industiral Area Phase-2, Chandigarh</p>
+          </div>
+          <div class="col-md-3 d-flex flex-column align-items-end">
+          </div>
+       </div>
+    </div>
+    <div class="container mt-5">
+       <div class="row d-flex justify-content-between">
+          <div class="col-md-5">
+             <h3>If you didn't find the products you are interested in or have questions?</h3>
+          </div>
+          <div class="col-md-6">
+             <p>Enter your email:</p>
+             <div class="input-group mb-3">
+                <input type="email" class="form-control" placeholder="Your email here" aria-label="Your email" aria-describedby="basic-addon2" style="background-color: #000;">
+                <button class="btn btn-outline-secondary" type="button" id="basic-addon2">
+                <iconify-icon icon="ei:arrow-right"></iconify-icon>
+                </button>
+             </div>
+          </div>
+       </div>
+    </div>
+    <p class="pl-3">2023 - Copyright, All Rights Reserved.</p>
+ </footer>
 
     <script>
         document.querySelector(`.addCartButton`).addEventListener('click', async () => {
@@ -296,7 +361,12 @@
                   console.log(response.data.message);
                       showAlert('item added to cart','success')
                       openCart()
-
+                      let container = document.querySelector('.quantity-container')
+                      container.style.display = 'block'
+                      let value = document.querySelector(`.itemQuantity<%= item.itemId %>desc`).value;
+                      value = parseInt(value, 10);  // Parse the value as an integer
+                      value = value + 1;
+                      document.querySelector(`.itemQuantity<%= item.itemId %>desc`).value = value;
                 } else {
                     console.error('Error adding item to cart:', response.data.message);
 
@@ -305,6 +375,41 @@
               window.location.href = "/login"
             }
         });
+        document.addEventListener('DOMContentLoaded', async () => {
+          const response = await axios.get('/getprofile');
+          const userProfile = response.data.userProfile;
+          const itemId = '<%= item.itemId %>';
+          const cartItem = userProfile.cart.find(item => item.itemId === itemId);
+          if (cartItem) {
+            document.querySelector(`.itemQuantity<%= item.itemId %>desc`).value = cartItem.quantity
+            document.querySelector('.quantity-container').style.display = 'block'
+          } 
+          document.querySelector(`.decrease<%= item.itemId %>desc`).addEventListener('click', async () => {
+              await axios.post('/decreaseItem', { itemId: '<%= item.itemId %>' })
+              .then(response => {
+                  quantity = response.data.newQuantity;
+                  if (quantity === -1){
+                    document.querySelector('.quantity-container').style.display = 'none'
+                      showAlert("Item removed from cart","success")
+                  } else {
+                      document.querySelector(`.itemQuantity<%= item.itemId %>desc`).value = quantity;
+                      showAlert("Item quantity decreased","success")
+                  }
+              })
+              .catch(err => alert("error " + err))
+          })
+          document.querySelector('.increase<%= item.itemId %>desc').addEventListener('click', async () => {
+              console.log("triggered")
+              await axios.post('/increaseItem', { itemId: '<%= item.itemId %>' })
+              .then(response => {
+                console.log('quantity increased')
+                  document.querySelector(`.itemQuantity<%= item.itemId %>desc`).value = response.data.newQuantity;
+                  showAlert("Item quantity increased","success")
+              })
+              .catch(err => alert("error " + err))
+          })
+        });
+
     </script>
 
 <script>
@@ -382,8 +487,8 @@
           <div class="category-badge text-white corner-round p-1" style="display:none;">${product.category}</div>
           <div class="product-title"><a href="Product_Description.html" style="text-decoration:none;color:#000">${product.name}</a></div>
           <div class="product-description">${product.description}</div>
-          <div class="mb-2">
-              <div class="d-flex justify-content-between bolder product-price-discount">
+          <div class="mb-1">
+              <div class="d-flex justify-content-between product-price-discount">
                 <div class="product-price">&#8377; ${product.offeredPrice}</div>
                 <div class="original-price text-secondary text-decoration-line-through">&#8377;${product.originalPrice || ''}</div>
                 <div class="product-discount text-success">${((product.originalPrice - product.offeredPrice) / product.originalPrice * 100).toFixed(0)}% Off</div>
@@ -442,6 +547,47 @@
             icon.innerHTML = '❌';
         }
     }
+</script>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+      var mainImageContainer = document.getElementById('mainImageContainer');
+      var mainProductImage = document.getElementById('mainProductImage');
+
+      // Wait for the image to load
+      mainProductImage.onload = function () {
+          // Create a canvas element
+          var canvas = document.createElement('canvas');
+          var context = canvas.getContext('2d');
+
+          // Set the canvas dimensions to match the image
+          canvas.width = mainProductImage.width;
+          canvas.height = mainProductImage.height;
+
+          // Draw the image onto the canvas
+          context.drawImage(mainProductImage, 0, 0, mainProductImage.width, mainProductImage.height);
+
+          // Get the average color of the image
+          var imageData = context.getImageData(0, 0, mainProductImage.width, mainProductImage.height).data;
+          var totalPixels = mainProductImage.width * mainProductImage.height;
+          var sumRed = 0, sumGreen = 0, sumBlue = 0;
+
+          for (var i = 0; i < totalPixels; i++) {
+              sumRed += imageData[i * 4];
+              sumGreen += imageData[i * 4 + 1];
+              sumBlue += imageData[i * 4 + 2];
+          }
+
+          var averageColor = {
+              red: Math.round(sumRed / totalPixels),
+              green: Math.round(sumGreen / totalPixels),
+              blue: Math.round(sumBlue / totalPixels),
+          };
+
+          // Set the background color of the container
+          mainImageContainer.style.backgroundColor = 'rgb(' + averageColor.red + ',' + averageColor.green + ',' + averageColor.blue + ')';
+      };
+  });
 </script>
 
 <script>

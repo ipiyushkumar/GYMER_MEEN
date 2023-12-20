@@ -15,7 +15,7 @@ body{
 .card-wrapper{
     background-color: #000;
     max-width: 90%;
-    margin-top: 0;
+    margin-top: -10vh;
 }
 
 @media screen and (max-width: 768px) {
@@ -23,17 +23,12 @@ body{
         grid-template-columns: 1fr; 
     }
 
+
     .parent-container{
         display: flex;
         flex-direction: column;
     }
 
-    .social-links{
-        font-size: 1.3rem;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
 
 }
 
@@ -49,48 +44,144 @@ body{
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: #fff;
     overflow: hidden;
     margin: 0;
 }
 
-.main-image img,
-.additional-image img {
+.main-image {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    margin: 0;
+}
+
+.main-image img {
     width: 100%;
     height: 100%;
     object-fit: contain;
     object-position: center center;
 }
 
+
 .main-image {
     max-height: calc(4/5 * 80vh); 
 }
 
 .additional-images {
-    background-color: #000;
-    max-height: calc(1/5 * 80vh); 
-    display: grid;
-    grid-template-columns: repeat(3, 1fr); 
-    column-gap: 1rem; 
+    height: 20vh;
+    margin-bottom: 2vh;
+    display: flex;
+    justify-content: space-between; /* Adjust as needed */
+    column-gap: 10px; /* Adjust the gap between columns as needed */
 }
 
-.additional-image img {
-    height: 100%; 
+#mainProductImage {
+    transition: transform 0.3s ease-in-out; /* Add a transition effect on transform */
 }
+
+.slide-out {
+    transform: translateX(-100%); /* Slide the image to the left */
+}
+
+.additional-image {
+    width: 25vh; /* Set the width of your larger divs */
+    height: 25vh; /* Set the height of your larger divs */
+    background-size: contain;
+    background-color: #fff; 
+    background-repeat: no-repeat;/* Ensure the background image fits within the div */
+    background-position: center; /* Center the background image within the div */
+    cursor: pointer; /* Add a pointer cursor for better UX since you have an onclick event */
+    /* You can add additional styling for the individual divs here */
+}
+
+.additional-image img{
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+}
+
 
 .product-content{
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    padding: 1rem 1rem;
+    padding: 0;
+    /* background-color: red; */
 }
-.product-title{
-    font-size: 2rem;
+.product-content .product-title{
+    font-size: 4vh;
     text-transform: capitalize;
     font-weight: 500;
     position: relative;
     color: #fff;
-    margin: 1rem 0;
+    margin: 0 0;
+}
+
+.butns{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.quantity-container {
+    display: flex;
+    padding: 0;
+    align-items: flex-start;
+    justify-content: right;
+}
+
+.quantity-container button{
+    width: 20%;
+    height: 10vh;
+    font-size: 5vh;
+    border: none;
+    outline: none;
+    margin: 0;
+    background-color: #f7f7f7;
+}
+
+@media screen and (max-width: 600px) {
+    .social-links a{
+        margin-top: -1vh;
+    }
+    .butns{
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 2vh;
+    }
+
+    .quantity-container{
+        width: 100%;
+    }
+
+    #quantity-input {
+        outline: none;
+        border: none;
+        width: 60%;
+        height: 10vh;
+        font-size: 5vh;
+        margin: 0;
+        text-align: center;
+    }
+    .quantity-container button{
+        width: 40%;
+        height: 10vh;
+        font-size: 5vh;
+        border: none;
+        outline: none;
+        margin: 0;
+        background-color: #f7f7f7;
+    }
+}
+
+#quantity-input {
+    outline: none;
+    border: none;
+    width: 40%;
+    height: 10vh;
+    font-size: 5vh;
+    margin: 0;
+    text-align: center;
 }
 
 .product-link{
@@ -110,39 +201,43 @@ body{
     opacity: 0.9;
 }
 .product-rating{
-    margin-top: 1rem;
-    margin-bottom: 1rem;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    margin-top: 2vh;
+    margin-bottom: 2vh;
     color: #fff;
 }
 .product-rating span{
     font-weight: 400;
+    margin-left: 0.5vh;
 
 }
 .product-price{
     display: flex;
     flex-direction: row;
-    margin:1rem;
+    margin: 1vh;
     margin-left: 0;
-    font-size: 1rem;
-    font-weight: 700;
+    font-weight: 600;
 }
 
 .product-price .new-price{
-    font-size: 2rem;
+    font-size: 4vh;
     color: #fff;
     margin-right: 1rem;
     font-weight: 500;
 }
 
 .product-price .discount-percentage{
-    font-size: 2rem;
-    color: orangered;
+    font-size: 4vh;
+    color: red;
     margin-right: 1rem;
-    font-weight: 700;
+    font-weight: 500;
 }
 
 .last-price,.tax{
-    font-size: 1.2rem;
+    font-size: 3vh;
+    margin-bottom: 1vh;
 }
 
 .last-price span{
@@ -152,7 +247,7 @@ body{
 }
 
 .tax{
-    margin-bottom: 2rem;
+    margin-bottom: 4vh;
 }
 
 .product-detail h2{
@@ -190,30 +285,11 @@ body{
 .purchase-info input,
 .purchase-info .btn{
     width: 100%;
-    background: #fff;
-    border: 2px solid #fff;
-    text-align: center;
-    font-size: 1.5rem;
-    padding: 1.2rem;
-    border-radius: 0;
-    outline: 0;
-    color: #000;
-    cursor: pointer;
-    text-transform: capitalize;
-    margin-bottom: 1rem;
+    background-color: #fff;
+    font-size: 4vh;
 }
 .purchase-info input{
     width: 60px;
-}
-
-.social ul a {
-    width: 0.5rem;
-    height: 0.5rem;
-    padding: 1rem;
-    font-size: 1.5rem; 
-    background-color: #fff;
-    border-radius: 50%;
-    color: #000;
 }
 
 .purchase-info .btn:hover{
@@ -235,22 +311,14 @@ body{
 }
 
 .social-links{
-    font-size: 1.3rem;
-    display: flex;
-    align-items: center;
+    color: #fff;
+    font-size: 3vh;
 }
 .social-links a{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 2.5rem;
-    height: 2.5rem;
-    background-color: #fff;
-    border: 2px solid #fff;
-    margin: 0 0.2rem;
-    border-radius: 50%;
-    text-decoration: none;
-    font-size: 1.5rem;
+    margin-top: -1vh;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    color: #fff;
     transition: all 0.5s ease;
 }
 .social-links a:hover{
@@ -333,12 +401,21 @@ body{
             transform: scale(1.05);
         }
 
+
         @media screen and (max-width: 767px) {
+            
             .parent-container {
                 display: flex;
                 justify-content: center;
                 flex-direction: column;
             }
+
+
+
+            .product-title{
+                margin-top: 2vh;
+            }
+
 
             .left-container{
                 width: 100%;
@@ -468,7 +545,166 @@ flex-wrap: nowrap;
 flex-direction: row;
 }
 
+.product-card {
+    width: 30%;
+cursor: pointer;
+display: flex;
+flex-direction: column;
+justify-content: space-around;
+align-items: center;
+flex-wrap: wrap;
+background-color: #fff;
+color: #000;
+margin: 5px;
+padding: 15px;
+color: #fff;
+border-radius: 10px;
+transition: transform 0.2s;
+height: auto;
+}
+
+.product-details{
+    text-align: left;
+    width: 100%;
+    flex-wrap: wrap;
+}
+
+.product-image {
+width: 100%;
+height: 40vh;
+object-fit: cover;
+transition: transform 1s ease-in-out;
+display: block;
+margin-left: auto;
+margin-right: auto;
+overflow: hidden;
+border-radius: 10px;
+}
+
+.product-image:hover{
+        transform: scale(1.05);
+}
+.product-title {
+font-size: 2.5vh;
+font-weight: bold;
+margin-top: 1rem;
+color: #000;
+}
+.product-description {
+font-size: 0.9rem;
+margin-top: 0.5rem;
+color: #222;
+}
+.product-price-discount {
+margin-top: 10px;
+}
+.product-price{
+color: #000;
+font-weight: bolder;
+}
+.add-to-cart-btn {
+margin-top: 1rem;
+display: inline-block;
+width: 100%;
+padding: 0.5rem 1rem;
+background-color: burlywood;
+color: #fff;
+text-align: center;
+text-decoration: none;
+font-size: 13px;
+border: none;
+border-radius: 6px;
+cursor: pointer;
+text-transform: uppercase;
+transition: background-color 0.3s ease-in-out;
+}
+.add-to-cart-btn:hover{
+background-color: #fff;
+border: 1px solid burlywood;
+color: burlywood;
+}
+
+.products-bar{
+width: 90%;
+padding-right: 1rem;
+padding-left: 1rem;
+color: #000;
+background-color: #000;
+}
+
+@media screen and (max-height: 450px) {
+    
+.sidenav {padding-top: 15px;}
+.sidenav a {font-size: 1rem;}
+}
+@media (max-width: 576px){
+.product-grid{
+padding: 5px;
+/* padding-right: 1rem; */
+grid-column-gap: 0px;
+}
+
+
+.product-card{
+    width: 45%;
+}
+
+.product-image{
+    height: 15vh;
+}
+
+.show-btn{
+    border: 1px solid #fff;
+    font-size: 15px;
+    margin-top: -5pxs;
+}
+
+
+.add-to-cart-btn{
+    font-size: 11px;
+}
+
+.product-grid{
+    padding: 1rem;
+    width: 100%;
+    /* background-color: red; */
+    overflow-x: scroll;
+    scrollbar-width: 1px;
+display: flex;
+flex-wrap: nowrap;
+flex-direction: row;
+justify-content: flex-start;
+align-items: center;
+}
+
+.product-discount{
+    display: none;
+}
+
+
+.product-title{
+    font-size: 11px;
+    font-weight: 600;
+}
+
+.product-description{
+    font-weight: 400;
+    font-size: 9px;
+}
+}
+
 #productGrid {
+    overflow: hidden;
+    -ms-overflow-style: none;  
+    scrollbar-width: none;  
+}
+
+#productGrid::-webkit-scrollbar {
+    display: none;
+}
+
+
+/* #productGrid {
     overflow: hidden;
     -ms-overflow-style: none;  
     scrollbar-width: none;  
@@ -547,11 +783,11 @@ color: #000;
 }
 .product-description {
 font-size: 0.9rem;
-margin-top: 0.5rem;
+margin-top: 0.3rem;
 color: #222;
 }
 .product-price-discount {
-margin-top: 10px;
+margin-top: 0;
 }
 .product-price{
 color: #000;
@@ -577,7 +813,7 @@ transition: background-color 0.3s ease-in-out;
 background-color: #fff;
 border: 1px solid burlywood;
 color: burlywood;
-}
+} */
 
 .people{
     font-size: 7vh;
