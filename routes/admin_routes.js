@@ -78,8 +78,8 @@ router.post('/api/products', multerMiddleware.array('files', 3), async (req, res
       stock,
       imageLink,
     });
-    const sanitizedName = name.replace(/\s+/g, '_'); // Replace spaces with underscores
-    newProduct.itemId = "item_" + sanitizedName + "_" + newProduct._id;
+    const sanitizedName = name.replace(/\s+/g, '-'); 
+    newProduct.itemId = "sid-" + sanitizedName + "-" + newProduct._id;
 
     console.log("product saved")
     // Save the product to the database

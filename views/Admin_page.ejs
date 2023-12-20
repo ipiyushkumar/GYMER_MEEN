@@ -660,52 +660,62 @@
                     const Image2 = document.getElementById('Image2').files[0];
                     const Image3 = document.getElementById('Image3').files[0];
 
-                    if (
-                        name &&
-                        description &&
-                        originalPrice &&
-                        offeredPrice &&
-                        category &&
-                        stock &&
-                        Image1
-                    ) {
-                        let formData = new FormData();
-                        
-                        formData.append('name', name);
-                        formData.append('description', description);
-                        formData.append('originalPrice', originalPrice);
-                        formData.append('offeredPrice', offeredPrice);
-                        formData.append('category', category);
-                        formData.append('stock', stock);
-                        formData.append('files', Image1);
-                        formData.append('files', Image2);
-                        formData.append('files', Image3);
-                        if (offeredPrice > originalPrice) {
-                            showAlert("enter valid price", "danger")
-                            return 0;
-                        }
+                    const parsedOriginalPrice = parseInt(originalPrice, 10);
+                    const parsedOfferedPrice = parseInt(offeredPrice, 10);
 
-                        axios
-                            .post('/api/products', formData)
-                            .then((response) => {
-                                showAlert('Product added successfully:',"success");
-                                document.getElementById('productName').value = '';
-                                document.getElementById('productDescription').value = '';
-                                document.getElementById('originalPrice').value = '';
-                                document.getElementById('offeredPrice').value = '';
-                                document.getElementById('category').value = '';
-                                document.getElementById('stock').value = '';
-                                document.getElementById('Image1').files[0] = '';
-                                document.getElementById('Image2').files[0] = '';
-                                document.getElementById('Image3').files[0] = '';
-
-                                showInventory();
-                            })
-                            .catch((error) => {
-                                showAlert('Error adding product:', "danger");
-                            });
+                    if (parsedOfferedPrice >= parsedOriginalPrice) {
+                        showAlert("Enter a valid price", "danger");
+                        return;
                     } else {
-                        showAlert('Please fill in all the details before adding the product.',"danger");
+                        if (
+                            name &&
+                            description &&
+                            originalPrice &&
+                            offeredPrice &&
+                            category &&
+                            stock &&
+                            Image1
+                        ) {
+                            let formData = new FormData();
+                            
+                            formData.append('name', name);
+                            formData.append('description', description);
+                            formData.append('originalPrice', originalPrice);
+                            formData.append('offeredPrice', offeredPrice);
+                            formData.append('category', category);
+                            formData.append('stock', stock);
+                            formData.append('files', Image1);
+                            formData.append('files', Image2);
+                            formData.append('files', Image3);
+                            
+
+                            axios
+                                .post('/api/products', formData)
+                                .then((response) => {
+                                    showAlert('Product added successfully:',"success");
+                                    document.getElementById('productName').value = '';
+                                    document.getElementById('productDescription').value = '';
+                                    document.getElementById('originalPrice').value = '';
+                                    document.getElementById('offeredPrice').value = '';
+                                    document.getElementById('stock').value = '';
+                                    document.getElementById('Image1').value = '';
+                                    document.getElementById('Image2').value = '';
+                                    document.getElementById('Image3').value = '';
+                                })
+                                .then (() => {
+                                    // Get a reference to the element
+                                    const myElement = document.getElementById('inventoryTab');
+                                    // Create a new event
+                                    const myEvent = new Event('click');
+                                    // Dispatch the event
+                                    myElement.dispatchEvent(myEvent);
+                                })
+                                .catch((error) => {
+                                    showAlert('Error adding product:', "danger");
+                                });
+                        } else {
+                            showAlert('Please fill in all the details before adding the product.',"danger");
+                        }
                     }
                 }
             </script>
