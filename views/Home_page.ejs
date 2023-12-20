@@ -216,7 +216,6 @@
      <style>
          .swiper-container {
             background-color: black;
-            width: 95%;
             overflow: hidden;
             padding-bottom: 60px
          }
@@ -229,16 +228,16 @@
             width: 400px;
             height: auto;
             background-color: #fff;
-            padding: 15px;
+            padding: 10px;
             border-radius: 10px;
          }
          
          .swiper-slide .ratings{
-            margin-top: 2vh;
+            margin-top: 1vh;
          }
          
          .swiper-slide .ratings .rating-number{
-            font-size: 4vh;
+            font-size: 3vh;
             font-weight: bolder;
          }
          
@@ -247,13 +246,19 @@
          }
          
          .swiper-slide .ratings iconify-icon{
-            font-size: 4vh;
+            font-size: 3vh;
          }
+
+         .swiper-slide p{
+            margin-top: 1vh;
+            font-size: 2vh;
+         }
+
+
          .swiper-slide img {
-            width: 220px;
-            height: 220px;
+            width: 10vh;
+            height: 10vh;
             border-radius: 50%;
-            height: auto;
             display:block;
             margin:10px auto;
          }
@@ -305,13 +310,13 @@
                }
          
       </style>
-     <div class="container py-5" style="width: 100%;" data-aos="flip-down">
+     <div class="container d-flex flex-column pt-3 pb-3"  data-aos="fade-up" data-aos-duration="3000">
 		<div class="row">
 			<div class="col-12">
-				<div class="swiper-container mySwiper" >
+				<div class="swiper-container mySwiper"  style="width:100%;height: 50vh;"  >
 					<div class="swiper-wrapper">
 					      <div class="swiper-slide" >
-                        <img src="../assets/spray1.jpg" alt="" class="img-fluid" />
+                        <img src="../assets/spray1.jpg" alt="" class="img" />
                         
                         <div class="user-info">
                             <small class="text-muted">@username</small>
@@ -491,7 +496,7 @@
             </div>
             <div class="product-details">
                   <div class="category-badge text-white corner-round p-1" style="display:none;">${product.category}</div>
-                  <div class="product-title"><a href="/search/${product.itemId}" style="text-decoration:none;color:#000">${product.name}</a></div>
+                  <div class="product-title"><a href="Product_Description.html" style="text-decoration:none;color:#000">${product.name}</a></div>
                   <div class="product-description">${product.description}</div>
                   <div class="mb-2">
                      <div class="d-flex justify-content-between bolder product-price-discount">

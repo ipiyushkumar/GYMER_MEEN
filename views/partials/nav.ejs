@@ -1,13 +1,72 @@
+<script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+<style>
+  .custom-nav a.nav-link {
+    display: flex;
+    align-items: center;
+  }
+
+  .sidenav a{
+    display: flex;
+    margin-top: 2vh;
+    justify-content: flex-start;
+    align-items: center;
+  }
+
+  .sidenav iconify-icon{
+    margin-right: 1.5vh;
+    background-color: #fff;
+    font-size: 2vh;
+    padding: 1vh;
+    color: #000;
+    border-radius: 50%;
+  }
+
+  .custom-nav a.nav-link i {
+    margin-right: 0px;
+  }
+
+  .custom-nav .cartButtom {
+    margin-right: 15px; /* Adjust the margin as needed */
+  }
+
+  @media (max-width: 768px) {
+    .custom-nav {
+    margin: 0;
+    flex-wrap: no-wrap;
+    text-align: right;
+    justify-content: center;
+    align-items: flex-end;
+    font-size: 2.5vh;
+  }
+
+  .custom-nav a.nav-link {
+    margin-bottom: 00px; /* Add spacing between the buttons */
+    margin-left: 0; /* Align icons to the right */
+    display: flex;
+    align-items: center;
+  }
+
+  .custom-nav a.nav-link span {
+    display: none; /* Hide the text on mobile screens */
+  }
+
+  .custom-nav i {
+    font-size: 4vh;
+    margin-left: -20px; /* Remove margin between icon and hidden text */
+  }
+  }
+</style>
+
 <div class="promo-strip">
    Get 25% Off on Every Purchase
 </div>
 <div id="mySidenav" class="sidenav">
    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-   <a href="#">About Us</a>
-   <a href="/product_listing/face_care">Face Care</a>
-   <a href="/product_listing/hair_care">Hair Care</a>
-   <a href="/product_listing/body_care">Body Care</a>
-   <a href="/product_listing/beard_care">Beard Care</a>
+   <a href="#"><iconify-icon icon="mdi:about"></iconify-icon>About Us </a>
+   <a href="/product_listing/face_care"><iconify-icon icon="mdi:spray"></iconify-icon>Face Care</a>
+   <a href="/product_listing/hair_care"><iconify-icon icon="streamline:spray-paint-solid"></iconify-icon>Hair Care</a>
+   <a href="/product_listing/body_care"><iconify-icon icon="fa6-solid:spray-can-sparkles"></iconify-icon>Body Care</a>
+   <a href="/product_listing/beard_care"><iconify-icon icon="fluent:spray-can-16-filled"></iconify-icon>Beard Care</a>
 </div>
 
 <nav class="navbar navbar-expand-lg" style="padding: 1rem;background-color: #000;width: 100%;">
@@ -15,7 +74,7 @@
       <div class="navbar-brand d-flex justify-content-start align-items-center" style="width: 30%;">
          <span style="font-size: 2rem; cursor: pointer; color: #fff;" onclick="openNav()">&#9776; </span>
          <a href="/" class="navbar-brand ml-3" style="margin-left: 1rem">
-           <img src="/assets/newlogo.png" alt="Logo"  style="width:auto; height: 10vh;margin-left: 4vw;">
+           <img src="/assets/newlogo.png" alt="Logo"  style="width:auto; height: 7vh;margin-left: 1vw;">
        </a>
        
       </div>
@@ -27,18 +86,18 @@
                class="fas fa-search"></i></button>
          </div>
       </form>
-      <div class="custom-nav d-flex justify-content-end" style="width: 30%; font-size: 1rem;">
-        <a class="nav-link cartButtom" onclick="openCart()" style="color: #fff; font-size: 1.2rem;">
+      <div class="custom-nav d-flex justify-content-end" style="width: 30%; font-size: 3vh;">
+        <a class="nav-link cartButtom" onclick="openCart()" style="color: #fff;">
           <i class="fas fa-cart-plus"></i>
           <span style="margin-left: 5px;">Cart</span>
        </a>
        <% if (content.isLoggedIn === true) { %>
-           <a class="nav-link" href="/profile" style="color: #fff; font-size: 1.2rem;">
+           <a class="nav-link" href="/profile" style="color: #fff;">
            <i class="fas fa-user" ></i>
            <span style="margin-left: 5px;">Profile</span>
            </a>
          <% } else { %>
-           <a class="nav-link" href="/login" style="color: #fff; font-size: 1.2rem;">
+           <a class="nav-link" href="/login" style="color: #fff; ">
               <i class="fa-solid fa-right-to-bracket"></i>
            <span style="margin-left: 5px;">Login</span>
            </a>

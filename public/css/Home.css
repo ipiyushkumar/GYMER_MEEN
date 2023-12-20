@@ -16,15 +16,6 @@ body {
     font-weight: regular;
     }
 
-    .social ul a {
-        width: 0.5rem;
-        height: 0.5rem;
-        padding: 1rem;
-        font-size: 1.5rem; /* Adjust the font size accordingly */
-        background-color: #fff;
-        border-radius: 50%;
-        color: #000;
-    }
     
     .category-btn{
     background-color: transparent;

@@ -22,41 +22,23 @@
     }
     .page{
         width: 100%;
+        background-color: #000;
         padding: 2rem;
         min-height: 80vh;
     }
-        .accordion {
-    background-color: black;
-}
 
 footer a{
     text-decoration: none;
 }
 
 .social ul a {
-    width: 0.5rem;
-    height: 0.5rem;
-    padding: 1rem;
-    font-size: 1.5rem; /* Adjust the font size accordingly */
-    background-color: #fff;
-    border-radius: 50%;
-    color: #000;
-}
-
-.accordion-button {
-    color: white;
-    font-size: 3vh;
-    border-radius: 0 !important;
-}
-
-.accordion-button:active {
-    color: #000 !important;
-    box-shadow: none;
-    font-size: 3vh;
-    border-radius: 0 !important;
+    font-size: 3vh; 
+    margin-right: 2vh;
+    color: #fff;
 }
 
 .accordion-item {
+    background-color: #000 !important;
     margin-top: 1rem;
     border: none;
     border-radius: 0 !important;
@@ -66,32 +48,93 @@ footer a{
 }
 
 .accordion-item:active{
-    color: #000 !important;
-    background-color: #000;
-    box-shadow: none !important;
     outline: none !important;
+    box-shadow: none !important;
+}
 
+
+.accordion-item:focus,
+.accordion-button:focus,
+.accordion-header button:focus {
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+.accordion-item:active,
+.accordion-button:active,
+.accordion-header button:active {
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+.accordion-button button:focus{
+    border-bottom: 1px solid #fff;
 }
 
 .accordion-body {
-    padding: 1rem;
-    border: none;
-    font-size: 2vh;
-    background-color: #000;
-    color: #fff; 
+    background-color: black !important;
+    color: white !important;
+}
+.accordion-button,
+.accordion-header button {
+    padding-top: 2vh; 
+    padding-bottom: 2vh; 
+    color: white !important;
+    background-color: #000 !important;
+    outline: none !important;
+    border: none !important;
 }
 
-.accordion a{
-    text-decoration: none;
-    color: #fff;
+.accordion-header:active{
+    outline: none !important;
+    box-shadow: none !important;
+    border-bottom: 1px solid #fff;
 }
 
-.accordion-button.collapsed {
-    background-color: black;
+.accordion-header button:active{
+    outline: none !important;
+    box-shadow: none !important;
+    border-bottom: 1px solid #fff !important;
+}
+
+.accordion-button:active,
+.accordion-button:focus,
+.accordion-header button:active,
+.accordion-header button:focus {
+    border-bottom: 1px solid white !important;
+}
+
+
+.accordion-body a {
+    color: white !important;
+}
+
+.accordion-item {
+    border-bottom: 1px solid white;
+}
+
+.accordion-item:not(:last-child) {
+    margin-bottom: 1rem;
 }
 
 .filters h4{
-    font-size: 7vh;
+    font-size: 5vh;
+}
+
+.sort-filter select{
+    border-radius: 0;
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+.sort-filter select:active{
+    box-shadow: none !important;
+    outline: none !important;
+}
+
+.sort-filter select:focus{
+    outline: none !important;
+    box-shadow: none !important;
 }
 
 .grids{
@@ -140,7 +183,7 @@ footer a{
     }
 
     .accordion-body {
-        padding: 0.5rem; 
+        padding: 1vh; 
         font-size: 3vh; 
     }
 
@@ -148,9 +191,8 @@ footer a{
         font-size: 2rem; 
     }
 
-    
 }
-    
+
 .product-card {
         width: 30%;
     cursor: pointer;
@@ -231,7 +273,12 @@ footer a{
     }
 
     @media (max-width: 768px) {
-   
+
+        .accordion-body {
+        padding: 1vh; 
+        font-size: 2vh; 
+    }
+
    .product-grid {
       display: flex;
        flex-direction: column;
@@ -242,7 +289,7 @@ footer a{
    .product-card{
        width: 100%;
    }
- 
+
    #productGrid {
        padding: 3vh;
        width: 100%;
@@ -259,12 +306,11 @@ footer a{
 
     <div class="container-fluid page" style="background-color: #000;">
         <div class="row">
-            
+
             <div class="col-md-3 mt-0 mr-3">
                 <div class="filters mt-1 mb-5">
                     <h4 class="text-white">Filter</h4>
-            
-                    
+
                     <div class="accordion" id="categoryFilterAccordion">
                         <div class="accordion-item">
                             <h2 class="accordion-header" id="categoryFilterHeader">
@@ -282,7 +328,7 @@ footer a{
                             </div>
                         </div>
                     </div>
-                    
+
                     <div class="accordion" id="discountFilterAccordion">
                         <div class="accordion-item">
                             <h2 class="accordion-header" id="discountFilterHeader">
@@ -301,7 +347,7 @@ footer a{
                             </div>
                         </div>
                     </div>
-                    
+
                     <div class="accordion" id="ratingFilterAccordion">
                         <div class="accordion-item">
                             <h2 class="accordion-header" id="ratingFilterHeader">
@@ -319,26 +365,27 @@ footer a{
                             </div>
                         </div>
                     </div>                    
-            
-                    
+
                 </div>
             </div>
-            
-            
+
             <div class="col-md-9 ml-3">
                 <div class="left-product">
                     <div class="d-flex justify-content-between m-3">
-                        
+
                         <div class="products-found-text">
                             <p class="mb-0 text-white" style="font-size: 1.5rem;">4 products found</p>
                         </div>
-            
-                        
+
                         <div class="sort-filter row ">
-                            
+
                             <div class="col-auto">
-                                <select class="form-select text-white w-100" id="sortFilter" style="background-color: #000;">
+                                <select class="form-select text-white w-100" id="sortFilter" style="background-color: #000;" aria-placeholder="Sort-By">
                                     <option>Sort By</option>
+                                    <option>Relevance</option>
+                                    <option>Popularity</option>
+                                    <option>Low to High</option>
+                                    <option>High to Low</option>
                                 </select>
                             </div>
                         </div> 
@@ -346,38 +393,12 @@ footer a{
                 </div>
                 <div id="productGrid" class="row"></div>
             </div>
-            
+
         </div>
     </div>
-    
-    <!-- <div class="container-fluid Liked mb-5" style="width: 90%;height: 80vh;">
-        <h2 class="text-white text-center " style="font-size: 7vh;">You May Also Like</h2>
-        <div class="grids mt-5" style="background-color: red;">
-            <div class="product-card product d-flex flex-column">
-                <div class="product-image-container">
-                    <img class="product-image" src="${product.imageLink[0]}" alt="${product.name}">
-                    <img class="product-image hover-image" src="${product.imageLink[1] || product.imageLink[0]}" alt="${product.name}" style="display:none">
-              </div>
-              <div class="product-details">
-                    <div class="category-badge text-white corner-round p-1" style="display:none;">${product.category}</div>
-                    <div class="product-title"><a href="Product_Description.html" style="text-decoration:none;color:#000">${product.name}</a></div>
-                    <div class="product-description">${product.description}</div>
-                    <div class="mb-2">
-                       <div class="d-flex justify-content-between bolder product-price-discount">
-                          <div class="product-price">&#8377; ${product.offeredPrice}</div>
-                          <div class="original-price text-secondary text-decoration-line-through">&#8377;${product.originalPrice || ''}</div>
-                          <div class="product-discount text-success">${((product.originalPrice - product.offeredPrice) / product.originalPrice * 100).toFixed(0)}% Off</div>
-                       </div>
-                    </div>
-                    <button class="add-to-cart-btn add${product.itemId}" id="liveToastBtn"><i class="fas fa-cart"></i> Add to Cart</button>
-              </div>
-            </div>
-        </div>
-    </div> -->
 
     <%- include('partials/footer') %>
 
-       
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
@@ -410,10 +431,10 @@ footer a{
                             console.log(response.data.message);
                             showAlert('item added to cart','success')
                             openCart()
-                            // Optionally, update the UI to reflect the item being added to the cart
+
                     } else {
                             console.error('Error adding item to cart:', response.data.message);
-                            // Optionally, handle the error and update the UI accordingly
+
                     }
                     } catch (err) {
                     if (err.response.status === 400){
@@ -454,7 +475,7 @@ footer a{
         </div>
         <div class="product-details">
                 <div class="category-badge text-white corner-round p-1" style="display:none;">${product.category}</div>
-                <div class="product-title"><a href="/search/${product.itemId}" style="text-decoration:none;color:#000">${product.name}</a></div>
+                <div class="product-title"><a href="Product_Description.html" style="text-decoration:none;color:#000">${product.name}</a></div>
                 <div class="product-description">${product.description}</div>
                 <div class="mb-2">
                     <div class="d-flex justify-content-between bolder product-price-discount">
@@ -482,13 +503,10 @@ footer a{
         hoverImage.style.display = 'none';
         });
 
-
-
         return productCard;
         }
 
-        // Example usage
-        const container = document.getElementById('productContainer'); // Replace with the actual container element ID
+        const container = document.getElementById('productContainer'); 
         products.forEach(product => {
         const productCard = createProductCard(product);
         container.appendChild(productCard);

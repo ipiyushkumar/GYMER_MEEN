@@ -3,6 +3,7 @@
    <head>
       <meta charset="UTF-8">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>homepage</title>
       <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css">
       <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.css"/>
       <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick-theme.css">
@@ -10,10 +11,14 @@
       <link rel="stylesheet" href="/css/Home.css">
       <link rel="preconnect" href="https://fonts.googleapis.com">
       <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+      <link href="https://cdn.jsdelivr.net/npm/aos@2.3.1/dist/aos.css" rel="stylesheet">
       <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@200;400;500&display=swap">
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
       <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.js"></script>
       <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+      <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+      <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+
   </head>
    </head>
    <style>
@@ -156,50 +161,50 @@
         </div>
 
         <div class="container" style="margin-left:6vw;width: 50%;">
-         <button class="btn btn-light align-left mb-5 mt-5"><a href="Product_Listing.html" style="text-decoration: none;color: #000;font-weight: 500;font-size: 1.2rem">Explore Now</a></button>
+         <button class="btn btn-light align-left mb-5 mt-5"><a href="/product_listing/explore" style="text-decoration: none;color: #000;font-weight: 500;font-size: 1.2rem">Explore Now</a></button>
       </div>
       <div class="container products-bar mt-4">
-         <div class="mb-2 filters d-flex justify-content-around align-items-center text-uppercase">
+         <div class="mb-2 filters d-flex justify-content-evenly align-items-center text-uppercase" data-aos="fade-down">
             <!-- <button class="category-btn m-1" onclick="renderProducts('all')">All</button> -->
             <button class="category-btn m-1" onclick="renderProducts('Face Care')">Face Care</button>
             <button class="category-btn m-1" onclick="renderProducts('Hair Care')">Hair Care</button>
             <button class="category-btn m-1" onclick="renderProducts('Body Care')">Body Care</button>
             <!-- <button class="category-btn m-1" onclick="renderProducts('Beard Care')">Beard Care</button> -->
          </div>   
-         <div id="productGrid" class="row product-grid" onmousedown="startScroll(event)" onmouseup="stopScroll()" ontouchstart="startScroll(event)" ontouchend="stopScroll()">
+         <div id="productGrid" class="row product-grid" data-aos="fade-up" data-aos-duration="1000" onmousedown="startScroll(event)" onmouseup="stopScroll()" ontouchstart="startScroll(event)" ontouchend="stopScroll()">
          </div>
 
-         <div class="d-flex justify-content-center p-4 mt-5 mb-5" >
-            <button class="show-btn"><a href="/product_listing">Show More</a></button>
+         <div class="d-flex justify-content-center p-4 mt-1 mb-5" >
+            <button class="show-btn"><a href="/product_listing/all">Show More</a></button>
          </div>
       </div>
-      <div class="container-fluid mt-2 mb-2 p-0 banner-section">
+      <div class="container-fluid mt-2 mb-2 p-0 banner-section" data-aos="zoom-in-up">
          <img class="banner-image" src="assets/black-friday.jpg" alt="Banner Image">
       </div>
       <div class="container mt-5 mb-5">
          <h2 class="text-center text-white mb-4">Search Through Category</h2>
-         <div class="row align-items-stretch">
-             <div class="col-md-4 col-4 mt-2">
-                 <div class="card bg-white text-center p-0 d-flex flex-column" style="border-radius: 1rem;">
-                     <img src="assets/category1.jpg" class="card-img-top flex-grow-1" alt="Image 1" style="border-radius: 1rem 1rem 0 0">
+         <div class="d-flex justify-content-center m-2 align-items-center gap-2">
+             <div class="col-md-4 col-4 m-0" data-aos="fade-up" data-aos-duration="1000">
+                 <div class="card bg-white text-center p-0 d-flex flex-column" style="border-radius: 10px;">
+                     <img src="assets/category1.jpg" class="card-img-top flex-grow-1" alt="Image 1" style="border-radius: 10px 10px 0 0">
                      <div class="card-body">
-                         <h3 class="card-text font-weight-bold">Face Care</h3>
+                         <h3 class="card-text font-weight-bold">Face</h3>
                      </div>
                  </div>
              </div>
-             <div class="col-md-4 col-4 mt-2">
-                 <div class="card bg-white text-center p-0 border-0 d-flex flex-column" style="border-radius: 1rem;">
-                     <img src="assets/category3.jpg" class="card-img-top flex-grow-1" alt="Image 2" style="border-radius: 1rem 1rem 0 0">
+             <div class="col-md-4 col-4 m-0" data-aos="fade-up" data-aos-duration="1000">
+                 <div class="card bg-white text-center p-0 border-0 d-flex flex-column" style="border-radius: 10px;">
+                     <img src="assets/category3.jpg" class="card-img-top flex-grow-1" alt="Image 2" style="border-radius: 10px 10px 0 0">
                      <div class="card-body">
-                         <h3 class="card-text font-weight-bold">Hair Care</h3>
+                         <h3 class="card-text font-weight-bold">Hair</h3>
                      </div>
                  </div>
              </div>
-             <div class="col-md-4 col-4 mt-2">
-                 <div class="card bg-white text-center p-0 border-0 d-flex flex-column" style="border-radius: 1rem;" style="border-radius: 1rem 1rem 0 0">
-                     <img src="assets/category2.jpg" class="card-img-top flex-grow-1" alt="Image 3" style="border-radius: 1rem 1rem 0 0">
+             <div class="col-md-4 col-4 m-0" data-aos="fade-up" data-aos-duration="1000">
+                 <div class="card bg-white text-center p-0 border-0 d-flex flex-column" style="border-radius: 10px;" >
+                     <img src="assets/category2.jpg" class="card-img-top flex-grow-1" alt="Image 3" style="border-radius: 10px 10px 0 0">
                      <div class="card-body">
-                         <h3 class="card-text font-weight-bold">Body Care</h3>
+                         <h3 class="card-text font-weight-bold">Body</h3>
                      </div>
                  </div>
              </div>
@@ -208,138 +213,216 @@
 
 
      <h2 class="text-center text-white mt-5 mb-0">See What Our Customers Say</h2>
-     <div class="review mt-3">   
-         <div class="review-fit" style="display: flex;flex-direction: column;">
-            <img src="assets/spray1.jpg">
-            <div class="icons">
-               <i class="fas fa-star"></i>
-               <i class="fas fa-star"></i>
-               <i class="fas fa-star"></i>
-               <i class="fas fa-star"></i>
-               <i class="fas fa-star"></i>
-            </div>
-            <p>User 1 Review Text Goes Here...</p>
-            <h5 class="user-name" >User 1</h5>
-            <div class="insta-id">
-                  <i class="fab fa-instagram"></i>
-                  <span >user1_insta</span>
-            </div>
-         </div>
+     <style>
+         .swiper-container {
+            background-color: black;
+            overflow: hidden;
+            padding-bottom: 60px
+         }
+         .swiper-slide {
+            margin-top: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            text-align: center;
+            width: 400px;
+            height: auto;
+            background-color: #fff;
+            padding: 10px;
+            border-radius: 10px;
+         }
+         
+         .swiper-slide .ratings{
+            margin-top: 1vh;
+         }
+         
+         .swiper-slide .ratings .rating-number{
+            font-size: 3vh;
+            font-weight: bolder;
+         }
+         
+         .swiper-slide .user-info .text-muted{
+            margin-top: 2vh;
+         }
+         
+         .swiper-slide .ratings iconify-icon{
+            font-size: 3vh;
+         }
 
-         <div class="review-fit" style="display: flex;flex-direction: column;">
-            <img src="assets/spray1.jpg">
-            <div class="icons">
-               <i class="fas fa-star"></i>
-               <i class="fas fa-star"></i>
-               <i class="fas fa-star"></i>
-               <i class="fas fa-star"></i>
-               <i class="fas fa-star"></i>
-            </div>
-            <p>User 1 Review Text Goes Here...</p>
-            <h5 class="user-name" >User 1</h5>
-            <div class="insta-id">
-                  <i class="fab fa-instagram"></i>
-                  <span >user1_insta</span>
-            </div>
-         </div>
+         .swiper-slide p{
+            margin-top: 1vh;
+            font-size: 2vh;
+         }
 
-         <div class="review-fit" style="display: flex;flex-direction: column;">
-            <img src="assets/spray1.jpg">
-            <div class="icons">
-               <i class="fas fa-star"></i>
-               <i class="fas fa-star"></i>
-               <i class="fas fa-star"></i>
-               <i class="fas fa-star"></i>
-               <i class="fas fa-star"></i>
-            </div>
-            <p>User 1 Review Text Goes Here...</p>
-            <h5 class="user-name" >User 1</h5>
-            <div class="insta-id">
-                  <i class="fab fa-instagram"></i>
-                  <span >user1_insta</span>
-            </div>
-         </div>
-      
 
-         <div class="review-fit" style="display: flex;flex-direction: column;">
-            <img src="assets/spray1.jpg">
-            <div class="icons">
-               <i class="fas fa-star"></i>
-               <i class="fas fa-star"></i>
-               <i class="fas fa-star"></i>
-               <i class="fas fa-star"></i>
-               <i class="fas fa-star"></i>
-            </div>
-            <p>User 1 Review Text Goes Here...</p>
-            <h5 class="user-name" >User 1</h5>
-            <div class="insta-id">
-                  <i class="fab fa-instagram"></i>
-                  <span >user1_insta</span>
-            </div>
-         </div>
-  </div>
-
-      
-      <footer class="container-fluid d-flex flex-column container text-white p-3 footer"style="background-color: #000;">
-         <div class=" text-left mt-3 p-5" style="background-color: #070707;">
-            <div class="row">
-               <div class="col-md-3">
-                  <img src="assets/logo.PNG" alt="Logo" class="img-fluid mb-3" style="width: auto;height: 10vh;">
-               </div>
-               <div class="col-md-6 d-flex footer-menu">
-                  <div class="col-md-6 mr-3 list-unstyled">
-                     <li><a href="#" class="text-white">About us</a></li>
-                     <li><a href="#" class="text-white">FAQ</a></li>
-                     <li><a href="#" class="text-white">Shipping and Payment</a></li>
-                     <li><a href="#" class="text-white">Partners</a></li>
-                     <li><a href="#" class="text-white">Blog</a></li>
-                     <li><a href="#" class="text-white">Contact Us</a></li>
-                  </div>
-                  <div class="col-md-6 ml-3 list-unstyled">
-                     <li><a href="#" class="text-white">Customer Reviews</a></li>
-                     <li><a href="#" class="text-white">Hair Care</a></li>
-                     <li><a href="#" class="text-white">Skin Care</a></li>
-                     <li><a href="#" class="text-white">Face Care</a></li>
-                  </div>
-               </div>
-               <div class="col-md-3 d-flex flex-column align-items-end">
-                  <button class="btn btn-light mb-2">Shop Now</button>
-                  <p>+(123) 123-99-999</p>
-                  <p>info@WhiteWolf.com</p>
-               </div>
-            </div>
-            <div class="row mt-5">
-               <div class="col-md-3 social">
-                  <ul class="list-unstyled">
-                     <a href="#" class="mr-2"><i class="fab fa-instagram"></i></a>
-                     <a href="#" class="mr-2"><i class="fab fa-whatsapp"></i></a>
-                  </ul>
-               </div>
-               <div class="col-md-6 d-flex">
-                  <p>The Hive Co Working and Business Center<br>Industiral Area Phase-2, Chandigarh</p>
-               </div>
-               <div class="col-md-3 d-flex flex-column align-items-end">
-               </div>
-            </div>
-         </div>
-         <div class="container mt-5">
-            <div class="row d-flex justify-content-between">
-               <div class="col-md-5">
-                  <h3>If you didn't find the products you are interested in or have questions?</h3>
-               </div>
-               <div class="col-md-6">
-                  <p>Enter your email:</p>
-                  <div class="input-group mb-3">
-                     <input type="email" class="form-control" placeholder="Your email here" aria-label="Your email" aria-describedby="basic-addon2" style="background-color: #000;">
-                     <button class="btn btn-outline-secondary" type="button" id="basic-addon2">
-                     <i class="fa fa-arrow-circle-right"></i> 
-                     </button>
-                  </div>
-               </div>
-            </div>
-         </div>
-         <p class="pl-5">2023 - Copyright, All Rights Reserved.</p>
-      </footer>
+         .swiper-slide img {
+            width: 10vh;
+            height: 10vh;
+            border-radius: 50%;
+            display:block;
+            margin:10px auto;
+         }
+         
+         .swiper-container-horizontal > .swiper-pagination-bullets{
+            bottom: 0;
+         }
+         
+         .swiper-pagination-bullet {
+            margin: 0 8px!important;
+         }
+         .swiper-pagination-bullet {
+            background: #fff;
+            border: 1px solid #fff;
+            border-radius: 100%;
+            display: inline-block;
+            height: 5px;
+            opacity: 1;
+            filter:  "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
+            -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
+            width: 5px;
+         }
+         .swiper-pagination-bullet-active {
+            background-color: grey;
+            border: medium none;
+            height: 7px;
+            opacity: 1;
+            filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
+            -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
+            width: 7px;
+         }
+         
+         @media screen and (max-width: 767px){
+            .swiper-slide{
+               width: 300px;
+            }
+         }
+         
+         .swiper-button-next,
+               .swiper-button-prev {
+                     color: #fff;
+                     font-size: 18px;
+                     margin: 0 10px;
+               }
+         
+               .swiper-button-next:hover,
+               .swiper-button-prev:hover {
+                     color: #ee0f6f;
+               }
+         
+      </style>
+     <div class="container d-flex flex-column pt-3 pb-3"  data-aos="fade-up" data-aos-duration="3000">
+		<div class="row">
+			<div class="col-12">
+				<div class="swiper-container mySwiper"  style="width:100%;height: 50vh;"  >
+					<div class="swiper-wrapper">
+					      <div class="swiper-slide" >
+                        <img src="../assets/spray1.jpg" alt="" class="img" />
+                        
+                        <div class="user-info">
+                            <small class="text-muted">@username</small>
+                            <div class="ratings d-flex justify-content-center align-items-center">
+                                <span class="rating-number">4.0</span>
+                                <iconify-icon icon="emojione:star"></iconify-icon>
+                                <iconify-icon icon="emojione:star"></iconify-icon>
+                                <iconify-icon icon="emojione:star"></iconify-icon>
+                                <iconify-icon icon="emojione:star"></iconify-icon>
+                            </div>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <img src="../assets/spray1.jpg" alt="" class="img-fluid" />
+                        
+                        <div class="user-info">
+                            <small class="text-muted">@username</small>
+                            <div class="ratings d-flex justify-content-center align-items-center">
+                                <span class="rating-number">4.0</span>
+                                <iconify-icon icon="emojione:star"></iconify-icon>
+                                <iconify-icon icon="emojione:star"></iconify-icon>
+                                <iconify-icon icon="emojione:star"></iconify-icon>
+                                <iconify-icon icon="emojione:star"></iconify-icon>
+                            </div>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <img src="../assets/spray1.jpg" alt="" class="img-fluid" />
+                        
+                        <div class="user-info">
+                            <small class="text-muted">@username</small>
+                            <div class="ratings d-flex justify-content-center align-items-center">
+                                <span class="rating-number">4.0</span>
+                                <iconify-icon icon="emojione:star"></iconify-icon>
+                                <iconify-icon icon="emojione:star"></iconify-icon>
+                                <iconify-icon icon="emojione:star"></iconify-icon>
+                                <iconify-icon icon="emojione:star"></iconify-icon>
+                            </div>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <img src="../assets/spray1.jpg" alt="" class="img-fluid" />
+                        
+                        <div class="user-info">
+                            <small class="text-muted">@username</small>
+                            <div class="ratings d-flex justify-content-center align-items-center">
+                                <span class="rating-number">4.0</span>
+                                <iconify-icon icon="emojione:star"></iconify-icon>
+                                <iconify-icon icon="emojione:star"></iconify-icon>
+                                <iconify-icon icon="emojione:star"></iconify-icon>
+                                <iconify-icon icon="emojione:star"></iconify-icon>
+                            </div>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <img src="../assets/spray1.jpg" alt="" class="img-fluid" />
+                        
+                        <div class="user-info">
+                            <small class="text-muted">@username</small>
+                            <div class="ratings d-flex justify-content-center align-items-center">
+                                <span class="rating-number">4.0</span>
+                                <iconify-icon icon="emojione:star"></iconify-icon>
+                                <iconify-icon icon="emojione:star"></iconify-icon>
+                                <iconify-icon icon="emojione:star"></iconify-icon>
+                                <iconify-icon icon="emojione:star"></iconify-icon>
+                            </div>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                        </div>
+                    </div>
+						
+					</div>
+                    <div class="swiper-button-next"></div>
+                    <div class="swiper-button-prev"></div>
+					<div class="swiper-pagination"></div>
+				</div>
+			</div>
+		</div>
+	</div>
+   <script>
+      var swiper = new Swiper('.mySwiper', {
+          pagination: {
+              el: '.swiper-pagination',
+              clickable: true,
+          },
+          navigation: {
+              nextEl: '.swiper-button-next',
+              prevEl: '.swiper-button-prev',
+          },
+          effect: 'coverflow',
+          loop: true,
+          centeredSlides: true,
+          slidesPerView: 'auto',
+          coverflowEffect: {
+              rotate: 30, 
+              stretch: 80,
+              depth: 300,
+              modifier: 1,
+              slideShadows: false,
+          }
+      });
+  </script>
+<%- include('partials/footer') %>
       <script>
          let products = [];
 
@@ -365,26 +448,28 @@
                      event.preventDefault();
                      try {
                         const response = await addToCart('/addItem', { itemId: product.itemId });
-                        handleAddToCartResponse(response);
-                     } catch (error) {
-                        showAlert("Error while adding to cart","danger")
+                        if (response.status === 200) {
+                              console.log(response.data.message);
+                              showAlert('item added to cart','success')
+                              openCart()
+                              // Optionally, update the UI to reflect the item being added to the cart
+                        } else {
+                              console.error('Error adding item to cart:', response.data.message);
+                              // Optionally, handle the error and update the UI accordingly
+                        }
+                     } catch (err) {
+                        if (err.response.status === 400){
+                           showAlert("Item already in cart","success")
+                           openCart()
+                        } else {
+                           window.location.href = "/login"
+                        }
                      }
                   });
             });
          }
          async function addToCart(apiEndpoint, data) {
             return await axios.post(apiEndpoint, data);
-         }
-
-         function handleAddToCartResponse(response) {
-            if (response.status === 200) {
-                  console.log(response.data.message);
-                  showAlert('item added to cart','success')
-                  // Optionally, update the UI to reflect the item being added to the cart
-            } else {
-                  console.error('Error adding item to cart:', response.data.message);
-                  // Optionally, handle the error and update the UI accordingly
-            }
          }
 
          function renderProducts(categoryFilter) {
@@ -561,9 +646,15 @@
    });
 
 </script>
+<script>
+   document.addEventListener('DOMContentLoaded', function () {
+       AOS.init();
+   });
+</script>
 
       <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
       <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
       <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+      <script src="https://cdn.jsdelivr.net/npm/aos@2.3.1/dist/aos.js"></script>
    </body>
 </html>
