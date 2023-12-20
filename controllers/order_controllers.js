@@ -59,6 +59,7 @@ const paymentGateway = async (req, res) => {
       if (coupon) {
           amount = amount - amount * (coupon.discount / 100);
       }
+      amount = Math.floor(amount);
 
       amount = amount * 100;
 
@@ -119,6 +120,8 @@ const saveOrder = async (req, res) => {
         if (coupon) {
             amount = amount - amount * (coupon.discount / 100);
         }
+        amount = Math.floor(amount);
+
 
         const newOrder = new Orders({
             email: userData.email,

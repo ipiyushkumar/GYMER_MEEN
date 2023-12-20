@@ -295,7 +295,8 @@
                .then(response => response.data)
                .then(coupon => {
                   showAlert("coupon loaded successfully","success")
-                  document.querySelector('.total').innerHTML = `<b>&#8377;<del>${Total}/-</del></b> <br><span class="text-muted" style="font-size:1rem;">${((coupon.discount))}%OFF APPLIED</span> <b> <br><span style="font-size:2.5rem;"> &#8377;${Total - Total*((coupon.discount)/100)}/</span></b>-<br>`;
+                  // Assuming Total is a variable representing the total amount
+                  document.querySelector('.total').innerHTML = `<b>&#8377;<del>${Total}/-</del></b> <br><span class="text-muted" style="font-size:1rem;">${((coupon.discount))}% OFF APPLIED</span> <b> <br><span style="font-size:2.5rem;"> &#8377;${Math.floor(Total - Total * ((coupon.discount) / 100))}/</span></b>-<br>`;
                   document.querySelector('.coupon_remove_Button').style.display = "block"
                   document.querySelector('.coupon_Button').style.display = "none"
                })
