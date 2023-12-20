@@ -52,13 +52,13 @@
 
                         cartItemElement.innerHTML = `
                         <li class="list-group-item d-flex flex-column  mb-3 justify-content-between">
-                            <div class="d-flex justify-content-between p-2  align-items-center" style="width:100%;">
-                                <div><img class="img-fluid" src="${productDetails.imageLink[0]}" style="height:7vh;" ></div>
-                                <div>
+                            <div class="d-flex justify-content-between p-1  align-items-center" style="width:100%;padding:0;">
+                                <div style="width:20%"><img class="img-fluid" src="${productDetails.imageLink[0]}" style="height:7vh;" ></div>
+                                <div style="width:60%;display:flex;flex-wrap:wrap;">
                                     <div class="row text-muted" style="display:none;">${productDetails.category}</div>
-                                    <div class="row" style="text-transform:capitalize;">${productDetails.name}</div>
+                                    <div class="row" style="text-transform:capitalize;margin-left:1vh;">${productDetails.name}</div>
                                 </div>
-                                <div>
+                                <div style="width:20%">
                                     <a href="#" class="decrease${cartItem.itemId}">-</a>
                                     <a href="#" class="border p-2 m-2 itemQuantity${cartItem.itemId}">
                                         ${cartItem.quantity}
