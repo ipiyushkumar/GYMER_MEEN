@@ -121,10 +121,41 @@ const getReview = async (req, res) => {
     }
 }
 
+// Route to get a review based on email and orderId
+const getAllReviews = async (req, res) => {
+  try {
+      // Find the product by itemId
+      const product = await Product.findOne({ itemId: req.params.itemId });
+
+      if (!product) {
+          return res.status(404).json({ message: 'Product not found' });
+      }
+
+      // Find the review based on email and orderId
+      let review = product.ratings
+
+      if (!review) {
+          review =  {
+            email : req.session.email,
+            orderId : orderId,
+            rating: 0,
+            title: '',
+            detail: '',
+            dateAdded: Date.now()
+          }
+      }
+
+      res.status(200).json({ message: 'Review found successfully', review });
+  } catch (error) {
+      console.error('Error getting review:', error);
+      res.status(500).json({ message: 'Internal server error' });
+  }
+}
 module.exports = {
     getAllProducts,
     getProductUsingId,
     getItemPage,
     addOrUpdateReview,
-    getReview
+    getReview,
+    getAllReviews
 }

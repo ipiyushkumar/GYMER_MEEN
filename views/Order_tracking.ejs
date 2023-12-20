@@ -415,8 +415,14 @@
     
         async function submitReview() {
             for (const itemId in reviews) {
-                console.log(itemId)
-                console.log(reviews[itemId])
+                const rating = document.querySelectorAll('.star.active').length
+                const title = document.querySelector('.reviewTitle').value;
+                const detail = document.querySelector('.reviewDetail').value;
+
+                reviews[selectedItemId].rating = rating
+                reviews[selectedItemId].title = title
+                reviews[selectedItemId].detail = detail
+                
                 if (reviews[itemId].rating > 0) {
                     await axios.post(`/products/${itemId}/reviews`,reviews[itemId])
                     .then(res => showAlert("Thanks for giving us feedback","success"))
@@ -425,14 +431,6 @@
                     showAlert("please add rating before submitting","danger")
                 }
             }
-
-            // const selectedStars = document.querySelectorAll('.star.active').length;
-            // const reviewTitle = document.querySelector('.reviewTitle').value;
-            // const reviewDetail = document.querySelector('.reviewDetail').value;
-    
-            // console.log('Rating:', selectedStars);
-            // console.log('Title:', reviewTitle);
-            // console.log('Review Detail:', reviewDetail);
         }
 
         

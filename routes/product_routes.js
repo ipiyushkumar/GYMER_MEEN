@@ -13,4 +13,6 @@ router.post('/products/:itemId/reviews',controllers.addOrUpdateReview)
 
 router.get('/products/:itemId/reviews',controllers.getReview)
 
+router.get('/products/:itemId/allReviews',controllers.getAllReviews)
+
 module.exports = router;
