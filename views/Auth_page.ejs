@@ -443,7 +443,6 @@ main.sign-up-mode .carousel {
                 </div>
                 <input type="submit" value="Send OTP" class="sign-btn loginButton" />
                 <input type="submit" value="verifyOTP" class="sign-btn verifyOTP" style="display: none;"/>
-
                 <p class="text">
                   By signing up, I agree to the
                   <a href="#">Terms of Services</a> and
@@ -571,6 +570,10 @@ main.sign-up-mode .carousel {
 
       document.querySelector('.loginButton').addEventListener('click',async () => {
         event.preventDefault();
+        document.querySelector('.loginButton').disabled = true;
+        document.querySelector('.loginButton').style.backgroundColor = '#ccc';
+        startLoginButtonTimer();
+
         const email = document.querySelector('.loginEmail').value
         if (!email) {
             showAlert("Please fill in all the details.","danger");
@@ -580,7 +583,8 @@ main.sign-up-mode .carousel {
         .then(response => {
             if (response.status === 200) {
                 showAlert("OTP Sent","success")
-                document.querySelector('.loginButton').style.display = 'none';
+                document.querySelector('.loginButton').textContent = "Re Send";
+                
                 document.querySelector('.verifyOTP').style.display = 'block';
                 document.querySelector('.OTP').style.display = 'block';
             }
@@ -590,7 +594,22 @@ main.sign-up-mode .carousel {
         })
         return true; 
       })
-      
+      let resendTimer;
+      function startLoginButtonTimer() {
+        let seconds = 30;
+        resendTimer = setInterval(() => {
+          seconds--;
+          if (seconds === 0) {
+            clearInterval(resendTimer);
+            document.querySelector('.loginButton').disabled = false;
+            const loginButton = document.querySelector('.loginButton');
+            loginButton.style.backgroundColor = '#151111';
+            loginButton.value  = `Resend OTP`;
+          } else {
+            document.querySelector('.loginButton').value  = `Resend in ${seconds}s`
+          }
+        }, 1000);
+      }
 
       document.querySelector('.verifyOTP').addEventListener('click',async () => {
         event.preventDefault();
