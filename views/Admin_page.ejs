@@ -459,11 +459,11 @@
                 <h1>Orders</h1>
                 <div class="orders-container">
                     <ul class="list">
-                        <li  onclick="loadAllOrders()" data-tab="allOrders">All Orders</li>
-                        <li onclick="loadPendingOrders()" data-tab="pendingOrders">Pending Orders</li>
-                        <li onclick="loadSentOrders()" data-tab="completedOrders">Sent Orders</li>
-                        <li onclick="loadDeliveringOrders()" data-tab="completedOrders">DeliveringOrders</li>
-                        <li onclick="loadDeliveredOrders()" data-tab="completedOrders">Delivered Orders</li>
+                        <li onclick="loadAllOrders()" id="all">All Orders</li>
+                        <li onclick="loadPendingOrders()" id="Pending">Pending Orders</li>
+                        <li onclick="loadSentOrders()" id="Sent">Sent Orders</li>
+                        <li onclick="loadDeliveringOrders()" id="Delivering">Delivering Orders</li>
+                        <li onclick="loadDeliveredOrders()" id="Delivered">Delivered Orders</li>
                     </ul>
                     <div>
                         <div class="order-table" id="allOrdersTab">
@@ -486,7 +486,7 @@
             </section>
             <script>
                 let Orders = []
-                let selectedOrdersTab = ''
+                let selectedOrdersTab = 'all'
                 function createTableCell(content) {
                     let cell = document.createElement('td')
                     cell.innerHTML = content;
@@ -516,31 +516,45 @@
                 }
 
                 function loadAllOrders() {
-                    selectedOrdersTab = 'All'
+                    document.querySelector('#' + selectedOrdersTab).classList.remove('active')
+                    selectedOrdersTab = 'all'
+                    document.querySelector('#' + selectedOrdersTab).classList.add('active')
                     loadOrdersTable(Orders);
                 }
 
                 function loadPendingOrders() {
                     const pendingOrders = Orders.filter(order => order.status === 'Pending');
+                    document.querySelector('#' + selectedOrdersTab).classList.remove('active')
                     selectedOrdersTab = 'Pending'
+                    document.querySelector('#' + selectedOrdersTab).classList.add('active')
+
                     loadOrdersTable(pendingOrders);
                 }
 
                 function loadSentOrders() {
                     const sentOrders = Orders.filter(order => order.status === 'Sent');
+                    document.querySelector('#' + selectedOrdersTab).classList.remove('active')
                     selectedOrdersTab = 'Sent'
+                    document.querySelector('#' + selectedOrdersTab).classList.add('active')
+
                     loadOrdersTable(sentOrders);
                 }
 
                 function loadDeliveringOrders() {
                     const deliveringOrders = Orders.filter(order => order.status === 'Delivering');
+                    document.querySelector('#' + selectedOrdersTab).classList.remove('active')
                     selectedOrdersTab = 'Delivering'
+                    document.querySelector('#' + selectedOrdersTab).classList.add('active')
+
                     loadOrdersTable(deliveringOrders);
                 }
 
                 function loadDeliveredOrders() {
                     const deliveredOrders = Orders.filter(order => order.status === 'Delivered');
+                    document.querySelector('#' + selectedOrdersTab).classList.remove('active')
                     selectedOrdersTab = 'Delivered'
+                    document.querySelector('#' + selectedOrdersTab).classList.add('active')
+
                     loadOrdersTable(deliveredOrders);
                 }
 
@@ -573,16 +587,28 @@
                             })
                             .then(response => {
                                 showAlert('order status updated successfully', 'success');
+                                document.querySelector('#' + selectedOrdersTab).classList.remove('active')
+
                                 order.status = selectedValue;
                                 selectedOrdersTab = selectedValue;
+            
+                                document.querySelector('#' + selectedOrdersTab).classList.add('active')
+
                                 switch (selectedValue) {
                                     case 'Pending':
+                                        loadPendingOrders()
                                     break;
                                     case 'Sent':
+                                        loadSentOrders()
                                     break;
                                     case 'Delivering':
+                                        loadDeliveringOrders()
                                     break;
                                     case 'Delivered':
+                                        loadDeliveredOrders()
+                                    break;
+                                    default:
+                                        loadAllOrders()
                                     break;
                                 }
                             })
