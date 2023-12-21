@@ -32,18 +32,26 @@ const authLogin = async (req, res) => {
         // Load necessary data into the session
         req.session.isLoggedIn = true;
         req.session.email = email
-        req.session.userProfile = {
-            name: user.name,
-            email: user.email,
-            phone: user.phone,
-            joinDate: user.joinDate,
-            pincode: user.pincode,
-            locality: user.locality,
-            landmark: user.landmark,
-            city: user.city,
-            address: user.address,
-            cart: user.cart,
-        };
+
+        if (!req.session.userProfile) {
+            req.session.userProfile = {
+                name: user.name || req.session.userProfile.name,
+                email: user.email,
+                phone: user.phone,
+                joinDate: user.joinDate,
+                pincode: user.pincode,
+                locality: user.locality,
+                landmark: user.landmark,
+                city: user.city,
+                address: user.address,
+                cart: user.cart,
+            };
+        } else {
+            req.session.OTP = '';
+            saveUserProfile(req,res)
+            res.redirect('/confirm')
+        }
+        
         req.session.OTP = '';
         console.log("User logged in successfully: " + email);
         res.status(200).json({ message: "User logged in successfully" });
@@ -167,7 +175,6 @@ const addCartItem = async (req, res) => {
                     console.error('Error saving session:', err);
                     return res.status(500).json({ message: 'Internal server error' });
                 }
-                saveUserProfile(req, res);
                 res.status(200).json({ message: 'Quantity increased in cart', userProfile });
             });
         } else {
@@ -188,7 +195,6 @@ const addCartItem = async (req, res) => {
                     console.error('Error saving session:', err);
                     return res.status(500).json({ message: 'Internal server error' });
                 }
-                saveUserProfile(req, res);
                 res.status(200).json({ message: 'Item added to cart successfully', userProfile });
             });
         }
@@ -216,7 +222,6 @@ const removeCartItem = (req, res) => {
                     console.error('Error saving session:', err);
                     return res.status(500).json({ message: 'Internal server error' });
                 }
-                saveUserProfile(req, res);
                 res.status(200).json({ message: 'Item removed from cart successfully', newQuantity : -1 });
             });
         } else {
@@ -245,7 +250,6 @@ const increaseCartItemQuantity = (req, res) => {
                     console.error('Error saving session:', err);
                     return res.status(500).json({ message: 'Internal server error' });
                 }
-                saveUserProfile(req, res);
                 res.status(200).json({ message: 'Item quantity increased successfully', newQuantity : cartItem.quantity });
             });
         } else {
@@ -275,7 +279,6 @@ const decreaseCartItemQuantity = (req, res) => {
                         console.error('Error saving session:', err);
                         return res.status(500).json({ message: 'Internal server error' });
                     }
-                    saveUserProfile(req, res);
                     res.status(200).json({ message: 'Item quantity decreased successfully', newQuantity : cartItem.quantity });
                 });
             } else {
@@ -289,7 +292,6 @@ const decreaseCartItemQuantity = (req, res) => {
                         console.error('Error saving session:', err);
                         return res.status(500).json({ message: 'Internal server error' });
                     }
-                    saveUserProfile(req, res);
                     res.status(200).json({ message: 'Item removed from cart successfully', newQuantity : -1 });
                 });
             }
@@ -352,39 +354,39 @@ const addOrUpdateReview = async (req, res) => {
     }
   };
   
-  // Route to get a review based on email and orderId
-  const getReview = async (req, res) => {
-      try {
-          const { orderId } = req.body;
-          const { email } = req.session;
-  
-          // Find the product by itemId
-          const product = await Product.findOne({ itemId: req.params.itemId });
-  
-          if (!product) {
-              return res.status(404).json({ message: 'Product not found' });
-          }
-  
-          // Find the review based on email and orderId
-          let review = product.ratings.find((r) => r.email === email && r.orderId === orderId);
-  
-          if (!review) {
-              review =  {
-                email : req.session.email,
-                orderId : orderId,
-                rating: 0,
-                title: '',
-                detail: '',
-                dateAdded: Date.now()
-              }
-          }
-  
-          res.status(200).json({ message: 'Review found successfully', review });
-      } catch (error) {
-          console.error('Error getting review:', error);
-          res.status(500).json({ message: 'Internal server error' });
-      }
-  }
+// Route to get a review based on email and orderId
+const getReview = async (req, res) => {
+    try {
+        const { orderId } = req.body;
+        const { email } = req.session;
+
+        // Find the product by itemId
+        const product = await Product.findOne({ itemId: req.params.itemId });
+
+        if (!product) {
+            return res.status(404).json({ message: 'Product not found' });
+        }
+
+        // Find the review based on email and orderId
+        let review = product.ratings.find((r) => r.email === email && r.orderId === orderId);
+
+        if (!review) {
+            review =  {
+              email : req.session.email,
+              orderId : orderId,
+              rating: 0,
+              title: '',
+              detail: '',
+              dateAdded: Date.now()
+            }
+        }
+
+        res.status(200).json({ message: 'Review found successfully', review });
+    } catch (error) {
+        console.error('Error getting review:', error);
+        res.status(500).json({ message: 'Internal server error' });
+    }
+}
   
 module.exports = { 
     sendOTP,

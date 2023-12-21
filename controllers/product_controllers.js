@@ -23,6 +23,7 @@ const getProductUsingId = async (req, res) => {
   }
 
 const getItemPage = async (req, res) => {
+  if (!req.session.userProfile || !req.session.userProfile.cart) {req.session.userProfile = { cart: [] };}
   try {
     const itemId = req.params.itemId
     const item = await Product.findOne({itemId});

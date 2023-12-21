@@ -17,6 +17,8 @@ router.get('/',(req, res) => {
     const content = {
         isLoggedIn : req.session.isLoggedIn,
     }
+    if (!req.session.userProfile || !req.session.userProfile.cart) {req.session.userProfile = { cart: [] };}
+    
     res.render('Home_page',{content})
 })
 
@@ -34,6 +36,7 @@ router.get('/product_listing/:page',(req, res) => {
     } else {
         pageContext = 'all'
     }
+    if (!req.session.userProfile || !req.session.userProfile.cart) {req.session.userProfile = { cart: [] };}
 
     const content = {
         isLoggedIn : req.session.isLoggedIn,
@@ -46,10 +49,13 @@ router.get('/product_listing/:page',(req, res) => {
 
 // authentication
 router.get('/login',(req, res) => {
+    if (!req.session.userProfile || !req.session.userProfile.cart) {req.session.userProfile = { cart: [] };}
     res.render('Auth_page');
 })
 
-router.get('/confirm',isAuthenticated, (req, res) => {
+router.get('/confirm', (req, res) => {
+    if (!req.session.userProfile || !req.session.userProfile.cart) {req.session.userProfile = { cart: [] };}
+
     if (!req.session.userProfile.cart[0]){
         res.status(502).json({message : "Please Add Items in cart"})
     } else {

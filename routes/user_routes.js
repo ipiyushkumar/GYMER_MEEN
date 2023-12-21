@@ -21,15 +21,15 @@ router.get('/logout',isAuthenticated, controllers.authLogout);
 
 router.put('/updateUserProfile',isAuthenticated, controllers.updateProfile)
 
-router.get('/getprofile',isAuthenticated, controllers.getProfile);
+router.get('/getprofile', controllers.getProfile);
 
-router.post('/addItem', isAuthenticated, controllers.addCartItem);
+router.post('/addItem', controllers.addCartItem);
 
-router.post('/increaseItem', isAuthenticated, controllers.increaseCartItemQuantity);
+router.post('/increaseItem', controllers.increaseCartItemQuantity);
 
-router.post('/removeItem', isAuthenticated, controllers.removeCartItem);
+router.post('/removeItem', controllers.removeCartItem);
 
-router.post('/decreaseItem', isAuthenticated, controllers.decreaseCartItemQuantity);
+router.post('/decreaseItem', controllers.decreaseCartItemQuantity);
 
 router.post('/products/:itemId/reviews',isAuthenticated, controllers.addOrUpdateReview)
 

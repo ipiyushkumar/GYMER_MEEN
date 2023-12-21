@@ -28,21 +28,22 @@ const razorpayInstance = new Razorpay({
 
 const paymentGateway = async (req, res) => {
   try {
+      const {name, phone, pincode, address, city, locality, landmark} = req.body;
+      
+      req.session.userData.name = name;
+      req.session.userData.phone = phone;
+      req.session.userData.pincode = pincode;
+      req.session.userData.address = address;
+      req.session.userData.city = city;
+      req.session.userData.locality = locality;
+      req.session.userData.landmark = landmark;
+
       const userData = await User.findOne({email : req.session.email});
 
       if (!userData) {
           console.log("user not found");
-          return res.status(404).json({ message: 'User data not found' });
+          return res.redirect('/login')
       }
-
-      const {name, phone, pincode, address, city, locality, landmark} = req.body;
-      userData.name = name;
-      userData.phone = phone;
-      userData.pincode = pincode;
-      userData.address = address;
-      userData.city = city;
-      userData.locality = locality;
-      userData.landmark = landmark;
 
       userData.save();
 
