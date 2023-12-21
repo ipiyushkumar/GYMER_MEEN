@@ -3,6 +3,8 @@ const mongoose = require("mongoose");
 const orderSchema = new mongoose.Schema({
     Date: { type: Date, default: Date.now },
     email: { type: String, required: true},
+    name: { type: String },
+    phone: { type: Number },
     razorpay_order_id: {type: String},
     razorpay_payment_id: {type:String},
     razorpay_signature: {type:String},

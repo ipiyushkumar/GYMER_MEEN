@@ -99,9 +99,8 @@ const authLogout = (req, res) => {
     });
 };
 const saveUserProfile = async (req,res) => {
-    const token = req.session.token;
     try {
-        const {phone, pincode, locality, landmark, city, address, cart} = req.session.userProfile;
+        const {name, phone, pincode, locality, landmark, city, address, cart} = req.session.userProfile;
 
         // Find the user data by ID using the decoded information from the token
         const userData = await User.findOne({ email : req.session.email });
@@ -112,6 +111,7 @@ const saveUserProfile = async (req,res) => {
         }
 
         // Update the user data
+        userData.name = name || userData.name;
         userData.phone = phone || userData.phone;
         userData.pincode = pincode || userData.pincode;
         userData.locality = locality || userData.locality;
@@ -130,7 +130,8 @@ const saveUserProfile = async (req,res) => {
 };
 const updateProfile = async (req,res) => {
     try {
-        const {phone, pincode, locality, landmark, city, address} = req.body.userProfile;
+        const {name, phone, pincode, locality, landmark, city, address} = req.body.userProfile;
+        req.session.usetProfile.name = name
         req.session.userProfile.phone = phone;
         req.session.userProfile.pincode = pincode;
         req.session.userProfile.locality = locality;

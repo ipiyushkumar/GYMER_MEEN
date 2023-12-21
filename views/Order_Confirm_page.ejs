@@ -348,9 +348,17 @@
                })
                document.querySelector('.Shipping_Address').innerHTML = `
                <p type="text" class="text-justify mb-3">Your Email : ${profile.email || ""}</p>
+                  <div class="labels">
+                     <label for="name"">User Name</label>
+                     <input type="test" id="name" class="text-justify" placeholder="Enter Landmark" value="${profile.name || ""}">
+                  </div>
+                  <div class="labels">
+                     <label for="phone">contact number</label>
+                     <input type="test" id="phone" class="text-justify" placeholder="Enter Landmark" value="${profile.phone || ""}">
+                  </div>
                  <div class="labels">
-                  <label for="pincode">pincode</label>
-                  <input type="text" id="pincode" class="text-justify" placeholder="Enter pincode" value="${profile.pincode || ""}">
+                     <label for="pincode">pincode</label>
+                     <input type="text" id="pincode" class="text-justify" placeholder="Enter pincode" value="${profile.pincode || ""}">
                   </div>
                   <div class="labels">
                      <label for="address">address</label>
@@ -367,7 +375,7 @@
                   <div class="labels">
                      <label for="landmark">landmark</label>
                   <input type="test" id="landmark" class="text-justify" placeholder="Enter Landmark" value="${profile.landmark || ""}">
-                  </div class="labels">
+                  </div>
                   
                `;
 
@@ -389,27 +397,27 @@
          document.addEventListener('DOMContentLoaded', function(){
             document.querySelector('.proceedToPay').addEventListener('click',function(e){
                e.preventDefault();
-
+               const name = document.getElementById("name").value;
+               const phone = document.getElementById("phone").value;
                const pincode = document.getElementById("pincode").value;
                const address = document.getElementById("address").value;
                const city = document.getElementById("city").value;
                const locality = document.getElementById("locality").value;
                const landmark = document.getElementById("landmark").value;
-               console.log('one')
-               if (pincode && address && city && locality && landmark) {
+               if (name && phone && pincode && address && city && locality && landmark) {
                   let code = document.querySelector('#couponInput').value;
 
                   var formData = {
                      couponCode: code,
-                     name: "Wolf Cart Payment",
-                     description:"Thank you for your patronage",
+                     name,
+                     description:"Payment for White Wolf cart",
+                     phone,
                      pincode,
                      address,
                      city,
                      locality,
                      landmark
                   }
-               console.log('two')
 
                   $.ajax({
                      url:"/processPayment",

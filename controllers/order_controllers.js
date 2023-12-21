@@ -35,7 +35,9 @@ const paymentGateway = async (req, res) => {
           return res.status(404).json({ message: 'User data not found' });
       }
 
-      const {pincode, address, city, locality, landmark} = req.body;
+      const {name, phone, pincode, address, city, locality, landmark} = req.body;
+      userData.name = name;
+      userData.phone = phone;
       userData.pincode = pincode;
       userData.address = address;
       userData.city = city;
@@ -80,6 +82,8 @@ const paymentGateway = async (req, res) => {
                       key_id: RAZORPAY_ID_KEY,
                       product_name: req.body.name,
                       description: req.body.description,
+                      contact: userData.phone,
+                      name: userData.name,
                       email: userData.email
                   });
               } else {
@@ -126,6 +130,8 @@ const saveOrder = async (req, res) => {
         const newOrder = new Orders({
             email: userData.email,
             products: userData.cart,
+            contact: userData.phone,
+            name: userData.name,
             totalPayment: amount,
             razorpay_order_id, 
             razorpay_payment_id, 
