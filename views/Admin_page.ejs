@@ -483,76 +483,71 @@
                 </div>
             </section>
             <script>
+                let Orders = []
+                function createTableCell(content) {
+                    let cell = document.createElement('td')
+                    cell.innerHTML = content;
+                    return cell;
+                }
+                function dynamicOrderStatus (Id,content) {
+                    let cell = document.createElement('td')
+                    cell.innerHTML = `
+                        <select id="myDropdown_${Id}">
+                            <option value="Pending" ${content === 'Pending' ? 'selected' : ''}>Pending</option>
+                            <option value="Sent" ${content === 'Sent' ? 'selected' : ''}>Sent</option>
+                            <option value="Delivering" ${content === 'Delivering' ? 'selected' : ''}>Delivering</option>
+                            <option value="Delivered" ${content === 'Delivered' ? 'selected' : ''}>Delivered</option>
+                        </select>
+                    `;
+                    return cell;
+                }
                 const loadOrders = async () => {
-                    function createTableCell(content) {
-                        let cell = document.createElement('td')
-                        cell.innerHTML = content;
-                        return cell;
-                    }
-                    function dynamicOrderStatus (Id,content) {
-                        let cell = document.createElement('td')
-
-                        cell.innerHTML = `
-                            <select id="myDropdown_${Id}">
-                                <option value="Pending" ${content === 'Pending' ? 'selected' : ''}>Pending</option>
-                                <option value="Sent" ${content === 'Sent' ? 'selected' : ''}>Sent</option>
-                                <option value="Delivering" ${content === 'Delivering' ? 'selected' : ''}>Delivering</option>
-                                <option value="Delivered" ${content === 'Delivered' ? 'selected' : ''}>Delivered</option>
-                            </select>
-                        `;
-                        return cell;
-                    }
+                    
                     document.querySelector('#allOrdersBody').innerHTML = ''
                     await axios.get('/api/admin/getAllOrders')
                         .then(response => response.data)
-                        .then(orders => {
-                            orders.forEach(async order => {
-                                let row = document.createElement('tr')
-                                row.append(createTableCell(order._id))
-                                
-                                row.append(createTableCell(order.email))
-
-                                let names = "";
-
-                                await Promise.all(order.products.map(async product => {
-                                    try {
-                                        const response = await axios.get(`/api/products/${product.itemId}`);
-                                        names += ` ${response.data.name}`;
-                                    } catch (err) {
-                                        console.log("error fetching products", err);
-                                    }
-                                }));
-
-                                row.append(createTableCell(names)) // Correct variable name here
-                                row.append(createTableCell("&#8377;" + order.totalPayment))
-
-                                const dateTime = new Date(order.Date);
-
-                                // Get date and time
-                                const formattedDateTime = dateTime.toLocaleString();
-
-                                row.append(createTableCell(formattedDateTime))
-
-                                row.append(dynamicOrderStatus(order.razorpay_order_id,order.status))
-
-                                document.querySelector('#allOrdersBody').append(row);
-
-                                document.querySelector(`#myDropdown_${order.razorpay_order_id}`).addEventListener('change', async event => {
-                                    const selectedValue = event.target.value;
-                                    await axios.put('/api/update-order-status/' + order.razorpay_order_id, {
-                                        status: selectedValue
-                                    })
-                                    .then(response => {
-                                        showAlert("order status updated successfully","success")
-                                    })
-                                    .catch(error => {
-                                        showAlert("error updating order status","danger")
-                                    });
-                                });
-                            })
+                        .then(data => {
+                            Orders = data;
                             showAlert("orders loaded successfully","success")
                         })
                         .catch(err => showAlert("server refused on order data","danger"))
+                }
+                function loadAllOrders () {
+                    Orders.forEach(async order => {
+                        let row = document.createElement('tr')
+                        row.append(createTableCell(order._id))
+                        
+                        row.append(createTableCell(order.email))
+                        let names = "";
+                        await Promise.all(order.products.map(async product => {
+                            try {
+                                const response = await axios.get(`/api/products/${product.itemId}`);
+                                names += ` ${response.data.name}`;
+                            } catch (err) {
+                                console.log("error fetching products", err);
+                            }
+                        }));
+                        row.append(createTableCell(names)) // Correct variable name here
+                        row.append(createTableCell("&#8377;" + order.totalPayment))
+                        const dateTime = new Date(order.Date);
+                        // Get date and time
+                        const formattedDateTime = dateTime.toLocaleString();
+                        row.append(createTableCell(formattedDateTime))
+                        row.append(dynamicOrderStatus(order.razorpay_order_id,order.status))
+                        document.querySelector('#allOrdersBody').append(row);
+                        document.querySelector(`#myDropdown_${order.razorpay_order_id}`).addEventListener('change', async event => {
+                            const selectedValue = event.target.value;
+                            await axios.put('/api/update-order-status/' + order.razorpay_order_id, {
+                                status: selectedValue
+                            })
+                            .then(response => {
+                                showAlert("order status updated successfully","success")
+                            })
+                            .catch(error => {
+                                showAlert("error updating order status","danger")
+                            });
+                        });
+                    })
                 }
                 document.querySelector('#ordersTab').addEventListener('click', loadOrders)
             </script>

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+  <title>Image Slider with Zoom Out</title>
+  <style>
+    body{
+      margin: 0;
+      padding: 0;
+      background-color:#000;
+    }
+    .slider {
+      width: 100%;
+      height: 90vh;
+      margin: 0;
+      overflow: hidden;
+      position: relative;
+
+    }
+
+    .slide {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      flex-direction: column;
+      align-items: center;
+      position: absolute;
+      transition: transform 1s cubic-bezier(0.3, 1, 0.82, 0.3); 
+      transform-origin: center center;
+    }
+
+    
+
+    .slide img {
+      width: 100%;
+      height: 100%;
+    }
+
+    .slide button {
+      margin-top: 10px;
+      cursor: pointer;
+    }
+
+    .slide:not(:first-child) {
+      display: none;
+    }
+
+
+    .slider button .next{
+      position: absolute;
+      background-color:#fff;
+      margin-top: -20vh;
+    }
+  </style>
+</head>
+<body>
+
+<div class="slider">
+  <div class="slide" id="slide1">
+
+    <img src="../assets/slider1.jpeg" alt="Image 1">
+    <button class="next" onclick="zoomOut()" style="padding: 1.5vh;text-transform: uppercase;border: none;border-radius: 2vh;margin-top: 50vh;position: absolute">I'm Ready</button>
+  </div>
+  <div class="slide" id="slide2">
+
+    <img src="../assets/slider2.png" alt="Image 2">
+    <button class="prev" onclick="zoomOut(true)" style="font-size: 10vh;padding: 0;text-transform: uppercase;border: none;border-radius: 2vh;margin-top: 0vh;left: 10vh;position: absolute;background-color: transparent;color: #ffff;"><iconify-icon icon="carbon:previous-outline"></iconify-icon></button>
+  </div>
+</div>
+
+<script>
+  function zoomOut(goBack = false) {
+
+    const currentSlide = Array.from(document.querySelectorAll('.slide')).find(slide => window.getComputedStyle(slide).display !== 'none');
+
+    currentSlide.style.transform = 'scale(0)';
+
+    setTimeout(() => {
+
+      currentSlide.style.display = 'none';
+
+      const targetSlide = goBack ? currentSlide.previousElementSibling : currentSlide.nextElementSibling;
+
+      if (targetSlide) {
+        targetSlide.style.display = 'flex';
+        targetSlide.style.transform = 'scale(1)';
+
+        targetSlide.style.transition = 'transform 2s cubic-bezier(0.68, -0.55, 0.27, 1.55)';
+      }
+    }, 1000); 
+  }
+</script>
+
+</body>
+</html>
