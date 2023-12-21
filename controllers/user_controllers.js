@@ -33,6 +33,7 @@ const authLogin = async (req, res) => {
         req.session.isLoggedIn = true;
         req.session.email = email
         req.session.userProfile = {
+            name: user.name,
             email: user.email,
             phone: user.phone,
             joinDate: user.joinDate,
@@ -131,7 +132,7 @@ const saveUserProfile = async (req,res) => {
 const updateProfile = async (req,res) => {
     try {
         const {name, phone, pincode, locality, landmark, city, address} = req.body.userProfile;
-        req.session.usetProfile.name = name
+        req.session.userProfile.name = name;
         req.session.userProfile.phone = phone;
         req.session.userProfile.pincode = pincode;
         req.session.userProfile.locality = locality;
