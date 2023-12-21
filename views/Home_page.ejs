@@ -107,9 +107,7 @@
        
            setTimeout(() => {
              currentSlide.style.display = 'none';
-       
              const targetSlide = goBack ? currentSlide.previousElementSibling : currentSlide.nextElementSibling;
-       
              if (targetSlide) {
                targetSlide.style.display = 'flex';
                targetSlide.style.transform = 'scale(1)';
@@ -511,18 +509,6 @@
              }, 1000); 
          });
       </script>
-<script>
-   $('.slider').slick({
-   autoplay: true,
-   dots: false,
-   infinite: true,
-   pauseOnHover: true,
-   centerMode:true,        //added
-   centerPadding:"5%", 
-   arrows: false,   //added
-})
-</script>
-
 <script>
    $('.review').slick({
   centerMode: true,
