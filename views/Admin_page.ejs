@@ -509,6 +509,7 @@
                             orders.forEach(async order => {
                                 let row = document.createElement('tr')
                                 row.append(createTableCell(order._id))
+                                
                                 row.append(createTableCell(order.email))
 
                                 let names = "";
@@ -561,57 +562,59 @@
         <section class="main" id="productsSection" style="display: none;">
             <section class="main-orders">
             <h1 style="margin-bottom: 0.3rem;">Add Product</h1>
-                <div class="form-container">
-                    <div>
-                        <label for="productName">Product Name:</label>
-                        <input type="text" id="productName" name="productName" required>
+                <form class="addProductForm">
+                    <div class="form-container">
+                        <div>
+                            <label for="productName">Product Name:</label>
+                            <input type="text" id="productName" name="productName" required>
 
-                        <label for="productDescription">Product Description:</label>
-                        <textarea id="productDescription" name="productDescription" rows="4" required></textarea>
+                            <label for="productDescription">Product Description:</label>
+                            <textarea id="productDescription" name="productDescription" rows="4" required></textarea>
 
-                        <label for="originalPrice">Original Price (₹):</label>
-                        <input type="number" id="originalPrice" name="originalPrice" required>
+                            <label for="originalPrice">Original Price (₹):</label>
+                            <input type="number" id="originalPrice" name="originalPrice" required>
 
-                        <label for="offeredPrice">Offered Price (₹)<span style="color: #999;">(Amount to be displayed to User)</span>:</label>
-                        <input type="number" id="offeredPrice" name="offeredPrice" required>
+                            <label for="offeredPrice">Offered Price (₹)<span style="color: #999;">(Amount to be displayed to User)</span>:</label>
+                            <input type="number" id="offeredPrice" name="offeredPrice" required>
 
-                        <label for="category">Category:</label>
+                            <label for="category">Category:</label>
 
-                        <select id="category" name="category" required>
-                            <option value="Face Care">Face Care</option>
-                            <option value="Hair Care">Hair Care</option>
-                            <option value="Body Care">Body Care</option>
-                            <option value="Beard Care">Beard Care</option>
-                        </select>
+                            <select id="category" name="category" required>
+                                <option value="Face Care">Face Care</option>
+                                <option value="Hair Care">Hair Care</option>
+                                <option value="Body Care">Body Care</option>
+                                <option value="Beard Care">Beard Care</option>
+                            </select>
 
-                         <button onclick="addProduct()" style="margin-top: 1rem;">Publish Product</button>
+                            <button onclick="addProduct()" style="margin-top: 1rem;">Publish Product</button>
 
-                    </div>
-
-                    <div>
-                        <label for="stock">Stock:</label>
-                        <input type="number" id="stock" name="stock" required>
-                        
-                        <label for="Image1">First Image (250x250):</label>
-                        <input type="file" id="Image1" name="Image1" accept="image/*" required onchange="previewImage('Image1')" style="border: none; padding: 0.5rem; background-color: #f0f0f0;">
-                        <img id="Image1Preview" alt="Preview" style="max-width: 50%; height: 15vh; margin-top: 0rem; margin-bottom: 1rem;border-radius: 1rem;">
-                        
-                        <div class="addon-images">
-                            <div class="img2">
-                                <label for="Image2">Second Image (250x250):</label>
-                                <input type="file" id="Image2" name="Image2" accept="image/*" required onchange="previewImage('Image2')" style="border: none; padding: 0.5rem; background-color: #f0f0f0;"> 
-                                <img id="Image2Preview" alt="Preview" style="max-width: 50%; height: 20vh; margin-top: 0rem; margin-bottom: 1rem;border-radius: 1rem;">
-                            </div>
-    
-                           <div class="img2">
-                            <label for="Image3">Third Image (250x250):</label>
-                            <input type="file" id="Image3" name="Image3" accept="image/*" required onchange="previewImage('Image3')" style="border: none; padding: 0.5rem; background-color: #f0f0f0;">
-                            <img id="Image3Preview" alt="Preview" style="max-width: 50%; height: 20vh; margin-top: 0rem; margin-bottom: 1rem;border-radius: 1rem;">
-                           </div>
                         </div>
 
+                        <div>
+                            <label for="stock">Stock:</label>
+                            <input type="number" id="stock" name="stock" required>
+                            
+                            <label for="Image1">First Image (250x250):</label>
+                            <input type="file" id="Image1" name="Image1" accept="image/*" required onchange="previewImage('Image1')" style="border: none; padding: 0.5rem; background-color: #f0f0f0;">
+                            <img id="Image1Preview" alt="Preview" style="max-width: 50%; height: 15vh; margin-top: 0rem; margin-bottom: 1rem;border-radius: 1rem;">
+                            
+                            <div class="addon-images">
+                                <div class="img2">
+                                    <label for="Image2">Second Image (250x250):</label>
+                                    <input type="file" id="Image2" name="Image2" accept="image/*" required onchange="previewImage('Image2')" style="border: none; padding: 0.5rem; background-color: #f0f0f0;"> 
+                                    <img id="Image2Preview" alt="Preview" style="max-width: 50%; height: 20vh; margin-top: 0rem; margin-bottom: 1rem;border-radius: 1rem;">
+                                </div>
+        
+                            <div class="img2">
+                                <label for="Image3">Third Image (250x250):</label>
+                                <input type="file" id="Image3" name="Image3" accept="image/*" required onchange="previewImage('Image3')" style="border: none; padding: 0.5rem; background-color: #f0f0f0;">
+                                <img id="Image3Preview" alt="Preview" style="max-width: 50%; height: 20vh; margin-top: 0rem; margin-bottom: 1rem;border-radius: 1rem;">
+                            </div>
+                            </div>
+
+                        </div>
                     </div>
-                </div>
+                </form>
             </section>
             <script>    
                 function previewImage(inputId) {
@@ -628,28 +631,12 @@
                         reader.readAsDataURL(input.files[0]);
                     }
                 }
-                function previewImages(inputId) {
-                    const input = document.getElementById(inputId);
-                    const previewContainer = document.getElementById(`${inputId}Preview`);
-                    previewContainer.innerHTML = '';
-
-                    if (input.files && input.files.length > 0 && input.files.length <= 3) {
-                        Array.from(input.files).forEach((file, index) => {
-                            const reader = new FileReader();
-                            reader.onload = function (e) {
-                                const img = document.createElement('img');
-                                img.src = e.target.result;
-                                img.className = 'image-preview-small';
-                                previewContainer.appendChild(img);
-                            };
-                            reader.readAsDataURL(file);
-                        });
-                    } else {
-                        alert("Please upload between 1 and 3 additional images.");
-                        input.value = ''; 
-                    }
+                function resetPreview () {
+                    document.getElementById('Image1Preview').src = ''
+                    document.getElementById('Image2Preview').src = ''
+                    document.getElementById('Image3Preview').src = ''
                 }
-                function addProduct() {
+                async function addProduct() {
                     const name = document.getElementById('productName').value;
                     const description = document.getElementById('productDescription').value;
                     const originalPrice = document.getElementById('originalPrice').value;
@@ -687,32 +674,24 @@
                             formData.append('files', Image1);
                             formData.append('files', Image2);
                             formData.append('files', Image3);
-                            
 
-                            axios
-                                .post('/api/products', formData)
-                                .then((response) => {
-                                    showAlert('Product added successfully:',"success");
-                                    document.getElementById('productName').value = '';
-                                    document.getElementById('productDescription').value = '';
-                                    document.getElementById('originalPrice').value = '';
-                                    document.getElementById('offeredPrice').value = '';
-                                    document.getElementById('stock').value = '';
-                                    document.getElementById('Image1').value = '';
-                                    document.getElementById('Image2').value = '';
-                                    document.getElementById('Image3').value = '';
-                                })
-                                .then (() => {
-                                    // Get a reference to the element
-                                    const myElement = document.getElementById('inventoryTab');
-                                    // Create a new event
-                                    const myEvent = new Event('click');
-                                    // Dispatch the event
-                                    myElement.dispatchEvent(myEvent);
-                                })
-                                .catch((error) => {
-                                    showAlert('Error adding product:', "danger");
-                                });
+                            await axios.post('/api/products', formData)
+                            .then((response) => {
+                                showAlert('Product added successfully:',"success");
+                                document.querySelector('.addProductForm').reset()
+                                resetPreview()
+                            })
+                            .then (() => {
+                                // Get a reference to the element
+                                const myElement = document.getElementById('inventoryTab');
+                                // Create a new event
+                                const myEvent = new Event('click');
+                                // Dispatch the event
+                                myElement.dispatchEvent(myEvent);
+                            })
+                            .catch((error) => {
+                                showAlert('Error adding product:', "danger");
+                            });
                         } else {
                             showAlert('Please fill in all the details before adding the product.',"danger");
                         }
