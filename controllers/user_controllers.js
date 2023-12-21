@@ -49,7 +49,7 @@ const authLogin = async (req, res) => {
         } else {
             req.session.OTP = '';
             saveUserProfile(req,res)
-            res.redirect('/confirm')
+            return res.status(201).json({message: "completing order"})
         }
         
         req.session.OTP = '';

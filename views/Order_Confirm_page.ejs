@@ -350,11 +350,11 @@
                <p type="text" class="text-justify mb-3">Your Email : ${profile.email || ""}</p>
                   <div class="labels">
                      <label for="name"">User Name</label>
-                     <input type="test" id="name" class="text-justify" placeholder="Enter Landmark" value="${profile.name || ""}">
+                     <input type="test" id="name" class="text-justify" placeholder="Enter Name" value="${profile.name || ""}">
                   </div>
                   <div class="labels">
                      <label for="phone">contact number</label>
-                     <input type="test" id="phone" class="text-justify" placeholder="Enter Landmark" value="${profile.phone || ""}">
+                     <input type="test" id="phone" class="text-justify" placeholder="Enter Phone number" value="${profile.phone || ""}">
                   </div>
                  <div class="labels">
                      <label for="pincode">pincode</label>
@@ -460,6 +460,13 @@
                         }
                         else{
                            alert(res.msg);
+                        }
+                     },
+                     error: function (xhr, textStatus, errorThrown) {
+                        if (xhr.status === 404) {
+                              window.location.href = '/login';
+                        } else {
+                              showAlert("Taking you to the login page", "danger");
                         }
                      }
                   })

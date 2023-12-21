@@ -624,6 +624,8 @@ main.sign-up-mode .carousel {
             if (response.status === 200) {
                 showAlert("Login Successful","success")
                 window.location.href = "/";
+            } else if (response.status === 201) {
+              window.location.href = '/confirm'
             }
         })
         .catch(error => {
