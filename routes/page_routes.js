@@ -55,11 +55,15 @@ router.get('/login',(req, res) => {
 
 router.get('/confirm', (req, res) => {
     if (!req.session.userProfile || !req.session.userProfile.cart) {req.session.userProfile = { cart: [] };}
+    let content = {flow : false, code : ''};
 
+    if (req.session.couponCode) {content.code = req.session.couponCode} 
+    if (req.session.flow) {content.flow = req.session.flow} 
+    req.session.flow = false;
     if (!req.session.userProfile.cart[0]){
         res.status(502).json({message : "Please Add Items in cart"})
     } else {
-        res.render('Order_Confirm_page')
+        res.render('Order_Confirm_page',{content})
     }
 })
 

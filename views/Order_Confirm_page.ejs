@@ -202,7 +202,7 @@
       </div>
       <div class="d-flex justify-content-between align-items-center mt-2 pb-4 pl-3">
          <div class="text-muted w-100">
-             <input type="text" class="form-control" id="couponInput" placeholder="Enter Coupon">
+             <input type="text" class="form-control" id="couponInput" placeholder="Enter Coupon" value="<%= content.code %>">
          </div>
          <div class="ml-3">
              <button class="btn btn-dark btn-apply-coupon coupon_Button">Apply</button>
@@ -291,16 +291,18 @@
          let Total = 0;
             document.querySelector('.coupon_Button').addEventListener('click', async (req, res) => {
                let code = document.querySelector('#couponInput').value;
-               await axios.get(`/coupons/${code}`)
-               .then(response => response.data)
-               .then(coupon => {
-                  showAlert("coupon loaded successfully","success")
-                  // Assuming Total is a variable representing the total amount
-                  document.querySelector('.total').innerHTML = `<b>&#8377;<del>${Total}/-</del></b> <br><span class="text-muted" style="font-size:1rem;">${((coupon.discount))}% OFF APPLIED</span> <b> <br><span style="font-size:2.5rem;"> &#8377;${Math.floor(Total - Total * ((coupon.discount) / 100))}/</span></b>-<br>`;
-                  document.querySelector('.coupon_remove_Button').style.display = "block"
-                  document.querySelector('.coupon_Button').style.display = "none"
-               })
-               .catch(err => showAlert("coupon is invalid", "danger"))
+               if (code !== ''){
+                  await axios.get(`/coupons/${code}`)
+                  .then(response => response.data)
+                  .then(coupon => {
+                     showAlert("coupon loaded successfully","success")
+                     // Assuming Total is a variable representing the total amount
+                     document.querySelector('.total').innerHTML = `<b>&#8377;<del>${Total}/-</del></b> <br><span class="text-muted" style="font-size:1rem;">${((coupon.discount))}% OFF APPLIED</span> <b> <br><span style="font-size:2.5rem;"> &#8377;${Math.floor(Total - Total * ((coupon.discount) / 100))}/</span></b>-<br>`;
+                     document.querySelector('.coupon_remove_Button').style.display = "block"
+                     document.querySelector('.coupon_Button').style.display = "none"
+                  })
+                  .catch(err => showAlert("coupon is invalid", "danger"))
+               }
             })
             document.querySelector('.coupon_remove_Button').addEventListener('click', async (req, res) => {
                showAlert("coupon removed successfully","success")
@@ -387,6 +389,29 @@
                   var formattedDate = year + '/' + (month < 10 ? '0' + month : month) + '/' + (day < 10 ? '0' + day : day);
 
                   document.querySelector('.date').textContent = formattedDate;
+            })
+            .then(async () => {
+               const code = document.querySelector('#couponInput').value
+               if (code !== ''){
+                  await axios.get(`/coupons/${code}`)
+                  .then(response => response.data)
+                  .then(coupon => {
+                     showAlert("coupon loaded successfully","success")
+                     // Assuming Total is a variable representing the total amount
+                     document.querySelector('.total').innerHTML = `<b>&#8377;<del>${Total}/-</del></b> <br><span class="text-muted" style="font-size:1rem;">${((coupon.discount))}% OFF APPLIED</span> <b> <br><span style="font-size:2.5rem;"> &#8377;${Math.floor(Total - Total * ((coupon.discount) / 100))}/</span></b>-<br>`;
+                     document.querySelector('.coupon_remove_Button').style.display = "block"
+                     document.querySelector('.coupon_Button').style.display = "none"
+                  })
+                  .catch( err => showAlert("coupon is invalid", "danger"))
+               }
+            })
+            .then(() => {
+               const flow = '<%= content.flow %>'
+               if (flow === 'true') {
+                  const selectElement = document.querySelector('.proceedToPay');
+                  const selectEvent = new Event('click');
+                  selectElement.dispatchEvent(selectEvent);
+               }
             })
             .catch(err => {
                console.log("could not fetch profile\n"+ err)

@@ -28,8 +28,6 @@ const razorpayInstance = new Razorpay({
 
 const paymentGateway = async (req, res) => {
   try {
-      
-
       const {name, phone, pincode, address, city, locality, landmark} = req.body;
       req.session.userProfile.name = name;
       req.session.userProfile.phone = phone;
@@ -43,6 +41,8 @@ const paymentGateway = async (req, res) => {
 
       if (!userData) {
           console.log("user not found");
+          req.session.couponCode = req.body.couponCode
+          req.session.flow = true;
           return res.status(404).json({ message: 'User data not found' });
       }
 
