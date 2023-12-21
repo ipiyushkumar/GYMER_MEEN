@@ -20,146 +20,106 @@
       <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 
   </head>
-   </head>
-   <style>
-      .slider{
-        width:100%;
-        /* height: 30vw; */
-        padding: 0;
-        margin:0 auto;
-        padding: 0;
-        margin-top: 2vw;
-        background-color: #000;
-    }
-
-    .review{
-        width:100%;
-        padding: 2rem;
-        margin: 0 auto;
-        background-color: #000;
-    }
-
-    .review-fit{
-       width: 80%;
-       display: flex !important;
-       flex-direction: column;
-       justify-content: center;
-       align-items: center;
-       background-color: #fff;
-       backdrop-filter: blur(10px);
-       box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-       padding: 1rem;
-       border-radius: 1rem;
-       box-shadow: 0px 0px 5px 0px #fff;
-    }
-
-    .slider .slick-arrow{
-        display: block;
-        color: #fff;
-    }
-
-    .slick-prev:before,
-.slick-next:before {
-    font-size: 3vw;
-}
-
-    .slider .slick-next{
-        position: absolute;
-        top: 10vw;
-        right: 5vw;
-    }
-    .slider .slick-prev{
-        position: absolute;
-        top: 10vw;
-        left: 4vw;
-        /* left: 0vw; */
-    }
-
-
-    .review .slick-slide{
-       margin-left: 1rem !important;
-       margin-right: 1rem !important;
-    }
-
-    .review-fit img{
-       width: 150px;
-       border-radius: 35%;
-       height: auto;
-    }
-
-    .alert {
-    position: fixed;
-    top: 1rem;
-    right: 1rem;
-    z-index: 1;
-    padding: 0.75rem 1.25rem;
-    margin-bottom: 1rem;
-    border: 1px solid transparent;
-    border-radius: 0.25rem;
-    transition: 0.3s ease-in-out;
-  }
-
-  .alert.success {
-    color: #155724;
-    background-color: #d4edda;
-    border-color: #c3e6cb;
-  }
-
-  .close {
-    cursor: pointer;
-  }
-
-    .review-fit h5{
-      font-style:italic;
-    }
-
-    .review-fit i{
-       margin-bottom: 1rem;
-       color: goldenrod;
-       margin-top: 1rem;
-    }
-
-    .review-fit .insta-id i{
-       color: #000;
-       margin-right: 0.4rem;
-    }
-
-
-    /* .slider img{
-        width: 100%;
-        height:auto;
-    } */
-    .slider .slick-slide{
-        height:auto!important;
-    }
-
-    .slider .slick-slide{
-    margin-right: 2rem !important;
-    margin-left: 2rem!important;
-   }
-
-   @media (max-width: 576px){
-      .slider{
-         padding: 0;
-         height: max-content;
-      }
-
-   }
-   
-   </style>
    <body>
       <%- include('partials/nav') %> 
       <%- include('partials/cart') %>
 
       <div id="alertContainer"></div>
-
-         <div class="slider">   
-            <div><img src="../assets/Slider.jpg"></div>
-            <div><img src="../assets/Slider2.jpg"></div>
-            <div><img src="../assets/Slider.jpg"></div>   
-            <div><img src="../assets/Slider2.jpg"></div>
-        </div>
-
+      <style>
+         body {
+           margin: 0;
+           padding: 0;
+           background-color: #000;
+           font-family: 'Goffer', sans-serif;
+         }
+     
+         .slider {
+           width: 100%;
+           height: 90vh;
+           margin: 0;
+           overflow: hidden;
+           position: relative;
+         }
+     
+         .slide {
+           width: 100%;
+           height: 100%;
+           display: flex;
+           justify-content: center;
+           flex-direction: column;
+           align-items: center;
+           position: relative;
+           transition: transform 1s cubic-bezier(0.3, 1, 0.82, 0.3), opacity 1s cubic-bezier(0.3, 1, 0.82, 0.3);
+           transform-origin: center center;
+         }
+     
+         .slide img {
+           width: 100%;
+           height: 100%;
+         }
+     
+         .slide h2 {
+           z-index: 1;
+           color: #000;
+           position: absolute;
+           font-size: 10vh;
+           color: #fff;
+         }
+     
+         .slide button {
+           margin-top: 10px;
+           cursor: pointer;
+           background-color: #fff;
+           position: absolute;
+         }
+         
+         @media (max-width: 768px) {
+     
+           .slider{
+             height: 40vh;
+           }
+     
+           .slider .prev{
+             font-size: 5vh !important;
+             left: 2vh !important;
+           }
+         }
+       </style>
+       
+       <div class="slider">
+         <div class="slide" id="slide1">
+           <img src="../assets/slider1.jpeg" alt="Image 1">
+           <h2 style="z-index: 1; color: #000;position: absolute;font-size: 10vh;color: #fff;">START HERE</h2>
+           <button class="next" onclick="zoomOut()" style="padding: 1.5vh;font-weight: bold;border: none;border-radius: 2vh;margin-top: 20vh;position: absolute;padding: 1vh 2vh 1vh 2vh">I'm Ready</button>
+         </div>
+         <div class="slide" id="slide2">
+           <img src="../assets/slider2.png" alt="Image 2">
+           <button class="prev" onclick="zoomOut(true)" style="font-size: 10vh;padding: 0;text-transform: uppercase;border: none;border-radius: 2vh;margin-top: 0vh;left: 10vh;position: absolute;background-color: transparent;color: #ffff;"><iconify-icon icon="carbon:previous-outline"></iconify-icon></button>
+         </div>
+       </div>
+       
+       <script>
+         function zoomOut(goBack = false) {
+           const currentSlide = Array.from(document.querySelectorAll('.slide')).find(slide => window.getComputedStyle(slide).display !== 'none');
+       
+           currentSlide.style.transform = 'scale(0)';
+           currentSlide.style.opacity = '0';
+       
+           setTimeout(() => {
+             currentSlide.style.display = 'none';
+       
+             const targetSlide = goBack ? currentSlide.previousElementSibling : currentSlide.nextElementSibling;
+       
+             if (targetSlide) {
+               targetSlide.style.display = 'flex';
+               targetSlide.style.transform = 'scale(1)';
+               targetSlide.style.opacity = '1';
+       
+               targetSlide.style.transition = 'transform 1s cubic-bezier(0.3, 1, 0.82, 0.3), opacity 1s cubic-bezier(0.3, 1, 0.82, 0.3)';
+             }
+           }, 1000); 
+         }
+       </script>
         <div class="container" style="margin-left:6vw;width: 50%;">
          <button class="btn btn-light align-left mb-5 mt-5"><a href="/product_listing/explore" style="text-decoration: none;color: #000;font-weight: 500;font-size: 1.2rem">Explore Now</a></button>
       </div>
