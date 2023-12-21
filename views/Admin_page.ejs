@@ -459,9 +459,11 @@
                 <h1>Orders</h1>
                 <div class="orders-container">
                     <ul class="list">
-                        <li class="active" onclick="showOrderTab('allOrders')" data-tab="allOrders">All Orders</li>
-                        <li onclick="showOrderTab('pendingOrders')" data-tab="pendingOrders">Pending Orders</li>
-                        <li onclick="showOrderTab('completedOrders')" data-tab="completedOrders">Completed Orders</li>
+                        <li  onclick="loadAllOrders()" data-tab="allOrders">All Orders</li>
+                        <li onclick="loadPendingOrders()" data-tab="pendingOrders">Pending Orders</li>
+                        <li onclick="loadSentOrders()" data-tab="completedOrders">Sent Orders</li>
+                        <li onclick="loadDeliveringOrders()" data-tab="completedOrders">DeliveringOrders</li>
+                        <li onclick="loadDeliveredOrders()" data-tab="completedOrders">Delivered Orders</li>
                     </ul>
                     <div>
                         <div class="order-table" id="allOrdersTab">
@@ -476,7 +478,7 @@
                                         <th style="width: 20%;">Status</th>
                                     </tr>
                                 </thead>
-                                <tbody id="allOrdersBody" style="overflow: hidden;"></tbody>
+                                <tbody id="OrdersBody" style="overflow: hidden;"></tbody>
                             </table>
                         </div>
                     </div>
@@ -484,6 +486,7 @@
             </section>
             <script>
                 let Orders = []
+                let selectedOrdersTab = ''
                 function createTableCell(content) {
                     let cell = document.createElement('td')
                     cell.innerHTML = content;
@@ -502,53 +505,94 @@
                     return cell;
                 }
                 const loadOrders = async () => {
-                    
-                    document.querySelector('#allOrdersBody').innerHTML = ''
                     await axios.get('/api/admin/getAllOrders')
                         .then(response => response.data)
                         .then(data => {
                             Orders = data;
+                            loadAllOrders();
                             showAlert("orders loaded successfully","success")
                         })
                         .catch(err => showAlert("server refused on order data","danger"))
                 }
-                function loadAllOrders () {
-                    Orders.forEach(async order => {
-                        let row = document.createElement('tr')
-                        row.append(createTableCell(order._id))
-                        
-                        row.append(createTableCell(order.email))
-                        let names = "";
+
+                function loadAllOrders() {
+                    selectedOrdersTab = 'All'
+                    loadOrdersTable(Orders);
+                }
+
+                function loadPendingOrders() {
+                    const pendingOrders = Orders.filter(order => order.status === 'Pending');
+                    selectedOrdersTab = 'Pending'
+                    loadOrdersTable(pendingOrders);
+                }
+
+                function loadSentOrders() {
+                    const sentOrders = Orders.filter(order => order.status === 'Sent');
+                    selectedOrdersTab = 'Sent'
+                    loadOrdersTable(sentOrders);
+                }
+
+                function loadDeliveringOrders() {
+                    const deliveringOrders = Orders.filter(order => order.status === 'Delivering');
+                    selectedOrdersTab = 'Delivering'
+                    loadOrdersTable(deliveringOrders);
+                }
+
+                function loadDeliveredOrders() {
+                    const deliveredOrders = Orders.filter(order => order.status === 'Delivered');
+                    selectedOrdersTab = 'Delivered'
+                    loadOrdersTable(deliveredOrders);
+                }
+
+                function loadOrdersTable(orders) {
+                    document.querySelector('#OrdersBody').innerHTML = '';
+                    orders.forEach(async order => {
+                        let row = document.createElement('tr');
+                        row.append(createTableCell(order._id));
+                        row.append(createTableCell(order.email));
+                        let names = '';
                         await Promise.all(order.products.map(async product => {
                             try {
                                 const response = await axios.get(`/api/products/${product.itemId}`);
                                 names += ` ${response.data.name}`;
                             } catch (err) {
-                                console.log("error fetching products", err);
+                                console.log('error fetching products', err);
                             }
                         }));
-                        row.append(createTableCell(names)) // Correct variable name here
-                        row.append(createTableCell("&#8377;" + order.totalPayment))
+                        row.append(createTableCell(names));
+                        row.append(createTableCell('&#8377;' + order.totalPayment));
                         const dateTime = new Date(order.Date);
-                        // Get date and time
                         const formattedDateTime = dateTime.toLocaleString();
-                        row.append(createTableCell(formattedDateTime))
-                        row.append(dynamicOrderStatus(order.razorpay_order_id,order.status))
-                        document.querySelector('#allOrdersBody').append(row);
+                        row.append(createTableCell(formattedDateTime));
+                        row.append(dynamicOrderStatus(order.razorpay_order_id, order.status));
+                        document.querySelector('#OrdersBody').append(row);
                         document.querySelector(`#myDropdown_${order.razorpay_order_id}`).addEventListener('change', async event => {
                             const selectedValue = event.target.value;
                             await axios.put('/api/update-order-status/' + order.razorpay_order_id, {
                                 status: selectedValue
                             })
                             .then(response => {
-                                showAlert("order status updated successfully","success")
+                                showAlert('order status updated successfully', 'success');
+                                order.status = selectedValue;
+                                selectedOrdersTab = selectedValue;
+                                switch (selectedValue) {
+                                    case 'Pending':
+                                    break;
+                                    case 'Sent':
+                                    break;
+                                    case 'Delivering':
+                                    break;
+                                    case 'Delivered':
+                                    break;
+                                }
                             })
                             .catch(error => {
-                                showAlert("error updating order status","danger")
+                                showAlert('error updating order status', 'danger');
                             });
                         });
-                    })
+                    });
                 }
+
                 document.querySelector('#ordersTab').addEventListener('click', loadOrders)
             </script>
         </section>
@@ -557,7 +601,6 @@
         <section class="main" id="productsSection" style="display: none;">
             <section class="main-orders">
             <h1 style="margin-bottom: 0.3rem;">Add Product</h1>
-                <form class="addProductForm">
                     <div class="form-container">
                         <div>
                             <label for="productName">Product Name:</label>
@@ -609,7 +652,6 @@
 
                         </div>
                     </div>
-                </form>
             </section>
             <script>    
                 function previewImage(inputId) {
@@ -673,7 +715,15 @@
                             await axios.post('/api/products', formData)
                             .then((response) => {
                                 showAlert('Product added successfully:',"success");
-                                document.querySelector('.addProductForm').reset()
+                                document.getElementById('productName').value = '';
+                                document.getElementById('productDescription').value = '';
+                                document.getElementById('originalPrice').value = '';
+                                document.getElementById('offeredPrice').value = '';
+                                document.getElementById('category').value = '';
+                                document.getElementById('stock').value = '';
+                                document.getElementById('Image1').files[0] = '';
+                                document.getElementById('Image2').files[0] = '';
+                                document.getElementById('Image3').files[0] = '';
                                 resetPreview()
                             })
                             .then (() => {
