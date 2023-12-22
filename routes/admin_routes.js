@@ -4,10 +4,12 @@ const router = express.Router();
 
 const controllers = require('../controllers/admin_controllers')
 
+const authenticator = require('../adminConfig')
+
 // Define a middleware to check if the user is authenticated
-const isAuthenticated = (req, res, next) => {
+const isAdminAuthenticated = (req, res, next) => {
   if (req.session.isLoggedIn) {
-    if (req.session.admin) {
+    if (authenticator.adminAuthenticater(req.session.email)) {
         next(); // User is authenticated, proceed to the next middleware or route
     } else {
         res.status(401).json({ message: 'Administrator credentials required' });
@@ -18,13 +20,13 @@ const isAuthenticated = (req, res, next) => {
 };
 
 // admin tab
-router.get('/adminwolf',(req, res) => {
+router.get('/adminwolf',isAdminAuthenticated, (req, res) => {
     res.render('Admin_page');
 })
 
 const Orders = require('../schemas/order_schema');
 
-router.put('/api/update-order-status/:razorpay_order_id', async (req, res) => {
+router.put('/api/update-order-status/:razorpay_order_id',isAdminAuthenticated,  async (req, res) => {
   const { razorpay_order_id } = req.params;
   const { status } = req.body;
 
@@ -52,7 +54,7 @@ router.put('/api/update-order-status/:razorpay_order_id', async (req, res) => {
 const Product = require('../schemas/product_schema');
 const multerMiddleware = require('../middlewares/multer');
 
-router.post('/api/products', multerMiddleware.array('files', 3), async (req, res) => {
+router.post('/api/products',isAdminAuthenticated,  multerMiddleware.array('files', 3), async (req, res) => {
   try {
     console.log("route started")
     // Check if files are present
@@ -93,7 +95,7 @@ router.post('/api/products', multerMiddleware.array('files', 3), async (req, res
 });
 
 // under development
-router.put('/api/products', async (req, res) => {
+router.put('/api/products',isAdminAuthenticated,  async (req, res) => {
     const {itemId, offeredPrice, originalPrice, stock} = req.body.formdata
     try {
       console.log(req.body.formdata)
@@ -117,7 +119,7 @@ router.put('/api/products', async (req, res) => {
 
 const fs = require('fs').promises;
 
-router.delete('/api/products/:itemId', async (req, res) => {
+router.delete('/api/products/:itemId',isAdminAuthenticated,  async (req, res) => {
   try {
     const deletedProduct = await Product.findOneAndDelete({ itemId: req.params.itemId });
 
@@ -146,17 +148,17 @@ async function deleteImage(imagePath) {
   }
 }
 
-router.get('/api/admin/getAllUsers',controllers.getAllUsers)
+router.get('/api/admin/getAllUsers',isAdminAuthenticated, controllers.getAllUsers)
 
-router.get('/api/admin/getAllOrders',controllers.getAllOrders)
+router.get('/api/admin/getAllOrders',isAdminAuthenticated, controllers.getAllOrders)
 
-router.get("/coupons", controllers.getAllCoupons);
+router.get("/coupons", isAdminAuthenticated,  controllers.getAllCoupons);
 
 // user route
-router.get("/coupons/:code", controllers.getCouponsByCode);
+router.get("/coupons/:code",isAdminAuthenticated,  controllers.getCouponsByCode);
 
-router.post("/coupons", controllers.addNewCoupon);
+router.post("/coupons",isAdminAuthenticated,  controllers.addNewCoupon);
 
-router.delete("/coupons/:code", controllers.deleteCouponByCode);
+router.delete("/coupons/:code",isAdminAuthenticated,  controllers.deleteCouponByCode);
 
 module.exports = router;

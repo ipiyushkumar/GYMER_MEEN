@@ -33,7 +33,7 @@ const authLogin = async (req, res) => {
         req.session.isLoggedIn = true;
         req.session.email = email
 
-        if (!req.session.userProfile) {
+        if (!req.session.userProfile.cart[0]) {
             req.session.userProfile = {
                 name: user.name || req.session.userProfile.name,
                 email: user.email,
