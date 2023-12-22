@@ -10,7 +10,7 @@ const randomize = require('randomatic');
 
 const authLogin = async (req, res) => {
     try {
-        const { email, otp } = req.body
+        const { email, otp } = req.body;
 
         // Verify OTP
         const storedOTP = req.session.OTP;
@@ -22,44 +22,56 @@ const authLogin = async (req, res) => {
         // Check if the user exists by email
         let user = await User.findOne({ email });
 
-        // If the user does not exist, create a new user with the email
-        if (!user) {
-            console.log("User does not exist. Adding user with email: " + email);
-            user = new User({ email });
-            await user.save();
+        // Scenario 1: User is already registered and wants to log in
+        if (user) {
+            // Load necessary data into the session
+            req.session.isLoggedIn = true;
+            req.session.email = email;
+
+            if (!req.session.userProfile.cart[0]) {
+                // User is coming without a filled cart
+                req.session.userProfile = {
+                    name: user.name || req.session.userProfile.name,
+                    email: user.email || req.session.userProfile.email,
+                    phone: user.phone || req.session.userProfile.phone,
+                    joinDate: user.joinDate || req.session.userProfile.joinDate,
+                    pincode: user.pincode || req.session.userProfile.pincode,
+                    locality: user.locality || req.session.userProfile.locality,
+                    landmark: user.landmark || req.session.userProfile.landmark,
+                    city: user.city || req.session.userProfile.city,
+                    address: user.address || req.session.userProfile.address,
+                    cart: user.cart || req.session.userProfile.cart,
+                };
+            } else {
+                // User has a filled cart, save the profile and complete the order
+                req.session.OTP = '';
+                saveUserProfile(req, res);
+                return res.status(201).json({ message: "Completing order" });
+            }
+
+            console.log("User logged in successfully: " + email);
+            return res.status(200).json({ message: "User logged in successfully" });
         }
+
+        // Scenario 2: User is not registered and wants to register for the first time
+        console.log("User does not exist. Adding user with email: " + email);
+        user = new User({ email });
+        await user.save();
 
         // Load necessary data into the session
         req.session.isLoggedIn = true;
-        req.session.email = email
+        req.session.email = email;
 
-        if (!req.session.userProfile.cart[0]) {
-            req.session.userProfile = {
-                name: user.name || req.session.userProfile.name,
-                email: user.email,
-                phone: user.phone,
-                joinDate: user.joinDate,
-                pincode: user.pincode,
-                locality: user.locality,
-                landmark: user.landmark,
-                city: user.city,
-                address: user.address,
-                cart: user.cart,
-            };
-        } else {
-            req.session.OTP = '';
-            saveUserProfile(req,res)
-            return res.status(201).json({message: "completing order"})
-        }
-        
         req.session.OTP = '';
-        console.log("User logged in successfully: " + email);
-        res.status(200).json({ message: "User logged in successfully" });
+        console.log("User registered and logged in successfully: " + email);
+        res.status(200).json({ message: "User registered and logged in successfully" });
+
     } catch (error) {
         console.error(error);
         res.status(500).json({ message: 'Internal server error' });
     }
 };
+
 const sendOTP = (req, res) => {
     const userEmail = req.body.email;
   
