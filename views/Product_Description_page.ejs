@@ -71,12 +71,12 @@
     <div class="promo-strip">
         Get 25% Off on Every Purchase
       </div>
-    <nav class="navbar navbar-expand-lg navbar-dark p-3" style="width: 100%; background-color: #000;">
+    <nav class="navbar navbar-expand-lg navbar-dark p-2" style="width: 100%; background-color: #000;">
         <div class="container-fluid">
 
           <div class="col-md-4 text-left" style="width: 30%;">
             <a class="navbar-brand" href="/">
-              <img src="/assets/newlogo.png"style="width: 10vh; height: auto;" alt="Logo">
+              <img src="/assets/newlogo.png"style="width: 7vh; height: auto;" alt="Logo">
             </a>
           </div>
 
@@ -101,20 +101,20 @@
             <% if (content.isLoggedIn === true) { %>
                 <a class="nav-link cartButtom d-flex align-items-center" style="color: #fff; font-size: 1.2rem;" onclick="openCart()">
                 <iconify-icon icon="bxs:cart-add" style="font-size: 2rem;"></iconify-icon>
-                <span style="margin-left: 5px;">Cart</span>
+                <span style="margin-left: 5px;"></span>
                 </a>
                 <a class="nav-link d-flex align-items-center" href="/profile" style="color: #fff; font-size: 1.2rem;">
                 <iconify-icon icon="gg:profile" style="font-size: 2rem;"></iconify-icon>
-                <span style="margin-left: 5px;">Profile</span>
+                <span style="margin-left: 5px;"></span>
                 </a>
               <% } else { %>
                 <a class="nav-link cartButtom d-flex align-items-center" style="color: #fff; font-size: 1.2rem;" onclick="openCart()">
                    <iconify-icon icon="bxs:cart-add" style="font-size: 2rem;"></iconify-icon>
-                   <span style="margin-left: 5px;">Cart</span>
+                   <span style="margin-right: -30px;"></span>
                 </a>
                 <a class="nav-link d-flex align-items-center" href="/login" style="color: #fff; font-size: 1.2rem;">
-                  <iconify-icon icon="material-symbols:login-sharp" style="font-size: 2rem;"></iconify-icon>
-                <span style="margin-left: 5px;">Login</span>
+                  <iconify-icon icon="material-symbols:login-sharp" style="font-size: 2rem;display:none"></iconify-icon>
+                <span style="margin-left: 0px;"></span>
                 </a>
               <% } %>
            </div>
@@ -179,7 +179,7 @@
                     <p class="last-price">M.R.P. : <span>&#8377;<%= item.originalPrice%></span></p>
                     <p class="tax">Inclusive of all taxes</p>
                  </div>
-                <div class="quantity-container" style="display: none;">
+                <div class="quantity-container">
                   <button id="minus-btn" class='decrease<%= item.itemId %>desc'>-</button>
                   <input type="button" id="quantity-input" class='itemQuantity<%= item.itemId %>desc' value="0">
                   <button id="plus-btn" class='increase<%= item.itemId %>desc'>+</button>
