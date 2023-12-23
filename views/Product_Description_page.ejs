@@ -244,10 +244,10 @@
     <div class="parent-container container mt-5 mb-5">
       <div class="left-container">
         <div>
-          <h2>4.0</h2>
+          <h2 class="averageRating">4.0</h2>
         </div>
         <div>
-          <p>
+          <p class="totalStars">
             <iconify-icon icon="material-symbols:star"></iconify-icon>
             <iconify-icon icon="material-symbols:star"></iconify-icon>
             <iconify-icon icon="material-symbols:star"></iconify-icon>
@@ -255,7 +255,7 @@
           </p>
         </div>
         <div>
-          <h4>(120 Verified Reviews)</h4>
+          <h4 class="totalReviews">(0 Verified Reviews)</h4>
         </div>
       </div>
       <div class="right-container">
@@ -277,15 +277,85 @@
   
       <script>
           let reviews = [];
-  
+          const ratingCounts = [1, 1, 1, 1, 1];
+
           document.addEventListener('DOMContentLoaded', async () => {
               await axios.get(`/products/<%= item.itemId %>/allReviews`)
                   .then(response => {
                       reviews = response.data.review;
+                      console.log(reviews)
+
+                      let totalRating = 0;
+                      for (const review of reviews) {
+                          totalRating += review.rating;
+                          ratingCounts[(review.rating - 1)]++;
+                      }
+
+                      const averageRating = reviews.length > 0 ? totalRating / reviews.length : 0;
+
+                      // Display total stars
+                      const totalStarsContainer = document.querySelector(".totalStars");
+                      totalStarsContainer.innerHTML = ""; // Clear previous stars
+
+                      for (let i = 0; i < averageRating; i++) {
+                          const starIcon = document.createElement("iconify-icon");
+                          starIcon.setAttribute("icon","material-symbols:star");
+                          totalStarsContainer.append(starIcon);
+                      }
+
+                      drawReviewChart()
+                      document.querySelector(".totalReviews").textContent = `(${reviews.length} Verified Reviews)`
+                      document.querySelector(".averageRating").textContent = averageRating
                       filterReviews(); // Initial rendering
                   })
                   .catch(err => showAlert("Something went wrong loading reviews", "danger"));
           });
+          function drawReviewChart() {
+            // Assuming ratingCounts is an array containing the counts of each rating
+            const maxRatingCount = Math.max(...ratingCounts);
+
+            var ctx = document.getElementById('ratingsChart').getContext('2d');
+            var ratingsChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['1 Star', '2 Stars', '3 Stars', '4 Stars', '5 Stars'],
+                    datasets: [{
+                        label: '',
+                        data: ratingCounts,
+                        backgroundColor: [
+                            '#FF5733',
+                            '#FFD933',
+                            '#33FF57',
+                            '#33B5FF',
+                            '#8333FF'
+                        ],
+                        borderColor: [
+                            '#FF5733',
+                            '#FFD933',
+                            '#33FF57',
+                            '#33B5FF',
+                            '#8333FF'
+                        ],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            display: false,
+                            beginAtZero: true,
+                            max: maxRatingCount + 3  // Adjusted to fit the highest count and add some buffer
+                        },
+                        x: {
+                            grid: {
+                                display: false
+                            }
+                        }
+                    }
+                }
+            });
+        }
+
   
           function filterReviews() {
               const filterOption = document.getElementById("reviewFilter").value;
@@ -629,50 +699,6 @@
           // Set the background color of the container
           mainImageContainer.style.backgroundColor = 'rgb(' + averageColor.red + ',' + averageColor.green + ',' + averageColor.blue + ')';
       };
-  });
-</script>
-
-<script>
-
-  var ctx = document.getElementById('ratingsChart').getContext('2d');
-  var ratingsChart = new Chart(ctx, {
-    type: 'bar',
-    data: {
-      labels: ['1 Star', '2 Stars', '3 Stars', '4 Stars', '5 Stars'],
-      datasets: [{
-        label: '',
-        data: [10, 20, 30, 25, 15], 
-        backgroundColor: [
-          '#FF5733',
-          '#FFD933',
-          '#33FF57',
-          '#33B5FF',
-          '#8333FF'
-        ],
-        borderColor: [
-          '#FF5733',
-          '#FFD933',
-          '#33FF57',
-          '#33B5FF',
-          '#8333FF'
-        ],
-        borderWidth: 1
-      }]
-    },
-    options: {
-      scales: {
-        y: {
-          display: false, 
-          beginAtZero: true,
-          max: 40 
-        },
-        x: {
-          grid: {
-            display: false 
-          }
-        }
-      }
-    }
   });
 </script>
 
