@@ -15,7 +15,9 @@ body {
     color: #000;
     font-weight: regular;
     }
-
+    .search-through{
+        grid-column-gap: 4vh;
+    }
     
     .category-btn{
     background-color: transparent;
@@ -74,6 +76,10 @@ body {
     }
     }
     @media (max-width: 576px) {
+
+        .search-through{
+            grid-column-gap: 2vh;
+        }
         
     .slider .slick-slide{
         margin-right: 2rem !important;
@@ -88,7 +94,7 @@ body {
     }
     }
     .product-grid{
-        padding: 1rem;
+        padding: 3vh;
         width: 100%;
         /* background-color: red; */
         overflow-x: scroll;
@@ -111,7 +117,7 @@ body {
     
     
     .product-card {
-        width: 30%;
+        width: 24%;
     cursor: pointer;
     display: flex;
     flex-direction: column;
@@ -151,12 +157,13 @@ body {
     }
 
     .filters button {
+        color: #000;
         font-size: 26px;
         text-decoration: none; /* Remove default underline */
         position: relative;
         border: none;
         text-transform: uppercase;
-        font-weight: 300;
+        font-weight: 500;
         transition: 0.5s ease-in-out;
     }
     
@@ -213,7 +220,7 @@ body {
     }
   
     .products-bar{
-    width: 90%;
+    width: 100%;
     padding-right: 1rem;
     padding-left: 1rem;
     color: #000;

@@ -71,7 +71,6 @@ const authLogin = async (req, res) => {
         res.status(500).json({ message: 'Internal server error' });
     }
 };
-
 const sendOTP = (req, res) => {
     const userEmail = req.body.email;
   
@@ -315,7 +314,6 @@ const decreaseCartItemQuantity = (req, res) => {
         res.status(500).json({ message: 'Internal server error' });
     }
 };
-
 // Route to push a new review or update an existing one
 const addOrUpdateReview = async (req, res) => {
     try {
@@ -364,8 +362,7 @@ const addOrUpdateReview = async (req, res) => {
         console.error('Error adding or updating review:', error);
         res.status(500).json({ message: 'Internal server error' });
     }
-  };
-  
+};
 // Route to get a review based on email and orderId
 const getReview = async (req, res) => {
     try {
