@@ -155,7 +155,7 @@ router.get('/api/admin/getAllOrders',isAdminAuthenticated, controllers.getAllOrd
 router.get("/coupons", isAdminAuthenticated,  controllers.getAllCoupons);
 
 // user route
-router.get("/coupons/:code",isAdminAuthenticated,  controllers.getCouponsByCode);
+router.get("/coupons/:code", controllers.getCouponsByCode);
 
 router.post("/coupons",isAdminAuthenticated,  controllers.addNewCoupon);
 
