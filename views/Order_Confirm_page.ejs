@@ -490,8 +490,10 @@
                      error: function (xhr, textStatus, errorThrown) {
                         if (xhr.status === 404) {
                               window.location.href = '/login';
+                        } else if (xhr.status === 400) {
+                              showAlert("failed to setup order","danger")
                         } else {
-                              showAlert("Taking you to the login page", "danger");
+                              showAlert("Something went wrong with razorpay", "danger");
                         }
                      }
                   })

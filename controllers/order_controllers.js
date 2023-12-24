@@ -44,9 +44,10 @@ const paymentGateway = async (req, res) => {
           req.session.couponCode = req.body.couponCode
           req.session.flow = true;
           return res.status(404).json({ message: 'User data not found' });
+      } else {
+          userData.cart = req.session.userProfile.cart;
+          userData.save();
       }
-
-      userData.save();
 
       let amount = 0;
       for (const product of userData.cart) {
