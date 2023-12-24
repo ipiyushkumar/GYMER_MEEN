@@ -96,6 +96,7 @@ const authLogin = async (req, res) => {
 };
 
 
+
 const sendOTP = (req, res) => {
     const userEmail = req.body.email;
   
@@ -117,11 +118,27 @@ const sendOTP = (req, res) => {
     console.log(process.env.MAIL_PASS)
   
     const mailOptions = {
-      from: process.env.MAIL_ID, // replace with your email
-      to: userEmail,
-      subject: `OTP for Authentication - ${otp}`,
-      text: `Your OTP is: ${otp} \n\n\n Thankyou, for using our service`
-    };
+        from: process.env.MAIL_ID,
+        to: userEmail,
+        subject: `OTP for Authentication - ${otp} from Whitewolf Internationals 🌐`,
+        html: `
+          <div style="background-color: #f5f5f5; padding: 20px; text-align: center;">
+            <img src="https://i.ibb.co/0GQgmn7/whitewolflog.png" alt="Whitewolf Internationals Logo" style="width: 50px; height: auto;">
+            <h2 style="color: #333; margin-top: 20px;">Whitewolf Internationals</h2>
+          </div>
+          <div style="background-color: #fff; padding: 20px; border-radius: 8px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); margin-top: 20px;">
+            <p style="font-size: 16px; color: #333;">Dear User,</p>
+            <p style="font-size: 18px; color: #333;">Your OTP for Authentication is: <strong style="color: #007bff;">${otp}</strong></p>
+            <p style="font-size: 16px; color: #333;">Thank you for choosing Whitewolf Internationals. We appreciate your trust in our service.</p>
+            <p style="font-size: 16px; color: #333;">For any assistance or inquiries, feel free to contact our support team.</p>
+          </div>
+          <div style="background-color: #f5f5f5; padding: 20px; text-align: center; margin-top: 20px;">
+            <p style="font-size: 16px; color: #333;">Best Regards,</p>
+            <p style="font-size: 18px; color: #333;">The Whitewolf Internationals Team</p>
+          </div>
+        `,
+      };
+
   
     transporter.sendMail(mailOptions, (error, info) => {
       if (error) {

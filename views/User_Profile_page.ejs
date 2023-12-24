@@ -69,6 +69,12 @@
                 box-shadow: 0 1px 2px 1px #f7f7f7;
             }
 
+            .product-table tbody td:nth-child(1){
+                cursor:pointer;
+                text-transform: capitalize;
+                text-decoration: underline;
+            }
+
             .product-table img {
                 max-width: 50px;
                 max-height: 50px;
@@ -235,9 +241,9 @@
                                             <thead>
                                                 <tr>
                                                     <th>Order ID</th>
-                                                    <th>Order Items</th>
-                                                    <th>Order Payment</th>
-                                                    <th>Order Status</th>
+                                                    <th>Items</th>
+                                                    <th>Price</th>
+                                                    <th>Status</th>
                                                 </tr>
                                             </thead>
                                             <tbody class="orders">
@@ -262,7 +268,7 @@
                                         </div>
                                         <div class="row mb-3">
                                             <div class="col-sm-6">
-                                                <input type="tel" class="form-control phone" placeholder="Phone Number">
+                                                <input type="tel" class="form-control phone" placeholder="Phone Number" disabled>
                                             </div>
                                             <div class="col-sm-6">
                                                 <input type="text" class="form-control pincode" placeholder="Pincode">
@@ -411,6 +417,7 @@
         });
 
         row.append(createTableCell(orderId))
+        row.append(createTableCell(orderItems))
         row.append(createTableCell("&#8377;"+OrderPayment))
         row.append(createTableCell(OrderStatus))
 
