@@ -22,7 +22,7 @@
                 font-weight: bold;
                 }
 
-         .container{
+            .container{
                 margin-top: 12vh;
             }
 
@@ -38,7 +38,7 @@
                 border: 0 solid transparent;
                 border-radius: 1rem;
                 margin-bottom: 0;
-                box-shadow: 0 1px 2px 5px #f7f7f7;
+                box-shadow: 0 1px 2px 1px #f7f7f7;
             }
 
             .card .nav-item a{
@@ -66,7 +66,7 @@
 
             .tab-pane{
                 border-radius: 1rem;
-                box-shadow: 0 1px 2px 5px #f7f7f7;
+                box-shadow: 0 1px 2px 1px #f7f7f7;
             }
 
             .product-table img {
@@ -182,8 +182,8 @@
 <body>
     <%- include('partials/nav') %> 
     <%- include('partials/cart') %> 
-    <div class="container mt-3 mb-5">
-        <div class="main-body">
+    <div class="container mb-5">
+        <div class="main-body mt-5">
             <div class="row">
                 <div class="col-lg-4">
                     <div class="card">
@@ -411,7 +411,6 @@
         });
 
         row.append(createTableCell(orderId))
-        row.append(createTableCell(orderItems))
         row.append(createTableCell("&#8377;"+OrderPayment))
         row.append(createTableCell(OrderStatus))
 
