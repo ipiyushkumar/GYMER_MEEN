@@ -1,5 +1,6 @@
 const admins = {
     "piyushat115@gmail.com" :true,
+    "akshatgarg071@gmail.com" :true,
 }
 
 const adminAuthenticater = email => {
