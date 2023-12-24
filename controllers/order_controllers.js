@@ -9,7 +9,7 @@ const Coupons = require('../schemas/coupons_schema');
 // email
 const getOrderByEmail = async (req, res) => {
   try {
-    const ordersByEmail = await Orders.find({ email: req.session.userProfile.email });
+    const ordersByEmail = await Orders.find({ email: req.session.email });
     res.json(ordersByEmail);
   } catch (error) {
     res.status(500).json({ error: 'Internal Server Error' });

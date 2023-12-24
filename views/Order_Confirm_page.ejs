@@ -255,7 +255,7 @@
                  <p class="ml-3">₹0</p>
                </div>
             </div>
-            <p><a href="#" style="text-decoration: none;color: #000;">&#8592; Back</a></p>
+            <p><a href="/" style="text-decoration: none;color: #000;">&#8592; Back</a></p>
          </div>
          <div class="right-side">
             <div class="wrapper pt-2">
@@ -456,14 +456,14 @@
                   
                `;
 
-                  // Create a new Date object
-                  var today = new Date();
-                  var year = today.getFullYear();
-                  var month = today.getMonth() + 1;
-                  var day = today.getDate();
-                  var formattedDate = year + '/' + (month < 10 ? '0' + month : month) + '/' + (day < 10 ? '0' + day : day);
+                  // // Create a new Date object
+                  // var today = new Date();
+                  // var year = today.getFullYear();
+                  // var month = today.getMonth() + 1;
+                  // var day = today.getDate();
+                  // var formattedDate = year + '/' + (month < 10 ? '0' + month : month) + '/' + (day < 10 ? '0' + day : day);
 
-                  document.querySelector('.date').textContent = formattedDate;
+                  // document.querySelector('.date').textContent = formattedDate;
             })
             .then(async () => {
                const code = document.querySelector('#couponInput').value
