@@ -551,7 +551,7 @@ a:hover {
     .product-card {
         display: flex;
         flex-direction: column;
-        justify-content: center;
+        justify-content: flex-start;
         align-items: center;
         text-align: left;
         border: 1px solid #ccc;
@@ -576,7 +576,8 @@ a:hover {
 
     .product-image {
         max-width: 50%;
-        height: auto;
+        height: 20vh;
+        margin: auto;
         border-radius: 8px;
     }
 

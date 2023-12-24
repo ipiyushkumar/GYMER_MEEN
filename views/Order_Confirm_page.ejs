@@ -16,7 +16,24 @@
          font-family: 'Outfit', sans-serif;
          }
          body {
+            overflow-y:scroll;
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
          background-color: #000;
+         }
+
+         .main{
+            height: max-content;
+            width: 80%;
+            padding: 4vh;
+            display: grid;
+            background-color: #fff;
+            border-radius: 2vh;
+            grid-template-columns: 1fr 1fr;
+            grid-column-gap: 3vh;
          }
          #order-heading {
          background-color: #edf4f7;
@@ -56,12 +73,19 @@
          }
 
          .wrapper {
-         padding: 0px 50px 50px;
-         max-width: 800px;
-         height: max-content;
-         margin: 0px auto 40px;
-         border-bottom-left-radius: 25px;
-         border-bottom-right-radius: 25px
+         border: 2px solid #000;
+         border-radius: 2vh;
+         padding: 3vh;
+         display: flex;
+         flex-direction: column;
+         max-width: 100%;
+         height: 100%;
+         /* margin: 0px auto 40px; */
+         }
+
+         .wrapper .table{
+            margin-top: 2vh;
+            border-radius: 2vh;
          }
          .table th {
          border-top: none
@@ -71,16 +95,34 @@
          padding-left: 0px;
          padding-right: 0px
          }
+         .wrapper tbody{
+            overflow-y: scroll;
+         }
          .table tbody tr th,
          .table tbody tr td {
-         font-size: 0.9rem;
-         padding-left: 0px;
-         padding-right: 0px;
-         padding-bottom: 5px
+         font-size:2.5vh;
+         padding: 2vh;
+         border-bottom: none;
+         font-weight: 500;
+         text-transform: capitalize;
          }
          .table-responsive {
-         height: 100px
+         /* height: 100px; */
+         padding: 3vh;
+         border-radius: 2vh;
          }
+
+         .wrapper .discount-field{
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+         }
+
+         .discount-field .discount-input{
+            width: 90%;
+         }
+
+
          .list div b {
          font-size: 0.8rem
          }
@@ -110,11 +152,11 @@
          }
 
          .labels label{
-            width: 50%;
+            width: 90%;
          }
 
          .labels input{
-            width: 50%;
+            width: 100%;
             border: none;
             text-transform: capitalize;
             border-bottom: 1px solid #999;
@@ -141,100 +183,133 @@
          .subscriptions div {
          font-size: 0.9rem
          }
-         @media(max-width: 425px) {
-         .wrapper {
-         padding: 20px
-         }
-         body {
-         font-size: 0.85rem;
-         padding: 2rem;
-         }
-         .subscriptions div {
-         padding-left: 5px
-         }
-         img+label {
-         font-size: 0.75rem
-         }
-         }
+         @media (max-width: 768px) {
+   .main {
+      height: 100%;
+      width: 90%;
+      padding: 3vh;
+      grid-template-columns: 1fr; /* Adjust the grid to a single column layout */
+   }
+
+   .left-side {
+      font-size: 2vh;
+      margin-top: 0vh;
+      width: 100%; /* Occupy the full width on smaller screens */
+   }
+
+   .right-side {
+      padding: 3vh;
+      height: max-content;
+      border-radius: 3vh;
+      background-color: #fff;
+      /* margin-top: 20px; */
+      width: 100%; /* Occupy the full width on smaller screens */
+   }
+}
+
+@media (max-width: 425px) {
+   .main {
+      height: 100%;
+      /* padding-top: 30vh; */
+      /* margin-top:5vh; */
+      grid-template-columns: 1fr;
+      width: 100%;
+   }
+
+
+   .wrapper {
+      margin-top: 0vh;
+      padding: 20px;
+   }
+
+   body {
+      padding: 3vh;
+   }
+   /* ... other responsive styles ... */
+}
+         
       </style>
       <script type='text/javascript' src=''></script>
       <script type='text/javascript' src='https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js'></script>
       <script type='text/javascript' src='https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.min.js'></script>
    </head>
    <body oncontextmenu='return false' class='snippet-body'>
-      <div class="d-flex flex-column justify-content-center align-items-center" id="order-heading">
-         <div class="d-flex flex-column justify-content-center align-items-center m-2">
-            <img src="../assets/logo.PNG" style="height: 5vh;margin-bottom: 1rem;">
-            <h1 style="font-size: 3vh;text-align: center;">WhiteWolf International - Confirm Order</h1>
+      
+      <div class="main">
+         <div class="left-side">
+            <h2>Checkout</h2>
+            <div class="border rounded .ship p-2 my-3 w-100">
+               <b>Shipping Address</b>
+               <div class="col-md-12 py-3">
+                  <div class="d-flex flex-column align-items start Shipping_Address"></div>
+                  
+               </div>
+            </div>
+            <div class="d-flex align-items-center justify-content-between pb-4 pl-3" style="font-size: 2vh;">
+               <div class="d-flex justify-content-center mt-3">
+                  <iconify-icon icon="la:shipping-fast"  style="font-size: 3vh;margin-right: 3vh;"></iconify-icon>
+                 <p>FREE STANDARD DELIVERY APPLICABLE</p>
+               </div>
+               <div class="d-flex">
+               <p><del>₹99</del></p>
+                 <p class="ml-3">₹0</p>
+               </div>
+            </div>
+            <p><a href="#" style="text-decoration: none;color: #000;">&#8592; Back</a></p>
          </div>
-         <div class="h4 date">Monday, November 27, 2023</div>
-         <div class="btn close text-white"> &times; </div>
-      </div>
-      <div class="wrapper bg-white pt-3">
-        <table class="table table-bordered table-striped table-responsive">
-            <thead>
-                <tr>
-                    <th scope="col">Name</th>
-                    <th scope="col">Price</th>
-                    <th scope="col">Quantity</th>
-                    <th scope="col">Price (₹)</th>
-                </tr>
-            </thead>
-            <tbody class="allItems">
-            </tbody>
-        </table>
-        <div class="d-flex align-items-center justify-content-between pb-4 pl-3" style="font-size: 2vh;">
-         <div class="d-flex justify-content-center mt-3">
-            <iconify-icon icon="la:shipping-fast"  style="font-size: 5vh;margin-right: 3vh;"></iconify-icon>
-           <p>FREE STANDARD DELIVERY APPLICABLE</p>
+         <div class="right-side">
+            <div class="wrapper pt-2">
+               <h4>Summary</h4>
+               <table class="table corner-round p-4 table-striped table-responsive" style="border: none; border-radius: 2vh; overflow: hidden;">
+                  <thead>
+                      <tr style="display: none;">
+                           <th scope="col">Name</th>
+                          <th scope="col">Name</th>
+                          <th scope="col">Price</th>
+                          <th scope="col">Quantity</th>
+                          <!-- <th scope="col">Price (₹)</th> -->
+                      </tr>
+                  </thead>
+                  <tbody class="allItems" style="background-color: rgba(255, 255, 255, 0.1);">
+                      <!-- ... (your table body content) ... -->
+                  </tbody>
+              </table>
+             <div class="d-flex discount-field justify-content-between align-items-center mt-2 pb-4">
+                <div class="text-muted discount-input">
+                    <input type="text" class="form-control" id="couponInput" placeholder="Enter Coupon" value="<%= content.code %>">
+                </div>
+                <div class="ml-1">
+                    <button class="btn btn-dark btn-apply-coupon coupon_Button">Apply</button>
+                </div>
+                <div class="ml-1">
+                   <button class="btn btn-dark btn-apply-coupon coupon_remove_Button" style="display: none;">Remove</button>
+                </div>
+            </div>
+                <div class="table-responsive mrp" style="height: auto;padding: 0;">
+                   <table class="table table-borderless" >
+                      <thead>
+                         <tr class="text-uppercase text-muted">
+                            <th scope="col"></th>
+                            <th scope="col" class="text-right" style="font-size: 2vh;">Total</th>
+                         </tr>
+                      </thead>
+                      <tbody style="padding: 0;"> 
+                         <tr>
+                            <td scope="row"></td>
+                            <td class="text-right total" style="font-size: 3vh;"><b>&#8377;</b></td>
+                         </tr>
+                      </tbody>
+                   </table>
+                </div>
+                <div class="d-flex align-items-end justify-content-end mb-5">
+                   <button class="btn btn-success proceedToPay" style="font-size: 1.3rem;">Proceed To Pay</button>
+                  </div>
+                  <div class="d-flex flex-column mt-1">
+                     <p>We Accept All Payment Methods :</p>
+                     <img src="/assets/payments.PNG" style="height: 5vh;width: 15vw;"/>
+                  </div>
+             </div>
          </div>
-         <div class="d-flex">
-         <p><del>₹99</del></p>
-           <p class="ml-3">₹0</p>
-         </div>
-      </div>
-      <div class="border rounded .ship p-2 my-3 w-100">
-         <b>Shipping Address</b>
-         <div class="col-md-6 py-3">
-            <div class="d-flex flex-column align-items start Shipping_Address"></div>
-            
-         </div>
-      </div>
-      <div class="d-flex justify-content-between align-items-center mt-2 pb-4 pl-3">
-         <div class="text-muted w-100">
-             <input type="text" class="form-control" id="couponInput" placeholder="Enter Coupon" value="<%= content.code %>">
-         </div>
-         <div class="ml-3">
-             <button class="btn btn-dark btn-apply-coupon coupon_Button">Apply</button>
-         </div>
-         <div class="ml-4">
-            <button class="btn btn-dark btn-apply-coupon coupon_remove_Button" style="display: none;">Remove</button>
-         </div>
-     </div>
-         <div class="table-responsive" style="height: max-content;">
-            <table class="table table-borderless" >
-               <thead>
-                  <tr class="text-uppercase text-muted">
-                     <th scope="col"></th>
-                     <th scope="col" class="text-right" style="font-size: 2vh;">Total Amount to Pay</th>
-                  </tr>
-               </thead>
-               <tbody>
-                  <tr>
-                     <th scope="row"></th>
-                     <td class="text-right total" style="font-size: 3vh;"><b>&#8377;</b></td>
-                  </tr>
-               </tbody>
-            </table>
-         </div>
-         <div class="d-flex align-items-end justify-content-end mb-5">
-            <button class="btn btn-success proceedToPay" style="font-size: 1.3rem;">Proceed To Pay</button>
-           </div>
-         <div class="d-flex flex-column justify-content-start align-items-center mt-5">
-            <p>We Accept All Payment Methods :</p>
-            <img src="/assets/payments.PNG" style="height: 7vh;width: auto;"/>
-         </div>
-         
       </div>
       <div id="alertContainer"></div>
       <style>
@@ -297,7 +372,7 @@
                   .then(coupon => {
                      showAlert("coupon loaded successfully","success")
                      // Assuming Total is a variable representing the total amount
-                     document.querySelector('.total').innerHTML = `<b>&#8377;<del>${Total}/-</del></b> <br><span class="text-muted" style="font-size:1rem;">${((coupon.discount))}% OFF APPLIED</span> <b> <br><span style="font-size:2.5rem;"> &#8377;${Math.floor(Total - Total * ((coupon.discount) / 100))}/</span></b>-<br>`;
+                     document.querySelector('.total').innerHTML = `<b>&#8377;<del>${Total}/-</del></b> <br><span class="text-muted" style="font-size:1rem;">${((coupon.discount))}% OFF APPLIED</span> <b> <br><span style="font-size:3vh;"> &#8377;${Math.floor(Total - Total * ((coupon.discount) / 100))}/</span></b>-<br>`;
                      document.querySelector('.coupon_remove_Button').style.display = "block"
                      document.querySelector('.coupon_Button').style.display = "none"
                   })
@@ -324,7 +399,7 @@
                row.append(dataCell(name))
                row.append(dataCell(price))
                row.append(dataCell(quantity))
-               row.append(dataCell((price*quantity)))
+               // row.append(dataCell((price*quantity)))
 
                tableBody.append(row)
             }
@@ -398,7 +473,7 @@
                   .then(coupon => {
                      showAlert("coupon loaded successfully","success")
                      // Assuming Total is a variable representing the total amount
-                     document.querySelector('.total').innerHTML = `<b>&#8377;<del>${Total}/-</del></b> <br><span class="text-muted" style="font-size:1rem;">${((coupon.discount))}% OFF APPLIED</span> <b> <br><span style="font-size:2.5rem;"> &#8377;${Math.floor(Total - Total * ((coupon.discount) / 100))}/</span></b>-<br>`;
+                     document.querySelector('.total').innerHTML = `<b>&#8377;<del>${Total}/-</del></b> <br><span class="text-muted" style="font-size:1rem;">${((coupon.discount))}% OFF APPLIED</span> <b> <br><span style="font-size:3vh;"> &#8377;${Math.floor(Total - Total * ((coupon.discount) / 100))}/</span></b>-<br>`;
                      document.querySelector('.coupon_remove_Button').style.display = "block"
                      document.querySelector('.coupon_Button').style.display = "none"
                   })
@@ -491,9 +566,9 @@
                         if (xhr.status === 404) {
                               window.location.href = '/login';
                         } else if (xhr.status === 400) {
-                              showAlert("failed to setup order","danger")
+                              showAlert("rzarpay refused to comply","danger")
                         } else {
-                              showAlert("Something went wrong with razorpay", "danger");
+                              showAlert("Something went wrong with payment", "danger");
                         }
                      }
                   })

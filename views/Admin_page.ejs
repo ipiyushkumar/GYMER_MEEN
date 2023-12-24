@@ -44,7 +44,17 @@
             width:auto;
         }
 
-
+        .top-selling{
+            border: 1px solid lightgrey;
+            border-radius: 1vh;
+            overflow-y: scroll;
+            display: flex;
+            height: 40vh;
+            padding: 2vh;
+            align-items: center;
+            flex-direction: column;
+            text-align: left;
+        }
         .form-container input,
         .form-container textarea,
         .form-container select {
@@ -76,19 +86,27 @@
        padding: 0.75rem 1.25rem;
        margin-bottom: 1rem;
        border: 1px solid transparent;
-       border-radius: 0.25rem;
+       text-transform: capitalize;
+       border-radius: 2vh;
        transition: 0.3s ease-in-out;
      }
 
+     #graphSelect{
+         padding: 1vh;
+         border: 1px solid lightgrey;
+         border-radius: 1vh;
+         text-transform: uppercase;
+     }
+
      .alert.success {
-       color: #155724;
-       background-color: #d4edda;
-       border-color: #c3e6cb;
+       color: #fff;
+       background-color: green;
+       border-color: #fff;
      }
      .alert.danger {
-       color: #721c24;
-       background-color: #f8d7da;
-       border-color: #f5c6cb;
+       color: #fff;
+       background-color: maroon;
+       border-color: #fff;
      }
    </style>
    <script>
@@ -98,7 +116,7 @@
        // Create alert element
        const alert = document.createElement("div");
        alert.className = `alert ${type}`;
-       alert.innerHTML = `${message}<span class="close" onclick="closeAlert(this)">×</span>`;
+       alert.innerHTML = `${message}<span class="close" onclick="closeAlert(this)"> &#10060</span>`;
    
        // Append alert to container
        alertContainer.appendChild(alert);
@@ -205,13 +223,14 @@
                         </select>
                         <canvas id="myChart" class="chart"></canvas>
                     </div>
-                    <div>
+                    <div class="top-selling">
                         <h2>Top Selling Products</h2>
                         <table style="width: 100%; border-collapse: collapse; margin-top: 20px;">
                           <tbody id="topSellingProductsBody">
                           </tbody>
                         </table>
                       </div>
+                </div>
             </section>
             <!-- Add this script to your HTML file -->
             <script>
@@ -510,7 +529,7 @@
                         .then(data => {
                             Orders = data;
                             loadAllOrders();
-                            showAlert("orders loaded successfully","success")
+                            showAlert("Orders loaded successfully","success")
                         })
                         .catch(err => showAlert("server refused on order data","danger"))
                 }
@@ -840,9 +859,38 @@
                 box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
                 max-width: 400px;
                 width: 100%;
-                text-align: center;
+                text-align: left;
                 position: relative;
-            }        
+            }
+
+            .modal-content button{
+                margin-top: 1vh;
+                background-color: green;
+                padding: 1vh;
+                color: #fff;
+                cursor: pointer;
+                border-radius: 1vh;
+            }
+            
+            .modal-content div{
+                margin-top: 1vh;
+                display: flex;
+                justify-content: space-between;
+            }
+            
+            .modal-content input{
+                padding:1vh;
+                border-radius: 1vh;
+                width:50%;
+                border: 1px solid #000;
+            }
+
+            .modal-content label{
+                padding:1vh;
+                padding-left:0;
+                border-radius: 1vh;
+                width:50%;
+            }
         </style>
         <!-- completed -->
         <section class="main" id="inventorySection" style="display: none;">
@@ -852,7 +900,7 @@
                 
                 <div id="editModal" class="item_edit_modal" style="display: none;">
                     <div class="modal-content">
-                        <span class="close" onclick="closeEditModal()">&times;</span>
+                        <span class="close" onclick="closeEditModal()" style="cursor: pointer;">&#10060</span>
                         <h2>Edit Product</h2>
                         <div>
                             <label for="newStock">New Stock:</label>

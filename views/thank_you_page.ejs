@@ -17,6 +17,10 @@
          }
          body {
          background-color: #000;
+         display:flex;
+         justify-content: center;
+         flex-direction: column;
+         align-items: center;
          }
          #order-heading {
          background-color: #edf4f7;
@@ -55,9 +59,9 @@
 
          .wrapper {
          padding: 20px;
-         height: 40vh;
+         height: max-content;
          max-width: 800px;
-         margin: 0px auto 40px;
+         /* margin: 0px auto 40px; */
          border-bottom-left-radius: 25px;
          border-bottom-right-radius: 25px
          }
@@ -139,18 +143,18 @@
       <script type='text/javascript' src='https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.min.js'></script>
    </head>
    <body oncontextmenu='return false' class='snippet-body'>
-      <div class="d-flex flex-column justify-content-center align-items-center" id="order-heading">
+      <div class="d-flex flex-column justify-content-center align-items-center" id="order-heading" style="width:100%;max-width: 800px;">
          <div class="d-flex flex-column justify-content-center align-items-center m-2">
-            <img src="../assets/logo.png" style="height: 5vh;margin-bottom: 1rem;">
-            <h1 style="font-size: 2rem;">WhiteWolf International - Thank You</h1>
+            <img src="../assets/logo.PNG" style="height: 5vh;margin-bottom: 1rem;">
+            <h1 style="font-size: 3vh;">Order Success - WhiteWolf International</h1>
          </div>
          <div class="h4 date"><%= new Date().toLocaleDateString() %></div>
          <div class="btn close text-white"> &times; </div>
       </div>
-      <div class="wrapper bg-white pt-3 text-center d-flex flex-column align-items-center justify-content-center">
+      <div class="wrapper bg-white pt-3 text-center d-flex flex-column align-items-center justify-content-center"  style="width:100%;max-width: 800px;">
          
          <iconify-icon icon="lets-icons:check-fill" style="font-size: 6rem;color: rgb(27, 230, 27);margin:2rem;"></iconify-icon>
-        <h3>Thank you for your order!</h3>
+        <h3>Thank you for Ordering!</h3>
         <h3 class="mb-5">Your Order Id is : <%= content.orderId %></h3>
          <div class="subscriptions mt-5">
             <div>Redirecting you to the home screen in 10 seconds.</div>
