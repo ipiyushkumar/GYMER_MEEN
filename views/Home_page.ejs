@@ -11,7 +11,6 @@
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
       <link rel="stylesheet" href="/css/Home.css">
       <link rel="preconnect" href="https://fonts.googleapis.com">
-      <link rel="shortcut icon" type="image/x-icon" href="../assets/WhiteIcon.png">
       <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
       <link href="https://cdn.jsdelivr.net/npm/aos@2.3.1/dist/aos.css" rel="stylesheet">
       <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;400;500&display=swap">
@@ -153,7 +152,7 @@
 
         .bg-image {
   height: 50vh;
-  background-size: 100% 100%;
+  background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
   border-radius: 10px;
@@ -297,8 +296,9 @@
 }
 
 .card-info h2 {
+  margin-top: -10vh;
   font-size: 36px;
-  font-weight: 700;
+  font-weight: 500;
 
 }
 
@@ -512,6 +512,9 @@ section img{
 }
 
 #swipeButton button{
+  border: none;
+  color: #fff;
+  font-weight: 500;
   position: relative;
   
 }
@@ -562,7 +565,7 @@ section img{
          </div>
       </div>
       <div id="swipeButton" class="container-fluid">
-        <button class="btn btn-light">Swipe Right &#8594;</button></div>
+        <button class="btn">Swipe Right &#8594;</button></div>
       <main>
         <div class="sale-container mt-5 mb-4"  id="saleContainer">
          <div class="center">
