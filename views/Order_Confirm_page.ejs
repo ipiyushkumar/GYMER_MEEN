@@ -8,227 +8,227 @@
       <link href='https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css' rel='stylesheet'>
       <link href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css' rel='stylesheet'>
       <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@200;400;500&display=swap">
-      <style>@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
-         * {
-         padding: 0;
-         margin: 0;
-         box-sizing: border-box;
-         font-family: 'Outfit', sans-serif;
-         }
-         body {
-            overflow-y:scroll;
-            width: 100%;
-            height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-         background-color: #000;
-         }
+      <style>
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+            font-family: 'Outfit', sans-serif;
+        }
 
-         .main{
-            height: max-content;
-            width: 80%;
-            padding: 4vh;
-            display: grid;
+        body {
+            background-color: #000;
+        }
+
+        .main {
+            max-width: 1200px;
+            margin: 50px auto;
             background-color: #fff;
-            border-radius: 2vh;
-            grid-template-columns: 1fr 1fr;
-            grid-column-gap: 3vh;
-         }
-         #order-heading {
-         background-color: #edf4f7;
-         position: relative;
-         border-top-left-radius: 25px;
-         border-top-right-radius: 25px;
-         max-width: 800px;
-         padding-top: 20px;
-         margin: 30px auto 0px
-         }
-         #order-heading .text-uppercase {
-         font-size: 0.9rem;
-         color: #777;
-         font-weight: 600
-         }
-         #order-heading .h4 {
-         font-weight: 600
-         }
-         #order-heading .h4+div p {
-         font-size: 0.8rem;
-         color: #777
-         }
-         .close {
-         padding: 10px 15px;
-         background-color: #777;
-         border-radius: 50%;
-         position: absolute;
-         right: -15px;
-         display: none;
-         top: -20px
-         }
+            border-radius: 15px;
+            overflow: hidden;
+            display: flex;
+        }
 
-         
+        .left-side,
+        .right-side {
+            flex: 1;
+            padding: 20px;
+        }
 
-         .Shipping_Address p{
+        h2 {
+            font-size: 2.5rem;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .border.rounded.ship {
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            padding: 15px;
+            margin-bottom: 20px;
+        }
+
+        .shipping-address-label {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        .shipping-address-value {
+            font-size: 1.1rem;
+            color: #555;
+            margin-bottom: 15px;
+        }
+
+        .labels {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    width: 100%;
+    margin: 0.2vh;
+    text-transform: capitalize;
+}
+
+.labels label {
+    width: 45%;
+    font-size: 2.5vh;
+    margin-bottom: 5px;
+}
+
+.labels input {
+    width: 45%;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 3px;
+    padding-left: 8px;
+    font-size: 2vh;
+    margin-bottom: 10px;
+    box-sizing: border-box;
+}
+
+        .delivery-info {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 1.2rem;
+            color: #555;
+        }
+
+        .fa-shipping-fast {
             font-size: 2rem;
-         }
+            margin-right: 10px;
+            color: #007bff;
+        }
 
-         .wrapper {
-         border: 2px solid #000;
-         border-radius: 2vh;
-         padding: 3vh;
-         display: flex;
-         flex-direction: column;
-         max-width: 100%;
-         height: 100%;
-         /* margin: 0px auto 40px; */
-         }
+        .price {
+            color: #5cb99a;
+            font-weight: 700;
+            font-size: 1.5rem;
+        }
 
-         .wrapper .table{
-            margin-top: 2vh;
-            border-radius: 2vh;
-         }
-         .table th {
-         border-top: none
-         }
-         .table thead tr.text-uppercase th {
-         font-size: 0.8rem;
-         padding-left: 0px;
-         padding-right: 0px
-         }
-         .wrapper tbody{
-            overflow-y: scroll;
-         }
-         .table tbody tr th,
-         .table tbody tr td {
-         font-size:2.5vh;
-         padding: 2vh;
-         border-bottom: none;
-         font-weight: 500;
-         text-transform: capitalize;
-         }
-         .table-responsive {
-         /* height: 100px; */
-         padding: 3vh;
-         border-radius: 2vh;
-         }
+        .back-link {
+            font-size: 1.2rem;
+            color: #333;
+            text-decoration: none;
+            display: inline-block;
+            margin-top: 20px;
+        }
 
-         .wrapper .discount-field{
-            width: 100%;
+        .wrapper {
+            border: 2px solid #000;
+            border-radius: 15px;
+            padding: 20px;
+            margin-top: 20px;
+        }
+
+        .table th,
+        .table td {
+            font-size: 1.2rem;
+            padding: 15px;
+            border-bottom: none;
+        }
+
+        .discount-field {
             display: flex;
             justify-content: space-between;
-         }
+            align-items: center;
+            margin-top: 20px;
+        }
 
-         .discount-field .discount-input{
-            width: 90%;
-         }
+        .discount-input {
+            flex: 1;
+            margin-right: 10px;
+        }
 
+        .btn-apply-coupon,
+        .coupon_remove_Button {
+            font-size: 1.2rem;
+        }
 
-         .list div b {
-         font-size: 0.8rem
-         }
-         .list .order-item {
-         font-weight: 600;
-         color: #6db3ec
-         }
-         .list:hover {
-         background-color: #f4f4f4;
-         cursor: pointer;
-         border-radius: 5px
-         }
-         button.btn {
-         font-size: 0.9rem;
-         }
+        .mrp {
+            padding: 0;
+            height: auto;
+        }
 
-         .Shipping_Address{
-            display: flex;
-            
-         }
+        .total {
+            font-size: 2rem;
+        }
 
-         .Shipping_Address .labels{
-            display: flex;
-            margin: 1vh;
-            justify-content: space-between;
-            text-transform: capitalize;
-         }
-
-         .labels label{
-            width: 90%;
-         }
-
-         .labels input{
-            width: 100%;
+        .proceedToPay {
+            font-size: 1.5rem;
+            background-color: #28a745;
+            color: #fff;
             border: none;
-            text-transform: capitalize;
-            border-bottom: 1px solid #999;
-            padding-left: 2vw;
-         }
+            padding: 10px 20px;
+            text-transform: uppercase;
+            border-radius: 5px;
+            cursor: pointer;
+        }
 
+        .payment-methods {
+            margin-top: 20px;
+            text-align: center;
+        }
 
-         .price {
-         color: #5cb99a;
-         font-weight: 700
-         }
-         p.text-justify {
-         font-size: 0.9rem;
-         margin: 0
-         }
-         .row {
-         margin: 0px
-         }
-         .subscriptions {
-         border: 1px solid #ddd;
-         border-left: 5px solid #ffa500;
-         padding: 10px
-         }
-         .subscriptions div {
-         font-size: 0.9rem
-         }
-         @media (max-width: 768px) {
-   .main {
-      height: 100%;
-      width: 90%;
-      padding: 3vh;
-      grid-template-columns: 1fr; /* Adjust the grid to a single column layout */
-   }
+        .payment-methods img {
+            height: 50px;
+            margin: 0 10px;
+        }
 
-   .left-side {
-      font-size: 2vh;
-      margin-top: 0vh;
-      width: 100%; /* Occupy the full width on smaller screens */
-   }
+        @media (max-width: 768px) {
+            body{
+                padding:2vh;
+            }
+            .main {
+                flex-direction: column;
+            }
 
-   .right-side {
-      padding: 3vh;
-      height: max-content;
-      border-radius: 3vh;
-      background-color: #fff;
-      /* margin-top: 20px; */
-      width: 100%; /* Occupy the full width on smaller screens */
-   }
-}
+            .left-side,
+            .right-side {
+                flex: auto;
+                width: 100%;
+            }
 
-@media (max-width: 425px) {
-   .main {
-      height: 100%;
-      /* padding-top: 30vh; */
-      /* margin-top:5vh; */
-      grid-template-columns: 1fr;
-      width: 100%;
-   }
+            .right-side{
+                margin-top: -10vh;
+            }
 
+            h2 {
+                font-size: 2rem;
+            }
 
-   .wrapper {
-      margin-top: 0vh;
-      padding: 20px;
-   }
+            .border.rounded.ship {
+                border-radius: 0;
+            }
 
-   body {
-      padding: 3vh;
-   }
-   /* ... other responsive styles ... */
-}
-         
-      </style>
+            .fa-shipping-fast {
+                font-size: 1.5rem;
+            }
+
+            .price {
+                font-size: 1.3rem;
+            }
+
+            .btn-apply-coupon,
+            .coupon_remove_Button {
+                font-size: 1rem;
+            }
+
+            .total {
+                font-size: 1.5rem;
+            }
+
+            .proceedToPay {
+                font-size: 1.2rem;
+            }
+
+            .payment-methods img {
+                height: 40px;
+                margin: 0 8px;
+            }
+        }
+    </style>
       <script type='text/javascript' src=''></script>
       <script type='text/javascript' src='https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js'></script>
       <script type='text/javascript' src='https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.min.js'></script>
@@ -237,7 +237,7 @@
       
       <div class="main">
          <div class="left-side">
-            <h2>Checkout</h2>
+            <h2><a href="#" style="text-decoration:none;color: #000;">&#8592;</a> Checkout</h2>
             <div class="border rounded .ship p-2 my-3 w-100">
                <b>Shipping Address</b>
                <div class="col-md-12 py-3">
@@ -255,7 +255,7 @@
                  <p class="ml-3">₹0</p>
                </div>
             </div>
-            <p><a href="/" style="text-decoration: none;color: #000;">&#8592; Back</a></p>
+            <!-- <p><a href="/" style="text-decoration: none;color: #000;">&#8592; Back</a></p> -->
          </div>
          <div class="right-side">
             <div class="wrapper pt-2">
@@ -302,11 +302,11 @@
                    </table>
                 </div>
                 <div class="d-flex align-items-end justify-content-end mb-5">
-                   <button class="btn btn-success proceedToPay" style="font-size: 1.3rem;">Proceed To Pay</button>
+                   <button class="btn btn-success proceedToPay" style="font-size: 2.5vh;">Place Order</button>
                   </div>
                   <div class="d-flex flex-column mt-1">
                      <p>We Accept All Payment Methods :</p>
-                     <img src="/assets/payments.PNG" style="height: 5vh;width: 15vw;"/>
+                     <img src="/assets/payments.PNG" style="height: 5vh;width: max-content;"/>
                   </div>
              </div>
          </div>

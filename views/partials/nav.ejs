@@ -87,8 +87,8 @@
     display: none; 
   }
 
-  .custom-nav i {
-    font-size: 4vh;
+  .custom-nav iconify-icon {
+    font-size: 2.5vh;
     margin-left: -20px; 
   }
   }
@@ -122,18 +122,18 @@
       </form>
       <div class="custom-nav d-flex justify-content-end" style="width: 32%; font-size: 4vh;">
         <a class="nav-link cartButtom" onclick="openCart()" style="color: #fff;"  style="margin-right: -40px;">
-          <i class="fas fa-cart-plus"></i>
-          <span style="margin-right: -20px;"></span>
+          <iconify-icon icon="mdi:cart"></iconify-icon>
+          <span style="margin-right: -30px;"></span>
        </a>
        <% if (content.isLoggedIn === true) { %>
            <a class="nav-link" href="/profile" style="color: #fff;">
-           <i class="fas fa-user" ></i>
+            <iconify-icon icon="mingcute:user-4-fill"></iconify-icon>
            <span style="margin-left: 5px;display: none;"></span>
            </a>
          <% } else { %>
            <a class="nav-link" href="/login" style="color: #fff;">
-              <i class="fa-solid fa-right-to-bracket"></i>
-           <span style="margin-left: 5px;"></span>
+            <iconify-icon icon="mingcute:user-4-fill"></iconify-icon>
+           <span style="margin-left: -20px;"></span>
            </a>
          <% } %>
       </div>
