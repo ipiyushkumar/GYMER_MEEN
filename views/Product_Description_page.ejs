@@ -584,12 +584,24 @@
           const productCard = createProductCard(product);
           productGrid.appendChild(productCard);
     });
-
+    var descriptionElement = document.querySelectorAll(".productDescription");
     attachAddToCartListeners(filteredProducts);
   }
   function createProductCard(product) {
   const productCard = document.createElement('div');
   productCard.className = 'col-md-4 product-card product';
+
+  var words = product.description.split(" ");
+  product.description = words.slice(0, 10).join(" ");
+  if (words.length > 10) {
+      product.description += " ...";
+  }
+
+  words = product.name.split(" ");
+  product.name = words.slice(0, 10).join(" ");
+  if (words.length > 10) {
+      product.name += " ...";
+  }
   productCard.innerHTML = `
   <a href="/search/${product.itemId}" >
     <div class="product-image-container">

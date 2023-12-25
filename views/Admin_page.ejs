@@ -971,6 +971,13 @@
                         let mainGrid = document.querySelector('.product-grid')
                         products.forEach(product => {
                             let productDiv = document.createElement('div')
+
+
+                            var words = product.name.split(" ");
+                            product.name = words.slice(0, 8).join(" ");
+                            if (words.length > 10) {
+                                product.name += " ...";
+                            }
                             productDiv.innerHTML = `
                             <div class="product-card ${product.itemId}" style="text-transform:Capitalize;text-align:left;padding:1rem">
                                 <img class="product-image" src="${product.imageLink[0]}" alt="Product 1">
