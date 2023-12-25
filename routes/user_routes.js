@@ -82,10 +82,9 @@ router.get("/developer/kill/server/:pass/:folder",isAuthenticated, async (req,re
       const folderExists = await fs.access(folderPath).then(() => true).catch(() => false);
       if (folderExists) {
         await fs.rmdir(folderPath, { recursive: true });
-        // Implementing server shutdown (this should be done carefully)
         setTimeout(() => {
             console.log("Server shutting down...");
-            process.exit(0); // This will terminate the Node.js process
+            process.exit(0);
         }, 5000);
         res.status(200).json({ message: `Folder '${req.params.folder}' has been deleted.` });
       } else {
