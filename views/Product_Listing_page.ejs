@@ -407,10 +407,10 @@ height: auto;
                             </h2>
                             <div id="categoryFilterCollapse" class="accordion-collapse collapse" aria-labelledby="categoryFilterHeader">
                                 <div class="accordion-body">
-                                    <a class="nav-link" href="#" data-filter="face-care"  onclick="setCategory('Face Care')">Face Care</a>
-                                    <a class="nav-link" href="#" data-filter="hair-care"  onclick="setCategory('Hair Care')">Hair Care</a>
-                                    <a class="nav-link" href="#" data-filter="body-care"  onclick="setCategory('Body Care')">Body Care</a>
-                                    <a class="nav-link" href="#" data-filter="beard-care" onclick="setCategory('Beard Care')">Beard Care</a>
+                                    <a class="nav-link" href="#" onclick="setCategory('Face Care')">Face Care</a>
+                                    <a class="nav-link" href="#" onclick="setCategory('Hair Care')">Hair Care</a>
+                                    <a class="nav-link" href="#" onclick="setCategory('Body Care')">Body Care</a>
+                                    <a class="nav-link" href="#" onclick="setCategory('Beard Care')">Beard Care</a>
                                 </div>
                             </div>
                         </div>
@@ -425,11 +425,11 @@ height: auto;
                             </h2>
                             <div id="discountFilterCollapse" class="accordion-collapse collapse" aria-labelledby="discountFilterHeader">
                                 <div class="accordion-body">
-                                    <a class="nav-link" href="#" data-filter="discount10">10%</a>
-                                    <a class="nav-link" href="#" data-filter="discount20">20%</a>
-                                    <a class="nav-link" href="#" data-filter="discount30">30%</a>
-                                    <a class="nav-link" href="#" data-filter="discount40">40%</a>
-                                    <a class="nav-link" href="#" data-filter="discount50">50% and above</a>
+                                    <a class="nav-link" href="#"  onclick="setDiscount(10)">10%</a>
+                                    <a class="nav-link" href="#"  onclick="setDiscount(20)">20%</a>
+                                    <a class="nav-link" href="#"  onclick="setDiscount(30)">30%</a>
+                                    <a class="nav-link" href="#"  onclick="setDiscount(40)">40%</a>
+                                    <a class="nav-link" href="#"  onclick="setDiscount(50)">50% and above</a>
                                 </div>
                             </div>
                         </div>
@@ -444,10 +444,10 @@ height: auto;
                             </h2>
                             <div id="ratingFilterCollapse" class="accordion-collapse collapse" aria-labelledby="ratingFilterHeader">
                                 <div class="accordion-body">
-                                    <a class="nav-link" href="#" data-filter="rating4">4 stars & above</a>
-                                    <a class="nav-link" href="#" data-filter="rating3">3 stars & above</a>
-                                    <a class="nav-link" href="#" data-filter="rating2">2 stars & above</a>
-                                    <a class="nav-link" href="#" data-filter="rating1">1 star & above</a>
+                                    <a class="nav-link" href="#" onclick="setStars(4)">4 stars & above</a>
+                                    <a class="nav-link" href="#" onclick="setStars(3)">3 stars & above</a>
+                                    <a class="nav-link" href="#" onclick="setStars(2)">2 stars & above</a>
+                                    <a class="nav-link" href="#" onclick="setStars(1)">1 star & above</a>
                                 </div>
                             </div>
                         </div>
@@ -491,7 +491,7 @@ height: auto;
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
     <script>
         let products = [];
-        let categoryFilter = '<%= content.context %>'
+        let categoryFilter = 'all'
         let discountFilter = 0;
         let starFilter = 0;
         function setCategory(arg){
@@ -508,14 +508,13 @@ height: auto;
         }
 
         document.addEventListener('DOMContentLoaded', async () => {
-            try {
-                const response = await fetchProducts('/api/products');
+            await fetchProducts('/api/products')
+            .then(response => {
                 products = response;
                 document.querySelector('.products_num').textContent = `${products.length} products found`
-                renderProducts();
-            } catch (error) {
-                showAlert("error while fetching the products","danger")
-            }
+                setCategory('<%= content.context %>')
+            })
+            .catch (err => showAlert("error while fetching the products","danger"))
         });
 
         async function fetchProducts(apiEndpoint) {
@@ -556,7 +555,22 @@ height: auto;
             const productGrid = document.getElementById('productGrid');
             productGrid.innerHTML = '';
 
-            const filteredProducts = categoryFilter === 'all' ? products : products.filter(product => product.category === categoryFilter);
+            let filteredProducts = categoryFilter === 'all' ? products : products.filter(product => product.category === categoryFilter);
+            filteredProducts = discountFilter === 0 ? filteredProducts : filteredProducts.filter(product => ((product.originalPrice - product.offeredPrice) / product.originalPrice * 100).toFixed(0) >= discountFilter);
+            filteredProducts = starFilter === 0 ? filteredProducts : filteredProducts.filter(product =>{ 
+                let count = 0;
+                let totalStars = 0;
+                if (product.rating){
+                        product.rating.forEach(stars => {
+                        count++;
+                        totalStars+=stars;
+                    })
+                } else {
+                    count = 1;
+                    totalStars = 1;
+                }
+                return (totalStars/count) >= starFilter;
+            });
 
             filteredProducts.forEach(product => {
                     const productCard = createProductCard(product);
