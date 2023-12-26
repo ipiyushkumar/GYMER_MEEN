@@ -974,8 +974,8 @@
 
 
                             var words = product.name.split(" ");
-                            product.name = words.slice(0, 8).join(" ");
-                            if (words.length > 10) {
+                            product.name = words.slice(0, 7).join(" ");
+                            if (words.length > 7) {
                                 product.name += " ...";
                             }
                             productDiv.innerHTML = `

@@ -407,10 +407,10 @@ height: auto;
                             </h2>
                             <div id="categoryFilterCollapse" class="accordion-collapse collapse" aria-labelledby="categoryFilterHeader">
                                 <div class="accordion-body">
-                                    <a class="nav-link" href="#" data-filter="face-care" onclick="renderProducts('Face Care')">Face Care</a>
-                                    <a class="nav-link" href="#" data-filter="hair-care" onclick="renderProducts('Hair Care')">Hair Care</a>
-                                    <a class="nav-link" href="#" data-filter="body-care" onclick="renderProducts('Body Care')">Body Care</a>
-                                    <a class="nav-link" href="#" data-filter="beard-care" onclick="renderProducts('Beard Care')">Beard Care</a>
+                                    <a class="nav-link" href="#" data-filter="face-care"  onclick="setCategory('Face Care')">Face Care</a>
+                                    <a class="nav-link" href="#" data-filter="hair-care"  onclick="setCategory('Hair Care')">Hair Care</a>
+                                    <a class="nav-link" href="#" data-filter="body-care"  onclick="setCategory('Body Care')">Body Care</a>
+                                    <a class="nav-link" href="#" data-filter="beard-care" onclick="setCategory('Beard Care')">Beard Care</a>
                                 </div>
                             </div>
                         </div>
@@ -461,7 +461,7 @@ height: auto;
                     <div class="d-flex justify-content-between m-3">
 
                         <div class="products-found-text">
-                            <p class="mb-0 text-white" style="font-size: 1.5rem;">4 products found</p>
+                            <p class="mb-0 text-white products_num" style="font-size: 1.5rem;">4 products found</p>
                         </div>
 
                         <div class="sort-filter row ">
@@ -491,54 +491,68 @@ height: auto;
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
     <script>
         let products = [];
+        let categoryFilter = '<%= content.context %>'
+        let discountFilter = 0;
+        let starFilter = 0;
+        function setCategory(arg){
+            categoryFilter = arg;
+            renderProducts();
+        }
+        function setDiscount(arg) {
+            discountFilter = arg;
+            renderProducts();
+        }
+        function setStars (arg) {
+            starFilter = arg;
+            renderProducts();
+        }
 
         document.addEventListener('DOMContentLoaded', async () => {
-        try {
-            const response = await fetchProducts('/api/products');
-            products = response;
-            renderProducts('<%= content.context %>');
-        } catch (error) {
-            showAlert("error while fetching the products","danger")
-        }
+            try {
+                const response = await fetchProducts('/api/products');
+                products = response;
+                document.querySelector('.products_num').textContent = `${products.length} products found`
+                renderProducts();
+            } catch (error) {
+                showAlert("error while fetching the products","danger")
+            }
         });
 
         async function fetchProducts(apiEndpoint) {
-        const response = await axios.get(apiEndpoint);
-        return response.data;
+            const response = await axios.get(apiEndpoint);
+            return response.data;
         }
 
         function attachAddToCartListeners(products) {
             products.forEach(product => {
-                    const addButton = document.querySelector(`.add${product.itemId}`);
-                    addButton.addEventListener('click', async (event) => {
-                        event.preventDefault();
-                        try {
-                        const response = await addToCart('/addItem', { itemId: product.itemId });
-                        if (response.status === 200) {
-                                console.log(response.data.message);
-                                showAlert('item added to cart','success')
-                                openCart()
-
-                        } else {
-                                console.error('Error adding item to cart:', response.data.message);
-
-                        }
-                        } catch (err) {
-                        if (err.response.status === 400){
-                            showAlert("Item already in cart","success")
+                const addButton = document.querySelector(`.add${product.itemId}`);
+                addButton.addEventListener('click', async (event) => {
+                    event.preventDefault();
+                    try {
+                    const response = await addToCart('/addItem', { itemId: product.itemId });
+                    if (response.status === 200) {
+                            console.log(response.data.message);
+                            showAlert('item added to cart','success')
                             openCart()
-                        } else {
-                            window.location.href = "/login"
-                        }
-                        }
-                    });
+                    } else {
+                            console.error('Error adding item to cart:', response.data.message);
+                    }
+                    } catch (err) {
+                    if (err.response.status === 400){
+                        showAlert("Item already in cart","success")
+                        openCart()
+                    } else {
+                        window.location.href = "/login"
+                    }
+                    }
+                });
             });
-            }
-            async function addToCart(apiEndpoint, data) {
+        }
+        async function addToCart(apiEndpoint, data) {
             return await axios.post(apiEndpoint, data);
-            }
+        }
 
-            function renderProducts(categoryFilter) {
+        function renderProducts() {
             const productGrid = document.getElementById('productGrid');
             productGrid.innerHTML = '';
 
@@ -556,14 +570,14 @@ height: auto;
             productCard.className = 'col-md-4 product-card product';
 
             var words = product.description.split(" ");
-            product.description = words.slice(0, 10).join(" ");
-            if (words.length > 10) {
+            product.description = words.slice(0, 7).join(" ");
+            if (words.length > 7) {
                 product.description += " ...";
             }
 
             words = product.name.split(" ");
-            product.name = words.slice(0, 10).join(" ");
-            if (words.length > 10) {
+            product.name = words.slice(0, 7).join(" ");
+            if (words.length > 7) {
                 product.name += " ...";
             }
             productCard.innerHTML = `

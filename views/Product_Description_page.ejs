@@ -592,14 +592,14 @@
   productCard.className = 'col-md-4 product-card product';
 
   var words = product.description.split(" ");
-  product.description = words.slice(0, 10).join(" ");
-  if (words.length > 10) {
+  product.description = words.slice(0, 7).join(" ");
+  if (words.length > 7) {
       product.description += " ...";
   }
 
   words = product.name.split(" ");
-  product.name = words.slice(0, 10).join(" ");
-  if (words.length > 10) {
+  product.name = words.slice(0, 7).join(" ");
+  if (words.length > 7) {
       product.name += " ...";
   }
   productCard.innerHTML = `

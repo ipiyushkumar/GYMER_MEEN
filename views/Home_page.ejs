@@ -91,68 +91,10 @@
            }
          }
 
-         .loading-container {
-            width: 100%;
-            height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 1;
-
-            position: relative;
-        }
-
-        .icon {
-            width: 20vh;
-            height: 20vh;
-            position: relative;
-            color: #ffffff;
-        }
-
-        .icon::before {
-            content: '';
-            position: absolute;
-            z-index: 1;
-            left: 0%;
-            top: 0%;
-            transform: translate(-50%, -50%);
-        }
-
-        .icon::after {
-            content: '';
-            position: absolute;
-            left: 0%;
-            top: 0%;
-            width: 100%;
-            height: 100%;
-            box-sizing: border-box;
-            border-radius: 50%;
-            border-left: 1vh dashed;
-            border-bottom: 1vh dashed;
-            animation: rotate 3s linear infinite;
-        }
-
-        .loading-logo {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 8vh; 
-            height: auto;
-        }
-
-        @keyframes rotate {
-            0% {
-                transform: rotate(0);
-            }
-            100% {
-                transform: rotate(360deg);
-            }
-        }
 
         .bg-image {
   height: 50vh;
-  background-size: contain;
+  background-size: 100% 100%;
   background-position: center;
   background-repeat: no-repeat;
   border-radius: 10px;
@@ -529,12 +471,74 @@ section img{
   }
 }
 
+.loading-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    z-index: 5;
+    justify-content: center;
+    align-items: center;
+    background-color: #000;
+    transition: all .4s ease;
+}
+
+.icon {
+    width: 20vh;
+    height: 20vh;
+    position: relative;
+    color: #ffffff;
+}
+
+.icon::before {
+    content: '';
+    position: absolute;
+    z-index: 1;
+    left: 0%;
+    top: 0%;
+    transform: translate(-50%, -50%);
+}
+
+.icon::after {
+    content: '';
+    position: absolute;
+    left: 0%;
+    top: 0%;
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+    border-radius: 50%;
+    border-left: 1vh dashed;
+    border-bottom: 1vh dashed;
+    animation: rotate 3s linear infinite;
+}
+
+.loading-logo {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 8vh; 
+    height: auto;
+}
+
+@keyframes rotate {
+    0% {
+        transform: rotate(0);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
        </style>
 
        <section id="top">
         <img src="https://aryan-tayal.github.io/Mountains-Parallax/bg.jpg" id="bg" />
         <h2 id="text">WhiteWolf</h2>
-        <img src="../assets/men-img.jpeg" id="man" />
+        <img src="../assets/wolf-hero.jpg" id="man" />
         <img src="https://aryan-tayal.github.io/Mountains-Parallax/clouds_1.png" id="clouds_1" />
         <img src="https://aryan-tayal.github.io/Mountains-Parallax/clouds_2.png" id="clouds_2" />
         <img src="https://aryan-tayal.github.io/Mountains-Parallax/mountain_left.png" id="mountain_left" />
@@ -551,10 +555,11 @@ section img{
       <div class="container-fluid d-flex flex-column justify-content-center align-items-center products-bar mt-5">
         <div class="mb-2 filters d-flex justify-content-between align-items-center text-uppercase"data-aos="fade-up" data-aos-duration="1000">
 
-          <button class="category-btn m-1" onclick="renderProducts('Face Care')">Face Care</button>
+          <!-- <button class="category-btn m-1" onclick="renderProducts('Face Care')">Face Care</button>
           <button class="category-btn m-1" onclick="renderProducts('Hair Care')">Hair Care</button>
-          <button class="category-btn m-1" onclick="renderProducts('Body Care')">Body Care</button>
+          <button class="category-btn m-1" onclick="renderProducts('Body Care')">Body Care</button> -->
 
+          <h2 class="text-light">Our Top Sellers</h2>
        </div>     
          <div id="productGrid" class="row product-grid" data-aos="fade-up"
          data-aos-duration="1000" onmousedown="startScroll(event)" onmouseup="stopScroll()" ontouchstart="startScroll(event)" ontouchend="stopScroll()">
@@ -632,7 +637,7 @@ section img{
       <div class="container-fluid p-4" data-aos="fade-up" data-aos-duration="1000">
          <div class="row">
              <div class="col-12 p-2">
-                 <div class="bg-image" style="background-image: url('../assets/creative01.png');"></div>
+                 <div class="bg-image" style="background-image: url('../assets/creativeak.png');"></div>
              </div>
          </div>
      </div>
@@ -864,16 +869,19 @@ section img{
 		</div>
 	</div>
 
+  <div class="loading-container">
+      <img class="loading-logo" src="../assets/newlogo.png" alt="Logo">
+      <div class="icon"></div>
+  </div>
+
   <script>
-   document.addEventListener("DOMContentLoaded", function() {
-      window.addEventListener("load", function() {
-         setTimeout(function() {
-            document.querySelector('.loading-container').style.display = 'none';
-            document.body.style.overflow = 'auto';
-         }, 2000);  
-      });
-   });
-</script>
+
+  document.addEventListener("DOMContentLoaded", function() {
+      document.querySelector('.loading-container').style.display = 'none';
+      document.body.style.overflow = 'auto'; 
+  });
+
+  </script>
 
 <script>
 
@@ -991,14 +999,14 @@ section img{
          productCard.className = 'col-md-4 product-card product';
          
          var words = product.description.split(" ");
-          product.description = words.slice(0, 10).join(" ");
-          if (words.length > 10) {
+          product.description = words.slice(0, 8).join(" ");
+          if (words.length > 8) {
               product.description += " ...";
           }
 
           words = product.name.split(" ");
-          product.name = words.slice(0, 10).join(" ");
-          if (words.length > 10) {
+          product.name = words.slice(0, 7).join(" ");
+          if (words.length > 7) {
               product.name += " ...";
           }
          productCard.innerHTML = `
@@ -1013,7 +1021,7 @@ section img{
                   <div class="product-description" style="font-size:2vh;" >${product.description}</div>
                   <div class="mb-2">
                      <div class="d-flex justify-content-between bolder product-price-discount">
-                        <div class="product-price">&#8377; ${product.offeredPrice}</div>
+                        <div class="product-price">&#8377;${product.offeredPrice}</div>
                         <div class="original-price text-secondary text-decoration-line-through">&#8377;${product.originalPrice || ''}</div>
                         <div class="product-discount text-success">${((product.originalPrice - product.offeredPrice) / product.originalPrice * 100).toFixed(0)}% Off</div>
                      </div>
