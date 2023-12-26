@@ -13,14 +13,14 @@
     transition: all .4s ease;
 }
 
-.icon {
+.loaderIcon {
     width: 20vh;
     height: 20vh;
     position: relative;
     color: #ffffff;
 }
 
-.icon::before {
+.loaderIcon::before {
     content: '';
     position: absolute;
     z-index: 1;
@@ -29,7 +29,7 @@
     transform: translate(-50%, -50%);
 }
 
-.icon::after {
+.loaderIcon::after {
     content: '';
     position: absolute;
     left: 0%;
@@ -63,7 +63,7 @@
 </style>
  <div class="loading-container">
     <img class="loading-logo" src="../assets/newlogo.png" alt="Logo">
-    <div class="icon"></div>
+    <div class="loaderIcon"></div>
 </div>
 
 <script>
