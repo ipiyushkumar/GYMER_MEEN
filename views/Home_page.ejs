@@ -868,20 +868,7 @@ section img{
 			</div>
 		</div>
 	</div>
-
-  <div class="loading-container">
-      <img class="loading-logo" src="../assets/newlogo.png" alt="Logo">
-      <div class="icon"></div>
-  </div>
-
-  <script>
-
-  document.addEventListener("DOMContentLoaded", function() {
-      document.querySelector('.loading-container').style.display = 'none';
-      document.body.style.overflow = 'auto'; 
-  });
-
-  </script>
+  <%- include('partials/loader') %> 
 
 <script>
 
