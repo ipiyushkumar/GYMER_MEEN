@@ -49,6 +49,10 @@ app.use(orders)
 const admin = require('./routes/admin_routes')
 app.use(admin)
 
+app.get('*', (req,res) => {
+  res.render('Error404')
+})
+
 mongoose.connect( process.env.MongoDB_URL || "mongodb://127.0.0.1:27017/GYMER?retryWrites=true&w=majority")
 .then(console.log(`MongoDB Conneted (${process.env.MongoDB_URL || "mongodb://127.0.0.1:27017/GYMER?retryWrites=true&w=majority"})`))
 .then(app.listen(port, () => { console.log(`Server Listen On ${port}`)}))
