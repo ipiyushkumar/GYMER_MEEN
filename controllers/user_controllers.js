@@ -25,7 +25,19 @@ const authLogin = async (req, res) => {
         if (user) {
             // User is already registered
             req.session.isLoggedIn = true;
+            req.session.OTP = '';
             req.session.email = email;
+            req.session.userProfile.email = email;
+
+            if (req.session.userProfile.cart[0]) {
+                // User has a filled cart, save the profile and complete the order
+
+
+                console.log("user already exists completing cart")
+
+                saveUserProfile(req, res);
+                return res.status(201).json({ message: "Completing order" });
+            }
 
             const userProfile = {
                 name: user.name || req.session.userProfile.name,
@@ -40,14 +52,9 @@ const authLogin = async (req, res) => {
                 cart: user.cart || req.session.userProfile.cart,
             };
 
-            if (userProfile.cart[0]) {
-                // User has a filled cart, save the profile and complete the order
-                req.session.OTP = '';
-                req.session.userProfile = userProfile;
+            req.session.userProfile = userProfile;
 
-                saveUserProfile(req, res);
-                return res.status(201).json({ message: "Completing order" });
-            }
+            console.log("user already exists but nothing in cart")
 
             // User is coming without a filled cart
             req.session.userProfile = userProfile;
@@ -63,6 +70,15 @@ const authLogin = async (req, res) => {
             req.session.isLoggedIn = true;
             req.session.email = email;
             req.session.OTP = '';
+            req.session.userProfile.email = email;
+            
+            if (req.session.userProfile.cart[0]) {
+                // User has a filled cart, save the profile and complete the order
+                console.log("user does not exist and completing cart")
+
+                saveUserProfile(req, res);
+                return res.status(201).json({ message: "Completing order" });
+            }
 
             // Define userProfile here
             const userProfile = {
@@ -77,15 +93,10 @@ const authLogin = async (req, res) => {
                 address: user.address || req.session.userProfile.address,
                 cart: user.cart || req.session.userProfile.cart,
             };
+            req.session.userProfile = userProfile;
 
-            if (userProfile.cart[0]) {
-                // User has a filled cart, save the profile and complete the order
-                req.session.OTP = '';
-                req.session.userProfile = userProfile;
+            console.log("user does not exist and not completing")
 
-                saveUserProfile(req, res);
-                return res.status(201).json({ message: "Completing order" });
-            }
             console.log("User registered and logged in successfully: " + email);
             res.status(200).json({ message: "User registered and logged in successfully" });
         }
