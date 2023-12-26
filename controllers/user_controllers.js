@@ -79,7 +79,7 @@ const authLogin = async (req, res) => {
                 saveUserProfile(req, res);
                 return res.status(201).json({ message: "Completing order" });
             }
-
+            console
             // Define userProfile here
             const userProfile = {
                 name: user.name || req.session.userProfile.name,
@@ -124,9 +124,6 @@ const sendOTP = (req, res) => {
         pass: process.env.MAIL_PASS // replace with your password
       }
     });
-
-    console.log(process.env.MAIL_ID)
-    console.log(process.env.MAIL_PASS)
   
     const mailOptions = {
         from: process.env.MAIL_ID,
