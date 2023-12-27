@@ -33,6 +33,8 @@ router.get('/product_listing/:page',(req, res) => {
         pageContext = 'Beard Care'
     } else if (page === "body_care") {
         pageContext = 'Body Care'
+    } else if (page === "skin_care") {
+        pageContext = 'Skin Care'
     } else {
         pageContext = 'all'
     }
@@ -40,7 +42,7 @@ router.get('/product_listing/:page',(req, res) => {
 
     const content = {
         isLoggedIn : req.session.isLoggedIn,
-        context: pageContext
+        context: pageContext,
     }
     res.render('Product_Listing_page',{content});
 })

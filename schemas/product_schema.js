@@ -16,7 +16,7 @@ const productSchema = new mongoose.Schema({
     ],
     originalPrice: { type: Number, required: true },
     offeredPrice: { type: Number, required: true },
-    category: { type: String, required: true, enum : ["Face Care", "Hair Care", "Body Care","Beard Care"] },
+    category: { type: String, required: true, enum : ["Face Care", "Hair Care", "Body Care","Beard Care","Skin Care"] },
     stock: { type: Number, default: 0 },
     imageLink: [{type: String}],
     createdAt: { type: Date, default: Date.now }
