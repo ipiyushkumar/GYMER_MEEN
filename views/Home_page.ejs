@@ -13,7 +13,6 @@
       <link rel="preconnect" href="https://fonts.googleapis.com">
       <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
       <link href="https://cdn.jsdelivr.net/npm/aos@2.3.1/dist/aos.css" rel="stylesheet">
-      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;400;500&display=swap">
       <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@200;400;500&display=swap">
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
       <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.js"></script>
@@ -95,6 +94,14 @@
         .bg-image {
   height: 50vh;
   background-size: 100% 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  border-radius: 10px;
+}
+
+.bg-gif {
+  height: 50vh;
+  background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
   border-radius: 10px;
@@ -288,6 +295,7 @@ section img{
 
 }
 #sec h2 {
+  font-weight: 600;
     font-size: 10vh;
     margin-bottom: 30px;
     color: #000;
@@ -546,11 +554,19 @@ section img{
         <button id="scrollButton" onclick="scrollToContent()">Scroll Down &#8595</button>
       </section>
       <section id="sec">  
-        <h2 id="typewriter" data-aos="fade-up" data-aos-duration="1000">Welcome to WhiteWolf</h2>
+        <h2 id="typewriter" data-aos="fade-up" data-aos-duration="1000" class="text-uppercase">Welcome to WhiteWolf</h2>
         <p data-aos="fade-up" data-aos-duration="1000">
           At WhiteWolf, we believe in providing you with top-notch products across various categories to enhance your grooming and wellness journey. Explore our carefully curated selections in hair care, beard care, body care, skin care, and more. We prioritize the quality and effectiveness of our products, ensuring you experience the best in personal care.
         </p>
       </section>
+
+      <div class="container-fluid p-4" data-aos="fade-up" data-aos-duration="1000">
+        <div class="row">
+            <div class="col-12 p-2">
+                <div class="bg-gif"  style="background-image: url('../assets/products-gif.gif');"></div>
+            </div>
+        </div>
+    </div>
 
       <div class="container-fluid d-flex flex-column justify-content-center align-items-center products-bar mt-5">
         <div class="mb-2 filters d-flex justify-content-between align-items-center text-uppercase"data-aos="fade-up" data-aos-duration="1000">
@@ -644,30 +660,24 @@ section img{
 
       <div class="container-fluid mt-3 mb-5 m-2">
          <h2 class="text-center text-white mb-2">Search Through Category</h2>
-
          <div id="app" class="container-category">
+
+          <a href="/product_listing/beard_care" target="_blank">
+            <card data-image="https://i.ibb.co/7tdsC00/category3.jpg">
+              <h2 slot="header">Beared</h2>
+            </card>
+          </a>
           <a href="/product_listing/hair_care" target="_blank">
             <card data-image="https://i.ibb.co/w7jMs1C/category1.jpg">
               <h2 slot="header">Hair</h2>
             </card>
           </a>
-          <a href="/product_listing/face_care" target="_blank">
+          <a href="/product_listing/skin_care" target="_blank">
             <card data-image="https://i.ibb.co/KGHTrZw/Whats-App-Image-2023-12-24-at-11-48-59-PM.jpg">
-              <h2 slot="header">Face</h2>
-            </card>
-          </a>
-          
-          <a href="/product_listing/body_care" target="_blank">
-            <card data-image="https://i.ibb.co/7tdsC00/category3.jpg">
-              <h2 slot="header">Body</h2>
-            </card>
-          </a>
-          
-          <a href="/product_listing/beard_care" target="_blank">
-            <card data-image="https://i.ibb.co/7tdsC00/category3.jpg">
               <h2 slot="header">Skin</h2>
             </card>
-          </a>          
+          </a>
+                    
         </div>
       </div>
 

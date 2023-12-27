@@ -92,15 +92,23 @@
     margin-left: -20px; 
   }
   }
+
+  #searchInput:focus {
+            border-color: none; /* Change border color on focus */
+        }
+
+  #searchInput:active{
+    border: none;
+  }
 </style>
 
 <div id="mySidenav" class="sidenav">
-   <p href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</p>
-   <a href="#"><iconify-icon icon="mdi:about"></iconify-icon>About Us </a>
-   <a href="/product_listing/face_care"><iconify-icon icon="mdi:spray"></iconify-icon>Face Care</a>
-   <a href="/product_listing/hair_care"><iconify-icon icon="streamline:spray-paint-solid"></iconify-icon>Hair Care</a>
-   <a href="/product_listing/body_care"><iconify-icon icon="fa6-solid:spray-can-sparkles"></iconify-icon>Body Care</a>
+   <p href="javascript:void(0)" class="closebtn" onclick="closeNav()" style="color: #fff;cursor: pointer;">&times;</p>
    <a href="/product_listing/beard_care"><iconify-icon icon="fluent:spray-can-16-filled"></iconify-icon>Beard Care</a>
+   <!-- <a href="/product_listing/face_care"><iconify-icon icon="mdi:spray"></iconify-icon>Face Care</a> -->
+   <a href="/product_listing/hair_care"><iconify-icon icon="streamline:spray-paint-solid"></iconify-icon>Hair Care</a>
+   <a href="/product_listing/skin_care"><iconify-icon icon="fa6-solid:spray-can-sparkles"></iconify-icon>Skin Care</a>
+   <a href="#"><iconify-icon icon="mdi:about"></iconify-icon>About Us </a>
 </div>
 
 <nav class="navbar navbar-expand-lg" style="padding: 1vh;width: 100%;">
@@ -114,10 +122,8 @@
       </div>
       <form class="d-none d-lg-flex" style="width: 32%;">
          <div class="input-group" style="width: 100%;">
-            <input class="form-control" type="search" placeholder="Search Your Favourite Product" aria-label="Search"
-               style="background-color: transparent;border-radius: 1rem 0 0 1rem;">
-            <button class="btn btn-light" type="submit" style="border-radius: 0 1rem 1rem 0;"><i
-               class="fas fa-search"></i></button>
+          <input class="form-control" type="search" placeholder="Search Your Favourite Product" aria-label="Search" id="searchInput" style="background-color: transparent; border-radius: 1rem 0 0 1rem;color: #fff;box-shadow: none;outline: none;">
+            <button class="btn btn-light" type="submit" style="border-radius: 0 1rem 1rem 0;"><i class="fas fa-search"></i></button>
          </div>
       </form>
       <div class="custom-nav d-flex justify-content-end" style="width: 32%; font-size: 4vh;">
@@ -127,12 +133,12 @@
        </a>
        <% if (content.isLoggedIn === true) { %>
            <a class="nav-link" href="/profile" style="color: #fff;">
-            <iconify-icon icon="mingcute:user-4-fill"></iconify-icon>
+            <iconify-icon icon="gg:profile"></iconify-icon>
            <span style="margin-left: 5px;display: none;"></span>
            </a>
          <% } else { %>
            <a class="nav-link" href="/login" style="color: #fff;">
-            <iconify-icon icon="mingcute:user-4-fill"></iconify-icon>
+            <iconify-icon icon="gg:profile"></iconify-icon>
            <span style="margin-left: -20px;"></span>
            </a>
          <% } %>
@@ -193,3 +199,36 @@
        alert.style.display = "none";
      }
    </script>
+
+    <script>
+        const placeholderText = "Search Your Favourite Product";
+        const inputElement = document.getElementById("searchInput");
+
+        function typeEffect() {
+            let index = 0;
+            let isTypingForward = true;
+
+            setInterval(() => {
+                inputElement.placeholder = placeholderText.substring(0, index);
+
+                if (isTypingForward) {
+                    index++;
+
+                    if (index > placeholderText.length) {
+                        isTypingForward = false;
+                        index = placeholderText.length;
+                    }
+                } else {
+                    index--;
+
+                    if (index <= 0) {
+                        isTypingForward = true;
+                        index = 0;
+                    }
+                }
+            }, 100);
+        }
+
+        // Start the typing effect
+        typeEffect();
+    </script>
