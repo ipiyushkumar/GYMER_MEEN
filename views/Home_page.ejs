@@ -88,21 +88,27 @@
            }
          }
 
-        .bg-image {
-  height: 400px;
-  background-size: 100% 100%;
-  background-position: center;
-  background-repeat: no-repeat;
-  border-radius: 10px;
+         .bg .row {
+  min-height: 400px; /* Set a minimum height for the row */
 }
 
-.bg-gif {
-  height: 50vh;
-  background-size: cover;
+.bg-image {
+  height: auto;
+  min-height: 100%; /* Ensure the div takes at least 100% of the parent's height */
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+
+         /* .bg-image {
+  height: auto;
+  background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
   border-radius: 10px;
-}
+} */
+
 
         .reel-item {
     display: flex;
@@ -149,7 +155,7 @@
   padding: 40px 80px;
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
+  justify-content: space-evenly;
   -webkit-font-smoothing: antialiased;
 }
 
@@ -304,12 +310,11 @@ section img{
     right: 35% !important; 
   }
 
-  .bg-image {
-  height: 35vh;
-  background-size: 150% 100%;
-  background-position: left;
-
-}
+  .bg-image{
+    height: 20vh;
+    background-size:150% 100%;
+    background-position: left;
+  }
 
 }
 
@@ -552,41 +557,35 @@ section img{
         }
 
         .slides {
-    display: flex;
-    flex-wrap: nowrap;
-    cursor: grab;
-    cursor: -webkit-grab; 
-    transition: transform 0.5s ease-in-out;
-    overflow-x: scroll;
-    -ms-overflow-style: none;  
-    scrollbar-width: none;  
+  display: flex;
+  flex-wrap: nowrap;
+  cursor: pointer;
+  gap: 16px;
+  cursor: -webkit-grab;
+  transition: transform 0.5s ease-in-out;
+  overflow-x: scroll;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
 
-        .slides::-webkit-scrollbar {
-            display: none;  
-        }
+.slides::-webkit-scrollbar {
+  display: none;
+}
 
-        .slide {
-            margin-right: 10px;
-            min-width: 33.33%;
-            box-sizing: border-box;
-        }
+.slides .slide {
+  height: auto; /* Set height to auto to maintain aspect ratio */
+  width: 30vw;
+  min-width: 30vw;
+  display: block;
+  object-fit: cover; /* Maintain aspect ratio without stretching */
+  border-radius: 0;
+}
 
-        .slide:nth-child(6){
-            margin-right: 0;
-        }
-
-        .slides .slide{
-            height: 400px;
-            width: 100%;
-            display: block;
-            object-fit: cover;
-            border-radius: 0;
-        }
-
-        .slides .slide img{
-          object-fit: 100% 100%;
-        }
+.slides .slide img {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
 
         .arrow {
             position: absolute;
@@ -614,7 +613,7 @@ section img{
         @media (max-width: 768px) {
             .slides .slide {
                 min-width: 70%;
-                height:300px;
+                height:auto;
             }
         }
 
@@ -641,9 +640,9 @@ section img{
         <button id="scrollButton" onclick="scrollToContent()">Scroll Down &#8595</button>
       </section>
       <section id="sec">  
-        <h2 id="typewriter" data-aos="fade-up" data-aos-duration="1000" class="text-uppercase">Welcome to WhiteWolf</h2>
+        <h2 id="typewriter" data-aos="fade-up" data-aos-duration="1000" class="text-uppercase">Welcome to the Wolf'sden</h2>
         <p data-aos="fade-up" data-aos-duration="1000">
-          At WhiteWolf, we believe in providing you with top-notch products across various categories to enhance your grooming and wellness journey. Explore our carefully curated selections in hair care, beard care, body care, skin care, and more. We prioritize the quality and effectiveness of our products, ensuring you experience the best in personal care.
+          Use our carefully made items that have strong power and kind beauty. Let go of the strong power inside, as White Wolf praises the soul of modern man. Start searching for secret machismo in you.
         </p>
       </section>
 
@@ -746,10 +745,10 @@ section img{
         </div>
        </main>
 
-      <div class="container-fluid p-4" data-aos="fade-up" data-aos-duration="1000" style="height:auto;">
+      <div class="container-fluid p-4 bg" data-aos="fade-up" data-aos-duration="1000">
          <div class="row">
              <div class="col-12 p-2">
-                 <div class="bg-image" style="background-image: url('../assets/creativeak.png');"></div>
+                 <div class="bg-image" style="background-image: url('../assets/creative.png');"></div>
              </div>
          </div>
      </div>
