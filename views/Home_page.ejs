@@ -1,25 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
    <head>
-      <meta charset="UTF-8">
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <title>WhiteWolf Internationals</title>
-      <link rel="shortcut icon" type="image/x-icon" href="../assets/WhiteIcon.png">
-      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css">
-      <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.css"/>
-      <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick-theme.css">
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-      <link rel="stylesheet" href="/css/Home.css">
-      <link rel="preconnect" href="https://fonts.googleapis.com">
-      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-      <link href="https://cdn.jsdelivr.net/npm/aos@2.3.1/dist/aos.css" rel="stylesheet">
-      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@200;400;500&display=swap">
-      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
-      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.js"></script>
-      <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
-      <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
-      <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
-
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WhiteWolf Internationals</title>
+    <link rel="shortcut icon" type="image/x-icon" href="../assets/WhiteIcon.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.css"/>
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick-theme.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aos@2.3.1/dist/aos.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@200;400;500&display=swap">
+    <link rel="stylesheet" href="/css/Home.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
   </head>
    <body>
       <%- include('partials/nav') %> 
@@ -90,9 +88,8 @@
            }
          }
 
-
         .bg-image {
-  height: 50vh;
+  height: 400px;
   background-size: 100% 100%;
   background-position: center;
   background-repeat: no-repeat;
@@ -466,7 +463,7 @@ section img{
   color: #fff;
   font-weight: 500;
   position: relative;
-  
+
 }
 
 #saleContainer:hover + #swipeButtons {
@@ -541,6 +538,96 @@ section img{
     }
 }
 
+.carousel-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .carousel {
+            padding: 0;
+            width: 100%;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .slides {
+    display: flex;
+    flex-wrap: nowrap;
+    cursor: grab;
+    cursor: -webkit-grab; 
+    transition: transform 0.5s ease-in-out;
+    overflow-x: scroll;
+    -ms-overflow-style: none;  
+    scrollbar-width: none;  
+}
+
+        .slides::-webkit-scrollbar {
+            display: none;  
+        }
+
+        .slide {
+            margin-right: 10px;
+            min-width: 33.33%;
+            box-sizing: border-box;
+        }
+
+        .slide:nth-child(6){
+            margin-right: 0;
+        }
+
+        .slides .slide{
+            height: 400px;
+            width: 100%;
+            display: block;
+            object-fit: cover;
+            border-radius: 0;
+        }
+
+        .slides .slide img{
+          object-fit: 100% 100%;
+        }
+
+        .arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 30px;
+            height: 30px;
+            background-color: transparent;
+            color: #fff;
+            text-align: center;
+            cursor: pointer;
+            font-size: 20px;
+            line-height: 30px;
+            user-select: none;
+        }
+
+        .arrow.left {
+            left: 10px;
+        }
+
+        .arrow.right {
+            right: 10px;
+        }
+
+        @media (max-width: 768px) {
+            .slides .slide {
+                min-width: 70%;
+                height:300px;
+            }
+        }
+
+        .bg-video {
+        width: 100%;
+        height: auto;
+        border-radius:20px;
+    }
+
+    .col-12 {
+        overflow: hidden; /* Ensures the video stays within its container */
+    }
+
        </style>
 
        <section id="top">
@@ -563,17 +650,26 @@ section img{
       <div class="container-fluid p-4" data-aos="fade-up" data-aos-duration="1000">
         <div class="row">
             <div class="col-12 p-2">
-                <div class="bg-gif"  style="background-image: url('../assets/products-gif.gif');"></div>
+                <video autoplay muted loop class="bg-video">
+                    <source src="../assets/whitewolfbanner.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
             </div>
         </div>
     </div>
+    
+
+    <div class="carousel mt-5 mb-5"  data-aos="fade-up" data-aos-duration="1000">
+      <div class="slides">
+          <div class="slide"><img src="/assets/whitewolfslider1.jpg" alt="Image 1"></div>
+          <div class="slide"><img src="/assets/whitwolfslider3.jpg" alt="Image 2"></div>
+          <div class="slide"><img src="/assets/whitwolfslider2.jpg" alt="Image 3"></div>
+          <div class="slide"><img src="/assets/whitewolfslider4.jpg" alt="Image 4"></div>
+      </div>
+  </div>
 
       <div class="container-fluid d-flex flex-column justify-content-center align-items-center products-bar mt-5">
-        <div class="mb-2 filters d-flex justify-content-between align-items-center text-uppercase"data-aos="fade-up" data-aos-duration="1000">
-
-          <!-- <button class="category-btn m-1" onclick="renderProducts('Face Care')">Face Care</button>
-          <button class="category-btn m-1" onclick="renderProducts('Hair Care')">Hair Care</button>
-          <button class="category-btn m-1" onclick="renderProducts('Body Care')">Body Care</button> -->
+        <div class="mb-2 filters d-flex justify-content-between align-items-center text-uppercase" data-aos="fade-up" data-aos-duration="1000">
 
           <h2 class="text-light">Our Top Sellers</h2>
        </div>     
@@ -650,7 +746,7 @@ section img{
         </div>
        </main>
 
-      <div class="container-fluid p-4" data-aos="fade-up" data-aos-duration="1000">
+      <div class="container-fluid p-4" data-aos="fade-up" data-aos-duration="1000" style="height:auto;">
          <div class="row">
              <div class="col-12 p-2">
                  <div class="bg-image" style="background-image: url('../assets/creativeak.png');"></div>
@@ -677,7 +773,7 @@ section img{
               <h2 slot="header">Skin</h2>
             </card>
           </a>
-                    
+
         </div>
       </div>
 
@@ -913,8 +1009,8 @@ section img{
     effect: 'coverflow',
     loop: true,
     centeredSlides: true,
-    slidesPerView: 'auto', // Display 5 cards at once
-    spaceBetween: 10, // Adjust the space between slides as needed
+    slidesPerView: 'auto', 
+    spaceBetween: 10, 
     coverflowEffect: {
       rotate: 30,
       stretch: 10,
@@ -994,7 +1090,7 @@ section img{
          function createProductCard(product) {
          const productCard = document.createElement('div');
          productCard.className = 'col-md-4 product-card product';
-         
+
          var words = product.description.split(" ");
           product.description = words.slice(0, 8).join(" ");
           if (words.length > 8) {
@@ -1391,6 +1487,24 @@ function scrollCardContainerRight() {
 }
 </script>
 
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+
+<script>
+  $(document).ready(function(){
+    $('.owl-carousel').owlCarousel({
+      loop: true,
+      margin: 10,
+      responsiveClass: true,
+      dots: false,
+      responsive: {
+        0: { items: 1 },
+        600: { items: 3 },
+      }
+    });
+  });
+</script>
+
 <script>
 
   function handleSaleContainerAnimation() {
@@ -1410,6 +1524,8 @@ function scrollCardContainerRight() {
   window.addEventListener("scroll", handleSaleContainerAnimation);
 
 </script>
+
+  </script>
 
       <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
       <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
