@@ -45,6 +45,9 @@ main {
 
 .inner-box {
   position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: calc(100% - 4.1rem);
   height: calc(100% - 4.1rem);
   top: 50%;
@@ -100,7 +103,8 @@ form.sign-up-form {
 }
 
 .heading h2 {
-  font-size: 2.1rem;
+  text-transform: capitalize;
+  font-size: 1.7rem;
   font-weight: 600;
   color: #151111;
 }
@@ -150,7 +154,7 @@ label {
   top: 50%;
   transform: translateY(-50%);
   font-size: 0.95rem;
-  color: #bbb;
+  color: #555;
   pointer-events: none;
   transition: 0.4s;
 }
@@ -183,12 +187,12 @@ label {
 }
 
 .text {
-  color: #bbb;
+  color: #555;
   font-size: 0.7rem;
 }
 
 .text a {
-  color: #bbb;
+  color: #777;
   transition: 0.3s;
 }
 
@@ -233,6 +237,14 @@ main.sign-up-mode .carousel {
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: 1fr;
+}
+
+.images-wrapper{
+  padding: 2vw;
+}
+
+.images-wrapper img{
+  border-radius: 1rem;
 }
 
 .image {
@@ -339,6 +351,7 @@ main.sign-up-mode .carousel {
 
   .heading {
     margin: 2rem 0;
+    
   }
 
   form.sign-up-form {
@@ -357,7 +370,7 @@ main.sign-up-mode .carousel {
     position: revert;
     height: auto;
     width: 100%;
-    padding: 3rem 2rem;
+    padding: 5rem 2rem;
     display: flex;
   }
 
@@ -443,7 +456,7 @@ main.sign-up-mode .carousel {
             <form autocomplete="off" class="sign-in-form">
               <div class="logo">
                 <img src="assets/logo.PNG" alt="easyclass" />
-                <h4>WhiteWolf International</h4>
+                <h4><a href="/" style="text-decoration: none;color: #000;">WhiteWolf International</a></h4>
               </div>
 
               <div class="heading">
@@ -492,9 +505,9 @@ main.sign-up-mode .carousel {
 
           <div class="carousel">
             <div class="images-wrapper">
-              <img src="assets/signup.png" class="image img-1 show" alt="" />
-              <img src="assets/signup.png" class="image img-2" alt="" />
-              <img src="assets/signup.png" class="image img-3" alt="" />
+              <img src="../assets/check out banner design@3x.jpg" class="image img-1 show" alt="" />
+              <img src="../assets/check out banner design@3x.jpg" class="image img-2 show" alt="" />
+              <img src="../assets/check out banner design@3x.jpg" class="image img-3 show" alt="" />
             </div>
 
             <div class="text-slider">
