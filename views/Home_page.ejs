@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>WhiteWolf Internationals</title>
-    <link rel="shortcut icon" type="image/x-icon" href="../assets/WhiteIcon.png">
+    <link rel="shortcut icon" type="image/x-icon" href="../assets/whitewolf-icon.ico">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css">
@@ -15,9 +15,13 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aos@2.3.1/dist/aos.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@200;400;500&display=swap">
     <link rel="stylesheet" href="/css/Home.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;800&display=swap" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
     <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
     <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+    
   </head>
    <body>
       <%- include('partials/nav') %> 
@@ -86,6 +90,14 @@
              font-size: 5vh !important;
              left: 2vh !important;
            }
+
+           /* .bg-image {
+  height: auto;
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  border-radius: 10px;
+} */
          }
 
          .bg .row {
@@ -93,21 +105,13 @@
 }
 
 .bg-image {
-  height: auto;
-  min-height: 100%; /* Ensure the div takes at least 100% of the parent's height */
+  height: 100% !important;
   background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
 }
 
 
-         /* .bg-image {
-  height: auto;
-  background-size: contain;
-  background-position: center;
-  background-repeat: no-repeat;
-  border-radius: 10px;
-} */
 
 
         .reel-item {
@@ -254,56 +258,28 @@
 
 }
 
-#top{
-    position: relative;
-    width: 100%;
-    height: 100vh;
-    overflow: hidden;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.custom-container {
+    font-size: 5vw;
+    color: #fff;
+    letter-spacing: 15px;
+    color: var(--pr-color);
+    text-transform: uppercase;
 }
-#top::before{
-    content:'';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    height:200px;
-    width: 100%;
-    background:linear-gradient(to top,#fff,transparent);
-    z-index: 1;
-}
-#man{
-    top: inherit;
-    bottom: 0;
-}
-section img{
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    pointer-events: none;
-}
-#text{
-    position: relative;
-    color:white;
-    font-size: 15vh;
-}
-#sec{
-  width: 100%;
-  background: #fff;
-    padding:5vw;
 
+.custom-div{
+  display: flex;
+  font-weight: bolder;
+  font-family: 'Syne', sans-serif !important;
+  justify-content: center;
+  align-items: center;
+  height: 30vh;
 }
-#sec h2 {
-  font-weight: 600;
-    font-size: 10vh;
-    margin-bottom: 30px;
-    color: #000;
 
+.custom-div span {
+    display: inline-block;
 }
+
+
 
 @media (max-width: 767px) {
   #scrollButton {
@@ -311,57 +287,13 @@ section img{
   }
 
   .bg-image{
-    height: 20vh;
-    background-size:150% 100%;
-    background-position: left;
+    height: 100% !important;
+    background-size:cover;
+    background-position:center;
   }
 
 }
 
-@media (max-width: 768px) {
-    #sec h2 {
-      margin-top: 4vh;
-        font-size: 5vh; 
-    }
-}
-
-#sec p{
-  text-align: justify;
-  text-transform: capitalize;
-    font-size: 3vh;
-
-  font-weight:300;
-    color:#000;
-
-}
-
-#scrollButton {
-      position: fixed;
-      bottom: 10%;
-      right: 45%;
-      z-index: 2;
-      display: none;
-      background-color: transparent;
-      color: #000;
-      border: none;
-      padding: 10px 20px;
-      border-radius: 3vh;
-      cursor: pointer;
-    }
-
-    @keyframes floatAnimation {
-  0%, 100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-10px);
-  }
-}
-
-#scrollButton {
-
-  animation: floatAnimation 2s ease-in-out infinite; 
-}
 
 .sale-container {
  width: 95vw;
@@ -615,21 +547,127 @@ section img{
                 min-width: 70%;
                 height:auto;
             }
+
         }
 
         .bg-video {
         width: 100%;
         height: auto;
-        border-radius:20px;
+        z-index: -2;
+        border-radius:2rem;
+        /* border: 1px solid #fff; */
     }
 
     .col-12 {
         overflow: hidden; /* Ensures the video stays within its container */
     }
 
-       </style>
+    #top{
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#top::before{
+    content:'';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height:200px;
+    width: 100%;
+    background:linear-gradient(to top,#fff,transparent);
+    z-index: 1;
+}
+#man{
+    top: inherit;
+    bottom: 0;
+}
+section img{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    pointer-events: none;
+}
+#text{
+    position: relative;
+    color:white;
+    font-size: 15vh;
+}
+#sec{
+  width: 100%;
+  background: #fff;
+    padding:5vw;
 
-       <section id="top">
+}
+#sec h2 {
+  font-weight: 600;
+    font-size: 10vh;
+    margin-bottom: 30px;
+    color: #000;
+
+}
+
+@media (max-width: 767px) {
+  #scrollButton {
+    right: 35% !important; 
+  }
+
+}
+
+@media (max-width: 768px) {
+    #sec h2 {
+      margin-top: 4vh;
+        font-size: 5vh; 
+    }
+}
+
+#sec p{
+  text-align: justify;
+  text-transform: capitalize;
+    font-size: 3vh;
+
+  font-weight:300;
+    color:#000;
+
+}
+
+#scrollButton {
+      position: fixed;
+      bottom: 10%;
+      right: 45%;
+      z-index: 2;
+      display: none;
+      background-color: transparent;
+      color: #000;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 3vh;
+      cursor: pointer;
+    }
+
+    @keyframes floatAnimation {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+#scrollButton {
+
+  animation: floatAnimation 2s ease-in-out infinite; 
+}
+
+
+       </style>
+      <section id="top">
         <img src="https://aryan-tayal.github.io/Mountains-Parallax/bg.jpg" id="bg" />
         <h2 id="text">WhiteWolf</h2>
         <img src="../assets/wolf-hero.jpg" id="man" />
@@ -640,17 +678,18 @@ section img{
         <button id="scrollButton" onclick="scrollToContent()">Scroll Down &#8595</button>
       </section>
       <section id="sec">  
-        <h2 id="typewriter" data-aos="fade-up" data-aos-duration="1000" class="text-uppercase">Welcome to the Wolf's den</h2>
+        <h2 id="typewriter" data-aos="fade-up" data-aos-duration="1000" class="text-uppercase">Welcome to the Den</h2>
         <p data-aos="fade-up" data-aos-duration="1000">
-          Use our carefully made items that have strong power and kind beauty. Let go of the strong power inside, as White Wolf praises the soul of modern man. Start searching for secret machismo in you.
+          At WhiteWolf, we believe in providing you with top-notch products across various categories to enhance your grooming and wellness journey. Explore our carefully curated selections in hair care, beard care, body care, skin care, and more. We prioritize the quality and effectiveness of our products, ensuring you experience the best in personal care.
         </p>
       </section>
 
-      <div class="container-fluid p-4 mb-0">
+
+      <div class="container-fluid p-5 mb-0 mt-0">
         <div class="row">
-            <div class="col-12 p-2">
-                <video autoplay muted loop class="bg-video">
-                    <source src="../assets/whitewolfbanner.mp4" type="video/mp4">
+            <div class="col-12 p-0">
+                <video autoplay muted loop class="bg-video p-1">
+                    <source src="../assets/main_2_1.mp4" type="video/mp4">
                     Your browser does not support the video tag.
                 </video>
             </div>
@@ -1023,6 +1062,23 @@ section img{
     },
   });
 </script>
+
+
+<div class="custom-container">
+  <div class="custom-div" style="color:#fff">
+      <span data-speed="-300">W</span>
+      <span data-speed="100">H</span>
+      <span data-speed="300">I</span>
+      <span data-speed="-300">t</span>
+      <span data-speed="350">E</span>
+      <span data-speed="200">W</span>
+      <span data-speed="-310">O</span>
+      <span data-speed="200">L</span>
+      <span data-speed="-340">F</span>
+  </div>
+</div>
+
+
 <%- include('partials/footer') %>
       <script>
          let products = [];
@@ -1348,70 +1404,111 @@ window.addEventListener('scroll',()=>{
 
 <script src='https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.3/gsap.min.js'></script>
 <script src='https://unpkg.com/gsap@3/dist/Draggable.min.js'></script>
+
+
+<!-- Include GSAP and ScrollTrigger libraries -->
+<!-- Include GSAP library -->
+<script src="https://unpkg.com/gsap@3.10.1/dist/gsap.min.js"></script>
+
+<!-- Include ScrollTrigger library separately -->
+<script src="https://unpkg.com/scrolltrigger-classes@1.0.1/dist/ScrollTrigger.min.js"></script>
+
+
 <script>
- const images = gsap.utils.toArray(".item");
+  function animateCustomText() {
+    gsap.from('.custom-div span', {
+        y: (i, el) => (1 - parseFloat(el.getAttribute('data-speed'))),
+        opacity: 0,
+        scrollTrigger: {
+            trigger: '.custom-container',
+            start: 'top bottom',
+            end: 'bottom bottom',
+            scrub: 1.9
+        }
+    });
+}
 
- const imageSize = images.length;
- const total = images.length;
- const degree = 360 / total;
+animateCustomText();
+  gsap.registerPlugin(ScrollTrigger);
 
- const init = () => {
- const timeline = gsap.timeline();
+  const images = gsap.utils.toArray(".item");
+  const imageSize = images.length;
+  const total = images.length;
+  const degree = 360 / total;
 
- images.forEach((image, index) => {
-   const sign = Math.floor((index / 2) % 2) ? 1 : -1;
-   const value = Math.floor((index + 4) / 4) * 4;
-   const rotation = index > imageSize - 3 ? 0 : sign * value;
-   console.log(rotation);
+  const init = () => {
+    const timeline = gsap.timeline();
 
-   gsap.set(image, {
-     rotation: rotation,
-     scale: 0.5,
-   });
 
-   timeline.from(
-     image,
-     {
-       x: () =>
-         index % 2
-           ? window.innerWidth + image.clientWidth * 4
-           : -window.innerWidth - image.clientWidth * 4,
-       y: () => window.innerHeight - image.clientHeight,
-       rotation: index % 2 ? 200 : -200,
-       scale: 4,
-       opacity: 1,
-       ease: "power4.out",
-       duration: 1,
-       delay: 0.15 * Math.floor(index / 2),
-     },
-     0
-   );
+    images.forEach((image, index) => {
+      const sign = Math.floor((index / 2) % 2) ? 1 : -1;
+      const value = Math.floor((index + 4) / 4) * 4;
+      const rotation = index > imageSize - 3 ? 0 : sign * value;
 
-   let rotationAngle = index * degree;
-   timeline.to(
-     image,
-     {
-       scale: 1,
-       duration: 0,
-     },
-     0.15 * (imageSize / 2 - 1) + 1
-   );
+      gsap.set(image, {
+        rotation: rotation,
+        scale: 0.5,
+      });
 
-   timeline.to(
-     image,
-     {
-       transformOrigin: "center 200vh",
-       rotation:
-         index > imageSize / 2 ? -degree * (imageSize - index) : rotationAngle,
-       duration: 1,
-       ease: "power1.out",
-     },
-     0.15 * (imageSize / 2 - 1) + 1
-   );
- });
- };
+      ScrollTrigger.create({
+        trigger: image,
+        start: "top 80%",
+        onEnter: () => {
+          timeline.from(
+            image,
+            {
+              x: () =>
+                index % 2
+                  ? window.innerWidth + image.clientWidth * 4
+                  : -window.innerWidth - image.clientWidth * 4,
+              y: () => window.innerHeight - image.clientHeight,
+              rotation: index % 2 ? 200 : -200,
+              scale: 4,
+              opacity: 1,
+              ease: "power4.out",
+              duration: 1,
+              delay: 0.15 * Math.floor(index / 2),
+            },
+            0
+          );
+        },
+      });
 
- const draggable = () => {
+      let rotationAngle = index * degree;
+      ScrollTrigger.create({
+        trigger: image,
+        start: "top 50%", // Adjust this value based on when you want the rotation animation to start
+        onEnter: () => {
+          timeline.to(
+            image,
+            {
+              scale: 1,
+              duration: 0,
+            },
+            0.15 * (imageSize / 2 - 1) + 1
+          );
+
+          timeline.to(
+            image,
+            {
+              transformOrigin: "center 200vh",
+              rotation:
+                index > imageSize / 2
+                  ? -degree * (imageSize - index)
+                  : rotationAngle,
+              duration: 1,
+              ease: "power1.out",
+            },
+            0.15 * (imageSize / 2 - 1) + 1
+          );
+        },
+      });
+    });
+  };
+
+  
+
+  const draggable = () => {
  let start = 0;
  Draggable.create(".items", {
    type: "rotation",
@@ -1447,44 +1544,49 @@ window.addEventListener('scroll',()=>{
  });
  };
 
- init();
- draggable();
 
- var scrollButton = document.getElementById("scrollButton");
-scrollButton.style.display = "block";
+  init();
+  draggable();
 
-window.onscroll = function () {
-  showScrollButton();
-};
+  var scrollButton = document.getElementById("scrollButton");
+  scrollButton.style.display = "block";
 
-function showScrollButton() {
-  if (document.body.scrollTop > 10 || document.documentElement.scrollTop > 10) {
-    scrollButton.style.opacity = "0";
-  } else {
-    scrollButton.style.opacity = "1";
+  window.onscroll = function () {
+    showScrollButton();
+  };
+
+  function showScrollButton() {
+    if (
+      document.body.scrollTop > 10 ||
+      document.documentElement.scrollTop > 10
+    ) {
+      scrollButton.style.opacity = "0";
+    } else {
+      scrollButton.style.opacity = "1";
+    }
   }
-}
 
-function scrollToContent() {
-  var contentSection = document.getElementById("sec");
+  function scrollToContent() {
+    var contentSection = document.getElementById("sec");
 
-  if (contentSection) {
-    contentSection.scrollIntoView({ behavior: "smooth" });
+    if (contentSection) {
+      contentSection.scrollIntoView({ behavior: "smooth" });
+    }
   }
-}
 
-function showScrollCardButton() {
-  var scrollCardButton = document.getElementById("scrollCardRightButton");
-  scrollCardButton.classList.add("show");
-}
-
-function scrollCardContainerRight() {
-  var cardContainer = document.querySelector(".items");
-  if (cardContainer) {
-    cardContainer.scrollLeft += 100; 
+  function showScrollCardButton() {
+    var scrollCardButton = document.getElementById("scrollCardRightButton");
+    scrollCardButton.classList.add("show");
   }
-}
+
+  function scrollCardContainerRight() {
+    var cardContainer = document.querySelector(".items");
+    if (cardContainer) {
+      cardContainer.scrollLeft += 100;
+    }
+  }
 </script>
+
 
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
@@ -1505,23 +1607,27 @@ function scrollCardContainerRight() {
 </script>
 
 <script>
+  gsap.registerPlugin(ScrollTrigger);
 
   function handleSaleContainerAnimation() {
-    var saleContainer = document.getElementById("saleContainer");
+      var saleContainer = document.getElementById("saleContainer");
 
-    var rect = saleContainer.getBoundingClientRect();
-    var isVisible = rect.top < window.innerHeight && rect.bottom >= 0;
-
-    if (isVisible) {
-
-      saleContainer.classList.add("animate-sale-container");
-
-      window.removeEventListener("scroll", handleSaleContainerAnimation);
-    }
+      gsap.to(saleContainer, {
+          opacity: 1, // Set the final opacity or other animation properties
+          scrollTrigger: {
+              trigger: saleContainer,
+              start: "top 80%", // Adjust this value based on when you want the animation to start
+              end: "bottom 20%", // Adjust this value based on when you want the animation to end
+              toggleActions: "play none none none", // Play the animation when in the viewport
+              once: true, // Only play the animation once
+          },
+      });
   }
 
-  window.addEventListener("scroll", handleSaleContainerAnimation);
-
+  // Call the function when the DOM is fully loaded
+  // document.addEventListener("DOMContentLoaded", function () {
+  //     handleSaleContainerAnimation();
+  // });
 </script>
 
   </script>
