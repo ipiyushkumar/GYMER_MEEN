@@ -17,6 +17,18 @@
             font-family: 'Outfit', sans-serif;
         }
 
+        /* Remove the increase and decrease buttons for number input */
+         input[type="number"] {
+         -moz-appearance: textfield; /* Firefox */
+         }
+
+         /* Additional styles to prevent the default arrow appearance in Safari */
+         input[type="number"]::-webkit-inner-spin-button,
+         input[type="number"]::-webkit-outer-spin-button {
+         -webkit-appearance: none;
+         margin: 0;
+         }
+
         body {
             background-color: #000;
         }
@@ -393,11 +405,19 @@
                item.textContent = content;
                return item
             }
-            function addTableRow(name, price, quantity) {
+            function imageCell (link) {
+               var item = document.createElement('td')
+               
+               item.innerHTML = `<img src="${link}" alt="product image" style="height:50px;width:50px;">`;
+               return item
+            }
+            function addTableRow(imageLink,name, price, quantity) {
                // Get the table body
                var tableBody = document.querySelector('.allItems')
 
                var row = document.createElement('tr')
+
+               row.append(imageCell(imageLink))
                row.append(dataCell(name))
                row.append(dataCell(price))
                row.append(dataCell(quantity))
@@ -417,7 +437,7 @@
                   await axios.get(`/api/products/${cartItem.itemId}`)
                     .then(response => response.data)
                     .then(productDetails => {
-                     addTableRow(productDetails.name, productDetails.offeredPrice,cartItem.quantity)
+                     addTableRow(productDetails.imageLink[0] , productDetails.name, productDetails.offeredPrice,cartItem.quantity)
                      Total += productDetails.offeredPrice*cartItem.quantity;
                      document.querySelector('.total').innerHTML = `<b>&#8377;${Total}</b>`;
                     })
@@ -428,16 +448,16 @@
                document.querySelector('.Shipping_Address').innerHTML = `
                <p type="text" class="text-justify mb-3">Your Email : ${profile.email || ""}</p>
                   <div class="labels">
-                     <label for="name"">User Name</label>
-                     <input type="test" id="name" class="text-justify" placeholder="Enter Name" value="${profile.name || ""}">
+                     <label for="name"">Full Name</label>
+                     <input type="text" id="name" class="text-justify" placeholder="Enter Name" value="${profile.name || ""}">
                   </div>
                   <div class="labels">
                      <label for="phone">contact number</label>
-                     <input type="test" id="phone" class="text-justify" placeholder="Enter Phone number" value="${profile.phone || ""}">
+                     <input type="number" id="phone" class="text-justify" placeholder="Enter Phone number" value="${profile.phone || ""}">
                   </div>
                  <div class="labels">
                      <label for="pincode">pincode</label>
-                     <input type="text" id="pincode" class="text-justify" placeholder="Enter pincode" value="${profile.pincode || ""}">
+                     <input type="number" id="pincode" class="text-justify" placeholder="Enter pincode" value="${profile.pincode || ""}">
                   </div>
                   <div class="labels">
                      <label for="address">address</label>
@@ -453,7 +473,7 @@
                   </div>
                   <div class="labels">
                      <label for="landmark">landmark</label>
-                  <input type="test" id="landmark" class="text-justify" placeholder="Enter Landmark" value="${profile.landmark || ""}">
+                  <input type="text" id="landmark" class="text-justify" placeholder="Enter Landmark" value="${profile.landmark || ""}">
                   </div>
                   
                `;
