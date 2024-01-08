@@ -31,6 +31,18 @@ footer .social a{
   color: #fff;
 }
 
+.product-grid{
+        padding: 1rem;
+        width: 100%;
+        overflow-x: scroll;
+        scrollbar-width: 1px;
+    display: flex;
+    flex-wrap: nowrap;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    }
+
 .product-card {
         width: 24% !important;
     cursor: pointer;
@@ -54,15 +66,15 @@ footer .social a{
     }
 
     .product-image {
-    width: 100%;
-    height: 40vh;
+        width: 100%;
+    height: 30vh;
     object-fit: cover;
     transition: transform 1s ease-in-out;
     display: block;
     margin-left: auto;
     margin-right: auto;
     overflow: hidden;
-    border-radius: 10px;
+    border-radius: 10px !important;
     }
 
     .product-image:hover{
@@ -72,11 +84,12 @@ footer .social a{
 
 @media screen and (max-width: 576px) {
     .product-card {
-        min-width: 48% !important;
+        min-width: 45% !important;
     }
 
     .product-grid .product-image{
-        width: 20vh;
+        width: 100%;
+        height: 20vh;
     }
 
     .product-title {
@@ -270,7 +283,7 @@ footer .social a{
                 </div>
 
                 <div class="social-links d-flex flex-row align-items-center">
-                  <p>Share This Product : </p>
+                  <p style="font-size:2.7vh;font-weight: 300;">Share This Product : </p>
                   <!-- Replace 'your_product_url' with the actual URL of your product -->
                   <a href="https://www.facebook.com/sharer/sharer.php?u%= item.name" target="_blank">
                       <iconify-icon icon="bi:facebook"></iconify-icon>
@@ -313,24 +326,24 @@ footer .social a{
 
     <div class="faq-section mt-5 mb-5">
         <div class="faq-question" onclick="toggleFAQ(this)">
-            <span>What sets WhiteWolf's Beard Care products apart?</span>
-            <span class="icon">+</span>
+            <span>FAQ's</span>
+            <span class="icon" >&#43;</span>
         </div>
         <div class="faq-answer">
             <p>WhiteWolf's Beard Care is crafted with premium ingredients for a soft, well-groomed beard.</p>
         </div>
 
         <div class="faq-question" onclick="toggleFAQ(this)">
-            <span>How can I make the most of WhiteWolf's Hair Care range?</span>
-            <span class="icon">+</span>
+            <span>Ingredients?</span>
+            <span class="icon">&#43;</span>
         </div>
         <div class="faq-answer">
             <p>WhiteWolf's Hair Care delivers salon-quality results for various hair types and styles.</p>
         </div>
 
         <div class="faq-question" onclick="toggleFAQ(this)">
-            <span>What makes WhiteWolf's Skin Care products a must-have?</span>
-            <span class="icon">+</span>
+            <span>How To Use?</span>
+            <span class="icon">&#43;</span>
         </div>
         <div class="faq-answer">
             <p>WhiteWolf's Skin Care enhances skin vitality, offering a natural, glowing complexion.</p>
@@ -710,7 +723,7 @@ footer .social a{
             const answer = faqQuestion.nextElementSibling;
             answer.style.maxHeight = '0';
             const icon = faqQuestion.querySelector('.icon');
-            icon.innerHTML = '+';
+            icon.innerHTML = '&#43;';
         });
 
         if (!isActive) {
@@ -718,7 +731,7 @@ footer .social a{
             const answer = question.nextElementSibling;
             answer.style.maxHeight = answer.scrollHeight + 'px';
             const icon = question.querySelector('.icon');
-            icon.innerHTML = '❌';
+            icon.innerHTML = '&#x292B;';
         }
     }
 </script>

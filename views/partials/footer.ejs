@@ -1,82 +1,90 @@
 
-<footer class="d-flex flex-column container-fluid text-white p-5 footer">
-    <div class="text-left p-3" style="background-color: #070707;font-weight: 300;">
-        <div class="row">
-            <div class="col-md-3 col-sm-12 mb-3">
-                <img src="/assets/newlogo.png" alt="Logo" class="img-fluid mb-3" style="width: auto; height: 10vh;">
-            </div>
-            <div class="col-md-6 col-sm-12 d-flex flex-wrap">
-                <div class="col-md-6 col-sm-12 mb-3 list-unstyled">
-                    <li><a href="#" class="text-white">About us</a></li>
-                    <li><a href="#" class="text-white">FAQ</a></li>
-                    <li><a href="#" class="text-white">Shipping and Payment</a></li>
-                    <li><a href="#" class="text-white">Partners</a></li>
-                    <li><a href="#" class="text-white">Blog</a></li>
-                    <li><a href="#" class="text-white">Contact Us</a></li>
+<style>
+    
+    @media only screen and (max-width: 768px) {
+            .address p{
+               font-size: 2vh;
+            }
+        }
+    </style>
+    <footer class="d-flex flex-column container-fluid text-white p-4 footer">
+        <div class="text-left p-3" style="background-color: #070707;font-weight: 300;">
+            <div class="row">
+                <div class="col-md-3 col-sm-12 mb-3">
+                    <img src="/assets/newlogo.png" alt="Logo" class="img-fluid mb-3" style="width: auto; height: 7vh;">
                 </div>
-                <div class="col-md-6 col-sm-12 mb-3 list-unstyled">
-                    <li><a href="#" class="text-white">Customer Reviews</a></li>
-                    <li><a href="#" class="text-white">Hair Care</a></li>
-                    <li><a href="#" class="text-white">Skin Care</a></li>
-                    <li><a href="#" class="text-white">Face Care</a></li>
+                <div class="col-md-6 col-sm-12 d-flex flex-wrap justify-content-between">
+                    <div class="col-md-6 col-sm-6 mb-3 list-unstyled">
+                        <li><a href="#" class="text-white">About us</a></li>
+                        <li><a href="#" class="text-white">FAQ</a></li>
+                        <!-- <li><a href="#" class="text-white">Shipping and Payment</a></li> -->
+                        <li><a href="#" class="text-white">Partners</a></li>
+                        <li><a href="#" class="text-white">Blog</a></li>
+                        <li><a href="#" class="text-white">Contact Us</a></li>
+                    </div>
+                    <div class="col-md-6 col-sm-6 mb-3 list-unstyled">
+                        <li><a href="#" class="text-white">Customer Reviews</a></li>
+                        <li><a href="#" class="text-white">Hair Care</a></li>
+                        <li><a href="#" class="text-white">Skin Care</a></li>
+                        <li><a href="#" class="text-white">Face Care</a></li>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-12 d-flex flex-column align-items-end">
+                    <p>180021020016</p>
+                    <p>info@whitewolf.com</p>
                 </div>
             </div>
-            <div class="col-md-3 col-sm-12 d-flex flex-column align-items-end">
-                <p>180021020016</p>
-                <p>info@WhiteWolf.com</p>
+            <div class="row mt-3">
+                <div class="col-md-3 col-sm-12 social">
+                    <ul class="list-unstyled" style="color: #fff;">
+                        <a href="#" class="mr-2" style="font-size: 4vh;"><iconify-icon icon="mdi:instagram"></iconify-icon></a>
+                        <a href="#" class="mr-2" style="font-size: 4vh;"><iconify-icon icon="ic:baseline-whatsapp"></iconify-icon></a>
+                    </ul>
+                </div>
+                <div class="col-md-6 col-sm-12 mb-3 address">
+                    <p>KUSHMANDA COSMETICS PVT. LTD., PLOT NO. 191,<br> 1ST FLOOR, INDUSTRIAL AREA PHASE 2,<br>CHANDIGARH - 160002</p>
+                </div>
             </div>
         </div>
-        <div class="row mt-3">
-            <div class="col-md-3 col-sm-12 social">
-                <ul class="list-unstyled" style="color: #fff;">
-                    <a href="#" class="mr-2" style="font-size: 4vh;"><iconify-icon icon="mdi:instagram"></iconify-icon></a>
-                    <a href="#" class="mr-2" style="font-size: 4vh;"><iconify-icon icon="ic:baseline-whatsapp"></iconify-icon></a>
-                </ul>
-            </div>
-            <div class="col-md-6 col-sm-12 mb-3">
-                <p>KUSHMANDA COSMETICS PVT. LTD., PLOT NO. 191,<br> 1ST FLOOR, INDUSTRIAL AREA PHASE 2,<br>CHANDIGARH - 160002</p>
-            </div>
-        </div>
-    </div>
-    <div class="container-fluid mt-3 m-0">
-        <div class="row d-flex justify-content-between">
-            <div class="col-md-5 col-sm-12 mb-3">
-                <h3 style="font-size: 3vh; font-weight: 300;">If you didn't find the products you are interested in or have questions?</h3>
-            </div>
-            <div class="col-md-6 col-sm-12">
-                <div class="input-group mb-3">
-                    <!-- Add 'ms-auto' class to push the button to the right -->
-                    <button class="btn btn-light d-flex align-items-center justify-content-center gap-2 ms-auto" type="button" id="basic-addon2" onclick="sendSuggestion()">
-                        Send your suggestion's
-                        <iconify-icon icon="gg:arrow-right-o"></iconify-icon>
-                    </button>                                      
+        <div class="container-fluid mt-3 m-0">
+            <div class="row d-flex justify-content-between">
+                <div class="col-md-5 col-sm-12 mb-3">
+                    <h3 style="font-size: 2.7vh; font-weight: 300;">If you didn't find the products you are interested in or have questions?</h3>
                 </div>
-            </div>            
+                <div class="col-md-6 col-sm-12">
+                    <div class="input-group mb-3">
+                        <!-- Add 'ms-auto' class to push the button to the right -->
+                        <button class="btn btn-light d-flex align-items-center justify-content-center gap-2 ms-auto" type="button" id="basic-addon2" onclick="sendSuggestion()">
+                            Send your suggestion's
+                            <iconify-icon icon="gg:arrow-right-o"></iconify-icon>
+                        </button>                                      
+                    </div>
+                </div>            
+            </div>
+            
         </div>
-        
-    </div>
-    <p class="text-center">&#169; 2023 - Copyright, All Rights Reserved.</p>
-  </footer>
-
-  <script>
-    function sendSuggestion() {
-        const suggestionText = "I want to add a suggestion that...";
-        const email = "info@whitewolf.com";
-        const subject = encodeURIComponent("I want to add a suggestion that...");
-
-        // Construct the Gmail compose link as a fallback
-        const gmailComposeLink = `https://mail.google.com/mail/u/0/?view=cm&fs=1&to=${email}&su=${subject}&body=${encodeURIComponent(suggestionText)}`;
-
-        // Try to open the mailto link, if not successful, open the Gmail compose link
-        window.location.href = `mailto:${email}?subject=${subject}&body=${encodeURIComponent(suggestionText)}`;
-        setTimeout(() => {
-            window.location.href = gmailComposeLink;
-        }, 500);
-    }
-</script>
-
-  
-  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-  
+        <p class="text-center">&#169; 2023 - Copyright, All Rights Reserved.</p>
+      </footer>
+    
+      <script>
+        function sendSuggestion() {
+            const suggestionText = "I want to add a suggestion that...";
+            const email = "info@whitewolf.com";
+            const subject = encodeURIComponent("I want to add a suggestion that...");
+    
+            // Construct the Gmail compose link as a fallback
+            const gmailComposeLink = `https://mail.google.com/mail/u/0/?view=cm&fs=1&to=${email}&su=${subject}&body=${encodeURIComponent(suggestionText)}`;
+    
+            // Try to open the mailto link, if not successful, open the Gmail compose link
+            window.location.href = `mailto:${email}?subject=${subject}&body=${encodeURIComponent(suggestionText)}`;
+            setTimeout(() => {
+                window.location.href = gmailComposeLink;
+            }, 500);
+        }
+    </script>
+    
+      
+      <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+      <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+      <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+      

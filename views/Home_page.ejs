@@ -293,9 +293,6 @@
 
     .slider-group{
       gap: 10px;
-      margin-left: 30px;
-      overflow: auto;
-      margin-right: 30px;
     }
 
     .container-category{
@@ -448,12 +445,17 @@
             min-width: 60vw !important; /* Adjusted width for mobile screens */
             height: 100%;
         }
+
     }
 
 @media (max-width: 767px) {
   .swipe-buttons {
     display: none;
   }
+
+  .custom-carousel-controls iconify-icon{
+          display: none;
+        }
 }
 
 .loading-container {
@@ -819,45 +821,34 @@ section img{
         </div>
     </div>
     
-    <div class="container head-slider-group mb-2" style="overflow: auto; position: relative;">
+    <div class="container head-slider-group mb-0" style="overflow: hidden; position: relative;height: max-content;">
       <div class="slider-group" style="display: flex; transition: transform 0.5s ease; width: 100%;">
   
           <!-- First Div -->
           <div class="custom-item">
-              <img src="../assets/Group 9.png" alt="Image 1" style="width: 60%; height: auto; object-fit: contain;">
+              <img src="../assets/Group 9.png" alt="Image 1" style="width: 40%; height: 40%; object-fit: contain;">
               <div class="text">Hair Care</div>
           </div>
   
-          <!-- Second Div -->
-          <div class="custom-item">
-              <img src="../assets/Group 8.png" alt="Image 2" style="width: 60%; height: auto; object-fit: contain;">
-              <div class="text">Face Care</div>
-          </div>
   
           <!-- Third Div -->
           <div class="custom-item">
-              <img src="../assets/Group 10.png" alt="Image 3" style="width: 60%; height: auto; object-fit: contain;">
+              <img src="../assets/Group 10.png" alt="Image 3" style="width: 40%; height: 40%; object-fit: contain;">
               <div class="text">Beard Care</div>
           </div>
   
-          <!-- Fourth Div -->
           <div class="custom-item">
-              <img src="../assets/Group 9.png" alt="Image 4" style="width: 60%; height: auto; object-fit: contain;">
-              <div class="text">Hair Care</div>
-          </div>
-  
-          <div class="custom-item">
-              <img src="../assets/Group 10.png" alt="Image 5" style="width: 60%; height: auto; object-fit: contain;">
-              <div class="text">Beard Care</div>
+              <img src="../assets/Group 8.png" alt="Image 5" style="width: 40%; height: 40%; object-fit: contain;">
+              <div class="text">Face Care</div>
           </div>
   
       </div>
   
       <!-- Left and Right Icons -->
-      <div class="slider-navigation">
+      <!-- <div class="slider-navigation">
           <div class="arrow left" onclick="scrollSlides('left')">  <iconify-icon icon="icon-park-outline:left-c"></iconify-icon></div>
           <div class="arrow right" onclick="scrollSlides('right')">  <iconify-icon icon="icon-park-outline:right-c"></iconify-icon></div>
-      </div>
+      </div> -->
   </div>
   
   <script>
@@ -882,7 +873,7 @@ section img{
   
       
 
-      <div class="container-fluid d-flex flex-column justify-content-center align-items-center products-bar mt-5">
+      <div class="container-fluid d-flex flex-column justify-content-center align-items-center products-bar mt-0">
         <div class="mb-2 filters d-flex justify-content-between align-items-center text-uppercase"data-aos="fade-up" data-aos-duration="1000">
 
           <!-- <button class="category-btn m-1" onclick="renderProducts('Face Care')">Face Care</button>
