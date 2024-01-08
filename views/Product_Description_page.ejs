@@ -4,7 +4,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <link rel="shortcut icon" type="image/x-icon" href="../assets/WhiteIcon.png">
+    <link rel="shortcut icon" type="image/x-icon" href="../assets/whitewolf-icon.ico">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="/css/Product_Desc.css">
@@ -30,48 +30,64 @@
 footer .social a{
   color: #fff;
 }
-/* ... your existing styles ... */
 
 .product-card {
-    width: 30% !important;
+        width: 24% !important;
     cursor: pointer;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
+    flex-wrap: wrap;
     background-color: #fff;
     color: #000;
-    margin: 10px;
-    padding: 1rem;
+    margin: 5px;
+    padding: 2vh;
     color: #fff;
-    border-radius: 0.5rem;
+    border-radius: 10px;
     transition: transform 0.2s;
-    height: auto;
-}
-
-@media screen and (min-width: 992px) {
-    .product-card {
-        width: 40%;
+    height: max-content;
     }
-}
+
+    .product-grid .product-title{
+        font-size: 2.5vh !important;
+    }
+
+    .product-image {
+    width: 100%;
+    height: 40vh;
+    object-fit: cover;
+    transition: transform 1s ease-in-out;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    overflow: hidden;
+    border-radius: 10px;
+    }
+
+    .product-image:hover{
+            transition: 1s ease-in-out;
+    }
+
 
 @media screen and (max-width: 576px) {
     .product-card {
         min-width: 48% !important;
     }
 
+    .product-grid .product-image{
+        width: 20vh;
+    }
+
     .product-title {
-        font-size: 11px;
         font-weight: 600;
     }
 
     .product-description {
         font-weight: 400;
         font-size: 2vh;
-    }
+    } 
 }
-
-/* ... your existing styles ... */
 
     </style>
 </head>
@@ -150,7 +166,7 @@ footer .social a{
 
           <div class="col-md-4 text-left" style="width: 30%;">
             <a class="navbar-brand" href="/">
-              <img src="/assets/newlogo.png"style="width: 7vh; height: auto;" alt="Logo">
+              <img src="/assets/ww side name logo.png_white@3x.png"style="width:auto; height: 5vh;" alt="Logo">
             </a>
           </div>
 
@@ -174,7 +190,7 @@ footer .social a{
           <div class="custom-nav d-flex justify-content-end" style="width: 30%; font-size: 1rem;">
             <% if (content.isLoggedIn === true) { %>
                 <a class="nav-link cartButtom d-flex align-items-center" style="color: #fff; font-size: 1.2rem;" onclick="openCart()">
-                <iconify-icon icon="bxs:cart-add" style="font-size: 2rem;"></iconify-icon>
+                <iconify-icon icon="mdi:cart" style="font-size: 2rem;"></iconify-icon>
                 <span style="margin-left: 5px;"></span>
                 </a>
                 <a class="nav-link d-flex align-items-center" href="/profile" style="color: #fff; font-size: 1.2rem;">
@@ -183,7 +199,7 @@ footer .social a{
                 </a>
               <% } else { %>
                 <a class="nav-link cartButtom d-flex align-items-center" style="color: #fff; font-size: 1.2rem;" onclick="openCart()">
-                   <iconify-icon icon="bxs:cart-add" style="font-size: 2rem;"></iconify-icon>
+                  <iconify-icon icon="mdi:cart" style="font-size: 2rem;"></iconify-icon>
                    <span style="margin-right: -30px;"></span>
                 </a>
                 <a class="nav-link d-flex align-items-center" href="/login" style="color: #fff; font-size: 1.2rem;">
@@ -198,37 +214,21 @@ footer .social a{
 
     <div class="card-wrapper mt-4" style="width: 100%;height: max-content;">
 
-        <div class="cardio" style="width: 100%;grid-column-gap: 10vh;height: 100%;">
-            <div class="product-imgs" style="align-self: start;">
-              <div class="main-image" id="mainImageContainer">
-                <img id="mainProductImage" src='<%= item.imageLink[0] %>' alt="Main Product Image">
-            </div>
-            <div class="additional-images">
-              <% item.imageLink.forEach((image, index) => { %>
-                  <div class="additional-image" onclick="loadImage('<%= image %>')" style="background-image: url('<%= image %>');">
-                      <!-- You can optionally include an img tag within the div for accessibility -->
-                      <!-- <img src="<%= image %>" alt="shoe image"> -->
-                  </div>
-              <% }); %>
-          </div>
-          
-          <script>
-            function loadImage(image) {
-                var mainProductImage = document.getElementById('mainProductImage');
-                
-                // Add a class to initiate the slide-out effect
-                mainProductImage.classList.add('slide-out');
-        
-                // Wait for the transition to complete before changing the image source
-                setTimeout(function() {
-                    mainProductImage.src = image;
-        
-                    // Remove the class to initiate the slide-in effect
-                    mainProductImage.classList.remove('slide-out');
-                }, 300); // Adjust the time (in milliseconds) based on the transition duration
-            }
-        </script>
-            </div>      
+        <div class="cardio" style="width: 100%;grid-column-gap: 5vh;height: 100%;">
+              <div class="product-imgs" style="align-self: start;">
+                <div class="additional-images">
+                  <% item.imageLink.forEach((image, index) => { %>
+                      <div class="additional-image" onclick="loadImage('<%= image %>')" style="background-image: url('<%= image %>');">
+                          
+                          
+                      </div>
+                  <% }); %>
+              </div>
+                <div class="main-image" id="mainImageContainer">
+                  <img id="mainProductImage" src='<%= item.imageLink[0] %>' alt="Main Product Image">
+                </div>
+            
+              </div>      
 
             <div class="product-content" style="align-self: start;">
                 <h2 class="product-title" style="color: #fff;"><%= item.name %></h2>
@@ -270,24 +270,46 @@ footer .social a{
                 </div>
 
                 <div class="social-links d-flex flex-row align-items-center">
-                      <p>Share This Product : </p>
-                      <a href = "#">
-                        <iconify-icon icon="bi:facebook"></iconify-icon>
-                      </a>
-                      <a href = "#">
-                        <iconify-icon icon="pajamas:twitter"></iconify-icon>
-                      </a>
-                      <a href = "#">
-                        <iconify-icon icon="lucide:instagram"></iconify-icon>
-                      </a>
-                      <a href = "#">
-                        <iconify-icon icon="ic:sharp-whatsapp"></iconify-icon>
-                      </a>
-                  </div>
+                  <p>Share This Product : </p>
+                  <!-- Replace 'your_product_url' with the actual URL of your product -->
+                  <a href="https://www.facebook.com/sharer/sharer.php?u%= item.name" target="_blank">
+                      <iconify-icon icon="bi:facebook"></iconify-icon>
+                  </a>
+                  <!-- Replace 'your_product_url' and 'Your%20Product%20Description' with the actual URL and description of your product -->
+                  <a href="https://twitter.com/intent/tweet?url=your_product_url&text=Your%20Product%20Description" target="_blank">
+                      <iconify-icon icon="pajamas:twitter"></iconify-icon>
+                  </a>
+                  <!-- Replace 'your_product_url' with the actual URL of your product -->
+                  <a href="https://www.instagram.com/?url=your_product_url" target="_blank">
+                      <iconify-icon icon="lucide:instagram"></iconify-icon>
+                  </a>
+                  <!-- Replace 'your_product_url' and 'Your%20Product%20Description' with the actual URL and description of your product -->
+                  <a href="https://api.whatsapp.com/send?text=Your%20Product%20Description%20- %20your_product_url" target="_blank">
+                      <iconify-icon icon="ic:sharp-whatsapp"></iconify-icon>
+                  </a>
+              </div>
+              
             </div>
 
         </div>
     </div>
+
+    <script>
+      function loadImage(image) {
+          var mainProductImage = document.getElementById('mainProductImage');
+          
+          // Add a class to initiate the slide-out effect
+          mainProductImage.classList.add('slide-out');
+  
+          // Wait for the transition to complete before changing the image source
+          setTimeout(function() {
+              mainProductImage.src = image;
+  
+              // Remove the class to initiate the slide-in effect
+              mainProductImage.classList.remove('slide-out');
+          }, 300); // Adjust the time (in milliseconds) based on the transition duration
+      }
+  </script>
 
     <div class="faq-section mt-5 mb-5">
         <div class="faq-question" onclick="toggleFAQ(this)">
@@ -346,7 +368,7 @@ footer .social a{
       </select>
   
       <div class="review-section" id="positiveReviews">
-          <!-- Display reviews dynamically using JavaScript -->
+          
       </div>
   
       <script>
@@ -385,50 +407,63 @@ footer .social a{
                   .catch(err => showAlert("Something went wrong loading reviews", "danger"));
           });
           function drawReviewChart() {
-            // Assuming ratingCounts is an array containing the counts of each rating
-            const maxRatingCount = Math.max(...ratingCounts);
+    // Assuming ratingCounts is an array containing the counts of each rating
+    const maxRatingCount = Math.max(...ratingCounts);
 
-            var ctx = document.getElementById('ratingsChart').getContext('2d');
-            var ratingsChart = new Chart(ctx, {
-                type: 'bar',
-                data: {
-                    labels: ['1 Star', '2 Stars', '3 Stars', '4 Stars', '5 Stars'],
-                    datasets: [{
-                        label: '',
-                        data: ratingCounts,
-                        backgroundColor: [
-                            '#FF5733',
-                            '#FFD933',
-                            '#33FF57',
-                            '#33B5FF',
-                            '#8333FF'
-                        ],
-                        borderColor: [
-                            '#FF5733',
-                            '#FFD933',
-                            '#33FF57',
-                            '#33B5FF',
-                            '#8333FF'
-                        ],
-                        borderWidth: 1
-                    }]
+    var ctx = document.getElementById('ratingsChart').getContext('2d');
+    var ratingsChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: ['1 Star', '2 Stars', '3 Stars', '4 Stars', '5 Stars'],
+            datasets: [{
+                label: '',
+                data: ratingCounts,
+                borderWidth: 2,
+                barThickness: 10,
+                backgroundColor: [
+                    '#FF5733',
+                    '#FFD933',
+                    '#33FF57',
+                    '#33B5FF',
+                    '#8333FF'
+                ],
+                borderColor: [
+                    '#FF5733',
+                    '#FFD933',
+                    '#33FF57',
+                    '#33B5FF',
+                    '#8333FF'
+                ],
+                borderRadius: 5, // Set the border radius for every corner
+            }]
+        },
+        options: {
+            indexAxis: 'y',
+            responsive: true,
+            plugins: {
+                legend: {
+                    display: false,
                 },
-                options: {
-                    scales: {
-                        y: {
-                            display: false,
-                            beginAtZero: true,
-                            max: maxRatingCount + 3  // Adjusted to fit the highest count and add some buffer
-                        },
-                        x: {
-                            grid: {
-                                display: false
-                            }
-                        }
+                title: {
+                    display: false,
+                    text: 'Chart.js Horizontal Bar Chart'
+                }
+            },
+            scales: {
+                x: {
+                    display: false,
+                    beginAtZero: true,
+                    max: maxRatingCount + 3
+                },
+                y: {
+                    grid: {
+                        display: false
                     }
                 }
-            });
+            }
         }
+    });
+}
 
   
           function filterReviews() {
@@ -475,67 +510,8 @@ footer .social a{
   <h2 class="people m-2 mt-4" style="font-size:5vh;">People Also Bought</h2>
   <div id="productGrid" class="row mb-3 product-grid container onmousedown="startScroll(event)" onmouseup="stopScroll()" ontouchstart="startScroll(event)" ontouchend="stopScroll()">
   </div>
-
-  <footer class="container-fluid mt-5 d-flex flex-column container text-white p-3 footer"style="background-color: #000;">
-    <div class=" text-left mt-3 p-5" style="background-color: #070707;">
-       <div class="row">
-          <div class="col-md-3">
-             <img src="../assets/newlogo.png" alt="Logo" class="img-fluid mb-3" style="width: auto;height: 10vh;">
-          </div>
-          <div class="col-md-6 d-flex footer-menu">
-             <div class="col-md-6 mr-3 list-unstyled">
-                <li><a href="#" class="text-white">About us</a></li>
-                <li><a href="#" class="text-white">FAQ</a></li>
-                <li><a href="#" class="text-white">Shipping and Payment</a></li>
-                <li><a href="#" class="text-white">Partners</a></li>
-                <li><a href="#" class="text-white">Blog</a></li>
-                <li><a href="#" class="text-white">Contact Us</a></li>
-             </div>
-             <div class="col-md-6 ml-3 list-unstyled">
-                <li><a href="#" class="text-white">Customer Reviews</a></li>
-                <li><a href="#" class="text-white">Hair Care</a></li>
-                <li><a href="#" class="text-white">Skin Care</a></li>
-                <li><a href="#" class="text-white">Face Care</a></li>
-             </div>
-          </div>
-          <div class="col-md-3 d-flex flex-column align-items-end">
-             <button class="btn btn-light mb-2">Shop Now</button>
-             <p>+(123) 123-99-999</p>
-             <p>info@WhiteWolf.com</p>
-          </div>
-       </div>
-       <div class="row mt-5">
-          <div class="col-md-3 social">
-             <ul class="list-unstyled">
-                <a href="#" class="mr-2"><iconify-icon icon="mdi:instagram"></iconify-icon></i></a>
-                <a href="#" class="mr-2"><iconify-icon icon="ic:baseline-whatsapp"></iconify-icon></i></a>
-             </ul>
-          </div>
-          <div class="col-md-6 d-flex">
-            <p>KUSHMANDA COSMETICS PVT. LTD., PLOT NO. 191,<br> 1ST FLOOR, INDUSTRIAL AREA PHASE 2,<br>CHANDIGARH - 160002</p>
-          </div>
-          <div class="col-md-3 d-flex flex-column align-items-end">
-          </div>
-       </div>
-    </div>
-    <div class="container mt-5">
-       <div class="row d-flex justify-content-between">
-          <div class="col-md-5">
-             <h3>If you didn't find the products you are interested in or have questions?</h3>
-          </div>
-          <div class="col-md-6">
-             <p>Enter your email:</p>
-             <div class="input-group mb-3">
-                <input type="email" class="form-control" placeholder="Your email here" aria-label="Your email" aria-describedby="basic-addon2" style="background-color: #000;">
-                <button class="btn btn-outline-secondary" type="button" id="basic-addon2">
-                <iconify-icon icon="ei:arrow-right"></iconify-icon>
-                </button>
-             </div>
-          </div>
-       </div>
-    </div>
-    <p class="pl-3">2023 - Copyright, All Rights Reserved.</p>
- </footer>
+  <%- include('partials/footer') %>
+  
  <%- include('partials/loader') %>
 
     <script>
@@ -713,8 +689,6 @@ footer .social a{
     hoverImage.style.display = 'none';
   });
 
-
-
   return productCard;
   }
 
@@ -748,48 +722,6 @@ footer .social a{
         }
     }
 </script>
-
-<script>
-  document.addEventListener('DOMContentLoaded', function () {
-      var mainImageContainer = document.getElementById('mainImageContainer');
-      var mainProductImage = document.getElementById('mainProductImage');
-
-      // Wait for the image to load
-      mainProductImage.onload = function () {
-          // Create a canvas element
-          var canvas = document.createElement('canvas');
-          var context = canvas.getContext('2d');
-
-          // Set the canvas dimensions to match the image
-          canvas.width = mainProductImage.width;
-          canvas.height = mainProductImage.height;
-
-          // Draw the image onto the canvas
-          context.drawImage(mainProductImage, 0, 0, mainProductImage.width, mainProductImage.height);
-
-          // Get the average color of the image
-          var imageData = context.getImageData(0, 0, mainProductImage.width, mainProductImage.height).data;
-          var totalPixels = mainProductImage.width * mainProductImage.height;
-          var sumRed = 0, sumGreen = 0, sumBlue = 0;
-
-          for (var i = 0; i < totalPixels; i++) {
-              sumRed += imageData[i * 4];
-              sumGreen += imageData[i * 4 + 1];
-              sumBlue += imageData[i * 4 + 2];
-          }
-
-          var averageColor = {
-              red: Math.round(sumRed / totalPixels),
-              green: Math.round(sumGreen / totalPixels),
-              blue: Math.round(sumBlue / totalPixels),
-          };
-
-          // Set the background color of the container
-          mainImageContainer.style.backgroundColor = 'rgb(' + averageColor.red + ',' + averageColor.green + ',' + averageColor.blue + ')';
-      };
-  });
-</script>
-
 
 </body>
 </html>

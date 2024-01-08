@@ -1,27 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
    <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>WhiteWolf Internationals</title>
-    <link rel="shortcut icon" type="image/x-icon" href="../assets/whitewolf-icon.ico">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.css"/>
-    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick-theme.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aos@2.3.1/dist/aos.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@200;400;500&display=swap">
-    <link rel="stylesheet" href="/css/Home.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;800&display=swap" rel="stylesheet">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
-    <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
-    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
-    
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>WhiteWolf Internationals</title>
+      <link rel="shortcut icon" type="image/x-icon" href="../assets/whitewolf-icon.ico">
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css">
+      <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.css"/>
+      <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick-theme.css">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+      <link rel="stylesheet" href="/css/Home.css">
+      <link rel="preconnect" href="https://fonts.googleapis.com">
+      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+      <link href="https://cdn.jsdelivr.net/npm/aos@2.3.1/dist/aos.css" rel="stylesheet">
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@200;400;500&display=swap">
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.js"></script>
+      <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+      <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+      <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+
   </head>
    <body>
       <%- include('partials/nav') %> 
@@ -91,17 +89,10 @@
              left: 2vh !important;
            }
 
-           /* .bg-image {
-  height: auto;
-  background-size: contain;
-  background-position: center;
-  background-repeat: no-repeat;
-  border-radius: 10px;
-} */
-         }
+      }
 
          .bg .row {
-  min-height: 400px; /* Set a minimum height for the row */
+  min-height: 400px; 
 }
 
 .bg-image {
@@ -110,9 +101,6 @@
   background-position: center;
   background-repeat: no-repeat;
 }
-
-
-
 
         .reel-item {
     display: flex;
@@ -158,7 +146,8 @@
   background-color: #000;
   padding: 40px 80px;
   display: flex;
-  flex-wrap: wrap;
+  overflow: auto;
+  flex-wrap: nowrap;
   justify-content: space-evenly;
   -webkit-font-smoothing: antialiased;
 }
@@ -197,7 +186,7 @@
   flex: 0 0 240px;
   width: 240px;
   height: 320px;
-  background-color: #000;
+  background-color: transparent;
   overflow: hidden;
   border-radius: 10px;
   box-shadow: rgba(0, 0, 0, 0.66) 0 30px 60px 0, inset #333 0 0 0 5px, inset rgba(255, 255, 255, 0.5) 0 0 0 6px;
@@ -279,8 +268,6 @@
     display: inline-block;
 }
 
-
-
 @media (max-width: 767px) {
   #scrollButton {
     right: 35% !important; 
@@ -288,12 +275,61 @@
 
   .bg-image{
     height: 100% !important;
-    background-size:cover;
+    background-size:contain;
     background-position:center;
+    background-image: url('../assets/newarrival.jpg') !important;
   }
+
+  
 
 }
 
+@media only screen and (max-width: 767px) {
+    .slider-navigation {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 10px; 
+    }
+
+    .slider-group{
+      gap: 10px;
+      margin-left: 30px;
+      overflow: auto;
+      margin-right: 30px;
+    }
+
+    .container-category{
+      justify-content: flex-start;
+      margin-left: -10vh;
+    }
+
+    .container-category::-webkit-scrollbar{
+      display: none;
+    }
+
+    .container-category .card-wrap{
+      width: 30% !important;
+    }
+
+    .slider-navigation .arrow {
+      font-size: 24px;
+      color: #fff;
+      cursor: pointer;
+    }
+    .head-slider-group::-webkit-scrollbar {
+  display: none;
+}
+    .custom-item img{
+      width: 100% !important;
+      height: auto;
+    }
+  }
+
+  @media only screen and (min-width: 768px) {
+    .slider-navigation {
+      display: none;
+    }
+  }
 
 .sale-container {
  width: 95vw;
@@ -407,6 +443,13 @@
   display: block;
 }
 
+@media only screen and (max-width: 768px) {
+        .custom-slides .custom-slide {
+            min-width: 60vw !important; /* Adjusted width for mobile screens */
+            height: 100%;
+        }
+    }
+
 @media (max-width: 767px) {
   .swipe-buttons {
     display: none;
@@ -481,42 +524,34 @@
       object-fit: cover;
     }
 
-    .carousel {
-            padding: 0;
-            width: 100%;
-            overflow: hidden;
-            position: relative;
-        }
+    
 
-        .slides {
-  display: flex;
-  flex-wrap: nowrap;
+.carousel-container {
+  position: relative;
+}
+
+.carousel {
+  position: relative;
+}
+
+.arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 24px;
   cursor: pointer;
-  gap: 16px;
-  cursor: -webkit-grab;
-  transition: transform 0.5s ease-in-out;
-  overflow-x: scroll;
-  -ms-overflow-style: none;
-  scrollbar-width: none;
+  color: white;
+  background-color: rgba(0, 0, 0, 0.5);
+  padding: 8px;
+  border-radius: 50%;
 }
 
-.slides::-webkit-scrollbar {
-  display: none;
+.arrow.prev {
+  left: 10px;
 }
 
-.slides .slide {
-  height: auto; /* Set height to auto to maintain aspect ratio */
-  width: 30vw;
-  min-width: 30vw;
-  display: block;
-  object-fit: cover; /* Maintain aspect ratio without stretching */
-  border-radius: 0;
-}
-
-.slides .slide img {
-  width: 100%;
-  height: 100%;
-  display: block;
+.arrow.next {
+  right: 10px;
 }
 
         .arrow {
@@ -542,24 +577,16 @@
             right: 10px;
         }
 
-        @media (max-width: 768px) {
-            .slides .slide {
-                min-width: 70%;
-                height:auto;
-            }
-
-        }
-
         .bg-video {
         width: 100%;
         height: auto;
         z-index: -2;
         border-radius:2rem;
-        /* border: 1px solid #fff; */
+        
     }
 
     .col-12 {
-        overflow: hidden; /* Ensures the video stays within its container */
+        overflow: hidden; 
     }
 
     #top{
@@ -630,9 +657,8 @@ section img{
 #sec p{
   text-align: justify;
   text-transform: capitalize;
-    font-size: 3vh;
-
-  font-weight:300;
+    font-size: 2.5vh;
+  font-weight:400;
     color:#000;
 
 }
@@ -665,9 +691,21 @@ section img{
   animation: floatAnimation 2s ease-in-out infinite; 
 }
 
+.custom-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.custom-item .text {
+    color: white;
+    font-size: 2vh;
+    text-align: center;
+}
 
        </style>
-      <section id="top">
+
+       <section id="top">
         <img src="https://aryan-tayal.github.io/Mountains-Parallax/bg.jpg" id="bg" />
         <h2 id="text">WhiteWolf</h2>
         <img src="../assets/wolf-hero.jpg" id="man" />
@@ -684,6 +722,91 @@ section img{
         </p>
       </section>
 
+      <style>
+        .custom-carousel-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+    
+        .custom-carousel-container {
+            padding: 0;
+            width: 100%;
+            overflow: hidden;
+            position: relative;
+        }
+    
+        .custom-slides {
+            display: flex;
+            flex-wrap: nowrap;
+            cursor: pointer;
+            gap: 16px;
+            cursor: -webkit-grab;
+            transition: transform 0.5s ease-in-out;
+            overflow-x: scroll;
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    
+        .custom-slides::-webkit-scrollbar {
+            display: none;
+        }
+    
+        .custom-slides .custom-slide {
+            height: auto;
+            width: 30vw;
+            min-width: 30vw;
+            display: block;
+            object-fit: cover;
+            border-radius: 0;
+        }
+    
+        .custom-slides .custom-slide img {
+            width: 100%;
+            height: 100%;
+            display: block;
+        }
+    </style>
+    
+
+      <div class="custom-carousel-container mt-5 mb-3" data-aos="fade-up" data-aos-duration="1000">
+        <div class="custom-carousel-controls container-fluid d-flex align-items-end justify-content-end" style="font-size: 5vh;">
+            <div class="custom-carousel-left mr-2" style="color: #fff; cursor: pointer;margin-right: 1vh;" onclick="scrollCustomSlides('left')">
+                <iconify-icon icon="icon-park-outline:left-c"></iconify-icon>
+            </div>
+            <div class="custom-carousel-right ml-auto" style="color: #fff; cursor: pointer;" onclick="scrollCustomSlides('right')">
+                <iconify-icon icon="icon-park-outline:right-c"></iconify-icon>
+            </div>
+        </div>
+    
+        <div class="custom-slides">
+            <div class="custom-slide"><img src="/assets/whitewolfslider1.jpg" alt="Image 1"></div>
+            <div class="custom-slide"><img src="/assets/whitwolfslider3.jpg" alt="Image 2"></div>
+            <div class="custom-slide"><img src="/assets/whitwolfslider2.jpg" alt="Image 3"></div>
+            <div class="custom-slide"><img src="/assets/whitewolfslider4.jpg" alt="Image 4"></div>
+        </div>
+    </div>
+    
+    <script>
+      function scrollCustomSlides(direction) {
+          const slidesContainer = document.querySelector('.custom-slides');
+          const slideWidth = document.querySelector('.custom-slide').offsetWidth;
+  
+          if (direction === 'left') {
+              slidesContainer.scrollTo({
+                  left: slidesContainer.scrollLeft - slideWidth,
+                  behavior: 'smooth'
+              });
+          } else if (direction === 'right') {
+              slidesContainer.scrollTo({
+                  left: slidesContainer.scrollLeft + slideWidth,
+                  behavior: 'smooth'
+              });
+          }
+      }
+  </script>
+  
+    
 
       <div class="container-fluid p-5 mb-0 mt-0">
         <div class="row">
@@ -696,18 +819,75 @@ section img{
         </div>
     </div>
     
-
-    <div class="carousel mt-0 mb-5"  data-aos="fade-up" data-aos-duration="1000">
-      <div class="slides">
-          <div class="slide"><img src="/assets/whitewolfslider1.jpg" alt="Image 1"></div>
-          <div class="slide"><img src="/assets/whitwolfslider3.jpg" alt="Image 2"></div>
-          <div class="slide"><img src="/assets/whitwolfslider2.jpg" alt="Image 3"></div>
-          <div class="slide"><img src="/assets/whitewolfslider4.jpg" alt="Image 4"></div>
+    <div class="container head-slider-group mb-2" style="overflow: auto; position: relative;">
+      <div class="slider-group" style="display: flex; transition: transform 0.5s ease; width: 100%;">
+  
+          <!-- First Div -->
+          <div class="custom-item">
+              <img src="../assets/Group 9.png" alt="Image 1" style="width: 60%; height: auto; object-fit: contain;">
+              <div class="text">Hair Care</div>
+          </div>
+  
+          <!-- Second Div -->
+          <div class="custom-item">
+              <img src="../assets/Group 8.png" alt="Image 2" style="width: 60%; height: auto; object-fit: contain;">
+              <div class="text">Face Care</div>
+          </div>
+  
+          <!-- Third Div -->
+          <div class="custom-item">
+              <img src="../assets/Group 10.png" alt="Image 3" style="width: 60%; height: auto; object-fit: contain;">
+              <div class="text">Beard Care</div>
+          </div>
+  
+          <!-- Fourth Div -->
+          <div class="custom-item">
+              <img src="../assets/Group 9.png" alt="Image 4" style="width: 60%; height: auto; object-fit: contain;">
+              <div class="text">Hair Care</div>
+          </div>
+  
+          <div class="custom-item">
+              <img src="../assets/Group 10.png" alt="Image 5" style="width: 60%; height: auto; object-fit: contain;">
+              <div class="text">Beard Care</div>
+          </div>
+  
+      </div>
+  
+      <!-- Left and Right Icons -->
+      <div class="slider-navigation">
+          <div class="arrow left" onclick="scrollSlides('left')">  <iconify-icon icon="icon-park-outline:left-c"></iconify-icon></div>
+          <div class="arrow right" onclick="scrollSlides('right')">  <iconify-icon icon="icon-park-outline:right-c"></iconify-icon></div>
       </div>
   </div>
+  
+  <script>
+      let currentIndex = 0;
+  
+      function scrollSlides(direction) {
+          const slider = document.querySelector('.slider-group');
+          const slideWidth = document.querySelector('.custom-item').offsetWidth;
+  
+          if (direction === 'left') {
+              currentIndex = (currentIndex - 1 + 5) % 5;
+          } else if (direction === 'right') {
+              currentIndex = (currentIndex + 1) % 5;
+          }
+  
+          const translateValue = -currentIndex * slideWidth;
+          slider.style.transform = `translateX(${translateValue}px)`;
+      }
+  </script>
+  
+  
+  
+      
 
       <div class="container-fluid d-flex flex-column justify-content-center align-items-center products-bar mt-5">
-        <div class="mb-2 filters d-flex justify-content-between align-items-center text-uppercase" data-aos="fade-up" data-aos-duration="1000">
+        <div class="mb-2 filters d-flex justify-content-between align-items-center text-uppercase"data-aos="fade-up" data-aos-duration="1000">
+
+          <!-- <button class="category-btn m-1" onclick="renderProducts('Face Care')">Face Care</button>
+          <button class="category-btn m-1" onclick="renderProducts('Hair Care')">Hair Care</button>
+          <button class="category-btn m-1" onclick="renderProducts('Body Care')">Body Care</button> -->
 
           <h2 class="text-light">Our Top Sellers</h2>
        </div>     
@@ -784,13 +964,14 @@ section img{
         </div>
        </main>
 
-      <div class="container-fluid p-4 bg" data-aos="fade-up" data-aos-duration="1000">
-         <div class="row">
-             <div class="col-12 p-2">
-                 <div class="bg-image" style="background-image: url('../assets/creative.png');"></div>
-             </div>
-         </div>
-     </div>
+       <div class="container-fluid p-4 bg" data-aos="fade-up" data-aos-duration="1000">
+        <div class="row">
+            <div class="col-12 p-2">
+                <div class="bg-image" style="background-image: url('../assets/creative.png');"></div>
+            </div>
+        </div>
+    </div>
+    
 
       <div class="container-fluid mt-3 mb-5 m-2">
          <h2 class="text-center text-white mb-2">Search Through Category</h2>
@@ -811,7 +992,7 @@ section img{
               <h2 slot="header">Skin</h2>
             </card>
           </a>
-
+                    
         </div>
       </div>
 
@@ -1047,8 +1228,8 @@ section img{
     effect: 'coverflow',
     loop: true,
     centeredSlides: true,
-    slidesPerView: 'auto', 
-    spaceBetween: 10, 
+    slidesPerView: 'auto', // Display 5 cards at once
+    spaceBetween: 10, // Adjust the space between slides as needed
     coverflowEffect: {
       rotate: 30,
       stretch: 10,
@@ -1062,23 +1243,6 @@ section img{
     },
   });
 </script>
-
-
-<div class="custom-container">
-  <div class="custom-div" style="color:#fff">
-      <span data-speed="-300">W</span>
-      <span data-speed="100">H</span>
-      <span data-speed="300">I</span>
-      <span data-speed="-300">t</span>
-      <span data-speed="350">E</span>
-      <span data-speed="200">W</span>
-      <span data-speed="-310">O</span>
-      <span data-speed="200">L</span>
-      <span data-speed="-340">F</span>
-  </div>
-</div>
-
-
 <%- include('partials/footer') %>
       <script>
          let products = [];
@@ -1145,7 +1309,7 @@ section img{
          function createProductCard(product) {
          const productCard = document.createElement('div');
          productCard.className = 'col-md-4 product-card product';
-
+         
          var words = product.description.split(" ");
           product.description = words.slice(0, 8).join(" ");
           if (words.length > 8) {
@@ -1404,111 +1568,70 @@ window.addEventListener('scroll',()=>{
 
 <script src='https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.3/gsap.min.js'></script>
 <script src='https://unpkg.com/gsap@3/dist/Draggable.min.js'></script>
-
-
-<!-- Include GSAP and ScrollTrigger libraries -->
-<!-- Include GSAP library -->
-<script src="https://unpkg.com/gsap@3.10.1/dist/gsap.min.js"></script>
-
-<!-- Include ScrollTrigger library separately -->
-<script src="https://unpkg.com/scrolltrigger-classes@1.0.1/dist/ScrollTrigger.min.js"></script>
-
-
 <script>
-  function animateCustomText() {
-    gsap.from('.custom-div span', {
-        y: (i, el) => (1 - parseFloat(el.getAttribute('data-speed'))),
-        opacity: 0,
-        scrollTrigger: {
-            trigger: '.custom-container',
-            start: 'top bottom',
-            end: 'bottom bottom',
-            scrub: 1.9
-        }
-    });
-}
+ const images = gsap.utils.toArray(".item");
 
-animateCustomText();
-  gsap.registerPlugin(ScrollTrigger);
+ const imageSize = images.length;
+ const total = images.length;
+ const degree = 360 / total;
 
-  const images = gsap.utils.toArray(".item");
-  const imageSize = images.length;
-  const total = images.length;
-  const degree = 360 / total;
+ const init = () => {
+ const timeline = gsap.timeline();
 
-  const init = () => {
-    const timeline = gsap.timeline();
+ images.forEach((image, index) => {
+   const sign = Math.floor((index / 2) % 2) ? 1 : -1;
+   const value = Math.floor((index + 4) / 4) * 4;
+   const rotation = index > imageSize - 3 ? 0 : sign * value;
+   console.log(rotation);
 
+   gsap.set(image, {
+     rotation: rotation,
+     scale: 0.5,
+   });
 
-    images.forEach((image, index) => {
-      const sign = Math.floor((index / 2) % 2) ? 1 : -1;
-      const value = Math.floor((index + 4) / 4) * 4;
-      const rotation = index > imageSize - 3 ? 0 : sign * value;
+   timeline.from(
+     image,
+     {
+       x: () =>
+         index % 2
+           ? window.innerWidth + image.clientWidth * 4
+           : -window.innerWidth - image.clientWidth * 4,
+       y: () => window.innerHeight - image.clientHeight,
+       rotation: index % 2 ? 200 : -200,
+       scale: 4,
+       opacity: 1,
+       ease: "power4.out",
+       duration: 1,
+       delay: 0.15 * Math.floor(index / 2),
+     },
+     0
+   );
 
-      gsap.set(image, {
-        rotation: rotation,
-        scale: 0.5,
-      });
+   let rotationAngle = index * degree;
+   timeline.to(
+     image,
+     {
+       scale: 1,
+       duration: 0,
+     },
+     0.15 * (imageSize / 2 - 1) + 1
+   );
 
-      ScrollTrigger.create({
-        trigger: image,
-        start: "top 80%",
-        onEnter: () => {
-          timeline.from(
-            image,
-            {
-              x: () =>
-                index % 2
-                  ? window.innerWidth + image.clientWidth * 4
-                  : -window.innerWidth - image.clientWidth * 4,
-              y: () => window.innerHeight - image.clientHeight,
-              rotation: index % 2 ? 200 : -200,
-              scale: 4,
-              opacity: 1,
-              ease: "power4.out",
-              duration: 1,
-              delay: 0.15 * Math.floor(index / 2),
-            },
-            0
-          );
-        },
-      });
+   timeline.to(
+     image,
+     {
+       transformOrigin: "center 200vh",
+       rotation:
+         index > imageSize / 2 ? -degree * (imageSize - index) : rotationAngle,
+       duration: 1,
+       ease: "power1.out",
+     },
+     0.15 * (imageSize / 2 - 1) + 1
+   );
+ });
+ };
 
-      let rotationAngle = index * degree;
-      ScrollTrigger.create({
-        trigger: image,
-        start: "top 50%", // Adjust this value based on when you want the rotation animation to start
-        onEnter: () => {
-          timeline.to(
-            image,
-            {
-              scale: 1,
-              duration: 0,
-            },
-            0.15 * (imageSize / 2 - 1) + 1
-          );
-
-          timeline.to(
-            image,
-            {
-              transformOrigin: "center 200vh",
-              rotation:
-                index > imageSize / 2
-                  ? -degree * (imageSize - index)
-                  : rotationAngle,
-              duration: 1,
-              ease: "power1.out",
-            },
-            0.15 * (imageSize / 2 - 1) + 1
-          );
-        },
-      });
-    });
-  };
-
-  
-
-  const draggable = () => {
+ const draggable = () => {
  let start = 0;
  Draggable.create(".items", {
    type: "rotation",
@@ -1544,93 +1667,64 @@ animateCustomText();
  });
  };
 
+ init();
+ draggable();
 
-  init();
-  draggable();
+ var scrollButton = document.getElementById("scrollButton");
+scrollButton.style.display = "block";
 
-  var scrollButton = document.getElementById("scrollButton");
-  scrollButton.style.display = "block";
+window.onscroll = function () {
+  showScrollButton();
+};
 
-  window.onscroll = function () {
-    showScrollButton();
-  };
-
-  function showScrollButton() {
-    if (
-      document.body.scrollTop > 10 ||
-      document.documentElement.scrollTop > 10
-    ) {
-      scrollButton.style.opacity = "0";
-    } else {
-      scrollButton.style.opacity = "1";
-    }
+function showScrollButton() {
+  if (document.body.scrollTop > 10 || document.documentElement.scrollTop > 10) {
+    scrollButton.style.opacity = "0";
+  } else {
+    scrollButton.style.opacity = "1";
   }
+}
 
-  function scrollToContent() {
-    var contentSection = document.getElementById("sec");
+function scrollToContent() {
+  var contentSection = document.getElementById("sec");
 
-    if (contentSection) {
-      contentSection.scrollIntoView({ behavior: "smooth" });
-    }
+  if (contentSection) {
+    contentSection.scrollIntoView({ behavior: "smooth" });
   }
+}
 
-  function showScrollCardButton() {
-    var scrollCardButton = document.getElementById("scrollCardRightButton");
-    scrollCardButton.classList.add("show");
+function showScrollCardButton() {
+  var scrollCardButton = document.getElementById("scrollCardRightButton");
+  scrollCardButton.classList.add("show");
+}
+
+function scrollCardContainerRight() {
+  var cardContainer = document.querySelector(".items");
+  if (cardContainer) {
+    cardContainer.scrollLeft += 100; 
   }
-
-  function scrollCardContainerRight() {
-    var cardContainer = document.querySelector(".items");
-    if (cardContainer) {
-      cardContainer.scrollLeft += 100;
-    }
-  }
-</script>
-
-
-<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
-
-<script>
-  $(document).ready(function(){
-    $('.owl-carousel').owlCarousel({
-      loop: true,
-      margin: 10,
-      responsiveClass: true,
-      dots: false,
-      responsive: {
-        0: { items: 1 },
-        600: { items: 3 },
-      }
-    });
-  });
+}
 </script>
 
 <script>
-  gsap.registerPlugin(ScrollTrigger);
 
   function handleSaleContainerAnimation() {
-      var saleContainer = document.getElementById("saleContainer");
+    var saleContainer = document.getElementById("saleContainer");
 
-      gsap.to(saleContainer, {
-          opacity: 1, // Set the final opacity or other animation properties
-          scrollTrigger: {
-              trigger: saleContainer,
-              start: "top 80%", // Adjust this value based on when you want the animation to start
-              end: "bottom 20%", // Adjust this value based on when you want the animation to end
-              toggleActions: "play none none none", // Play the animation when in the viewport
-              once: true, // Only play the animation once
-          },
-      });
+    var rect = saleContainer.getBoundingClientRect();
+    var isVisible = rect.top < window.innerHeight && rect.bottom >= 0;
+
+    if (isVisible) {
+
+      saleContainer.classList.add("animate-sale-container");
+
+      window.removeEventListener("scroll", handleSaleContainerAnimation);
+    }
   }
 
-  // Call the function when the DOM is fully loaded
-  // document.addEventListener("DOMContentLoaded", function () {
-  //     handleSaleContainerAnimation();
-  // });
-</script>
+  window.addEventListener("scroll", handleSaleContainerAnimation);
 
-  </script>
+</script>
 
       <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
       <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>

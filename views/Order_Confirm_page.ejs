@@ -17,10 +17,6 @@
             font-family: 'Outfit', sans-serif;
         }
 
-        /* Remove the increase and decrease buttons for number input */
-         input[type="number"] {
-         -moz-appearance: textfield; /* Firefox */
-         }
 
          /* Additional styles to prevent the default arrow appearance in Safari */
          input[type="number"]::-webkit-inner-spin-button,
@@ -408,7 +404,7 @@
             function imageCell (link) {
                var item = document.createElement('td')
                
-               item.innerHTML = `<img src="${link}" alt="product image" style="height:50px;width:50px;">`;
+               item.innerHTML = `<img src="${link}" alt="product image" style="height:auto;width:5vh">`;
                return item
             }
             function addTableRow(imageLink,name, price, quantity) {
