@@ -22,10 +22,10 @@ app.use(
 );
 
 // Create a write stream for the log file
-const fs = require('fs');
-const logStream = fs.createWriteStream(path.join(__dirname, 'accessData.csv'), { flags: 'a' });
-const csvFormat = ':date[iso],:remote-addr,:remote-user,:method,:url,:http-version,:status,:res[content-length],:referrer,:user-agent';
-app.use(morgan(csvFormat, { stream: logStream }));
+// const fs = require('fs');
+// const logStream = fs.createWriteStream(path.join(__dirname, 'accessData.csv'), { flags: 'a' });
+// const csvFormat = ':date[iso],:remote-addr,:remote-user,:method,:url,:http-version,:status,:res[content-length],:referrer,:user-agent';
+// app.use(morgan(csvFormat, { stream: logStream }));
 
 // using views dorectory to load views
 app.set('views', path.join(__dirname, 'views'));
