@@ -55,5 +55,5 @@ app.get('*', (req,res) => {
 
 mongoose.connect( process.env.MongoDB_URL || "mongodb://127.0.0.1:27017/GYMER?retryWrites=true&w=majority")
 .then(console.log(`MongoDB Conneted (${process.env.MongoDB_URL || "mongodb://127.0.0.1:27017/GYMER?retryWrites=true&w=majority"})`))
-.then(app.listen(port, () => { console.log(`Server Listen On ${port}`)}))
+.then(app.listen(port,'127.0.0.1', () => { console.log(`Server Listen On ${port}`)}))
 .catch(err => {console.log("An error occured at Mongo Connection\n" + err)})
