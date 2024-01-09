@@ -54,7 +54,7 @@ router.put('/api/update-order-status/:razorpay_order_id',isAdminAuthenticated,  
 const Product = require('../schemas/product_schema');
 const multerMiddleware = require('../middlewares/multer');
 
-router.post('/api/products',isAdminAuthenticated,  multerMiddleware.array('files', 3), async (req, res) => {
+router.post('/api/products',isAdminAuthenticated,  multerMiddleware.array('files') , async (req, res) => {
   try {
     console.log("route started")
     // Check if files are present
@@ -81,7 +81,7 @@ router.post('/api/products',isAdminAuthenticated,  multerMiddleware.array('files
       imageLink,
     });
     const sanitizedName = name.replace(/\s+/g, '-'); 
-    newProduct.itemId = "sid-" + sanitizedName + "-" + newProduct._id;
+    newProduct.itemId = "id-" + sanitizedName + "-" + newProduct._id;
 
     console.log("product saved")
     // Save the product to the database
@@ -94,7 +94,6 @@ router.post('/api/products',isAdminAuthenticated,  multerMiddleware.array('files
   }
 });
 
-// under development
 router.put('/api/products',isAdminAuthenticated,  async (req, res) => {
     const {itemId, offeredPrice, originalPrice, stock} = req.body.formdata
     try {
