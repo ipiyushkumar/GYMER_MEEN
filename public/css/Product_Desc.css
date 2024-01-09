@@ -32,6 +32,10 @@ body{
         grid-template-columns: 1fr; 
     }
 
+    .slider-images::-webkit-scrollbar{
+        display: none;
+    }
+
     .custom-carousel-controls{
         position: absolute;
         width: 90% !important;
@@ -170,7 +174,7 @@ body{
 
   .additional-image {
     width: 100%;
-    height: 15vh;
+    height: 10vh;
     background-size:cover;
     background-color: #fff;
     background-repeat: no-repeat;
