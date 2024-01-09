@@ -228,12 +228,10 @@ footer .social a{
     <div class="card-wrapper mt-4" style="width: 100%;height: max-content;">
 
         <div class="cardio" style="width: 100%;grid-column-gap: 5vh;height: 100%;">
-              <div class="product-imgs" style="align-self: start;">
+            <div class="product-imgs" style="align-self: start;">
                 <div class="additional-images">
                   <% item.imageLink.forEach((image, index) => { %>
                       <div class="additional-image" onclick="loadImage('<%= image %>')" style="background-image: url('<%= image %>');">
-                          
-                          
                       </div>
                   <% }); %>
               </div>
@@ -241,8 +239,23 @@ footer .social a{
                   <img id="mainProductImage" src='<%= item.imageLink[0] %>' alt="Main Product Image">
                 </div>
             
-              </div>      
-
+              </div> 
+              <div class="slider-images" id="imageSlider">
+                <% item.imageLink.forEach((image, index) => { %>
+                    <div class="new-image" onclick="loadImage('<%= image %>')" style="background-image: url('<%= image %>');"></div>
+                <% }); %>
+            
+                <div class="custom-carousel-controls container-fluid d-flex align-items-end justify-content-end" style="font-size: 5vh;">
+                    <div class="custom-carousel-left mr-2" style="color: #fff; cursor: pointer; margin-right: 3px;" onclick="scrollCustomSlides('left')">
+                        <iconify-icon icon="icon-park-outline:left-c"></iconify-icon>
+                    </div>
+                    <div class="custom-carousel-right ml-auto" style="color: #fff; cursor: pointer;" onclick="scrollCustomSlides('right')">
+                        <iconify-icon icon="icon-park-outline:right-c"></iconify-icon>
+                    </div>
+                </div>
+            </div>
+            
+            
             <div class="product-content" style="align-self: start;">
                 <h2 class="product-title" style="color: #fff;"><%= item.name %></h2>
                 <div class = "product-rating">
@@ -308,6 +321,25 @@ footer .social a{
     </div>
 
     <script>
+     function scrollCustomSlides(direction) {
+    const slider = document.getElementById('imageSlider');
+    const scrollAmount = 100; // Adjust the scroll amount as needed
+
+    if (direction === 'left') {
+        slider.scrollLeft -= scrollAmount;
+    } else if (direction === 'right') {
+        slider.scrollLeft += scrollAmount;
+    }
+}
+
+    </script>
+
+    <script>
+        const additionalImages = document.querySelectorAll('.slider-images');
+        additionalImages.forEach((image, index) => {
+            console.log(`Image ${index + 1}: ${image.style.backgroundImage}`);
+        });
+    
       function loadImage(image) {
           var mainProductImage = document.getElementById('mainProductImage');
           

@@ -142,7 +142,7 @@ body {
 
     .product-image {
     width: 100%;
-    height: 40vh;
+    height: auto;
     object-fit: cover;
     transition: transform 1s ease-in-out;
     display: block;
@@ -326,11 +326,11 @@ body {
 
 
     .product-card{
-        width: 45%;
+        width: 48%;
     }
 
     .product-image{
-        height: 20vh;
+        height: auto;
     }
 
     .show-btn{
@@ -364,7 +364,7 @@ body {
 
 
     .product-title{
-        font-size: 11px;
+        font-size: 12px;
         font-weight: 600;
     }
 

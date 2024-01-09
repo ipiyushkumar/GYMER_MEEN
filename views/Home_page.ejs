@@ -316,10 +316,6 @@
     .head-slider-group::-webkit-scrollbar {
   display: none;
 }
-    .custom-item img{
-      width: 100% !important;
-      height: auto;
-    }
   }
 
   @media only screen and (min-width: 768px) {
@@ -694,9 +690,16 @@ section img{
 }
 
 .custom-item {
+  width: 33%;
     display: flex;
+    justify-content:center;
     flex-direction: column;
     align-items: center;
+}
+
+.custom-item img{
+  width: 15vh;
+  height:auto;
 }
 
 .custom-item .text {
@@ -749,6 +752,12 @@ section img{
             -ms-overflow-style: none;
             scrollbar-width: none;
         }
+
+        .custom-slide a {
+        text-decoration: none; /* Remove underline */
+        color: inherit; /* Inherit the color from the parent */
+        display: block; /* Ensure the entire slide is clickable */
+    }
     
         .custom-slides::-webkit-scrollbar {
             display: none;
@@ -773,7 +782,7 @@ section img{
 
       <div class="custom-carousel-container mt-5 mb-3" data-aos="fade-up" data-aos-duration="1000">
         <div class="custom-carousel-controls container-fluid d-flex align-items-end justify-content-end" style="font-size: 5vh;">
-            <div class="custom-carousel-left mr-2" style="color: #fff; cursor: pointer;margin-right: 1vh;" onclick="scrollCustomSlides('left')">
+            <div class="custom-carousel-left mr-2" style="color: #fff; cursor: pointer;margin-right: 3px;" onclick="scrollCustomSlides('left')">
                 <iconify-icon icon="icon-park-outline:left-c"></iconify-icon>
             </div>
             <div class="custom-carousel-right ml-auto" style="color: #fff; cursor: pointer;" onclick="scrollCustomSlides('right')">
@@ -782,11 +791,20 @@ section img{
         </div>
     
         <div class="custom-slides">
-            <div class="custom-slide"><img src="/assets/whitewolfslider1.jpg" alt="Image 1"></div>
-            <div class="custom-slide"><img src="/assets/whitwolfslider3.jpg" alt="Image 2"></div>
-            <div class="custom-slide"><img src="/assets/whitwolfslider2.jpg" alt="Image 3"></div>
-            <div class="custom-slide"><img src="/assets/whitewolfslider4.jpg" alt="Image 4"></div>
-        </div>
+          <a href="/product_listing/hair_care">
+              <div class="custom-slide"><img src="/assets/whitewolfslider1.jpg" alt="Image 1"></div>
+          </a>
+          <a href="/product_listing/hair_care">
+              <div class="custom-slide"><img src="/assets/newarrival.jpeg" alt="Image 2"></div>
+          </a>
+          <a href="/product_listing/beard_care">
+              <div class="custom-slide"><img src="/assets/whitwolfslider2.jpg" alt="Image 3"></div>
+          </a>
+          <a href="/product_listing/face_care">
+              <div class="custom-slide"><img src="/assets/whitewolfslider4.jpg" alt="Image 4"></div>
+          </a>
+      </div>
+      
     </div>
     
     <script>
@@ -822,23 +840,23 @@ section img{
     </div>
     
     <div class="container head-slider-group mb-0" style="overflow: hidden; position: relative;height: max-content;">
-      <div class="slider-group" style="display: flex; transition: transform 0.5s ease; width: 100%;">
+      <div class="slider-group " style="display: flex; transition: transform 0.5s ease;width: auto;">
   
           <!-- First Div -->
           <div class="custom-item">
-              <img src="../assets/Group 9.png" alt="Image 1" style="width: 40%; height: 40%; object-fit: contain;">
+              <img src="../assets/Group 9.png" alt="Image 1">
               <div class="text">Hair Care</div>
           </div>
   
   
           <!-- Third Div -->
           <div class="custom-item">
-              <img src="../assets/Group 10.png" alt="Image 3" style="width: 40%; height: 40%; object-fit: contain;">
+              <img src="../assets/Group 10.png" alt="Image 3">
               <div class="text">Beard Care</div>
           </div>
   
           <div class="custom-item">
-              <img src="../assets/Group 8.png" alt="Image 5" style="width: 40%; height: 40%; object-fit: contain;">
+              <img src="../assets/Group 8.png" alt="Image 5">
               <div class="text">Face Care</div>
           </div>
   
@@ -873,7 +891,7 @@ section img{
   
       
 
-      <div class="container-fluid d-flex flex-column justify-content-center align-items-center products-bar mt-0">
+      <div class="container-fluid d-flex flex-column justify-content-center align-items-center products-bar mt-5">
         <div class="mb-2 filters d-flex justify-content-between align-items-center text-uppercase"data-aos="fade-up" data-aos-duration="1000">
 
           <!-- <button class="category-btn m-1" onclick="renderProducts('Face Care')">Face Care</button>
@@ -1308,8 +1326,8 @@ section img{
           }
 
           words = product.name.split(" ");
-          product.name = words.slice(0, 7).join(" ");
-          if (words.length > 7) {
+          product.name = words.slice(0, 5).join(" ");
+          if (words.length > 5) {
               product.name += " ...";
           }
          productCard.innerHTML = `
