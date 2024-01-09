@@ -20,18 +20,29 @@ app.use(
     },
   })
 );
-app.use(morgan('dev'));
 
+// Create a write stream for the log file
+const fs = require('fs');
+const logStream = fs.createWriteStream(path.join(__dirname, 'accessData.csv'), { flags: 'a' });
+const csvFormat = ':date[iso],:remote-addr,:remote-user,:method,:url,:http-version,:status,:res[content-length],:referrer,:user-agent';
+app.use(morgan(csvFormat, { stream: logStream }));
+
+// using views dorectory to load views
 app.set('views', path.join(__dirname, 'views'));
+// using view engine
 app.set('view engine', 'ejs');
+// using assets folder
 app.use('/assets', express.static(path.join(__dirname, 'assets')));
+// using assets folder for uploads
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+// using public folder to load static files
 app.use(express.static(path.join(__dirname, 'public')));
 
+
+// setting up cors and express sessions
 app.use(cors());
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }));
-
 
 // page routes
 const pages = require('./routes/page_routes')
