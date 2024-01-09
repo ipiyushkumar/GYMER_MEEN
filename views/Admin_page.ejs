@@ -679,22 +679,46 @@
                             <label for="stock">Stock:</label>
                             <input type="number" id="stock" name="stock" required>
                             
-                            <label for="Image1">First Image (250x250):</label>
-                            <input type="file" id="Image1" name="Image1" accept="image/*" required onchange="previewImage('Image1')" style="border: none; padding: 0.5rem; background-color: #f0f0f0;">
+                            <label for="Image1">Main Image (250x250):</label>
+                            <input type="file" value="-1" id="Image1" name="Image1" accept="image/*" required onchange="previewImage('Image1')" style="border: none; padding: 0.5rem; background-color: #f0f0f0;">
                             <img id="Image1Preview" alt="Preview" style="max-width: 50%; height: 15vh; margin-top: 0rem; margin-bottom: 1rem;border-radius: 1rem;">
                             
                             <div class="addon-images">
                                 <div class="img2">
-                                    <label for="Image2">Second Image (250x250):</label>
-                                    <input type="file" id="Image2" name="Image2" accept="image/*" required onchange="previewImage('Image2')" style="border: none; padding: 0.5rem; background-color: #f0f0f0;"> 
+                                    <label for="Image2">2nd Image (250x250):</label>
+                                    <input type="file" value="-1" id="Image2" name="Image2" accept="image/*" required onchange="previewImage('Image2')" style="border: none; padding: 0.5rem; background-color: #f0f0f0;"> 
                                     <img id="Image2Preview" alt="Preview" style="max-width: 50%; height: 20vh; margin-top: 0rem; margin-bottom: 1rem;border-radius: 1rem;">
                                 </div>
         
-                            <div class="img2">
-                                <label for="Image3">Third Image (250x250):</label>
-                                <input type="file" id="Image3" name="Image3" accept="image/*" required onchange="previewImage('Image3')" style="border: none; padding: 0.5rem; background-color: #f0f0f0;">
-                                <img id="Image3Preview" alt="Preview" style="max-width: 50%; height: 20vh; margin-top: 0rem; margin-bottom: 1rem;border-radius: 1rem;">
-                            </div>
+                                <div class="img2">
+                                    <label for="Image3">3rd Image (250x250):</label>
+                                    <input type="file" value="-1" id="Image3" name="Image3" accept="image/*" required onchange="previewImage('Image3')" style="border: none; padding: 0.5rem; background-color: #f0f0f0;">
+                                    <img id="Image3Preview" alt="Preview" style="max-width: 50%; height: 20vh; margin-top: 0rem; margin-bottom: 1rem;border-radius: 1rem;">
+                                </div>
+
+                                <div class="img2">
+                                    <label for="Image4">4th Image (250x250):</label>
+                                    <input type="file" value="-1" id="Image4" name="Image4" accept="image/*" required onchange="previewImage('Image4')" style="border: none; padding: 0.5rem; background-color: #f0f0f0;">
+                                    <img id="Image4Preview" alt="Preview" style="max-width: 50%; height: 20vh; margin-top: 0rem; margin-bottom: 1rem;border-radius: 1rem;">
+                                </div>
+
+                                <div class="img2">
+                                    <label for="Image5">5th Image (250x250):</label>
+                                    <input type="file" value="-1" id="Image5" name="Image5" accept="image/*" required onchange="previewImage('Image5')" style="border: none; padding: 0.5rem; background-color: #f0f0f0;">
+                                    <img id="Image5Preview" alt="Preview" style="max-width: 50%; height: 20vh; margin-top: 0rem; margin-bottom: 1rem;border-radius: 1rem;">
+                                </div>
+
+                                <div class="img2">
+                                    <label for="Image6">6th Image (250x250):</label>
+                                    <input type="file" value="-1" id="Image6" name="Image6" accept="image/*" required onchange="previewImage('Image6')" style="border: none; padding: 0.5rem; background-color: #f0f0f0;">
+                                    <img id="Image6Preview" alt="Preview" style="max-width: 50%; height: 20vh; margin-top: 0rem; margin-bottom: 1rem;border-radius: 1rem;">
+                                </div>
+
+                                <div class="img2">
+                                    <label for="Image7">7th Image (250x250):</label>
+                                    <input type="file" value="-1" id="Image7" name="Image7" accept="image/*" required onchange="previewImage('Image7')" style="border: none; padding: 0.5rem; background-color: #f0f0f0;">
+                                    <img id="Image7Preview" alt="Preview" style="max-width: 50%; height: 20vh; margin-top: 0rem; margin-bottom: 1rem;border-radius: 1rem;">
+                                </div>
                             </div>
 
                         </div>
@@ -719,6 +743,10 @@
                     document.getElementById('Image1Preview').src = ''
                     document.getElementById('Image2Preview').src = ''
                     document.getElementById('Image3Preview').src = ''
+                    document.getElementById('Image4Preview').src = ''
+                    document.getElementById('Image5Preview').src = ''
+                    document.getElementById('Image6Preview').src = ''
+                    document.getElementById('Image7Preview').src = ''
                 }
                 async function addProduct() {
                     const name = document.getElementById('productName').value;
@@ -727,10 +755,8 @@
                     const offeredPrice = document.getElementById('offeredPrice').value;
                     const category = document.getElementById('category').value;
                     const stock = document.getElementById('stock').value;
-                    const Image1 = document.getElementById('Image1').files[0];
-                    const Image2 = document.getElementById('Image2').files[0];
-                    const Image3 = document.getElementById('Image3').files[0];
-
+                    const MainImage = document.getElementById('Image1').files[0];
+                    
                     const parsedOriginalPrice = parseInt(originalPrice, 10);
                     const parsedOfferedPrice = parseInt(offeredPrice, 10);
 
@@ -745,7 +771,7 @@
                             offeredPrice &&
                             category &&
                             stock &&
-                            Image1
+                            MainImage
                         ) {
                             let formData = new FormData();
                             
@@ -755,9 +781,13 @@
                             formData.append('offeredPrice', offeredPrice);
                             formData.append('category', category);
                             formData.append('stock', stock);
-                            formData.append('files', Image1);
-                            formData.append('files', Image2);
-                            formData.append('files', Image3);
+                            formData.append('files', MainImage);
+
+                            for (let index = 0 ; index < 6 ; index++){
+                                if (document.getElementById(`Image${index+2}`).files[0]){
+                                    formData.append('files', document.getElementById(`Image${index+2}`).files[0]);
+                                }
+                            }
 
                             await axios.post('/api/products', formData)
                             .then((response) => {
@@ -771,6 +801,10 @@
                                 document.getElementById('Image1').files[0] = '';
                                 document.getElementById('Image2').files[0] = '';
                                 document.getElementById('Image3').files[0] = '';
+                                document.getElementById('Image4').files[0] = '';
+                                document.getElementById('Image5').files[0] = '';
+                                document.getElementById('Image6').files[0] = '';
+                                document.getElementById('Image7').files[0] = '';
                                 resetPreview()
                             })
                             .then (() => {
