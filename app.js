@@ -16,10 +16,12 @@ app.use(
     resave: true,
     saveUninitialized: true,
     cookie: {
-      maxAge: 500 * 60 * 60 * 1000, // expires after 500 hours in milliseconds
+      maxAge:100 * 60 * 60 * 1000, // expires after 500 hours in milliseconds
+      secure: false
     },
   })
 );
+app.set('trust proxy', 1);
 
 // Create a write stream for the log file
 // const fs = require('fs');
