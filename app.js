@@ -3,6 +3,7 @@ const session = require('express-session');
 const cors = require('cors');
 const morgan = require('morgan');
 const mongoose = require('mongoose')
+const MongoStore = require('connect-mongo');
 const env = require('dotenv');
 const path = require('path');
 
@@ -16,9 +17,13 @@ app.use(
     resave: true,
     saveUninitialized: true,
     cookie: {
-      maxAge:100 * 60 * 60 * 1000, // expires after 500 hours in milliseconds
-      secure: false
+      maxAge: 100 * 60 * 60 * 1000, // expires after 100 hours in milliseconds
+      secure: false,
     },
+    store: MongoStore.create({
+      mongoUrl:  process.env.MongoDB_URL || "mongodb://127.0.0.1:27017/GYMER?retryWrites=true&w=majority", // Adjust to your MongoDB connection string
+      ttl: 14 * 24 * 60 * 60, // Session TTL in seconds (e.g., 14 days)
+    }),
   })
 );
 app.set('trust proxy', 1);
