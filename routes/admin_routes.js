@@ -80,7 +80,7 @@ router.post('/api/products',isAdminAuthenticated,  multerMiddleware.array('files
       stock,
       imageLink,
     });
-    const sanitizedName = name.replace(/[#-.]|[[-^]|[?|{}]/g, '-');
+    const sanitizedName = name.replace(/[#-.]|[[-^]|[?|{}]\s+/g, '-');
     newProduct.itemId = "id-" + sanitizedName + "-" + newProduct._id;
 
     console.log("product saved")
