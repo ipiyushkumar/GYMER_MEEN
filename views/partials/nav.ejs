@@ -39,6 +39,11 @@
     font-weight: 600;
   }
 
+  .large-nav a:hover{
+    color: #fff;
+    text-decoration: underline;
+  }
+
   .input-group input{
     color: #fff;
     border: 1px solid #fff;
@@ -67,16 +72,18 @@
 
   @media (max-width: 768px) {
     .custom-nav {
-    margin: 0;
-    flex-wrap: no-wrap;
-    text-align: right;
-    justify-content: center;
+      width: 40%;
+    justify-content:flex-end;
     align-items: flex-end;
     font-size: 2.5vh;
-    margin-right: -4vh;
+    margin-right: -7%;
   }
 
-  .custom-nav a.nav-link {
+  .navbar-brand{
+    width: 30%;
+  }
+
+  /* .custom-nav a.nav-link {
     margin-bottom: 00px; 
     margin-left: 0; 
     display: flex;
@@ -90,7 +97,7 @@
   .custom-nav iconify-icon {
     font-size: 2.5vh;
     margin-left: -20px; 
-  }
+  } */
   }
 
   #searchInput:focus {
@@ -113,21 +120,36 @@
 
 <nav class="navbar navbar-expand-lg" style="padding: 1vh;width: 100%;">
    <div class="container-fluid">
-      <div class="navbar-brand d-flex justify-content-start align-items-center" style="width: 32%;">
-         <span style="font-size: 3vh; cursor: pointer; color: #fff;" onclick="openNav()">&#9776; </span>
-         <a href="/" class="navbar-brand ml-3" style="margin-left: 1rem">
+      <div class="navbar-brand d-flex justify-content-center align-items-center" style="width: 15%;">
+        <span class="d-block d-sm-none" style="font-size: 3vh; cursor: pointer; color: #fff;" onclick="openNav()">&#9776; </span>
+         <a href="/" class="navbar-brand">
            <img src="/assets/ww side name logo.png_white@3x.png" alt="Logo"  style="width:auto; height: 5vh;margin-left: 1vw;">
        </a>
 
       </div>
-      <form class="d-none d-lg-flex" style="width: 32%;">
+      <!-- <form class="d-none d-lg-flex" style="width: 32%;">
          <div class="input-group" style="width: 100%;">
           <input class="form-control" type="search" placeholder="Search Your Favourite Product" aria-label="Search" id="searchInput" style="background-color: transparent; border-radius: 1rem 0 0 1rem;color: #fff;box-shadow: none;outline: none;">
             <button class="btn btn-light" type="submit" style="border-radius: 0 1rem 1rem 0;"><i class="fas fa-search"></i></button>
          </div>
-      </form>
-      <div class="custom-nav d-flex justify-content-end" style="width: 32%; font-size: 4vh;">
-        <a class="nav-link cartButtom" onclick="openCart()" style="color: #fff;"  style="margin-right: -40px;">
+      </form> -->
+      <div class="d-none d-lg-flex justify-content-between align-items-center" style="width: 70%;color: #fff;">
+        <div class="d-flex justify-content-between align-items-start large-nav text-uppercase" style="width: 80%;text-transform: uppercase;">
+          <a href="/product_listing/beard_care">Beard Care</a>
+          <a href="/product_listing/hair_care">Hair Care</a>
+          <a href="/product_listing/skin_care">Skin Care</a>
+          <a href="#">About Us</a>
+        </div>
+      
+      </div>
+
+        <div class="d-none d-lg-flex input-group" style="width: 30%;">
+          <input class="form-control" type="search" placeholder="Search Your Favourite Product" aria-label="Search" id="searchInput" style="background-color: transparent; border-radius: 1rem 0 0 1rem;color: #fff;box-shadow: none;outline: none;">
+            <button class="btn btn-light" type="submit" style="border-radius: 0 1rem 1rem 0;"><i class="fas fa-search"></i></button>
+         </div>
+
+      <div class="custom-nav d-flex justify-content-end align-items-end" style="width: 10%; font-size: 4vh;">
+        <a class="nav-link cartButtom" onclick="openCart()" style="color: #fff;">
           <iconify-icon icon="mdi:cart"></iconify-icon>
           <span style="margin-right: -30px;"></span>
        </a>
