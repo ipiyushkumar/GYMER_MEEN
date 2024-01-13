@@ -77,9 +77,6 @@
          }
 
          @media (max-width: 768px) {
-          #scrollButton{
-            right: 30%;
-          }
            .slider{
              height: 40vh;
            }
@@ -279,9 +276,6 @@
 }
 
 @media (max-width: 767px) {
-  #scrollButton {
-    right: 35% !important; 
-  }
 
   .bg-image{
     height: 100% !important;
@@ -447,6 +441,9 @@
 }
 
 @media only screen and (max-width: 768px) {
+  .custom-carousel-container{
+          margin-top:0 !important;
+        }
         .custom-slides .custom-slide {
             min-width: 60vw !important; /* Adjusted width for mobile screens */
             height: 100%;
@@ -650,7 +647,7 @@ section img{
 
 @media (max-width: 767px) {
   #scrollButton {
-    right: 35% !important; 
+    right: 25% !important; 
   }
 
 
@@ -667,7 +664,7 @@ section img{
 }
 
 #sec p{
-  text-align: justify;
+  text-align: left;
   text-transform: capitalize;
     font-size: 4vh;
   font-weight:400;
@@ -678,7 +675,7 @@ section img{
 #scrollButton {
       position: fixed;
       bottom: 10%;
-      right: 45%;
+      right: 42%;
       z-index: 2;
       display: none;
       background-color: transparent;
@@ -733,7 +730,7 @@ section img{
         <img src="https://aryan-tayal.github.io/Mountains-Parallax/clouds_2.png" id="clouds_2" />
         <img src="https://aryan-tayal.github.io/Mountains-Parallax/mountain_left.png" id="mountain_left" />
         <img src="https://aryan-tayal.github.io/Mountains-Parallax/mountain_right.png" id="mountain_right" />
-        <button id="scrollButton" onclick="scrollToContent()">Shop Now &#8595</button>
+        <button id="scrollButton" onclick="scrollToContent()" style="font-size: 5vh;">Shop Now &#8595</button>
       </section>
       <section id="sec">  
         <h2 id="typewriter" data-aos="fade-up" data-aos-duration="1000" class="text-uppercase">Welcome to the Den</h2>
@@ -760,7 +757,7 @@ section img{
             display: flex;
             flex-wrap: nowrap;
             cursor: pointer;
-            gap: 0px;
+            gap: 16px;
             cursor: -webkit-grab;
             transition: transform 0.5s ease-in-out;
             overflow-x: scroll;
@@ -795,15 +792,7 @@ section img{
     </style>
     
 
-      <div class="custom-carousel-container mt-5 mb-3" data-aos="fade-up" data-aos-duration="1000">
-        <div class="custom-carousel-controls container-fluid d-flex align-items-end justify-content-end" style="font-size: 5vh;">
-            <div class="custom-carousel-left mr-2" style="color: #fff; cursor: pointer;margin-right: 3px;" onclick="scrollCustomSlides('left')">
-                <iconify-icon icon="icon-park-outline:left-c"></iconify-icon>
-            </div>
-            <div class="custom-carousel-right ml-auto" style="color: #fff; cursor: pointer;" onclick="scrollCustomSlides('right')">
-                <iconify-icon icon="icon-park-outline:right-c"></iconify-icon>
-            </div>
-        </div>
+      <div class="custom-carousel-container mt-0 mb-3">
     
         <div class="custom-slides">
           <a href="/product_listing/hair_care">
@@ -819,6 +808,15 @@ section img{
               <div class="custom-slide"><img src="/assets/whitewolfslider4.jpg" alt="Image 4"></div>
           </a>
       </div>
+
+      <div class="custom-carousel-controls container-fluid mt-2 d-flex align-items-end justify-content-end" style="font-size: 5vh;">
+        <div class="custom-carousel-left mr-2" style="color: #fff; cursor: pointer;margin-right: 3px;" onclick="scrollCustomSlides('left')">
+            <iconify-icon icon="icon-park-outline:left-c"></iconify-icon>
+        </div>
+        <div class="custom-carousel-right ml-auto" style="color: #fff; cursor: pointer;" onclick="scrollCustomSlides('right')">
+            <iconify-icon icon="icon-park-outline:right-c"></iconify-icon>
+        </div>
+    </div>
       
     </div>
     
