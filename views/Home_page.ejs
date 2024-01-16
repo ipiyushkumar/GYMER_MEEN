@@ -326,35 +326,37 @@
     .slider-navigation {
       display: none;
     }
+
+    .face-moist{
+      width: 90% !important;
+    }
   }
 
-.sale-container {
- width: 95vw;
- height: 60vh;
- background-color: #000 !important;
- position: relative;
- left: 0;
- top: 0;
- user-select: none;
- overflow: hidden;
- }
+  .sale-container {
+    width: 95vw;
+  height: 60vh;
+  background-color: #000 !important;
+  position: relative;
+  left: 0;
+  top: 0;
+  cursor: pointer;
+  overflow: hidden;
+  pointer-events: auto;
+}
  .center {
  height: 60vh;
  position: absolute;
  left: 50%;
  top: 3%;
  transform: translate(-50%);
- user-select: none;
  }
  .items {
  transform-origin: center 200vh;
  transform: rotate(0);
- user-select: none;
  display: flex;
  }
  .item {
  position: absolute;
- user-select: none;
  cursor: pointer;
  transform: translateX(-50%);
  }
@@ -367,14 +369,14 @@
  padding:1vh;
  border-radius: 20px;
  overflow: hidden;
- cursor: grab;
  position: relative;
  border: none;
+ cursor: grab;
  }
  .image {
   height: 100%;
   width: 100%;
-  object-fit: cover;
+  object-fit: 100%;
   background-color: #fff;
   position: absolute;
   top: 0px;
@@ -654,7 +656,7 @@ section img{
 }
 
 @media (max-width: 768px) {
-    #sec h2 {
+    #sec h2 { 
         font-size: 4vh !important; 
     }
 
@@ -720,9 +722,24 @@ section img{
     text-align: center;
 }
 
+@media (max-width: 767px) {
+            /* Mobile Styles - Change background image for the third slide */
+            .swiper-slide:nth-child(1) {
+                background-image: url('../assets/mobile\ baaner\ 01.jpg') !important;
+            }
+
+            .swiper-slide:nth-child(2) {
+                background-image: url('../assets/mobile\ banner\ 001.jpg') !important;
+            }
+
+            .swiper-slide:nth-child(3) {
+                background-image: url('../assets/mobile\ banner\ 02.jpg') !important;
+            }
+        }
+
        </style>
 
-       <section id="top">
+       <!-- <section id="top">
         <img src="https://aryan-tayal.github.io/Mountains-Parallax/bg.jpg" id="bg" />
         <h2 id="text">WhiteWolf</h2>
         <img src="../assets/wolf-hero.jpg" id="man" />
@@ -737,7 +754,41 @@ section img{
         <p data-aos="fade-up" data-aos-duration="1000">
           Indulge in the epitome of refined masculinity with WhiteWolf, where artful grooming meets timeless elegance, crafting a legacy of sophisticated self-care.
         </p>
-      </section>
+      </section> -->
+
+      <div class="swiper-container" style="height: 100vh; width: 100%; border-radius: 0; margin-top: 8vh; z-index: 0;">
+        <div class="swiper-wrapper">
+          <div class="swiper-slide" style="background-image: url('../assets/1522x650.jpg'); height: 100%; width: 100%; border-radius: 0; background-repeat: no-repeat; background-size: 100% 100%; display: flex; flex-direction: column; justify-content: center;">
+            <div style="text-align: center; color: #fff;text-transform: uppercase;">
+                
+            </div>
+        </div>
+        <div class="swiper-slide" style="background-image: url('../assets/banner\ 2\ 1500\ x\ 650.jpg'); height: 100%; width: 100%; border-radius: 0; background-repeat: no-repeat; background-size: 100% 100%; display: flex; flex-direction: column; justify-content: center;">
+          <div style="text-align: center; color: #fff;text-transform: uppercase;">
+              
+          </div>
+      </div>
+      <div class="swiper-slide" style="background-image: url('../assets/1522x650.jpg'); height: 100%; width: 100%; border-radius: 0; background-repeat: no-repeat; background-size:100% 100%; display: flex; flex-direction: column; justify-content: center;">
+    </div>
+        </div>
+        <!-- <div class="swiper-pagination"></div>
+        <div class="swiper-button-next"></div>
+        <div class="swiper-button-prev"></div> -->
+    </div>
+    
+    
+    
+    <script>
+        var swiper = new Swiper('.swiper-container', {
+            slidesPerView: 1,
+            spaceBetween: 0,
+            loop: true,
+            autoplay: {
+                delay: 5000,
+            },
+            navigation: false,
+        });
+    </script>
 
       <style>
         .custom-carousel-item img {
@@ -853,12 +904,14 @@ section img{
 
         </div>
     </div>
+
+    <%- include('partials/slid') %> 
     
-    <div class="container head-slider-group mb-0" style="overflow: hidden; position: relative;height: max-content;">
+    <!-- <div class="container head-slider-group mb-0" style="overflow: hidden; position: relative;height: max-content;">
       <div class="slider-group " style="display: flex; transition: transform 0.5s ease;width: auto;">
   
-          <!-- First Div -->
-          <!-- First Div -->
+        
+
 <div class="custom-item">
   <a href="/product_listing/hair_care">
       <img src="../assets/Group 9.png" alt="Image 1">
@@ -866,7 +919,7 @@ section img{
   </a>
 </div>
 
-<!-- Second Div -->
+
 <div class="custom-item">
   <a href="/product_listing/beard_care">
       <img src="../assets/Group 10.png" alt="Image 3">
@@ -874,23 +927,18 @@ section img{
   </a>
 </div>
 
-<!-- Third Div -->
 <div class="custom-item">
   <a href="/product_listing/face_care">
       <img src="../assets/Group 8.png" alt="Image 5">
       <div class="text">Face Care</div>
   </a>
 </div>
+</div>
 
+  </div> -->
   
-      </div>
   
-      <!-- Left and Right Icons -->
-      <!-- <div class="slider-navigation">
-          <div class="arrow left" onclick="scrollSlides('left')">  <iconify-icon icon="icon-park-outline:left-c"></iconify-icon></div>
-          <div class="arrow right" onclick="scrollSlides('right')">  <iconify-icon icon="icon-park-outline:right-c"></iconify-icon></div>
-      </div> -->
-  </div>
+  
   
   <script>
       let currentIndex = 0;
@@ -909,10 +957,7 @@ section img{
           slider.style.transform = `translateX(${translateValue}px)`;
       }
   </script>
-  
-  
-  
-      
+
 
       <div class="container-fluid d-flex flex-column justify-content-center align-items-center products-bar mt-5">
         <div class="mb-2 filters d-flex justify-content-between align-items-center text-uppercase"data-aos="fade-up" data-aos-duration="1000">
@@ -931,9 +976,11 @@ section img{
             <button class="show-btn"><a href="/product_listing/all">Show More</a></button>
          </div>
       </div>
-      <div id="swipeButton" class="container-fluid">
-        <button class="btn">Swipe Right &#8594;</button></div>
-      <main>
+
+
+      <!-- <div id="swipeButton" class="container-fluid">
+        <button class="btn">Swipe Right &#8594;</button></div> -->
+      <!-- <main>
         <div class="sale-container mt-5 mb-4"  id="saleContainer">
          <div class="center">
           <div class="items">
@@ -994,7 +1041,50 @@ section img{
           </div>
          </div>
         </div>
-       </main>
+       </main> -->
+
+      
+       <section class="mt-5 mb-5" style="background-color: #000; color: #fff; text-align: center; padding: 2vh;text-transform:uppercase;">
+
+        <div style="font-size: 2vh; margin-bottom: 2vh;">Meet Atlantis</div>
+    
+        <div style="font-size: 8vh; font-weight: bold; margin-bottom: 2vh;">THE SCENT OF ADVENTURE</div>
+    
+        <div style="font-size: 2vh; margin-bottom: 0vh;">This is how Blu Atlas does cologne.<br> Influenced by the vibrant coastal jungles of Bali, Atlantis was created to inspire wanderlust.</div>
+        
+        <div style="position: relative; overflow: hidden; max-width: 100%; height: 70vh;">
+          <video autoplay muted loop class="p-0" style="width: 100%; height: 100%;">
+            <!-- Corrected video source path -->
+            <source src="../assets/moving-vide.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+          </video>
+        </div>
+    
+        <div style="display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 2vh;">
+          <button style="padding: 2vh 4vh; border: none; cursor: pointer; font-size: 2vh; font-weight: 400; text-transform: uppercase; border-radius: 0vh; transition: background-color 0.3s ease; background-color: #fff; color: #000;">COMING SOON</button>
+          <button style="padding: 2vh 4vh; border: none; cursor: pointer; font-size: 2vh; font-weight: 400; text-transform: uppercase; border-radius: 0vh; transition: background-color 0.3s ease; background-color: #000; color: #fff;">LEARN MORE</button>
+      </div>
+      
+    </section>
+
+    <section class="mt-5 mb-5 face-moist" style="width:90%;background-color: #000; color: #fff; text-align: center; padding: 2vh;text-transform:uppercase;">
+
+      <div style="font-size: 2vh; margin-bottom: 2vh;">Face Moisturizer</div>
+  
+      <div style="font-size: 8vh; font-weight: bold; margin-bottom: 2vh;">MOISTURIZING IS IMPORTANT.</div>
+  
+      <div style="font-size: 2vh; margin-bottom: 0vh;">An ultra-hydrating moisturizer designed to target dry and dull skin. Nourishes and conditions skin with ingredients like seaweed extract, vitamin C, and mango seed butter. Suitable for all skin types.</div>
+      
+      <div style="position: relative; overflow: hidden; max-width: 100%; height: 70vh;background-image: url('../assets/moist.jpg');background-size: cover;background-repeat: no-repeat;background-position: center;">     
+      </div>
+  
+      <div style="display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 2vh;margin-top: 3vh;">
+        <button style="padding: 2vh 4vh; border: none; cursor: pointer; font-size: 2vh; font-weight: 400; text-transform: uppercase; border-radius: 0vh; transition: background-color 0.3s ease; background-color: #fff; color: #000;">COMING SOON</button>
+        <button style="padding: 2vh 4vh; border: none; cursor: pointer; font-size: 2vh; font-weight: 400; text-transform: uppercase; border-radius: 0vh; transition: background-color 0.3s ease; background-color: #000; color: #fff;">LEARN MORE</button>
+    </div>
+    
+  </section>
+    
 
        <div class="container-fluid p-4 bg" data-aos="fade-up" data-aos-duration="1000">
         <div class="row">
@@ -1121,9 +1211,8 @@ section img{
 
                .swiper-button-next:hover,
                .swiper-button-prev:hover {
-                     color: #ee0f6f;
+                     color: #000;
                }
-
       </style>
      <div class="container d-flex flex-column pt-3 pb-3"  data-aos="fade-up" data-aos-duration="1000">
 		<div class="row">
