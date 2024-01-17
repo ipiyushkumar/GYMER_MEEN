@@ -92,7 +92,7 @@
             color: #fff;
             cursor: pointer;
             font-size: 5vh;
-            margin: 0 15px;
+            margin: 0 10px;
         }
 
         .custom-carousel-prev {
@@ -105,8 +105,7 @@
 
         @media only screen and (max-width: 768px) {
             .custom-carousel-slides .custom-carousel-slide {
-                min-width: 70vw !important; /* Adjusted width for mobile screens */
-                height: 60vh;
+                min-width: 60vw !important; /* Adjusted width for mobile screens */
             }
         }
 
@@ -114,39 +113,39 @@
 </head>
 <body style="background-color: black;">
 
-<div class="custom-carousel-wrapper mt-5 p-2 mb-3">
+<div class="custom-carousel-wrapper mt-0 mb-3">
     <div class="custom-carousel-controls">
         <div class="custom-carousel-prev" onclick="scrollCustomSlides('left')">
-            <iconify-icon icon="icon-park-outline:left-c"></iconify-icon>
+            &lt;
         </div>
         <div class="custom-carousel-next" onclick="scrollCustomSlides('right')">
-            <iconify-icon icon="icon-park-outline:right-c"></iconify-icon>
+            &gt;
         </div>
     </div>
 
     <div class="custom-carousel-slides">
-        <div class="custom-carousel-slide" style="background-image: url('/assets/face.jpg');background-size: cover;">
+        <div class="custom-carousel-slide" style="background-image: url('/assets/Beard serum original 01.psd 3.jpg');">
             <div class="custom-content">
                 <p>Text for Image 1</p>
                 <button class="custom-button">Shop Now</button>
             </div>
         </div>
 
-        <div class="custom-carousel-slide" style="background-image: url('/assets/face.jpg');background-size: cover;">
+        <div class="custom-carousel-slide" style="background-image: url('/assets/newarrival.jpeg');">
             <div class="custom-content">
                 <p>Text for Image 2</p>
                 <button class="custom-button">Shop Now</button>
             </div>
         </div>
 
-        <div class="custom-carousel-slide" style="background-image: url('/assets/face.jpg');background-size: cover;">
+        <div class="custom-carousel-slide" style="background-image: url('/assets/whitwolfslider2.jpg');">
             <div class="custom-content">
                 <p>Text for Image 3</p>
                 <button class="custom-button">Shop Now</button>
             </div>
         </div>
 
-        <div class="custom-carousel-slide" style="background-image: url('/assets/face.jpg');background-size: cover;">
+        <div class="custom-carousel-slide" style="background-image: url('/assets/whitewolfslider4.jpg');">
             <div class="custom-content">
                 <p>Text for Image 4</p>
                 <button class="custom-button">Shop Now</button>
@@ -155,7 +154,7 @@
     </div>
 
 </div>
-<script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+
 <script>
     function scrollCustomSlides(direction) {
         const slidesContainer = document.querySelector('.custom-carousel-slides');
