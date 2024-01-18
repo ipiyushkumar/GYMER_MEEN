@@ -337,6 +337,13 @@
     }
   }
 
+  @media (max-width: 600px) {
+    .slide-wrapping div {
+      width: 60vw !important;
+      min-width: 60vw !important;
+    }
+  }
+
   .sale-container {
     width: 95vw;
   height: 60vh;
@@ -765,10 +772,6 @@ section img{
       background-image: url('../assets/cleaner-mobile.jpg') !important;
     }
 
-    .mobile-slider .sw-upper {
-      height: 94vh !important;
-    }
-
     .mobile-slider .swiper-slide {
       background-size: 100% 100%;
     }
@@ -789,7 +792,7 @@ section img{
     }
 
     .desktop-slider .swiper-slide:nth-child(2) {
-      background-image: url('../assets/banner\ 01.jpg');
+      background-image: url('../assets/blue-slider-new.jpg');
     }
 
     .desktop-slider .swiper-slide:nth-child(3) {
@@ -821,7 +824,7 @@ section img{
   }
 </style>
 
-<div class="swiper-container sw-upper mobile-slider" style="height: 100vh; width: 100%; border-radius: 0; margin-top: 6vh; z-index: 0; margin-bottom: -5vh;">
+<div class="swiper-container sw-upper mobile-slider" style="height: 93vh; width: 100%; border-radius: 0; margin-top: 8vh !important; z-index: 0; margin-bottom: -7vh;">
   <!-- Mobile Slider Content -->
   <div class="swiper-wrapper">
     <div class="swiper-slide"></div>
@@ -833,7 +836,7 @@ section img{
   </div>
 </div>
 
-<div class="swiper-container sw-upper desktop-slider" style="height: 100vh; width: 100%; border-radius: 0; margin-top: 6vh; z-index: 0; margin-bottom: -5vh;">
+<div class="swiper-container sw-upper desktop-slider" style="height: 95vh; width: 100%; border-radius: 0; margin-top: 10vh !important; z-index: 0; margin-bottom: -5vh;">
   <!-- Desktop Slider Content -->
   <div class="swiper-wrapper">
     <div class="swiper-slide"></div>
@@ -937,7 +940,7 @@ section img{
     </div>
 
     <script>
-      const slideContainer= document.querySelector('.custom-slides-new');
+      const slideContainer = document.querySelector('.custom-slides-new');
       const scrollSpeed = 2; 
       let scrollDirection = 1; 
 
@@ -976,7 +979,71 @@ section img{
             </video>
     </div>
 
-    <%- include('partials/slid') %> 
+    <!-- <%- include('partials/slid') %>  -->
+
+    <div style="position: relative; width: 100%; margin-top: 2vh; margin-bottom: 3vh;">
+      <button id="slideLeft" style="position: absolute; top: 50%; left: 3vh; transform: translateY(-50%); border: none; cursor: pointer; border-radius: 5px; text-transform: uppercase;background-color: transparent;color:#fff;">
+          <iconify-icon icon="icon-park-twotone:left-c" style="color: inherit;font-size: 3vh;"></iconify-icon>
+      </button>
+      <button id="slideRight" style="position: absolute; top: 50%; right: 3vh; transform: translateY(-50%); font-size: 3vh; border: none; cursor: pointer; border-radius: 5px; text-transform: uppercase;background-color: transparent;color: #fff;">
+          <iconify-icon icon="icon-park-twotone:right-c" style="color: inherit;font-size: 3vh;"></iconify-icon>
+      </button>
+  </div>
+  
+  
+  <div id="container" style="width: 100%; overflow: hidden;">
+      <div style="display: flex; gap: 16px; padding: 2vh;" class="slide-wrapping">
+  
+          <div style="height: 70vh; width: 30vw; min-width: 30vw; border-radius: 1vh !important; display: block; background-position: center; background-size: cover !important; border-radius: 0; background-image: url('/assets/face.jpg');">
+              <div style="display: flex; flex-direction: column; height: 100%; align-items: flex-start; justify-content: space-between;padding-left: 2vh;">
+                  <p style="font-size: 3vh; text-transform: uppercase; font-weight: bolder; color: #fff !important; text-decoration: none; color: inherit;">Text for Image 1</p>
+                  <button style="padding: 2vh 5vh; background-color: #fff; color: #000; border: none; cursor: pointer; border-radius: 5px; text-transform: uppercase;">Shop Now</button>
+              </div>
+          </div>
+  
+          <div style="height: 70vh; width: 30vw; min-width: 30vw; border-radius: 1vh !important; display: block; background-position: center; background-size: cover !important; border-radius: 0; background-image: url('/assets/face.jpg');">
+              <div style="display: flex; flex-direction: column; height: 100%; align-items: flex-start; justify-content: space-between;padding-left: 2vh;">
+                  <p style="font-size: 3vh; text-transform: uppercase; font-weight: bolder; color: #fff !important; text-decoration: none; color: inherit;">Text for Image 1</p>
+                  <button style="padding: 2vh 5vh; background-color: #fff; color: #000; border: none; cursor: pointer; border-radius: 5px; text-transform: uppercase;">Shop Now</button>
+              </div>
+          </div>
+  
+          <div style="height: 70vh; width: 30vw; min-width: 30vw; border-radius: 1vh !important; display: block; background-position: center; background-size: cover !important; border-radius: 0; background-image: url('/assets/face.jpg');">
+              <div style="display: flex; flex-direction: column; height: 100%; align-items: flex-start; justify-content: space-between;padding-left: 2vh;">
+                  <p style="font-size: 3vh; text-transform: uppercase; font-weight: bolder; color: #fff !important; text-decoration: none; color: inherit;">Text for Image 1</p>
+                  <button style="padding: 2vh 5vh; background-color: #fff; color: #000; border: none; cursor: pointer; border-radius: 5px; text-transform: uppercase;">Shop Now</button>
+              </div>
+          </div>
+  
+          <div style="height: 70vh; width: 30vw; min-width: 30vw; border-radius: 1vh !important; display: block; background-position: center; background-size: cover !important; border-radius: 0; background-image: url('/assets/face.jpg');">
+              <div style="display: flex; flex-direction: column; height: 100%; align-items: flex-start; justify-content: space-between;padding-left: 2vh;">
+                  <p style="font-size: 3vh; text-transform: uppercase; font-weight: bolder; color: #fff !important; text-decoration: none; color: inherit;">Text for Image 1</p>
+                  <button style="padding: 2vh 5vh; background-color: #fff; color: #000; border: none; cursor: pointer; border-radius: 5px; text-transform: uppercase;">Shop Now</button>
+              </div>
+          </div>
+      </div>
+  </div>
+  
+  <script>
+      const buttonRight = document.getElementById('slideRight');
+      const buttonLeft = document.getElementById('slideLeft');
+      const Ncontainer = document.getElementById('container');
+      const slideWidth = 400; 
+  
+      buttonRight.onclick = function () {
+        Ncontainer.scrollTo({
+          left: Ncontainer.scrollLeft + slideWidth,
+          behavior: 'smooth'
+        });
+      };
+  
+      buttonLeft.onclick = function () {
+        Ncontainer.scrollTo({
+          left: Ncontainer.scrollLeft - slideWidth,
+          behavior: 'smooth'
+        });
+      };
+    </script>
 
   <script>
       let currentIndex = 0;
