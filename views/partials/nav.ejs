@@ -53,6 +53,28 @@
   color: white; 
 }
 
+@keyframes marqueeAnimation {
+      0% { transform: translateX(100%); }
+      100% { transform: translateX(-100%); }
+    }
+
+    .marquee-container {
+      width:100%;
+      background-color: #222;
+      overflow: hidden;
+      padding: 1vh;
+    }
+
+    p.marquee {
+      font-size: 2vh;
+      color: #fff;
+      text-align: center;
+      text-transform: uppercase;
+      margin: 0;
+      white-space: nowrap;
+      animation: marqueeAnimation 20s linear infinite; /* Adjust the duration as needed */
+    }
+
   .sidenav iconify-icon{
     margin-right: 1.5vh;
     background-color: #fff;
@@ -120,10 +142,15 @@
    <!-- <a href="/product_listing/face_care"><iconify-icon icon="mdi:spray"></iconify-icon>Face Care</a> -->
    <a href="/product_listing/hair_care"><iconify-icon icon="streamline:spray-paint-solid"></iconify-icon>Hair Care</a>
    <a href="/product_listing/skin_care"><iconify-icon icon="fa6-solid:spray-can-sparkles"></iconify-icon>Skin Care</a>
+   <a href="/product_listing/skin_care"  style="color: #fff;"><iconify-icon icon="fa6-solid:spray-can-sparkles"></iconify-icon>Shave</a>
+   <a href="/product_listing/skin_care"  style="color: #fff;"><iconify-icon icon="fa6-solid:spray-can-sparkles"></iconify-icon>Fragrance</a>
+   <a href="/product_listing/skin_care"  style="color: #fff;"><iconify-icon icon="fa6-solid:spray-can-sparkles"></iconify-icon>Blog</a>
    <a href="#"><iconify-icon icon="mdi:about"></iconify-icon>About Us </a>
 </div>
 <nav class="navbar navbar-expand-lg" style="width: 100%;flex-direction: column;padding:0;">
-  <p style="font-size: 2vh;color: #fff;width: 100%;background-color: #222;padding: 1vh;text-align: center;text-transform: capitalize;margin-bottom: -0.5vh">Get 10% off using BUYFIRST Code</p>
+  <div class="marquee-container">
+    <p class="marquee">use code firstbuy to get 10% off on your first purchase</p>
+  </div>
    <div class="container-fluid p-2">
       <div class="navbar-brand d-flex justify-content-center align-items-center" style="width: 15%;">
         <span class="d-block d-sm-none" style="font-size: 3vh; cursor: pointer; color: #fff;" onclick="openNav()">&#9776; </span>
@@ -143,6 +170,9 @@
           <a href="/product_listing/beard_care"  style="color: #fff;">Beard Care</a>
           <a href="/product_listing/hair_care" style="color: #fff;">Hair Care</a>
           <a href="/product_listing/skin_care"  style="color: #fff;">Skin Care</a>
+          <a href="/product_listing/skin_care"  style="color: #fff;">Shave</a>
+          <a href="/product_listing/skin_care"  style="color: #fff;">Fragrance</a>
+          <a href="/product_listing/skin_care"  style="color: #fff;">Blog</a>
           <a href="#"  style="color: #fff;">About Us</a>
         </div>
       

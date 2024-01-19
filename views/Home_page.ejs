@@ -339,8 +339,8 @@
 
   @media (max-width: 600px) {
     .slide-wrapping div {
-      width: 60vw !important;
-      min-width: 60vw !important;
+      width: 80vw !important;
+      min-width: 80vw !important;
     }
   }
 
@@ -455,9 +455,6 @@
 }
 
 @media only screen and (max-width: 768px) {
-  .custom-carousel-container{
-          margin-top:0 !important;
-        }
         .custom-slides-new .custom-slide-new {
             min-width: 60vw !important; 
             height: 100%;
@@ -741,6 +738,7 @@ section img{
 
     .mobile-slider {
       border-radius: 0 !important;
+      margin-bottom: -7vh;
       display: block; /* Show the mobile slider on mobile screens */
     }
 
@@ -749,7 +747,7 @@ section img{
     }
 
     .mobile-slider .swiper-slide:nth-child(1) {
-      background-image: url('../assets/mobile\ baaner\ 01.jpg') !important;
+      display: none;
     }
 
     .mobile-slider .swiper-slide:nth-child(2) {
@@ -788,11 +786,11 @@ section img{
     }
 
     .desktop-slider .swiper-slide:nth-child(1) {
-      background-image: url('../assets/banner\ 1\ .jpg'); /* Add your desktop image paths */
+      display: none;
     }
 
     .desktop-slider .swiper-slide:nth-child(2) {
-      background-image: url('../assets/blue-slider-new.jpg');
+      background-image: url('../assets/blue-slider.jpg');
     }
 
     .desktop-slider .swiper-slide:nth-child(3) {
@@ -824,11 +822,11 @@ section img{
   }
 </style>
 
-<div class="swiper-container sw-upper mobile-slider" style="height: 93vh; width: 100%; border-radius: 0; margin-top: 8vh !important; z-index: 0; margin-bottom: -7vh;">
+<div class="swiper-container sw-upper mobile-slider" style="height: 93vh; width: 100%; border-radius: 0; margin-top: 8vh !important; z-index: 0;">
   <!-- Mobile Slider Content -->
   <div class="swiper-wrapper">
     <div class="swiper-slide"></div>
-    <div class="swiper-slide"></div>
+    <div class="swiper-slide"><button class="btn btn-light">BUY NOW</button></div>
     <div class="swiper-slide"></div>
     <div class="swiper-slide"></div>
     <div class="swiper-slide"></div>
@@ -836,11 +834,11 @@ section img{
   </div>
 </div>
 
-<div class="swiper-container sw-upper desktop-slider" style="height: 95vh; width: 100%; border-radius: 0; margin-top: 10vh !important; z-index: 0; margin-bottom: -5vh;">
+<div class="swiper-container sw-upper desktop-slider" style="height: 95vh; width: 100%; border-radius: 0; margin-top: 10vh !important; z-index: 0;">
   <!-- Desktop Slider Content -->
   <div class="swiper-wrapper">
     <div class="swiper-slide"></div>
-    <div class="swiper-slide"></div>
+    <div class="swiper-slide"><button class="btn btn-light br-0" style="width: max-content;position:relative;margin-left: 47%;margin-top:15%;border-radius:0;">BUY NOW</button></div>
     <div class="swiper-slide"></div>
     <div class="swiper-slide"></div>
     <div class="swiper-slide"></div>
@@ -878,6 +876,7 @@ section img{
         }
 
         .custom-carousel-container {
+          margin: -2.5% !important;
             padding: 0;
             width: 100%;
             overflow: hidden;
@@ -922,8 +921,8 @@ section img{
         }
     </style>
 
-    <div class="custom-carousel-container mt-0 mb-3">
-      <div class="custom-slides-new">
+    <div class="custom-carousel-container mt-0 mb-5">
+      <div class="custom-slides-new mt-0">
         <a href="/product_listing/hair_care">
           <div class="custom-slide-new"><img src="/assets/Beard serum original 01.psd 3.jpg" alt="Image 1"></div>
         </a>
@@ -960,7 +959,7 @@ section img{
   <div class="container-fluid d-flex flex-column justify-content-center align-items-center products-bar mt-5">
     <div class="mb-2 filters d-flex justify-content-between align-items-center text-uppercase"data-aos="fade-up" data-aos-duration="1000">
 
-      <h2 class="text-light">Our Top Sellers</h2>
+      <h2 class="text-light mt-5">Our Top Sellers</h2>
    </div>     
      <div id="productGrid" class="row product-grid" data-aos="fade-up"
      data-aos-duration="1000" onmousedown="startScroll(event)" onmouseup="stopScroll()" ontouchstart="startScroll(event)" ontouchend="stopScroll()">
@@ -981,69 +980,71 @@ section img{
 
     <!-- <%- include('partials/slid') %>  -->
 
-    <div style="position: relative; width: 100%; margin-top: 2vh; margin-bottom: 3vh;">
-      <button id="slideLeft" style="position: absolute; top: 50%; left: 3vh; transform: translateY(-50%); border: none; cursor: pointer; border-radius: 5px; text-transform: uppercase;background-color: transparent;color:#fff;">
-          <iconify-icon icon="icon-park-twotone:left-c" style="color: inherit;font-size: 3vh;"></iconify-icon>
+    <!-- <div style="position: relative; width: 100%; margin-top: 2vh; margin-bottom: 2vh;font-size: 3vh;">
+      <button id="slideLeft" style="position: absolute; top: 50%; left: 0; transform: translateY(-50%); border: none; cursor: pointer; border-radius: 5px; text-transform: uppercase; background-color: transparent; color: #fff;font-size:3vh;">
+          <iconify-icon icon="icon-park-twotone:left-c" style="color: inherit; font-size: 5vh;" ></iconify-icon>
       </button>
-      <button id="slideRight" style="position: absolute; top: 50%; right: 3vh; transform: translateY(-50%); font-size: 3vh; border: none; cursor: pointer; border-radius: 5px; text-transform: uppercase;background-color: transparent;color: #fff;">
-          <iconify-icon icon="icon-park-twotone:right-c" style="color: inherit;font-size: 3vh;"></iconify-icon>
+      <button id="slideRight" style="position: absolute; top: 50%; right: 0; transform: translateY(-50%); border: none; cursor: pointer; border-radius: 5px; text-transform: uppercase; background-color: transparent; color: #fff;font-size:3vh;">
+          <iconify-icon icon="icon-park-twotone:right-c" style="color: inherit; font-size: 5vh;"></iconify-icon>
       </button>
   </div>
   
   
-  <div id="container" style="width: 100%; overflow: hidden;">
+  <div id="container mt-3" style="width: 100%; overflow: hidden;">
       <div style="display: flex; gap: 16px; padding: 2vh;" class="slide-wrapping">
   
-          <div style="height: 70vh; width: 30vw; min-width: 30vw; border-radius: 1vh !important; display: block; background-position: center; background-size: cover !important; border-radius: 0; background-image: url('/assets/face.jpg');">
+          <div style="height: 70vh; width: 30vw; min-width: 30vw; border-radius: 1vh !important; display: block; background-position: center; background-size: cover !important; border-radius: 0; background-image: url('/assets/beard-slider.jpg');">
               <div style="display: flex; flex-direction: column; height: 100%; align-items: flex-start; justify-content: space-between;padding-left: 2vh;">
-                  <p style="font-size: 3vh; text-transform: uppercase; font-weight: bolder; color: #fff !important; text-decoration: none; color: inherit;">Text for Image 1</p>
-                  <button style="padding: 2vh 5vh; background-color: #fff; color: #000; border: none; cursor: pointer; border-radius: 5px; text-transform: uppercase;">Shop Now</button>
+                  <p style="font-size: 3vh; text-transform: uppercase; font-weight: bolder; color: #fff !important; text-decoration: none; color: inherit;">Beard Care</p>
+                  <button style="padding: 1vh 4vh;margin-bottom:2vh; background-color: #fff; color: #000; border: none; cursor: pointer; border-radius: 5px; text-transform: uppercase;">Shop Now</button>
+              </div>
+          </div>
+  
+          <div style="height: 70vh; width: 30vw; min-width: 30vw; border-radius: 1vh !important; display: block; background-position: center; background-size: cover !important; border-radius: 0; background-image: url('/assets/hair-slider.jpg');">
+              <div style="display: flex; flex-direction: column; height: 100%; align-items: flex-start; justify-content: space-between;padding-left: 2vh;">
+                  <p style="font-size: 3vh; text-transform: uppercase; font-weight: bold; color: #fff !important; text-decoration: none; color: inherit;">Hair Care</p>
+                  <button style="padding: 1vh 4vh;margin-bottom:2vh; background-color: #fff; color: #000; border: none; cursor: pointer; border-radius: 5px; text-transform: uppercase;">Shop Now</button>
+              </div>
+          </div>
+  
+          <div style="height: 70vh; width: 30vw; min-width: 30vw; border-radius: 1vh !important; display: block; background-position: center; background-size: cover !important; border-radius: 0; background-image: url('/assets/shave.jpg');">
+              <div style="display: flex; flex-direction: column; height: 100%; align-items: flex-start; justify-content: space-between;padding-left: 2vh;">
+                  <p style="font-size: 3vh; text-transform: uppercase; font-weight: bold; color: #fff !important; text-decoration: none; color: inherit;">Shave</p>
+                  <button style="padding: 1vh 4vh;margin-bottom:2vh; background-color: #fff; color: #000; border: none; cursor: pointer; border-radius: 5px; text-transform: uppercase;">Shop Now</button>
               </div>
           </div>
   
           <div style="height: 70vh; width: 30vw; min-width: 30vw; border-radius: 1vh !important; display: block; background-position: center; background-size: cover !important; border-radius: 0; background-image: url('/assets/face.jpg');">
               <div style="display: flex; flex-direction: column; height: 100%; align-items: flex-start; justify-content: space-between;padding-left: 2vh;">
-                  <p style="font-size: 3vh; text-transform: uppercase; font-weight: bolder; color: #fff !important; text-decoration: none; color: inherit;">Text for Image 1</p>
-                  <button style="padding: 2vh 5vh; background-color: #fff; color: #000; border: none; cursor: pointer; border-radius: 5px; text-transform: uppercase;">Shop Now</button>
-              </div>
-          </div>
-  
-          <div style="height: 70vh; width: 30vw; min-width: 30vw; border-radius: 1vh !important; display: block; background-position: center; background-size: cover !important; border-radius: 0; background-image: url('/assets/face.jpg');">
-              <div style="display: flex; flex-direction: column; height: 100%; align-items: flex-start; justify-content: space-between;padding-left: 2vh;">
-                  <p style="font-size: 3vh; text-transform: uppercase; font-weight: bolder; color: #fff !important; text-decoration: none; color: inherit;">Text for Image 1</p>
-                  <button style="padding: 2vh 5vh; background-color: #fff; color: #000; border: none; cursor: pointer; border-radius: 5px; text-transform: uppercase;">Shop Now</button>
-              </div>
-          </div>
-  
-          <div style="height: 70vh; width: 30vw; min-width: 30vw; border-radius: 1vh !important; display: block; background-position: center; background-size: cover !important; border-radius: 0; background-image: url('/assets/face.jpg');">
-              <div style="display: flex; flex-direction: column; height: 100%; align-items: flex-start; justify-content: space-between;padding-left: 2vh;">
-                  <p style="font-size: 3vh; text-transform: uppercase; font-weight: bolder; color: #fff !important; text-decoration: none; color: inherit;">Text for Image 1</p>
-                  <button style="padding: 2vh 5vh; background-color: #fff; color: #000; border: none; cursor: pointer; border-radius: 5px; text-transform: uppercase;">Shop Now</button>
+                  <p style="font-size: 3vh; text-transform: uppercase; font-weight: bold; color: #fff !important; text-decoration: none; color: inherit;">Skin Care</p>
+                  <button style="padding: 1vh 4vh;margin-bottom:2vh; background-color: #fff; color: #000; border: none; cursor: pointer; border-radius: 5px; text-transform: uppercase;">Shop Now</button>
               </div>
           </div>
       </div>
   </div>
   
   <script>
+    window.onload = function () {
       const buttonRight = document.getElementById('slideRight');
       const buttonLeft = document.getElementById('slideLeft');
-      const Ncontainer = document.getElementById('container');
-      const slideWidth = 400; 
+      const container = document.getElementById('container');
+      const slideWidth = 400;
   
       buttonRight.onclick = function () {
-        Ncontainer.scrollTo({
-          left: Ncontainer.scrollLeft + slideWidth,
+        container.scrollTo({
+          left: container.scrollLeft + slideWidth,
           behavior: 'smooth'
         });
       };
   
       buttonLeft.onclick = function () {
-        Ncontainer.scrollTo({
-          left: Ncontainer.scrollLeft - slideWidth,
+        container.scrollTo({
+          left: container.scrollLeft - slideWidth,
           behavior: 'smooth'
         });
       };
-    </script>
+    };
+  </script> -->
 
   <script>
       let currentIndex = 0;
@@ -1083,10 +1084,16 @@ section img{
           <button style="padding: 2vh 4vh; border: none; cursor: pointer; font-size: 2vh; font-weight: 400; text-transform: uppercase; border-radius: 0vh; transition: background-color 0.3s ease; background-color: #fff; color: #000;">COMING SOON</button>
           <button style="padding: 2vh 4vh; border: none; cursor: pointer; font-size: 2vh; font-weight: 400; text-transform: uppercase; border-radius: 0vh; transition: background-color 0.3s ease; background-color: #000; color: #fff;">LEARN MORE</button>
       </div>
+      <div class="container-fluid mb-0 mt-4 p-2">
 
+        <video autoplay muted loop class="p-0" style="width:100%;">
+          <source src="../assets/New_arrivals_HRS.mp4" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+      </div>
     </section>
 
-    <section class="mt-5 mb-5" style="background-color: #000; color: #fff; text-align: center; padding: 2vh;text-transform:uppercase;">
+    <section class="mt-0 mb-3" style="background-color: #000; color: #fff; text-align: center; padding: 2vh;text-transform:uppercase;">
 
       <div style="font-size: 2vh; margin-bottom: 2vh;">Face Moisturizer</div>
 
@@ -1105,7 +1112,7 @@ section img{
 
   </section>
 
-  <div id="myCarousel" class="carousel slide" data-ride="carousel" style="height: 70vh;width: 100%;">
+  <div id="myCarousel" class="carousel slide" data-ride="carousel" style="height: 40vh;width: 100%;">
     <div class="carousel-inner">
         <div class="carousel-item active">
             <div class="bg-image bg-image-mobile-1" style="background-image: url('../assets/skin-tint-desktop.jpg'); height: 100%;width: 100%;background-position: cover;"></div>
