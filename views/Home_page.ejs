@@ -893,9 +893,9 @@ section img{
 <script>
   $(document).ready(function () {
       $('#myCarousel').carousel({
-          interval: 2000, 
+          interval: 500, 
           pause: 'hover', 
-          wrap: true 
+          wrap: false 
       });
   });
 </script>
@@ -1003,16 +1003,16 @@ section img{
     <div class="custom-carousel-container mt-0 mb-5">
       <div class="custom-slides-new mt-0">
         <a href="/product_listing/hair_care">
-          <div class="custom-slide-new"><img src="/assets/Beard serum original 01.psd 3.jpg" alt="Image 1"></div>
+          <div class="custom-slide-new"><img src="/assets/Sliding1.jpg" alt="Image 1"></div>
         </a>
         <a href="/product_listing/hair_care">
-          <div class="custom-slide-new"><img src="/assets/newarrival.jpeg" alt="Image 2"></div>
+          <div class="custom-slide-new"><img src="/assets/Sliding2.jpg" alt="Image 2"></div>
         </a>
         <a href="/product_listing/beard_care">
-          <div class="custom-slide-new"><img src="/assets/whitwolfslider2.jpg" alt="Image 3"></div>
+          <div class="custom-slide-new"><img src="/assets/Sliding3.jpg" alt="Image 3"></div>
         </a>
         <a href="/product_listing/face_care">
-          <div class="custom-slide-new"><img src="/assets/whitewolfslider4.jpg" alt="Image 4"></div>
+          <div class="custom-slide-new"><img src="/assets/Sliding4.jpg" alt="Image 4"></div>
         </a>
       </div>
     </div>
@@ -1151,7 +1151,7 @@ section img{
 
         <div style="font-size: 2vh; margin-bottom: 0vh;">This is how Blu Atlas does cologne.<br> Influenced by the vibrant coastal jungles of Bali, Atlantis was created to inspire wanderlust.</div>
 
-        <div style="position: relative; overflow: hidden; max-width: 100%; height: auto;">
+        <div style="position: relative; overflow: hidden; max-width: 100%; height: 80vh;">
           <video autoplay muted loop class="p-0" style="width: 100%; height: 100%;">
 
             <source src="../assets/perfume-final.mp4" type="video/mp4">
@@ -1239,7 +1239,7 @@ section img{
       <div class="container-fluid mb-2 p-5" data-aos="fade-up" data-aos-duration="1000">
         <h2 class="text-center text-white mb-5 engage text-capitalize">Engage, Share, and Explore our Instagram Highlights!</h2>
         <div class="row">
-            <div class="col-md-3">
+            <div class="col-md-2">
                 <div class="reel-item">
                     <img src="../assets/Product1.jpg" alt="Reel 1">
                     <div class="reel-caption">
@@ -1249,7 +1249,7 @@ section img{
                 </div>
             </div>
   
-            <div class="col-md-3">
+            <div class="col-md-2">
               <div class="reel-item">
                   <img src="../assets/Product2.jpg" alt="Reel 1">
                   <div class="reel-caption">
@@ -1260,7 +1260,7 @@ section img{
               </div>
           </div>
   
-          <div class="col-md-3">
+          <div class="col-md-2">
            <div class="reel-item">
                <img src="../assets/Product3.jpg" alt="Reel 1">
                <div class="reel-caption">
@@ -1270,7 +1270,7 @@ section img{
            </div>
        </div>
   
-       <div class="col-md-3">
+       <div class="col-md-2">
         <div class="reel-item">
             <img src="../assets/Product1.jpg" alt="Reel 1">
             <div class="reel-caption">
@@ -1279,6 +1279,26 @@ section img{
             </div>
         </div>
     </div>
+
+    <div class="col-md-2">
+      <div class="reel-item">
+          <img src="../assets/Product1.jpg" alt="Reel 1">
+          <div class="reel-caption">
+              <button class="btn" onclick="likePost()">Like <i class="fas fa-heart"></i></button>
+              <button class="btn" onclick="sharePost()">Share <i class="fas fa-share"></i></button>
+          </div>
+      </div>
+  </div>
+
+  <div class="col-md-2">
+    <div class="reel-item">
+        <img src="../assets/Product1.jpg" alt="Reel 1">
+        <div class="reel-caption">
+            <button class="btn" onclick="likePost()">Like <i class="fas fa-heart"></i></button>
+            <button class="btn" onclick="sharePost()">Share <i class="fas fa-share"></i></button>
+        </div>
+    </div>
+</div>
   
         </div>
     </div>
