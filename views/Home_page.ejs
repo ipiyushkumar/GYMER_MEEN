@@ -855,19 +855,18 @@ section img{
     }
   }
 </style>
-
 <div id="myCarousel" class="carousel slide p-0" data-ride="carousel" style="height: 85vh;margin-top: 15vh;width: 100%;margin-bottom: 1vh;">
   <div class="carousel-inner" >
       <div class="carousel-item active">
-          <div class="bg-image bg-image-mobile-1" style="background-image: url('../assets/skin-tint-desktop.jpg'); height: 100%; width: 100%; background-position: cover;"></div>
+          <div class="bg-image bg-image-mobile-1" style="background-image: url('../assets/blue-slider.jpg'); height: 100%; width: 100%; background-position: cover;"></div>
       </div>
       <div class="carousel-item">
           <div class="bg-image bg-image-mobile-2" style="background-image: url('../assets/cleaner-desktop.jpg'); height: 100%; width: 100%;"></div>
       </div>
 
-      <div class="carousel-item">
-        <div class="bg-image bg-image-mobile-3" style="background-image: url('../assets/blue-slider.jpg'); height: 100%; width: 100%;"></div>
-    </div>
+    <div class="carousel-item">
+      <div class="bg-image bg-image-mobile-1" style="background-image: url('../assets/skin-tint-desktop.jpg'); height: 100%; width: 100%; background-position: cover;"></div>
+  </div>
 
     <div class="carousel-item">
         <div class="bg-image bg-image-mobile-4" style="background-image: url('../assets/beard-header.jpg'); height: 100%; width: 100%;"></div>
@@ -893,9 +892,9 @@ section img{
 <script>
   $(document).ready(function () {
       $('#myCarousel').carousel({
-          interval: 500, 
+          interval: 300, 
           pause: 'hover', 
-          wrap: false 
+          wrap: true
       });
   });
 </script>
