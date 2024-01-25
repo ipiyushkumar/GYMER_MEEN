@@ -307,9 +307,9 @@ footer .social a{
                     <p class="tax">Inclusive of all taxes</p>
                  </div>
                 <div class="quantity-container" style="display: none;">
-                  <button id="minus-btn" class='decrease<%= item.itemId %>desc'>-</button>
-                  <input type="button" id="quantity-input" class='itemQuantity<%= item.itemId %>desc' value="0">
-                  <button id="plus-btn" class='increase<%= item.itemId %>desc'>+</button>
+                  <button id="minus-btn" class='decrease<%= item.itemId %>'>-</button>
+                  <input type="button" id="quantity-input" class='itemQuantity<%= item.itemId %>' value="0">
+                  <button id="plus-btn" class='increase<%= item.itemId %>'>+</button>
                 </div>
               
                </div>
@@ -715,10 +715,7 @@ footer .social a{
                         openCart()
                         let container = document.querySelector('.quantity-container')
                         container.style.display = 'block'
-                        let value = document.querySelector(`.itemQuantity<%= item.itemId %>desc`).value;
-                        value = parseInt(value, 10);  // Parse the value as an integer
-                        value = value + 1;
-                        document.querySelector(`.itemQuantity<%= item.itemId %>desc`).value = value;
+                        document.querySelectorAll(`.itemQuantity<%= item.itemId %>`).forEach(item => {item.value = response.data.quantity});
                     } else {
                         console.error('Error adding item to cart:', response.data.message);
 
@@ -735,29 +732,32 @@ footer .social a{
           const itemId = '<%= item.itemId %>';
           const cartItem = userProfile.cart.find(item => item.itemId === itemId);
           if (cartItem) {
-            document.querySelector(`.itemQuantity<%= item.itemId %>desc`).value = cartItem.quantity
+            document.querySelector(`.itemQuantity<%= item.itemId %>`).value = cartItem.quantity
             document.querySelector('.quantity-container').style.display = 'block'
           } 
-          document.querySelector(`.decrease<%= item.itemId %>desc`).addEventListener('click', async () => {
+          document.querySelector(`.decrease<%= item.itemId %>`).addEventListener('click', async () => {
               await axios.post('/decreaseItem', { itemId: '<%= item.itemId %>' })
               .then(response => {
                   quantity = response.data.newQuantity;
                   if (quantity === -1){
                     document.querySelector('.quantity-container').style.display = 'none'
+                    if (document.querySelector(`.card_<%= item.itemId %>`)) {
+                        document.querySelector(`.card_<%= item.itemId %>`).innerHTML = "";
+                    }
                       showAlert("Item removed from cart","success")
                   } else {
-                      document.querySelector(`.itemQuantity<%= item.itemId %>desc`).value = quantity;
+                      document.querySelectorAll(`.itemQuantity<%= item.itemId %>`).forEach(item => {item.value = quantity;}) 
                       showAlert("Item quantity decreased","success")
                   }
               })
               .catch(err => alert("error " + err))
           })
-          document.querySelector('.increase<%= item.itemId %>desc').addEventListener('click', async () => {
+          document.querySelector('.increase<%= item.itemId %>').addEventListener('click', async () => {
               console.log("triggered")
               await axios.post('/increaseItem', { itemId: '<%= item.itemId %>' })
               .then(response => {
                 console.log('quantity increased')
-                  document.querySelector(`.itemQuantity<%= item.itemId %>desc`).value = response.data.newQuantity;
+                  document.querySelectorAll(`.itemQuantity<%= item.itemId %>`).forEach(item => {item.value = response.data.newQuantity;})  
                   showAlert("Item quantity increased","success")
               })
               .catch(err => alert("error " + err))

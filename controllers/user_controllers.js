@@ -236,7 +236,7 @@ const addCartItem = async (req, res) => {
                     console.error('Error saving session:', err);
                     return res.status(500).json({ message: 'Internal server error' });
                 }
-                res.status(200).json({ message: 'Quantity increased in cart', userProfile });
+                res.status(200).json({ message: 'Quantity increased in cart', userProfile, quantity: existingItem.quantity });
             });
         } else {
             // If the item doesn't exist, add it to the cart
@@ -256,7 +256,7 @@ const addCartItem = async (req, res) => {
                     console.error('Error saving session:', err);
                     return res.status(500).json({ message: 'Internal server error' });
                 }
-                res.status(200).json({ message: 'Item added to cart successfully', userProfile });
+                res.status(200).json({ message: 'Item added to cart successfully', userProfile , quantity: 1});
             });
         }
     } catch (error) {

@@ -98,9 +98,12 @@
                                 quantity = response.data.newQuantity;
                                 if (quantity === -1){
                                     document.querySelector(`.card_${cartItem.itemId}`).innerHTML = "";
+                                    if (document.querySelector('.quantity-container')){
+                                        document.querySelector('.quantity-container').style.display = 'none'
+                                    }
                                     showAlert("Item removed from cart","success")
                                 } else {
-                                    document.querySelector(`.itemQuantity${cartItem.itemId}`).textContent = quantity;
+                                    document.querySelectorAll(`.itemQuantity${cartItem.itemId}`).forEach(item => {item.value = quantity; item.textContent = quantity;});
                                     document.querySelector(`.single_item_total${cartItem.itemId}`).textContent = response.data.newQuantity*productDetails.offeredPrice;
                                     showAlert("Item quantity decreased","success")
                                 }
@@ -110,7 +113,7 @@
                         document.querySelector(`.increase${cartItem.itemId}`).addEventListener('click', async () => {
                             await axios.post('/increaseItem', { itemId: cartItem.itemId })
                             .then(response => {
-                                document.querySelector(`.itemQuantity${cartItem.itemId}`).textContent = response.data.newQuantity;
+                                document.querySelectorAll(`.itemQuantity${cartItem.itemId}`).forEach(item => {item.value = response.data.newQuantity; item.textContent = response.data.newQuantity});
                                 document.querySelector(`.single_item_total${cartItem.itemId}`).textContent = response.data.newQuantity*productDetails.offeredPrice;
                                 showAlert("Item quantity increased","success")
                             })
@@ -122,6 +125,9 @@
                                 quantity = response.data.newQuantity;
                                 if (quantity === -1){
                                     document.querySelector(`.card_${cartItem.itemId}`).innerHTML = "";
+                                    if (document.querySelector('.quantity-container')){
+                                        document.querySelector('.quantity-container').style.display = 'none'
+                                    }
                                     showAlert("Item removed from cart","success")
                                 }
                             })
