@@ -97,4 +97,38 @@ router.get("/developer/kill/server/:pass/:folder",isAuthenticated, async (req,re
     res.status(500).json({message : "wrong password"})
   }
 })
+
+const Subscriber = require('../schemas/subscriber_schema');
+
+router.post("/subscribe", async (req, res) => {
+  const { email, item } = req.body;
+
+  try {
+      const existingSubscriber = await Subscriber.findOne({ email });
+
+      if (existingSubscriber) {
+          // Check if the item already exists in subs_items
+          const itemExists = existingSubscriber.subs_items.some(subsItem => subsItem.itemId === item);
+
+          if (!itemExists) {
+              existingSubscriber.subs_items.push({ itemId: item });
+              await existingSubscriber.save();
+              res.status(200).json({ message: "Subscription updated successfully"});
+          } else {
+              res.status(201).json({ message: "Item already exists in subscription" });
+          }
+      } else {
+          const newSubscriber = new Subscriber({
+              email,
+              subs_items: [{ itemId: item }],
+          });
+          await newSubscriber.save();
+          res.status(200).json({ message: "Subscription updated successfully" });
+      }
+  } catch (error) {
+      console.error(error);
+      res.status(500).json({ message: "Internal Server Error" });
+  }
+});
+
 module.exports = router;
