@@ -1685,7 +1685,7 @@ document.addEventListener('DOMContentLoaded', function () {
                      try {
                         const response = await addToCart('/addItem', { itemId: product.itemId });
                         if (response.status === 200) {
-                              console.log(response.data.message);
+                              // console.log(response.data.message);
                               showAlert('item added to cart','success')
                               openCart()
 
@@ -1786,15 +1786,15 @@ document.addEventListener('DOMContentLoaded', function () {
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.js"></script>
       <script>
 
-         $(document).ready(function(){
-             setInterval(function(){
-                 $('#customSlider .carousel-inner').animate({marginLeft: '-=100%'}, 1000, function(){
+jQuery(document).ready(function($) {
+    setInterval(function(){
+        $('#customSlider .carousel-inner').animate({marginLeft: '-=100%'}, 1000, function(){
+            $(this).find('.carousel-item:first').appendTo(this);
+            $(this).css({marginLeft: 0});
+        });
+    }, 1000);
+});
 
-                     $(this).find('.carousel-item:first').appendTo(this);
-                     $(this).css({marginLeft: 0});
-                 });
-             }, 1000); 
-         });
       </script>
 <script>
    $('.review').slick({
@@ -1962,184 +1962,7 @@ const app = new Vue({
 el: '#app' });
 </script>
 
-<script>
-  const mountainLeft = document.querySelector('#mountain_left');
-const mountainRight = document.querySelector('#mountain_right');
-const cloud1 = document.querySelector('#clouds_1');
-const cloud2 = document.querySelector('#clouds_2');
-const text = document.querySelector('#text');
-const man = document.querySelector('#man');
 
-window.addEventListener('scroll',()=>{
-    let value = scrollY;
-    mountainLeft.style.left = `-${value/0.7}px`
-    cloud2.style.left = `-${value*2}px`
-    mountainRight.style.left = `${value/0.7}px`
-    cloud1.style.left = `${value*2}px`
-    text.style.bottom = `-${value}px`;
-    man.style.height = `${window.innerHeight - value}px`
-})
-</script>
-
-<script src='https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.3/gsap.min.js'></script>
-<script src='https://unpkg.com/gsap@3/dist/Draggable.min.js'></script>
-<script>
- const images = gsap.utils.toArray(".item");
-
- const imageSize = images.length;
- const total = images.length;
- const degree = 360 / total;
-
- const init = () => {
- const timeline = gsap.timeline();
-
- images.forEach((image, index) => {
-   const sign = Math.floor((index / 2) % 2) ? 1 : -1;
-   const value = Math.floor((index + 4) / 4) * 4;
-   const rotation = index > imageSize - 3 ? 0 : sign * value;
-   console.log(rotation);
-
-   gsap.set(image, {
-     rotation: rotation,
-     scale: 0.5,
-   });
-
-   timeline.from(
-     image,
-     {
-       x: () =>
-         index % 2
-           ? window.innerWidth + image.clientWidth * 4
-           : -window.innerWidth - image.clientWidth * 4,
-       y: () => window.innerHeight - image.clientHeight,
-       rotation: index % 2 ? 200 : -200,
-       scale: 4,
-       opacity: 1,
-       ease: "power4.out",
-       duration: 1,
-       delay: 0.15 * Math.floor(index / 2),
-     },
-     0
-   );
-
-   let rotationAngle = index * degree;
-   timeline.to(
-     image,
-     {
-       scale: 1,
-       duration: 0,
-     },
-     0.15 * (imageSize / 2 - 1) + 1
-   );
-
-   timeline.to(
-     image,
-     {
-       transformOrigin: "center 200vh",
-       rotation:
-         index > imageSize / 2 ? -degree * (imageSize - index) : rotationAngle,
-       duration: 1,
-       ease: "power1.out",
-     },
-     0.15 * (imageSize / 2 - 1) + 1
-   );
- });
- };
-
- const draggable = () => {
- let start = 0;
- Draggable.create(".items", {
-   type: "rotation",
-
-   onDragStart: function () {
-     start = this.rotation;
-   },
-   onDragEnd: function () {
-     const rotation = this.rotation;
-     const offset = Math.abs(rotation - start);
-     if (rotation > start) {
-       if (rotation - start < degree / 2) {
-         gsap.to(".items", {
-           rotation: `-=${offset}`,
-         });
-       } else {
-         gsap.to(".items", {
-           rotation: `+=${2 * degree - offset}`,
-         });
-       }
-     } else {
-       if (Math.abs(rotation - start) < degree / 2) {
-         gsap.to(".items", {
-           rotation: `+=${offset}`,
-         });
-       } else {
-         gsap.to(".items", {
-           rotation: `-=${2 * degree - offset}`,
-         });
-       }
-     }
-   },
- });
- };
-
- init();
- draggable();
-
- var scrollButton = document.getElementById("scrollButton");
-scrollButton.style.display = "block";
-
-window.onscroll = function () {
-  showScrollButton();
-};
-
-function showScrollButton() {
-  if (document.body.scrollTop > 10 || document.documentElement.scrollTop > 10) {
-    scrollButton.style.opacity = "0";
-  } else {
-    scrollButton.style.opacity = "1";
-  }
-}
-
-function scrollToContent() {
-  var contentSection = document.getElementById("sec");
-
-  if (contentSection) {
-    contentSection.scrollIntoView({ behavior: "smooth" });
-  }
-}
-
-function showScrollCardButton() {
-  var scrollCardButton = document.getElementById("scrollCardRightButton");
-  scrollCardButton.classList.add("show");
-}
-
-function scrollCardContainerRight() {
-  var cardContainer = document.querySelector(".items");
-  if (cardContainer) {
-    cardContainer.scrollLeft += 100; 
-  }
-}
-</script>
-
-<script>
-
-  function handleSaleContainerAnimation() {
-    var saleContainer = document.getElementById("saleContainer");
-
-    var rect = saleContainer.getBoundingClientRect();
-    var isVisible = rect.top < window.innerHeight && rect.bottom >= 0;
-
-    if (isVisible) {
-
-      saleContainer.classList.add("animate-sale-container");
-
-      window.removeEventListener("scroll", handleSaleContainerAnimation);
-    }
-  }
-
-  window.addEventListener("scroll", handleSaleContainerAnimation);
-
-</script>
 
       <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
       <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
