@@ -370,7 +370,7 @@
 
     .banner-mobile-video {
   width: 100%;
-  height: 90vh;
+  height: 100vh;
   display: flex !important;
 }
 
@@ -1006,6 +1006,31 @@ section img{
     -webkit-overflow-scrolling: touch;
   }
 
+  .top-slider #slide-1 button{
+    margin-top: 15%;
+    margin-left: 3%;
+  }
+
+  .top-slider #slide-2 button{
+    margin-top: 22%;
+    margin-right: 6%;
+  }
+
+  .top-slider #slide-3 button{
+    margin-top: 17%;
+    margin-right: 2%;
+  }
+
+  .top-slider #slide-4 button{
+    margin-top: 20%;
+    margin-left: 6%;
+  }
+
+  .top-slider #slide-5 button{
+    margin-top: 16%;
+    margin-left: 0%;
+  }
+
       
         .custom-slide-new a {
         text-decoration: none; 
@@ -1035,8 +1060,8 @@ section img{
 
 <style>
   @media only screen and (max-width: 768px) {
-    .top-slider .slides{
-      background-size: 100% 100%;
+    .top-slider .slide{
+      background-size: 100% !important;
     }
   .top-slider .slides #slide-1 {
     background-image: url('../assets/mb-1.jpg') !important;
@@ -1131,11 +1156,26 @@ section img{
 
 <div class="top-slider">
   <div class="slides">
-      <div class="slide" id="slide-1" style="background-image: url('../assets/blue-slider.jpg');"></div>
-      <div class="slide" id="slide-2" style="background-image: url('../assets/cleaner-desktop.jpg');"></div>
-      <div class="slide" id="slide-3" style="background-image: url('../assets/skin-desk.jpg');"></div>
-      <div class="slide" id="slide-4" style="background-image: url('../assets/beard-banner-desk.jpg');"></div>
-      <div class="slide" id="slide-5" style="background-image: url('../assets/banner 2.jpg');"></div>        
+    <div class="slide" id="slide-1" style="background-image: url('../assets/blue-slider.jpg');">
+      <button class="btn btn-light btn-flat" style="border-radius: 0;">BUY NOW</button>
+  </div>
+  
+  <div class="slide" id="slide-2" style="background-image: url('../assets/cleaner-desktop.jpg');">
+      <button class="btn btn-light btn-flat" style="border-radius: 0;">BUY NOW</button>
+  </div>
+  
+  <div class="slide" id="slide-3" style="background-image: url('../assets/skin-desk.jpg');">
+      <button class="btn btn-light btn-flat" style="border-radius: 0;">BUY NOW</button>
+  </div>
+  
+  <div class="slide" id="slide-4" style="background-image: url('../assets/beard-banner-desk.jpg');">
+      <button class="btn btn-light btn-flat" style="border-radius: 0;">BUY NOW</button>
+  </div>
+  
+  <div class="slide" id="slide-5" style="background-image: url('../assets/Hair-removal.jpg');">
+      <button class="btn btn-light btn-flat" style="border-radius: 0;">BUY NOW</button>
+  </div>
+       
   </div>
 
   <a href="#slide-1"></a>
@@ -1348,16 +1388,16 @@ document.addEventListener('DOMContentLoaded', function () {
   </section>
 
   
-<div class="container-fluid banner-video mb-3 p-0">
+<div class="container-fluid banner-video mb-5 p-0">
   <video autoplay muted loop class="p-0" style="width:100%; height: 90vh; object-fit: cover;object-position: top;">
-    <source src="../assets/New_arrivals_HRS.mp4" type="video/mp4">
+    <source src="../assets/New arrivals HRS mp4 update.mp4" type="video/mp4">
     Your browser does not support the video tag.
   </video>
 </div>
 
 <div class="container-fluid banner-mobile-video mb-3 p-0">
-  <video autoplay muted loop class="p-0" style="width:100%; height: 90vh; object-fit: cover;object-position:top;">
-    <source src="../assets/mobile-new-arrival.mp4" type="video/mp4">
+  <video autoplay muted loop class="p-0" style="width:100%; height: 100vh; object-fit: fill;object-position:top;">
+    <source src="../assets/Mobile Version HRS.mp4" type="video/mp4">
     Your browser does not support the video tag.
   </video>
 </div>
