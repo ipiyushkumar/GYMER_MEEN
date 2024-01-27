@@ -4,7 +4,7 @@
       <meta charset="UTF-8">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <title>WhiteWolf India</title>
-      <link rel="shortcut icon" type="image/x-icon" href="../assets/whitewolf-icon.ico">
+      <link rel="shortcut icon" type="image/x-icon" href="../assets/whitewolflog.png">
       <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css">
       <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.css"/>
       <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick-theme.css">
@@ -82,6 +82,10 @@
              height: 40vh;
            }
 
+           .perf-vid{
+            height: auto !important;
+           }
+
            .slider .prev{
              font-size: 5vh !important;
              left: 2vh !important;
@@ -121,7 +125,7 @@
     background-color: #fff;
     overflow: hidden;
     position: relative;
-    height: 300px; 
+    height: 40vh; 
 }
 
 .reel-item img {
@@ -284,7 +288,7 @@
 @media (max-width: 767px) {
 
   .custom-carousel-container{
-    margin-top: 1vh !important;
+    margin-top: 5px !important;
   }
 
   .engage{
@@ -366,7 +370,7 @@
 
     .banner-mobile-video {
   width: 100%;
-  height: 90vh;
+  height: 100vh;
   display: flex !important;
 }
 
@@ -505,6 +509,10 @@
           display: none;
         }
 }
+
+blockquote.instagram-media {
+    max-height: 200px !important; /* Adjust the maximum height as needed */
+  }
 
 .loading-container {
     position: fixed;
@@ -855,7 +863,7 @@ section img{
     }
   }
 </style>
-<div id="myCarousel" class="carousel slide p-0" data-ride="carousel" style="height: 85vh;margin-top: 15vh;width: 100%;margin-bottom: 1vh;">
+<!-- <div id="myCarousel" class="carousel slide p-0" data-ride="carousel" style="height: 85vh;margin-top: 15vh;width: 100%;margin-bottom: 1vh;">
   <div class="carousel-inner" >
       <div class="carousel-item active">
           <div class="bg-image bg-image-mobile-1" style="background-image: url('../assets/blue-slider.jpg'); height: 100%; width: 100%; background-position: cover;"></div>
@@ -897,7 +905,9 @@ section img{
           wrap: true
       });
   });
-</script>
+</script> -->
+
+
 
 
 
@@ -948,30 +958,80 @@ section img{
 
       <style>
         .custom-carousel-item img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
 
-        .custom-carousel-container {
-            padding: 0;
-            width: 100%;
-            overflow: hidden;
-            position: relative;
-        }
+  .custom-carousel-container {
+    padding: 0;
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+    z-index: 0; /* Increase the z-index */
+  }
 
-        .custom-slides-new {
-            display: flex;
-            flex-wrap: nowrap;
-            cursor: pointer;
-            gap: 6px;
-            cursor: -webkit-grab;
-            transition: transform 0.5s ease-in-out;
-            overflow-x: scroll;
-            -ms-overflow-style: none;
-            scrollbar-width: none;
-        }
+  .custom-slides-new {
+    display: flex;
+    flex-wrap: nowrap;
+    cursor: pointer;
+    gap: 6px;
+    cursor: -webkit-grab;
+    transition: transform 0.5s ease-in-out;
+    overflow-x: scroll;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+    position: relative;
+    z-index: 0; /* Increase the z-index */
+  }
 
+  .top-slider {
+    margin-top: 15vh;
+    width: 100%;
+    margin-bottom: 0;
+    text-align: center;
+    overflow: hidden;
+    position: relative;
+    z-index: 0; /* Keep the z-index lower than the custom-carousel-container */
+  }
+
+  .top-slider .slides {
+    width: 100%;
+    display: flex;
+    margin: 0;
+    padding: 0;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .top-slider #slide-1 button{
+    margin-top: 15%;
+    margin-left: 3%;
+  }
+
+  .top-slider #slide-2 button{
+    margin-top: 22%;
+    margin-right: 6%;
+  }
+
+  .top-slider #slide-3 button{
+    margin-top: 17%;
+    margin-right: 2%;
+  }
+
+  .top-slider #slide-4 button{
+    margin-top: 20%;
+    margin-left: 6%;
+  }
+
+  .top-slider #slide-5 button{
+    margin-top: 16%;
+    margin-left: 0%;
+  }
+
+      
         .custom-slide-new a {
         text-decoration: none; 
         color: inherit; 
@@ -998,8 +1058,151 @@ section img{
         }
     </style>
 
+<style>
+  @media only screen and (max-width: 768px) {
+    .top-slider .slide{
+      background-size: 100% !important;
+    }
+  .top-slider .slides #slide-1 {
+    background-image: url('../assets/mb-1.jpg') !important;
+  }
 
-    <div class="custom-carousel-container mt-0 mb-5">
+  .top-slider .slides #slide-2 {
+    background-image: url('../assets/mb-4.jpg') !important;
+  }
+
+  .top-slider .slides #slide-3 {
+    background-image: url('../assets/skin-mob.jpg') !important;
+  }
+
+  .top-slider .slides #slide-4 {
+    background-image: url('../assets/mb-3.jpg') !important;
+  }
+
+  .top-slider .slides #slide-5 {
+    background-image: url('../assets/beard-banner-mob.jpg') !important;
+  }
+}
+
+  .top-slider .slide {
+    scroll-snap-align: start;
+    flex-shrink: 0;
+    width: 100%;
+    height: 85vh;
+    margin: 0;
+    padding: 0;
+    background-size: 100% 100%;
+    transform-origin: center center;
+    transform: scale(1);
+    transition: transform 0.5s;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 100px;
+  }
+
+  .top-slider .author-info {
+    background: rgba(0, 0, 0, 0.75);
+    color: white;
+    padding: 0.75rem;
+    text-align: center;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    margin: 0;
+  }
+
+  .top-slider .author-info a { color: white; }
+
+  .top-slider .slider img {
+    object-fit: cover;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  .top-slider .slider > a {
+    display: inline-flex;
+    width: 1.5vh;
+    height: 1.5vh;
+    background: rgb(175, 174, 174);
+    text-decoration: none;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    margin-top: -10vh;
+    position: relative;
+  }
+
+  .top-slider .slider > a:focus { background: #000; }
+
+  /* Don't need button navigation */
+  @supports (scroll-snap-type) { .top-slider .slider > a { display: none; } }
+
+  .top-slider .slides::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+
+  .top-slider .slides::-webkit-scrollbar-thumb,
+  .slides::-webkit-scrollbar-track {
+    background: transparent;
+  }
+</style>
+
+<div class="top-slider">
+  <div class="slides">
+    <div class="slide" id="slide-1" style="background-image: url('../assets/blue-slider.jpg');">
+      <button class="btn btn-light btn-flat" style="border-radius: 0;">BUY NOW</button>
+  </div>
+  
+  <div class="slide" id="slide-2" style="background-image: url('../assets/cleaner-desktop.jpg');">
+      <button class="btn btn-light btn-flat" style="border-radius: 0;">BUY NOW</button>
+  </div>
+  
+  <div class="slide" id="slide-3" style="background-image: url('../assets/skin-desk.jpg');">
+      <button class="btn btn-light btn-flat" style="border-radius: 0;">BUY NOW</button>
+  </div>
+  
+  <div class="slide" id="slide-4" style="background-image: url('../assets/beard-banner-desk.jpg');">
+      <button class="btn btn-light btn-flat" style="border-radius: 0;">BUY NOW</button>
+  </div>
+  
+  <div class="slide" id="slide-5" style="background-image: url('../assets/Hair-removal.jpg');">
+      <button class="btn btn-light btn-flat" style="border-radius: 0;">BUY NOW</button>
+  </div>
+       
+  </div>
+
+  <a href="#slide-1"></a>
+  <a href="#slide-2"></a>
+  <a href="#slide-3"></a>
+  <a href="#slide-4"></a>
+  <a href="#slide-5"></a>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  const slides = document.querySelector('.slides');
+  let currentIndex = 0;
+
+  function scrollToNextSlide() {
+    currentIndex = (currentIndex + 1) % slides.children.length;
+    slides.scrollTo({
+      left: slides.children[currentIndex].offsetLeft,
+      behavior: 'smooth'
+    });
+  }
+
+  setInterval(scrollToNextSlide, 3000);
+});
+</script>
+
+    <div class="custom-carousel-container  mb-5">
       <div class="custom-slides-new mt-0">
         <a href="/product_listing/hair_care">
           <div class="custom-slide-new"><img src="/assets/Sliding1.jpg" alt="Image 1"></div>
@@ -1051,7 +1254,7 @@ section img{
       <div class="container-fluid mb-4 mt-0 p-2">
 
               <video autoplay muted loop class="bg-video p-0">
-                <source src="../assets/StreamA2z.mp4" type="video/mp4">
+                <source src="../assets/new-promo-video.mp4" type="video/mp4">
                 Your browser does not support the video tag.
             </video>
     </div>
@@ -1150,7 +1353,7 @@ section img{
 
         <div style="font-size: 2vh; margin-bottom: 0vh;">This is how Blu Atlas does cologne.<br> Influenced by the vibrant coastal jungles of Bali, Atlantis was created to inspire wanderlust.</div>
 
-        <div style="position: relative; overflow: hidden; max-width: 100%; height: 80vh;">
+        <div class="perf-vid" style="position: relative; overflow: hidden; max-width: 100%; height: 80vh;">
           <video autoplay muted loop class="p-0" style="width: 100%; height: 100%;">
 
             <source src="../assets/perfume-final.mp4" type="video/mp4">
@@ -1185,22 +1388,22 @@ section img{
   </section>
 
   
-<div class="container-fluid banner-video mb-3 p-0">
-  <video autoplay muted loop class="p-0" style="width:100%; height: 90vh; object-fit: cover;object-position: center;">
-    <source src="../assets/New_arrivals_HRS.mp4" type="video/mp4">
+<div class="container-fluid banner-video mb-5 p-0">
+  <video autoplay muted loop class="p-0" style="width:100%; height: 90vh; object-fit: cover;object-position: top;">
+    <source src="../assets/New arrivals HRS mp4 update.mp4" type="video/mp4">
     Your browser does not support the video tag.
   </video>
 </div>
 
 <div class="container-fluid banner-mobile-video mb-3 p-0">
-  <video autoplay muted loop class="p-0" style="width:100%; height: 90vh; object-fit: cover;object-position:top;">
-    <source src="../assets/mobile-new-arrival.mp4" type="video/mp4">
+  <video autoplay muted loop class="p-0" style="width:100%; height: 100vh; object-fit: fill;object-position:top;">
+    <source src="../assets/Mobile Version HRS.mp4" type="video/mp4">
     Your browser does not support the video tag.
   </video>
 </div>
 
       <div class="container-fluid mt-3 mb-1 m-2">
-         <h2 class="text-center text-white mb-1" style="font-size: 5vh;">Search Through Category</h2>
+         <h2 class="text-center text-white mb-1" style="font-size: 5vh;">Featured Collection</h2>
          <div id="app" class="container-category">
 
           <a href="/product_listing/beard_care" target="_blank">
@@ -1238,69 +1441,16 @@ section img{
       <div class="container-fluid mb-2 p-5" data-aos="fade-up" data-aos-duration="1000">
         <h2 class="text-center text-white mb-5 engage text-capitalize">Engage, Share, and Explore our Instagram Highlights!</h2>
         <div class="row">
-            <div class="col-md-2">
-                <div class="reel-item">
-                    <img src="../assets/Product1.jpg" alt="Reel 1">
-                    <div class="reel-caption">
-                        <button class="btn" onclick="likePost()">Like <i class="fas fa-heart"></i></button>
-                        <button class="btn" onclick="sharePost()">Share <i class="fas fa-share"></i></button>
-                    </div>
-                </div>
-            </div>
-  
-            <div class="col-md-2">
-              <div class="reel-item">
-                  <img src="../assets/Product2.jpg" alt="Reel 1">
-                  <div class="reel-caption">
-
-                      <button class="btn" onclick="likePost()">Like <i class="fas fa-heart"></i></button>
-                      <button class="btn" onclick="sharePost()">Share <i class="fas fa-share"></i></button>
-                  </div>
+              <div class="col-md-2">
+                <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/C125q2yuOab/?utm_source=ig_embed&amp;utm_campaign=loading" data-instgrm-version="14" style=" background:#FFF; border:0; border-radius:3px; box-shadow:0 0 1px 0 rgba(0,0,0,0.5),0 1px 10px 0 rgba(0,0,0,0.15); margin: 1px; max-width:540px; min-width:326px; padding:0; width:99.375%; width:-webkit-calc(100% - 2px); width:calc(100% - 2px);"><div style="padding:16px;"> <a href="https://www.instagram.com/reel/C125q2yuOab/?utm_source=ig_embed&amp;utm_campaign=loading" style=" background:#FFFFFF; line-height:0; padding:0 0; text-align:center; text-decoration:none; width:100%;" target="_blank"> <div style=" display: flex; flex-direction: row; align-items: center;"> <div style="background-color: #F4F4F4; border-radius: 50%; flex-grow: 0; height: 40px; margin-right: 14px; width: 40px;"></div> <div style="display: flex; flex-direction: column; flex-grow: 1; justify-content: center;"> <div style=" background-color: #F4F4F4; border-radius: 4px; flex-grow: 0; height: 14px; margin-bottom: 6px; width: 100px;"></div> <div style=" background-color: #F4F4F4; border-radius: 4px; flex-grow: 0; height: 14px; width: 60px;"></div></div></div><div style="padding: 19% 0;"></div> <div style="display:block; height:50px; margin:0 auto 12px; width:50px;"><svg width="50px" height="50px" viewBox="0 0 60 60" version="1.1" xmlns="https://www.w3.org/2000/svg" xmlns:xlink="https://www.w3.org/1999/xlink"><g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"><g transform="translate(-511.000000, -20.000000)" fill="#000000"><g><path d="M556.869,30.41 C554.814,30.41 553.148,32.076 553.148,34.131 C553.148,36.186 554.814,37.852 556.869,37.852 C558.924,37.852 560.59,36.186 560.59,34.131 C560.59,32.076 558.924,30.41 556.869,30.41 M541,60.657 C535.114,60.657 530.342,55.887 530.342,50 C530.342,44.114 535.114,39.342 541,39.342 C546.887,39.342 551.658,44.114 551.658,50 C551.658,55.887 546.887,60.657 541,60.657 M541,33.886 C532.1,33.886 524.886,41.1 524.886,50 C524.886,58.899 532.1,66.113 541,66.113 C549.9,66.113 557.115,58.899 557.115,50 C557.115,41.1 549.9,33.886 541,33.886 M565.378,62.101 C565.244,65.022 564.756,66.606 564.346,67.663 C563.803,69.06 563.154,70.057 562.106,71.106 C561.058,72.155 560.06,72.803 558.662,73.347 C557.607,73.757 556.021,74.244 553.102,74.378 C549.944,74.521 548.997,74.552 541,74.552 C533.003,74.552 532.056,74.521 528.898,74.378 C525.979,74.244 524.393,73.757 523.338,73.347 C521.94,72.803 520.942,72.155 519.894,71.106 C518.846,70.057 518.197,69.06 517.654,67.663 C517.244,66.606 516.755,65.022 516.623,62.101 C516.479,58.943 516.448,57.996 516.448,50 C516.448,42.003 516.479,41.056 516.623,37.899 C516.755,34.978 517.244,33.391 517.654,32.338 C518.197,30.938 518.846,29.942 519.894,28.894 C520.942,27.846 521.94,27.196 523.338,26.654 C524.393,26.244 525.979,25.756 528.898,25.623 C532.057,25.479 533.004,25.448 541,25.448 C548.997,25.448 549.943,25.479 553.102,25.623 C556.021,25.756 557.607,26.244 558.662,26.654 C560.06,27.196 561.058,27.846 562.106,28.894 C563.154,29.942 563.803,30.938 564.346,32.338 C564.756,33.391 565.244,34.978 565.378,37.899 C565.522,41.056 565.552,42.003 565.552,50 C565.552,57.996 565.522,58.943 565.378,62.101 M570.82,37.631 C570.674,34.438 570.167,32.258 569.425,30.349 C568.659,28.377 567.633,26.702 565.965,25.035 C564.297,23.368 562.623,22.342 560.652,21.575 C558.743,20.834 556.562,20.326 553.369,20.18 C550.169,20.033 549.148,20 541,20 C532.853,20 531.831,20.033 528.631,20.18 C525.438,20.326 523.257,20.834 521.349,21.575 C519.376,22.342 517.703,23.368 516.035,25.035 C514.368,26.702 513.342,28.377 512.574,30.349 C511.834,32.258 511.326,34.438 511.181,37.631 C511.035,40.831 511,41.851 511,50 C511,58.147 511.035,59.17 511.181,62.369 C511.326,65.562 511.834,67.743 512.574,69.651 C513.342,71.625 514.368,73.296 516.035,74.965 C517.703,76.634 519.376,77.658 521.349,78.425 C523.257,79.167 525.438,79.673 528.631,79.82 C531.831,79.965 532.853,80.001 541,80.001 C549.148,80.001 550.169,79.965 553.369,79.82 C556.562,79.673 558.743,79.167 560.652,78.425 C562.623,77.658 564.297,76.634 565.965,74.965 C567.633,73.296 568.659,71.625 569.425,69.651 C570.167,67.743 570.674,65.562 570.82,62.369 C570.966,59.17 571,58.147 571,50 C571,41.851 570.966,40.831 570.82,37.631"></path></g></g></g></svg></div><div style="padding-top: 8px;"> <div style=" color:#3897f0; font-family:Arial,sans-serif; font-size:14px; font-style:normal; font-weight:550; line-height:18px;">View this post on Instagram</div></div><div style="padding: 12.5% 0;"></div> <div style="display: flex; flex-direction: row; margin-bottom: 14px; align-items: center;"><div> <div style="background-color: #F4F4F4; border-radius: 50%; height: 12.5px; width: 12.5px; transform: translateX(0px) translateY(7px);"></div> <div style="background-color: #F4F4F4; height: 12.5px; transform: rotate(-45deg) translateX(3px) translateY(1px); width: 12.5px; flex-grow: 0; margin-right: 14px; margin-left: 2px;"></div> <div style="background-color: #F4F4F4; border-radius: 50%; height: 12.5px; width: 12.5px; transform: translateX(9px) translateY(-18px);"></div></div><div style="margin-left: 8px;"> <div style=" background-color: #F4F4F4; border-radius: 50%; flex-grow: 0; height: 20px; width: 20px;"></div> <div style=" width: 0; height: 0; border-top: 2px solid transparent; border-left: 6px solid #f4f4f4; border-bottom: 2px solid transparent; transform: translateX(16px) translateY(-4px) rotate(30deg)"></div></div><div style="margin-left: auto;"> <div style=" width: 0px; border-top: 8px solid #F4F4F4; border-right: 8px solid transparent; transform: translateY(16px);"></div> <div style=" background-color: #F4F4F4; flex-grow: 0; height: 12px; width: 16px; transform: translateY(-4px);"></div> <div style=" width: 0; height: 0; border-top: 8px solid #F4F4F4; border-left: 8px solid transparent; transform: translateY(-4px) translateX(8px);"></div></div></div> <div style="display: flex; flex-direction: column; flex-grow: 1; justify-content: center; margin-bottom: 24px;"> <div style=" background-color: #F4F4F4; border-radius: 4px; flex-grow: 0; height: 14px; margin-bottom: 6px; width: 224px;"></div> <div style=" background-color: #F4F4F4; border-radius: 4px; flex-grow: 0; height: 14px; width: 144px;"></div></div></a><p style=" color:#c9c8cd; font-family:Arial,sans-serif; font-size:14px; line-height:17px; margin-bottom:0; margin-top:8px; overflow:hidden; padding:8px 0 7px; text-align:center; text-overflow:ellipsis; white-space:nowrap;"><a href="https://www.instagram.com/reel/C125q2yuOab/?utm_source=ig_embed&amp;utm_campaign=loading" style=" color:#c9c8cd; font-family:Arial,sans-serif; font-size:14px; font-style:normal; font-weight:normal; line-height:17px; text-decoration:none;" target="_blank">A post shared by Hero Dalglish | Master of derps (@hero_the_white_gsd)</a></p></div></blockquote> <script async src="//www.instagram.com/embed.js"></script>
               </div>
-          </div>
   
-          <div class="col-md-2">
-           <div class="reel-item">
-               <img src="../assets/Product3.jpg" alt="Reel 1">
-               <div class="reel-caption">
-                   <button class="btn" onclick="likePost()">Like <i class="fas fa-heart"></i></button>
-                   <button class="btn" onclick="sharePost()">Share <i class="fas fa-share"></i></button>
-               </div>
-           </div>
-       </div>
-  
-       <div class="col-md-2">
-        <div class="reel-item">
-            <img src="../assets/Product1.jpg" alt="Reel 1">
-            <div class="reel-caption">
-                <button class="btn" onclick="likePost()">Like <i class="fas fa-heart"></i></button>
-                <button class="btn" onclick="sharePost()">Share <i class="fas fa-share"></i></button>
-            </div>
         </div>
     </div>
 
-    <div class="col-md-2">
-      <div class="reel-item">
-          <img src="../assets/Product1.jpg" alt="Reel 1">
-          <div class="reel-caption">
-              <button class="btn" onclick="likePost()">Like <i class="fas fa-heart"></i></button>
-              <button class="btn" onclick="sharePost()">Share <i class="fas fa-share"></i></button>
-          </div>
-      </div>
-  </div>
+    
 
-  <div class="col-md-2">
-    <div class="reel-item">
-        <img src="../assets/Product1.jpg" alt="Reel 1">
-        <div class="reel-caption">
-            <button class="btn" onclick="likePost()">Like <i class="fas fa-heart"></i></button>
-            <button class="btn" onclick="sharePost()">Share <i class="fas fa-share"></i></button>
-        </div>
-    </div>
-</div>
   
-        </div>
-    </div>
 
      <h2 class="text-center text-white mt-2 mb-0">See What Our Customers Say</h2>
      <style>
@@ -1575,7 +1725,7 @@ section img{
                      try {
                         const response = await addToCart('/addItem', { itemId: product.itemId });
                         if (response.status === 200) {
-                              console.log(response.data.message);
+                              // console.log(response.data.message);
                               showAlert('item added to cart','success')
                               openCart()
 
@@ -1676,15 +1826,15 @@ section img{
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.js"></script>
       <script>
 
-         $(document).ready(function(){
-             setInterval(function(){
-                 $('#customSlider .carousel-inner').animate({marginLeft: '-=100%'}, 1000, function(){
+jQuery(document).ready(function($) {
+    setInterval(function(){
+        $('#customSlider .carousel-inner').animate({marginLeft: '-=100%'}, 1000, function(){
+            $(this).find('.carousel-item:first').appendTo(this);
+            $(this).css({marginLeft: 0});
+        });
+    }, 1000);
+});
 
-                     $(this).find('.carousel-item:first').appendTo(this);
-                     $(this).css({marginLeft: 0});
-                 });
-             }, 1000); 
-         });
       </script>
 <script>
    $('.review').slick({
@@ -1852,184 +2002,7 @@ const app = new Vue({
 el: '#app' });
 </script>
 
-<script>
-  const mountainLeft = document.querySelector('#mountain_left');
-const mountainRight = document.querySelector('#mountain_right');
-const cloud1 = document.querySelector('#clouds_1');
-const cloud2 = document.querySelector('#clouds_2');
-const text = document.querySelector('#text');
-const man = document.querySelector('#man');
 
-window.addEventListener('scroll',()=>{
-    let value = scrollY;
-    mountainLeft.style.left = `-${value/0.7}px`
-    cloud2.style.left = `-${value*2}px`
-    mountainRight.style.left = `${value/0.7}px`
-    cloud1.style.left = `${value*2}px`
-    text.style.bottom = `-${value}px`;
-    man.style.height = `${window.innerHeight - value}px`
-})
-</script>
-
-<script src='https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.3/gsap.min.js'></script>
-<script src='https://unpkg.com/gsap@3/dist/Draggable.min.js'></script>
-<script>
- const images = gsap.utils.toArray(".item");
-
- const imageSize = images.length;
- const total = images.length;
- const degree = 360 / total;
-
- const init = () => {
- const timeline = gsap.timeline();
-
- images.forEach((image, index) => {
-   const sign = Math.floor((index / 2) % 2) ? 1 : -1;
-   const value = Math.floor((index + 4) / 4) * 4;
-   const rotation = index > imageSize - 3 ? 0 : sign * value;
-   console.log(rotation);
-
-   gsap.set(image, {
-     rotation: rotation,
-     scale: 0.5,
-   });
-
-   timeline.from(
-     image,
-     {
-       x: () =>
-         index % 2
-           ? window.innerWidth + image.clientWidth * 4
-           : -window.innerWidth - image.clientWidth * 4,
-       y: () => window.innerHeight - image.clientHeight,
-       rotation: index % 2 ? 200 : -200,
-       scale: 4,
-       opacity: 1,
-       ease: "power4.out",
-       duration: 1,
-       delay: 0.15 * Math.floor(index / 2),
-     },
-     0
-   );
-
-   let rotationAngle = index * degree;
-   timeline.to(
-     image,
-     {
-       scale: 1,
-       duration: 0,
-     },
-     0.15 * (imageSize / 2 - 1) + 1
-   );
-
-   timeline.to(
-     image,
-     {
-       transformOrigin: "center 200vh",
-       rotation:
-         index > imageSize / 2 ? -degree * (imageSize - index) : rotationAngle,
-       duration: 1,
-       ease: "power1.out",
-     },
-     0.15 * (imageSize / 2 - 1) + 1
-   );
- });
- };
-
- const draggable = () => {
- let start = 0;
- Draggable.create(".items", {
-   type: "rotation",
-
-   onDragStart: function () {
-     start = this.rotation;
-   },
-   onDragEnd: function () {
-     const rotation = this.rotation;
-     const offset = Math.abs(rotation - start);
-     if (rotation > start) {
-       if (rotation - start < degree / 2) {
-         gsap.to(".items", {
-           rotation: `-=${offset}`,
-         });
-       } else {
-         gsap.to(".items", {
-           rotation: `+=${2 * degree - offset}`,
-         });
-       }
-     } else {
-       if (Math.abs(rotation - start) < degree / 2) {
-         gsap.to(".items", {
-           rotation: `+=${offset}`,
-         });
-       } else {
-         gsap.to(".items", {
-           rotation: `-=${2 * degree - offset}`,
-         });
-       }
-     }
-   },
- });
- };
-
- init();
- draggable();
-
- var scrollButton = document.getElementById("scrollButton");
-scrollButton.style.display = "block";
-
-window.onscroll = function () {
-  showScrollButton();
-};
-
-function showScrollButton() {
-  if (document.body.scrollTop > 10 || document.documentElement.scrollTop > 10) {
-    scrollButton.style.opacity = "0";
-  } else {
-    scrollButton.style.opacity = "1";
-  }
-}
-
-function scrollToContent() {
-  var contentSection = document.getElementById("sec");
-
-  if (contentSection) {
-    contentSection.scrollIntoView({ behavior: "smooth" });
-  }
-}
-
-function showScrollCardButton() {
-  var scrollCardButton = document.getElementById("scrollCardRightButton");
-  scrollCardButton.classList.add("show");
-}
-
-function scrollCardContainerRight() {
-  var cardContainer = document.querySelector(".items");
-  if (cardContainer) {
-    cardContainer.scrollLeft += 100; 
-  }
-}
-</script>
-
-<script>
-
-  function handleSaleContainerAnimation() {
-    var saleContainer = document.getElementById("saleContainer");
-
-    var rect = saleContainer.getBoundingClientRect();
-    var isVisible = rect.top < window.innerHeight && rect.bottom >= 0;
-
-    if (isVisible) {
-
-      saleContainer.classList.add("animate-sale-container");
-
-      window.removeEventListener("scroll", handleSaleContainerAnimation);
-    }
-  }
-
-  window.addEventListener("scroll", handleSaleContainerAnimation);
-
-</script>
 
       <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
       <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
