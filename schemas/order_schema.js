@@ -6,8 +6,6 @@ const orderSchema = new mongoose.Schema({
     name: { type: String },
     phone: { type: Number },
     razorpay_order_id: {type: String},
-    razorpay_payment_id: {type:String},
-    razorpay_signature: {type:String},
     products: [{
         itemId: {type: String},
         quantity: { type: Number, required: true, default: 1 },

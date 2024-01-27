@@ -99,6 +99,7 @@ const paymentGateway = async (req, res) => {
       console.log(error.message);
   }
 };
+const payment = require('../schemas/payment_signatures');
 
 const saveOrder = async (req, res) => {
     const {razorpay_order_id, razorpay_payment_id, razorpay_signature} = req.body.data;
@@ -133,18 +134,29 @@ const saveOrder = async (req, res) => {
         const newOrder = new Orders({
             email: userData.email,
             products: userData.cart,
-            contact: userData.phone,
+            phone: userData.phone,
+            name: userData.name,
+            totalPayment: amount,
+            razorpay_order_id, 
+            deliveryAddress: `address: ${req.session.userProfile.address}, locality ${req.session.userProfile.locality}, landmark ${req.session.userProfile.landmark}, city, ${req.session.userProfile.city} (Pincode : ${req.session.userProfile.pincode})`
+        });
+
+        const payment_data = new payment({
+            email: userData.email,
+            phone: userData.phone,
             name: userData.name,
             totalPayment: amount,
             razorpay_order_id, 
             razorpay_payment_id, 
             razorpay_signature,
             deliveryAddress: `address: ${req.session.userProfile.address}, locality ${req.session.userProfile.locality}, landmark ${req.session.userProfile.landmark}, city, ${req.session.userProfile.city} (Pincode : ${req.session.userProfile.pincode})`
-        });
+        })
 
         req.session.recentOrder = razorpay_order_id;
         
         await newOrder.save();
+        await payment_data.save();
+
         userData.cart = [];
         req.session.userProfile.cart = [];
         await userData.save();
