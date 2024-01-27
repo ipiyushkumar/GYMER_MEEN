@@ -76,6 +76,22 @@ router.get('/profile',isAuthenticated, (req, res) => {
     res.render('User_Profile_page',{content});
 })
 
+router.get('/privacy-policy', (req, res) => {
+    res.render('privacy_policy');
+});
+
+router.get('/refund-policy', (req, res) => {
+    res.render('refund-policy');
+});
+
+router.get('/disclaimer', (req, res) => {
+    res.render('disclaimer');
+});
+
+router.get('/terms-and-conditions', (req, res) => {
+    res.render('terms-and-conditions');
+});
+
 router.get('/success',isAuthenticated, (req, res) => {
     const content = {
         orderId : req.session.recentOrder
