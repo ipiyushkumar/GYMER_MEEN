@@ -99,7 +99,7 @@ const paymentGateway = async (req, res) => {
       console.log(error.message);
   }
 };
-const payment = require('../schemas/order_schema');
+const payment = require('../schemas/payment_signatures');
 
 const saveOrder = async (req, res) => {
     const {razorpay_order_id, razorpay_payment_id, razorpay_signature} = req.body.data;
@@ -156,7 +156,7 @@ const saveOrder = async (req, res) => {
         
         await newOrder.save();
         await payment_data.save();
-        
+
         userData.cart = [];
         req.session.userProfile.cart = [];
         await userData.save();
