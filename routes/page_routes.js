@@ -89,7 +89,7 @@ router.get('/profile',isAuthenticated, (req, res) => {
 })
 
 router.get('/privacy-policy', (req, res) => {
-    res.render('privacy_policy');
+    res.render('privacy-policy');
 });
 
 router.get('/refund-policy', (req, res) => {
