@@ -22,6 +22,18 @@ router.get('/',(req, res) => {
     res.render('Home_page',{content})
 })
 
+router.get('/disclaimer', (req, res) => {
+    res.render('Disclaimer');
+})
+router.get('/privacy_policy', (req, res) => {
+    res.render('privacy-policy');
+})
+router.get('/refund-policy', (req, res) => {
+    res.render('refund-policy');
+})
+router.get('/terms-and-conditions', (req, res) => {
+    res.render('terms-and-conditions');
+})
 router.get('/product_listing/:page',(req, res) => {
     const { page } = req.params
     let pageContext;
