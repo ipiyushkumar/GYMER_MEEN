@@ -75,21 +75,22 @@
 
                         cartItemElement.innerHTML = `
                         <li class="list-group-item d-flex flex-column  mb-3 justify-content-between">
-                            <div class="d-flex justify-content-between p-1  align-items-center" style="width:100%;padding:0;">
-                                <div class="d-flex justify-content-center align-content-center" style="width:30%;height:auto;">
-                                    <img class="img-fluid" src="${productDetails.imageLink[0]}" style="height:auto;width:100%;" >
+                            <div class="d-flex justify-content-between p-0  align-items-center" style="width:100%;padding:0;">
+                                <div class="d-flex justify-content-center align-content-center" style="width:30%;height:auto;border-radius:5px;">
+                                    <img class="img-fluid" src="${productDetails.imageLink[0]}" style="height:auto;width:100%;border-radius:5px;" >
                                 </div>
-                                <div style="width:50%;display:flex;flex-wrap:wrap;">
+                                <div style="width:70%;display:flex;flex-wrap:wrap;text-align:left;">
                                     <div class="row text-muted" style="display:none;">${productDetails.category}</div>
-                                    <div class="row" style="text-transform:capitalize;text-align:left;margin-left:1vh;">${productDetails.name}</div>
+                                    <div class="row ml-2" style="font-size:2.5vh;">${productDetails.name}</div>
+                                    <div class="d-flex justify-content-flex-start align-items-center container">
+                                        <a href="#" class="decrease${cartItem.itemId}">-</a>
+                                        <a href="#" class="border p-1 m-2 itemQuantity${cartItem.itemId}">
+                                            ${cartItem.quantity}
+                                        </a>
+                                        <a href="#" class="increase${cartItem.itemId}">+</a>
+                                    </div>
                                 </div>
-                                <div style="width:20%" class="d-flex justify-content-between align-items-center">
-                                    <a href="#" class="decrease${cartItem.itemId}">-</a>
-                                    <a href="#" class="border p-2 m-2 itemQuantity${cartItem.itemId}">
-                                        ${cartItem.quantity}
-                                    </a>
-                                    <a href="#" class="increase${cartItem.itemId}">+</a>
-                                </div>
+                                
                             </div>
                             <div class="mb-2 mt-2 single_item_total${cartItem.itemId}" style="font-size:1.3rem;font-weight:500;">Subtotal : <span style="font-weight:bold">&#8377;${(productDetails.offeredPrice * cartItem.quantity)}</span></div>
                         </li>
