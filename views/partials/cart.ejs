@@ -76,12 +76,14 @@
                         cartItemElement.innerHTML = `
                         <li class="list-group-item d-flex flex-column  mb-3 justify-content-between">
                             <div class="d-flex justify-content-between p-1  align-items-center" style="width:100%;padding:0;">
-                                <div class="d-flex justify-content-center align-content-center" style="width:10%;height:auto;"><img class="img-fluid" src="${productDetails.imageLink[0]}" style="height:auto;width:100%;" ></div>
+                                <div class="d-flex justify-content-center align-content-center" style="width:30%;height:auto;">
+                                    <img class="img-fluid" src="${productDetails.imageLink[0]}" style="height:auto;width:100%;" >
+                                </div>
                                 <div style="width:50%;display:flex;flex-wrap:wrap;">
                                     <div class="row text-muted" style="display:none;">${productDetails.category}</div>
                                     <div class="row" style="text-transform:capitalize;text-align:left;margin-left:1vh;">${productDetails.name}</div>
                                 </div>
-                                <div style="width:40%">
+                                <div style="width:20%" class="d-flex justify-content-between align-items-center">
                                     <a href="#" class="decrease${cartItem.itemId}">-</a>
                                     <a href="#" class="border p-2 m-2 itemQuantity${cartItem.itemId}">
                                         ${cartItem.quantity}
@@ -89,7 +91,7 @@
                                     <a href="#" class="increase${cartItem.itemId}">+</a>
                                 </div>
                             </div>
-                            <div class="mb-2 mt-2 single_item_total${cartItem.itemId}" style="font-size:1.3rem;font-weight:bolder;">&#8377;${(productDetails.offeredPrice * cartItem.quantity)}</div>
+                            <div class="mb-2 mt-2 single_item_total${cartItem.itemId}" style="font-size:1.3rem;font-weight:500;">Subtotal : <span style="font-weight:bold">&#8377;${(productDetails.offeredPrice * cartItem.quantity)}</span></div>
                         </li>
                         `;
                         cartItemsContainer.append(cartItemElement);
