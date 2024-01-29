@@ -100,6 +100,10 @@ router.get('/contact-us', (req, res) => {
     res.render('Contact_Us');
 });
 
+router.get('/about-us', (req, res) => {
+    res.render('about-us');
+});
+
 router.get('/shipping-policy', (req, res) => {
     res.render('shipping-policy');
 });
