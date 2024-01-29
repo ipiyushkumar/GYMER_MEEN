@@ -96,6 +96,15 @@ router.get('/refund-policy', (req, res) => {
     res.render('refund-policy');
 });
 
+router.get('/contact-us', (req, res) => {
+    res.render('Contact_Us');
+});
+
+router.get('/shipping-policy', (req, res) => {
+    res.render('shipping-policy');
+});
+
+
 router.get('/disclaimer', (req, res) => {
     res.render('disclaimer');
 });
