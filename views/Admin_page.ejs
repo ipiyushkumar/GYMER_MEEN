@@ -647,7 +647,7 @@
         <section class="main" id="productsSection" style="display: none;">
             <section class="main-orders">
             <h1 style="margin-bottom: 0.3rem;">Add Product</h1>
-                    <div class="form-container">
+                    <div class="form-container" style="overflow-y: scroll;">
                         <div>
                             <label for="productName">Product Name:</label>
                             <input type="text" id="productName" name="productName" required>
@@ -661,7 +661,7 @@
                             <label for="offeredPrice">Offered Price (₹)<span style="color: #999;">(Amount to be displayed to User)</span>:</label>
                             <input type="number" id="offeredPrice" name="offeredPrice" required>
 
-                            <label for="category">Category:</label>
+                            <label for="category">Category :</label>
 
                             <select id="category" name="category" required>
                                 <option value="Face Care">Face Care</option>
@@ -671,7 +671,16 @@
                                 <option value="Skin Care">Skin Care</option>
                             </select>
 
-                            <button onclick="addProduct()" style="margin-top: 1rem;">Publish Product</button>
+                            <label for="FAQ">FAQ :</label>
+                            <textarea id="productFAQ" name="productFAQ" rows="2" required></textarea>
+
+                            <label for="FAQ">Key Ingredients :</label>
+                            <textarea id="keyIngredients" name="keyIngredients" rows="2" required></textarea>
+
+                            <label for="FAQ">How To Use :</label>
+                            <textarea id="howtouse" name="howtouse" rows="2" required></textarea>
+
+                            <button onclick="addProduct()" style="margin-top: 3vh;margin-bottom: 3vh;">Publish Product</button>
 
                         </div>
 
@@ -681,43 +690,43 @@
                             
                             <label for="Image1">Main Image (250x250):</label>
                             <input type="file" value="-1" id="Image1" name="Image1" accept="image/*" required onchange="previewImage('Image1')" style="border: none; padding: 0.5rem; background-color: #f0f0f0;">
-                            <img id="Image1Preview" alt="Preview" style="max-width: 50%; height: 15vh; margin-top: 0rem; margin-bottom: 1rem;border-radius: 1rem;">
+                            <img id="Image1Preview" alt="Preview" style="width: 20%; height: 15vh; margin-top: 0rem; margin-bottom: 1rem;border-radius: 1rem;">
                             
                             <div class="addon-images">
                                 <div class="img2">
                                     <label for="Image2">2nd Image (250x250):</label>
                                     <input type="file" value="-1" id="Image2" name="Image2" accept="image/*" required onchange="previewImage('Image2')" style="border: none; padding: 0.5rem; background-color: #f0f0f0;"> 
-                                    <img id="Image2Preview" alt="Preview" style="max-width: 50%; height: 20vh; margin-top: 0rem; margin-bottom: 1rem;border-radius: 1rem;">
+                                    <img id="Image2Preview" alt="Preview" style="width: 70%; height: auto; margin-top: 0rem; margin-bottom: 1rem;border-radius: 1rem;">
                                 </div>
         
                                 <div class="img2">
                                     <label for="Image3">3rd Image (250x250):</label>
                                     <input type="file" value="-1" id="Image3" name="Image3" accept="image/*" required onchange="previewImage('Image3')" style="border: none; padding: 0.5rem; background-color: #f0f0f0;">
-                                    <img id="Image3Preview" alt="Preview" style="max-width: 50%; height: 20vh; margin-top: 0rem; margin-bottom: 1rem;border-radius: 1rem;">
+                                    <img id="Image3Preview" alt="Preview" style="width: 70%; height: auto; margin-top: 0rem; margin-bottom: 1rem;border-radius: 1rem;">
                                 </div>
 
                                 <div class="img2">
                                     <label for="Image4">4th Image (250x250):</label>
                                     <input type="file" value="-1" id="Image4" name="Image4" accept="image/*" required onchange="previewImage('Image4')" style="border: none; padding: 0.5rem; background-color: #f0f0f0;">
-                                    <img id="Image4Preview" alt="Preview" style="max-width: 50%; height: 20vh; margin-top: 0rem; margin-bottom: 1rem;border-radius: 1rem;">
+                                    <img id="Image4Preview" alt="Preview" style="width: 70%; height: auto; margin-top: 0rem; margin-bottom: 1rem;border-radius: 1rem;">
                                 </div>
 
                                 <div class="img2">
                                     <label for="Image5">5th Image (250x250):</label>
                                     <input type="file" value="-1" id="Image5" name="Image5" accept="image/*" required onchange="previewImage('Image5')" style="border: none; padding: 0.5rem; background-color: #f0f0f0;">
-                                    <img id="Image5Preview" alt="Preview" style="max-width: 50%; height: 20vh; margin-top: 0rem; margin-bottom: 1rem;border-radius: 1rem;">
+                                    <img id="Image5Preview" alt="Preview" style="width: 70%; height: auto; margin-top: 0rem; margin-bottom: 1rem;border-radius: 1rem;">
                                 </div>
 
                                 <div class="img2">
                                     <label for="Image6">6th Image (250x250):</label>
                                     <input type="file" value="-1" id="Image6" name="Image6" accept="image/*" required onchange="previewImage('Image6')" style="border: none; padding: 0.5rem; background-color: #f0f0f0;">
-                                    <img id="Image6Preview" alt="Preview" style="max-width: 50%; height: 20vh; margin-top: 0rem; margin-bottom: 1rem;border-radius: 1rem;">
+                                    <img id="Image6Preview" alt="Preview" style="width: 70%; height: auto; margin-top: 0rem; margin-bottom: 1rem;border-radius: 1rem;">
                                 </div>
 
                                 <div class="img2">
                                     <label for="Image7">7th Image (250x250):</label>
                                     <input type="file" value="-1" id="Image7" name="Image7" accept="image/*" required onchange="previewImage('Image7')" style="border: none; padding: 0.5rem; background-color: #f0f0f0;">
-                                    <img id="Image7Preview" alt="Preview" style="max-width: 50%; height: 20vh; margin-top: 0rem; margin-bottom: 1rem;border-radius: 1rem;">
+                                    <img id="Image7Preview" alt="Preview" style="width: 70%; height: auto; margin-top: 0rem; margin-bottom: 1rem;border-radius: 1rem;">
                                 </div>
                             </div>
 
