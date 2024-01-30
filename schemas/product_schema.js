@@ -7,6 +7,7 @@ const productSchema = new mongoose.Schema({
     FAQ: {type: String},
     key_ingredients: {type: String},
     how_to_use: {type: String},
+    meta_tags: {type: String},
     ratings: [
         {
             email: { type: String },

@@ -765,7 +765,7 @@
                     const description = document.getElementById('productDescription').value;
 
                     const FAQ = document.getElementById("productFAQ")
-                    // const metaTags = doucment.getElementById("metaTags");
+                    const metaTags = doucment.getElementById("metaTags");
                     const key_ingredients  = document.getElementById("keyIngredients")
                     const how_to_use = document.getElementById("howtouse")
 
@@ -787,7 +787,7 @@
                             description &&
                             FAQ &&
                             key_ingredients &&
-                            // metaTags &&
+                            metaTags &&
                             how_to_use &&
                             originalPrice &&
                             offeredPrice &&
@@ -800,7 +800,7 @@
                             formData.append('name', name);
                             formData.append('description', description);
                             formData.append('FAQ', FAQ);
-                            // formData.append('metaTags', metaTags);
+                            formData.append('meta_tags', metaTags);
                             formData.append('key_ingredients', key_ingredients);
                             formData.append('how_to_use', how_to_use);
                             formData.append('originalPrice', originalPrice);
@@ -820,6 +820,10 @@
                                 showAlert('Product added successfully:',"success");
                                 document.getElementById('productName').value = '';
                                 document.getElementById('productDescription').value = '';
+                                document.getElementById("productFAQ").value = ''
+                                doucment.getElementById("metaTags").value = ''
+                                document.getElementById("keyIngredients").value = ''
+                                document.getElementById("howtouse").value = ''
                                 document.getElementById('originalPrice').value = '';
                                 document.getElementById('offeredPrice').value = '';
                                 document.getElementById('category').value = '';
