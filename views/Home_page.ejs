@@ -116,7 +116,8 @@
   }
 
            .perf-vid{
-            height: auto !important;
+            height: auto;
+            /* background-color: red !important; */
            }
 
            .slider .prev{
@@ -397,9 +398,9 @@
       min-width: 80vw !important;
     }
 
-    .banner-video{
+    /* .banner-video{
       display: none !important;
-    }
+    } */
 
     .banner-mobile-video {
   width: 100%;
@@ -1115,9 +1116,9 @@ section img{
     background-image: url('../assets/beard-banner-mob.jpg') !important;
   }
 
-  .top-slider .slides #slide-4 {
+  /* .top-slider .slides #slide-4 {
     background-image: url('../assets/skin-mob.jpg') !important;
-  }
+  } */
 
   .top-slider .slides #slide-5 {
     background-image: url('../assets/spray-third.jpg') !important;
@@ -1205,13 +1206,13 @@ section img{
       <button class="btn btn-light btn-flat" style="border-radius: 0;">BUY NOW</button>
   </div>
   
-  <div class="slide" id="slide-3" style="background-image: url('../assets/skin-desk.jpg');">
+  <div class="slide" id="slide-3" style="background-image: url('../assets/beard-banner-desk.jpg');">
       <button class="btn btn-light btn-flat" style="border-radius: 0;">BUY NOW</button>
   </div>
   
-  <div class="slide" id="slide-4" style="background-image: url('../assets/beard-banner-desk.jpg');">
+  <!-- <div class="slide" id="slide-4" style="background-image: url('../assets/beard-banner-desk.jpg');">
       <button class="btn btn-light btn-flat" style="border-radius: 0;">BUY NOW</button>
-  </div>
+  </div> -->
   
   <div class="slide" id="slide-5" style="background-image: url('../assets/Hair-removal.jpg');">
       <button class="btn btn-light btn-flat" style="border-radius: 0;">BUY NOW</button>
@@ -1394,7 +1395,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
           <div style="font-size: 2vh; margin-bottom: 0vh;">This is how WhiteWolf does cologne.<br> Influenced by the vibrant coastal jungles of Bali, Dark Ulfgar was created to inspire wanderlust.</div>
 
-          <div class="perf-vid" style="position: relative; overflow: hidden; max-width: 100%; height: 80vh;">
+          <div class="perf-vid" style="position: relative; overflow: hidden; width: 100%; height: 80vh;">
             <video autoplay muted loop class="p-0" style="width: 100%; height: 100%;">
 
               <source src="../assets/perfume-final.mp4" type="video/mp4">
@@ -1409,7 +1410,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     </section>
 
-    <section class="mt-0 mb-5" style="background-color: #000; color: #fff; text-align: center; padding: 2vh;text-transform:uppercase;">
+    <section class="mt-0 mb-3" style="background-color: #000; color: #fff; text-align: center; padding: 2vh;text-transform:uppercase;">
 
       <div style="font-size: 2vh; margin-bottom: 2vh;">Face Moisturizer</div>
 
@@ -1430,18 +1431,18 @@ document.addEventListener('DOMContentLoaded', function () {
 
   
 <div class="container-fluid banner-video mb-5 p-0">
-  <video autoplay muted loop class="p-0" style="width:100%; height: 90vh; object-fit: cover;object-position: top;">
+  <video autoplay muted loop class="p-0" style="width:100%; height: max-content; object-fit: fill;object-position: top;">
     <source src="../assets/New arrivals HRS mp4 update.mp4" type="video/mp4">
     Your browser does not support the video tag.
   </video>
 </div>
 
-<div class="container-fluid banner-mobile-video mb-3 p-0">
+<!-- <div class="container-fluid banner-mobile-video mb-3 p-0">
   <video autoplay muted loop class="p-0" style="width:100%; height: 100vh; object-fit: fill;object-position:top;">
     <source src="../assets/Mobile Version HRS.mp4" type="video/mp4">
     Your browser does not support the video tag.
   </video>
-</div>
+</div> -->
 
       <div class="container-fluid mt-3 mb-1 m-2">
          <h2 class="text-center text-white mb-1" style="font-size: 5vh;">Featured Collection</h2>
@@ -1493,7 +1494,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
   
 
-     <h2 class="text-center text-white mt-2 mb-0">See What Our Customers Say</h2>
+     <h2 class="text-center text-white mt-2 mb-0" style="font-size: 4vh;">See What Our Customers Say</h2>
      <style>
          .swiper-container {
             background-color: black;
@@ -1818,7 +1819,7 @@ document.addEventListener('DOMContentLoaded', function () {
                      <div class="d-flex justify-content-between bolder product-price-discount">
                         <div class="product-price">&#8377;${product.offeredPrice}</div>
                         <div class="original-price text-decoration-line-through">&#8377;${product.originalPrice || ''}</div>
-                        <div class="product-discount text-success">${((product.originalPrice - product.offeredPrice) / product.originalPrice * 100).toFixed(0)}%Off</div>
+                        <div class="product-discount text-success">${((product.originalPrice - product.offeredPrice) / product.originalPrice * 100).toFixed(0)}% Off</div>
                      </div>
                   </div>
                   <button class="add-to-cart-btn add${product.itemId}" id="liveToastBtn"><i class="fas fa-cart"></i>ADD TO CART</button>
