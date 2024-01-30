@@ -7,7 +7,7 @@ router.get('/api/products',controllers.getAllProducts);
 
 router.get('/api/products/:itemId', controllers.getProductUsingId);
 
-router.get('/search/:itemId', controllers.getItemPage);
+router.get('/product/:itemId', controllers.getItemPage);
 
 router.get('/products/:itemId/allReviews',controllers.getAllReviews)
 

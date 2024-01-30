@@ -25,15 +25,25 @@ router.get('/',(req, res) => {
 router.get('/pages/disclaimer', (req, res) => {
     res.render('Disclaimer');
 })
-router.get('/pages/privacy_policy', (req, res) => {
+router.get('/pages/privacy-policy', (req, res) => {
     res.render('privacy-policy');
-})
+});
 router.get('/pages/refund-policy', (req, res) => {
     res.render('refund-policy');
-})
+});
 router.get('/pages/terms-and-conditions', (req, res) => {
     res.render('terms-and-conditions');
 })
+router.get('/pages/contact-us', (req, res) => {
+    res.render('Contact_Us');
+});
+router.get('/pages/about-us', (req, res) => {
+    res.render('about-us');
+});
+router.get('/pages/shipping-policy', (req, res) => {
+    res.render('shipping-policy');
+});
+
 router.get('/collections/:page',(req, res) => {
     const { page } = req.params
     let pageContext;
@@ -47,14 +57,11 @@ router.get('/collections/:page',(req, res) => {
         pageContext = 'Body Care'
     } else if (page === "skin-care") {
         pageContext = 'Skin Care'
-    }
- else if (page === "shave") {
-    pageContext = 'Shave'
- }
- else if (page === "fragrance") {
-    pageContext = 'Fragrance'
- }
-     else {
+    } else if (page === "shave") {
+        pageContext = 'Shave'
+    } else if (page === "fragrance") {
+        pageContext = 'Fragrance'
+    } else {
         pageContext = 'all'
     }
     if (!req.session.userProfile || !req.session.userProfile.cart) {req.session.userProfile = { cart: [] };}
@@ -65,8 +72,6 @@ router.get('/collections/:page',(req, res) => {
     }
     res.render('Product_Listing_page',{content});
 })
-
-
 
 // authentication
 router.get('/login',(req, res) => {
@@ -94,27 +99,6 @@ router.get('/profile',isAuthenticated, (req, res) => {
     }
     res.render('User_Profile_page',{content});
 })
-
-router.get('/pages/privacy-policy', (req, res) => {
-    res.render('privacy-policy');
-});
-
-router.get('/pages/refund-policy', (req, res) => {
-    res.render('refund-policy');
-});
-
-router.get('/pages/contact-us', (req, res) => {
-    res.render('Contact_Us');
-});
-
-router.get('/pages/about-us', (req, res) => {
-    res.render('about-us');
-});
-
-router.get('/pages/shipping-policy', (req, res) => {
-    res.render('shipping-policy');
-});
-
 
 
 router.get('/success',isAuthenticated, (req, res) => {
