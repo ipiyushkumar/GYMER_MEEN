@@ -22,16 +22,16 @@ router.get('/',(req, res) => {
     res.render('Home_page',{content})
 })
 
-router.get('/disclaimer', (req, res) => {
+router.get('/pages/disclaimer', (req, res) => {
     res.render('Disclaimer');
 })
-router.get('/privacy_policy', (req, res) => {
+router.get('/pages/privacy_policy', (req, res) => {
     res.render('privacy-policy');
 })
-router.get('/refund-policy', (req, res) => {
+router.get('/pages/refund-policy', (req, res) => {
     res.render('refund-policy');
 })
-router.get('/terms-and-conditions', (req, res) => {
+router.get('/pages/terms-and-conditions', (req, res) => {
     res.render('terms-and-conditions');
 })
 router.get('/collections/:page',(req, res) => {
@@ -47,7 +47,14 @@ router.get('/collections/:page',(req, res) => {
         pageContext = 'Body Care'
     } else if (page === "skin-care") {
         pageContext = 'Skin Care'
-    } else {
+    }
+ else if (page === "shave") {
+    pageContext = 'Shave'
+ }
+ else if (page === "fragrance") {
+    pageContext = 'Fragrance'
+ }
+     else {
         pageContext = 'all'
     }
     if (!req.session.userProfile || !req.session.userProfile.cart) {req.session.userProfile = { cart: [] };}
@@ -88,34 +95,27 @@ router.get('/profile',isAuthenticated, (req, res) => {
     res.render('User_Profile_page',{content});
 })
 
-router.get('/privacy-policy', (req, res) => {
+router.get('/pages/privacy-policy', (req, res) => {
     res.render('privacy-policy');
 });
 
-router.get('/refund-policy', (req, res) => {
+router.get('/pages/refund-policy', (req, res) => {
     res.render('refund-policy');
 });
 
-router.get('/contact-us', (req, res) => {
+router.get('/pages/contact-us', (req, res) => {
     res.render('Contact_Us');
 });
 
-router.get('/about-us', (req, res) => {
+router.get('/pages/about-us', (req, res) => {
     res.render('about-us');
 });
 
-router.get('/shipping-policy', (req, res) => {
+router.get('/pages/shipping-policy', (req, res) => {
     res.render('shipping-policy');
 });
 
 
-router.get('/disclaimer', (req, res) => {
-    res.render('disclaimer');
-});
-
-router.get('/terms-and-conditions', (req, res) => {
-    res.render('terms-and-conditions');
-});
 
 router.get('/success',isAuthenticated, (req, res) => {
     const content = {
