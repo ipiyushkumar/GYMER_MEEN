@@ -34,18 +34,18 @@ router.get('/refund-policy', (req, res) => {
 router.get('/terms-and-conditions', (req, res) => {
     res.render('terms-and-conditions');
 })
-router.get('/product_listing/:page',(req, res) => {
+router.get('/collections/:page',(req, res) => {
     const { page } = req.params
     let pageContext;
     if (page === "face_care"){
         pageContext = 'Face Care'
-    } else if (page === "hair_care") {
+    } else if (page === "hair-care") {
         pageContext = 'Hair Care'
-    } else if (page === "beard_care") {
+    } else if (page === "beard-care") {
         pageContext = 'Beard Care'
-    } else if (page === "body_care") {
+    } else if (page === "body-care") {
         pageContext = 'Body Care'
-    } else if (page === "skin_care") {
+    } else if (page === "skin-care") {
         pageContext = 'Skin Care'
     } else {
         pageContext = 'all'

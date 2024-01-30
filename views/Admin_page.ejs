@@ -680,6 +680,9 @@
                             <label for="howtouse">How To Use :</label>
                             <textarea id="howtouse" name="howtouse" rows="2" required></textarea>
 
+                            <label for="metaTags">Product Tags</label>
+                            <textarea id="metaTags" name="metaTags" rows="2" required></textarea>
+
                             <button onclick="addProduct()" style="margin-top: 3vh;margin-bottom: 3vh;">Publish Product</button>
 
                         </div>
@@ -762,6 +765,7 @@
                     const description = document.getElementById('productDescription').value;
 
                     const FAQ = document.getElementById("productFAQ")
+                    // const metaTags = doucment.getElementById("metaTags");
                     const key_ingredients  = document.getElementById("keyIngredients")
                     const how_to_use = document.getElementById("howtouse")
 
@@ -783,6 +787,7 @@
                             description &&
                             FAQ &&
                             key_ingredients &&
+                            // metaTags &&
                             how_to_use &&
                             originalPrice &&
                             offeredPrice &&
@@ -795,6 +800,7 @@
                             formData.append('name', name);
                             formData.append('description', description);
                             formData.append('FAQ', FAQ);
+                            // formData.append('metaTags', metaTags);
                             formData.append('key_ingredients', key_ingredients);
                             formData.append('how_to_use', how_to_use);
                             formData.append('originalPrice', originalPrice);
