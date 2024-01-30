@@ -519,7 +519,7 @@ footer .social a{
             <span class="icon" >&#43;</span>
         </div>
         <div class="faq-answer">
-            <p>WhiteWolf's Beard Care is crafted with premium ingredients for a soft, well-groomed beard.</p>
+            <p><%= item.FAQ || "" %></p>
         </div>
 
         <div class="faq-question" onclick="toggleFAQ(this)">
@@ -527,7 +527,7 @@ footer .social a{
             <span class="icon">&#43;</span>
         </div>
         <div class="faq-answer">
-            <p>WhiteWolf's Hair Care delivers salon-quality results for various hair types and styles.</p>
+            <p><%= item.key_ingredients || "" %></p>
         </div>
 
         <div class="faq-question" onclick="toggleFAQ(this)">
@@ -535,7 +535,7 @@ footer .social a{
             <span class="icon">&#43;</span>
         </div>
         <div class="faq-answer">
-            <p>WhiteWolf's Skin Care enhances skin vitality, offering a natural, glowing complexion.</p>
+            <p><%= item.how_to_use|| "" %></p>
         </div>
     </div>
 

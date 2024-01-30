@@ -4,6 +4,9 @@ const productSchema = new mongoose.Schema({
     itemId: {type: String, unique: true},
     name: { type: String, required: true },
     description: { type: String, required: true },
+    FAQ: {type: String},
+    key_ingredients: {type: String},
+    how_to_use: {type: String},
     ratings: [
         {
             email: { type: String },

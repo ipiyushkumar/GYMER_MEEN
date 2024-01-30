@@ -671,13 +671,13 @@
                                 <option value="Skin Care">Skin Care</option>
                             </select>
 
-                            <label for="FAQ">FAQ :</label>
+                            <label for="productFAQ">FAQ :</label>
                             <textarea id="productFAQ" name="productFAQ" rows="2" required></textarea>
 
-                            <label for="FAQ">Key Ingredients :</label>
+                            <label for="keyIngredients">Key Ingredients :</label>
                             <textarea id="keyIngredients" name="keyIngredients" rows="2" required></textarea>
 
-                            <label for="FAQ">How To Use :</label>
+                            <label for="howtouse">How To Use :</label>
                             <textarea id="howtouse" name="howtouse" rows="2" required></textarea>
 
                             <button onclick="addProduct()" style="margin-top: 3vh;margin-bottom: 3vh;">Publish Product</button>
@@ -760,6 +760,11 @@
                 async function addProduct() {
                     const name = document.getElementById('productName').value;
                     const description = document.getElementById('productDescription').value;
+
+                    const FAQ = document.getElementById("productFAQ")
+                    const key_ingredients  = document.getElementById("keyIngredients")
+                    const how_to_use = document.getElementById("howtouse")
+
                     const originalPrice = document.getElementById('originalPrice').value;
                     const offeredPrice = document.getElementById('offeredPrice').value;
                     const category = document.getElementById('category').value;
@@ -776,6 +781,9 @@
                         if (
                             name &&
                             description &&
+                            FAQ &&
+                            key_ingredients &&
+                            how_to_use &&
                             originalPrice &&
                             offeredPrice &&
                             category &&
@@ -786,6 +794,9 @@
                             
                             formData.append('name', name);
                             formData.append('description', description);
+                            formData.append('FAQ', FAQ);
+                            formData.append('key_ingredients', key_ingredients);
+                            formData.append('how_to_use', how_to_use);
                             formData.append('originalPrice', originalPrice);
                             formData.append('offeredPrice', offeredPrice);
                             formData.append('category', category);
