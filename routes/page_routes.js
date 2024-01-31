@@ -21,28 +21,94 @@ router.get('/',(req, res) => {
     
     res.render('Home_page',{content})
 })
-
 router.get('/pages/disclaimer', (req, res) => {
-    res.render('Disclaimer');
-})
+    const content = {
+        isLoggedIn: req.session.isLoggedIn,
+    };
+
+    if (!req.session.userProfile || !req.session.userProfile.cart) {
+        req.session.userProfile = { cart: [] };
+    }
+
+    res.render('Disclaimer', { content });
+});
+
 router.get('/pages/privacy-policy', (req, res) => {
-    res.render('privacy-policy');
+    const content = {
+        isLoggedIn: req.session.isLoggedIn,
+    };
+
+    if (!req.session.userProfile || !req.session.userProfile.cart) {
+        req.session.userProfile = { cart: [] };
+    }
+
+    res.render('privacy-policy', { content });
 });
-router.get('/pages/refund-policy', (req, res) => {
-    res.render('refund-policy');
-});
-router.get('/pages/terms-and-conditions', (req, res) => {
-    res.render('terms-and-conditions');
-})
-router.get('/pages/contact-us', (req, res) => {
-    res.render('Contact_Us');
-});
+
+// Repeat the structure for other pages...
+
 router.get('/pages/about-us', (req, res) => {
-    res.render('about-us');
+    const content = {
+        isLoggedIn: req.session.isLoggedIn,
+    };
+
+    if (!req.session.userProfile || !req.session.userProfile.cart) {
+        req.session.userProfile = { cart: [] };
+    }
+
+    res.render('about-us', { content });
 });
+
+// Repeat for other pages...
+
+router.get('/pages/refund-policy', (req, res) => {
+    const content = {
+        isLoggedIn: req.session.isLoggedIn,
+    };
+
+    if (!req.session.userProfile || !req.session.userProfile.cart) {
+        req.session.userProfile = { cart: [] };
+    }
+
+    res.render('refund-policy', { content });
+});
+
+router.get('/pages/terms-and-conditions', (req, res) => {
+    const content = {
+        isLoggedIn: req.session.isLoggedIn,
+    };
+
+    if (!req.session.userProfile || !req.session.userProfile.cart) {
+        req.session.userProfile = { cart: [] };
+    }
+
+    res.render('terms-and-conditions', { content });
+});
+
+router.get('/pages/contact-us', (req, res) => {
+    const content = {
+        isLoggedIn: req.session.isLoggedIn,
+    };
+
+    if (!req.session.userProfile || !req.session.userProfile.cart) {
+        req.session.userProfile = { cart: [] };
+    }
+
+    res.render('Contact_Us', { content });
+});
+
 router.get('/pages/shipping-policy', (req, res) => {
-    res.render('shipping-policy');
+    const content = {
+        isLoggedIn: req.session.isLoggedIn,
+    };
+
+    if (!req.session.userProfile || !req.session.userProfile.cart) {
+        req.session.userProfile = { cart: [] };
+    }
+
+    res.render('shipping-policy', { content });
 });
+
 
 router.get('/collections/:page',(req, res) => {
     const { page } = req.params
