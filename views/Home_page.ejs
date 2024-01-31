@@ -1116,11 +1116,11 @@ section img{
     background-image: url('../assets/beard-banner-mob.jpg') !important;
   }
 
-  .top-slider .slides #slide-4 {
+  /* .top-slider .slides #slide-4 {
     background-image: url('../assets/skin-1.jpg') !important;
-  }
+  } */
 
-  .top-slider .slides #slide-5 {
+  .top-slider .slides #slide-4 {
     background-image: url('../assets/spray-third.jpg') !important;
   }
 }
@@ -1210,11 +1210,10 @@ section img{
       <!-- <button class="btn btn-light btn-flat" style="border-radius: 0;"></button> -->
   </div>
   
-  <div class="slide" id="slide-4" style="background-image: url('../assets/skin-2.jpg');">
-      <!-- <button class="btn btn-light btn-flat" style="border-radius: 0;"></button> -->
+  <!-- <div class="slide" id="slide-4" style="background-image: url('../assets/skin-2.jpg');">
   </div>
-  
-  <div class="slide" id="slide-5" style="background-image: url('../assets/Hair-removal.jpg');">
+   -->
+  <div class="slide" id="slide-4" style="background-image: url('../assets/Hair-removal.jpg');">
       <!-- <button class="btn btn-light btn-flat" style="border-radius: 0;"></button> -->
   </div>
        
@@ -1817,7 +1816,7 @@ document.addEventListener('DOMContentLoaded', function () {
                   <div class="category-badge text-white corner-round p-1" style="display:none;">${product.category}</div>
                   <div class="product-title"><a href="/products/${product.itemId}" style="text-decoration:none;color:#000">${product.name}</a></div>
                   <div class="product-description" style="font-size:2vh;" >${product.description}</div>
-                  <div class="mb-2">
+                  <div class="mb-0">
                      <div class="d-flex justify-content-between bolder product-price-discount">
                         <div class="product-price">&#8377;${product.offeredPrice}</div>
                         <div class="original-price text-decoration-line-through">&#8377;${product.originalPrice || ''}</div>

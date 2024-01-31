@@ -57,6 +57,10 @@ body {
     .navbar-brand {
     width: 45%;
     }
+
+    .product-title{
+        font-size: 12px !important;
+    }
     footer .upper-div{
     text-align: center;
     }
