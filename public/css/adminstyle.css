@@ -575,8 +575,8 @@ a:hover {
     }
 
     .product-image {
-        max-width: 50%;
-        height: 20vh;
+        width: 100%;
+        height: auto ;
         margin: auto;
         border-radius: 8px;
     }
