@@ -516,15 +516,7 @@ footer .social a{
 
     <div class="faq-section mt-5 mb-5">
         <div class="faq-question" onclick="toggleFAQ(this)">
-            <span>FAQ's</span>
-            <span class="icon" >&#43;</span>
-        </div>
-        <div class="faq-answer">
-            <p><%= item.FAQ || "" %></p>
-        </div>
-
-        <div class="faq-question" onclick="toggleFAQ(this)">
-            <span>Key Ingredients?</span>
+            <span>Key Features</span>
             <span class="icon">&#43;</span>
         </div>
         <div class="faq-answer">
@@ -538,6 +530,15 @@ footer .social a{
         <div class="faq-answer">
             <p><%= item.how_to_use || "" %></p>
         </div>
+
+        <div class="faq-question" onclick="toggleFAQ(this)">
+            <span>FAQ</span>
+            <span class="icon" >&#43;</span>
+        </div>
+        <div class="faq-answer">
+            <p><%= item.FAQ || "" %></p>
+        </div>
+
     </div>
 
     <div class="parent-container container mt-5 mb-5">

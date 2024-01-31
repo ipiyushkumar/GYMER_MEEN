@@ -77,10 +77,9 @@ body {
 
     .product-details img{
         width: auto;
-        height: 5vh !important;
+        height: 4vh !important;
         position: absolute;
         top: 0;
-        left: 5px;
     }
     }
     @media (max-width: 576px) {
@@ -149,6 +148,7 @@ body {
         width: 100%;
         flex-wrap: wrap;
     }
+
 
     .product-image {
     width: 100%;
@@ -406,14 +406,17 @@ body {
 
     .product-details img{
         width: auto;
-        height: 10vh;
+        height: 5vw;
         position: absolute;
         top: 0;
-        left: 5px;
+    }
+
+    .product-details img:nth-child(1){
+        left: 1vh !important;
     }
 
     .product-details img:nth-child(2){
-        left:86% !important;
+        right: -0.2vw !important;
     }
 
     .upperdiv {
