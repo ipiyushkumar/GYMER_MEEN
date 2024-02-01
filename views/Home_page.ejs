@@ -1813,13 +1813,13 @@ document.addEventListener('DOMContentLoaded', function () {
                   ${product.bestSeller ? '<img class="best-seller" src="../assets/best-seller.png">' : ''}
                   ${product.newArrival ? '<img class="new-arrival" src="../assets/new-arrival.png">' : ''}
                   <div class="category-badge text-white corner-round p-1" style="display:none;">${product.category}</div>
-                  <div class="product-title"><a href="/products/${product.itemId}" style="text-decoration:none;color:#000">${product.name}</a></div>
+                  <div class="product-title"><a href="/products/${product.itemId}" style="text-decoration:none;">${product.name}</a></div>
                   <div class="product-description" style="font-size:2vh;" >${product.description}</div>
                   <div class="mb-0">
                      <div class="d-flex justify-content-between bolder product-price-discount">
                         <div class="product-price">&#8377;${product.offeredPrice}</div>
-                        <div class="original-price text-decoration-line-through">&#8377;${product.originalPrice || ''}</div>
-                        <div class="product-discount text-success">${((product.originalPrice - product.offeredPrice) / product.originalPrice * 100).toFixed(0)}% Off</div>
+                        <div class="original-price text-decoration-line-through d-none">&#8377;${product.originalPrice || ''}</div>
+                        <div class="product-discount text-success text-uppercase">${((product.originalPrice - product.offeredPrice) / product.originalPrice * 100).toFixed(0)}% Off</div>
                      </div>
                   </div>
                   <button class="add-to-cart-btn add${product.itemId}" id="liveToastBtn"><i class="fas fa-cart"></i>ADD TO CART</button>
