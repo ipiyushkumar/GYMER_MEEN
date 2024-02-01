@@ -692,23 +692,17 @@
                             <input type="number" id="stock" name="stock" required>
 
                             <label for="new-arrival">New Arrival:</label>
-                            <div>
-                                <input type="radio" id="yes" name="newArrival" value="true" checked>
-                                <label for="yes">Yes</label>
+                            <select id="newArrival" name="newArrival">
+                                <option value="true" selected>Yes</option>
+                                <option value="false">No</option>
+                            </select>
 
-                                <input type="radio" id="no" name="newArrival" value="false">
-                                <label for="no">No</label>
-                            </div>
 
-                            <label for="best-seller">Best Seller:</label>
-                            <div>
-                                <input type="radio" id="yes" name="bestSeller" value="true" checked>
-                                <label for="yes">Yes</label>
-
-                                <input type="radio" id="no" name="bestSeller" value="false">
-                                <label for="no">No</label>
-                            </div>
-
+                            <label for="best-seller">Best Quality:</label>
+                            <select id="bestSeller" name="bestSeller">
+                                <option value="true" selected>Yes</option>
+                                <option value="false">No</option>
+                            </select>                            
                             
                             <label for="Image1">Main Image (250x250):</label>
                             <input type="file" value="-1" id="Image1" name="Image1" accept="image/*" required onchange="previewImage('Image1')" style="border: none; padding: 0.5rem; background-color: #f0f0f0;">
