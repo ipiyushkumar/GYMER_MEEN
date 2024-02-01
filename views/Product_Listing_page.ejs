@@ -619,6 +619,8 @@ footer a{
                     <img class="product-image hover-image" src="${product.imageLink[1] || product.imageLink[0]}" alt="${product.name}" style="display:none">
             </div>
             <div class="product-details">
+                    ${product.bestSeller ? '<img class="best-seller" src="../assets/best-seller.png">' : ''}
+                    ${product.newArrival ? '<img class="new-arrival" src="../assets/new-arrival.png">' : ''}
                     <div class="category-badge text-white corner-round p-1" style="display:none;">${product.category}</div>
                     <div class="product-title"><a href="/products/${product.itemId}" style="text-decoration:none;color:#000">${product.name}</a></div>
                     <div class="product-description">${product.description}</div>

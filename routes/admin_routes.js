@@ -63,7 +63,7 @@ router.post('/api/products',isAdminAuthenticated,  multerMiddleware.array('files
     }
 
     // Retrieve other form data
-    const { name, description, FAQ, meta_tags, key_ingredients, how_to_use, originalPrice, offeredPrice, category, stock } = req.body;
+    const { name, description, FAQ, meta_tags, key_ingredients, how_to_use, newArrival, bestSeller, originalPrice, offeredPrice, category, stock } = req.body;
 
     console.log("creating image link")
     // Extract file paths from Multer's processed files
@@ -78,6 +78,8 @@ router.post('/api/products',isAdminAuthenticated,  multerMiddleware.array('files
       meta_tags,
       key_ingredients,
       how_to_use,
+      newArrival,
+      bestSeller,
       originalPrice,
       offeredPrice,
       category,

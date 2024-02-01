@@ -693,19 +693,19 @@
 
                             <label for="new-arrival">New Arrival:</label>
                             <div>
-                                <input type="radio" id="yes" name="showIcons" value="yes" checked>
+                                <input type="radio" id="yes" name="newArrival" value="true" checked>
                                 <label for="yes">Yes</label>
 
-                                <input type="radio" id="no" name="showIcons" value="no">
+                                <input type="radio" id="no" name="newArrival" value="false">
                                 <label for="no">No</label>
                             </div>
 
                             <label for="best-seller">Best Seller:</label>
                             <div>
-                                <input type="radio" id="yes" name="showIcons" value="yes" checked>
+                                <input type="radio" id="yes" name="bestSeller" value="true" checked>
                                 <label for="yes">Yes</label>
 
-                                <input type="radio" id="no" name="showIcons" value="no">
+                                <input type="radio" id="no" name="bestSeller" value="false">
                                 <label for="no">No</label>
                             </div>
 
@@ -780,6 +780,22 @@
                     document.getElementById('Image7Preview').src = ''
                 }
                 async function addProduct() {
+                    let bestSeller = false;
+
+                    document.getElementsByName('bestSeller').forEach(button => {
+                        if (button.checked) {
+                            bestSeller = Boolean(button.value);
+                        }
+                    });
+
+                    let newArrival = false;
+
+                    document.getElementsByName('newArrival').forEach(button => {
+                        if (button.checked) {
+                            newArrival = Boolean(button.value);
+                        }
+                    });
+
                     const name = document.getElementById('productName').value;
                     const description = document.getElementById('productDescription').value;
 
@@ -822,6 +838,8 @@
                             formData.append('meta_tags', metaTags);
                             formData.append('key_ingredients', key_ingredients);
                             formData.append('how_to_use', how_to_use);
+                            formData.append('newArrival', newArrival);
+                            formData.append('bestSeller', bestSeller);
                             formData.append('originalPrice', originalPrice);
                             formData.append('offeredPrice', offeredPrice);
                             formData.append('category', category);

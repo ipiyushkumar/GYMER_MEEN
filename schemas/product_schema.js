@@ -8,6 +8,8 @@ const productSchema = new mongoose.Schema({
     key_ingredients: {type: String},
     how_to_use: {type: String},
     meta_tags: {type: String},
+    newArrival: {type: Boolean, default: true},
+    bestSeller: {type: Boolean, default: true},
     ratings: [
         {
             email: { type: String },
