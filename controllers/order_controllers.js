@@ -103,71 +103,89 @@ const payment = require('../schemas/payment_signatures');
 
 const saveOrder = async (req, res) => {
     const {razorpay_order_id, razorpay_payment_id, razorpay_signature} = req.body.data;
-        if (razorpay_order_id && razorpay_payment_id && razorpay_signature){
+    if (razorpay_order_id && razorpay_payment_id && razorpay_signature){
+        razorpayInstance.payments.fetch(razorpay_payment_id)
+        .then(async response => {
+            if (response.order_id == razorpay_order_id){
+                const userData = await User.findOne({email : req.session.email});
 
-        const userData = await User.findOne({email : req.session.email});
+                if (!userData) {
+                    console.log("user not found");
+                    return res.status(404).json({ message: 'User data not found' });
+                }
+                let amount = 0;
 
-        if (!userData) {
-            console.log("user not found");
-            return res.status(404).json({ message: 'User data not found' });
-        }
-        let amount = 0;
+                for (const product of userData.cart) {
+                    try {
+                        const item = await Product.findOne({ itemId: product.itemId });
+                        amount += product.quantity * item.offeredPrice;
+                        item.stock = item.stock - product.quantity;
+                        await item.save();
+                    } catch (error) {
+                        console.error(error);
+                        return res.status(500).json({ error: 'Internal Server Error' });
+                    }
+                }
+                const coupon = await Coupons.findOne({ code: req.body.couponCode });
+                if (coupon) {
+                    amount = amount - amount * (coupon.discount / 100);
+                }
+                amount = Math.floor(amount);
 
-        for (const product of userData.cart) {
-            try {
-                const item = await Product.findOne({ itemId: product.itemId });
-                amount += product.quantity * item.offeredPrice;
-                item.stock = item.stock - product.quantity;
-                await item.save();
-            } catch (error) {
-                console.error(error);
-                return res.status(500).json({ error: 'Internal Server Error' });
+
+                const newOrder = new Orders({
+                    email: userData.email,
+                    products: userData.cart,
+                    phone: userData.phone,
+                    name: userData.name,
+                    totalPayment: amount,
+                    razorpay_order_id, 
+                    deliveryAddress: `address: ${req.session.userProfile.address}, locality ${req.session.userProfile.locality}, landmark ${req.session.userProfile.landmark}, city, ${req.session.userProfile.city} (Pincode : ${req.session.userProfile.pincode})`
+                });
+
+                const payment_data = new payment({
+                    email: userData.email,
+                    phone: userData.phone,
+                    name: userData.name,
+                    totalPayment: amount,
+                    razorpay_order_id, 
+                    razorpay_payment_id, 
+                    razorpay_signature,
+                    deliveryAddress: `address: ${req.session.userProfile.address}, locality ${req.session.userProfile.locality}, landmark ${req.session.userProfile.landmark}, city, ${req.session.userProfile.city} (Pincode : ${req.session.userProfile.pincode})`
+                })
+
+                req.session.recentOrder = razorpay_order_id;
+                
+                await newOrder.save();
+                await payment_data.save();
+
+                userData.cart = [];
+                req.session.userProfile.cart = [];
+                await userData.save();
+                res.status(200).json({message : "order successful"})
+            } else {
+                res.status(400).json({message : "orderId mismatch"})
             }
-        }
-        const coupon = await Coupons.findOne({ code: req.body.couponCode });
-        if (coupon) {
-            amount = amount - amount * (coupon.discount / 100);
-        }
-        amount = Math.floor(amount);
-
-
-        const newOrder = new Orders({
-            email: userData.email,
-            products: userData.cart,
-            phone: userData.phone,
-            name: userData.name,
-            totalPayment: amount,
-            razorpay_order_id, 
-            deliveryAddress: `address: ${req.session.userProfile.address}, locality ${req.session.userProfile.locality}, landmark ${req.session.userProfile.landmark}, city, ${req.session.userProfile.city} (Pincode : ${req.session.userProfile.pincode})`
-        });
-
-        const payment_data = new payment({
-            email: userData.email,
-            phone: userData.phone,
-            name: userData.name,
-            totalPayment: amount,
-            razorpay_order_id, 
-            razorpay_payment_id, 
-            razorpay_signature,
-            deliveryAddress: `address: ${req.session.userProfile.address}, locality ${req.session.userProfile.locality}, landmark ${req.session.userProfile.landmark}, city, ${req.session.userProfile.city} (Pincode : ${req.session.userProfile.pincode})`
         })
-
-        req.session.recentOrder = razorpay_order_id;
-        
-        await newOrder.save();
-        await payment_data.save();
-
-        userData.cart = [];
-        req.session.userProfile.cart = [];
-        await userData.save();
-        res.status(200).json({message : "order successful"})
+        .catch(err => res.status(400).send({message : "the paymentId does not exist"}))
     } else {
         res.status(500).json({message : "order failed"})
     }
 }
 
+// const testAPI = (req,res) => {
+//     const {id } = req.params
+//     razorpayInstance.payments.fetch(id)
+//     .then(response => {
+//         razorpayInstance.orders.fetch(response.order_id)
+//         .then(response => res.status(200).send({res :  response}))
+//         .catch(err => res.status(200).send({err}))
+//     })
+//     .catch(err => res.status(200).send({err}))
+// }
+
 module.exports = {
   getOrderByEmail,
   paymentGateway,
-  saveOrder
+  saveOrder,
 };

@@ -23,4 +23,6 @@ router.post("/processPayment", controllers.paymentGateway);
 
 router.post("/save/order",isAuthenticated, controllers.saveOrder);
 
+// router.get("/check/order/:id",isAuthenticated, controllers.testAPI);
+
 module.exports = router;
