@@ -393,7 +393,7 @@ body {
     }
 
     .product-description{
-        font-size: 10px !important;
+        font-size: 10px;
         font-weight: 300;
     }
 

@@ -13,6 +13,15 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 
+    <!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-NQVB53VH');</script>
+    <!-- End Google Tag Manager -->  
+    
+
     <meta property="og:image" content='<%= item.imageLink[0] %>'>
     <meta property="og:image:type" content="image/png">
     <meta property="og:image:width" content="65">
@@ -22,117 +31,7 @@
     
     <title><%= item.name %> - Whitewolf</title>
     <style>
-      .card-wrapper{
-    background-color: #000;
-    width: 90%;
-}
-
-footer .social a{
-  color: #fff;
-}
-
-.product-grid{
-        padding: 1rem;
-        width: 100%;
-        overflow-x: scroll;
-        scrollbar-width: 1px;
-    display: flex;
-    flex-wrap: nowrap;
-    flex-direction: row;
-    justify-content: flex-start;
-    align-items: center;
-    }
-
-.product-card {
-        width: 24% !important;
-    cursor: pointer;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap;
-    background-color: #fff;
-    color: #000;
-    margin: 5px;
-    padding: 2vh;
-    color: #fff;
-    border-radius: 0px;
-    transition: transform 0.2s;
-    height: max-content;
-    }
-
-    .product-grid .product-title{
-        font-size: 2.5vh !important;
-    }
-
-    .product-image {
-        width: 100%;
-    height: auto;
-    object-fit: cover;
-    transition: transform 1s ease-in-out;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    overflow: hidden;
-    border-radius: 10px !important;
-    }
-
-    .product-image:hover{
-            transition: 1s ease-in-out;
-    }
-
-
-@media screen and (max-width: 576px) {
-    .product-card {
-        min-width: 45% !important;
-        border-radius: none !important;
-    }
-
-    .navbar-brand img{
-        height: 3.5vh !important;
-        margin-left: 2vh !important;
-    }
-
-    .custom-nav{
-        margin-right: -3vh !important;
-    }
-
-    .custom-nav iconify-icon{
-        font-size: 4vh !important;
-    }
-
-    .custom-nav .cartButtom{
-        margin-right: -2vh !important;
-    }
-
-    .product-grid .product-image{
-        width: 100%;
-        height: auto;
-    }
-
-    .product-title {
-        font-weight: 600;
-    }
-
-    .product-description {
-        font-weight: 400;
-        font-size: 2vh;
-    } 
-}
-
-.send-your{
-    display: flex;
-    justify-content: flex-end !important;
-    align-items: center !important;
-    margin-left: 5vh;
-}
-
-    </style>
-</head>
-<body>
-  <div id="alertContainer"></div>
-  <style>
-    .alert {
+        .alert {
         position: fixed;
         top: -100%;
         right: 1rem;
@@ -166,7 +65,174 @@ footer .social a{
         background-color: #f8d7da;
         border-color: #f5c6cb;
     }
-</style>
+
+      .card-wrapper{
+    background-color: #000;
+    width: 90%;
+}
+
+footer .social a{
+  color: #fff;
+}
+
+.product-grid{
+        padding: 1rem;
+        width: 100%;
+        overflow-x: scroll;
+        scrollbar-width: 1px;
+    display: flex;
+    flex-wrap: nowrap;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    }
+
+.product-card {
+        width: 24% !important;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    background-color: #000;
+    color: #fff !important;
+    margin: 5px;
+    padding: 0;
+    color: #fff;
+    border-radius: 0px;
+    font-size:15px;
+    transition: transform 0.2s;
+    height: max-content;
+    }
+
+    .notify {
+                            display: none;
+                            position: fixed;
+                            top: 50%;
+                            left: 50%;
+                            transform: translate(-50%, -50%);
+                            width: 30vw;
+                            height: 30vh;
+                            background: transparent;
+                            align-items: center;
+                            justify-content: center;
+                            z-index: 1;
+
+                            background-color: rgba(0, 0, 0, 0.5);
+                          }
+                    
+                          .notify-content {
+                            background: #fff;
+                            color: #000;
+                            padding: 20px;
+                            border-radius: 8px;
+                            text-align: center;
+                            position: relative; /* Added position relative */
+                          }
+                    
+                          .notify-close-btn {
+                            cursor: pointer;
+                            color: #000;
+                            font-size: 3vh;
+                            position: absolute;
+                            top: 0;
+                            right: 5px;
+                          }
+                    
+                          .notify-content > input {
+                            padding: 10px;
+                            margin-top: 10px;
+                            width: 100%;
+                            box-sizing: border-box;
+                            border: 1px solid #ccc;
+                            border-radius: 5px;
+                            font-size: 16px;
+                          }
+                    
+                          .notifySubscribe-btn {
+                            background: #000;
+                            color: #fff;
+                            padding: 12px 24px;
+                            font-size: 16px;
+                            border: none;
+                            cursor: pointer;
+                            border-radius: 5px;
+                            margin-top: 10px;
+                            transition: background 0.3s ease;
+                          }
+                    
+                          .notifySubscribe-btn:hover {
+                            background: #333;
+                          }
+
+
+    .product-image {
+        width: 100%;
+    height: auto;
+    object-fit: cover;
+    transition: transform 1s ease-in-out;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    overflow: hidden;
+    border-radius: 0 !important;
+    }
+
+    .product-image:hover{
+            transition: 1s ease-in-out;
+    }
+
+
+@media screen and (max-width: 576px) {
+    .product-card {
+        min-width: 52% !important;
+        border-radius: none !important;
+    }
+
+    .navbar-brand img{
+        height: 3.5vh !important;
+        margin-left: 2vh !important;
+    }
+
+    .custom-nav{
+        margin-right: -3vh !important;
+    }
+
+    .custom-nav iconify-icon{
+        font-size: 4vh !important;
+    }
+
+    .custom-nav .cartButtom{
+        margin-right: -2vh !important;
+    }
+
+    .product-grid .product-image{
+        width: 100%;
+        height: auto;
+    }
+
+}
+
+.send-your{
+    display: flex;
+    justify-content: flex-end !important;
+    align-items: center !important;
+    margin-left: 5vh;
+}
+
+    </style>
+</head>
+<body>
+
+    <!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NQVB53VH"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) --> 
+
+
+  <div id="alertContainer"></div>
+
 <script>
     function showAlert(message, type) {
         const alertContainer = document.getElementById("alertContainer");
@@ -293,11 +359,11 @@ footer .social a{
             
             
             <div class="product-content" style="align-self: start;">
-                <h2 class="product-title" style="color: #fff;"><%= item.name %></h2>
-                <div class = "product-rating">
+                <h1 class="product-title" style="color: #fff;"><%= item.name %></h1>
+                <!-- <div class = "product-rating">
                     <iconify-icon icon="noto:star"></iconify-icon>
                     <span>4.7 | (21 Reviews)</span>
-                </div>
+                </div> -->
 
                <div class="butns">
                 <div>
@@ -329,67 +395,6 @@ footer .social a{
                     <% } else if ( content.isLoggedIn == true ) { %>
                         <button type="button" class="btn">You will be Notified shortly</button>
                     <% } else { %>
-                        <style>
-                          .notify {
-                            display: none;
-                            position: fixed;
-                            top: 50%;
-                            left: 50%;
-                            transform: translate(-50%, -50%);
-                            width: 30vw;
-                            height: 30vh;
-                            background: transparent;
-                            align-items: center;
-                            justify-content: center;
-                            z-index: 1;
-
-                            background-color: rgba(0, 0, 0, 0.5);
-                          }
-                    
-                          .notify-content {
-                            background: #fff;
-                            color: #000;
-                            padding: 20px;
-                            border-radius: 8px;
-                            text-align: center;
-                            position: relative; /* Added position relative */
-                          }
-                    
-                          .notify-close-btn {
-                            cursor: pointer;
-                            color: #000;
-                            font-size: 3vh;
-                            position: absolute;
-                            top: 0;
-                            right: 5px;
-                          }
-                    
-                          .notify-content > input {
-                            padding: 10px;
-                            margin-top: 10px;
-                            width: 100%;
-                            box-sizing: border-box;
-                            border: 1px solid #ccc;
-                            border-radius: 5px;
-                            font-size: 16px;
-                          }
-                    
-                          .notifySubscribe-btn {
-                            background: #000;
-                            color: #fff;
-                            padding: 12px 24px;
-                            font-size: 16px;
-                            border: none;
-                            cursor: pointer;
-                            border-radius: 5px;
-                            margin-top: 10px;
-                            transition: background 0.3s ease;
-                          }
-                    
-                          .notifySubscribe-btn:hover {
-                            background: #333;
-                          }
-                        </style>
 
                         <button onclick="openNotifyModal()" type="button" class="btn">Notify me</button>
 
@@ -516,7 +521,7 @@ footer .social a{
 
     <div class="faq-section mt-5 mb-5">
         <div class="faq-question" onclick="toggleFAQ(this)">
-            <span>Key Features</span>
+            <span><h2>Key Features</h2></span>
             <span class="icon">&#43;</span>
         </div>
         <div class="faq-answer">
@@ -524,7 +529,7 @@ footer .social a{
         </div>
 
         <div class="faq-question" onclick="toggleFAQ(this)">
-            <span>How To Use?</span>
+            <span><h2>How To Use?</h2></span>
             <span class="icon">&#43;</span>
         </div>
         <div class="faq-answer">
@@ -532,7 +537,7 @@ footer .social a{
         </div>
 
         <div class="faq-question" onclick="toggleFAQ(this)">
-            <span>FAQ</span>
+            <span><h2>FAQ</h2></span>
             <span class="icon" >&#43;</span>
         </div>
         <div class="faq-answer">
@@ -711,8 +716,8 @@ footer .social a{
   </div>
   
 
-  <h2 class="people m-2 mt-4" style="font-size:5vh;">People Also Bought</h2>
-  <div id="productGrid" class="row mb-3 product-grid container onmousedown="startScroll(event)" onmouseup="stopScroll()" ontouchstart="startScroll(event)" ontouchend="stopScroll()">
+  <h2 class="people m-2 mt-4 mb-3" style="font-size:5vh;">People Also Bought</h2>
+  <div id="productGrid" class="row mb-5 product-grid container onmousedown="startScroll(event)" onmouseup="stopScroll()" ontouchstart="startScroll(event)" ontouchend="stopScroll()">
   </div>
   <%- include('partials/footer') %>
   
@@ -870,12 +875,12 @@ footer .social a{
           ${product.bestSeller ? '<img class="best-seller" src="../assets/best-seller.png">' : ''}
           ${product.newArrival ? '<img class="new-arrival" src="../assets/new-arrival.png">' : ''}
           <div class="category-badge text-white corner-round p-1" style="display:none;">${product.category}</div>
-          <div class="product-title"><a href="/products/${product.itemId}" style="text-decoration:none;color:#000">${product.name}</a></div>
+          <div class="product-title"><a href="/products/${product.itemId}" style="text-decoration:none;color:#fff;">${product.name}</a></div>
           <div class="product-description">${product.description}</div>
           <div class="mb-1">
               <div class="d-flex justify-content-between product-price-discount">
-                <div class="product-price">&#8377; ${product.offeredPrice}</div>
-                <div class="original-price text-secondary text-decoration-line-through">&#8377;${product.originalPrice || ''}</div>
+                <div class="product-price">&#8377;${product.offeredPrice}</div>
+                <div class="original-price text-secondary">&#8377;<strike>${product.originalPrice || ''}</strike></div>
                 <div class="product-discount text-success">${((product.originalPrice - product.offeredPrice) / product.originalPrice * 100).toFixed(0)}% Off</div>
               </div>
           </div>
