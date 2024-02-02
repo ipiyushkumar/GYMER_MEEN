@@ -332,19 +332,19 @@ footer .social a{
             <div class="product-imgs" style="align-self: start;">
                 <div class="additional-images">
                   <% item.imageLink.forEach((image, index) => { %>
-                      <div class="additional-image" onclick="loadImage('<%= image %>')" style="background-image: url('<%= image %>');">
+                      <div class="additional-image" onclick="loadImage('<%= image %>')" style="background-image: url('<%= image %>');" alt="<%= item.name %>">
                       </div>
                   <% }); %>
 
               </div>
                 <div class="main-image" id="mainImageContainer">
-                  <img id="mainProductImage" src='<%= item.imageLink[0] %>' alt="Main Product Image">
+                  <img id="mainProductImage" src='<%= item.imageLink[0] %>' alt="<%= item.name %>">
                 </div>
             
               </div> 
               <div class="slider-images" id="imageSlider">
                 <% item.imageLink.forEach((image, index) => { %>
-                    <div class="new-image" onclick="loadImage('<%= image %>')" style="background-image: url('<%= image %>');"></div>
+                    <div class="new-image" onclick="loadImage('<%= image %>')" style="background-image: url('<%= image %>');" alt="<%= item.name %>"></div>
                 <% }); %>
             
                 <div class="custom-carousel-controls container-fluid d-flex align-items-end justify-content-end" style="font-size: 5vh;">
