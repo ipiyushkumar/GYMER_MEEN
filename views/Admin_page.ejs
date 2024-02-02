@@ -84,11 +84,11 @@
        top: 1rem;
        right: 1rem;
        z-index: 1;
-       padding: 0.75rem 1.25rem;
+       padding: 1vh 2vh;
        margin-bottom: 1rem;
-       border: 1px solid transparent;
+       border: 2px solid transparent;
        text-transform: capitalize;
-       border-radius: 2vh;
+       border-radius: 5px;
        transition: 0.3s ease-in-out;
      }
 
@@ -117,7 +117,7 @@
        // Create alert element
        const alert = document.createElement("div");
        alert.className = `alert ${type}`;
-       alert.innerHTML = `${message}<span class="close" onclick="closeAlert(this)"> &#10060</span>`;
+       alert.innerHTML = `${message}<span class="close" onclick="closeAlert(this)"> &#9587;</span>`;
    
        // Append alert to container
        alertContainer.appendChild(alert);
@@ -674,14 +674,17 @@
                             <label for="productFAQ">FAQ :</label>
                             <textarea id="productFAQ" name="productFAQ" rows="2" required></textarea>
 
-                            <label for="keyIngredients">Key Ingredients :</label>
+                            <label for="keyIngredients">Key Features :</label>
                             <textarea id="keyIngredients" name="keyIngredients" rows="2" required></textarea>
 
                             <label for="howtouse">How To Use :</label>
                             <textarea id="howtouse" name="howtouse" rows="2" required></textarea>
 
-                            <label for="metaTags">Product Tags</label>
-                            <textarea id="metaTags" name="metaTags" rows="2" required></textarea>
+                            <label for="metaTags">Meta Title :</label>
+                            <textarea id="metaTags" name="metaTags" rows="1" required></textarea>
+
+                            <label for="metaDescription">Meta Description:</label>
+                            <textarea id="metaDescription" name="metaDescription" rows="3" required></textarea>
 
                             <button onclick="addProduct()" style="margin-top: 3vh;margin-bottom: 3vh;">Publish Product</button>
 
@@ -692,17 +695,23 @@
                             <input type="number" id="stock" name="stock" required>
 
                             <label for="new-arrival">New Arrival:</label>
-                            <select id="newArrival" name="newArrival">
-                                <option value="true" selected>Yes</option>
-                                <option value="false">No</option>
-                            </select>
+                            <div>
+                                <input type="radio" id="yes" name="newArrival" value="true" checked>
+                                <label for="yes" style="margin-top: -2vh;">Yes</label>
 
+                                <input type="radio" id="no" name="newArrival" value="false">
+                                <label for="no">No</label>
+                            </div>
 
                             <label for="best-seller">Best Quality:</label>
-                            <select id="bestSeller" name="bestSeller">
-                                <option value="true" selected>Yes</option>
-                                <option value="false">No</option>
-                            </select>                            
+                            <div>
+                                <input type="radio" id="yes" name="bestSeller" value="true" checked>
+                                <label for="yes">Yes</label>
+
+                                <input type="radio" id="no" name="bestSeller" value="false">
+                                <label for="no">No</label>
+                            </div>
+
                             
                             <label for="Image1">Main Image (250x250):</label>
                             <input type="file" value="-1" id="Image1" name="Image1" accept="image/*" required onchange="previewImage('Image1')" style="border: none; padding: 0.5rem; background-color: #f0f0f0;">
@@ -954,8 +963,10 @@
                 padding: 20px;
                 border-radius: 8px;
                 box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-                max-width: 400px;
+                max-width: 50vw;
                 width: 100%;
+                overflow-y: scroll;
+                height: 70vh;
                 text-align: left;
                 position: relative;
             }
@@ -966,7 +977,7 @@
                 padding: 1vh;
                 color: #fff;
                 cursor: pointer;
-                border-radius: 1vh;
+                border-radius: 5px;
             }
             
             .modal-content div{
@@ -974,8 +985,32 @@
                 display: flex;
                 justify-content: space-between;
             }
+
+            .modal-content .new-addon-images div{
+                width: 32%;
+                display: flex;
+                flex-direction: column;
+            }
+
+            .modal-content .new-addon-images label{
+                font-size: 14px;
+            }
             
             .modal-content input{
+                padding:1vh;
+                border-radius: 1vh;
+                width:50%;
+                border: 1px solid #000;
+            }
+
+            .modal-content select{
+                padding:1vh;
+                border-radius: 1vh;
+                width:50%;
+                border: 1px solid #000;
+            }
+
+            .modal-content textarea{
                 padding:1vh;
                 border-radius: 1vh;
                 width:50%;
@@ -997,8 +1032,18 @@
                 
                 <div id="editModal" class="item_edit_modal" style="display: none;">
                     <div class="modal-content">
-                        <span class="close" onclick="closeEditModal()" style="cursor: pointer;">&#10060</span>
+                        <span class="close" onclick="closeEditModal()" style="cursor: pointer;position: absolute;top: 1vh;right: 1vh;">&#9587;</span>
                         <h2>Edit Product</h2>
+                        <div>
+                            <label for="newName">Product Name:</label>
+                            <input type="text" id="newName" name="newName" required aria-describedby="newNameError">
+                            <span id="newNameError" class="error-message"></span>
+                        </div>
+                        <div>
+                            <label for="newDescription">Product Description:</label>
+                            <textarea id="newDescription" name="newDescription" rows="3" required ></textarea>
+                            <span id="newDescriptionError" class="error-message"></span>
+                        </div>
                         <div>
                             <label for="newStock">New Stock:</label>
                             <input type="number" id="newStock" name="newStock" required aria-describedby="newStockError">
@@ -1014,6 +1059,95 @@
                             <input type="number" id="newOriginalPrice" name="newOriginalPrice" required aria-describedby="newOriginalPriceError">
                             <span id="newOriginalPriceError" class="error-message"></span>
                         </div>
+
+                        <div>
+                            <label for="newcategory">Category :</label>
+
+                            <select id="newcategory" name="newcategory" required>
+                                <option value="Face Care">Face Care</option>
+                                <option value="Hair Care">Hair Care</option>
+                                <option value="Body Care">Body Care</option>
+                                <option value="Beard Care">Beard Care</option>
+                                <option value="Skin Care">Skin Care</option>
+                            </select>
+                        </div>
+
+                        <div>
+                            <label for="newIngredients">Key Features:</label>
+                            <textarea id="newIngredients" name="newIngredients" rows="2" required ></textarea>
+                            <span id="newIngredients" class="error-message"></span>
+                        </div>
+
+                        <div>
+                            <label for="newUse">How to Use:</label>
+                            <textarea id="newUse" name="newUse" rows="2" required ></textarea>
+                            <span id="newUse" class="error-message"></span>
+                        </div>
+
+                        <div>
+                            <label for="newFAQ">FAQ:</label>
+                            <textarea id="newFAQ" name="newFAQ" rows="2" required ></textarea>
+                            <span id="newFAQ" class="error-message"></span>
+                        </div>
+
+                        <div>
+                            <label for="newMetaTitle">Meta Title:</label>
+                            <textarea id="newMetaTitle" name="newMetaTitle" rows="1" required ></textarea>
+                            <span id="newMetaTitle" class="error-message"></span>
+                        </div>
+
+                        <div>
+                            <label for="newMetaDesc">Meta Description:</label>
+                            <textarea id="newMetaDesc" name="newMetaDesc" rows="3" required ></textarea>
+                            <span id="newMetaDesc" class="error-message"></span>
+                        </div>
+
+                        <div>
+                            <label for="newImage1">Main Image (250x250):</label>
+                            <div style="display: flex;flex-direction: column;width: 50%;">
+                            <input type="file" value="-1" id="newImage1" name="newImage1" accept="image/*" required onchange="previewImage('newImage1')" style="border: none; padding: 0.5rem; background-color: #f0f0f0;">
+                            <img id="newImage1Preview" alt="Preview" style="width: 20%; height: auto; margin-top: 0rem; margin-bottom: 1vh;border-radius: 5px;">
+                            </div>
+                        </div>
+
+                        <div class="new-addon-images" style="display: flex;flex-wrap: wrap;">
+                            <div class="img2">
+                                <label for="NewImage2">2nd Image (250x250):</label>
+                                <input type="file" value="-1" id="NewImage2" name="NewImage2" accept="image/*" required onchange="previewImage('NewImage2')" style="border: none; padding: 0.5rem; background-color: #f0f0f0;"> 
+                                <img id="NewImage2Preview" alt="Preview" style="width: 50%; height: auto; margin-top: 5px; margin-bottom: 1vh;border-radius: 5px;">
+                            </div>
+    
+                            <div class="img2">
+                                <label for="NewImage3">3rd Image (250x250):</label>
+                                <input type="file" value="-1" id="NewImage3" name="NewImage3" accept="image/*" required onchange="previewImage('NewImage3')" style="border: none; padding: 0.5rem; background-color: #f0f0f0;">
+                                <img id="NewImage3Preview" alt="Preview" style="width: 50%; height: auto; margin-top: 5px; margin-bottom: 1vh;border-radius: 5px;">
+                            </div>
+
+                            <div class="img2">
+                                <label for="NewImage4">4th Image (250x250):</label>
+                                <input type="file" value="-1" id="NewImage4" name="NewImage4" accept="image/*" required onchange="previewImage('NewImage4')" style="border: none; padding: 0.5rem; background-color: #f0f0f0;">
+                                <img id="NewImage4Preview" alt="Preview" style="width: 50%; height: auto; margin-top: 5px; margin-bottom: 1vh;border-radius: 5px;">
+                            </div>
+
+                            <div class="img2">
+                                <label for="NewImage5">5th Image (250x250):</label>
+                                <input type="file" value="-1" id="NewImage5" name="Image5" accept="image/*" required onchange="previewImage('NewImage5')" style="border: none; padding: 0.5rem; background-color: #f0f0f0;">
+                                <img id="NewImage5Preview" alt="Preview" style="width: 50%; height: auto; margin-top: 5px; margin-bottom: 1vh;border-radius: 5px;">
+                            </div>
+
+                            <div class="img2">
+                                <label for="NewImage6">6th Image (250x250):</label>
+                                <input type="file" value="-1" id="NewImage6" name="NewImage6" accept="image/*" required onchange="previewImage('NewImage6')" style="border: none; padding: 0.5rem; background-color: #f0f0f0;">
+                                <img id="NewImage6Preview" alt="Preview" sstyle="width: 50%; height: auto; margin-top: 5px; margin-bottom: 1vh;border-radius: 5px;">
+                            </div>
+
+                            <div class="img2">
+                                <label for="NewImage7">7th Image (250x250):</label>
+                                <input type="file" value="-1" id="NewImage7" name="NewImage7" accept="image/*" required onchange="previewImage('NewImage7')" style="border: none; padding: 0.5rem; background-color: #f0f0f0;">
+                                <img id="NewImage7Preview" alt="Preview"style="width: 50%; height: auto; margin-top: 5px; margin-bottom: 1vh;border-radius: 5px;">
+                            </div>
+                        </div>
+
                         <button onclick="updateData()">Save Changes</button>
                     </div>
                 </div>
@@ -1024,13 +1158,20 @@
                 async function updateData () {
                     let formdata = {
                         itemId: selectedItemId,
+                        name : document.querySelector('#newName').value,
+                        description : document.querySelector('#newDescription').value,
+                        category : document.querySelector('#newcategory').value,
+                        ingredients : document.querySelector('#newUse').value,
+                        faq : document.querySelector('#newFAQ').value,
+                        metatitle : document.querySelector('#newMetaTitle').value,
+                        metadescription : document.querySelector('#newMetaDesc'),
                         stock : document.querySelector('#newStock').value,
                         offeredPrice: document.querySelector('#newOfferedPrice').value,
                         originalPrice: document.querySelector('#newOriginalPrice').value
                     }
                     await axios.put(`/api/products`,{formdata})
-                    .then(response => showAlert("product data updated successfully","success"))
-                    .catch(err => showAlert("error updating the product","danger"))
+                    .then(response => showAlert("Product data updated successfully","success"))
+                    .catch(err => showAlert("Error updating the product","danger"))
                 }
                 async function openEditModal(itemId) {
                     selectedItemId = itemId;
