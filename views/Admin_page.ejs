@@ -680,7 +680,7 @@
                             <label for="howtouse">How To Use :</label>
                             <textarea id="howtouse" name="howtouse" rows="2" required></textarea>
 
-                            <label for="metaTags">Meta Title :</label>
+                            <label for="metaTitle">Meta Title :</label>
                             <textarea id="metaTags" name="metaTags" rows="1" required></textarea>
 
                             <label for="metaDescription">Meta Description:</label>
@@ -803,7 +803,8 @@
                     const description = document.getElementById('productDescription').value;
 
                     const FAQ = document.getElementById("productFAQ").value
-                    const metaTags = document.getElementById("metaTags").value;
+                    const metaTitle = document.getElementById("metaTitle").value;
+                    const metaDescription = document.getElementById("metaDescription").value;
                     const key_ingredients  = document.getElementById("keyIngredients").value
                     const how_to_use = document.getElementById("howtouse").value
 
@@ -825,7 +826,8 @@
                             description &&
                             FAQ &&
                             key_ingredients &&
-                            metaTags &&
+                            metaTitle &&
+                            metaDescription &&
                             how_to_use &&
                             originalPrice &&
                             offeredPrice &&
@@ -838,7 +840,8 @@
                             formData.append('name', name);
                             formData.append('description', description);
                             formData.append('FAQ', FAQ);
-                            formData.append('meta_tags', metaTags);
+                            formData.append('meta_title', metaTitle);
+                            formData.append('meta_description', metaDescription);
                             formData.append('key_ingredients', key_ingredients);
                             formData.append('how_to_use', how_to_use);
                             formData.append('newArrival', newArrival);
@@ -1101,53 +1104,6 @@
                             <textarea id="newMetaDesc" name="newMetaDesc" rows="3" required ></textarea>
                             <span id="newMetaDesc" class="error-message"></span>
                         </div>
-
-                        <div>
-                            <label for="newImage1">Main Image (250x250):</label>
-                            <div style="display: flex;flex-direction: column;width: 50%;">
-                            <input type="file" value="-1" id="newImage1" name="newImage1" accept="image/*" required onchange="previewImage('newImage1')" style="border: none; padding: 0.5rem; background-color: #f0f0f0;">
-                            <img id="newImage1Preview" alt="Preview" style="width: 20%; height: auto; margin-top: 0rem; margin-bottom: 1vh;border-radius: 5px;">
-                            </div>
-                        </div>
-
-                        <div class="new-addon-images" style="display: flex;flex-wrap: wrap;">
-                            <div class="img2">
-                                <label for="NewImage2">2nd Image (250x250):</label>
-                                <input type="file" value="-1" id="NewImage2" name="NewImage2" accept="image/*" required onchange="previewImage('NewImage2')" style="border: none; padding: 0.5rem; background-color: #f0f0f0;"> 
-                                <img id="NewImage2Preview" alt="Preview" style="width: 50%; height: auto; margin-top: 5px; margin-bottom: 1vh;border-radius: 5px;">
-                            </div>
-    
-                            <div class="img2">
-                                <label for="NewImage3">3rd Image (250x250):</label>
-                                <input type="file" value="-1" id="NewImage3" name="NewImage3" accept="image/*" required onchange="previewImage('NewImage3')" style="border: none; padding: 0.5rem; background-color: #f0f0f0;">
-                                <img id="NewImage3Preview" alt="Preview" style="width: 50%; height: auto; margin-top: 5px; margin-bottom: 1vh;border-radius: 5px;">
-                            </div>
-
-                            <div class="img2">
-                                <label for="NewImage4">4th Image (250x250):</label>
-                                <input type="file" value="-1" id="NewImage4" name="NewImage4" accept="image/*" required onchange="previewImage('NewImage4')" style="border: none; padding: 0.5rem; background-color: #f0f0f0;">
-                                <img id="NewImage4Preview" alt="Preview" style="width: 50%; height: auto; margin-top: 5px; margin-bottom: 1vh;border-radius: 5px;">
-                            </div>
-
-                            <div class="img2">
-                                <label for="NewImage5">5th Image (250x250):</label>
-                                <input type="file" value="-1" id="NewImage5" name="Image5" accept="image/*" required onchange="previewImage('NewImage5')" style="border: none; padding: 0.5rem; background-color: #f0f0f0;">
-                                <img id="NewImage5Preview" alt="Preview" style="width: 50%; height: auto; margin-top: 5px; margin-bottom: 1vh;border-radius: 5px;">
-                            </div>
-
-                            <div class="img2">
-                                <label for="NewImage6">6th Image (250x250):</label>
-                                <input type="file" value="-1" id="NewImage6" name="NewImage6" accept="image/*" required onchange="previewImage('NewImage6')" style="border: none; padding: 0.5rem; background-color: #f0f0f0;">
-                                <img id="NewImage6Preview" alt="Preview" sstyle="width: 50%; height: auto; margin-top: 5px; margin-bottom: 1vh;border-radius: 5px;">
-                            </div>
-
-                            <div class="img2">
-                                <label for="NewImage7">7th Image (250x250):</label>
-                                <input type="file" value="-1" id="NewImage7" name="NewImage7" accept="image/*" required onchange="previewImage('NewImage7')" style="border: none; padding: 0.5rem; background-color: #f0f0f0;">
-                                <img id="NewImage7Preview" alt="Preview"style="width: 50%; height: auto; margin-top: 5px; margin-bottom: 1vh;border-radius: 5px;">
-                            </div>
-                        </div>
-
                         <button onclick="updateData()">Save Changes</button>
                     </div>
                 </div>
@@ -1161,10 +1117,10 @@
                         name : document.querySelector('#newName').value,
                         description : document.querySelector('#newDescription').value,
                         category : document.querySelector('#newcategory').value,
-                        ingredients : document.querySelector('#newUse').value,
-                        faq : document.querySelector('#newFAQ').value,
-                        metatitle : document.querySelector('#newMetaTitle').value,
-                        metadescription : document.querySelector('#newMetaDesc'),
+                        key_ingredients : document.querySelector('#newUse').value,
+                        FAQ : document.querySelector('#newFAQ').value,
+                        meta_title : document.querySelector('#newMetaTitle').value,
+                        meta_description : document.querySelector('#newMetaDesc'),
                         stock : document.querySelector('#newStock').value,
                         offeredPrice: document.querySelector('#newOfferedPrice').value,
                         originalPrice: document.querySelector('#newOriginalPrice').value

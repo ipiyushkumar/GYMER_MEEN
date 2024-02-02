@@ -7,7 +7,8 @@ const productSchema = new mongoose.Schema({
     FAQ: {type: String},
     key_ingredients: {type: String},
     how_to_use: {type: String},
-    meta_tags: {type: String},
+    meta_title: {type: String},
+    meta_description: {type: String},
     newArrival: {type: Boolean, default: true},
     bestSeller: {type: Boolean, default: true},
     ratings: [

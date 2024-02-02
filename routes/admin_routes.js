@@ -63,7 +63,7 @@ router.post('/api/products',isAdminAuthenticated,  multerMiddleware.array('files
     }
 
     // Retrieve other form data
-    const { name, description, FAQ, meta_tags, key_ingredients, how_to_use, newArrival, bestSeller, originalPrice, offeredPrice, category, stock } = req.body;
+    const { name, description, FAQ, meta_title, meta_description, key_ingredients, how_to_use, newArrival, bestSeller, originalPrice, offeredPrice, category, stock } = req.body;
 
     console.log("creating image link")
     // Extract file paths from Multer's processed files
@@ -75,7 +75,8 @@ router.post('/api/products',isAdminAuthenticated,  multerMiddleware.array('files
       name,
       description,
       FAQ,
-      meta_tags,
+      meta_title,
+      meta_description,
       key_ingredients,
       how_to_use,
       newArrival,
@@ -100,27 +101,41 @@ router.post('/api/products',isAdminAuthenticated,  multerMiddleware.array('files
   }
 });
 
-router.put('/api/products',isAdminAuthenticated,  async (req, res) => {
-    const {itemId, offeredPrice, originalPrice, stock} = req.body.formdata
-    try {
-      console.log(req.body.formdata)
-      const updateItem = await Product.findOne({itemId : itemId});
-      if (!updateItem) {
-        return res.status(404).json({ error: 'Product not found' });
-      }
-      console.log("yes2")      
-      updateItem.offeredPrice = offeredPrice || updateItem.offeredPrice;
-      updateItem.originalPrice = originalPrice || updateItem.offeredPrice;
-      updateItem.stock = stock || updateItem.stock;
+// PUT route to update an existing product
+router.put('/api/products', isAdminAuthenticated, async (req, res) => {
+  const { itemId, name, description, category, key_ingredients, FAQ, meta_title, meta_description, stock, originalPrice, offeredPrice } = req.body.formdata;
 
-      await updateItem.save();
+  try {
+    // Find the product in the database
+    const updateItem = await Product.findOne({ itemId: itemId });
 
-      res.status(200).json({message : "Product Update successfully"})
-    } catch (error) {
-      res.status(500).json({ error: 'Internal Server Error' });
+    if (!updateItem) {
+      return res.status(404).json({ error: 'Product not found' });
     }
+
+    // Update all product properties
+    updateItem.name = name || updateItem.name;
+    updateItem.description = description || updateItem.description;
+    updateItem.FAQ = FAQ || updateItem.FAQ;
+    updateItem.meta_title = meta_title || updateItem.meta_title;
+    updateItem.meta_description = meta_description || updateItem.meta_description;
+    updateItem.key_ingredients = key_ingredients || updateItem.key_ingredients;
+    updateItem.originalPrice = originalPrice || updateItem.originalPrice;
+    updateItem.offeredPrice = offeredPrice || updateItem.offeredPrice;
+    updateItem.category = category || updateItem.category;
+    updateItem.stock = stock || updateItem.stock;
+
+    // Save the updated product
+    await updateItem.save();
+
+    res.status(200).json({ message: 'Product updated successfully' });
+  } catch (error) {
+    console.error('Error updating product:', error);
+    res.status(500).json({ error: 'Internal Server Error' });
   }
-);
+});
+
+module.exports = router;
 
 const fs = require('fs').promises;
 
