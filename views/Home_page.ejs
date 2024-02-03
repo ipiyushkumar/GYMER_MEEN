@@ -1144,8 +1144,11 @@ section img{
       height: 80vh !important;
     }
 
+    .top-slider .slides #slide-1 {
+    background-image: url('../assets/blue-mb.jpg') !important;
+  }
     
-  .top-slider .slides #slide-1 {
+  .top-slider .slides #slide-2 {
     background-image: url('../assets/Hair-mb.jpg') !important;
   }
 
@@ -1153,7 +1156,7 @@ section img{
     background-image: url('../assets/yellow-second.jpg') !important;
   } */
 
-  .top-slider .slides #slide-2 {
+  .top-slider .slides #slide-3 {
     background-image: url('../assets/beard-banner-mob.jpg') !important;
   }
 
@@ -1161,7 +1164,7 @@ section img{
     background-image: url('../assets/skin-1.jpg') !important;
   } */
 
-  .top-slider .slides #slide-3 {
+  .top-slider .slides #slide-4 {
     background-image: url('../assets/spray-third.jpg') !important;
   }
 }
@@ -1239,21 +1242,24 @@ section img{
 
 <div class="top-slider">
   <div class="slides">
-    <div class="slide" id="slide-1" style="background-image: url('../assets/Hair-desk.jpg');">
+    <div class="slide" id="slide-1" style="background-image: url('../assets/blue-slider.jpg');">
+      <!-- <button class="btn btn-light btn-flat" style="border-radius: 0;">BUY NOW</button> -->
+  </div>
+    <div class="slide" id="slide-2" style="background-image: url('../assets/Hair-desk.jpg');">
       <!-- <button class="btn btn-light btn-flat" style="border-radius: 0;">BUY NOW</button> -->
   </div>
   
   <!-- <div class="slide" id="slide-2" style="background-image: url('../assets/cleaner-desktop.jpg');">
   </div> -->
   
-  <div class="slide" id="slide-2" style="background-image: url('../assets/beard-banner-desk.jpg');">
+  <div class="slide" id="slide-3" style="background-image: url('../assets/beard-banner-desk.jpg');">
       <!-- <button class="btn btn-light btn-flat" style="border-radius: 0;"></button> -->
   </div>
   
   <!-- <div class="slide" id="slide-4" style="background-image: url('../assets/skin-2.jpg');">
   </div>
    -->
-  <div class="slide" id="slide-3" style="background-image: url('../assets/Hair-removal.jpg');">
+  <div class="slide" id="slide-4" style="background-image: url('../assets/Hair-removal.jpg');">
       <!-- <button class="btn btn-light btn-flat" style="border-radius: 0;"></button> -->
   </div>
        
@@ -1633,9 +1639,9 @@ document.addEventListener('DOMContentLoaded', function () {
 <main>
   <div>
 
-    <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#myModal">
+    <!-- <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#myModal">
       Open Modal
-    </button>
+    </button> -->
   </div>
 
   <div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -1650,10 +1656,10 @@ document.addEventListener('DOMContentLoaded', function () {
         <div class="modal-body" style="height: 80vh;">
           <div class="box">
             <div class="row">
-              <div class="col-md-6" style="height: auto;">
+              <div class="col-md-6" style="height:70vh;">
                 <div class="img-div">
                   <div class="images-wrapper-modal" style="height: 100%;">
-                    <img src="../assets/pop-up-modal.jpg" class="image img-3 p-1 show" alt="pop-up-modal" style="width: 100%; height: 100%; object-fit: cover;object-position: top;" />
+                    <img src="../assets/pop-up-modal.jpg" class="image img-3 p-1 show" alt="pop-up-modal" style="width: 100%; height: 100%; object-fit: cover;" />
                   </div>
                 </div>
               </div>
@@ -1793,7 +1799,7 @@ document.addEventListener('DOMContentLoaded', function () {
 		</div>
 	</div>
   <%- include('partials/loader') %> 
-  <script>
+  <!-- <script>
     document.addEventListener("DOMContentLoaded", function() {
 
       setTimeout(function() {
@@ -1801,7 +1807,7 @@ document.addEventListener('DOMContentLoaded', function () {
         myModal.show();
       }, 7000);
     });
-  </script>
+  </script> -->
     <script>
       function showAlert(message, type) {
         const alertContainer = document.getElementById("alertContainer");
