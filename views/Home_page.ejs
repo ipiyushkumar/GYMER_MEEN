@@ -525,6 +525,38 @@
 
 }
 
+.loading-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(255, 255, 255, 0.8);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 1000;
+      }
+
+      .loading-message {
+        font-size: 1.2rem;
+        margin-right: 10px;
+      }
+
+      .loading-spinner {
+        border: 4px solid rgba(0, 0, 0, 0.1);
+        border-radius: 50%;
+        border-top: 4px solid #151111;
+        width: 30px;
+        height: 30px;
+        animation: spin 1s linear infinite;
+      }
+
+      @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+      }
+
 #saleContainer:hover + #swipeButtons {
   display: block;
 }
@@ -1296,7 +1328,7 @@ document.addEventListener('DOMContentLoaded', function () {
      </div>
 
      <div class="d-flex justify-content-center p-4 mt-1 mb-2" >
-        <button class="show-btn"><a href="/product_listing/all">Show More</a></button>
+        <button class="show-btn"><a href="/collections/All">Show More</a></button>
      </div>
   </div>
 
@@ -1597,6 +1629,76 @@ document.addEventListener('DOMContentLoaded', function () {
                      color: #000;
                }
       </style>
+
+<main>
+  <div>
+
+    <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#myModal">
+      Open Modal
+    </button>
+  </div>
+
+  <div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Login/Sign In Using Email</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+
+          <div class="modal-body">
+              <div class="box">
+              <div class="row">
+
+                  <div class="col-md-6" style="overflow: hidden;">
+                  <div class="img-div">
+                      <div class="images-wrapper">
+                      <img src="../assets/check out banner design@3x.jpg" class="image img-3 show" alt="" style="width: 100%;height: auto;object-fit: cover;" />
+                      </div>
+                  </div>
+                  </div>
+                  <div class="col-md-6">
+                      <div class="actual-form">
+                        <form autocomplete="off" class="sign-in-form">
+                          <div class="mb-3">
+                            <div class="input-group"  style="color: #000;border: 1px solid #000;border-radius: 5px;">
+                              <input type="email" class="form-control loginEmail" id="loginEmail" placeholder="Enter Email" autocomplete="off" required />
+                            </div>
+                          </div>
+                    
+                          <div class="mb-3">
+                            <div class="input-group" style="color: #000;border: 1px solid #000;border-radius: 5px;">
+                              <input type="text" value="" minlength="4" class="form-control OTP" id="OTP" style="display: none;" autocomplete="off" placeholder="Enter OTP" required />
+                            </div>
+                          </div>
+                    
+                          <div class="mb-3">
+                            <button type="button" class="btn btn-dark sendOTPBtn">Send OTP</button>
+                            <button type="button" class="btn btn-success verifyOTPBtn" style="display: none;">Verify OTP</button>
+                          </div>
+                    
+                          <p class="text">
+                            By signing up, I agree to the <a href="#">Terms of Services</a> and <a href="#">Privacy Policy</a>
+                          </p>
+                        </form>
+                      </div>
+                    
+                      <div class="loading-overlay" style="display: none;">
+                        <div class="loading-message">Sending OTP...</div>
+                        <div class="loading-spinner"></div>
+                      </div>
+                    </div>
+              </div>
+              </div>
+          </div>
+
+        <div class="modal-footer">
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
      <div class="container d-flex flex-column pt-3 pb-3"  data-aos="fade-up" data-aos-duration="1000">
 		<div class="row">
 			<div class="col-12">
@@ -1685,7 +1787,155 @@ document.addEventListener('DOMContentLoaded', function () {
 		</div>
 	</div>
   <%- include('partials/loader') %> 
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
 
+      setTimeout(function() {
+        var myModal = new bootstrap.Modal(document.getElementById('myModal'));
+        myModal.show();
+      }, 7000);
+    });
+  </script>
+    <script>
+      function showAlert(message, type) {
+        const alertContainer = document.getElementById("alertContainer");
+
+        const alert = document.createElement("div");
+        alert.className = `alert ${type}`;
+        alert.innerHTML = `${message}<span class="close" onclick="closeAlert(this)">×</span>`;
+
+        alertContainer.appendChild(alert);
+
+        setTimeout(() => {
+          closeAlert(alert.querySelector(".close"));
+        }, 4000);
+      }
+
+      function closeAlert(closeButton) {
+        const alert = closeButton.parentElement;
+        alert.style.display = "none";
+      }
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script>
+      const inputs = document.querySelectorAll(".input-field");
+      const toggle_btn = document.querySelectorAll(".toggle");
+      const main = document.querySelector("main");
+      const bullets = document.querySelectorAll(".bullets span");
+      const images = document.querySelectorAll(".image");
+
+      inputs.forEach((inp) => {
+        inp.addEventListener("focus", () => {
+          inp.classList.add("active");
+        });
+        inp.addEventListener("blur", () => {
+          if (inp.value != "") return;
+          inp.classList.remove("active");
+        });
+      });
+
+      toggle_btn.forEach((btn) => {
+        btn.addEventListener("click", () => {
+          main.classList.toggle("sign-up-mode");
+        });
+      });
+
+      function moveSlider() {
+        let index = this.dataset.value;
+
+        let currentImage = document.querySelector(`.img-${index}`);
+        images.forEach((img) => img.classList.remove("show"));
+        currentImage.classList.add("show");
+
+        const textSlider = document.querySelector(".text-group");
+        textSlider.style.transform = `translateY(${-(index - 1) * 2.2}rem)`;
+
+        bullets.forEach((bull) => bull.classList.remove("active"));
+        this.classList.add("active");
+      }
+
+      bullets.forEach((bullet) => {
+        bullet.addEventListener("click", moveSlider);
+      });
+
+      document.querySelector('.loginButton').addEventListener('click',async () => {
+        event.preventDefault();
+
+        showLoadingOverlay(); 
+
+        document.querySelector('.loginButton').disabled = true;
+        document.querySelector('.loginButton').style.backgroundColor = '#ccc';
+        startLoginButtonTimer();
+
+        const email = document.querySelector('.loginEmail').value
+        if (!email) {
+            showAlert("Please fill in all the details.","danger");
+            hideLoadingOverlay();
+            return false; 
+        }
+        const response = await axios.post('/send-otp', { email })
+        .then(response => {
+            if (response.status === 200) {
+                showAlert("OTP Sent","success")
+                document.querySelector('.loginButton').textContent = "Re Send";
+                document.querySelector('.verifyOTP').style.display = 'block';
+                document.querySelector('.OTP').style.display = 'block';
+            }
+        })
+        .catch(error => {
+            showAlert("Wrong Id or password","danger")
+        })
+        hideLoadingOverlay();
+        return true; 
+      })
+      let resendTimer;
+      function startLoginButtonTimer() {
+        let seconds = 45;
+        resendTimer = setInterval(() => {
+          seconds--;
+          if (seconds === 0) {
+            clearInterval(resendTimer);
+            document.querySelector('.loginButton').disabled = false;
+            const loginButton = document.querySelector('.loginButton');
+            loginButton.style.backgroundColor = '#151111';
+            loginButton.value  = `Resend OTP`;
+          } else {
+            document.querySelector('.loginButton').value  = `Resend in ${seconds}s`
+          }
+        }, 1000);
+      }
+
+      function showLoadingOverlay() {
+    document.querySelector('.loading-overlay').style.display = 'flex';
+  }
+
+  function hideLoadingOverlay() {
+    document.querySelector('.loading-overlay').style.display = 'none';
+  }
+
+      document.querySelector('.verifyOTP').addEventListener('click',async () => {
+        event.preventDefault();
+        const email = document.querySelector('.loginEmail').value
+        const otp = document.querySelector('.OTP').value
+        if (!email || !otp) {
+            showAlert("Please fill in all the details.","danger");
+            return false; 
+        }
+        const response = await axios.post('/auth/login', { email, otp })
+        .then(response => {
+            if (response.status === 200) {
+                showAlert("Login Successful","success")
+                window.location.href = "/";
+            } else if (response.status === 201) {
+              window.location.href = '/confirm'
+            }
+        })
+        .catch(error => {
+            showAlert("Wrong OTP","danger")
+        })
+        return true; 
+      })
+    </script>
 <script>
 
    $(document).ready(function () {

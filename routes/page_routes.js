@@ -126,7 +126,7 @@ router.get('/collections/:page',(req, res) => {
     } else if (page === "fragrance") {
         pageContext = 'Fragrance'
     } else {
-        pageContext = 'all'
+        pageContext = 'All'
     }
     if (!req.session.userProfile || !req.session.userProfile.cart) {req.session.userProfile = { cart: [] };}
 
