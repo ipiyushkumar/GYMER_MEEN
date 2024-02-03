@@ -1,24 +1,22 @@
 const express = require('express');
+const path = require('path');
 
 const router = express.Router();
 
-
-// Define a middleware to check if the user is authenticated
 const isAuthenticated = (req, res, next) => {
     if (req.session.isLoggedIn) {
-        next(); // User is authenticated, proceed to the next middleware or route
+        next(); 
     } else {
         res.status(401).json({ message: 'Unauthorized' });
     }
 };
 
-// home
 router.get('/',(req, res) => {
     const content = {
         isLoggedIn : req.session.isLoggedIn,
     }
     if (!req.session.userProfile || !req.session.userProfile.cart) {req.session.userProfile = { cart: [] };}
-    
+
     res.render('Home_page',{content})
 })
 router.get('/pages/disclaimer', (req, res) => {
@@ -45,8 +43,6 @@ router.get('/pages/privacy-policy', (req, res) => {
     res.render('privacy-policy', { content });
 });
 
-// Repeat the structure for other pages...
-
 router.get('/pages/about-us', (req, res) => {
     const content = {
         isLoggedIn: req.session.isLoggedIn,
@@ -58,8 +54,6 @@ router.get('/pages/about-us', (req, res) => {
 
     res.render('about-us', { content });
 });
-
-// Repeat for other pages...
 
 router.get('/pages/refund-policy', (req, res) => {
     const content = {
@@ -109,6 +103,10 @@ router.get('/pages/shipping-policy', (req, res) => {
     res.render('shipping-policy', { content });
 });
 
+router.get('/sitemap.xml', (req, res) => {
+    const sitemapPath = path.join(__dirname, '../views/sitemap.xml');
+    res.sendFile(sitemapPath);
+});
 
 router.get('/collections/:page',(req, res) => {
     const { page } = req.params
@@ -139,7 +137,6 @@ router.get('/collections/:page',(req, res) => {
     res.render('Product_Listing_page',{content});
 })
 
-// authentication
 router.get('/login',(req, res) => {
     if (!req.session.userProfile || !req.session.userProfile.cart) {req.session.userProfile = { cart: [] };}
     res.render('Auth_page');
@@ -165,7 +162,6 @@ router.get('/profile',isAuthenticated, (req, res) => {
     }
     res.render('User_Profile_page',{content});
 })
-
 
 router.get('/success',isAuthenticated, (req, res) => {
     const content = {
