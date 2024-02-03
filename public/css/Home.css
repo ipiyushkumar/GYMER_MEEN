@@ -53,7 +53,13 @@ body {
     }
 
     @media (max-width: 767.98px) {
-        
+
+        .see-what{
+            font-size: 3vh !important;
+        }
+        .featured-coll{
+            font-size: 3vh !important;
+        }
     .navbar-brand {
     width: 45%;
     }
@@ -244,6 +250,10 @@ body {
     border: 1px solid burlywood;
     color: burlywood;
     }
+
+    .products-bar h2{
+        font-size: 4vh;
+    }
   
     .products-bar{
         width: 90%;
@@ -252,6 +262,7 @@ body {
         color: #000;
         background-color: #000;
         }
+    
     .products-bar buttons{
     font-size: 0.7rem;
     }
