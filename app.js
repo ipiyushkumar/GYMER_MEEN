@@ -13,7 +13,7 @@ const app = express();
 
 app.use(
   session({
-    secret: 'your-secret-key',
+    secret: process.env.Secret_KEY,
     resave: true,
     saveUninitialized: true,
     cookie: {
