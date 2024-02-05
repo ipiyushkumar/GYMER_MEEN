@@ -227,8 +227,13 @@ body {
     margin-top: 10px;
     font-size: 20px;
     }
+
+    .product-price-discount .original-price{ 
+        font-weight: 300 !important;
+    }
     .product-price{
     font-weight: 500;
+    font-size: 20px;
     }
     .add-to-cart-btn {
     margin-top: 2vh;
