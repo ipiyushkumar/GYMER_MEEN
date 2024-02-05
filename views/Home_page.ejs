@@ -1638,9 +1638,9 @@ document.addEventListener('DOMContentLoaded', function () {
 <main>
   <div>
 
-    <!-- <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#myModal">
+    <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#myModal">
       Open Modal
-    </button> -->
+    </button>
   </div>
 
   <div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -1652,13 +1652,13 @@ document.addEventListener('DOMContentLoaded', function () {
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
 
-        <div class="modal-body" style="height: 80vh;">
+        <div class="modal-body" style="height: auto;">
           <div class="box">
             <div class="row">
-              <div class="col-md-6" style="height:70vh;">
-                <div class="img-div">
-                  <div class="images-wrapper-modal" style="height: 100%;">
-                    <img src="../assets/pop-up-modal.jpg" class="image img-3 p-1 show" alt="pop-up-modal" style="width: 100%; height: 100%; object-fit: cover;" />
+              <div class="col-md-6">
+                <div class="img-div" style="height: 75vh;">
+                  <div class="images-wrapper-modal" style="height: 100;">
+                    <img src="../assets/pop-up-modal.jpg" class="image img-3 show p-1" alt="pop-up-modal" style="width: 100%; height: 100%; object-fit:fill;" />
                   </div>
                 </div>
               </div>
@@ -1666,46 +1666,42 @@ document.addEventListener('DOMContentLoaded', function () {
                 <div class="actual-form">
                   <form autocomplete="off" class="sign-in-form">
                     <div class="mb-3">
-                      <div class="input-group" style="color: #000; border: 1px solid #000; border-radius: 5px;">
-                        <input type="email" class="form-control loginEmail" id="loginEmail" placeholder="Enter Email" autocomplete="off" required />
+                      <label for="email" class="form-label">Enter Email</label>
+                      <div class="input-group">
+                        <input type="email" class="form-control loginEmail" id="loginEmail" style="border: 1px solid #000;" placeholder="Enter Email" autocomplete="off" required />
                       </div>
                     </div>
-
+              
                     <div class="mb-3">
-                      <div class="input-group" style="color: #000; border: 1px solid #000; border-radius: 5px;">
-                        <input type="email" class="form-control loginEmail" id="loginEmail" placeholder="Enter Email" autocomplete="off" required />
+                      <label for="OTP" class="form-label">Enter OTP</label>
+                      <div class="input-group">
+                        <input type="text" value="" minlength="4" class="form-control OTP" id="OTP" style="border: 1px solid #000;" style="display: none;" autocomplete="off" placeholder="Enter OTP" required />
                       </div>
                     </div>
-        
-                    <div class="mb-3">
-                      <div class="input-group" style="color: #000; border: 1px solid #000; border-radius: 5px;">
-                        <input type="text" value="" minlength="4" class="form-control OTP" id="OTP" style="display: none;" autocomplete="off" placeholder="Enter OTP" required />
-                      </div>
-                    </div>
-        
+              
                     <div class="mb-3">
                       <button type="button" class="btn btn-dark sendOTPBtn">Send OTP</button>
                       <button type="button" class="btn btn-success verifyOTPBtn" style="display: none;">Verify OTP</button>
                     </div>
-        
+              
                     <p class="text">
-                      By signing up, I agree to the <a href="#">Terms of Services</a> and <a href="#">Privacy Policy</a>
+                      By signing up, I agree to the <a href="/pages/terms-and-conditions">Terms & Conditions</a> and <a href="/pages/privacy-policy">Privacy Policy</a>
                     </p>
                   </form>
                 </div>
-        
+              
                 <div class="loading-overlay" style="display: none;">
                   <div class="loading-message">Sending OTP...</div>
                   <div class="loading-spinner"></div>
                 </div>
               </div>
+              
             </div>
           </div>
         </div>
         
-
-        <div class="modal-footer">
-        </div>
+        <!-- <div class="modal-footer">
+        </div> -->
       </div>
     </div>
   </div>
@@ -2086,10 +2082,10 @@ document.addEventListener('DOMContentLoaded', function () {
                   <div class="product-title"><a href="/products/${product.itemId}" style="text-decoration:none;">${product.name}</a></div>
                   <div class="product-description" style="font-size:2vh;" >${product.description}</div>
                   <div class="mb-0">
-                     <div class="d-flex justify-content-between bolder product-price-discount">
-                        <div class="product-price">&#8377;${product.offeredPrice}</div>
-                        <div class="original-price text-decoration-line-through d-none">&#8377;${product.originalPrice || ''}</div>
-                        <div class="product-discount text-success text-uppercase">${((product.originalPrice - product.offeredPrice) / product.originalPrice * 100).toFixed(0)}% Off</div>
+                     <div class="d-flex justify-content-center align-items-start bolder product-price-discount">
+                        <div class="original-price mr-2">MRP:&#8377;<span class="text-decoration-line-through">${product.originalPrice || ''}</span></div>
+                        <div class="product-price ml-1 mr-1">&#8377;${product.offeredPrice}</div>
+                        <div class="product-discount ml-2 text-success text-uppercase">${((product.originalPrice - product.offeredPrice) / product.originalPrice * 100).toFixed(0)}% Off</div>
                      </div>
                   </div>
                   <button class="add-to-cart-btn add${product.itemId}" id="liveToastBtn"><i class="fas fa-cart"></i>ADD TO CART</button>

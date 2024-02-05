@@ -54,6 +54,10 @@ body {
 
     @media (max-width: 767.98px) {
 
+        .product-price-discount{
+            font-size: 12px !important;
+        }
+
         .see-what{
             font-size: 3vh !important;
         }
@@ -72,9 +76,7 @@ body {
         font-size: 15px !important;
     }
 
-    .product-price{
-        font-size: 20px !important;
-    }
+
     footer .upper-div{
     text-align: center;
     }
@@ -223,9 +225,9 @@ body {
     }
     .product-price-discount {
     margin-top: 10px;
+    font-size: 20px;
     }
     .product-price{
-        font-size: 38px;
     font-weight: 500;
     }
     .add-to-cart-btn {
@@ -392,19 +394,11 @@ body {
     }
 
     .product-discount{
-        display: block;
-        font-size:15px;
-        /* position: absolute; */
-        /* bottom: 43%;
-        left: 0;
-        padding: 1vh;
-        background-color: rgba(0, 0, 0, 0.377);
-        color: #fff !important; */
         text-transform: uppercase !important;
     }
 
     .product-description{
-        font-size: 10px;
+        font-size: 10px !important;
         font-weight: 300;
     }
 
