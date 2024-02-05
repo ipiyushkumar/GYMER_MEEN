@@ -1,0 +1,267 @@
+<main>
+  <div>
+    <!-- <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#myModal">
+        Open Modal
+      </button> -->
+  </div>
+
+  <div
+    class="modal fade"
+    id="myModal"
+    tabindex="-1"
+    aria-labelledby="exampleModalLabel"
+    aria-hidden="true"
+  >
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">
+            Login/Sign In Using Email
+          </h5>
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="modal"
+            aria-label="Close"
+          ></button>
+        </div>
+
+        <div class="modal-body" style="height: 80vh">
+          <div class="box">
+            <div class="row">
+              <div class="col-md-6" style="height: 70vh">
+                <div class="img-div">
+                  <div class="images-wrapper-modal" style="height: 100%">
+                    <img
+                      src="../assets/pop-up-modal.jpg"
+                      class="image img-3 p-1 show"
+                      alt="pop-up-modal"
+                      style="width: 100%; height: 100%; object-fit: cover"
+                    />
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="forms-wrap">
+                  <form autocomplete="off" class="sign-in-form">
+                    <div class="actual-form">
+                      <div class="input-wrap">
+                        <input
+                          type="text"
+                          minlength="4"
+                          class="input-field loginEmail"
+                          autocomplete="off"
+                          required
+                        />
+                        <label>Email</label>
+                      </div>
+
+                      <div class="input-wrap">
+                        <input
+                          type="text"
+                          value=""
+                          minlength="4"
+                          class="input-field OTP"
+                          style="display: none"
+                          autocomplete="off"
+                          placeholder="Enter OTP"
+                          required
+                        />
+                      </div>
+                      <input
+                        type="submit"
+                        value="Send OTP"
+                        class="sign-btn loginButton"
+                      />
+                      <input
+                        type="submit"
+                        value="Verify OTP"
+                        class="sign-btn verifyOTP"
+                        style="display: none"
+                      />
+                      <p class="text">
+                        By signing up, I agree to the
+                        <a href="#">Terms of Services</a> and
+                        <a href="#">Privacy Policy</a>
+                      </p>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="modal-footer"></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    setTimeout(function () {
+      var myModal = new bootstrap.Modal(document.getElementById("myModal"));
+      myModal.show();
+    }, 1000);
+  });
+</script>
+<style>
+  .alert {
+    position: fixed;
+    top: 1rem;
+    right: 1rem;
+    z-index: 1;
+    padding: 0.75rem 1.25rem;
+    margin-bottom: 1rem;
+    border: 1px solid transparent;
+    border-radius: 0.25rem;
+    transition: 0.3s ease-in-out;
+  }
+
+  .alert.success {
+    color: #155724;
+    background-color: #d4edda;
+    border-color: #c3e6cb;
+  }
+  .alert.danger {
+    color: #721c24;
+    background-color: #f8d7da;
+    border-color: #f5c6cb;
+  }
+</style>
+<script>
+  function showAlert(message, type) {
+    const alertContainer = document.getElementById("alertContainer");
+
+    // Create alert element
+    const alert = document.createElement("div");
+    alert.className = `alert ${type}`;
+    alert.innerHTML = `${message}<span class="close" onclick="closeAlert(this)">×</span>`;
+
+    // Append alert to container
+    alertContainer.appendChild(alert);
+
+    // Set timeout to remove the alert after 5 seconds
+    setTimeout(() => {
+      closeAlert(alert.querySelector(".close"));
+    }, 4000);
+  }
+
+  function closeAlert(closeButton) {
+    const alert = closeButton.parentElement;
+    alert.style.display = "none";
+  }
+</script>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script>
+  const inputs = document.querySelectorAll(".input-field");
+  const toggle_btn = document.querySelectorAll(".toggle");
+  const main = document.querySelector("main");
+  const bullets = document.querySelectorAll(".bullets span");
+  const images = document.querySelectorAll(".image");
+
+  inputs.forEach((inp) => {
+    inp.addEventListener("focus", () => {
+      inp.classList.add("active");
+    });
+    inp.addEventListener("blur", () => {
+      if (inp.value != "") return;
+      inp.classList.remove("active");
+    });
+  });
+
+  toggle_btn.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      main.classList.toggle("sign-up-mode");
+    });
+  });
+
+  function moveSlider() {
+    let index = this.dataset.value;
+
+    let currentImage = document.querySelector(`.img-${index}`);
+    images.forEach((img) => img.classList.remove("show"));
+    currentImage.classList.add("show");
+
+    const textSlider = document.querySelector(".text-group");
+    textSlider.style.transform = `translateY(${-(index - 1) * 2.2}rem)`;
+
+    bullets.forEach((bull) => bull.classList.remove("active"));
+    this.classList.add("active");
+  }
+
+  bullets.forEach((bullet) => {
+    bullet.addEventListener("click", moveSlider);
+  });
+
+  document.querySelector(".loginButton").addEventListener("click", async () => {
+    event.preventDefault();
+
+    document.querySelector(".loginButton").disabled = true;
+    document.querySelector(".loginButton").style.backgroundColor = "#ccc";
+    startLoginButtonTimer();
+
+    const email = document.querySelector(".loginEmail").value;
+    if (!email) {
+      showAlert("Please fill in all the details.", "danger");
+      hideLoadingOverlay();
+      return false;
+    }
+    const response = await axios
+      .post("/send-otp", { email })
+      .then((response) => {
+        if (response.status === 200) {
+          showAlert("OTP Sent", "success");
+          document.querySelector(".loginButton").textContent = "Re Send";
+          document.querySelector(".verifyOTP").style.display = "block";
+          document.querySelector(".OTP").style.display = "block";
+        }
+      })
+      .catch((error) => {
+        showAlert("Wrong Id or password", "danger");
+      });
+    hideLoadingOverlay();
+    return true;
+  });
+  let resendTimer;
+  function startLoginButtonTimer() {
+    let seconds = 45;
+    resendTimer = setInterval(() => {
+      seconds--;
+      if (seconds === 0) {
+        clearInterval(resendTimer);
+        document.querySelector(".loginButton").disabled = false;
+        const loginButton = document.querySelector(".loginButton");
+        loginButton.style.backgroundColor = "#151111";
+        loginButton.value = `Resend OTP`;
+      } else {
+        document.querySelector(".loginButton").value = `Resend in ${seconds}s`;
+      }
+    }, 1000);
+  }
+
+  document.querySelector(".verifyOTP").addEventListener("click", async () => {
+    event.preventDefault();
+    const email = document.querySelector(".loginEmail").value;
+    const otp = document.querySelector(".OTP").value;
+    if (!email || !otp) {
+      showAlert("Please fill in all the details.", "danger");
+      return false;
+    }
+    const response = await axios
+      .post("/auth/login", { email, otp })
+      .then((response) => {
+        if (response.status === 200) {
+          showAlert("Login Successful", "success");
+          window.location.href = "/";
+        } else if (response.status === 201) {
+          window.location.href = "/confirm";
+        }
+      })
+      .catch((error) => {
+        showAlert("Wrong OTP", "danger");
+      });
+    return true;
+  });
+</script>
