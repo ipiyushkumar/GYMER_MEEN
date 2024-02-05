@@ -1352,17 +1352,17 @@
             <img src="/assets/Sliding1.jpg" alt="Image 1" />
           </div>
         </a>
-        <a href="/product_listing/hair_care">
+        <a href="/collections/hair-care">
           <div class="custom-slide-new">
             <img src="/assets/Sliding2.jpg" alt="Image 2" />
           </div>
         </a>
-        <a href="/product_listing/beard_care">
+        <a href="/collections/beard-care">
           <div class="custom-slide-new">
             <img src="/assets/most-mover.jpg" alt="Image 3" />
           </div>
         </a>
-        <a href="/product_listing/face_care">
+        <a href="/collections/skin-care">
           <div class="custom-slide-new">
             <img src="/assets/Sliding4.jpg" alt="Image 4" />
           </div>
@@ -2126,9 +2126,7 @@
         productCard.innerHTML = `
          <a href="/products/${product.itemId}" >
             <div class="product-image-container">
-                  <img class="product-image" src="${
-                    product.imageLink[0]
-                  }" alt="${product.name}">
+                  <img class="product-image" src="${product.imageLink[0]}" alt="${product.name}">
                   <img class="product-image hover-image" src="${
                     product.imageLink[1] || product.imageLink[0]
                   }" alt="${product.name}" style="display:none">
@@ -2153,7 +2151,7 @@
                   <div class="product-description" style="font-size:2vh;" >${
                     product.description
                   }</div>
-                  <div class="mb-0">
+                  <div class="mb-0 p-0">
                      <div class="d-flex justify-content-center align-items-start bolder product-price-discount">
                       <div class="original-price mr-2">MRP:<span class="text-decoration-line-through">&#8377;${
                           product.originalPrice || ""
