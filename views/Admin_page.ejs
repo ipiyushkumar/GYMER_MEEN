@@ -694,8 +694,8 @@
                             <label for="productFAQ">FAQ :</label>
                             <textarea id="productFAQ" name="productFAQ" rows="2" required></textarea>
 
-                            <label for="keyIngredients">Key Features :</label>
-                            <textarea id="keyIngredients" name="keyIngredients" rows="2" required></textarea>
+                            <label for="keyFeatures">Key Features :</label>
+                            <textarea id="keyFeatures" name="keyFeatures" rows="2" required></textarea>
 
                             <label for="howtouse">How To Use :</label>
                             <textarea id="howtouse" name="howtouse" rows="2" required></textarea>
@@ -843,7 +843,7 @@
                     const FAQ = document.getElementById("productFAQ").value
                     const metaTitle = document.getElementById("metaTitle").value;
                     const metaDescription = document.getElementById("metaDescription").value;
-                    const key_ingredients  = document.getElementById("keyIngredients").value
+                    const keyFeatures  = document.getElementById("keyFeatures").value
                     const how_to_use = document.getElementById("howtouse").value
 
                     const originalPrice = document.getElementById('originalPrice').value;
@@ -863,7 +863,7 @@
                             name &&
                             description &&
                             FAQ &&
-                            key_ingredients &&
+                            keyFeatures &&
                             metaTitle &&
                             metaDescription &&
                             how_to_use &&
@@ -880,7 +880,7 @@
                             formData.append('FAQ', FAQ);
                             formData.append('meta_title', metaTitle);
                             formData.append('meta_description', metaDescription);
-                            formData.append('key_ingredients', key_ingredients);
+                            formData.append('keyFeatures', keyFeatures);
                             formData.append('how_to_use', how_to_use);
                             formData.append('newArrival', newArrival);
                             formData.append('bestSeller', bestSeller);
@@ -903,7 +903,7 @@
                                 document.getElementById('productDescription').value = '';
                                 document.getElementById("productFAQ").value = ''
                                 document.getElementById("metaTitle").value = ''
-                                document.getElementById("keyIngredients").value = ''
+                                document.getElementById("keyFeatures").value = ''
                                 document.getElementById("howtouse").value = ''
                                 document.getElementById('originalPrice').value = '';
                                 document.getElementById('offeredPrice').value = '';
@@ -1140,9 +1140,9 @@
                         </div>
 
                         <div>
-                            <label for="newIngredients">Key Features:</label>
-                            <textarea id="newIngredients" name="newIngredients" rows="2" required ></textarea>
-                            <span id="newIngredients" class="error-message"></span>
+                            <label for="newKeyFeatures">Key Features:</label>
+                            <textarea id="newKeyFeatures" name="newKeyFeatures" rows="2" required ></textarea>
+                            <span id="newKeyFeatures" class="error-message"></span>
                         </div>
 
                         <div>
@@ -1181,10 +1181,10 @@
                         name : document.querySelector('#newName').value,
                         description : document.querySelector('#newDescription').value,
                         category : document.querySelector('#newcategory').value,
-                        key_ingredients : document.querySelector('#newUse').value,
+                        keyFeatures : document.querySelector('#newKeyFeatures').value,
                         FAQ : document.querySelector('#newFAQ').value,
                         meta_title : document.querySelector('#newMetaTitle').value,
-                        meta_description : document.querySelector('#newMetaDesc'),
+                        meta_description : document.querySelector('#newMetaDesc').value,
                         stock : document.querySelector('#newStock').value,
                         offeredPrice: document.querySelector('#newOfferedPrice').value,
                         originalPrice: document.querySelector('#newOriginalPrice').value
@@ -1199,6 +1199,14 @@
                     await axios.get(`/api/products/${itemId}`)
                     .then(response => response.data)
                     .then(product => {
+                        document.querySelector('#newName').value = product.name
+                        document.querySelector('#newDescription').value = product.description
+                        document.querySelector('#newcategory').value = product.category
+                        document.querySelector('#newUse').value = product.how_to_use
+                        document.querySelector('#newKeyFeatures').value = product.keyFeatures
+                        document.querySelector('#newFAQ').value = product.FAQ
+                        document.querySelector('#newMetaTitle').value = product.meta_title
+                        document.querySelector('#newMetaDesc').value = product.meta_description
                         document.querySelector('#newStock').value = product.stock
                         document.querySelector('#newOfferedPrice').value = product.offeredPrice
                         document.querySelector('#newOriginalPrice').value = product.originalPrice
