@@ -646,24 +646,7 @@
         <!-- complete -->
         <section class="main" id="productsSection" style="display: none;">
             <section class="main-orders">
-                <div id="scheduleModal" class="item_schedule_modal" style="display: none;">
-                    <div class="modal-content">
-                        <span class="close" onclick="closeScheduleModal()" style="cursor: pointer;position: absolute;top: 1vh;right: 1vh;">&#9587;</span>
-                        <h2>Schedule Product</h2>
-                        <div>
-                            <label for="scheduleDate">Scheduled Date:</label>
-                            <input type="date" id="scheduleDate" name="scheduleDate" required>
-                            <span id="scheduleDateError" class="error-message"></span>
-                        </div>
-                        <div>
-                            <label for="scheduleTime">Scheduled Time:</label>
-                            <input type="time" id="scheduleTime" name="scheduleTime" required>
-                            <span id="scheduleTimeError" class="error-message"></span>
-                        </div>
-                       
-                        <button onclick="saveScheduledProduct()">Schedule Product</button>
-                    </div>
-                </div>
+                
             
                 
             <h1 style="margin-bottom: 0.3rem;">Add Product</h1>
@@ -710,23 +693,6 @@
 
                             <button onclick="scheduleProduct()" class="schedule-product">Schedule Product</button>
                         </div>
-                        
-                        <script>
-                            function scheduleProduct() {
-                                // Get the modal element
-                                var modal = document.getElementById('scheduleModal');
-                        
-                                // Display the modal
-                                modal.style.display = 'flex';
-                            }
-                        
-                            // You might also want to implement a function to close the modal
-                            function closeScheduleModal() {
-                                var modal = document.getElementById('scheduleModal');
-                                modal.style.display = 'none';
-                            }
-                        </script>
-
                         <div>
                             <label for="stock">Stock:</label>
                             <input type="number" id="stock" name="stock" required>
@@ -794,6 +760,57 @@
 
                         </div>
                     </div>
+                    <div id="scheduleModal" class="item_schedule_modal" style="display: none;">
+                        <div class="modal-content">
+                            <span class="close" onclick="closeScheduleModal()" style="cursor: pointer;position: absolute;top: 1vh;right: 1vh;">&#9587;</span>
+                            <h2>Schedule Product</h2>
+                            <div>
+                                <label for="scheduleDate">Scheduled Date:</label>
+                                <input type="date" id="scheduleDate" name="scheduleDate" required>
+                                <span id="scheduleDateError" class="error-message"></span>
+                            </div>
+                            <div>
+                                <label for="scheduleTime">Scheduled Time:</label>
+                                <input type="time" id="scheduleTime" name="scheduleTime" required>
+                                <span id="scheduleTimeError" class="error-message"></span>
+                            </div>
+                           
+                            <button onclick="addProduct()">Schedule Product</button>
+                        </div>
+                    </div>                   
+                    <script>
+                        function setScheduledDateTime() {
+                            const now = new Date();
+                            const currentDate = now.toISOString().split('T')[0];
+                            const currentHours = ('0' + now.getHours()).slice(-2);
+                            const currentMinutes = ('0' + now.getMinutes()).slice(-2);
+                            const currentTime = `${currentHours}:${currentMinutes}`;
+                            document.getElementById('scheduleDate').value = currentDate;
+                            document.getElementById('scheduleTime').value = currentTime;
+                        }
+                        function getScheduledDateTime() {
+                            const scheduleDateInput = document.getElementById('scheduleDate').value;
+                            const scheduleTimeInput = document.getElementById('scheduleTime').value;
+                            const combinedDateTimeString = scheduleDateInput + 'T' + scheduleTimeInput;
+                            const scheduledDateTime = new Date(combinedDateTimeString);
+                            if (isNaN(scheduledDateTime.getTime())) {
+                                document.getElementById('scheduleDateError').innerText = 'Invalid date and time';
+                            } else {
+                                document.getElementById('scheduleDateError').innerText = '';
+                                console.log('Scheduled Date and Time:', scheduledDateTime);
+                                return scheduledDateTime;
+                            }
+                        }
+                        function scheduleProduct() {
+                            setScheduledDateTime();
+                            var modal = document.getElementById('scheduleModal');
+                            modal.style.display = 'flex';
+                        }
+                        function closeScheduleModal() {
+                            var modal = document.getElementById('scheduleModal');
+                            modal.style.display = 'none';
+                        }
+                    </script>
             </section>
             
             <script>    
@@ -855,6 +872,8 @@
                     const parsedOriginalPrice = parseInt(originalPrice, 10);
                     const parsedOfferedPrice = parseInt(offeredPrice, 10);
 
+                    const createdAt = getScheduledDateTime();
+
                     if (parsedOfferedPrice >= parsedOriginalPrice) {
                         showAlert("Enter a valid price", "danger");
                         return;
@@ -871,7 +890,8 @@
                             offeredPrice &&
                             category &&
                             stock &&
-                            MainImage
+                            MainImage &&
+                            createdAt
                         ) {
                             let formData = new FormData();
                             
@@ -889,6 +909,7 @@
                             formData.append('category', category);
                             formData.append('stock', stock);
                             formData.append('files', MainImage);
+                            formData.append('createdAt', createdAt)
 
                             for (let index = 0 ; index < 6 ; index++){
                                 if (document.getElementById(`Image${index+2}`).files[0]){
@@ -903,6 +924,7 @@
                                 document.getElementById('productDescription').value = '';
                                 document.getElementById("productFAQ").value = ''
                                 document.getElementById("metaTitle").value = ''
+                                document.getElementById("metaDescription").value = ''
                                 document.getElementById("keyFeatures").value = ''
                                 document.getElementById("howtouse").value = ''
                                 document.getElementById('originalPrice').value = '';
@@ -1234,9 +1256,8 @@
                     .then(response => response.data)
                     .then(products => {
                         let mainGrid = document.querySelector('.product-grid')
-                        products.forEach(product => {
+                        products.forEach((product, index) => {
                             let productDiv = document.createElement('div')
-
 
                             var words = product.name.split(" ");
                             product.name = words.slice(0, 7).join(" ");
@@ -1249,6 +1270,7 @@
                                 <div class="product-name">${product.name}</div>
                                 <div class="product-stock">Stock Left : ${product.stock}</div>
                                 <div class="product-stock">Price : &#8377;${product.originalPrice}</div>
+                                <div class="product-status">${ Date.parse(product.createdAt) >= Date.now() ? 'Scheduled' : 'Live'}</div>
                                 <div class="product-actions">
                                     <button onclick="openEditModal('${product.itemId}')">Edit</button>
                                     <button onclick="deleteProduct('${product.itemId}')">Delete</button>

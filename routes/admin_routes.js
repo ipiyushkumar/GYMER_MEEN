@@ -87,6 +87,7 @@ router.post(
         offeredPrice,
         category,
         stock,
+        createdAt,
       } = req.body;
 
       console.log("creating image link");
@@ -110,6 +111,7 @@ router.post(
         category,
         stock,
         imageLink,
+        createdAt,
       });
       const sanitizedName = name
         .replace(/[#-.]|[[-^]|[?|{}]\s+/g, "-")
