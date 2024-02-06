@@ -108,15 +108,16 @@
     </div>
   </div>
 </main>
-
+<% if (!content.isLoggedIn) { %>
 <script>
   document.addEventListener("DOMContentLoaded", function () {
     setTimeout(function () {
       var myModal = new bootstrap.Modal(document.getElementById("myModal"));
       myModal.show();
-    }, 1000);
+    }, 3000);
   });
 </script>
+<% } %>
 <style>
   .alert {
     position: fixed;
