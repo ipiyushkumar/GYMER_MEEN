@@ -45,6 +45,11 @@
         animation: slideIn 0.5s forwards;
     }
 
+    .faq-answer p {
+    white-space: pre-line;
+}
+
+
     @keyframes slideIn {
         0% {
             top: -100%;
@@ -525,15 +530,15 @@ footer .social a{
             <span class="icon">&#43;</span>
         </div>
         <div class="faq-answer">
-            <p><%= item.keyFeaturess || "" %></p>
-        </div>
+            <p id="keyFeaturesText"><%= item.keyFeaturess || "" %></p>
+        </div>        
 
         <div class="faq-question" onclick="toggleFAQ(this)">
             <span><h2>How To Use?</h2></span>
             <span class="icon">&#43;</span>
         </div>
         <div class="faq-answer">
-            <p><%= item.how_to_use || "" %></p>
+            <p id="keyFeaturesText"><%= item.how_to_use || "" %></p>
         </div>
 
         <div class="faq-question" onclick="toggleFAQ(this)">
@@ -541,7 +546,7 @@ footer .social a{
             <span class="icon" >&#43;</span>
         </div>
         <div class="faq-answer">
-            <p><%= item.FAQ || "" %></p>
+            <p id="keyFeaturesText"><%= item.FAQ || "" %></p>
         </div>
 
     </div>
@@ -722,6 +727,21 @@ footer .social a{
   <%- include('partials/footer') %>
   
  <%- include('partials/loader') %>
+
+ <script>
+    // Function to split text at full stops or question marks and display each sentence on a new line
+    function splitTextAtPunctuation() {
+        var keyFeaturesText = document.getElementById('keyFeaturesText');
+        var text = keyFeaturesText.innerHTML;
+        // Split text at full stops or question marks
+        var sentences = text.split(/[.?]/);
+        // Add <br> after each full stop or question mark
+        keyFeaturesText.innerHTML = sentences.join('.<br>'); // Add <br> after each full stop or question mark
+    }
+    splitTextAtPunctuation();
+</script>
+
+
 
     <script>
         if (document.querySelector(`.addCartButton`)) {
