@@ -1214,7 +1214,7 @@
         height: 90vh;
         margin: 0;
         padding: 0;
-        background-size: 100% 100%;
+        background-size: contain;
         background-repeat: no-repeat;
         background-position: center;
         transform: scale(1);
@@ -2152,19 +2152,17 @@
                     product.description
                   }</div>
                   <div class="mb-0 p-0">
-                     <div class="d-flex justify-content-center align-items-start bolder product-price-discount">
-                      <div class="original-price mr-2">MRP:<span class="text-decoration-line-through">&#8377;${
-                          product.originalPrice || ""
-                        }</span></div>
-                        <div class="product-price mr-1 ml-1">&#8377;${
-                          product.offeredPrice
-                        }</div>
-                        <div class="product-discount text-success text-uppercase ml-2">${(
-                          ((product.originalPrice - product.offeredPrice) /
+                    <div class="d-flex bolder product-price-discount">
+                    <div style="width:70%;display: flex;">
+                        <div class="original-price" style="width:40%;">MRP:<span class="text-decoration-line-through">&#8377;${product.originalPrice || ""}</span></div>
+                        <div class="product-price" style="width:60%;">&#8377;${product.offeredPrice}</div>
+                    </div>
+                    <div class="product-discount d-flex justify-content-end text-success text-uppercase" style="width:30%;">${(
+                        ((product.originalPrice - product.offeredPrice) /
                             product.originalPrice) *
-                          100
-                        ).toFixed(0)}% Off</div>
-                  </div>
+                        100
+                    ).toFixed(0)}% Off</div>
+                </div>
                   <button class="add-to-cart-btn add${
                     product.itemId
                   }" id="liveToastBtn"><i class="fas fa-cart"></i>ADD TO CART</button>

@@ -877,13 +877,20 @@ footer .social a{
           <div class="category-badge text-white corner-round p-1" style="display:none;">${product.category}</div>
           <div class="product-title"><a href="/products/${product.itemId}" style="text-decoration:none;color:#fff;">${product.name}</a></div>
           <div class="product-description">${product.description}</div>
-          <div class="mb-1">
-              <div class="d-flex justify-content-between product-price-discount">
-                <div class="product-price">&#8377;${product.offeredPrice}</div>
-                <div class="original-price text-secondary">&#8377;<strike>${product.originalPrice || ''}</strike></div>
-                <div class="product-discount text-success">${((product.originalPrice - product.offeredPrice) / product.originalPrice * 100).toFixed(0)}% Off</div>
-              </div>
-          </div>
+          <div class="d-flex bolder product-price-discount">
+            <div style="width:70%; display: flex;justify-content:center;align-items:center;">
+            <div class="original-price" style="width:40%;">MRP:<strike>&#8377;${product.originalPrice || ""}</strike></div>
+            <div class="product-price" style="width:60%;">&#8377;${product.offeredPrice}</div>
+        </div>
+            <div class="product-discount text-success text-uppercase" style="width:30%;">${(
+                ((product.originalPrice - product.offeredPrice) /
+                    product.originalPrice) *
+                100
+            ).toFixed(0)}% Off</div>
+</div>
+
+</div>
+
           <button onclick="showNotification()" class="add-to-cart-btn add${product.itemId}" id="liveToastBtn"><i class="fas fa-cart"></i> Add to Cart</button>
     </div>
   </a>

@@ -515,6 +515,16 @@ a:hover {
   border-radius: 3px;
 }
 
+.schedule-product {
+    padding: 0.5rem;
+    margin-right: 1rem;
+    cursor: pointer;
+    background-color: grey;
+    color: white;
+    border: none;
+    border-radius: 3px;
+  }
+
 .delete-button {
   background-color: #f44336;
 }
@@ -568,6 +578,10 @@ a:hover {
         padding: 8px 12px; 
         margin-right: 5px; 
         cursor: pointer;
+    }
+
+    .main-orders .schedule-product{
+        background-color: grey !important;
     }
 
     .product-card button:nth-child(2){
