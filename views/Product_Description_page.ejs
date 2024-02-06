@@ -390,7 +390,7 @@ footer .social a{
                </div>
 
                <div class="purchase-info">
-                    <% if (item.stock > 0) { %>
+                    <% if (item.stock > 0 && Date.parse(item.createdAt) < Date.now()) { %>
                         <button type="button" class="btn addCartButton">Add to Cart</button>
                     <% } else if ( content.isLoggedIn == true ) { %>
                         <button type="button" class="btn">You will be Notified shortly</button>
