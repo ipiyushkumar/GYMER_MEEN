@@ -72,6 +72,11 @@ router.get('/pages/coming-soon', (req, res) => {
     res.render('coming-soon', { });
 });
 
+router.get('/pages/blogs', (req, res) => {
+
+    res.render('blogs', { });
+});
+
 router.get('/pages/terms-and-conditions', (req, res) => {
     const content = {
         isLoggedIn: req.session.isLoggedIn,

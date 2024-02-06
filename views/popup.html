@@ -1,270 +1,288 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login Modal</title>
+<style>
+  .sign-btn{
+      padding: 1vh 2vh;
+      font-size: 2vh;
+      border-radius: 5px;
+      background-color: #44150F;
+      color:#fff;
+      transition: 0.2s ease-in-out;
+    }
 
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css">
+    .input-field{
+      padding: 1vh;
+    }
 
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"></script>
+    .sign-btn:hover{
+      border: 1px solid #44150F;
+      background-color: #fff;
+      color: #44150F;
+    }
+    
+  @media (max-width: 767.98px) {
+    .img-div{
+      height: 20vh !important;
+      margin-bottom: 2vh !important;
+    }
+    .images-wrapper-modal{
+      background-image: url("/assets/popup-mob.jpg") !important;
+    }
 
-</head>
-<body>
-    <style>
-        .loading-overlay {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: rgba(255, 255, 255, 0.8);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        z-index: 1000;
-      }
+  }
+</style>
 
-      .loading-message {
-        font-size: 1.2rem;
-        margin-right: 10px;
-      }
+<main>
+  <div>
+    <!-- <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#myModal">
+        Open Modal
+      </button> -->
+  </div>
 
-      .loading-spinner {
-        border: 4px solid rgba(0, 0, 0, 0.1);
-        border-radius: 50%;
-        border-top: 4px solid #151111;
-        width: 30px;
-        height: 30px;
-        animation: spin 1s linear infinite;
-      }
-
-      @keyframes spin {
-        0% { transform: rotate(0deg); }
-        100% { transform: rotate(360deg); }
-      }
-    </style>
-    <main>
-        <div>
-
-          <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#myModal">
-            Open Modal
-          </button>
+  <div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="exampleModalLabel"aria-hidden="true" id="LoginModal" >
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">
+            Login/Sign Up Using Email
+          </h5>
+          <!-- <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="modal"
+            aria-label="Close"
+          ></button> -->
         </div>
 
-        <div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-          <div class="modal-dialog modal-lg">
-            <div class="modal-content">
-
-              <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Login/Sign In Using Email</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-              </div>
-
-                <div class="modal-body">
-                    <div class="box">
-                    <div class="row">
-
-                        <div class="col-md-6">
-                        <div class="carousel">
-                            <div class="images-wrapper">
-                            <img src="../assets/check out banner design@3x.jpg" class="image img-3 show" alt="" style="width: 100%;height: auto;" />
-                            </div>
-                        </div>
-                        </div>
-
-                        <div class="col-md-6">
-                            <div class="actual-form">
-                              <form autocomplete="off" class="sign-in-form">
-                                <div class="mb-3">
-                                  <div class="input-group">
-                                    <input type="email" class="form-control loginEmail" id="loginEmail" placeholder="Enter Email" autocomplete="off" required />
-                                  </div>
-                                </div>
-                          
-                                <div class="mb-3">
-                                  <div class="input-group">
-                                    <label for="OTP" class="form-label">Enter OTP</label>
-                                    <input type="text" value="" minlength="4" class="form-control OTP" id="OTP" style="display: none;" autocomplete="off" placeholder="Enter OTP" required />
-                                  </div>
-                                </div>
-                          
-                                <div class="mb-3">
-                                  <button type="button" class="btn btn-dark sendOTPBtn">Send OTP</button>
-                                  <button type="button" class="btn btn-success verifyOTPBtn" style="display: none;">Verify OTP</button>
-                                </div>
-                          
-                                <p class="text">
-                                  By signing up, I agree to the <a href="#">Terms of Services</a> and <a href="#">Privacy Policy</a>
-                                </p>
-                              </form>
-                            </div>
-                          
-                            <div class="loading-overlay" style="display: none;">
-                              <div class="loading-message">Sending OTP...</div>
-                              <div class="loading-spinner"></div>
-                            </div>
-                          </div>
-                    </div>
-                    </div>
+        <div class="modal-body" style="height: 100%;">
+          <div class="box">
+            <div class="row text-capitalize">
+              <div class="col-md-6 img-div-left" >
+                <div class="img-div" style="height: 70vh">
+                  <div class="images-wrapper-modal" style="height: 100%;background-image: url('/assets/Popup-coupon.jpg');background-size: 100% 100%;">
+                  </div>
                 </div>
+              </div>
+              <div class="col-md-6 d-flex flex-column justify-content-between">
+                <div class="forms-wrap">
+                  <!-- <h4 class="text-center">Login/Sign Up using Email</h4> -->
+                  <form autocomplete="off" class="sign-in-form">
+                    <div class="actual-form">
+                      <div class="input-wrap mb-1 mt-1">
+                        <input
+                          type="text"
+                          minlength="9"
+                          class="input-field loginEmail"
+                          autocomplete="off"
+                          required
+                          placeholder="Email"
+                          style="width: 100% !important;"
+                        />
+                        <label>Enter your Email to request an OTP</label>
+                      </div>
 
-              <div class="modal-footer">
+                      <input
+                        type="submit"
+                        value="REQUEST OTP"
+                        class="sign-btn loginButton mt-0"
+                      />
+                      <div class="input-wrap mb-0 mt-3">
+                        <input
+                          type="text"
+                          value=""
+                          minlength="4"
+                          class="input-field OTP"
+                          autocomplete="off"
+                          required
+                          placeholder="Enter OTP"
+                          style="width: 100% !important;"
+                        />
+                        <label>Enter the 6 digit OTP recieved on your email</label>
+                      </div>
+                      <input
+                        type="submit"
+                        value="VERIFY OTP"
+                        class="sign-btn verifyOTP"
+                      />
+                    </div>
+                  </form>
+                </div>
+                <p class="text mt-2" style="font-size: 2vh;font-weight: 300;">
+                    By signing up, I agree to the
+                    <a href="/pages/terms-and-conditions">Terms & Conditions</a> and
+                    <a href="/pages/privacy-policy">Privacy Policy.</a>
+                  </p>
               </div>
             </div>
           </div>
         </div>
-      </main>
-
+    </div>
+  </div>
+</main>
+<% if (!content.isLoggedIn) { %>
 <script>
-    document.addEventListener("DOMContentLoaded", function() {
+  document.addEventListener("DOMContentLoaded", function () {
+    setTimeout(function () {
+      var myModal = new bootstrap.Modal(document.getElementById("myModal"));
+      myModal.show();
+    }, 3000);
+  });
+</script>
+<% } %>
+<style>
+  .alert {
+    position: fixed;
+    top: 1rem;
+    right: 1rem;
+    z-index: 3;
+    padding: 0.75rem 1.25rem;
+    margin-bottom: 1rem;
+    border: 1px solid transparent;
+    border-radius: 0.25rem;
+    transition: 0.3s ease-in-out;
+  }
 
-      setTimeout(function() {
-        var myModal = new bootstrap.Modal(document.getElementById('myModal'));
-        myModal.show();
-      }, 7000);
+  .alert.success {
+    color: #155724;
+    background-color: #d4edda;
+    border-color: #c3e6cb;
+  }
+  .alert.danger {
+    color: #721c24;
+    background-color: #f8d7da;
+    border-color: #f5c6cb;
+  }
+</style>
+<script>
+  function showAlert(message, type) {
+    const alertContainer = document.getElementById("alertContainer");
+
+    // Create alert element
+    const alert = document.createElement("div");
+    alert.className = `alert ${type}`;
+    alert.innerHTML = `${message}<span class="close" onclick="closeAlert(this)">×</span>`;
+
+    // Append alert to container
+    alertContainer.appendChild(alert);
+
+    // Set timeout to remove the alert after 5 seconds
+    setTimeout(() => {
+      closeAlert(alert.querySelector(".close"));
+    }, 1000);
+  }
+
+  function closeAlert(closeButton) {
+    const alert = closeButton.parentElement;
+    alert.style.display = "none";
+  }
+</script>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script>
+  const inputs = document.querySelectorAll(".input-field");
+  const toggle_btn = document.querySelectorAll(".toggle");
+  const main = document.querySelector("main");
+  const bullets = document.querySelectorAll(".bullets span");
+  const images = document.querySelectorAll(".image");
+
+  inputs.forEach((inp) => {
+    inp.addEventListener("focus", () => {
+      inp.classList.add("active");
     });
-  </script>
-    <script>
-      function showAlert(message, type) {
-        const alertContainer = document.getElementById("alertContainer");
+    inp.addEventListener("blur", () => {
+      if (inp.value != "") return;
+      inp.classList.remove("active");
+    });
+  });
 
-        const alert = document.createElement("div");
-        alert.className = `alert ${type}`;
-        alert.innerHTML = `${message}<span class="close" onclick="closeAlert(this)">×</span>`;
+  toggle_btn.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      main.classList.toggle("sign-up-mode");
+    });
+  });
 
-        alertContainer.appendChild(alert);
+  function moveSlider() {
+    let index = this.dataset.value;
 
-        setTimeout(() => {
-          closeAlert(alert.querySelector(".close"));
-        }, 4000);
-      }
+    let currentImage = document.querySelector(`.img-${index}`);
+    images.forEach((img) => img.classList.remove("show"));
+    currentImage.classList.add("show");
 
-      function closeAlert(closeButton) {
-        const alert = closeButton.parentElement;
-        alert.style.display = "none";
-      }
-    </script>
-    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-    <script>
-      const inputs = document.querySelectorAll(".input-field");
-      const toggle_btn = document.querySelectorAll(".toggle");
-      const main = document.querySelector("main");
-      const bullets = document.querySelectorAll(".bullets span");
-      const images = document.querySelectorAll(".image");
+    const textSlider = document.querySelector(".text-group");
+    textSlider.style.transform = `translateY(${-(index - 1) * 2.2}rem)`;
 
-      inputs.forEach((inp) => {
-        inp.addEventListener("focus", () => {
-          inp.classList.add("active");
-        });
-        inp.addEventListener("blur", () => {
-          if (inp.value != "") return;
-          inp.classList.remove("active");
-        });
-      });
-
-      toggle_btn.forEach((btn) => {
-        btn.addEventListener("click", () => {
-          main.classList.toggle("sign-up-mode");
-        });
-      });
-
-      function moveSlider() {
-        let index = this.dataset.value;
-
-        let currentImage = document.querySelector(`.img-${index}`);
-        images.forEach((img) => img.classList.remove("show"));
-        currentImage.classList.add("show");
-
-        const textSlider = document.querySelector(".text-group");
-        textSlider.style.transform = `translateY(${-(index - 1) * 2.2}rem)`;
-
-        bullets.forEach((bull) => bull.classList.remove("active"));
-        this.classList.add("active");
-      }
-
-      bullets.forEach((bullet) => {
-        bullet.addEventListener("click", moveSlider);
-      });
-
-      document.querySelector('.loginButton').addEventListener('click',async () => {
-        event.preventDefault();
-
-        showLoadingOverlay(); 
-
-        document.querySelector('.loginButton').disabled = true;
-        document.querySelector('.loginButton').style.backgroundColor = '#ccc';
-        startLoginButtonTimer();
-
-        const email = document.querySelector('.loginEmail').value
-        if (!email) {
-            showAlert("Please fill in all the details.","danger");
-            hideLoadingOverlay();
-            return false; 
-        }
-        const response = await axios.post('/send-otp', { email })
-        .then(response => {
-            if (response.status === 200) {
-                showAlert("OTP Sent","success")
-                document.querySelector('.loginButton').textContent = "Re Send";
-                document.querySelector('.verifyOTP').style.display = 'block';
-                document.querySelector('.OTP').style.display = 'block';
-            }
-        })
-        .catch(error => {
-            showAlert("Wrong Id or password","danger")
-        })
-        hideLoadingOverlay();
-        return true; 
-      })
-      let resendTimer;
-      function startLoginButtonTimer() {
-        let seconds = 45;
-        resendTimer = setInterval(() => {
-          seconds--;
-          if (seconds === 0) {
-            clearInterval(resendTimer);
-            document.querySelector('.loginButton').disabled = false;
-            const loginButton = document.querySelector('.loginButton');
-            loginButton.style.backgroundColor = '#151111';
-            loginButton.value  = `Resend OTP`;
-          } else {
-            document.querySelector('.loginButton').value  = `Resend in ${seconds}s`
-          }
-        }, 1000);
-      }
-
-      function showLoadingOverlay() {
-    document.querySelector('.loading-overlay').style.display = 'flex';
+    bullets.forEach((bull) => bull.classList.remove("active"));
+    this.classList.add("active");
   }
 
-  function hideLoadingOverlay() {
-    document.querySelector('.loading-overlay').style.display = 'none';
+  bullets.forEach((bullet) => {
+    bullet.addEventListener("click", moveSlider);
+  });
+
+  document.querySelector(".loginButton").addEventListener("click", async () => {
+    event.preventDefault();
+
+    document.querySelector(".loginButton").disabled = true;
+    document.querySelector(".loginButton").style.backgroundColor = "#ccc";
+    startLoginButtonTimer();
+
+    const email = document.querySelector(".loginEmail").value;
+    if (!email) {
+      showAlert("Please fill in all the details.", "danger");
+      hideLoadingOverlay();
+      return false;
+    }
+    const response = await axios
+      .post("/send-otp", { email })
+      .then((response) => {
+        if (response.status === 200) {
+          showAlert("OTP Sent", "success");
+          document.querySelector(".loginButton").textContent = "Re Send";
+          document.querySelector(".verifyOTP").style.display = "block";
+          document.querySelector(".OTP").style.display = "block";
+        }
+      })
+      .catch((error) => {
+        showAlert("Wrong Id or password", "danger");
+      });
+    hideLoadingOverlay();
+    return true;
+  });
+  let resendTimer;
+  function startLoginButtonTimer() {
+    let seconds = 45;
+    resendTimer = setInterval(() => {
+      seconds--;
+      if (seconds === 0) {
+        clearInterval(resendTimer);
+        document.querySelector(".loginButton").disabled = false;
+        const loginButton = document.querySelector(".loginButton");
+        loginButton.style.backgroundColor = "#151111";
+        loginButton.value = `Resend OTP`;
+      } else {
+        document.querySelector(".loginButton").value = `Resend in ${seconds}s`;
+      }
+    }, 1000);
   }
 
-      document.querySelector('.verifyOTP').addEventListener('click',async () => {
-        event.preventDefault();
-        const email = document.querySelector('.loginEmail').value
-        const otp = document.querySelector('.OTP').value
-        if (!email || !otp) {
-            showAlert("Please fill in all the details.","danger");
-            return false; 
+  document.querySelector(".verifyOTP").addEventListener("click", async () => {
+    event.preventDefault();
+    const email = document.querySelector(".loginEmail").value;
+    const otp = document.querySelector(".OTP").value;
+    if (!email || !otp) {
+      showAlert("Please fill in all the details.", "danger");
+      return false;
+    }
+    const response = await axios
+      .post("/auth/login", { email, otp })
+      .then((response) => {
+        if (response.status === 200) {
+          showAlert("Login Successful", "success");
+          window.location.href = "/";
+        } else if (response.status === 201) {
+          window.location.href = "/confirm";
         }
-        const response = await axios.post('/auth/login', { email, otp })
-        .then(response => {
-            if (response.status === 200) {
-                showAlert("Login Successful","success")
-                window.location.href = "/";
-            } else if (response.status === 201) {
-              window.location.href = '/confirm'
-            }
-        })
-        .catch(error => {
-            showAlert("Wrong OTP","danger")
-        })
-        return true; 
       })
-    </script>
-  </body>
-</html>
+      .catch((error) => {
+        showAlert("Wrong OTP", "danger");
+      });
+    return true;
+  });
+</script>
