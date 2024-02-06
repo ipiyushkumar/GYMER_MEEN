@@ -431,7 +431,7 @@ body {
     }
 
     .product-details img:nth-child(2){
-        right: -0.2vw !important;
+        display: none !important;
     }
 
     .upperdiv {

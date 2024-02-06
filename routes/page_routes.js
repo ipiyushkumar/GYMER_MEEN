@@ -67,6 +67,11 @@ router.get('/pages/refund-policy', (req, res) => {
     res.render('refund-policy', { content });
 });
 
+router.get('/pages/coming-soon', (req, res) => {
+
+    res.render('coming-soon', { });
+});
+
 router.get('/pages/terms-and-conditions', (req, res) => {
     const content = {
         isLoggedIn: req.session.isLoggedIn,
