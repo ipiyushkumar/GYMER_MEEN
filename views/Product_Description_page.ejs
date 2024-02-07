@@ -45,9 +45,6 @@
         animation: slideIn 0.5s forwards;
     }
 
-    .faq-answer p {
-    white-space: pre-line;
-}
 
 
     @keyframes slideIn {
@@ -530,8 +527,8 @@ footer .social a{
             <span class="icon">&#43;</span>
         </div>
         <div class="faq-answer">
-            <p id="keyFeaturesText"><%= item.keyFeaturess || "" %></p>
-        </div>        
+            <p id="keyFeaturesText"><%= item.keyFeatures || "" %></p>
+        </div>
 
         <div class="faq-question" onclick="toggleFAQ(this)">
             <span><h2>How To Use?</h2></span>
@@ -728,21 +725,6 @@ footer .social a{
   
  <%- include('partials/loader') %>
 
- <script>
-    // Function to split text at full stops or question marks and display each sentence on a new line
-    function splitTextAtPunctuation() {
-        var keyFeaturesText = document.getElementById('keyFeaturesText');
-        var text = keyFeaturesText.innerHTML;
-        // Split text at full stops or question marks
-        var sentences = text.split(/[.?]/);
-        // Add <br> after each full stop or question mark
-        keyFeaturesText.innerHTML = sentences.join('.<br>'); // Add <br> after each full stop or question mark
-    }
-    splitTextAtPunctuation();
-</script>
-
-
-
     <script>
         if (document.querySelector(`.addCartButton`)) {
             document.querySelector(`.addCartButton`).addEventListener('click', async () => {
@@ -806,6 +788,20 @@ footer .social a{
         });
 
     </script>
+
+<script>
+    // Function to split text at full stops or question marks and display each sentence on a new line
+    function splitTextAtPunctuation() {
+        var keyFeaturesText = document.getElementById('keyFeaturesText');
+        var text = keyFeaturesText.innerHTML;
+        // Split text at full stops or question marks
+        var sentences = text.split(/[.?]/);
+        // Add <br> after each full stop or question mark
+        keyFeaturesText.innerHTML = sentences.join('.<br>'); // Add <br> after each full stop or question mark
+    }
+    splitTextAtPunctuation();
+</script>
+
 
 <script>
   let products = [];

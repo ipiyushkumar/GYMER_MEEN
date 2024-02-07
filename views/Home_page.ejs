@@ -1284,51 +1284,60 @@
       .slides::-webkit-scrollbar-track {
         background: transparent;
       }
+
+      .custom-slider {
+        margin-top: 12vh !important;
+    position: relative;
+    overflow: hidden;
+  }
+  .custom-slides {
+    display: flex;
+    transition: transform 0.5s ease;
+  }
+  .custom-slide {
+    flex: 0 0 100%;
+    max-width: 100%;
+    height: auto;
+    display: block;
+  }
     </style>
 
-    <div class="top-slider">
-      <div class="slides">
-        <div
-          class="slide"
-          id="slide-1"
-          style="background-image: url('../assets/blue-slider.jpg')"
-        >
-          <!-- <button class="btn btn-light btn-flat" style="border-radius: 0;">BUY NOW</button> -->
-        </div>
-        <!-- <div class="slide" id="slide-2" style="background-image: url('../assets/Hair-desk.jpg');">
-  </div> -->
-
-        <!-- <div class="slide" id="slide-2" style="background-image: url('../assets/cleaner-desktop.jpg');">
-  </div> -->
-
-        <div
-          class="slide"
-          id="slide-2"
-          style="background-image: url('../assets/beard-banner-desk.jpg')"
-        >
-          <!-- <button class="btn btn-light btn-flat" style="border-radius: 0;"></button> -->
-        </div>
-
-        <!-- <div class="slide" id="slide-4" style="background-image: url('../assets/skin-2.jpg');">
-  </div>
-   -->
-        <div
-          class="slide"
-          id="slide-3"
-          style="background-image: url('../assets/Hair-removal.jpg')"
-        >
-          <!-- <button class="btn btn-light btn-flat" style="border-radius: 0;"></button> -->
-        </div>
-      </div>
-
-      <a href="#slide-1"></a>
-      <a href="#slide-2"></a>
-      <a href="#slide-3"></a>
-      <!-- <a href="#slide-4"></a>
-  <a href="#slide-5"></a> -->
+<div class="custom-slider">
+  <div class="custom-slides">
+    <div class="custom-slide" id="custom-slide-1">
+      <img src="../assets/blue-slider.jpg" style="width: 100%; height: auto;">
     </div>
+    <div class="custom-slide" id="custom-slide-2">
+      <img src="../assets/beard-banner-desk.jpg" style="width: 100%; height: auto;">
+    </div>
+    <div class="custom-slide" id="custom-slide-3">
+      <img src="../assets/Hair-removal.jpg" style="width: 100%; height: auto;">
+    </div>
+  </div>
+</div>
 
-    <script>
+
+<script>
+  const customSlider = document.querySelector('.custom-slides');
+  const customSlides = document.querySelectorAll('.custom-slide');
+  const customSlideWidth = customSlides[0].clientWidth;
+  let customCurrentIndex = 0;
+
+  function customNextSlide() {
+    customCurrentIndex = (customCurrentIndex + 1) % customSlides.length;
+    customSlider.style.transform = `translateX(-${customSlideWidth * customCurrentIndex}px)`;
+  }
+
+  function customAutoSlide() {
+    setInterval(customNextSlide, 3000); 
+  }
+
+  customAutoSlide();
+</script>
+
+
+
+    <!-- <script>
       document.addEventListener("DOMContentLoaded", function () {
         const slides = document.querySelector(".slides");
         let currentIndex = 0;
@@ -1343,7 +1352,21 @@
 
         setInterval(scrollToNextSlide, 3000);
       });
-    </script>
+    </script> -->
+
+<div class="container-fluid d-flex flex-column justify-content-center align-items-center products-bar mt-3">
+  <div class="mb-2 filters d-flex justify-content-between align-items-center" data-aos="fade-up" data-aos-duration="1000">
+    <h2 class="text-light mt-1">Our Top Sellers</h2>
+  </div>
+  <div id="productGrid" class="row product-grid" data-aos="fade-up" data-aos-duration="1000" onmousedown="startScroll(event)" onmouseup="stopScroll()" ontouchstart="startScroll(event)" ontouchend="stopScroll()"></div>
+
+  <div class="d-flex justify-content-center p-4 mt-1 mb-2">
+    <button class="show-btn">
+      <a href="/collections/All">Show More</a>
+    </button>
+  </div>
+</div>
+
 
     <div class="custom-carousel-container mb-5">
       <div class="custom-slides-new mt-0">
@@ -1391,34 +1414,6 @@
 
       setInterval(autoScroll, 30);
     </script>
-
-    <div
-      class="container-fluid d-flex flex-column justify-content-center align-items-center products-bar mt-0"
-    >
-      <div
-        class="mb-2 filters d-flex justify-content-between align-items-center"
-        data-aos="fade-up"
-        data-aos-duration="1000"
-      >
-        <h2 class="text-light mt-1">Our Top Sellers</h2>
-      </div>
-      <div
-        id="productGrid"
-        class="row product-grid"
-        data-aos="fade-up"
-        data-aos-duration="1000"
-        onmousedown="startScroll(event)"
-        onmouseup="stopScroll()"
-        ontouchstart="startScroll(event)"
-        ontouchend="stopScroll()"
-      ></div>
-
-      <div class="d-flex justify-content-center p-4 mt-1 mb-2">
-        <button class="show-btn">
-          <a href="/collections/All">Show More</a>
-        </button>
-      </div>
-    </div>
 
     <div class="container-fluid mb-4 mt-0 p-2">
       <video autoplay muted loop class="bg-video p-0">
