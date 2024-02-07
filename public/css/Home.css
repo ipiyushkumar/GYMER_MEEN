@@ -106,16 +106,20 @@ body {
     max-width: 70%;
     }
     }
-    .product-grid{
-        padding: 3vh;
+    .product-grid {
+        padding: 2vh;
+        padding-top: 0 !important;
         width: 100%;
         /* background-color: red; */
         overflow-x: scroll;
         scrollbar-width: 1px;
-    display: flex;
-    flex-wrap: nowrap;
-    grid-column-gap: 10px;
+        display: flex;
+        flex-wrap: nowrap;
+        justify-content: flex-start;
+        align-items: start;
+        grid-column-gap: 10px;
     }
+    
 
     #productGrid {
         overflow: hidden;
@@ -366,19 +370,6 @@ body {
 
     .add-to-cart-btn{
         font-size: 11px;
-    }
-
-    .product-grid{
-        padding: 1rem;
-        width: 100%;
-        /* background-color: red; */
-        overflow-x: scroll;
-        scrollbar-width: 1px;
-    display: flex;
-    flex-wrap: nowrap;
-    flex-direction: row;
-    justify-content: flex-start;
-    align-items: center;
     }
 
     .product-discount{
