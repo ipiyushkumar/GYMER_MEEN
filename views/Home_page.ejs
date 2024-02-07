@@ -1332,17 +1332,20 @@
 </div>
 
 <script>
-  const slides = document.querySelector('.custom-slides');
-  const slideWidth = document.querySelector('.custom-slide').clientWidth;
-  let currentIndexNew = 0;
+  document.addEventListener("DOMContentLoaded", function() {
+    const slides = document.querySelector('.custom-slides');
+    const slideWidth = document.querySelector('.custom-slide').clientWidth;
+    let currentIndexNew = 0;
 
-  function nextSlide() {
-    currentIndexNew = (currentIndexNew + 1) % slides.children.length;
-    slides.style.transform = `translateX(-${currentIndexNew * slideWidth}px)`;
-  }
+    function nextSlide() {
+      currentIndexNew = (currentIndexNew + 1) % slides.children.length;
+      slides.style.transform = `translateX(-${currentIndexNew * slideWidth}px)`;
+    }
 
-  setInterval(nextSlide, 3000);
+    setInterval(nextSlide, 3000);
+  });
 </script>
+
 
 
 
