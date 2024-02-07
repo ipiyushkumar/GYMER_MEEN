@@ -2160,11 +2160,11 @@
                   }</div>
                   <div class="mb-0 p-0">
                     <div class="d-flex bolder product-price-discount">
-                    <div style="width:70%;display: flex;">
-                        <div class="original-price" style="width:40%;">MRP:<span class="text-decoration-line-through">&#8377;${product.originalPrice || ""}</span></div>
-                        <div class="product-price" style="width:60%;">&#8377;${product.offeredPrice}</div>
+                    <div style="width:60%;display: flex;">
+                        <div class="original-price" style="width:70%;">MRP:<span class="text-decoration-line-through">&#8377;${product.originalPrice || ""}</span></div>
+                        <div class="product-price" style="width:30%;">&#8377;${product.offeredPrice}</div>
                     </div>
-                    <div class="product-discount d-flex justify-content-end text-success text-uppercase" style="width:30%;">${(
+                    <div class="product-discount d-flex justify-content-end text-success text-uppercase" style="width:40%;">${(
                         ((product.originalPrice - product.offeredPrice) /
                             product.originalPrice) *
                         100
