@@ -12,6 +12,18 @@
       padding: 1vh;
     }
 
+    .modal .close-btn{
+      z-index: 2;
+      right: 0;
+      top: -10px;
+      cursor: pointer;
+      border: none;
+      outline: none;
+      background-color: transparent;
+      font-size: 3vh !important;
+      position: absolute;
+    }
+
     .sign-btn:hover{
       border: 1px solid #44150F;
       background-color: #fff;
@@ -35,20 +47,8 @@
 
   <div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="exampleModalLabel"aria-hidden="true" id="LoginModal" >
     <div class="modal-dialog modal-lg modal-dialog-centered">
-    
       <div class="modal-content">
-        <!-- <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">
-            Login/Sign Up Using Email
-          </h5>
-          <button
-            type="button"
-            class="btn-close"
-            data-bs-dismiss="modal"
-            aria-label="Close"
-          ></button>
-        </div> -->
-
+        <button type="button" class="close-btn p-1 m-0" data-dismiss="modal">&#128473;</button>
         <div class="modal-body" style="height: 100%;">
           <div class="box">
             <div class="row text-capitalize">
