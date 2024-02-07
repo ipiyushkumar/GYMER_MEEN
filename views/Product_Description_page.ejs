@@ -15,14 +15,11 @@
 
     <link rel="canonical" href="https://www.whitewolfindia.com" />
 
-    <!-- Google Tag Manager -->
 <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
     new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
     j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
     })(window,document,'script','dataLayer','GTM-NQVB53VH');</script>
-    <!-- End Google Tag Manager -->  
-    
 
     <meta property="og:image" content='<%= item.imageLink[0] %>'>
     <meta property="og:image:type" content="image/png">
@@ -30,7 +27,7 @@
     <meta property="og:image:height" content="350">
     <meta property="og:title" content='<%= item.meta_title%>'>
     <meta property="og:description" content="<%= item.meta_description %>">
-    
+
     <title><%= item.name %> - Whitewolf</title>
     <style>
         .alert {
@@ -46,8 +43,6 @@
         transition: 0.3s ease-in-out;
         animation: slideIn 0.5s forwards;
     }
-
-
 
     @keyframes slideIn {
         0% {
@@ -125,16 +120,16 @@ footer .social a{
 
                             background-color: rgba(0, 0, 0, 0.5);
                           }
-                    
+
                           .notify-content {
                             background: #fff;
                             color: #000;
                             padding: 20px;
                             border-radius: 8px;
                             text-align: center;
-                            position: relative; /* Added position relative */
+                            position: relative; 
                           }
-                    
+
                           .notify-close-btn {
                             cursor: pointer;
                             color: #000;
@@ -143,7 +138,7 @@ footer .social a{
                             top: 0;
                             right: 5px;
                           }
-                    
+
                           .notify-content > input {
                             padding: 10px;
                             margin-top: 10px;
@@ -153,7 +148,7 @@ footer .social a{
                             border-radius: 5px;
                             font-size: 16px;
                           }
-                    
+
                           .notifySubscribe-btn {
                             background: #000;
                             color: #fff;
@@ -165,11 +160,10 @@ footer .social a{
                             margin-top: 10px;
                             transition: background 0.3s ease;
                           }
-                    
+
                           .notifySubscribe-btn:hover {
                             background: #333;
                           }
-
 
     .product-image {
         width: 100%;
@@ -186,7 +180,6 @@ footer .social a{
     .product-image:hover{
             transition: 1s ease-in-out;
     }
-
 
 @media screen and (max-width: 576px) {
     .product-card {
@@ -229,11 +222,8 @@ footer .social a{
 </head>
 <body>
 
-    <!-- Google Tag Manager (noscript) -->
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NQVB53VH"
     height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-    <!-- End Google Tag Manager (noscript) --> 
-
 
   <div id="alertContainer"></div>
 
@@ -241,15 +231,12 @@ footer .social a{
     function showAlert(message, type) {
         const alertContainer = document.getElementById("alertContainer");
 
-        // Create alert element
         const alert = document.createElement("div");
         alert.className = `alert ${type}`;
         alert.innerHTML = `${message}<span class="close" onclick="closeAlert(this)"> &#10060;</span>`;
 
-        // Append alert to container
         alertContainer.appendChild(alert);
 
-        // Set timeout to remove the alert after 5 seconds
         setTimeout(() => {
             closeAlert(alert.querySelector(".close"));
         }, 4000);
@@ -259,7 +246,6 @@ footer .social a{
         const alert = closeButton.parentElement;
         alert.style.animation = "slideOut 0.5s forwards";
 
-        // Remove the element from the DOM after the animation completes
         alert.addEventListener("animationend", function () {
             alert.remove();
         });
@@ -285,7 +271,7 @@ footer .social a{
               <a href="/product_listing/skin_care"  style="color: #fff;">Shave</a>
               <a href="/product_listing/skin_care"  style="color: #fff;">Fragrance</a>
             </div>
-          
+
           </div>
 
           <div class="d-flex justify-content-center" style="width: 20%;">
@@ -344,13 +330,13 @@ footer .social a{
                 <div class="main-image" id="mainImageContainer">
                   <img id="mainProductImage" src='<%= item.imageLink[0] %>' alt="<%= item.name %>">
                 </div>
-            
+
               </div> 
               <div class="slider-images" id="imageSlider">
                 <% item.imageLink.forEach((image, index) => { %>
                     <div class="new-image" onclick="loadImage('<%= image %>')" style="background-image: url('<%= image %>');" alt="<%= item.name %>"></div>
                 <% }); %>
-            
+
                 <div class="custom-carousel-controls container-fluid d-flex align-items-end justify-content-end" style="font-size: 5vh;">
                     <div class="custom-carousel-left mr-2" style="color: #fff; cursor: pointer; margin-right: 3px;" onclick="scrollCustomSlides('left')">
                         <iconify-icon icon="icon-park-outline:left-c"></iconify-icon>
@@ -360,14 +346,9 @@ footer .social a{
                     </div>
                 </div>
             </div>
-            
-            
+
             <div class="product-content" style="align-self: start;">
                 <h1 class="product-title" style="color: #fff;"><%= item.name %></h1>
-                <!-- <div class = "product-rating">
-                    <iconify-icon icon="noto:star"></iconify-icon>
-                    <span>4.7 | (21 Reviews)</span>
-                </div> -->
 
                <div class="butns">
                 <div>
@@ -378,10 +359,10 @@ footer .social a{
                         %>
                         <span>-<%= discountPercentage.toFixed(0) %>%  </span> 
                         <p class="new-price"><span>&#8377;<%= item.offeredPrice %></span></p>
-    
+
                         </p>
                     </div>
-    
+
                     <p class="last-price">M.R.P. : <span>&#8377;<%= item.originalPrice%></span></p>
                     <p class="tax">Inclusive of all taxes</p>
                  </div>
@@ -390,12 +371,12 @@ footer .social a{
                   <input type="button" id="quantity-input" class='itemQuantity<%= item.itemId %>' value="0">
                   <button id="plus-btn" class='increase<%= item.itemId %>'>+</button>
                 </div>
-              
+
                </div>
 
                <div class="purchase-info">
                     <% if (item.stock > 0 && Date.parse(item.createdAt) < Date.now()) { %>
-                        <button type="button" class="btn addCartButton">Add to Cart</button>
+                        <button type="button" class="btn addCartButton mb-5">ADD TO CART</button>
                     <% } else if ( content.isLoggedIn == true ) { %>
                         <button type="button" class="btn">You will be Notified shortly</button>
                     <% } else { %>
@@ -410,12 +391,12 @@ footer .social a{
                               <button class="notifySubscribe-btn" onclick="addSub()">Subscribe</button>
                             </div>
                         </div>
-                                                    
+
                         <script>
                             function openNotifyModal() {
                               document.getElementById('notifyModal').style.display = 'flex';
                             }
-                          
+
                             function closeNotifyModal() {
                               document.getElementById('notifyModal').style.display = 'none';
                             }
@@ -441,7 +422,7 @@ footer .social a{
                                     showAlert("Error while adding you","danger")
                                 })
                             }
-                          
+
                             window.onclick = function(event) {
                               var modal = document.getElementById('notifyModal');
                               if (event.target === modal) {
@@ -452,45 +433,43 @@ footer .social a{
                     <% } %>
                 </div>
 
-                <div class="product-detail">
-                    <p><%= item.description %></p>
-                </div>
-
                 <div class="d-flex mb-5">
                     <img src="../assets/no hars.png" style="height: 5vh; margin-right: 8vh">
                     <img src="../assets/animal free.png" style="height: 5vh;">
                     <img src="../assets/FDA.png" style="height: 5vh;margin-left: 8vh;">
                 </div>
-                
+
                 <div class="social-links d-flex flex-row align-items-center">
-                  <p style="font-size:2.7vh;font-weight: 300;">Share This Product : </p>
-                  <!-- Replace 'your_product_url' with the actual URL of your product -->
+                  <p style="font-size:2.7vh;font-weight: 300;">Share :</p>
+
                   <a href="https://www.facebook.com/sharer/sharer.php?u%= item.name" target="_blank">
                       <iconify-icon icon="bi:facebook"></iconify-icon>
                   </a>
-                  <!-- Replace 'your_product_url' and 'Your%20Product%20Description' with the actual URL and description of your product -->
+
                   <a href="https://twitter.com/intent/tweet?url=your_product_url&text=Your%20Product%20Description" target="_blank">
                       <iconify-icon icon="pajamas:twitter"></iconify-icon>
                   </a>
-                  <!-- Replace 'your_product_url' with the actual URL of your product -->
+
                   <a href="https://www.instagram.com/?url=your_product_url" target="_blank">
                       <iconify-icon icon="lucide:instagram"></iconify-icon>
                   </a>
-                  <!-- Replace 'your_product_url' and 'Your%20Product%20Description' with the actual URL and description of your product -->
+
                   <a href="https://api.whatsapp.com/send?text=Your%20Product%20Description%20- %20your_product_url" target="_blank">
                       <iconify-icon icon="ic:sharp-whatsapp"></iconify-icon>
                   </a>
               </div>
-              
+
             </div>
 
         </div>
     </div>
 
+    
+
     <script>
      function scrollCustomSlides(direction) {
     const slider = document.getElementById('imageSlider');
-    const scrollAmount = 100; // Adjust the scroll amount as needed
+    const scrollAmount = 100; 
 
     if (direction === 'left') {
         slider.scrollLeft -= scrollAmount;
@@ -506,47 +485,65 @@ footer .social a{
     const mainProductImage = document.getElementById('mainProductImage');
 
     additionalImages.forEach((image, index) => {
-        // Attach event listeners for both click and hover
+
         image.addEventListener('click', () => loadImage(image.style.backgroundImage));
         image.addEventListener('mouseover', () => loadImage(image.style.backgroundImage));
     });
 
     function loadImage(image) {
-        // Set the source directly without the slide-out effect
+
         mainProductImage.src = extractImageUrl(image);
     }
 
-    // Extracts the URL from the background-image property
     function extractImageUrl(backgroundImage) {
         return backgroundImage.replace(/url\(['"]?(.*?)['"]?\)/, '$1');
     }
 </script>
 
 
+
     <div class="faq-section mt-5 mb-5">
+        <script>
+            function formatText(elementId) {
+                var element = document.getElementById(elementId);
+                var text = element.innerHTML;
+                var formattedText = text.replace(/\. /g, '.<br><br>');
+                element.innerHTML = formattedText;
+            }
+        </script>
+        
+        <div class="faq-question" onclick="toggleFAQ(this)">
+            <span><h2>Product Description</h2></span>
+            <span class="icon">&#43;</span>
+        </div>
+        <div class="faq-answer">
+            <p id="description" onload="formatText('description')"><%= item.description || "" %></p>
+        </div>
+        
         <div class="faq-question" onclick="toggleFAQ(this)">
             <span><h2>Key Features</h2></span>
             <span class="icon">&#43;</span>
         </div>
         <div class="faq-answer">
-            <p id="keyFeaturesText"><%= item.keyFeatures || "" %></p>
+            <p id="keyFeaturesText" onload="formatText('keyFeaturesText')"><%= item.keyFeatures || "" %></p>
         </div>
-
+        
         <div class="faq-question" onclick="toggleFAQ(this)">
             <span><h2>How To Use?</h2></span>
             <span class="icon">&#43;</span>
         </div>
         <div class="faq-answer">
-            <p id="keyFeaturesText"><%= item.how_to_use || "" %></p>
+            <p id="howtouse" onload="formatText('howtouse')"><%= item.how_to_use || "" %></p>
         </div>
-
+        
         <div class="faq-question" onclick="toggleFAQ(this)">
             <span><h2>FAQ</h2></span>
             <span class="icon" >&#43;</span>
         </div>
         <div class="faq-answer">
-            <p id="keyFeaturesText"><%= item.FAQ || "" %></p>
+            <p id="itemFAQ" onload="formatText('itemFAQ')"><%= item.FAQ || "" %></p>
         </div>
+        
 
     </div>
 
@@ -579,11 +576,11 @@ footer .social a{
           <option value="positive">Positive First</option>
           <option value="negative">Negative First</option>
       </select>
-  
+
       <div class="review-section" id="positiveReviews">
-          
+
       </div>
-  
+
       <script>
           let reviews = [];
           const ratingCounts = [1, 1, 1, 1, 1];
@@ -602,9 +599,8 @@ footer .social a{
 
                       const averageRating = reviews.length > 0 ? totalRating / reviews.length : 0;
 
-                      // Display total stars
                       const totalStarsContainer = document.querySelector(".totalStars");
-                      totalStarsContainer.innerHTML = ""; // Clear previous stars
+                      totalStarsContainer.innerHTML = ""; 
 
                       for (let i = 0; i < averageRating; i++) {
                           const starIcon = document.createElement("iconify-icon");
@@ -615,12 +611,12 @@ footer .social a{
                       drawReviewChart()
                       document.querySelector(".totalReviews").textContent = `(${reviews.length} Verified Reviews)`
                       document.querySelector(".averageRating").textContent = averageRating
-                      filterReviews(); // Initial rendering
+                      filterReviews(); 
                   })
                   .catch(err => showAlert("Something went wrong loading reviews", "danger"));
           });
           function drawReviewChart() {
-    // Assuming ratingCounts is an array containing the counts of each rating
+
     const maxRatingCount = Math.max(...ratingCounts);
 
     var ctx = document.getElementById('ratingsChart').getContext('2d');
@@ -647,7 +643,7 @@ footer .social a{
                     '#33B5FF',
                     '#8333FF'
                 ],
-                borderRadius: 5, // Set the border radius for every corner
+                borderRadius: 5, 
             }]
         },
         options: {
@@ -678,26 +674,22 @@ footer .social a{
     });
 }
 
-  
           function filterReviews() {
               const filterOption = document.getElementById("reviewFilter").value;
               const positiveReviewsContainer = document.getElementById("positiveReviews");
-  
-              // Clear existing reviews
+
               positiveReviewsContainer.innerHTML = "";
-  
-              // Filter reviews based on the selected option
+
               const filteredReviews = reviews.filter(review => {
                   if (filterOption === "positive") {
                       return review.rating > 0;
                   } else if (filterOption === "negative") {
                       return review.rating <= 0;
                   } else {
-                      return true; // Show all for "recent" option
+                      return true; 
                   }
               });
-  
-              // Display filtered reviews
+
               filteredReviews.forEach(review => {
                   const reviewItem = document.createElement("div");
                   reviewItem.classList.add("review-item");
@@ -711,20 +703,19 @@ footer .social a{
                   positiveReviewsContainer.appendChild(reviewItem);
               });
           }
-  
+
           function formatDate(date) {
               const options = { year: 'numeric', month: 'long', day: 'numeric' };
               return new Date(date).toLocaleDateString(undefined, options);
           }
       </script>
   </div>
-  
 
   <h2 class="people m-2 mt-4 mb-3" style="font-size:5vh;">People Also Bought</h2>
   <div id="productGrid" class="row mb-5 product-grid container onmousedown="startScroll(event)" onmouseup="stopScroll()" ontouchstart="startScroll(event)" ontouchend="stopScroll()">
   </div>
   <%- include('partials/footer') %>
-  
+
  <%- include('partials/loader') %>
 
     <script>
@@ -750,7 +741,7 @@ footer .social a{
                 }
             });
         }
-        
+
         document.addEventListener('DOMContentLoaded', async () => {
           const response = await axios.get('/getprofile');
           const userProfile = response.data.userProfile;
@@ -792,18 +783,17 @@ footer .social a{
     </script>
 
 <script>
-    // Function to split text at full stops or question marks and display each sentence on a new line
+
     function splitTextAtPunctuation() {
         var keyFeaturesText = document.getElementById('keyFeaturesText');
         var text = keyFeaturesText.innerHTML;
-        // Split text at full stops or question marks
+
         var sentences = text.split(/[.?]/);
-        // Add <br> after each full stop or question mark
-        keyFeaturesText.innerHTML = sentences.join('.<br>'); // Add <br> after each full stop or question mark
+
+        keyFeaturesText.innerHTML = sentences.join('.<br><br>'); 
     }
     splitTextAtPunctuation();
 </script>
-
 
 <script>
   let products = [];
@@ -834,10 +824,10 @@ footer .social a{
                       console.log(response.data.message);
                       showAlert('item added to cart','success')
                       openCart()
-                      // Optionally, update the UI to reflect the item being added to the cart
+
                 } else {
                       console.error('Error adding item to cart:', response.data.message);
-                      // Optionally, handle the error and update the UI accordingly
+
                 }
               } catch (err) {
                 if (err.response.status === 400){
@@ -896,16 +886,15 @@ footer .social a{
           <div class="product-title"><a href="/products/${product.itemId}" style="text-decoration:none;color:#fff;">${product.name}</a></div>
           <div class="product-description">${product.description}</div>
           <div class="d-flex bolder product-price-discount">
-            <div style="width:70%; display: flex;justify-content:center;align-items:center;">
-            <div class="original-price" style="width:40%;">MRP:<strike>&#8377;${product.originalPrice || ""}</strike></div>
-            <div class="product-price" style="width:60%;">&#8377;${product.offeredPrice}</div>
-        </div>
-            <div class="product-discount text-success text-uppercase" style="width:30%;">${(
-                ((product.originalPrice - product.offeredPrice) /
-                    product.originalPrice) *
-                100
-            ).toFixed(0)}% Off</div>
-</div>
+            <div style="width:60%;display: flex;">
+                        <div class="original-price" style="width:70%;display:flex;align-items:center;">MRP:<strike><span class="text-decoration-line-through">&#8377;${product.originalPrice || ""}</strike></span></div>
+                        <div class="product-price" style="width:30%;">&#8377;${product.offeredPrice}</div>
+                    </div>
+                    <div class="product-discount d-flex justify-content-end text-success text-uppercase" style="width:40%;">${(
+                        ((product.originalPrice - product.offeredPrice) /
+                            product.originalPrice) *
+                        100
+                    ).toFixed(0)}% Off</div>
 
 </div>
 
@@ -931,8 +920,7 @@ footer .social a{
   return productCard;
   }
 
-  // Example usage
-  const container = document.getElementById('productContainer'); // Replace with the actual container element ID
+  const container = document.getElementById('productContainer'); 
   products.forEach(product => {
   const productCard = createProductCard(product);
   container.appendChild(productCard);

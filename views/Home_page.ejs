@@ -2124,8 +2124,8 @@
         }
 
         words = product.name.split(" ");
-        product.name = words.slice(0, 5).join(" ");
-        if (words.length > 5) {
+        product.name = words.slice(0, 3).join(" ");
+        if (words.length > 3) {
           product.name += " ...";
         }
         productCard.innerHTML = `

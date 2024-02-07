@@ -32,6 +32,7 @@ body{
         grid-template-columns: 1fr; 
     }
 
+
     .faq-answer{
         font-size: 2vh !important;
     }
@@ -203,7 +204,7 @@ body{
 }
 
 .product-details img:nth-child(2){
-    height: 10vh;
+    display: none !important;
 }
 
 .product-details img:nth-child(1){
@@ -363,17 +364,13 @@ body{
     margin-bottom: 4vh;
 }
 
-.product-detail h2{
-    font-size: 1rem;
-    text-transform: capitalize;
-    color: #fff;
-    padding-bottom: 0.6rem;
+.product-detail{
+    width: 92% !important;
+    height: max-content;
 }
-.product-detail p{
-    margin-top: 3rem;
-    margin-bottom: 3rem;
-    
 
+.product-detail h3{
+    font-size: 3vh;
 }
 .product-detail ul{
     margin: 1rem 0;
@@ -452,7 +449,7 @@ body{
     font-weight: 300;
     text-transform: capitalize;
     display: flex;
-    font-size: 3vh;
+    font-size: 2.5vh !important;
     justify-content: space-between;
     align-items: center;
     cursor: pointer;
@@ -528,6 +525,10 @@ body{
 
             .product-price-discount{
                 font-size: 12px !important;
+            }
+
+            .product-detail{
+                width: 97% !important;
             }
 
             .product-details img{
