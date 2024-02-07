@@ -19,12 +19,8 @@
     }
     
   @media (max-width: 767.98px) {
-    .img-div{
-      height: 20vh !important;
-      margin-bottom: 2vh !important;
-    }
-    .images-wrapper-modal{
-      background-image: url("/assets/popup-mob.jpg") !important;
+    .images-wrapper-modal img {
+      content: url('/assets/popup-mob.jpg');
     }
 
   }
@@ -57,10 +53,11 @@
           <div class="box">
             <div class="row text-capitalize">
               <div class="col-md-6 img-div-left" >
-                <div class="img-div" style="height: 70vh">
-                  <div class="images-wrapper-modal" style="height: 100%;background-image: url('/assets/Popup-coupon.jpg');background-size: 100% 100%;">
+                <div class="img-div">
+                  <div class="images-wrapper-modal" style="height: 100%;">
+                    <img src="/assets/Popup-coupon.jpg" style="width: 100%; height: auto;">
                   </div>
-                </div>
+                </div>                
               </div>
               <div class="col-md-6 d-flex flex-column justify-content-between">
                 <div class="forms-wrap">
