@@ -13,7 +13,7 @@
     z-index: 1; 
     padding: 1vh;
     background-color: #000;
-    /* text-shadow: 2px 2px 3px #000; */
+
   }
 
   .sidenav{
@@ -67,7 +67,6 @@
     transform: scaleX(1);
 }
 
-
   .input-group input{
     color: #fff;
     border: 1px solid #fff;
@@ -98,7 +97,7 @@
       text-transform: uppercase;
       margin: 0;
       white-space: nowrap;
-      animation: marqueeAnimation 20s linear infinite; /* Adjust the duration as needed */
+      animation: marqueeAnimation 20s linear infinite; 
     }
 
   .sidenav iconify-icon{
@@ -136,25 +135,10 @@
     margin-left: 2vh !important;
   }
 
-  /* .custom-nav a.nav-link {
-    margin-bottom: 00px; 
-    margin-left: 0; 
-    display: flex;
-    align-items: center;
-  }
-
-  .custom-nav a.nav-link span {
-    display: none; 
-  }
-
-  .custom-nav iconify-icon {
-    font-size: 2.5vh;
-    margin-left: -20px; 
-  } */
   }
 
   #searchInput:focus {
-            border-color: none; /* Change border color on focus */
+            border-color: none; 
         }
 
   #searchInput:active{
@@ -165,13 +149,12 @@
 <div id="mySidenav" class="sidenav">
    <p href="javascript:void(0)" class="closebtn" onclick="closeNav()" style="color: #fff;cursor: pointer;">&times;</p>
    <a href="/collections/beard-care"><iconify-icon icon="fluent:spray-can-16-filled"></iconify-icon>Beard Care</a>
-   <!-- <a href="/product_listing/face_care"><iconify-icon icon="mdi:spray"></iconify-icon>Face Care</a> -->
+   
    <a href="/collections/hair_care"><iconify-icon icon="streamline:spray-paint-solid"></iconify-icon>Hair Care</a>
    <a href="/collections/skin_care"><iconify-icon icon="fa6-solid:spray-can-sparkles"></iconify-icon>Skin Care</a>
-   <a href="/collections/shave"  style="color: #fff;"><iconify-icon icon="fa6-solid:spray-can-sparkles"></iconify-icon>Shave</a>
-   <a href="/collections/fragrance"  style="color: #fff;"><iconify-icon icon="fa6-solid:spray-can-sparkles"></iconify-icon>Fragrance</a>
-   <!-- <a href="/product_listing/skin_care"  style="color: #fff;"><iconify-icon icon="fa6-solid:spray-can-sparkles"></iconify-icon>Blog</a>
-   <a href="#"><iconify-icon icon="mdi:about"></iconify-icon>About Us </a> -->
+   <a href="/pages/coming-soon"  style="color: #fff;"><iconify-icon icon="fa6-solid:spray-can-sparkles"></iconify-icon>Shave</a>
+   <a href="/pages/coming-soon"  style="color: #fff;"><iconify-icon icon="fa6-solid:spray-can-sparkles"></iconify-icon>Fragrance</a>
+   
 </div>
 <nav class="navbar navbar-expand-lg" style="width: 100%;flex-direction: column;padding:0;">
   <div class="marquee-container">
@@ -186,12 +169,7 @@
        </a>
 
       </div>
-      <!-- <form class="d-none d-lg-flex" style="width: 32%;">
-         <div class="input-group" style="width: 100%;">
-          <input class="form-control" type="search" placeholder="Search Your Favourite Product" aria-label="Search" id="searchInput" style="background-color: transparent; border-radius: 1rem 0 0 1rem;color: #fff;box-shadow: none;outline: none;">
-            <button class="btn btn-light" type="submit" style="border-radius: 0 1rem 1rem 0;"><i class="fas fa-search"></i></button>
-         </div>
-      </form> -->
+      
       <div class="d-none d-lg-flex justify-content-flex-start align-items-center" style="width: 70%;color: #fff;">
         <div class="d-flex justify-content-evenly align-items-start large-nav text-uppercase nav-items" style="width: 90%;text-transform: uppercase;color: #fff;text-decoration: none;">
           <a href="/collections/beard-care"  style="color: #fff;">Beard Care</a>
@@ -199,10 +177,9 @@
           <a href="/collections/skin-care"  style="color: #fff;">Skin Care</a>
           <a href="/pages/coming-soon"  style="color: #fff;">Shave</a>
           <a href="/pages/coming-soon"  style="color: #fff;">Fragrance</a>
-          <!-- <a href="/product_listing/skin_care"  style="color: #fff;">Blog</a>
-          <a href="#"  style="color: #fff;">About Us</a> -->
+          
         </div>
-      
+
       </div>
 
         <div class="d-none d-lg-flex input-group" style="width: 20%;">
@@ -283,5 +260,3 @@
        alert.style.display = "none";
      }
    </script>
-
-    
