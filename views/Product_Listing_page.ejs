@@ -1,431 +1,459 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/css/ProductStyle.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap"/>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@200;400;500&display=swap">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css">
-    <link rel="shortcut icon" type="image/x-icon" href="../assets/whitewolflog.png">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/css/ProductStyle.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Outfit:wght@200;400;500&display=swap"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css"
+    />
+    <link
+      rel="shortcut icon"
+      type="image/x-icon"
+      href="../assets/whitewolflog.png"
+    />
 
-    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-        new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-        j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-        'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-        })(window,document,'script','dataLayer','GTM-NQVB53VH');</script>        
+    <script>
+      (function (w, d, s, l, i) {
+        w[l] = w[l] || [];
+        w[l].push({ "gtm.start": new Date().getTime(), event: "gtm.js" });
+        var f = d.getElementsByTagName(s)[0],
+          j = d.createElement(s),
+          dl = l != "dataLayer" ? "&l=" + l : "";
+        j.async = true;
+        j.src = "https://www.googletagmanager.com/gtm.js?id=" + i + dl;
+        f.parentNode.insertBefore(j, f);
+      })(window, document, "script", "dataLayer", "GTM-NQVB53VH");
+    </script>
 
     <title><%= content.context %> - WhiteWolf International</title>
     <style>
-        body{
-            background-color: #000;
-        }
-    .banner{
+      body {
+        background-color: #000;
+      }
+      .banner {
         margin-top: 15vh;
         background-color: #000;
         padding: 5vh;
-    }
-    .page{
+      }
+      .page {
         width: 100%;
         background-color: #000;
         padding: 2rem;
         min-height: 80vh;
-    }
+      }
 
-footer a{
-    text-decoration: none;
-}
+      footer a {
+        text-decoration: none;
+      }
 
-.social ul a {
-    font-size: 3vh; 
-    margin-right: 2vh;
-    color: #fff;
-}
+      .social ul a {
+        font-size: 3vh;
+        margin-right: 2vh;
+        color: #fff;
+      }
 
-.accordion-item {
-    background-color: #000 !important;
-    margin-top: 1rem;
-    border: none;
-    border-radius: 0 !important;
-    border-bottom: 1px solid white;
-    box-shadow: none !important;
-    outline: none !important;
-}
+      .accordion-item {
+        background-color: #000 !important;
+        margin-top: 1rem;
+        border: none;
+        border-radius: 0 !important;
+        border-bottom: 1px solid white;
+        box-shadow: none !important;
+        outline: none !important;
+      }
 
-.accordion-item:active{
-    outline: none !important;
-    box-shadow: none !important;
-}
+      .accordion-item:active {
+        outline: none !important;
+        box-shadow: none !important;
+      }
 
+      .accordion-item:focus,
+      .accordion-button:focus,
+      .accordion-header button:focus {
+        outline: none !important;
+        box-shadow: none !important;
+      }
 
-.accordion-item:focus,
-.accordion-button:focus,
-.accordion-header button:focus {
-    outline: none !important;
-    box-shadow: none !important;
-}
+      .accordion-item:active,
+      .accordion-button:active,
+      .accordion-header button:active {
+        outline: none !important;
+        box-shadow: none !important;
+      }
 
-.accordion-item:active,
-.accordion-button:active,
-.accordion-header button:active {
-    outline: none !important;
-    box-shadow: none !important;
-}
+      .accordion-button button:focus {
+        border-bottom: 1px solid #fff;
+      }
 
-.accordion-button button:focus{
-    border-bottom: 1px solid #fff;
-}
+      .accordion-body {
+        background-color: black !important;
+        color: white !important;
+      }
+      .accordion-button,
+      .accordion-header button {
+        padding-top: 2vh;
+        padding-bottom: 2vh;
+        color: white !important;
+        background-color: #000 !important;
+        outline: none !important;
+        border: none !important;
+      }
 
-.accordion-body {
-    background-color: black !important;
-    color: white !important;
-}
-.accordion-button,
-.accordion-header button {
-    padding-top: 2vh; 
-    padding-bottom: 2vh; 
-    color: white !important;
-    background-color: #000 !important;
-    outline: none !important;
-    border: none !important;
-}
+      .accordion-header:active {
+        outline: none !important;
+        box-shadow: none !important;
+        border-bottom: 1px solid #fff;
+      }
 
-.accordion-header:active{
-    outline: none !important;
-    box-shadow: none !important;
-    border-bottom: 1px solid #fff;
-}
+      .accordion-header button:active {
+        outline: none !important;
+        box-shadow: none !important;
+        border-bottom: 1px solid #fff !important;
+      }
 
-.accordion-header button:active{
-    outline: none !important;
-    box-shadow: none !important;
-    border-bottom: 1px solid #fff !important;
-}
+      .accordion-button:active,
+      .accordion-button:focus,
+      .accordion-header button:active,
+      .accordion-header button:focus {
+        border-bottom: 1px solid white !important;
+      }
 
-.accordion-button:active,
-.accordion-button:focus,
-.accordion-header button:active,
-.accordion-header button:focus {
-    border-bottom: 1px solid white !important;
-}
+      .accordion-body a {
+        color: white !important;
+      }
 
+      .accordion-item {
+        border-bottom: 1px solid white;
+      }
 
-.accordion-body a {
-    color: white !important;
-}
+      .accordion-item:not(:last-child) {
+        margin-bottom: 1rem;
+      }
 
-.accordion-item {
-    border-bottom: 1px solid white;
-}
+      .filters h4 {
+        font-size: 5vh;
+      }
 
-.accordion-item:not(:last-child) {
-    margin-bottom: 1rem;
-}
+      .sort-filter select {
+        border-radius: 0;
+        outline: none !important;
+        box-shadow: none !important;
+      }
 
-.filters h4{
-    font-size: 5vh;
-}
+      .sort-filter select:active {
+        box-shadow: none !important;
+        outline: none !important;
+      }
 
-.sort-filter select{
-    border-radius: 0;
-    outline: none !important;
-    box-shadow: none !important;
-}
+      .sort-filter select:focus {
+        outline: none !important;
+        box-shadow: none !important;
+      }
 
-.sort-filter select:active{
-    box-shadow: none !important;
-    outline: none !important;
-}
+      .grids {
+        height: auto;
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        overflow: hidden;
+        grid-column-gap: 1rem;
+      }
 
-.sort-filter select:focus{
-    outline: none !important;
-    box-shadow: none !important;
-}
+      .Liked {
+        margin-top: 2rem;
+        margin-bottom: 2rem;
+      }
 
-.grids{
-    height: auto;
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    overflow: hidden;
-    grid-column-gap: 1rem;
-}
+      @media (max-width: 576px) {
+        .accordion {
+          margin-top: 0.5rem;
+          margin-bottom: 0.5rem;
+        }
 
-.Liked{
-    margin-top: 2rem;
-    margin-bottom: 2rem;
-}
+        .banner {
+          background-color: #000;
+          padding: 1vh;
+        }
 
-@media (max-width: 576px) {
-    .accordion {
-        margin-top: 0.5rem; 
-        margin-bottom: 0.5rem; 
-    }
+        .page {
+          margin-top: 0rem;
+          padding: 1rem;
+        }
 
-    .banner{
-        background-color: #000;
-        padding: 1vh;
-    }
+        .page .filters {
+          margin-top: -10vh;
+        }
 
-    .page{
-        margin-top: 0rem;
-        padding: 1rem;
-    }
+        .filters h4 {
+          font-size: 5 vh;
+        }
 
-    .page .filters{
-        margin-top: -10vh;
-    }
+        .accordion-button {
+          font-size: 1.2rem;
+        }
 
-    .filters h4{
-        font-size: 5    vh;
-    }
+        .accordion-item {
+          margin-top: 0.5rem;
+        }
 
-    .accordion-button {
-        font-size: 1.2rem; 
-    }
+        .accordion-body {
+          padding: 1vh;
+          font-size: 3vh;
+        }
 
-    .accordion-item {
-        margin-top: 0.5rem; 
-    }
+        .Liked h2 {
+          font-size: 2rem;
+        }
+      }
 
-    .accordion-body {
-        padding: 1vh; 
-        font-size: 3vh; 
-    }
+      .product-grid {
+        align-items: center;
+        display: flex;
+        justify-content: space-between;
+      }
 
-    .Liked h2 {
-        font-size: 2rem; 
-    }
+      #productGrid {
+        display: flex;
+        gap: 2vh;
+        justify-content: flex-start;
+      }
 
-}
-
-.product-grid{
-    align-items: center;
-    display: flex;
-    justify-content: space-between;
-}
-
-#productGrid{
-    display: flex;
-    gap: 2vh;
-    justify-content: flex-start;
-}
-
-.product-card {
+      .product-card {
         width: 30%;
         cursor: pointer;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap;
-    background-color: #fff;
-    color: #000;
-    margin: 5px;
-    padding: 1vh;
-    color: #fff;
-    border-radius: 10px;
-    transition: transform 0.2s;
-    height: auto;
-    }
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        background-color: #fff;
+        color: #000;
+        margin: 5px;
+        padding: 1vh;
+        color: #fff;
+        border-radius: 10px;
+        transition: transform 0.2s;
+        height: auto;
+      }
 
-    .product-details{
+      .product-details {
         text-align: left;
         width: 100%;
         flex-wrap: wrap;
-    }
+      }
 
-    .product-image-container{
+      .product-image-container {
         width: 100%;
-    }
+      }
 
-    .product-image {
-    width: 100%;
-    height: auto;
-    object-fit: cover;
-    transition: transform 1s ease-in-out;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    overflow: hidden;
-    border-radius: 10px;
-    }
+      .product-image {
+        width: 100%;
+        height: auto;
+        object-fit: cover;
+        transition: transform 1s ease-in-out;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        overflow: hidden;
+        border-radius: 10px;
+      }
 
-    .product-image:hover{
-            transition: 1s ease-in-out;
-    }
-.product-title {
-    font-size: 1.2rem;
-    font-weight: bold;
-    color: #000;
-    }
-    .product-description {
-    font-size: 0.9rem;
-    margin-top: 0.5rem;
-    color: #222;
-    }
-    .product-price-discount {
-    margin-top: 10px;
-    }
-    .product-price{
-    color: #000;
-    font-weight: bolder;
-    }
-    .add-to-cart-btn {
-    margin-top: 1rem;
-    display: inline-block;
-    width: 100%;
-    padding: 0.5rem 1rem;
-    background-color: burlywood;
-    color: #fff;
-    text-align: center;
-    text-decoration: none;
-    font-size: 1rem;
-    border: none;
-    border-radius: 6px;
-    cursor: pointer;
-    text-transform: uppercase;
-    transition: background-color 0.3s ease-in-out;
-    }
-    .add-to-cart-btn:hover{
-    background-color: #fff;
-    border: 1px solid burlywood;
-    color: burlywood;
-    }
+      .product-image:hover {
+        transition: 1s ease-in-out;
+      }
+      .product-title {
+        font-size: 1.2rem;
+        font-weight: bold;
+        color: #000;
+      }
+      .product-description {
+        font-size: 0.9rem;
+        margin-top: 0.5rem;
+        color: #222;
+      }
+      .product-price-discount {
+        margin-top: 10px;
+      }
+      .product-price {
+        color: #000;
+        font-weight: bolder;
+      }
+      .add-to-cart-btn {
+        margin-top: 1rem;
+        display: inline-block;
+        width: 100%;
+        padding: 0.5rem 1rem;
+        background-color: burlywood;
+        color: #fff;
+        text-align: center;
+        text-decoration: none;
+        font-size: 1rem;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+        text-transform: uppercase;
+        transition: background-color 0.3s ease-in-out;
+      }
+      .add-to-cart-btn:hover {
+        background-color: #fff;
+        border: 1px solid burlywood;
+        color: burlywood;
+      }
 
-    @media (max-width: 768px) {
+      @media (max-width: 768px) {
+        .accordion-body {
+          padding: 1vh;
+          font-size: 2vh;
+        }
 
-        .accordion-body{
-        padding: 1vh; 
-        font-size: 2vh; 
-    }
+        #productGrid {
+          display: flex;
+          flex-direction: row;
+          flex-wrap: wrap;
+          align-items: center;
+          padding: 1vh;
+          gap: 1vh;
+          justify-content: initial;
+        }
 
-   #productGrid{
-      display: flex;
-       flex-direction: row;
-       flex-wrap: wrap;
-       align-items: center;
-       padding: 1vh;
-       gap: 1vh;
-       justify-content:initial;
-   }
+        .product-card {
+          width: 46%;
+        }
 
-   .product-card{
-       width: 46%;
-   }
-   
-
-   /* .product-image{
+        /* .product-image{
        height: 20vh;
    } */
 
-
-   .product-title a{
-       font-weight: 600;
-       line-height: 5px !important;
-       font-size: 11px !important;
-   }
-
-   .product-details{
-       padding:1vh;
-   }
-
-   .product-description{
-       display: none;
-   }
-
-   .add-to-cart-btn{
-       font-size: 11px;
-   }
-
-   .product-discount{
-       display: none;
-   }
-}
-
-.slider {
-            width: 100%;
-            margin: 0 auto;
-            margin-top: 15vh !important;
-            background-color: #000;
+        .product-title a {
+          font-weight: 600;
+          line-height: 5px !important;
+          font-size: 11px !important;
         }
 
-        .slick-slide {
-            padding: 0 3vh; 
+        .product-details {
+          padding: 1vh;
+        }
+
+        .product-description {
+          display: none;
+        }
+
+        .add-to-cart-btn {
+          font-size: 11px;
+        }
+
+        .product-discount {
+          display: none;
+        }
+      }
+
+      .slider {
+        width: 100%;
+        margin: 0 auto;
+        margin-top: 15vh !important;
+        background-color: #000;
+      }
+
+      .slick-slide {
+        padding: 0 3vh;
+      }
+
+      .slider img {
+        width: 100%;
+        height: auto;
+      }
+
+      .slick-prev,
+      .slick-next {
+        font-size: 3vw;
+        color: #fff;
+        z-index: 1;
+      }
+
+      .slider .slick-next {
+        position: absolute;
+        top: 50%;
+        right: 5%;
+        transform: translateY(-50%);
+      }
+
+      .slider .slick-prev {
+        position: absolute;
+        top: 50%;
+        left: 5%;
+        transform: translateY(-50%);
+      }
+
+      @media (max-width: 768px) {
+        .slider {
+          width: 100%;
+          height: max-content;
         }
 
         .slider img {
-            width: 100%;
-            height: auto;
+          height: auto;
+          object-fit: contain;
         }
 
-        .slick-prev, .slick-next {
-            font-size: 3vw;
-            color: #fff;
-            z-index: 1;
+        .slick-slide {
+          padding: 0 1vh;
         }
 
-        .slider .slick-next {
-            position: absolute;
-            top: 50%;
-            right: 5%;
-            transform: translateY(-50%);
+        .slick-prev,
+        .slick-next {
+          font-size: 5vw;
         }
-
-        .slider .slick-prev {
-            position: absolute;
-            top: 50%;
-            left: 5%;
-            transform: translateY(-50%);
-        }
-
-        @media (max-width: 768px) {
-            .slider {
-                width: 100%;
-                height: max-content; 
-            }
-
-            .slider img{
-                height: auto;
-                object-fit: contain;
-            }
-
-            .slick-slide {
-            padding: 0 1vh; 
-        }
-
-            .slick-prev, .slick-next {
-                font-size: 5vw; 
-            }
-        }
+      }
     </style>
-</head>
-<body>
+  </head>
+  <body>
+    <noscript
+      ><iframe
+        src="https://www.googletagmanager.com/ns.html?id=GTM-NQVB53VH"
+        height="0"
+        width="0"
+        style="display: none; visibility: hidden"
+      ></iframe
+    ></noscript>
 
-    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NQVB53VH"
-        height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-                
-    <%- include('partials/nav') %> 
-    <%- include('partials/cart') %> 
+    <%- include('partials/nav') %> <%- include('partials/cart') %>
     <div class="slider">
-        <div><img src="../assets/Slider.jpg" alt="Slide 1"></div>
-        <div><img src="../assets/Slider2.jpg" alt="Slide 2"></div>
-        <div><img src="../assets/Slider.jpg" alt="Slide 3"></div>
-        <div><img src="../assets/Slider2.jpg" alt="Slide 4"></div>
+      <div><img src="../assets/Slider.jpg" alt="Slide 1" /></div>
+      <div><img src="../assets/Slider2.jpg" alt="Slide 2" /></div>
+      <div><img src="../assets/Slider.jpg" alt="Slide 3" /></div>
+      <div><img src="../assets/Slider2.jpg" alt="Slide 4" /></div>
     </div>
 
-    <div class="container-fluid page" style="background-color: #000;">
-        <div class="row">
+    <div class="container-fluid page" style="background-color: #000">
+      <div class="row">
+        <div class="col-md-3 mt-0 mr-3">
+          <div class="filters mt-1 mb-5">
+            <h4 class="text-white">Filter</h4>
 
-            <div class="col-md-3 mt-0 mr-3">
-                <div class="filters mt-1 mb-5">
-                    <h4 class="text-white">Filter</h4>
-
-                    <!-- <div class="accordion" id="categoryFilterAccordion">
+            <!-- <div class="accordion" id="categoryFilterAccordion">
                         <div class="accordion-item">
                             <h2 class="accordion-header" id="categoryFilterHeader">
                                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#categoryFilterCollapse" aria-expanded="false" aria-controls="categoryFilterCollapse">
@@ -443,247 +471,348 @@ footer a{
                         </div>
                     </div> -->
 
-                    <div class="accordion" id="discountFilterAccordion">
-                        <div class="accordion-item">
-                            <h2 class="accordion-header" id="discountFilterHeader">
-                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#discountFilterCollapse" aria-expanded="false" aria-controls="discountFilterCollapse">
-                                    Discount
-                                </button>
-                            </h2>
-                            <div id="discountFilterCollapse" class="accordion-collapse collapse" aria-labelledby="discountFilterHeader">
-                                <div class="accordion-body">
-                                    <a class="nav-link" href="#"  onclick="setDiscount(10)">10%</a>
-                                    <a class="nav-link" href="#"  onclick="setDiscount(20)">20%</a>
-                                    <a class="nav-link" href="#"  onclick="setDiscount(30)">30%</a>
-                                    <a class="nav-link" href="#"  onclick="setDiscount(40)">40%</a>
-                                    <a class="nav-link" href="#"  onclick="setDiscount(50)">50% and above</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="accordion" id="ratingFilterAccordion">
-                        <div class="accordion-item">
-                            <h2 class="accordion-header" id="ratingFilterHeader">
-                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#ratingFilterCollapse" aria-expanded="false" aria-controls="ratingFilterCollapse">
-                                    Rating
-                                </button>
-                            </h2>
-                            <div id="ratingFilterCollapse" class="accordion-collapse collapse" aria-labelledby="ratingFilterHeader">
-                                <div class="accordion-body">
-                                    <a class="nav-link" href="#" onclick="setStars(4)">4 stars & above</a>
-                                    <a class="nav-link" href="#" onclick="setStars(3)">3 stars & above</a>
-                                    <a class="nav-link" href="#" onclick="setStars(2)">2 stars & above</a>
-                                    <a class="nav-link" href="#" onclick="setStars(1)">1 star & above</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>                    
-
+            <div class="accordion" id="discountFilterAccordion">
+              <div class="accordion-item">
+                <h2 class="accordion-header" id="discountFilterHeader">
+                  <button
+                    class="accordion-button collapsed"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#discountFilterCollapse"
+                    aria-expanded="false"
+                    aria-controls="discountFilterCollapse"
+                  >
+                    Discount
+                  </button>
+                </h2>
+                <div
+                  id="discountFilterCollapse"
+                  class="accordion-collapse collapse"
+                  aria-labelledby="discountFilterHeader"
+                >
+                  <div class="accordion-body">
+                    <a class="nav-link" href="#" onclick="setDiscount(10)"
+                      >10%</a
+                    >
+                    <a class="nav-link" href="#" onclick="setDiscount(20)"
+                      >20%</a
+                    >
+                    <a class="nav-link" href="#" onclick="setDiscount(30)"
+                      >30%</a
+                    >
+                    <a class="nav-link" href="#" onclick="setDiscount(40)"
+                      >40%</a
+                    >
+                    <a class="nav-link" href="#" onclick="setDiscount(50)"
+                      >50% and above</a
+                    >
+                  </div>
                 </div>
+              </div>
             </div>
 
-            <div class="col-md-9 ml-3">
-                <div class="left-product">
-                    <div class="d-flex justify-content-between m-3">
-
-                        <div class="products-found-text">
-                            <p class="mb-0 text-white products_num" style="font-size: 3vh;">0 products found</p>
-                        </div>
-
-                        <div class="sort-filter row ">
-
-                            <div class="col-auto">
-                                <select class="form-select text-white w-100" id="sortFilter" style="background-color: #000;" aria-placeholder="Sort-By">
-                                    <option>Sort By</option>
-                                    <option>Relevance</option>
-                                    <option>Popularity</option>
-                                    <option>Low to High</option>
-                                    <option>High to Low</option>
-                                </select>
-                            </div>
-                        </div> 
-                    </div> 
+            <div class="accordion" id="ratingFilterAccordion">
+              <div class="accordion-item">
+                <h2 class="accordion-header" id="ratingFilterHeader">
+                  <button
+                    class="accordion-button collapsed"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#ratingFilterCollapse"
+                    aria-expanded="false"
+                    aria-controls="ratingFilterCollapse"
+                  >
+                    Rating
+                  </button>
+                </h2>
+                <div
+                  id="ratingFilterCollapse"
+                  class="accordion-collapse collapse"
+                  aria-labelledby="ratingFilterHeader"
+                >
+                  <div class="accordion-body">
+                    <a class="nav-link" href="#" onclick="setStars(4)"
+                      >4 stars & above</a
+                    >
+                    <a class="nav-link" href="#" onclick="setStars(3)"
+                      >3 stars & above</a
+                    >
+                    <a class="nav-link" href="#" onclick="setStars(2)"
+                      >2 stars & above</a
+                    >
+                    <a class="nav-link" href="#" onclick="setStars(1)"
+                      >1 star & above</a
+                    >
+                  </div>
                 </div>
-                <div id="productGrid" class="row"></div>
+              </div>
             </div>
-
+          </div>
         </div>
+
+        <div class="col-md-9 ml-3">
+          <div class="left-product">
+            <div class="d-flex justify-content-between m-3">
+              <div class="products-found-text">
+                <p class="mb-0 text-white products_num" style="font-size: 3vh">
+                  0 products found
+                </p>
+              </div>
+
+              <div class="sort-filter row">
+                <div class="col-auto">
+                  <select
+                    class="form-select text-white w-100"
+                    id="sortFilter"
+                    style="background-color: #000"
+                    aria-placeholder="Sort-By"
+                  >
+                    <option>Sort By</option>
+                    <option>Relevance</option>
+                    <option>Popularity</option>
+                    <option>Low to High</option>
+                    <option>High to Low</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div id="productGrid" class="row"></div>
+        </div>
+      </div>
     </div>
-  <%- include('partials/loader') %> 
-    <%- include('partials/footer') %>
+    <%- include('partials/loader') %> <%- include('partials/footer') %>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
     <script>
-        let products = [];
-        let categoryFilter = 'all'
-        let discountFilter = 0;
-        let starFilter = 0;
-        function setCategory(arg){
-            categoryFilter = arg;
-            renderProducts();
-        }
-        function setDiscount(arg) {
-            discountFilter = arg;
-            renderProducts();
-        }
-        function setStars (arg) {
-            starFilter = arg;
-            renderProducts();
-        }
+      let products = [];
+      let categoryFilter = "all";
+      let discountFilter = 0;
+      let starFilter = 0;
+      let totalProducts = 0;
+      function setCategory(arg) {
+        categoryFilter = arg;
+        renderProducts();
+      }
+      function setDiscount(arg) {
+        discountFilter = arg;
+        renderProducts();
+      }
+      function setStars(arg) {
+        starFilter = arg;
+        renderProducts();
+      }
 
-        document.addEventListener('DOMContentLoaded', async () => {
-            await fetchProducts('/api/products')
-            .then(response => {
-                products = response;
-                document.querySelector('.products_num').textContent = `${products.length} products found`
-                setCategory('<%= content.context %>')
-            })
-            .catch (err => showAlert("error while fetching the products","danger"))
+      document.addEventListener("DOMContentLoaded", async () => {
+        await fetchProducts("/api/products")
+          .then((response) => {
+            products = response;
+            setCategory("<%= content.context %>");
+          })
+          .catch((err) =>
+            showAlert("error while fetching the products", "danger")
+          );
+      });
+
+      async function fetchProducts(apiEndpoint) {
+        const response = await axios.get(apiEndpoint);
+        return response.data;
+      }
+
+      function attachAddToCartListeners(products) {
+        products.forEach((product) => {
+          const addButton = document.querySelector(`.add${product.itemId}`);
+          addButton.addEventListener("click", async (event) => {
+            event.preventDefault();
+            try {
+              const response = await addToCart("/addItem", {
+                itemId: product.itemId,
+              });
+              if (response.status === 200) {
+                console.log(response.data.message);
+                showAlert("item added to cart", "success");
+                openCart();
+              } else {
+                console.error(
+                  "Error adding item to cart:",
+                  response.data.message
+                );
+              }
+            } catch (err) {
+              if (err.response.status === 400) {
+                showAlert("Item already in cart", "success");
+                openCart();
+              } else {
+                window.location.href = "/login";
+              }
+            }
+          });
         });
+      }
+      async function addToCart(apiEndpoint, data) {
+        return await axios.post(apiEndpoint, data);
+      }
 
-        async function fetchProducts(apiEndpoint) {
-            const response = await axios.get(apiEndpoint);
-            return response.data;
-        }
+      function renderProducts() {
+        const productGrid = document.getElementById("productGrid");
+        productGrid.innerHTML = "";
 
-        function attachAddToCartListeners(products) {
-            products.forEach(product => {
-                const addButton = document.querySelector(`.add${product.itemId}`);
-                addButton.addEventListener('click', async (event) => {
-                    event.preventDefault();
-                    try {
-                    const response = await addToCart('/addItem', { itemId: product.itemId });
-                    if (response.status === 200) {
-                            console.log(response.data.message);
-                            showAlert('item added to cart','success')
-                            openCart()
-                    } else {
-                            console.error('Error adding item to cart:', response.data.message);
-                    }
-                    } catch (err) {
-                    if (err.response.status === 400){
-                        showAlert("Item already in cart","success")
-                        openCart()
-                    } else {
-                        window.location.href = "/login"
-                    }
-                    }
-                });
-            });
-        }
-        async function addToCart(apiEndpoint, data) {
-            return await axios.post(apiEndpoint, data);
-        }
-
-        function renderProducts() {
-            const productGrid = document.getElementById('productGrid');
-            productGrid.innerHTML = '';
-
-            let filteredProducts = categoryFilter === 'all' ? products : products.filter(product => product.category === categoryFilter);
-            filteredProducts = discountFilter === 0 ? filteredProducts : filteredProducts.filter(product => ((product.originalPrice - product.offeredPrice) / product.originalPrice * 100).toFixed(0) >= discountFilter);
-            filteredProducts = starFilter === 0 ? filteredProducts : filteredProducts.filter(product =>{ 
+        let filteredProducts =
+          categoryFilter === "all"
+            ? products
+            : products.filter((product) => product.category === categoryFilter);
+        filteredProducts =
+          discountFilter === 0
+            ? filteredProducts
+            : filteredProducts.filter(
+                (product) =>
+                  (
+                    ((product.originalPrice - product.offeredPrice) /
+                      product.originalPrice) *
+                    100
+                  ).toFixed(0) >= discountFilter
+              );
+        filteredProducts =
+          starFilter === 0
+            ? filteredProducts
+            : filteredProducts.filter((product) => {
                 let count = 0;
                 let totalStars = 0;
-                if (product.rating){
-                        product.rating.forEach(stars => {
-                        count++;
-                        totalStars+=stars;
-                    })
+                if (product.rating) {
+                  product.rating.forEach((stars) => {
+                    count++;
+                    totalStars += stars;
+                  });
                 } else {
-                    count = 1;
-                    totalStars = 1;
+                  count = 1;
+                  totalStars = 1;
                 }
-                return (totalStars/count) >= starFilter;
-            });
+                return totalStars / count >= starFilter;
+              });
 
-            filteredProducts.forEach(product => {
-                    const productCard = createProductCard(product);
-                    productGrid.appendChild(productCard);
-            });
+        filteredProducts.forEach((product) => {
+          const productCard = createProductCard(product);
+          productGrid.appendChild(productCard);
+        });
 
-            attachAddToCartListeners(filteredProducts);
+        attachAddToCartListeners(filteredProducts);
+      }
+      function createProductCard(product) {
+        const productCard = document.createElement("div");
+        productCard.className = "col-md-4 product-card product";
+        totalProducts += 1;
+
+        document.querySelector(
+          ".products_num"
+        ).textContent = `${totalProducts} products found`;
+
+        var words = product.description.split(" ");
+        product.description = words.slice(0, 7).join(" ");
+        if (words.length > 7) {
+          product.description += " ...";
         }
-        function createProductCard(product) {
-            const productCard = document.createElement('div');
-            productCard.className = 'col-md-4 product-card product';
 
-            var words = product.description.split(" ");
-            product.description = words.slice(0, 7).join(" ");
-            if (words.length > 7) {
-                product.description += " ...";
-            }
-
-            words = product.name.split(" ");
-            product.name = words.slice(0, 7).join(" ");
-            if (words.length > 7) {
-                product.name += " ...";
-            }
-            productCard.innerHTML = `
+        words = product.name.split(" ");
+        product.name = words.slice(0, 7).join(" ");
+        if (words.length > 7) {
+          product.name += " ...";
+        }
+        productCard.innerHTML = `
             <a href="/products/${product.itemId}" >
             <div class="product-image-container">
-                    <img class="product-image" src="${product.imageLink[0]}" alt="${product.name}">
-                    <img class="product-image hover-image" src="${product.imageLink[1] || product.imageLink[0]}" alt="${product.name}" style="display:none">
+                    <img class="product-image" src="${
+                      product.imageLink[0]
+                    }" alt="${product.name}">
+                    <img class="product-image hover-image" src="${
+                      product.imageLink[1] || product.imageLink[0]
+                    }" alt="${product.name}" style="display:none">
             </div>
             <div class="product-details">
-                    ${product.bestSeller ? '<img class="best-seller" src="../assets/best-seller.png">' : ''}
-                    ${product.newArrival ? '<img class="new-arrival" src="../assets/new-arrival.png">' : ''}
-                    <div class="category-badge text-white corner-round p-1" style="display:none;">${product.category}</div>
-                    <div class="product-title"><a href="/products/${product.itemId}" style="text-decoration:none;color:#000">${product.name}</a></div>
-                    <div class="product-description">${product.description}</div>
+                    ${
+                      product.bestSeller
+                        ? '<img class="best-seller" src="../assets/best-seller.png">'
+                        : ""
+                    }
+                    ${
+                      product.newArrival
+                        ? '<img class="new-arrival" src="../assets/new-arrival.png">'
+                        : ""
+                    }
+                    <div class="category-badge text-white corner-round p-1" style="display:none;">${
+                      product.category
+                    }</div>
+                    <div class="product-title"><a href="/products/${
+                      product.itemId
+                    }" style="text-decoration:none;color:#000">${
+          product.name
+        }</a></div>
+                    <div class="product-description">${
+                      product.description
+                    }</div>
                     <div class="mb-2">
                         <div class="d-flex justify-content-between bolder product-price-discount">
-                        <div class="product-price">&#8377; ${product.offeredPrice}</div>
-                        <div class="original-price text-secondary text-decoration-line-through">&#8377;${product.originalPrice || ''}</div>
-                        <div class="product-discount text-success">${((product.originalPrice - product.offeredPrice) / product.originalPrice * 100).toFixed(0)}% Off</div>
+                        <div class="product-price">&#8377; ${
+                          product.offeredPrice
+                        }</div>
+                        <div class="original-price text-secondary text-decoration-line-through">&#8377;${
+                          product.originalPrice || ""
+                        }</div>
+                        <div class="product-discount text-success">${(
+                          ((product.originalPrice - product.offeredPrice) /
+                            product.originalPrice) *
+                          100
+                        ).toFixed(0)}% Off</div>
                         </div>
                     </div>
-                    <button class="add-to-cart-btn add${product.itemId}" id="liveToastBtn"><i class="fas fa-cart"></i> Add to Cart</button>
+                    <button class="add-to-cart-btn add${
+                      product.itemId
+                    }" id="liveToastBtn"><i class="fas fa-cart"></i> Add to Cart</button>
             </div>
             </a>
             `;
 
-            const productImageContainer = productCard.querySelector('.product-image-container');
-            const mainImage = productImageContainer.querySelector('.product-image');
-            const hoverImage = productImageContainer.querySelector('.hover-image');
+        const productImageContainer = productCard.querySelector(
+          ".product-image-container"
+        );
+        const mainImage = productImageContainer.querySelector(".product-image");
+        const hoverImage = productImageContainer.querySelector(".hover-image");
 
-            productImageContainer.addEventListener('mouseenter', function () {
-            mainImage.style.display = 'none';
-            hoverImage.style.display = 'block';
-            });
+        productImageContainer.addEventListener("mouseenter", function () {
+          mainImage.style.display = "none";
+          hoverImage.style.display = "block";
+        });
 
-            productImageContainer.addEventListener('mouseleave', function () {
-            mainImage.style.display = 'block';
-            hoverImage.style.display = 'none';
-            });
+        productImageContainer.addEventListener("mouseleave", function () {
+          mainImage.style.display = "block";
+          hoverImage.style.display = "none";
+        });
 
-            return productCard;
-        }
+        return productCard;
+      }
 
-        const container = document.getElementById('productContainer'); 
-        products.forEach(product => {
+      const container = document.getElementById("productContainer");
+      products.forEach((product) => {
         const productCard = createProductCard(product);
         container.appendChild(productCard);
-        });
-
+      });
     </script>
 
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
-<script>
-    $(document).ready(function () {
-        $('.slider').slick({
-            autoplay: true,
-            dots: false,
-            infinite: true,
-            pauseOnHover: true,
-            centerMode: true,
-            centerPadding: "5%",
-            arrows: false,
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+    <script>
+      $(document).ready(function () {
+        $(".slider").slick({
+          autoplay: true,
+          dots: false,
+          infinite: true,
+          pauseOnHover: true,
+          centerMode: true,
+          centerPadding: "5%",
+          arrows: false,
         });
-    });
-</script>
-</body>
+      });
+    </script>
+  </body>
 </html>
