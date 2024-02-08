@@ -211,6 +211,10 @@ body{
     right: -0.2vw !important;
 }
 
+.product-card .product-title{
+    text-transform: capitalize !important;
+}
+
 .product-title {
     font-size: 27px;
     font-weight: 400;
@@ -322,18 +326,19 @@ body{
     margin-left: 0.5vh;
 }
 
-
-.product-grid{
-    padding: 1vh;
-    width: 90% !important;
-    overflow-x: scroll !important;
+.product-grid {
+    padding: 0 !important;
+    margin: 0 !important;
+    width: 90%;
+    overflow-x: scroll;
     scrollbar-width: 1px;
-display: flex;
-flex-wrap: nowrap;
-flex-direction: row;
-justify-content: flex-start;
-align-items: center;
-}
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    grid-column-gap: 10px;
+}  
+
+
 .product-price{
     display: flex;
     flex-direction: row;
@@ -402,8 +407,10 @@ align-items: center;
 .purchase-info input,
 .purchase-info .btn{
     width: 100%;
+    border-radius: 4px !important;
+    padding: 12px 32px;
     background-color: #fff;
-    font-size: 4vh;
+    font-size: 16px;
 }
 .purchase-info input{
     width: 60px;
@@ -446,7 +453,7 @@ align-items: center;
 
 .faq-section {
     width: 90%;
-    margin-top: 4vh !important;
+    margin-top: 8vh !important;
 }
 
 .faq-question{
@@ -464,7 +471,7 @@ align-items: center;
 
 .faq-question h2{
     font-weight: 300 !important;
-    font-size: 20px;
+    font-size: 24px;
 }
 
 .faq-answer {
@@ -536,6 +543,11 @@ align-items: center;
 
             .product-detail{
                 width: 97% !important;
+            }
+
+            .product-card .product-title{
+                font-size: 15px !important;
+                text-transform: capitalize !important;
             }
 
             .product-details img{
@@ -705,6 +717,8 @@ align-items: center;
     flex-wrap: wrap;
 }
 
+
+
 .product-grid .product-image {
     width: 100%;
     height: auto;
@@ -729,7 +743,7 @@ margin-top: 10px;
 }
 
 .add-to-cart-btn {
-    margin-top: 2vh;
+    margin-top: 1vh;
     display: inline-block;
     width: 100%;
     padding: 5px 10px;
@@ -767,9 +781,8 @@ background-color: #000;
 }
 @media (max-width: 576px){
 .product-grid{
-padding: 15px;
-
-grid-column-gap: 0px;
+padding: 0;
+grid-column-gap: 10px;
 }
 
 .show-btn{
@@ -783,7 +796,6 @@ grid-column-gap: 0px;
 }
 
 .product-grid{
-    padding: 1vh;
     width: 90% !important;
     overflow-x: scroll !important;
     scrollbar-width: 1px;
