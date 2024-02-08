@@ -109,7 +109,7 @@ body {
     .product-grid {
         padding: 0 !important;
         margin: 0 !important;
-        width: 90%;
+        width: 95%;
         overflow-x: scroll;
         scrollbar-width: 1px;
         display: flex;

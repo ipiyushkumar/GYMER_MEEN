@@ -326,19 +326,18 @@ body{
     margin-left: 0.5vh;
 }
 
-.product-grid {
-    padding: 0 !important;
-    margin: 0 !important;
-    width: 90%;
-    overflow-x: scroll;
+
+.product-grid{
+    padding: 1vh;
+    width: 100% !important;
+    overflow-x: scroll !important;
     scrollbar-width: 1px;
-    display: flex;
-    flex-wrap: nowrap;
-    justify-content: flex-start;
-    grid-column-gap: 10px;
-}  
-
-
+display: flex;
+flex-wrap: nowrap;
+flex-direction: row;
+justify-content: flex-start;
+align-items: center;
+}
 .product-price{
     display: flex;
     flex-direction: row;
@@ -796,6 +795,7 @@ grid-column-gap: 10px;
 }
 
 .product-grid{
+    padding: 1vh;
     width: 90% !important;
     overflow-x: scroll !important;
     scrollbar-width: 1px;
