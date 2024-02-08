@@ -552,6 +552,16 @@ align-items: center;
                 font-size: 12px !important;
             }
 
+            .product-card .rws{
+            font-size: 12px !important;
+            margin-top: 4px !important;
+        }
+
+            .product-price-discount .product-price{
+                font-size: 15px !important;
+            }
+    
+
             .product-detail{
                 width: 97% !important;
             }
@@ -757,7 +767,7 @@ margin-top: 10px;
     margin-top: -2vh !important;
     display: inline-block;
     width: 100%;
-    padding: 5px 10px;
+    padding: 0 !important;
     background-color: #fff;
     color: #000;
     text-align: center;
@@ -802,7 +812,7 @@ grid-column-gap: 10px;
     margin-top: -5pxs;
 }
 
-.add-to-cart-btn{
+.product-card .add-to-cart-btn{
     font-size: 11px;
 }
 
