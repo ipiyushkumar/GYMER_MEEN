@@ -695,16 +695,13 @@ body{
     flex-direction: column;
 }
 
-/* .product-grid{
-    padding: 1rem;
-    width: 95%;
-    
+.product-grid{
     overflow-x: scroll !important;
     scrollbar-width: 1px;
 display: flex;
 flex-wrap: nowrap;
 flex-direction: row;
-} */
+}
 
 .product-details{
     text-align: left;
