@@ -208,13 +208,9 @@ body{
 }
 
 .product-details img:nth-child(1){
-    left: -5% !important;
-    top: -2%;
+    display: none !important;
 }
 
-.product-details img:nth-child(2){
-    right: -0.2vw !important;
-}
 
 .product-title {
     font-size: 27px;
