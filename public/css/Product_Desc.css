@@ -123,9 +123,9 @@ body{
 }
 
 .main-image{
-    width: 87%;
+    width: 85%;
     height: 100%;
-    border-radius: 10px;
+    border-radius: 0px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -160,12 +160,11 @@ body{
 }
 
 .additional-images {
-    width: 10%;
-    height: 80vh;
+    width: 12%;
+    height: max-content;
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
-    align-items: flex-start;
+    justify-content: flex-start;
     overflow-y: scroll;
     scroll-snap-type: x mandatory; /* Enable snapping to each image */
     -ms-overflow-style: none;
@@ -177,14 +176,9 @@ body{
 
   .additional-image {
     width: 100%;
-    height: 10vh;
-    background-size:contain;
+    height: auto;
     background-color: #fff;
-    background-repeat: no-repeat;
-    background-position:center;
-    border-radius: 5px;
-    cursor: pointer;
-    overflow: hidden;
+    object-fit: cover;
   }
   
 

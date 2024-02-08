@@ -310,8 +310,7 @@ footer .social a{
             <div class="product-imgs" style="align-self: start;">
                 <div class="additional-images">
                   <% item.imageLink.forEach((image, index) => { %>
-                      <div class="additional-image" onclick="loadImage('<%= image %>')" style="background-image: url('<%= image %>');" alt="<%= item.name %>">
-                      </div>
+                        <img class="additional-image" onclick="loadImage('<%= image %>')" src="<%= image %>" alt="<%= item.name %>" style="width: auto; height: 100%;">                  
                   <% }); %>
 
               </div>
