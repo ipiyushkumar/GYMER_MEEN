@@ -182,6 +182,10 @@ body{
     cursor: pointer;
     overflow: hidden;
   }
+
+  .product-card a{
+    color: #fff;
+  }
   
 
 .product-content{
@@ -212,6 +216,7 @@ body{
 }
 
 .product-card .product-title{
+    color: #fff !important;
     text-align: center;
     text-transform: capitalize !important;
 }
