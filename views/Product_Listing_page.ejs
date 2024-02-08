@@ -624,6 +624,7 @@
       function attachAddToCartListeners(products) {
         products.forEach((product) => {
           const addButton = document.querySelector(`.add${product.itemId}`);
+          if (!addButton) return 0;
           addButton.addEventListener("click", async (event) => {
             event.preventDefault();
             try {
@@ -719,6 +720,17 @@
         if (words.length > 7) {
           product.name += " ...";
         }
+
+        let button;
+        let isLoggedIn = Boolean("<%= content.isLoggedIn %>");
+
+        if (product.stock > 0 && Date.parse(product.createdAt) < Date.now()) {
+          button = ` <button class="add-to-cart-btn add${product.itemId}" id="liveToastBtn"><i class="fas fa-cart"></i> Add to Cart</button>`;
+        } else if (isLoggedIn == true) {
+          button = `<button class="add-to-cart-btn" id="liveToastBtn"><i class="fas fa-cart"></i> You will be Notified shortly</button>`;
+        } else {
+          button = `<button class="add-to-cart-btn" openSubscribeModal(${product.itemId}) id="liveToastBtn"><i class="fas fa-cart"></i>Notify Me</button> `;
+        }
         productCard.innerHTML = `
             <a href="/products/${product.itemId}" >
             <div class="product-image-container">
@@ -766,9 +778,7 @@
                         ).toFixed(0)}% Off</div>
                         </div>
                     </div>
-                    <button class="add-to-cart-btn add${
-                      product.itemId
-                    }" id="liveToastBtn"><i class="fas fa-cart"></i> Add to Cart</button>
+                    ${addButton}
             </div>
             </a>
             `;
