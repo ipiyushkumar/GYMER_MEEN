@@ -49,6 +49,15 @@ body {
             font-size: 12px !important;
         }
 
+        .product-price-discount .product-price{
+            font-size: 15px !important;
+        }
+
+        .product-card .rws{
+            font-size: 12px !important;
+            margin-top: 4px !important;
+        }
+
     .navbar-brand {
     width: 45%;
     }
@@ -225,7 +234,7 @@ body {
     font-size: 27px;
     }
     .add-to-cart-btn {
-    margin-top:  -2vh !important;
+    margin-top: -2vh !important;
     display: inline-block;
     width: 100%;
     padding: 5px 10px;
