@@ -346,7 +346,7 @@ body{
 
 .product-grid{
     padding: 1vh;
-    width: 100% !important;
+    width: 90% !important;
     overflow-x: scroll !important;
     scrollbar-width: 1px;
 display: flex;
@@ -823,7 +823,7 @@ grid-column-gap: 10px;
 
 .product-grid{
     padding: 1vh;
-    width: 90% !important;
+    width: 95% !important;
     overflow-x: scroll !important;
     scrollbar-width: 1px;
 display: flex;
