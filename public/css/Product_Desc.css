@@ -212,8 +212,14 @@ body{
 }
 
 .product-card .product-title{
+    text-align: center;
     text-transform: capitalize !important;
 }
+
+.product-card .product-price{
+    font-weight: 500;
+    font-size: 27px;
+    }
 
 .product-title {
     font-size: 27px;
@@ -326,6 +332,12 @@ body{
     margin-left: 0.5vh;
 }
 
+.product-card .rws{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 18px;
+}
 
 .product-grid{
     padding: 1vh;
@@ -742,7 +754,7 @@ margin-top: 10px;
 }
 
 .add-to-cart-btn {
-    margin-top: 1vh;
+    margin-top: -2vh !important;
     display: inline-block;
     width: 100%;
     padding: 5px 10px;

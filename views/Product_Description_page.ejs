@@ -75,22 +75,23 @@ footer .social a{
 }
 
 .product-card {
-        width: 24% !important;
+        width: 24%;
     cursor: pointer;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
     flex-wrap: wrap;
+    line-height: 35px;
+    text-align: center;
     background-color: #000;
     color: #fff !important;
     margin: 5px;
     padding: 0;
     color: #fff;
-    border-radius: 0px;
-    font-size:15px;
+    border-radius: none;
     transition: transform 0.2s;
-    height: max-content;
+    height: auto;
     }
 
     .notify {
@@ -919,31 +920,56 @@ footer .social a{
         }
   productCard.innerHTML = `
   <a href="/products/${product.itemId}" >
-    <div class="product-image-container">
-          <img class="product-image" src="${product.imageLink[0]}" alt="${product.name}">
-          <img class="product-image hover-image" src="${product.imageLink[1] || product.imageLink[0]}" alt="${product.name}" style="display:none">
-    </div>
-    <div class="product-details">
-          ${product.bestSeller ? '<img class="best-seller" src="../assets/best-seller.png">' : ''}
-          ${product.newArrival ? '<img class="new-arrival" src="../assets/new-arrival.png">' : ''}
-          <div class="category-badge text-white corner-round p-1" style="display:none;">${product.category}</div>
-          <div class="product-title"><a href="/products/${product.itemId}" style="text-decoration:none;color:#fff;">${product.name}</a></div>
-          <div class="product-description">${product.description}</div>
-          <div class="d-flex bolder product-price-discount">
-            <div style="width:60%;display: flex;">
-                        <div class="original-price" style="width:70%;display:flex;align-items:center;">MRP:<strike><span class="text-decoration-line-through">&#8377;${product.originalPrice || ""}</strike></span></div>
-                        <div class="product-price" style="width:30%;">&#8377;${product.offeredPrice}</div>
+            <div class="product-image-container">
+                  <img class="product-image" src="${
+                    product.imageLink[0]
+                  }" alt="${product.name}">
+                  <img class="product-image hover-image" src="${
+                    product.imageLink[1] || product.imageLink[0]
+                  }" alt="${product.name}" style="display:none">
+            </div>
+            <div class="product-details">
+                  ${
+                    product.bestSeller
+                      ? '<img class="best-seller" src="../assets/best-seller.png">'
+                      : ""
+                  }
+                  ${
+                    product.newArrival
+                      ? '<img class="new-arrival" src="../assets/new-arrival.png">'
+                      : ""
+                  }
+                  <div class="category-badge text-white corner-round p-1" style="display:none;">${
+                    product.category
+                  }</div>
+                  <div class="product-title"><a href="/products/${
+                    product.itemId
+                  }" style="text-decoration:none;">${product.name}</a></div>
+                  <div class="product-description" style="font-size:2vh;" >${
+                    product.description
+                  }</div>
+                  <div class="mb-0 p-0">
+                  <div class="d-flex bolder product-price-discount justify-content-center align-items-center">
+                        <div class="original-price" style="text-decoration:line-through;font-weight:300;">MRP : <span class="text-decoration-line-through">&#8377;${
+                          product.originalPrice || ""
+                        }</span>
+                        </div>
+                        <div class="product-price ml-2 mr-2">&#8377;${
+                          product.offeredPrice
+                        }
+                        </div>
+                      <div class="product-discount d-flex justify-content-end text-success text-uppercase"> ${(
+                      ((product.originalPrice - product.offeredPrice) /
+                        product.originalPrice) *
+                      100
+                      ).toFixed(0)}% Off
                     </div>
-                    <div class="product-discount d-flex justify-content-end text-success text-uppercase" style="width:40%;">${(
-                        ((product.originalPrice - product.offeredPrice) /
-                            product.originalPrice) *
-                        100
-                    ).toFixed(0)}% Off</div>
-
-</div>
-${button}
-    </div>
-  </a>
+                  </div>
+                </div>
+                <p style="text-align:center;font-weight:300;" class="rws"><iconify-icon icon="noto:star"></iconify-icon> 4.6 | 204 Reviews</p>
+                  ${button}
+            </div>
+         </a>
   `;
 
   const productImageContainer = productCard.querySelector('.product-image-container');
