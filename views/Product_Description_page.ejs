@@ -380,7 +380,7 @@ footer .social a{
                         <button type="button" class="btn">You will be Notified shortly</button>
                     <% } else { %>
 
-                        <button onclick="openNotifyModal()" type="button" class="btn mb-5">Notify me</button>
+                        <button onclick="openNotifyModal()" type="button" class="btn mb-5">NOTIFY ME</button>
 
                         <div id="notifyModal" class="notify">
                             <div class="notify-content">
@@ -881,7 +881,7 @@ footer .social a{
         } else if (isLoggedIn == true) {
           button = `<button class="add-to-cart-btn" id="liveToastBtn"><i class="fas fa-cart"></i> You will be Notified shortly</button>`;
         } else {
-          button = `<button class="add-to-cart-btn" openSubscribeModal(${product.itemId}) id="liveToastBtn"><i class="fas fa-cart"></i>Notify Me</button> `;
+          button = `<button class="add-to-cart-btn" openSubscribeModal(${product.itemId}) id="liveToastBtn"><i class="fas fa-cart"></i>NOTIFY ME</button> `;
         }
   productCard.innerHTML = `
   <a href="/products/${product.itemId}" >
