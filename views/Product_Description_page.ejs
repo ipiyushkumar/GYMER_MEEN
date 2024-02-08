@@ -691,11 +691,65 @@ footer .social a{
   </div>
 
   <h2 class="people m-2 mt-4 mb-3" style="font-size:5vh;">People Also Bought</h2>
-  <div id="productGrid" class="row mb-5 product-grid container uonmousedown="startScroll(event)" onmouseup="stopScroll()" ontouchstart="startScroll(event)" ontouchend="stopScroll()">
+  <div id="productGrid" class="row mb-5 product-grid container" onmousedown="startScroll(event)" onmouseup="stopScroll()" ontouchstart="startScroll(event)" ontouchend="stopScroll()">
   </div>
   <%- include('partials/footer') %>
 
  <%- include('partials/loader') %>
+
+ <script>
+    let isScrolling = false;
+
+    function startScroll(event) {
+      isScrolling = true;
+      const scrollContainer = document.getElementById("productGrid");
+      const startX = event.pageX || event.touches[0].pageX;
+      let scrollLeft = scrollContainer.scrollLeft;
+
+      function handleMouseMove(e) {
+        const x = e.pageX || e.touches[0].pageX;
+        const delta = x - startX;
+        scrollContainer.scrollLeft = scrollLeft - delta;
+      }
+
+      function handleMouseUp() {
+        isScrolling = false;
+        document.removeEventListener("mousemove", handleMouseMove);
+        document.removeEventListener("mouseup", handleMouseUp);
+        document.removeEventListener("touchmove", handleMouseMove);
+        document.removeEventListener("touchend", handleMouseUp);
+      }
+
+      document.addEventListener("mousemove", handleMouseMove);
+      document.addEventListener("mouseup", handleMouseUp);
+      document.addEventListener("touchmove", handleMouseMove);
+      document.addEventListener("touchend", handleMouseUp);
+    }
+
+    function stopScroll() {
+      isScrolling = false;
+    }
+
+    let timeoutId;
+
+    function hideScrollbar() {
+      if (!isScrolling) {
+        document.getElementById("productGrid").style.overflow = "hidden";
+      }
+    }
+
+    function showScrollbar() {
+      document.getElementById("productGrid").style.overflow = "auto";
+    }
+
+    document
+      .getElementById("productGrid")
+      .addEventListener("scroll", function () {
+        showScrollbar();
+        clearTimeout(timeoutId);
+        timeoutId = setTimeout(hideScrollbar, 2000);
+      });
+  </script>
 
     <script>
         if (document.querySelector(`.addCartButton`)) {

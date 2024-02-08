@@ -320,7 +320,19 @@ body{
 .product-rating span{
     font-weight: 400;
     margin-left: 0.5vh;
+}
 
+
+.product-grid{
+    padding: 1vh;
+    width: 90% !important;
+    overflow-x: scroll !important;
+    scrollbar-width: 1px;
+display: flex;
+flex-wrap: nowrap;
+flex-direction: row;
+justify-content: flex-start;
+align-items: center;
 }
 .product-price{
     display: flex;
@@ -686,13 +698,6 @@ body{
     flex-direction: column;
 }
 
-.product-grid{
-    overflow-x: scroll !important;
-    scrollbar-width: 1px;
-display: flex;
-flex-wrap: nowrap;
-flex-direction: row;
-}
 
 .product-details{
     text-align: left;
