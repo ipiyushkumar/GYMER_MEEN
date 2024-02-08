@@ -322,7 +322,7 @@ footer .social a{
               </div> 
               <div class="slider-images" id="imageSlider">
                 <% item.imageLink.forEach((image, index) => { %>
-                        <img src="../assets/product-imgs/hair removal spray for men.jpg" style="width: 100%; height: auto;object-fit:fill;" alt="<%= item.name %>">
+                        <img src="<%= image %>"  style="width: 100%; height: auto;object-fit:fill;" alt="<%= item.name %>">
                 <% }); %>
             </div>
             
