@@ -310,7 +310,8 @@ footer .social a{
             <div class="product-imgs" style="align-self: start;">
                 <div class="additional-images">
                   <% item.imageLink.forEach((image, index) => { %>
-                        <img class="additional-image" onclick="loadImage('<%= image %>')" src="<%= image %>" alt="<%= item.name %>" style="width: auto; height: 100%;">                  
+                      <div class="additional-image" onclick="loadImage('<%= image %>')" style="background-image: url('<%= image %>');" alt="<%= item.name %>">
+                      </div>
                   <% }); %>
 
               </div>
@@ -321,18 +322,10 @@ footer .social a{
               </div> 
               <div class="slider-images" id="imageSlider">
                 <% item.imageLink.forEach((image, index) => { %>
-                    <div class="new-image" onclick="loadImage('<%= image %>')" style="background-image: url('<%= image %>');" alt="<%= item.name %>"></div>
+                        <img src="../assets/product-imgs/hair removal spray for men.jpg" style="width: 100%; height: auto;object-fit:fill;" alt="<%= item.name %>">
                 <% }); %>
-
-                <div class="custom-carousel-controls container-fluid d-flex align-items-end justify-content-end" style="font-size: 5vh;">
-                    <div class="custom-carousel-left mr-2" style="color: #fff; cursor: pointer; margin-right: 3px;" onclick="scrollCustomSlides('left')">
-                        <iconify-icon icon="icon-park-outline:left-c"></iconify-icon>
-                    </div>
-                    <div class="custom-carousel-right ml-auto" style="color: #fff; cursor: pointer;" onclick="scrollCustomSlides('right')">
-                        <iconify-icon icon="icon-park-outline:right-c"></iconify-icon>
-                    </div>
-                </div>
             </div>
+            
 
             <div class="product-content" style="align-self: start;">
                 <h1 class="product-title" style="color: #fff;"><%= item.name %></h1>
@@ -866,7 +859,7 @@ footer .social a{
         if (product.stock > 0 && Date.parse(product.createdAt) < Date.now()) {
           button = ` <button class="add-to-cart-btn add${product.itemId}" id="liveToastBtn"><i class="fas fa-cart"></i> Add to Cart</button>`;
         } else if (isLoggedIn == true) {
-          button = `<button class="add-to-cart-btn" openSubscribeModal(${product.itemId}) id="liveToastBtn"><i class="fas fa-cart"></i>NOTIFY ME</button>`;
+          button = `<button class="add-to-cart-btn" id="liveToastBtn"><i class="fas fa-cart"></i>NOTIFY Me</button>`;
         } else {
           button = `<button class="add-to-cart-btn" openSubscribeModal(${product.itemId}) id="liveToastBtn"><i class="fas fa-cart"></i>NOTIFY ME</button> `;
         }

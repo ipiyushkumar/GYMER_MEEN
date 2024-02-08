@@ -89,9 +89,8 @@ body{
         align-items: center;
         margin-bottom: 3vh;
         overflow-x: scroll;
-        border-radius: 10px;
         width: 100%; /* Change from 100vh to 100vw for full-width */
-        height: 50vh; /* Adjusted height for better visibility */
+        height: max-content;
         scroll-snap-type: x mandatory; /* Enable snapping to each image */
         scrollbar-width: none !important;
     }
@@ -125,7 +124,6 @@ body{
 .main-image{
     width: 85%;
     height: 100%;
-    border-radius: 0px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -161,7 +159,7 @@ body{
 
 .additional-images {
     width: 12%;
-    height: max-content;
+    height: 80vh;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
@@ -176,9 +174,13 @@ body{
 
   .additional-image {
     width: 100%;
-    height: auto;
+    height: 10vh;
+    background-size:contain;
     background-color: #fff;
-    object-fit: cover;
+    background-repeat: no-repeat;
+    background-position:center;
+    cursor: pointer;
+    overflow: hidden;
   }
   
 
@@ -202,9 +204,12 @@ body{
 }
 
 .product-details img:nth-child(1){
-    display: none !important;
+  display: none;
 }
 
+.product-details img:nth-child(2){
+    right: -0.2vw !important;
+}
 
 .product-title {
     font-size: 27px;
@@ -335,13 +340,12 @@ body{
     font-size: 22px;
     color: red;
     margin-right: 1rem;
-    font-weight: 500;
+    font-weight: 300;
 }
 
 .last-price,.tax{
     font-size: 15px;
     text-transform: capitalize;
-    margin-bottom: 1vh;
 }
 
 .last-price{
@@ -354,9 +358,6 @@ body{
     font-weight: 500;
 }
 
-.tax{
-    margin-bottom: 4vh;
-}
 
 .product-detail{
     width: 92% !important;
