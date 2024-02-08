@@ -219,7 +219,7 @@ body{
 .product-title {
     font-size: 27px;
     font-weight: 500;
-    margin-top: 1rem;
+    text-transform: uppercase;
     }
     .product-description {
     font-size: 15px;
@@ -330,7 +330,6 @@ body{
 .product-price{
     display: flex;
     flex-direction: row;
-    margin: 1vh;
     margin-left: 0;
     font-weight: 500;
 }
@@ -343,21 +342,26 @@ body{
 }
 
 .product-price .discount-percentage{
-    font-size: 4vh;
+    font-size: 22px;
     color: red;
     margin-right: 1rem;
     font-weight: 500;
 }
 
 .last-price,.tax{
-    font-size: 3vh;
+    font-size: 15px;
+    text-transform: capitalize;
     margin-bottom: 1vh;
 }
 
+.last-price{
+   font-size: 22px;
+   font-weight: 300;
+}
+
 .last-price span{
-    color: #fff;
-    text-decoration: line-through;
-   
+    font-size: 26px;
+    font-weight: 500;
 }
 
 .tax{
@@ -544,7 +548,7 @@ body{
 
 
             .product-title{
-                font-size: 15px !important;
+                font-size: 20px !important;
             }
         
             .product-details img:nth-child(2){
@@ -691,16 +695,16 @@ body{
     flex-direction: column;
 }
 
-.product-grid{
+/* .product-grid{
     padding: 1rem;
-    width: 100%;
+    width: 95%;
     
     overflow-x: scroll !important;
     scrollbar-width: 1px;
 display: flex;
 flex-wrap: nowrap;
 flex-direction: row;
-}
+} */
 
 .product-details{
     text-align: left;
@@ -770,7 +774,7 @@ background-color: #000;
 }
 @media (max-width: 576px){
 .product-grid{
-padding: 5px;
+padding: 15px;
 
 grid-column-gap: 0px;
 }
@@ -786,8 +790,8 @@ grid-column-gap: 0px;
 }
 
 .product-grid{
-    padding: 2vh;
-    width: 100%;
+    padding: 1vh;
+    width: 90% !important;
     overflow-x: scroll !important;
     scrollbar-width: 1px;
 display: flex;
@@ -800,7 +804,7 @@ align-items: center;
 }
 
 #productGrid {
-    overflow: hidden;
+    overflow: hidden !important;
     -ms-overflow-style: none;
     scrollbar-width: none;
 }

@@ -349,22 +349,21 @@ footer .social a{
 
             <div class="product-content" style="align-self: start;">
                 <h1 class="product-title" style="color: #fff;"><%= item.name %></h1>
-
+                
                <div class="butns">
                 <div>
-                  <div class="product-price">
-                    <p class="discount-percentage">
-                        <% 
-                            const discountPercentage = ((item.originalPrice - item.offeredPrice) / item.originalPrice) * 100;
-                        %>
-                        <span>-<%= discountPercentage.toFixed(0) %>%  </span> 
-                        <p class="new-price"><span>&#8377;<%= item.offeredPrice %></span></p>
+                    <p><iconify-icon icon="noto:star"></iconify-icon> 5 | 204 Reviews</p>
 
-                        </p>
+                    <p class="last-price">M.R.P. : <strike>&#8377;<%= item.originalPrice%></strike><span> &#8377;<%= item.offeredPrice %></span></p>
+                    <div class="product-price">
+                        <p class="discount-percentage">
+                            <% 
+                                const discountPercentage = ((item.originalPrice - item.offeredPrice) / item.originalPrice) * 100;
+                            %>
+                            <span><%= discountPercentage.toFixed(0) %>% OFF</span> 
+                            </p>
                     </div>
-
-                    <p class="last-price">M.R.P. : <span>&#8377;<%= item.originalPrice%></span></p>
-                    <p class="tax">Inclusive of all taxes</p>
+                    <p class="tax">₹(Incl. of all taxes). Usually delivered in  3-5 days</p>
                  </div>
                 <div class="quantity-container" style="display: none;">
                   <button id="minus-btn" class='decrease<%= item.itemId %>'>-</button>
@@ -712,7 +711,7 @@ footer .social a{
   </div>
 
   <h2 class="people m-2 mt-4 mb-3" style="font-size:5vh;">People Also Bought</h2>
-  <div id="productGrid" class="row mb-5 product-grid container onmousedown="startScroll(event)" onmouseup="stopScroll()" ontouchstart="startScroll(event)" ontouchend="stopScroll()">
+  <div id="productGrid" class="row mb-5 product-grid container uonmousedown="startScroll(event)" onmouseup="stopScroll()" ontouchstart="startScroll(event)" ontouchend="stopScroll()">
   </div>
   <%- include('partials/footer') %>
 
@@ -862,15 +861,15 @@ footer .social a{
   productCard.className = 'col-md-4 product-card product';
 
   var words = product.description.split(" ");
-          product.description = words.slice(0, 8).join(" ");
-          if (words.length > 8) {
-              product.description += " ...";
+          product.description = words.slice(0, 5).join(" ");
+          if (words.length > 5) {
+              product.description += "...";
           }
 
           words = product.name.split(" ");
-          product.name = words.slice(0, 7).join(" ");
-          if (words.length > 7) {
-              product.name += " ...";
+          product.name = words.slice(0, 3).join(" ");
+          if (words.length > 3) {
+              product.name += "...";
           }
 
   productCard.innerHTML = `
