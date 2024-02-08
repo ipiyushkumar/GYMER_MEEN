@@ -6,6 +6,27 @@ body {
     font-family: 'Outfit', sans-serif !important;
 }
 
+.loader {
+    border: 4px solid #f3f3f3;
+    border-radius: 50%;
+    border-top: 4px solid #3498db;
+    width: 30px;
+    height: 30px;
+    animation: spin 1s linear infinite;
+    margin: auto;
+    margin-top: 20px;
+  }
+
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+
+  /* Hide the loader initially */
+  .loader-container {
+    display: none;
+  }
+
 .promo-strip {
     width: 100%;
     text-transform: uppercase;
@@ -24,7 +45,49 @@ body {
   .product-details {
       width: 100%;
     padding: 2vh;
+}
 
+.product-card .add-to-cart-btn {
+    width: 100%;
+    padding: 1vh !important;
+    background-color: #fff;
+    color: #000;
+    text-align: center;
+    text-decoration: none;
+    font-size: 15px;
+    font-weight: 500;
+    border: none;
+    border-radius: none;
+    cursor: pointer;
+    text-transform: uppercase;
+    transition: background-color 0.3s ease-in-out;
+    }
+    .add-to-cart-btn:hover{
+    background-color: #fff;
+    border: 1px solid burlywood;
+    color: burlywood;
+    }
+
+    .product-price{
+        font-weight: 500;
+        font-size: 22px;
+        margin-right: 1vh;
+        margin-left: 1vh;
+        }
+
+.product-title {
+    text-align: center;
+font-size: 24px;
+font-weight: 400;
+margin-top: 1rem;
+}
+
+.product-details img{
+    width: auto;
+    height: 10vh;
+    position: absolute;
+    background-color: #fff;
+    top: 0;
 }
 
   .product-image {
@@ -101,7 +164,19 @@ body {
         100% { transform: rotate(360deg); }
     }
 
+    @media (max-width: 767.98px){
+        .product-title{
+            font-size: 15px !important;
+        }
+        .product-price-discount{
+            font-size: 12px !important;
+        }
 
+        .product-card .rws{
+            font-size: 12px !important;
+            margin-top: 4px !important;
+        }
+    }
 
     @media screen and (max-height: 450px) {
     .sidenav {padding-top: 15px;}

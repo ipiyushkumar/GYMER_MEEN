@@ -1323,6 +1323,31 @@
       }
     </style>
 
+<div class="modal fade" id="notifyModal" tabindex="-1" role="dialog" aria-labelledby="notifyModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="notifyModalLabel">Subscribe</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Subscribe for notifications
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-dark" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  function openNotifyModal() {
+    $('#notifyModal').modal('show');
+  }
+</script>
+
     <div class="custom-slider">
       <div class="custom-slides">
         <div class="custom-slide" id="custom-slide-1">
@@ -1810,6 +1835,16 @@
       </div>
     </div>
 
+    <div id="notifyModal" class="notify">
+      <div class="notify-content">
+        <span class="notify-close-btn" onclick="closeNotifyModal()">&times;</span>
+        <h2>Subscribe for notifications</h2>
+        <input type="email" class="subEmail" placeholder="Enter your email address:">
+        <button class="notifySubscribe-btn" onclick="addSub()">Subscribe</button>
+      </div>
+  </div>
+  
+
     <!-- <div class="container-fluid mb-2 p-5" data-aos="fade-up" data-aos-duration="1000">
         <h2 class="text-center text-white mb-5 engage text-capitalize">Engage, Share, and Explore our Instagram Highlights!</h2>
         <div class="row">
@@ -2178,9 +2213,9 @@
           if (product.stock > 0 && Date.parse(product.createdAt) < Date.now()) {
             button = ` <button class="add-to-cart-btn add${product.itemId}" id="liveToastBtn"><i class="fas fa-cart"></i> Add to Cart</button>`;
           } else if (isLoggedIn == true) {
-            button = `<button class="add-to-cart-btn" openSubscribeModal(${product.itemId})  id="liveToastBtn"><i class="fas fa-cart"></i>NOTIFY ME</button>`;
+            button = `<button class="add-to-cart-btn" onclick="openNotifyModal()" openSubscribeModal(${product.itemId})  id="liveToastBtn"><i class="fas fa-cart"></i>NOTIFY ME</button>`;
           } else {
-            button = `<button class="add-to-cart-btn" openSubscribeModal(${product.itemId}) id="liveToastBtn"><i class="fas fa-cart"></i>NOTIFY ME</button> `;
+            button = `<button class="add-to-cart-btn" onclick="openNotifyModal()" openSubscribeModal(${product.itemId}) id="liveToastBtn"><i class="fas fa-cart"></i>NOTIFY ME</button> `;
           }
         }
 
