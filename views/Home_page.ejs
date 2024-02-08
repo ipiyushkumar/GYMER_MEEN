@@ -2179,7 +2179,7 @@
         } else if (isLoggedIn == true) {
           button = `<button class="add-to-cart-btn" id="liveToastBtn"><i class="fas fa-cart"></i> You will be Notified shortly</button>`;
         } else {
-          button = `<button class="add-to-cart-btn" openSubscribeModal(${product.itemId}) id="liveToastBtn"><i class="fas fa-cart"></i>N</button> `;
+          button = `<button class="add-to-cart-btn" openSubscribeModal(${product.itemId}) id="liveToastBtn"><i class="fas fa-cart"></i>NOTIFY ME</button> `;
         }
 
         productCard.innerHTML = `
@@ -2214,15 +2214,15 @@
                   }</div>
                   <div class="mb-0 p-0">
                     <div class="d-flex bolder product-price-discount">
-                    <div style="width:60%;display: flex;">
-                        <div class="original-price" style="width:70%;">MRP:<span class="text-decoration-line-through">&#8377;${
+                    <div>
+                        <div class="original-price">MRP:<span class="text-decoration-line-through">&#8377;${
                           product.originalPrice || ""
                         }</span></div>
-                        <div class="product-price" style="width:30%;">&#8377;${
+                        <div class="product-price">&#8377;${
                           product.offeredPrice
                         }</div>
                     </div>
-                    <div class="product-discount d-flex justify-content-end text-success text-uppercase" style="width:40%;">${(
+                    <div class="product-discount d-flex justify-content-end text-success text-uppercase"">${(
                       ((product.originalPrice - product.offeredPrice) /
                         product.originalPrice) *
                       100
