@@ -139,6 +139,7 @@ body {
     align-items: center;
     flex-wrap: wrap;
     line-height: 35px;
+    text-align: center;
     background-color: #000;
     color: #fff !important;
     margin: 5px;
@@ -199,11 +200,13 @@ body {
     background-color: #000;
     }
     .product-title {
+        text-align: center;
     font-size: 27px;
     font-weight: 400;
     margin-top: 1rem;
     }
     .product-description {
+        display: none !important;
     font-size: 20px;
     font-weight: 300;
     margin-top: 0.5rem;
@@ -217,10 +220,12 @@ body {
         font-weight: 300 !important;
     }
     .product-price{
+
     font-weight: 500;
+    font-size: 27px;
     }
     .add-to-cart-btn {
-    margin-top: 2vh;
+    margin-top:  -2vh !important;
     display: inline-block;
     width: 100%;
     padding: 5px 10px;
