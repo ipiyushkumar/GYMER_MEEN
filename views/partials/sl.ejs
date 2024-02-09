@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Owl Carousel Full Screen Slider</title>
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
+  <style>
+
+    .custom-slider {
+        position: relative;
+        overflow: hidden;
+        width: 100%;
+        height: auto;
+        margin-top: 13vh !important;
+    }
+    .custom-slider .custom-slide img {
+      width: 100% !important;
+      height: 100%;
+      object-fit: fill;
+    }
+
+    @media (max-width: 767px) {
+    #custom-slide-1 img {
+        content: url("../assets/grooming-mb.jpg");
+    }
+    #custom-slide-2 img {
+        content: url("../assets/growth-mb.jpg");
+    }
+    #custom-slide-3 img {
+        content: url("../assets/Spray-third-mb.jpg");
+    }
+}
+
+  </style>
+</head>
+<body>
+
+<div class="custom-slider owl-carousel">
+    <div class="custom-slide" id="custom-slide-1">
+        <img src="../assets/grooming-desk.jpg" alt="Slide 1" />
+    </div>
+    <div class="custom-slide" id="custom-slide-2">
+        <img src="../assets/growth-desk.jpg" alt="Slide 2" />
+    </div>
+    <div class="custom-slide" id="custom-slide-3">
+        <img src="../assets/bellavita-exp.jpg" alt="Slide 3" />
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+<script>
+  $(document).ready(function(){
+      $('.custom-slider').owlCarousel({
+          items: 1,
+          loop: true,
+          autoplay: true,
+          autoplayTimeout: 5000,
+          autoplayHoverPause: true,
+          touchDrag: true,
+          mouseDrag: true,
+          responsive:{
+              0:{
+                  items:1,
+                  nav:false
+              },
+              600:{
+                  items:1,
+                  nav:false
+              },
+              1000:{
+                  items:1,
+                  nav:false
+              }
+          }
+      });
+  });
+</script>
+
+</body>
+</html>
