@@ -1324,21 +1324,21 @@
     </style>
 
 <div class="modal fade" id="notifyModal" tabindex="-1" role="dialog" aria-labelledby="notifyModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document">
+  <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="notifyModalLabel">Subscribe For Notifications</h5>
-        <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <h5 class="modal-title" id="notifyModalLabel">Subscribe</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
-        </button> -->
+        </button>
       </div>
       <div class="modal-body">
         <form id="notificationForm">
           <div class="form-group">
-            <label for="emailInput">Enter Email Address:</label>
+            <label for="emailInput">Email Address:</label>
             <input type="email" class="form-control" id="emailInput" placeholder="Enter your email">
           </div>
-          <button type="submit" class="btn btn-dark">Subscribe</button>
+          <button type="submit" class="btn btn-primary">Subscribe</button>
         </form>
         <div id="thankYouMessage" style="display: none;">Thank you, you'll be notified shortly.</div>
       </div>
@@ -2222,7 +2222,7 @@
           if (product.stock > 0 && Date.parse(product.createdAt) < Date.now()) {
             button = ` <button class="add-to-cart-btn add${product.itemId}" id="liveToastBtn"><i class="fas fa-cart"></i> Add to Cart</button>`;
           } else if (isLoggedIn == true) {
-            button = `<button class="add-to-cart-btn" onclick="openNotifyModal()"   id="liveToastBtn"><i class="fas fa-cart"></i>NOTIFY ME</button>`;
+            button = `<button class="add-to-cart-btn" onclick="openNotifyModal())"   id="liveToastBtn"><i class="fas fa-cart"></i>NOTIFY ME</button>`;
           } else {
             button = `<button class="add-to-cart-btn" onclick="openNotifyModal()" id="liveToastBtn"><i class="fas fa-cart"></i>NOTIFY ME</button> `;
           }
@@ -2234,7 +2234,7 @@
         if (product.stock > 0 && Date.parse(product.createdAt) < Date.now()) {
           button = ` <button class="add-to-cart-btn add${product.itemId}" id="liveToastBtn"><i class="fas fa-cart"></i> Add to Cart</button>`;
         } else if (isLoggedIn == true) {
-          button = `<button class="add-to-cart-btn" onclick="openNotifyModal()" id="liveToastBtn"><i class="fas fa-cart"></i>NOTIFY ME</button>`;
+          button = `<button class="add-to-cart-btn" onclick="openSubscribeModal(${product.itemId})" id="liveToastBtn"><i class="fas fa-cart"></i>YOU'LL BE NOTIFIED</button>`;
         } else {
           button = `<button class="add-to-cart-btn" onclick="openNotifyModal()" id="liveToastBtn"><i class="fas fa-cart"></i>NOTIFY ME</button> `;
         }
