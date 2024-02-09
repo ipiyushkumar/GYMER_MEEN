@@ -185,7 +185,7 @@ body {
     }
 
     .product-sliders .sliding-buttons{
-        background-color: transparent;
+        background-color: #000;
         border: none;
         outline: none;
         color: #fff;
