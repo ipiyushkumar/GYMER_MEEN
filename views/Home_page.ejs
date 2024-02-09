@@ -1388,20 +1388,62 @@
 
     <script>
       document.addEventListener("DOMContentLoaded", function () {
-        const slides = document.querySelector(".custom-slides");
-        const slideWidth = document.querySelector(".custom-slide").clientWidth;
-        let currentIndexNew = 0;
-
-        function nextSlide() {
-          currentIndexNew = (currentIndexNew + 1) % slides.children.length;
-          slides.style.transform = `translateX(-${
-            currentIndexNew * slideWidth
-          }px)`;
-        }
-
-        setInterval(nextSlide, 3000);
+          const slides = document.querySelector(".custom-slides");
+          const slideWidth = document.querySelector(".custom-slide").clientWidth;
+          let currentIndexNew = 0;
+          let touchStartX = 0;
+          let touchEndX = 0;
+  
+          function nextSlide() {
+              currentIndexNew = (currentIndexNew + 1) % slides.children.length;
+              updateSlidePosition();
+          }
+  
+          function updateSlidePosition() {
+              slides.style.transition = "transform 0.3s ease-in-out";
+              slides.style.transform = `translateX(-${currentIndexNew * slideWidth}px)`;
+          }
+  
+          setInterval(nextSlide, 3000);
+  
+          // Touch events for swipe
+          slides.addEventListener("touchstart", function (event) {
+              touchStartX = event.touches[0].clientX;
+          });
+  
+          slides.addEventListener("touchmove", function (event) {
+              touchEndX = event.touches[0].clientX;
+          });
+  
+          slides.addEventListener("touchend", function () {
+              const swipeDistance = touchStartX - touchEndX;
+              if (Math.abs(swipeDistance) > slideWidth / 2) {
+                  if (swipeDistance > 0) {
+                      // Swiped left, move to next slide
+                      currentIndexNew = Math.min(currentIndexNew + 1, slides.children.length - 1);
+                  } else {
+                      // Swiped right, move to previous slide
+                      currentIndexNew = Math.max(currentIndexNew - 1, 0);
+                  }
+              }
+              updateSlidePosition();
+          });
+  
+          // Keyboard events for navigation
+          document.addEventListener("keydown", function (event) {
+              if (event.keyCode === 37) {
+                  // Left arrow key
+                  currentIndexNew = Math.max(currentIndexNew - 1, 0);
+                  updateSlidePosition();
+              } else if (event.keyCode === 39) {
+                  // Right arrow key
+                  currentIndexNew = Math.min(currentIndexNew + 1, slides.children.length - 1);
+                  updateSlidePosition();
+              }
+          });
       });
-    </script>
+  </script>
+  
 
     <!-- <script>
       document.addEventListener("DOMContentLoaded", function () {
