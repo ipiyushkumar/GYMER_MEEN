@@ -1344,6 +1344,7 @@
 
 <script>
   function openNotifyModal() {
+    console.log("notify me modal");
     $('#notifyModal').modal('show');
   }
 </script>
@@ -1835,14 +1836,14 @@
       </div>
     </div>
 
-    <!-- <div id="notifyModal" class="notify">
-      <div class="notify-content">
-        <span class="notify-close-btn" onclick="closeNotifyModal()">&times;</span>
-        <h2>Subscribe for notifications</h2>
-        <input type="email" class="subEmail" placeholder="Enter your email address:">
-        <button class="notifySubscribe-btn" onclick="addSub()">Subscribe</button>
-      </div>
-  </div> -->
+      <!-- <div id="notifyModal" class="notify">
+        <div class="notify-content">
+          <span class="notify-close-btn" onclick="closeNotifyModal()">&times;</span>
+          <h2>Subscribe for notifications</h2>
+          <input type="email" class="subEmail" placeholder="Enter your email address:">
+          <button class="notifySubscribe-btn" onclick="addSub()">Subscribe</button>
+        </div>
+    </div> -->
   
 
     <!-- <div class="container-fluid mb-2 p-5" data-aos="fade-up" data-aos-duration="1000">
@@ -2213,9 +2214,9 @@
           if (product.stock > 0 && Date.parse(product.createdAt) < Date.now()) {
             button = ` <button class="add-to-cart-btn add${product.itemId}" id="liveToastBtn"><i class="fas fa-cart"></i> Add to Cart</button>`;
           } else if (isLoggedIn == true) {
-            button = `<button class="add-to-cart-btn" onclick="openNotifyModal()" openSubscribeModal(${product.itemId})  id="liveToastBtn"><i class="fas fa-cart"></i>NOTIFY ME</button>`;
+            button = `<button class="add-to-cart-btn" onclick="openSubscribeModal(${product.itemId})"   id="liveToastBtn"><i class="fas fa-cart"></i>NOTIFY ME</button>`;
           } else {
-            button = `<button class="add-to-cart-btn" onclick="openNotifyModal()" openSubscribeModal(${product.itemId}) id="liveToastBtn"><i class="fas fa-cart"></i>NOTIFY ME</button> `;
+            button = `<button class="add-to-cart-btn" onclick="openSubscribeModal(${product.itemId})" id="liveToastBtn"><i class="fas fa-cart"></i>NOTIFY ME</button> `;
           }
         }
 
@@ -2225,9 +2226,9 @@
         if (product.stock > 0 && Date.parse(product.createdAt) < Date.now()) {
           button = ` <button class="add-to-cart-btn add${product.itemId}" id="liveToastBtn"><i class="fas fa-cart"></i> Add to Cart</button>`;
         } else if (isLoggedIn == true) {
-          button = `<button class="add-to-cart-btn" openSubscribeModal(${product.itemId}) id="liveToastBtn"><i class="fas fa-cart"></i>NOTIFY ME</button>`;
+          button = `<button class="add-to-cart-btn" onclick="openSubscribeModal(${product.itemId})" id="liveToastBtn"><i class="fas fa-cart"></i>NOTIFY ME</button>`;
         } else {
-          button = `<button class="add-to-cart-btn" openSubscribeModal(${product.itemId}) id="liveToastBtn"><i class="fas fa-cart"></i>NOTIFY ME</button> `;
+          button = `<button class="add-to-cart-btn" onclick="openSubscribeModal(${product.itemId})" id="liveToastBtn"><i class="fas fa-cart"></i>NOTIFY ME</button> `;
         }
 
         productCard.innerHTML = `
