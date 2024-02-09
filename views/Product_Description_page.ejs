@@ -337,14 +337,13 @@ footer .social a{
                     <p><iconify-icon icon="noto:star"></iconify-icon> 5 | 204 Reviews</p>
 
                     <p class="last-price">M.R.P. : <strike>&#8377;<%= item.originalPrice%></strike><span> &#8377;<%= item.offeredPrice %></span></p>
-                    <div class="product-price">
                         <p class="discount-percentage">
                             <% 
                                 const discountPercentage = ((item.originalPrice - item.offeredPrice) / item.originalPrice) * 100;
                             %>
                             <span><%= discountPercentage.toFixed(0) %>% OFF</span> 
                             </p>
-                    </div>
+
                     <p class="tax">₹(Incl. of all taxes). Usually delivered in  3-5 days</p>
                  </div>
                 <div class="quantity-container" style="display: none;">
@@ -484,21 +483,13 @@ footer .social a{
 
 
     <div class="faq-section mt-1 mb-1">
-        <script>
-            function formatText(elementId) {
-                var element = document.getElementById(elementId);
-                var text = element.innerHTML;
-                var formattedText = text.replace(/\. /g, '.<br><br>');
-                element.innerHTML = formattedText;
-            }
-        </script>
         
         <div class="faq-question" onclick="toggleFAQ(this)">
             <span><h2>Product Description</h2></span>
             <span class="icon">&#43;</span>
         </div>
         <div class="faq-answer">
-            <p id="description" onload="formatText('description')"><%= item.description || "" %></p>
+            <p id="description"><%= item.description || "" %></p>
         </div>
         
         <div class="faq-question" onclick="toggleFAQ(this)">
@@ -506,7 +497,7 @@ footer .social a{
             <span class="icon">&#43;</span>
         </div>
         <div class="faq-answer">
-            <p id="keyFeaturesText" onload="formatText('keyFeaturesText')"><%= item.keyFeatures || "" %></p>
+            <p id="keyFeaturesText"><%= item.keyFeatures || "" %></p>
         </div>
         
         <div class="faq-question" onclick="toggleFAQ(this)">
@@ -514,7 +505,7 @@ footer .social a{
             <span class="icon">&#43;</span>
         </div>
         <div class="faq-answer">
-            <p id="howtouse" onload="formatText('howtouse')"><%= item.how_to_use || "" %></p>
+            <p id="howtouse"><%= item.how_to_use || "" %></p>
         </div>
         
         <div class="faq-question" onclick="toggleFAQ(this)">
@@ -522,7 +513,7 @@ footer .social a{
             <span class="icon" >&#43;</span>
         </div>
         <div class="faq-answer">
-            <p id="itemFAQ" onload="formatText('itemFAQ')"><%= item.FAQ || "" %></p>
+            <p id="itemFAQ"><%= item.FAQ || "" %></p>
         </div>
         
 
@@ -818,7 +809,6 @@ footer .social a{
     </script>
 
 <script>
-
     function splitTextAtPunctuation() {
         var keyFeaturesText = document.getElementById('keyFeaturesText');
         var text = keyFeaturesText.innerHTML;
@@ -829,6 +819,44 @@ footer .social a{
     }
     splitTextAtPunctuation();
 </script>
+
+<script>
+  function splitHowToUseAtPunctuation() {
+      var howToUseText = document.getElementById('howtouse');
+      var text = howToUseText.innerHTML;
+
+      var sentences = text.split(/[.?]/);
+
+      howToUseText.innerHTML = sentences.join('.<br><br>'); 
+  }
+  splitHowToUseAtPunctuation();
+</script>
+
+<script>
+  function splitItemFAQAtPunctuation() {
+      var itemFAQText = document.getElementById('itemFAQ');
+      var text = itemFAQText.innerHTML;
+
+      var sentences = text.split(/[.?]/);
+
+      itemFAQText.innerHTML = sentences.join('.<br><br>'); 
+  }
+  splitItemFAQAtPunctuation();
+</script>
+
+
+<script>
+  function splitDescriptionAtPunctuation() {
+      var descriptionText = document.getElementById('description');
+      var text = descriptionText.innerHTML;
+
+      var sentences = text.split(/[.?]/);
+
+      descriptionText.innerHTML = sentences.join('.<br><br>'); 
+  }
+  splitDescriptionAtPunctuation();
+</script>
+
 
 <script>
   let products = [];
