@@ -176,7 +176,7 @@ body {
 
     .product-sliders{
         position: absolute;
-        z-index: 2;
+        z-index: 1;
     }
 
     .product-sliders button{
