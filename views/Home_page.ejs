@@ -4,6 +4,10 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>WhiteWolf India</title>
+    <!-- owlcarousel -->
+    <link rel="stylesheet" href="owlcarousel/owl.carousel.min.css">
+    <link rel="stylesheet" href="owlcarousel/owl.theme.default.min.css">
+    <!-- owl carsouel end -->
     <link rel="canonical" href="https://www.whitewolfindia.com" />
     <!-- <link rel="canonical" href="http://whitewolfindia.com">
       <link rel="canonical" href="www.whitewolfindia.com"> -->
@@ -1369,34 +1373,45 @@
     $('#notifyModal').modal('show');
   }
 </script>
-
-    <div class="custom-slider">
+<!-- carousel -->
+    <!-- <div class="custom-slider">
       <div class="custom-slides">
         <div class="custom-slide" id="custom-slide-1">
-          <img
-            src="../assets/anti-acne-desk.jpg"
-            alt="Slide 1"
-            style="width: 100%; height: auto"
-          />
+          <img src="../assets/anti-acne-desk.jpg"alt="Slide 1"style="width: 100%; height: auto" />
         </div>
         <div class="custom-slide" id="custom-slide-2">
-          <img
-            src="../assets/growth-desk.jpg"
-            alt="Slide 2"
-            style="width: 100%; height: auto"
-          />
+          <img src="../assets/growth-desk.jpg"  alt="Slide 2" style="width: 100%; height: auto"/>
         </div>
         <div class="custom-slide" id="custom-slide-3">
-          <img
-            src="../assets/bellavita-exp.jpg"
-            alt="Slide 3"
-            style="width: 100%; height: auto"
-          />
+          <img src="../assets/bellavita-exp.jpg" alt="Slide 3" style="width: 100%; height: auto"/>
         </div>
       </div>
+    </div> -->
+<!-- Custom carousel end     -->
+<!-- owl carousel -->
+<div id="carouselExample" class="carousel slide">
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <img src="../assets/anti-acne-desk.jpg" class="d-block w-100" alt="...">
     </div>
-
-   <script>
+    <div class="carousel-item">
+      <img src="..." class="d-block w-100" alt="...">
+    </div>
+    <div class="carousel-item">
+      <img src="..." class="d-block w-100" alt="...">
+    </div>
+  </div>
+  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div>
+<!-- owl carsouelend -->
+<script>
     document.addEventListener("DOMContentLoaded", function () {
   const slides = document.querySelector(".custom-slides");
   const slideWidth = document.querySelector(".custom-slide").clientWidth;
@@ -2591,5 +2606,27 @@
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/aos@2.3.1/dist/aos.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <!-- owl script -->
+    <script src="jquery.min.js"></script>
+    <script src="owlcarousel/owl.carousel.min.js"></script>
+    <script type="text/javascript">
+      $('.owl-carousel').owlCarousel({
+    loop:true,
+    margin:10,
+    nav:true,
+    responsive:{
+        0:{
+            items:1
+        },
+        600:{
+            items:3
+        },
+        1000:{
+            items:5
+        }
+    }
+})
+    </script>
+    <!-- owl script end -->
   </body>
 </html>
