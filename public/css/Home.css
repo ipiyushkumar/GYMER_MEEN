@@ -171,6 +171,23 @@ body {
     height: auto;
     }
 
+    .brand-slider {
+        width: 100%;
+        margin: 0 auto;
+        margin-top: 15vh !important;
+        background-color: #000;
+      }
+
+      .brand-slider .slick-slide {
+        padding: 0 3vh;
+      }
+
+      .brand-slider img {
+        width: 100%;
+        height: auto;
+      }
+
+
     .product-details{
         margin-top: -1vh !important;
         padding: 0!important;
