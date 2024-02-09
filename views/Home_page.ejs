@@ -1323,6 +1323,10 @@
         #custom-slide-3 img {
           content: url("../assets/Spray-third-mb.jpg");
         }
+        .productarrow
+        {
+          display: none;
+        }
       }
     </style>
 
@@ -1492,11 +1496,11 @@
       </div>
 
       <div class="container-fluid d-flex justify-content-center product-sliders mb-2">
-        <button onclick="slideLeft()"><iconify-icon icon="icon-park-outline:left-c"></iconify-icon></button>
+        <button class="productarrow productarrow-left" onclick="slideLeft()"><iconify-icon icon="icon-park-outline:left-c"></iconify-icon></button>
         <div id="productGrid" class="row product-grid">
           <!-- Your product items here -->
       </div>
-        <button onclick="slideRight()"><iconify-icon icon="icon-park-outline:right-c"></iconify-icon></button>
+        <button class="productarrow productarrow-right" onclick="slideRight()"><iconify-icon icon="icon-park-outline:right-c"></iconify-icon></button>
       </div>
 
 
