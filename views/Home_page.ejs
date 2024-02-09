@@ -2299,18 +2299,16 @@
         const productImageContainer = productCard.querySelector(
           ".product-image-container"
         );
-        const mainImage = productImageContainer.querySelector(".product-image");
-        const hoverImage = productImageContainer.querySelector(".hover-image");
-
         productImageContainer.addEventListener("mouseenter", function () {
-          mainImage.style.display = "none";
-          hoverImage.style.display = "block";
-        });
+    mainImage.classList.add("hidden");
+    hoverImage.classList.remove("hidden");
+});
 
-        productImageContainer.addEventListener("mouseleave", function () {
-          mainImage.style.display = "block";
-          hoverImage.style.display = "none";
-        });
+productImageContainer.addEventListener("mouseleave", function () {
+    mainImage.classList.remove("hidden");
+    hoverImage.classList.add("hidden");
+});
+
 
         return productCard;
       }
