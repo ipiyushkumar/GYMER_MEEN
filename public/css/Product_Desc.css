@@ -370,10 +370,10 @@ align-items: center;
 }
 
 .product-price p{
-    font-size: 22px;
-    color: red !important;
+    font-size: 20px;
+    color: green !important;
     margin-right: 1rem;
-    font-weight: 300;
+    font-weight: 400;
 }
 
 .last-price,.tax{
