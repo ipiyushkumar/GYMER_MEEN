@@ -1386,64 +1386,67 @@
       </div>
     </div>
 
-    <script>
-      document.addEventListener("DOMContentLoaded", function () {
-          const slides = document.querySelector(".custom-slides");
-          const slideWidth = document.querySelector(".custom-slide").clientWidth;
-          let currentIndexNew = 0;
-          let touchStartX = 0;
-          let touchEndX = 0;
-  
-          function nextSlide() {
-              currentIndexNew = (currentIndexNew + 1) % slides.children.length;
-              updateSlidePosition();
-          }
-  
-          function updateSlidePosition() {
-              slides.style.transition = "transform 0.3s ease-in-out";
-              slides.style.transform = `translateX(-${currentIndexNew * slideWidth}px)`;
-          }
-  
-          setInterval(nextSlide, 3000);
-  
-          // Touch events for swipe
-          slides.addEventListener("touchstart", function (event) {
-              touchStartX = event.touches[0].clientX;
-          });
-  
-          slides.addEventListener("touchmove", function (event) {
-              touchEndX = event.touches[0].clientX;
-          });
-  
-          slides.addEventListener("touchend", function () {
-              const swipeDistance = touchStartX - touchEndX;
-              if (Math.abs(swipeDistance) > slideWidth / 2) {
-                  if (swipeDistance > 0) {
-                      // Swiped left, move to next slide
-                      currentIndexNew = Math.min(currentIndexNew + 1, slides.children.length - 1);
-                  } else {
-                      // Swiped right, move to previous slide
-                      currentIndexNew = Math.max(currentIndexNew - 1, 0);
-                  }
-              }
-              updateSlidePosition();
-          });
-  
-          // Keyboard events for navigation
-          document.addEventListener("keydown", function (event) {
-              if (event.keyCode === 37) {
-                  // Left arrow key
-                  currentIndexNew = Math.max(currentIndexNew - 1, 0);
-                  updateSlidePosition();
-              } else if (event.keyCode === 39) {
-                  // Right arrow key
-                  currentIndexNew = Math.min(currentIndexNew + 1, slides.children.length - 1);
-                  updateSlidePosition();
-              }
-          });
-      });
-  </script>
-  
+   <script>
+    document.addEventListener("DOMContentLoaded", function () {
+  const slides = document.querySelector(".custom-slides");
+  const slideWidth = document.querySelector(".custom-slide").clientWidth;
+  let currentIndex = 0;
+  let touchStartX; // Define touchStartX here
+
+  // Touch and swipe event handlers
+  slides.addEventListener("touchstart", handleTouchStart);
+  slides.addEventListener("touchmove", handleTouchMove);
+  slides.addEventListener("touchend", handleTouchEnd);
+
+  // Keyboard event handlers
+  document.addEventListener("keydown", handleKeyDown);
+
+  function handleTouchStart(event) {
+    touchStartX = event.touches[0].clientX; // Assign value to touchStartX
+    slides.classList.add("touching"); // Prevent default scrolling
+  }
+
+  function handleTouchMove(event) {
+    if (!slides.classList.contains("touching")) return;
+    const touchMoveX = event.touches[0].clientX;
+    const changeInX = touchMoveX - touchStartX;
+    const newTranslateX = slides.style.transform.replace(/translateX\(-(.*)px\)/, "$1") + changeInX;
+    slides.style.transform = `translateX(-${newTranslateX}px)`;
+  }
+
+  function handleTouchEnd() {
+    slides.classList.remove("touching");
+
+    // Calculate new index based on slide position
+    const translatePercentage = -100 * slides.style.transform.replace(/translateX\(-(.*)px\)/, "$1") / slideWidth;
+    const newIndex = Math.round(translatePercentage / 100 * (slides.children.length - 1));
+
+    // Animate to the nearest slide
+    currentIndex = newIndex;
+    slides.style.transition = "transform 0.3s ease-out"; // Add a transition for smoother swiping
+    slides.style.transform = `translateX(-${currentIndex * slideWidth}px)`;
+  }
+
+  function handleKeyDown(event) {
+    if (event.key === "ArrowRight") {
+      nextSlide();
+    } else if (event.key === "ArrowLeft") {
+      prevSlide();
+    }
+  }
+
+  function nextSlide() {
+    currentIndex = (currentIndex + 1) % slides.children.length;
+    slides.style.transform = `translateX(-${currentIndex * slideWidth}px)`;
+  }
+
+  function prevSlide() {
+    currentIndex = (currentIndex - 1 + slides.children.length) % slides.children.length;
+    slides.style.transform = `translateX(-${currentIndex * slideWidth}px)`;
+  }
+});
+
+   </script>
 
     <!-- <script>
       document.addEventListener("DOMContentLoaded", function () {
