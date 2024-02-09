@@ -369,9 +369,9 @@ align-items: center;
     font-weight: 500;
 }
 
-.product-price .discount-percentage{
+.product-price p{
     font-size: 22px;
-    color: red;
+    color: red !important;
     margin-right: 1rem;
     font-weight: 300;
 }

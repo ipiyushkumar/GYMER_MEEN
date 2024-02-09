@@ -337,13 +337,14 @@ footer .social a{
                     <p><iconify-icon icon="noto:star"></iconify-icon> 5 | 204 Reviews</p>
 
                     <p class="last-price">M.R.P. : <strike>&#8377;<%= item.originalPrice%></strike><span> &#8377;<%= item.offeredPrice %></span></p>
+                    <div class="product-price">
                         <p class="discount-percentage">
                             <% 
                                 const discountPercentage = ((item.originalPrice - item.offeredPrice) / item.originalPrice) * 100;
                             %>
                             <span><%= discountPercentage.toFixed(0) %>% OFF</span> 
                             </p>
-
+                    </div>
                     <p class="tax">₹(Incl. of all taxes). Usually delivered in  3-5 days</p>
                  </div>
                 <div class="quantity-container" style="display: none;">
