@@ -179,7 +179,7 @@ body {
         z-index: 1;
     }
 
-    .product-sliders button{
+    .product-sliders .sliding-buttons{
         background-color: transparent;
         border: none;
         outline: none;
