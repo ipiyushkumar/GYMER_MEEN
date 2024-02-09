@@ -51,6 +51,11 @@ body {
     }
 
     @media (max-width: 767.98px) {
+        
+
+        .product-sliders button{
+            display: none !important;
+        }
 
         .product-price-discount{
             font-size: 12px !important;
