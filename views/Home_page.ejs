@@ -1396,65 +1396,7 @@
       </div>
     </div>
 
-   <script>
-    document.addEventListener("DOMContentLoaded", function () {
-  const slides = document.querySelector(".custom-slides");
-  const slideWidth = document.querySelector(".custom-slide").clientWidth;
-  let currentIndex = 0;
-  let touchStartX; 
-
-  slides.addEventListener("touchstart", handleTouchStart);
-  slides.addEventListener("touchmove", handleTouchMove);
-  slides.addEventListener("touchend", handleTouchEnd);
-
-  document.addEventListener("keydown", handleKeyDown);
-
-  function handleTouchStart(event) {
-    touchStartX = event.touches[0].clientX; 
-    slides.classList.add("touching"); 
-  }
-
-  function handleTouchMove(event) {
-    if (!slides.classList.contains("touching")) return;
-    const touchMoveX = event.touches[0].clientX;
-    const changeInX = touchMoveX - touchStartX;
-    const newTranslateX = slides.style.transform.replace(/translateX\(-(.*)px\)/, "$1") + changeInX;
-    slides.style.transform = `translateX(-${newTranslateX}px)`;
-  }
-
-  function handleTouchEnd() {
-    slides.classList.remove("touching");
-
-    const translatePercentage = -100 * slides.style.transform.replace(/translateX\(-(.*)px\)/, "$1") / slideWidth;
-    const newIndex = Math.round(translatePercentage / 100 * (slides.children.length - 1));
-
-    currentIndex = newIndex;
-    slides.style.transition = "transform 0.3s ease-out"; 
-    slides.style.transform = `translateX(-${currentIndex * slideWidth}px)`;
-  }
-
-  function handleKeyDown(event) {
-    if (event.key === "ArrowRight") {
-      nextSlide();
-    } else if (event.key === "ArrowLeft") {
-      prevSlide();
-    }
-  }
-
-  function nextSlide() {
-    currentIndex = (currentIndex + 1) % slides.children.length;
-    slides.style.transform = `translateX(-${currentIndex * slideWidth}px)`;
-  }
-
-  function prevSlide() {
-    currentIndex = (currentIndex - 1 + slides.children.length) % slides.children.length;
-    slides.style.transform = `translateX(-${currentIndex * slideWidth}px)`;
-  }
-});
-
-   </script>
-
-    <!-- <script>
+    <script>
       document.addEventListener("DOMContentLoaded", function () {
         const slides = document.querySelector(".custom-slides");
         let currentIndex = 0;
@@ -1469,7 +1411,7 @@
 
         setInterval(scrollToNextSlide, 3000);
       });
-    </script> -->
+    </script>
 
     <div
       class="container-fluid d-flex flex-column justify-content-center align-items-center products-bar mt-3"

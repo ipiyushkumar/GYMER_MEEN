@@ -359,7 +359,7 @@ footer .social a{
                     <% if (item.stock > 0 && Date.parse(item.createdAt) < Date.now()) { %>
                         <button type="button" class="btn addCartButton mb-4">ADD TO CART</button>
                     <% } else if ( content.isLoggedIn == true ) { %>
-                        <button type="button" class="btn">You will be Notified shortly</button>
+                        <button type="button" class="btn mb-4 text-uppercase">You'll be Notified shortly</button>
                     <% } else { %>
 
                         <button onclick="openNotifyModal()" type="button" class="btn mb-4">NOTIFY ME</button>
