@@ -1428,11 +1428,16 @@
       >
         <h2 class="text-light mt-2">Top Sellers</h2>
       </div>
-       <!-- <button id="scrollLeftBtn" onclick="scrollLeft()">Scroll Left</button>
-      <button id="scrollRightBtn" onclick="scrollRight()">Scroll Right</button> -->
-      <div id="productGrid" class="row product-grid" onmousedown="startScroll(event)" onmouseup="stopScroll()" ontouchstart="startScroll(event)" ontouchend="stopScroll()">
-        <!-- Your product items here -->
+
+      <div class="container-fluid d-flex justify-content-end product-sliders mb-2">
+        <button onclick="slideLeft()"><iconify-icon icon="icon-park-outline:left-c"></iconify-icon></button>
+      <button onclick="slideRight()"><iconify-icon icon="icon-park-outline:right-c"></iconify-icon></button>
       </div>
+
+<div id="productGrid" class="row product-grid">
+    <!-- Your product items here -->
+</div>
+
       
 
       <div class="d-flex justify-content-center p-2 mt-0 mb-0">
@@ -1488,6 +1493,25 @@
 
       setInterval(autoScroll, 30);
     </script>
+<script>
+  const productGridNew = document.getElementById("productGrid");
+  const scrollStep = 300; // Adjust this value as needed
+
+  function slideLeft() {
+      productGridNew.scrollTo({
+          left: productGrid.scrollLeft - scrollStep,
+          behavior: "smooth"
+      });
+  }
+
+  function slideRight() {
+      productGridNew.scrollTo({
+          left: productGrid.scrollLeft + scrollStep,
+          behavior: "smooth"
+      });
+  }
+</script>
+
 
 <script>
   var productGrid = document.getElementById('productGrid');
@@ -2299,16 +2323,19 @@
         const productImageContainer = productCard.querySelector(
           ".product-image-container"
         );
+        
+        const mainImage = productImageContainer.querySelector(".product-image");
+        const hoverImage = productImageContainer.querySelector(".hover-image");
+
         productImageContainer.addEventListener("mouseenter", function () {
-    mainImage.classList.add("hidden");
-    hoverImage.classList.remove("hidden");
-});
+          mainImage.style.display = "none";
+          hoverImage.style.display = "block";
+        });
 
-productImageContainer.addEventListener("mouseleave", function () {
-    mainImage.classList.remove("hidden");
-    hoverImage.classList.add("hidden");
-});
-
+        productImageContainer.addEventListener("mouseleave", function () {
+          mainImage.style.display = "block";
+          hoverImage.style.display = "none";
+        });
 
         return productCard;
       }
