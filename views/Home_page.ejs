@@ -2114,6 +2114,23 @@
           button = `<button class="add-to-cart-btn" onclick="openNotifyModal()" id="liveToastBtn"><i class="fas fa-cart"></i>NOTIFY ME</button> `;
         }
 
+        // Get all product images
+const productImages = document.querySelectorAll('.product-image');
+
+// Add event listeners for touchstart and touchend events
+productImages.forEach(image => {
+    image.addEventListener('touchstart', () => {
+        // Add a class to apply styles for resetting hover
+        image.classList.add('reset-hover');
+    });
+
+    image.addEventListener('touchend', () => {
+        // Remove the class to revert back to the original hover styles
+        image.classList.remove('reset-hover');
+    });
+});
+
+
         productCard.innerHTML = `
          <a href="/products/${product.itemId}" >
             <div class="product-image-container">
