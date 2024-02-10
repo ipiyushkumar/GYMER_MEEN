@@ -95,6 +95,7 @@
                             <div class="mb-2 mt-2 single_item_total${cartItem.itemId}" style="font-size:1.3rem;font-weight:500;">Subtotal : <span style="font-weight:bold">&#8377;${(productDetails.offeredPrice * cartItem.quantity)}</span></div>
                         </li>
                         `;
+                        
                         cartItemsContainer.append(cartItemElement);
 
                         document.querySelector(`.decrease${cartItem.itemId}`).addEventListener('click', async () => {

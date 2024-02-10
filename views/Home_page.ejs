@@ -1241,25 +1241,47 @@
     </style>
 
 <div class="modal fade" id="notifyModal" tabindex="-1">
-  <div class="modal-dialog">
+  <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title">Subscribe</h5>
+        <h5 class="modal-title">Subscribe For Notifications</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
         <form id="notificationForm">
           <div class="form-group">
-            <label for="emailInput">Email Address:</label>
-            <input type="email" class="form-control" id="emailInput" placeholder="Enter your email">
+            <label for="emailInput" class="mb-1">Enter Email Address :</label>
+            <input type="email" class="form-control mb-3" id="emailInput" placeholder="Enter your email" required>
           </div>
           <button type="submit" class="btn btn-dark">Subscribe</button>
         </form>
-        <div id="thankYouMessage" style="display: none;">Thank you, you'll be notified shortly.</div>
+        <div id="thankYouMessage" class="mt-2 text-success" style="display: none;">Thank you, you'll be notified shortly.</div>
       </div>
     </div>
   </div>
 </div>
+
+<script>
+  document.getElementById("notificationForm").addEventListener("submit", function(event) {
+    event.preventDefault(); 
+
+    var email = localStorage.getItem("submittedEmail");
+    var inputEmail = document.getElementById("emailInput").value;
+
+    if (email === inputEmail) {
+      alert("We have already received your request. You'll be notified shortly.");
+      return;
+    }
+
+    document.getElementById("thankYouMessage").style.display = "block";
+
+    localStorage.setItem("submittedEmail", inputEmail);
+
+    setTimeout(function() {
+      location.reload(); 
+    }, 2000); 
+  });
+</script>
 
 <script>
   function openNotifyModal() {
@@ -2075,7 +2097,7 @@
           if (product.stock > 0 && Date.parse(product.createdAt) < Date.now()) {
             button = ` <button class="add-to-cart-btn add${product.itemId}" id="liveToastBtn"><i class="fas fa-cart"></i> Add to Cart</button>`;
           } else if (isLoggedIn == true) {
-            button = `<button class="add-to-cart-btn" onclick="openNotifyModal())"   id="liveToastBtn"><i class="fas fa-cart"></i>NOTIFY ME</button>`;
+            button = `<button class="add-to-cart-btn" onclick="openNotifyModal()"   id="liveToastBtn"><i class="fas fa-cart"></i>NOTIFY ME</button>`;
           } else {
             button = `<button class="add-to-cart-btn" onclick="openNotifyModal()" id="liveToastBtn"><i class="fas fa-cart"></i>NOTIFY ME</button> `;
           }
@@ -2087,7 +2109,7 @@
         if (product.stock > 0 && Date.parse(product.createdAt) < Date.now()) {
           button = ` <button class="add-to-cart-btn add${product.itemId}" id="liveToastBtn"><i class="fas fa-cart"></i> Add to Cart</button>`;
         } else if (isLoggedIn == true) {
-          button = `<button class="add-to-cart-btn" onclick="openSubscribeModal(${product.itemId})" id="liveToastBtn"><i class="fas fa-cart"></i>YOU'LL BE NOTIFIED</button>`;
+          button = `<button class="add-to-cart-btn" onclick="openNotifyModal()" id="liveToastBtn"><i class="fas fa-cart"></i>NOTIFY ME</button>`;
         } else {
           button = `<button class="add-to-cart-btn" onclick="openNotifyModal()" id="liveToastBtn"><i class="fas fa-cart"></i>NOTIFY ME</button> `;
         }

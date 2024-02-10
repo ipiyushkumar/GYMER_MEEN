@@ -196,16 +196,14 @@
 
     #productGrid {
         overflow: hidden;
-        -ms-overflow-style: none;  /* IE and Edge */
-        scrollbar-width: none;  /* Firefox */
+        -ms-overflow-style: none;  
+        scrollbar-width: none;  
     }
-    
+
     #productGrid::-webkit-scrollbar {
         display: none;
     }
-    
-    
-    
+
     .product-card {
         width: 31%;
     cursor: pointer;
@@ -241,7 +239,6 @@
         background-color: #fff;
     }
 
-
     .product-image {
     width: 100%;
     height: auto;
@@ -265,7 +262,7 @@
       }
 
       @media (max-width: 576px) {
-        
+
         .accordion {
           margin-top: 0.5rem;
           margin-bottom: 0.5rem;
@@ -322,8 +319,6 @@
           font-size: 2rem;
         }
       }
-
-      
 
       .slider {
         width: 100%;
@@ -412,24 +407,6 @@
         <div class="col-md-3 mt-0 mr-3">
           <div class="filters mt-1 mb-5">
             <h4 class="text-white">Filter</h4>
-
-            <!-- <div class="accordion" id="categoryFilterAccordion">
-                        <div class="accordion-item">
-                            <h2 class="accordion-header" id="categoryFilterHeader">
-                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#categoryFilterCollapse" aria-expanded="false" aria-controls="categoryFilterCollapse">
-                                    Category
-                                </button>
-                            </h2>
-                            <div id="categoryFilterCollapse" class="accordion-collapse collapse" aria-labelledby="categoryFilterHeader">
-                                <div class="accordion-body">
-                                    <a class="nav-link" href="#" onclick="setCategory('Face Care')">Face Care</a>
-                                    <a class="nav-link" href="#" onclick="setCategory('Hair Care')">Hair Care</a>
-                                    <a class="nav-link" href="#" onclick="setCategory('Body Care')">Body Care</a>
-                                    <a class="nav-link" href="#" onclick="setCategory('Beard Care')">Beard Care</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div> -->
 
             <div class="accordion" id="discountFilterAccordion">
               <div class="accordion-item">
@@ -582,8 +559,7 @@
         }, 2000); 
       });
     </script>
-    
-    
+
     <script>
       function openNotifyModal() {
         console.log("notify me modal");
@@ -735,7 +711,7 @@
         if (product.stock > 0 && Date.parse(product.createdAt) < Date.now()) {
           button = ` <button class="add-to-cart-btn add${product.itemId}" id="liveToastBtn"><i class="fas fa-cart"></i> Add to Cart</button>`;
         } else if (isLoggedIn == true) {
-          button = `<button class="add-to-cart-btn text-uppercase" id="liveToastBtn"><i class="fas fa-cart"></i>You'll be notified</button>`;
+          button = `<button class="add-to-cart-btn text-uppercase" onclick="openNotifyModal()" id="liveToastBtn"><i class="fas fa-cart"></i>Notify Me</button>`;
         } else {
           button = `<button class="add-to-cart-btn" onclick="openNotifyModal()" id="liveToastBtn"><i class="fas fa-cart"></i>Notify Me</button> `;
         }

@@ -255,11 +255,11 @@ footer .social a{
 
           <div class="d-none d-lg-flex justify-content-evenly align-items-center" style="width: 60%;color: #fff;">
             <div class="d-flex justify-content-evenly align-items-start large-nav text-uppercase" style="width: 90%;text-transform: uppercase;color: #fff !important;text-decoration: none;justify-content: space-around;">
-              <a href="/product_listing/beard_care" style="color: #fff;">Beard Care</a>
-              <a href="/product_listing/hair_care"  style="color: #fff;">Hair Care</a>
-              <a href="/product_listing/skin_care"  style="color: #fff;">Skin Care</a>
-              <a href="/product_listing/skin_care"  style="color: #fff;">Shave</a>
-              <a href="/product_listing/skin_care"  style="color: #fff;">Fragrance</a>
+              <a href="collections/beard-care" style="color: #fff;">Beard Care</a>
+              <a href="/collections/hair-care"  style="color: #fff;">Hair Care</a>
+              <a href="/collections/skin-care"  style="color: #fff;">Skin Care</a>
+              <a href="/collections/shave"  style="color: #fff;">Shave</a>
+              <a href="/collections/fragrance"  style="color: #fff;">Fragrance</a>
             </div>
 
           </div>
@@ -403,17 +403,11 @@ footer .social a{
                     <% if (item.stock > 0 && Date.parse(item.createdAt) < Date.now()) { %>
                         <button type="button" class="btn addCartButton mb-4">ADD TO CART</button>
                     <% } else if ( content.isLoggedIn == true ) { %>
-                        <button type="button" class="btn mb-4 text-uppercase">You'll be Notified shortly</button>
+                        <button onclick="openNotifyModal()" type="button" class="btn mb-4 text-uppercase">NOTIFY ME</button>
                     <% } else { %>
 
-                        <button onclick="openNotifyModal()" type="button" class="btn mb-4">NOTIFY ME</button>
+                        <button onclick="openNotifyModal()" type="button" class="btn mb-4 text-uppercase">NOTIFY ME</button>
                         
-                        <script>
-                          function openNotifyModal() {
-                            console.log("notify me modal");
-                            $('#notifyModal').modal('show');
-                          }
-                        </script>
 
                         <script>
                             // function openNotifyModal() {
@@ -424,27 +418,27 @@ footer .social a{
                             //   document.getElementById('notifyModal').style.display = 'none';
                             // }
 
-                            async function addSub() {
-                                const itemId = "<%= item.itemId %>"
-                                await axios.post("/subscribe", 
-                                    {
-                                        email: document.querySelector(".subEmail").value,
-                                        item: itemId
-                                    }
-                                )
-                                .then(response => {
-                                    if (response.status === 200 ){
-                                        showAlert("You will be notified via email shortly","success")
-                                        document.getElementById('notifyModal').style.display = 'none';
-                                    } else if (response.status === 201) {
-                                        showAlert("Item already subscribed","success")
-                                        document.getElementById('notifyModal').style.display = 'none';
-                                    }
-                                })
-                                .catch(err => {
-                                    showAlert("Error while adding you","danger")
-                                })
-                            }
+                            // async function addSub() {
+                            //     const itemId = "<%= item.itemId %>"
+                            //     await axios.post("/subscribe", 
+                            //         {
+                            //             email: document.querySelector(".subEmail").value,
+                            //             item: itemId
+                            //         }
+                            //     )
+                            //     .then(response => {
+                            //         if (response.status === 200 ){
+                            //             showAlert("You will be notified via email shortly","success")
+                            //             document.getElementById('notifyModal').style.display = 'none';
+                            //         } else if (response.status === 201) {
+                            //             showAlert("Item already subscribed","success")
+                            //             document.getElementById('notifyModal').style.display = 'none';
+                            //         }
+                            //     })
+                            //     .catch(err => {
+                            //         showAlert("Error while adding you","danger")
+                            //     })
+                            // }
 
                             // window.onclick = function(event) {
                             //   var modal = document.getElementById('notifyModal');
@@ -487,6 +481,12 @@ footer .social a{
         </div>
     </div>
 
+    <script>
+      function openNotifyModal() {
+        console.log("notify me modal");
+        $('#notifyModal').modal('show');
+      }
+    </script>
     
 
     <script>
@@ -986,9 +986,9 @@ footer .social a{
         if (product.stock > 0 && Date.parse(product.createdAt) < Date.now()) {
           button = ` <button class="add-to-cart-btn add${product.itemId}" id="liveToastBtn"><i class="fas fa-cart"></i> Add to Cart</button>`;
         } else if (isLoggedIn == true) {
-          button = `<button class="add-to-cart-btn" id="liveToastBtn"><i class="fas fa-cart"></i>NOTIFY Me</button>`;
+          button = `<button class="add-to-cart-btn" onclick="openNotifyModal()"  id="liveToastBtn"><i class="fas fa-cart"></i>NOTIFY Me</button>`;
         } else {
-          button = `<button class="add-to-cart-btn" openSubscribeModal(${product.itemId}) id="liveToastBtn"><i class="fas fa-cart"></i>NOTIFY ME</button> `;
+          button = `<button class="add-to-cart-btn" onclick="openNotifyModal()"  id="liveToastBtn"><i class="fas fa-cart"></i>NOTIFY ME</button> `;
         }
   productCard.innerHTML = `
   <a href="/products/${product.itemId}" >
