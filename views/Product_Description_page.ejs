@@ -75,6 +75,7 @@ footer .social a{
 }
 
 .product-card {
+  overflow: hidden;
         width: 24%;
     cursor: pointer;
     display: flex;
@@ -459,21 +460,22 @@ footer .social a{
                 <div class="social-links d-flex flex-row align-items-center">
                   <p style="font-size:16px;font-weight: 300;">Share :</p>
 
-                  <a href="https://www.facebook.com/sharer/sharer.php?u%= item.name" target="_blank">
-                      <iconify-icon icon="bi:facebook"></iconify-icon>
-                  </a>
-
-                  <a href="https://twitter.com/intent/tweet?url=your_product_url&text=Your%20Product%20Description" target="_blank">
-                      <iconify-icon icon="pajamas:twitter"></iconify-icon>
-                  </a>
-
-                  <a href="https://www.instagram.com/?url=your_product_url" target="_blank">
-                      <iconify-icon icon="lucide:instagram"></iconify-icon>
-                  </a>
-
-                  <a href="https://api.whatsapp.com/send?text=Your%20Product%20Description%20- %20your_product_url" target="_blank">
-                      <iconify-icon icon="ic:sharp-whatsapp"></iconify-icon>
-                  </a>
+                  <a href="https://www.facebook.com/sharer/sharer.php?u=<%= encodeURIComponent(item.name) %>" target="_blank">
+                    <iconify-icon icon="bi:facebook"></iconify-icon>
+                </a>
+                
+                <a href="https://twitter.com/intent/tweet?url=<%= encodeURIComponent(item.name) %>&text=<%= encodeURIComponent(item.meta_description) %>" target="_blank">
+                    <iconify-icon icon="pajamas:twitter"></iconify-icon>
+                </a>
+                
+                <a href="https://www.instagram.com/?url=<%= encodeURIComponent(item.name) %>" target="_blank">
+                    <iconify-icon icon="lucide:instagram"></iconify-icon>
+                </a>
+                
+                <a href="https://api.whatsapp.com/send?text=<%= encodeURIComponent(item.meta_description) %> - <%= encodeURIComponent(item.name) %>" target="_blank">
+                    <iconify-icon icon="ic:sharp-whatsapp"></iconify-icon>
+                </a>
+                
               </div>
 
             </div>

@@ -806,10 +806,6 @@ background-color: #000;
 .sidenav a {font-size: 1rem;}
 }
 @media (max-width: 576px){
-.product-grid{
-padding: 0;
-grid-column-gap: 10px;
-}
 
 .show-btn{
     border: 1px solid #fff;
@@ -823,8 +819,10 @@ grid-column-gap: 10px;
 
 .product-grid{
     padding: 1vh;
-    width: 95% !important;
+    width: 90% !important;
     overflow-x: scroll !important;
+    padding: 0;
+grid-column-gap: 10px;
     scrollbar-width: 1px;
 display: flex;
 flex-wrap: nowrap;
