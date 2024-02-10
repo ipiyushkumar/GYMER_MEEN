@@ -21,13 +21,12 @@
     'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
     })(window,document,'script','dataLayer','GTM-NQVB53VH');</script>
 
-    <meta property="og:image" content='<%= item.imageLink[0] %>'>
-    <meta property="og:image:type" content="image/png">
-    <meta property="og:image:width" content="65">
-    <meta property="og:image:height" content="350">
-    <meta property="og:title" content='<%= item.meta_title%>'>
-    <meta property="og:description" content="<%= item.meta_description %>">
-
+<meta property="og:image" content='<%= item.imageLink[0] %>'>
+<meta property="og:image:type" content="image/png">
+<meta property="og:image:width" content="65">
+<meta property="og:image:height" content="350">
+<meta property="og:title" content='<%= item.meta_title%>'>
+<meta property="og:description" content="<%= item.meta_description %>">
     <title><%= item.name %> - Whitewolf</title>
     <style>
         .alert {
@@ -472,10 +471,9 @@ footer .social a{
                     <iconify-icon icon="lucide:instagram"></iconify-icon>
                 </a>
                 
-                <a href="https://api.whatsapp.com/send?text=<%= encodeURIComponent(item.meta_description) %> - <%= encodeURIComponent(item.name) %>" target="_blank">
+                <a href="https://api.whatsapp.com/send?text=<%= encodeURIComponent(item.meta_description) %>%20-%20<%= encodeURIComponent(item.name) %>" target="_blank">
                     <iconify-icon icon="ic:sharp-whatsapp"></iconify-icon>
                 </a>
-                
               </div>
 
             </div>
