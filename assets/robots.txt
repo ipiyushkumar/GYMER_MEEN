@@ -1,0 +1,9 @@
+User-agent: *
+Disallow: /adminwolf
+Disallow: /confirm
+Disallow: /login
+Disallow: /profile
+Disallow: /pages/coming-soon
+Disallow: /success
+Disallow: /failure
+Sitemap: https://whitewolfindia.com/sitemap.xml

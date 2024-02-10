@@ -378,7 +378,7 @@ footer .social a{
                 
                <div class="butns">
                 <div>
-                    <p><iconify-icon icon="noto:star"></iconify-icon> 0 | 0 Reviews</p>
+                    <p  class="d-flex justify-content-start align-items-center"><iconify-icon icon="noto:star"></iconify-icon> <span class="top-rating ml-1 mr-1"></span> | <span class="top-reviews ml-1 mr-1">0 Reviews</span></p>
 
                     <p class="last-price">M.R.P. : <strike>&#8377;<%= item.originalPrice%></strike><span> &#8377;<%= item.offeredPrice %></span></p>
                     <div class="product-price">
@@ -624,6 +624,14 @@ footer .social a{
                       }
 
                       drawReviewChart()
+                      // Assuming you have the variables 'reviews' and 'averageRating' defined somewhere in your code.
+
+// Update the total reviews count
+                      document.querySelector(".top-reviews").textContent = `(${reviews.length} Reviews)`;
+
+// Update the average rating
+                    document.querySelector(".top-rating").textContent = averageRating;
+
                       document.querySelector(".totalReviews").textContent = `(${reviews.length} Verified Reviews)`
                       document.querySelector(".averageRating").textContent = averageRating
                       filterReviews(); 
@@ -1026,9 +1034,7 @@ footer .social a{
                           product.originalPrice || ""
                         }</span>
                         </div>
-                        <div class="product-price ml-2 mr-2">&#8377;${
-                          product.offeredPrice
-                        }
+                        <div class="product-price ml-2 mr-2">&#8377;${product.offeredPrice}
                         </div>
                       <div class="product-discount d-flex justify-content-end text-success text-uppercase"> ${(
                       ((product.originalPrice - product.offeredPrice) /
@@ -1038,7 +1044,7 @@ footer .social a{
                     </div>
                   </div>
                 </div>
-                <p style="text-align:center;font-weight:300;" class="rws"><iconify-icon icon="noto:star"></iconify-icon> 0 | 0 Reviews</p>
+                <p style="text-align:center;font-weight:300;" class="rws"><iconify-icon icon="noto:star"></iconify-icon>0 | 0 Reviews</p>
                   ${button}
             </div>
          </a>
