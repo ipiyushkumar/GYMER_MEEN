@@ -1196,7 +1196,7 @@
       }
   
       .carousel-item.second-slide img {
-        content: url("/assets/grooming-mb.jpg") !important;
+        content: url("/assets/growth-mb.jpg") !important;
       }
   
       .carousel-item.third-slide img {
@@ -1228,7 +1228,7 @@
           content: url("../assets/anti-acne-mb.jpg");
         }
         #custom-slide-2 img {
-          content: url("../assets/growth-mb.jpg");
+          content: url("../assets/growth-mb.jpg") !important;
         }
         #custom-slide-3 img {
           content: url("../assets/Spray-third-mb.jpg");
@@ -1302,20 +1302,26 @@
       </ol>
       <div class="carousel-inner">
         <div class="carousel-item first-slide active">
-          <img src="/assets/anti-acne-desk.jpg" class="d-block w-100" alt="...">
-        </div>
+          <a href="/products/Anti-Acne-Face-Wash">
+            <img src="/assets/anti-acne-desk.jpg" class="d-block w-100" alt="...">
+          </a>
+        </div>        
         <div class="carousel-item second-slide">
-          <img src="/assets/growth-desk.jpg" class="d-block w-100" alt="...">
+          <a href="products/Gray-Guard-Beard-Illuminating-Serum">
+            <img src="/assets/growth-desk.jpg" class="d-block w-100" alt="...">
+          </a>
         </div>
         <div class="carousel-item third-slide">
-          <img src="/assets/bellavita-exp.jpg" class="d-block w-100" alt="...">
+          <a href="/products/Hair-Removal-Spray">
+            <img src="/assets/bellavita-exp.jpg" class="d-block w-100" alt="...">
+          </a>
         </div>
       </div>
     </div>
 
     <script>
       $('.carousel').carousel({
-        interval: 3000,
+        interval: 2000,
       });
     </script>
 
@@ -2134,7 +2140,7 @@
                     </div>
                   </div>
                 </div>
-                <p style="text-align:center;font-weight:300;" class="rws"><iconify-icon icon="noto:star"></iconify-icon> 4.6 | 204 Reviews</p>
+                <p style="text-align:center;font-weight:300;" class="rws"><iconify-icon icon="noto:star"></iconify-icon> 0 | 0 Reviews</p>
                   ${button}
             </div>
          </a>

@@ -537,7 +537,59 @@
         </div>
       </div>
     </div>
-    <%- include('partials/loader') %> <%- include('partials/footer') %>
+    <%- include('partials/loader') %> 
+    <%- include('partials/footer') %>
+
+    <div class="modal fade" id="notifyModal" tabindex="-1">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Subscribe For Notifications</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <form id="notificationForm">
+              <div class="form-group">
+                <label for="emailInput" class="mb-1">Enter Email Address :</label>
+                <input type="email" class="form-control mb-3" id="emailInput" placeholder="Enter your email" required>
+              </div>
+              <button type="submit" class="btn btn-dark">Subscribe</button>
+            </form>
+            <div id="thankYouMessage" class="mt-2 text-success" style="display: none;">Thank you, you'll be notified shortly.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      document.getElementById("notificationForm").addEventListener("submit", function(event) {
+        event.preventDefault(); 
+
+        var email = localStorage.getItem("submittedEmail");
+        var inputEmail = document.getElementById("emailInput").value;
+
+        if (email === inputEmail) {
+          alert("We have already received your request. You'll be notified shortly.");
+          return;
+        }
+
+        document.getElementById("thankYouMessage").style.display = "block";
+
+        localStorage.setItem("submittedEmail", inputEmail);
+
+        setTimeout(function() {
+          location.reload(); 
+        }, 2000); 
+      });
+    </script>
+    
+    
+    <script>
+      function openNotifyModal() {
+        console.log("notify me modal");
+        $('#notifyModal').modal('show');
+      }
+    </script>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
@@ -683,9 +735,9 @@
         if (product.stock > 0 && Date.parse(product.createdAt) < Date.now()) {
           button = ` <button class="add-to-cart-btn add${product.itemId}" id="liveToastBtn"><i class="fas fa-cart"></i> Add to Cart</button>`;
         } else if (isLoggedIn == true) {
-          button = `<button class="add-to-cart-btn" id="liveToastBtn"><i class="fas fa-cart"></i> You will be Notified shortly</button>`;
+          button = `<button class="add-to-cart-btn text-uppercase" id="liveToastBtn"><i class="fas fa-cart"></i>You'll be notified</button>`;
         } else {
-          button = `<button class="add-to-cart-btn" openSubscribeModal(${product.itemId}) id="liveToastBtn"><i class="fas fa-cart"></i>Notify Me</button> `;
+          button = `<button class="add-to-cart-btn" onclick="openNotifyModal()" id="liveToastBtn"><i class="fas fa-cart"></i>Notify Me</button> `;
         }
         productCard.innerHTML = `
             <a href="/products/${product.itemId}" >
@@ -729,7 +781,7 @@
                     </div>
                   </div>
                 </div>
-                <p style="text-align:center;font-weight:300;" class="rws"><iconify-icon icon="noto:star"></iconify-icon> 4.6 | 204 Reviews</p>
+                <p style="text-align:center;font-weight:300;" class="rws"><iconify-icon icon="noto:star"></iconify-icon> 0 | 0 Reviews</p>
                     ${button}
             </div>
             </a>

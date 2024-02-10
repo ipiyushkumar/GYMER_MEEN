@@ -94,7 +94,7 @@ footer .social a{
     height: auto;
     }
 
-    .notify {
+    /* .notify {
                             display: none;
                             position: fixed;
                             top: 50%;
@@ -152,7 +152,7 @@ footer .social a{
 
                           .notifySubscribe-btn:hover {
                             background: #333;
-                          }
+                          } */
 
     .product-image {
         width: 100%;
@@ -306,6 +306,50 @@ footer .social a{
       </nav> 
     <%- include('partials/cart') %>
 
+    <div class="modal fade" id="notifyModal" tabindex="-1">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" style="color: #000;">Subscribe For Notifications</h5>
+            <button type="button" data-dismiss="modal"  style="background-color: #fff;border: none;outline: none;font-size: 3vh;cursor: pointer;">&#10539;</button>
+          </div>
+          <div class="modal-body">
+            <form id="notificationForm">
+              <div class="form-group">
+                <label for="emailInput" class="mb-1" style="color: #000;">Enter Email Address :</label>
+                <input type="email" class="form-control mb-3" id="emailInput" placeholder="Enter your email" required>
+              </div>
+              <button type="submit" class="btn btn-dark">Subscribe</button>
+            </form>
+            <div id="thankYouMessage" class="mt-2 text-success" style="display: none;">Thank you, you'll be notified shortly.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      document.getElementById("notificationForm").addEventListener("submit", function(event) {
+        event.preventDefault(); 
+
+        var email = localStorage.getItem("submittedEmail");
+        var inputEmail = document.getElementById("emailInput").value;
+
+        if (email === inputEmail) {
+          alert("We have already received your request. You'll be notified shortly.");
+          return;
+        }
+
+        document.getElementById("thankYouMessage").style.display = "block";
+
+        localStorage.setItem("submittedEmail", inputEmail);
+
+        setTimeout(function() {
+          location.reload(); 
+        }, 2000); 
+      });
+    </script>
+    
+
     <div class="card-wrapper mt-4" style="width: 100%;height: max-content;">
 
         <div class="cardio" style="width: 100%;grid-column-gap: 5vh;height: 100%;">
@@ -334,7 +378,7 @@ footer .social a{
                 
                <div class="butns">
                 <div>
-                    <p><iconify-icon icon="noto:star"></iconify-icon> 5 | 204 Reviews</p>
+                    <p><iconify-icon icon="noto:star"></iconify-icon> 0 | 0 Reviews</p>
 
                     <p class="last-price">M.R.P. : <strike>&#8377;<%= item.originalPrice%></strike><span> &#8377;<%= item.offeredPrice %></span></p>
                     <div class="product-price">
@@ -363,24 +407,22 @@ footer .social a{
                     <% } else { %>
 
                         <button onclick="openNotifyModal()" type="button" class="btn mb-4">NOTIFY ME</button>
-
-                        <div id="notifyModal" class="notify">
-                            <div class="notify-content">
-                              <span class="notify-close-btn" onclick="closeNotifyModal()">&times;</span>
-                              <h2>Subscribe for notifications</h2>
-                              <input type="email" class="subEmail" placeholder="Enter your email address:">
-                              <button class="notifySubscribe-btn" onclick="addSub()">Subscribe</button>
-                            </div>
-                        </div>
+                        
+                        <script>
+                          function openNotifyModal() {
+                            console.log("notify me modal");
+                            $('#notifyModal').modal('show');
+                          }
+                        </script>
 
                         <script>
-                            function openNotifyModal() {
-                              document.getElementById('notifyModal').style.display = 'flex';
-                            }
+                            // function openNotifyModal() {
+                            //   document.getElementById('notifyModal').style.display = 'flex';
+                            // }
 
-                            function closeNotifyModal() {
-                              document.getElementById('notifyModal').style.display = 'none';
-                            }
+                            // function closeNotifyModal() {
+                            //   document.getElementById('notifyModal').style.display = 'none';
+                            // }
 
                             async function addSub() {
                                 const itemId = "<%= item.itemId %>"
@@ -404,12 +446,12 @@ footer .social a{
                                 })
                             }
 
-                            window.onclick = function(event) {
-                              var modal = document.getElementById('notifyModal');
-                              if (event.target === modal) {
-                                modal.style.display = 'none';
-                              }
-                            }
+                            // window.onclick = function(event) {
+                            //   var modal = document.getElementById('notifyModal');
+                            //   if (event.target === modal) {
+                            //     modal.style.display = 'none';
+                            //   }
+                            // }
                           </script>
                     <% } %>
                 </div>
@@ -996,7 +1038,7 @@ footer .social a{
                     </div>
                   </div>
                 </div>
-                <p style="text-align:center;font-weight:300;" class="rws"><iconify-icon icon="noto:star"></iconify-icon> 4.6 | 204 Reviews</p>
+                <p style="text-align:center;font-weight:300;" class="rws"><iconify-icon icon="noto:star"></iconify-icon> 0 | 0 Reviews</p>
                   ${button}
             </div>
          </a>
