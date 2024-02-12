@@ -8,6 +8,10 @@ const env = require("dotenv");
 const path = require("path");
 const helmet = require("helmet");
 
+env.config();
+const port = process.env.PORT || 3000;
+const app = express();
+
 // Middleware to secure HTTP headers
 app.use(helmet());
 
@@ -19,10 +23,6 @@ app.use((req, res, next) => {
     next();
   }
 });
-
-env.config();
-const port = process.env.PORT || 3000;
-const app = express();
 
 app.use(
   session({
