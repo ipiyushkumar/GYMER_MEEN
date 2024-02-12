@@ -166,7 +166,7 @@
                         });
                       document.querySelector(
                         `.single_item_total${cartItem.itemId}`
-                      ).textContent =
+                      ).innerHTML =
                         'Subtotal : <span style="font-weight:bold">&#8377;' +
                         response.data.newQuantity *
                           productDetails.offeredPrice +
@@ -190,7 +190,7 @@
                       });
                     document.querySelector(
                       `.single_item_total${cartItem.itemId}`
-                    ).textContent =
+                    ).innerHTML =
                       'Subtotal : <span style="font-weight:bold">&#8377;' +
                       response.data.newQuantity * productDetails.offeredPrice +
                       "</span>";
