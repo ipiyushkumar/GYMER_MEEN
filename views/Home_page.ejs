@@ -6,8 +6,11 @@
     <title>WhiteWolf India</title>
     <link rel="canonical" href="https://www.whitewolfindia.com" />
 
-      <meta name="title" content="WhiteWolf India: Where Grooming Meets Luxury"/>
-      <meta name="description" content="Discover luxury men's grooming essentials with Whitewolf india. Elevate your routine with premium products crafted for the modern gentleman. Shop now!"/>
+    <meta name="title" content="WhiteWolf India: Where Grooming Meets Luxury" />
+    <meta
+      name="description"
+      content="Discover luxury men's grooming essentials with Whitewolf india. Elevate your routine with premium products crafted for the modern gentleman. Shop now!"
+    />
 
     <link
       rel="shortcut icon"
@@ -159,7 +162,6 @@
 
         .perf-vid {
           height: auto !important;
-
         }
 
         .slider .prev {
@@ -183,7 +185,6 @@
       }
 
       .bg-image {
-
         height: 100% !important;
         background-size: cover;
         background-position: center;
@@ -619,7 +620,7 @@
       }
 
       blockquote.instagram-media {
-        max-height: 200px !important; 
+        max-height: 200px !important;
       }
 
       .loading-container {
@@ -876,15 +877,14 @@
 
     <style>
       @media (max-width: 767px) {
-
         .desktop-slider {
-          display: none; 
+          display: none;
         }
 
         .mobile-slider {
           border-radius: 0 !important;
           margin-bottom: -7vh;
-          display: block; 
+          display: block;
         }
 
         .mobile-slider .swiper-slide {
@@ -921,13 +921,12 @@
       }
 
       @media (min-width: 768px) {
-
         .desktop-slider {
-          display: block; 
+          display: block;
         }
 
         .mobile-slider {
-          display: none; 
+          display: none;
         }
 
         .desktop-slider .swiper-slide:nth-child(1) {
@@ -988,7 +987,7 @@
         width: 100%;
         overflow: hidden;
         position: relative;
-        z-index: 0; 
+        z-index: 0;
       }
 
       .custom-slides-new {
@@ -1002,7 +1001,7 @@
         -ms-overflow-style: none;
         scrollbar-width: none;
         position: relative;
-        z-index: 0; 
+        z-index: 0;
       }
 
       .top-slider {
@@ -1012,7 +1011,7 @@
         text-align: center;
         overflow: hidden;
         position: relative;
-        z-index: 0; 
+        z-index: 0;
       }
 
       .top-slider .slides {
@@ -1191,25 +1190,24 @@
       }
 
       @media (max-width: 767.98px) {
-      .carousel-item.first-slide img {
-        content: url("/assets/anti-acne-mb.jpg") !important;
+        .carousel-item.first-slide img {
+          content: url("/assets/anti-acne-mb.jpg") !important;
+        }
+
+        .carousel-item.second-slide img {
+          content: url("/assets/growth-mb.jpg") !important;
+        }
+
+        .carousel-item.third-slide img {
+          content: url("/assets/Spray-third-mb.jpg") !important;
+        }
       }
-  
-      .carousel-item.second-slide img {
-        content: url("/assets/growth-mb.jpg") !important;
-      }
-  
-      .carousel-item.third-slide img {
-        content: url("/assets/Spray-third-mb.jpg") !important;
-      }
-    }
 
       .custom-slide {
         width: 100%;
         flex-shrink: 0;
       }
-      .product-sliders
-      {
+      .product-sliders {
         display: flex;
         justify-content: space-between;
         position: absolute;
@@ -1233,62 +1231,84 @@
         #custom-slide-3 img {
           content: url("../assets/Spray-third-mb.jpg");
         }
-        .productarrow
-        {
+        .productarrow {
           display: none;
         }
       }
     </style>
 
-<div class="modal fade" id="notifyModal" tabindex="-1">
-  <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title">Subscribe For Notifications</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <form id="notificationForm">
-          <div class="form-group">
-            <label for="emailInput" class="mb-1">Enter Email Address :</label>
-            <input type="email" class="form-control mb-3" id="emailInput" placeholder="Enter your email" required>
+    <div class="modal fade" id="notifyModal" tabindex="-1">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Subscribe For Notifications</h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
           </div>
-          <button type="submit" class="btn btn-dark">Subscribe</button>
-        </form>
-        <div id="thankYouMessage" class="mt-2 text-success" style="display: none;">Thank you, you'll be notified shortly.</div>
+          <div class="modal-body">
+            <form id="notificationForm">
+              <div class="form-group">
+                <label for="emailInput" class="mb-1"
+                  >Enter Email Address :</label
+                >
+                <input
+                  type="email"
+                  class="form-control mb-3"
+                  id="emailInput"
+                  placeholder="Enter your email"
+                  required
+                />
+              </div>
+              <button type="submit" class="btn btn-dark">Subscribe</button>
+            </form>
+            <div
+              id="thankYouMessage"
+              class="mt-2 text-success"
+              style="display: none"
+            >
+              Thank you, you'll be notified shortly.
+            </div>
+          </div>
+        </div>
       </div>
     </div>
-  </div>
-</div>
 
-<script>
-  document.getElementById("notificationForm").addEventListener("submit", function(event) {
-    event.preventDefault(); 
+    <script>
+      document
+        .getElementById("notificationForm")
+        .addEventListener("submit", function (event) {
+          event.preventDefault();
 
-    var email = localStorage.getItem("submittedEmail");
-    var inputEmail = document.getElementById("emailInput").value;
+          var email = localStorage.getItem("submittedEmail");
+          var inputEmail = document.getElementById("emailInput").value;
 
-    if (email === inputEmail) {
-      alert("We have already received your request. You'll be notified shortly.");
-      return;
-    }
+          if (email === inputEmail) {
+            alert(
+              "We have already received your request. You'll be notified shortly."
+            );
+            return;
+          }
 
-    document.getElementById("thankYouMessage").style.display = "block";
+          document.getElementById("thankYouMessage").style.display = "block";
 
-    localStorage.setItem("submittedEmail", inputEmail);
+          localStorage.setItem("submittedEmail", inputEmail);
 
-    setTimeout(function() {
-      location.reload(); 
-    }, 2000); 
-  });
-</script>
+          setTimeout(function () {
+            location.reload();
+          }, 2000);
+        });
+    </script>
 
-<script>
-  function openNotifyModal() {
-    console.log("notify me modal");
-    $('#notifyModal').modal('show');
-  }
-</script>
+    <script>
+      function openNotifyModal() {
+        console.log("notify me modal");
+        $("#notifyModal").modal("show");
+      }
+    </script>
 
     <!-- <div class="custom-slider">
       <div class="custom-slides">
@@ -1316,34 +1336,58 @@
       </div>
     </div> -->
 
-    <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel" style="margin-top: 13vh;">
+    <div
+      id="carouselExampleIndicators"
+      class="carousel slide"
+      data-ride="carousel"
+      style="margin-top: 13vh"
+    >
       <div class="carousel-inner">
         <div class="carousel-item first-slide active">
           <a href="/products/Anti-Acne-Face-Wash">
-            <img src="/assets/anti-acne-desk.jpg" class="d-block w-100" alt="...">
+            <img
+              src="/assets/anti-acne-desk.jpg"
+              class="d-block w-100"
+              alt="..."
+            />
           </a>
-        </div>        
+        </div>
         <div class="carousel-item second-slide">
           <a href="products/Gray-Guard-Beard-Illuminating-Serum">
-            <img src="/assets/growth-desk.jpg" class="d-block w-100" alt="...">
+            <img
+              src="/assets/growth-desk.jpg"
+              class="d-block w-100"
+              alt="..."
+            />
           </a>
         </div>
         <div class="carousel-item third-slide">
           <a href="/products/Hair-Removal-Spray">
-            <img src="/assets/bellavita-exp.jpg" class="d-block w-100" alt="...">
+            <img
+              src="/assets/bellavita-exp.jpg"
+              class="d-block w-100"
+              alt="..."
+            />
           </a>
         </div>
       </div>
-    
-      <ol class="carousel-indicators mt-1 mb-1" style="position: relative;z-index: 0;">
-        <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+
+      <ol
+        class="carousel-indicators mt-1 mb-1"
+        style="position: relative; z-index: 0"
+      >
+        <li
+          data-target="#carouselExampleIndicators"
+          data-slide-to="0"
+          class="active"
+        ></li>
         <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
         <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
       </ol>
     </div>
-    
+
     <script>
-      $('.carousel').carousel({
+      $(".carousel").carousel({
         interval: 1000,
       });
     </script>
@@ -1374,17 +1418,26 @@
         <h2 class="text-light mt-2">Top Sellers</h2>
       </div>
 
-      <div class="container-fluid d-flex justify-content-between product-sliders mb-2">
-        <button class="sliding-buttons" onclick="slideLeft()"><iconify-icon icon="icon-park-solid:left-c"></iconify-icon></button>
-      <button class="sliding-buttons" onclick="slideRight()"><iconify-icon icon="icon-park-solid:right-c"></iconify-icon></button>
+      <div
+        class="container-fluid d-flex justify-content-between product-sliders mb-2"
+      >
+        <button class="sliding-buttons" onclick="slideLeft()">
+          <iconify-icon icon="icon-park-solid:left-c"></iconify-icon>
+        </button>
+        <button class="sliding-buttons" onclick="slideRight()">
+          <iconify-icon icon="icon-park-solid:right-c"></iconify-icon>
+        </button>
       </div>
-      <div id="productGrid" class="row product-grid" onmousedown="startScroll(event)" onmouseup="stopScroll()" ontouchstart="startScroll(event)" ontouchend="stopScroll()">
+      <div
+        id="productGrid"
+        class="row product-grid"
+        onmousedown="startScroll(event)"
+        onmouseup="stopScroll()"
+        ontouchstart="startScroll(event)"
+        ontouchend="stopScroll()"
+      ></div>
 
-      </div> 
-
-<div id="productGrid" class="row product-grid">
-
-</div>
+      <div id="productGrid" class="row product-grid"></div>
 
       <div class="d-flex justify-content-center p-2 mt-0 mb-0">
         <button class="show-btn">
@@ -1439,38 +1492,38 @@
 
       setInterval(autoScroll, 30);
     </script>
-<script>
-  const productGridNew = document.getElementById("productGrid");
-  const scrollStep = 300; 
+    <script>
+      const productGridNew = document.getElementById("productGrid");
+      const scrollStep = 300;
 
-  function slideLeft() {
-      productGridNew.scrollTo({
+      function slideLeft() {
+        productGridNew.scrollTo({
           left: productGrid.scrollLeft - scrollStep,
-          behavior: "smooth"
-      });
-  }
+          behavior: "smooth",
+        });
+      }
 
-  function slideRight() {
-      productGridNew.scrollTo({
+      function slideRight() {
+        productGridNew.scrollTo({
           left: productGrid.scrollLeft + scrollStep,
-          behavior: "smooth"
-      });
-  }
-</script>
+          behavior: "smooth",
+        });
+      }
+    </script>
 
-<script>
-  var productGrid = document.getElementById('productGrid');
-  var scrollLeftBtn = document.getElementById('scrollLeftBtn');
-  var scrollRightBtn = document.getElementById('scrollRightBtn');
+    <script>
+      var productGrid = document.getElementById("productGrid");
+      var scrollLeftBtn = document.getElementById("scrollLeftBtn");
+      var scrollRightBtn = document.getElementById("scrollRightBtn");
 
-  function scrollLeft() {
-    productGrid.scrollLeft -= 100; 
-  }
+      function scrollLeft() {
+        productGrid.scrollLeft -= 100;
+      }
 
-  function scrollRight() {
-    productGrid.scrollLeft += 100; 
-  }
-  </script>
+      function scrollRight() {
+        productGrid.scrollLeft += 100;
+      }
+    </script>
 
     <div class="container-fluid mb-4 mt-0 p-2">
       <video autoplay muted loop class="bg-video p-0">
@@ -2038,7 +2091,6 @@
                 itemId: product.itemId,
               });
               if (response.status === 200) {
-
                 showAlert("item added to cart", "success");
                 openCart();
               } else {
@@ -2094,14 +2146,6 @@
           product.name += " ...";
           let button;
           let isLoggedIn = Boolean("<%= content.isLoggedIn %>");
-
-          if (product.stock > 0 && Date.parse(product.createdAt) < Date.now()) {
-            button = ` <button class="add-to-cart-btn add${product.itemId}" id="liveToastBtn"><i class="fas fa-cart"></i> Add to Cart</button>`;
-          } else if (isLoggedIn == true) {
-            button = `<button class="add-to-cart-btn" onclick="openNotifyModal()"   id="liveToastBtn"><i class="fas fa-cart"></i>NOTIFY ME</button>`;
-          } else {
-            button = `<button class="add-to-cart-btn" onclick="openNotifyModal()" id="liveToastBtn"><i class="fas fa-cart"></i>NOTIFY ME</button> `;
-          }
         }
 
         let button;
@@ -2114,7 +2158,6 @@
         } else {
           button = `<button class="add-to-cart-btn" onclick="openNotifyModal()" id="liveToastBtn"><i class="fas fa-cart"></i>NOTIFY ME</button> `;
         }
-        
 
         productCard.innerHTML = `
          <a href="/products/${product.itemId}" >
@@ -2157,9 +2200,9 @@
                         }
                         </div>
                       <div class="product-discount d-flex justify-content-end text-success text-uppercase"> ${(
-                      ((product.originalPrice - product.offeredPrice) /
-                        product.originalPrice) *
-                      100
+                        ((product.originalPrice - product.offeredPrice) /
+                          product.originalPrice) *
+                        100
                       ).toFixed(0)}% Off
                     </div>
                   </div>
