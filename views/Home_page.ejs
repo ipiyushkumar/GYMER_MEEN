@@ -1911,7 +1911,11 @@
           >
             <div class="swiper-wrapper">
               <div class="swiper-slide">
-                <img src="https://via.placeholder.com/100" alt="" class="img-fluid" />
+                <img
+                  src="https://via.placeholder.com/100"
+                  alt=""
+                  class="img-fluid"
+                />
                 <div class="user-info">
                   <small class="text-muted">@Prashant</small>
                   <div
@@ -1930,7 +1934,11 @@
                 </div>
               </div>
               <div class="swiper-slide">
-                <img src="https://via.placeholder.com/200" alt="" class="img-fluid" />
+                <img
+                  src="https://via.placeholder.com/200"
+                  alt=""
+                  class="img-fluid"
+                />
                 <div class="user-info">
                   <small class="text-muted">@Tanmay</small>
                   <div
@@ -1950,7 +1958,11 @@
                 </div>
               </div>
               <div class="swiper-slide">
-                <img src="https://via.placeholder.com/100" alt="" class="img-fluid" />
+                <img
+                  src="https://via.placeholder.com/100"
+                  alt=""
+                  class="img-fluid"
+                />
                 <div class="user-info">
                   <small class="text-muted">@Sumit</small>
                   <div
@@ -1969,7 +1981,11 @@
                 </div>
               </div>
               <div class="swiper-slide">
-                <img src="https://via.placeholder.com/100" alt="" class="img-fluid" />
+                <img
+                  src="https://via.placeholder.com/100"
+                  alt=""
+                  class="img-fluid"
+                />
                 <div class="user-info">
                   <small class="text-muted">@Aamir</small>
                   <div
@@ -1989,7 +2005,11 @@
                 </div>
               </div>
               <div class="swiper-slide">
-                <img src="https://via.placeholder.com/100" alt="" class="img-fluid" />
+                <img
+                  src="https://via.placeholder.com/100"
+                  alt=""
+                  class="img-fluid"
+                />
                 <div class="user-info">
                   <small class="text-muted">@Manish</small>
                   <div
@@ -2160,11 +2180,11 @@
         }
 
         let totalRating = 0;
-        for (const review of product.reviews) {
+        for (const review of product.ratings) {
           totalRating += review.rating;
         }
         const averageRating =
-          product.reviews.length > 0 ? totalRating / product.reviews.length : 0;
+          product.ratings.length > 0 ? totalRating / product.ratings.length : 0;
 
         productCard.innerHTML = `
          <a href="/products/${product.itemId}" >
