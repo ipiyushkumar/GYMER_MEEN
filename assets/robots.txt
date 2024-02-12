@@ -6,4 +6,4 @@ Disallow: /profile
 Disallow: /pages/coming-soon
 Disallow: /success
 Disallow: /failure
-Sitemap: https://whitewolfindia.com/sitemap.xml
+Sitemap: https://www.whitewolfindia.com/sitemap.xml
