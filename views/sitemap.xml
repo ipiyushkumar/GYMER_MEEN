@@ -6,76 +6,99 @@
             http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
 
 <url>
-  <loc>https://whitewolfindia.com/</loc>
+  <loc>https://www.whitewolfindia.com/</loc>
   <lastmod>2024-02-02T12:45:08+00:00</lastmod>
   <priority>1.00</priority>
 </url>
 <url>
-  <loc>https://whitewolfindia.com/collections/beard-care</loc>
+  <loc>https://www.whitewolfindia.com/collections/beard-care</loc>
   <lastmod>2024-02-02T12:45:08+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
-  <loc>https://whitewolfindia.com/collections/hair-care</loc>
+  <loc>https://www.whitewolfindia.com/collections/hair-care</loc>
   <lastmod>2024-02-02T12:45:08+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
-  <loc>https://whitewolfindia.com/collections/skin-care</loc>
+  <loc>https://www.whitewolfindia.com/collections/skin-care</loc>
   <lastmod>2024-02-02T12:45:08+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
-  <loc>https://whitewolfindia.com/collections/shave</loc>
+  <loc>https://www.whitewolfindia.com/collections/shave</loc>
   <lastmod>2024-02-02T12:45:08+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
-  <loc>https://whitewolfindia.com/collections/fragrance</loc>
+  <loc>https://www.whitewolfindia.com/collections/fragrance</loc>
   <lastmod>2024-02-02T12:45:08+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
-  <loc>https://whitewolfindia.com/pages/blogs</loc>
+  <loc>https://www.whitewolfindia.com/pages/blogs</loc>
   <lastmod>2024-02-02T12:45:08+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 
 <url>
-  <loc>https://whitewolfindia.com/pages/about-us</loc>
+  <loc>https://www.whitewolfindia.com/pages/about-us</loc>
   <lastmod>2024-02-02T12:45:08+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
-  <loc>https://whitewolfindia.com/pages/shipping-policy</loc>
+  <loc>https://www.whitewolfindia.com/pages/shipping-policy</loc>
   <lastmod>2024-02-02T12:45:08+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
-  <loc>https://whitewolfindia.com/pages/contact-us</loc>
+  <loc>https://www.whitewolfindia.com/pages/contact-us</loc>
   <lastmod>2024-02-02T12:45:08+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
-  <loc>https://whitewolfindia.com/pages/terms-and-conditions</loc>
+  <loc>https://www.whitewolfindia.com/pages/terms-and-conditions</loc>
   <lastmod>2024-02-02T12:45:08+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
-  <loc>https://whitewolfindia.com/pages/privacy-policy</loc>
+  <loc>https://www.whitewolfindia.com/pages/privacy-policy</loc>
   <lastmod>2024-02-02T12:45:08+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
-  <loc>https://whitewolfindia.com/pages/refund-policy</loc>
+  <loc>https://www.whitewolfindia.com/pages/refund-policy</loc>
   <lastmod>2024-02-02T12:45:08+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
-  <loc>https://whitewolfindia.com/pages/disclaimer</loc>
+  <loc>https://www.whitewolfindia.com/pages/disclaimer</loc>
   <lastmod>2024-02-02T12:45:08+00:00</lastmod>
   <priority>0.80</priority>
 </url>
-
-
+<url>
+  <loc>https://www.whitewolfindia.com/products/hair-removal-spray</loc>
+  <lastmod>2024-02-02T12:45:08+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+    <url>
+        <loc>https://www.whitewolfindia.com/products/anti-acne-face-wash</loc>
+        <lastmod>2024-02-02T12:45:08+00:00</lastmod>
+        <priority>0.80</priority>
+    </url>
+    <url>
+        <loc>https://www.whitewolfindia.com/products/anti-pollution-face-wash</loc>
+        <lastmod>2024-02-02T12:45:08+00:00</lastmod>
+        <priority>0.80</priority>
+    </url>
+    <url>
+        <loc>https://www.whitewolfindia.com/products/gray-guard-beard-illuminating-serum</loc>
+        <lastmod>2024-02-02T12:45:08+00:00</lastmod>
+        <priority>0.80</priority>
+    </url>
+    <url>
+        <loc>https://www.whitewolfindia.com/products/skin-tint-moisturizer-</loc>
+        <lastmod>2024-02-02T12:45:08+00:00</lastmod>
+        <priority>0.80</priority>
+    </url>
 </urlset>
