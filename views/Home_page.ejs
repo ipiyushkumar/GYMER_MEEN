@@ -2162,6 +2162,13 @@
           button = `<button class="add-to-cart-btn" onclick="openNotifyModal('${product.itemId}')" id="liveToastBtn"><i class="fas fa-cart"></i>NOTIFY ME</button> `;
         }
 
+        let totalRating = 0;
+        for (const review of product.reviews) {
+          totalRating += review.rating;
+        }
+        const averageRating =
+          product.reviews.length > 0 ? totalRating / product.reviews.length : 0;
+
         productCard.innerHTML = `
          <a href="/products/${product.itemId}" >
             <div class="product-image-container">
@@ -2210,7 +2217,9 @@
                     </div>
                   </div>
                 </div>
-                <p style="text-align:center;font-weight:300;" class="rws"><iconify-icon icon="noto:star"></iconify-icon> 0 | 0 Reviews</p>
+                <p style="text-align:center;font-weight:300;" class="rws"><iconify-icon icon="noto:star"></iconify-icon> ${averageRating} | ${
+          product.reviews.length || 0
+        } Reviews</p>
                   ${button}
             </div>
          </a>
