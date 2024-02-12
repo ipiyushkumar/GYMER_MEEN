@@ -12,26 +12,26 @@ env.config();
 const port = process.env.PORT || 3000;
 const app = express();
 
-// Middleware to secure HTTP headers
-app.use(helmet());
+// // Middleware to secure HTTP headers
+// app.use(helmet());
 
-// Redirect non-www to www and HTTPS
-app.use((req, res, next) => {
-  const host = req.hostname;
-  const protocol = req.protocol;
+// // Redirect non-www to www and HTTPS
+// app.use((req, res, next) => {
+//   const host = req.hostname;
+//   const protocol = req.protocol;
 
-  // Check if the request is already secure
-  if (protocol === "https") {
-    next();
-  } else {
-    // Redirect non-www to www and HTTP to HTTPS
-    if (host === "whitewolfindia.com") {
-      res.redirect(301, `https://www.whitewolfindia.com${req.originalUrl}`);
-    } else {
-      next();
-    }
-  }
-});
+//   // Check if the request is already secure
+//   if (protocol === "https") {
+//     next();
+//   } else {
+//     // Redirect non-www to www and HTTP to HTTPS
+//     if (host === "whitewolfindia.com") {
+//       res.redirect(301, `https://www.whitewolfindia.com${req.originalUrl}`);
+//     } else {
+//       next();
+//     }
+//   }
+// });
 
 app.use(
   session({
