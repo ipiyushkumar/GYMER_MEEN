@@ -295,7 +295,7 @@
               justify-content: space-around;
             "
           >
-            <a href="/collections/beard-care" style="color: #fff">Beard Care</a>
+            <a href="collections/beard-care" style="color: #fff">Beard Care</a>
             <a href="/collections/hair-care" style="color: #fff">Hair Care</a>
             <a href="/collections/skin-care" style="color: #fff">Skin Care</a>
             <a href="/collections/shave" style="color: #fff">Shave</a>
@@ -1219,11 +1219,11 @@
           button = `<button class="add-to-cart-btn" onclick="openNotifyModal('${product.itemId}')"  id="liveToastBtn"><i class="fas fa-cart"></i>NOTIFY ME</button> `;
         }
         let totalRating = 0;
-        for (const review of product.reviews) {
+        for (const review of product.ratings) {
           totalRating += review.rating;
         }
         const averageRating =
-          product.reviews.length > 0 ? totalRating / product.reviews.length : 0;
+          product.ratings.length > 0 ? totalRating / product.ratings.length : 0;
         productCard.innerHTML = `
   <a href="/products/${product.itemId}" >
             <div class="product-image-container">
@@ -1273,7 +1273,7 @@
                   </div>
                 </div>
                 <p style="text-align:center;font-weight:300;" class="rws"><iconify-icon icon="noto:star"></iconify-icon> ${averageRating} | ${
-          product.reviews.length || 0
+          product.ratings.length || 0
         } Reviews</p>
         ${button}
             </div>

@@ -171,6 +171,10 @@ body{
     margin: 0;
   }
 
+  .totalStars iconify-icon{
+    font-size: 4vh !important;
+}
+
 
   .additional-image {
     width: 100%;
