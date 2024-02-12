@@ -1,36 +1,55 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <link rel="shortcut icon" type="image/x-icon" href="../assets/whitewolflog.png">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link rel="stylesheet" href="/css/Product_Desc.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@200;400;500&display=swap">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <link
+      rel="shortcut icon"
+      type="image/x-icon"
+      href="../assets/whitewolflog.png"
+    />
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+    <link rel="stylesheet" href="/css/Product_Desc.css" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Outfit:wght@200;400;500&display=swap"
+    />
     <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 
     <link rel="canonical" href="https://www.whitewolfindia.com" />
 
-<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-    })(window,document,'script','dataLayer','GTM-NQVB53VH');</script>
+    <script>
+      (function (w, d, s, l, i) {
+        w[l] = w[l] || [];
+        w[l].push({ "gtm.start": new Date().getTime(), event: "gtm.js" });
+        var f = d.getElementsByTagName(s)[0],
+          j = d.createElement(s),
+          dl = l != "dataLayer" ? "&l=" + l : "";
+        j.async = true;
+        j.src = "https://www.googletagmanager.com/gtm.js?id=" + i + dl;
+        f.parentNode.insertBefore(j, f);
+      })(window, document, "script", "dataLayer", "GTM-NQVB53VH");
+    </script>
 
-    <meta property="og:image" content='<%= item.imageLink[0] %>'>
-    <meta property="og:image:type" content="image/png">
-    <meta property="og:image:width" content="65">
-    <meta property="og:image:height" content="350">
-    <meta property="og:title" content='<%= item.meta_title%>'>
-    <meta property="og:description" content="<%= item.meta_description %>">
-
+    <meta property="og:image" content="<%= item.imageLink[0] %>" />
+    <meta property="og:image:type" content="image/png" />
+    <meta property="og:image:width" content="65" />
+    <meta property="og:image:height" content="350" />
+    <meta property="og:title" content="<%= item.meta_title%>" />
+    <meta property="og:description" content="<%= item.meta_description %>" />
     <title><%= item.name %> - Whitewolf</title>
     <style>
-        .alert {
+      .alert {
         position: fixed;
         top: -100%;
         right: 1rem;
@@ -42,59 +61,60 @@
         border-radius: 0.25rem;
         transition: 0.3s ease-in-out;
         animation: slideIn 0.5s forwards;
-    }
+      }
 
-    @keyframes slideIn {
+      @keyframes slideIn {
         0% {
-            top: -100%;
+          top: -100%;
         }
         100% {
-            top: 1rem;
+          top: 1rem;
         }
-    }
+      }
 
-    .alert.success {
+      .alert.success {
         color: #155724;
         background-color: #d4edda;
         border-color: #c3e6cb;
-    }
+      }
 
-    .alert.danger {
+      .alert.danger {
         color: #721c24;
         background-color: #f8d7da;
         border-color: #f5c6cb;
-    }
+      }
 
-      .card-wrapper{
-    background-color: #000;
-    width: 90%;
-}
+      .card-wrapper {
+        background-color: #000;
+        width: 90%;
+      }
 
-footer .social a{
-  color: #fff;
-}
+      footer .social a {
+        color: #fff;
+      }
 
-.product-card {
+      .product-card {
+        overflow: hidden;
         width: 24%;
-    cursor: pointer;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap;
-    line-height: 28px;
-    text-align: center;
-    background-color: #000;
-    color: #fff !important;
-    margin: 5px;
-    padding: 0;
-    color: #fff;
-    border-radius: none;
-    transition: transform 0.2s;
-    height: auto;
-    }
+        cursor: pointer;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        line-height: 28px;
+        text-align: center;
+        background-color: #000;
+        color: #fff !important;
+        margin: 5px;
+        padding: 0;
+        color: #fff;
+        border-radius: none;
+        transition: transform 0.2s;
+        height: auto;
+      }
 
-    .notify {
+      /* .notify {
                             display: none;
                             position: fixed;
                             top: 50%;
@@ -152,73 +172,76 @@ footer .social a{
 
                           .notifySubscribe-btn:hover {
                             background: #333;
-                          }
+                          } */
 
-    .product-image {
-        width: 100%;
-    height: auto;
-    object-fit: cover;
-    transition: transform 1s ease-in-out;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    overflow: hidden;
-    border-radius: 0 !important;
-    }
-
-    .product-image:hover{
-            transition: 1s ease-in-out;
-    }
-
-@media screen and (max-width: 576px) {
-    .product-card {
-        min-width: 52% !important;
-        border-radius: none !important;
-        line-height: 15px !important;
-    }
-
-    .navbar-brand img{
-        height: 3.5vh !important;
-        margin-left: 2vh !important;
-    }
-
-    .custom-nav{
-        margin-right: -3vh !important;
-    }
-
-    .custom-nav iconify-icon{
-        font-size: 4vh !important;
-    }
-
-    .custom-nav .cartButtom{
-        margin-right: -2vh !important;
-    }
-
-    .product-grid .product-image{
+      .product-image {
         width: 100%;
         height: auto;
-    }
+        object-fit: cover;
+        transition: transform 1s ease-in-out;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        overflow: hidden;
+        border-radius: 0 !important;
+      }
 
-}
+      .product-image:hover {
+        transition: 1s ease-in-out;
+      }
 
-.send-your{
-    display: flex;
-    justify-content: flex-end !important;
-    align-items: center !important;
-    margin-left: 5vh;
-}
+      @media screen and (max-width: 576px) {
+        .product-card {
+          min-width: 52% !important;
+          border-radius: none !important;
+          line-height: 15px !important;
+        }
 
+        .navbar-brand img {
+          height: 3.5vh !important;
+          margin-left: 2vh !important;
+        }
+
+        .custom-nav {
+          margin-right: -3vh !important;
+        }
+
+        .custom-nav iconify-icon {
+          font-size: 4vh !important;
+        }
+
+        .custom-nav .cartButtom {
+          margin-right: -2vh !important;
+        }
+
+        .product-grid .product-image {
+          width: 100%;
+          height: auto;
+        }
+      }
+
+      .send-your {
+        display: flex;
+        justify-content: flex-end !important;
+        align-items: center !important;
+        margin-left: 5vh;
+      }
     </style>
-</head>
-<body>
+  </head>
+  <body>
+    <noscript
+      ><iframe
+        src="https://www.googletagmanager.com/ns.html?id=GTM-NQVB53VH"
+        height="0"
+        width="0"
+        style="display: none; visibility: hidden"
+      ></iframe
+    ></noscript>
 
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NQVB53VH"
-    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <div id="alertContainer"></div>
 
-  <div id="alertContainer"></div>
-
-<script>
-    function showAlert(message, type) {
+    <script>
+      function showAlert(message, type) {
         const alertContainer = document.getElementById("alertContainer");
 
         const alert = document.createElement("div");
@@ -228,296 +251,488 @@ footer .social a{
         alertContainer.appendChild(alert);
 
         setTimeout(() => {
-            closeAlert(alert.querySelector(".close"));
+          closeAlert(alert.querySelector(".close"));
         }, 4000);
-    }
+      }
 
-    function closeAlert(closeButton) {
+      function closeAlert(closeButton) {
         const alert = closeButton.parentElement;
         alert.style.animation = "slideOut 0.5s forwards";
 
         alert.addEventListener("animationend", function () {
-            alert.remove();
+          alert.remove();
         });
-    }
-</script>
-
-    <div class="promo-strip">
-        Get 15% Off on YOUR first Purchase
-      </div>
-    <nav class="navbar navbar-expand-lg navbar-dark p-2" style="width: 100%; background-color: #000;">
-        <div class="container-fluid">
-          <div class="text-left" style="width:max-content;">
-            <a class="navbar-brand" href="/">
-              <img src="/assets/ww side name logo.png_white@3x.png"style="width:auto; height: 5vh;" alt="Logo">
-            </a>
-          </div>
-
-          <div class="d-none d-lg-flex justify-content-evenly align-items-center" style="width: 60%;color: #fff;">
-            <div class="d-flex justify-content-evenly align-items-start large-nav text-uppercase" style="width: 90%;text-transform: uppercase;color: #fff !important;text-decoration: none;justify-content: space-around;">
-              <a href="/product_listing/beard_care" style="color: #fff;">Beard Care</a>
-              <a href="/product_listing/hair_care"  style="color: #fff;">Hair Care</a>
-              <a href="/product_listing/skin_care"  style="color: #fff;">Skin Care</a>
-              <a href="/product_listing/skin_care"  style="color: #fff;">Shave</a>
-              <a href="/product_listing/skin_care"  style="color: #fff;">Fragrance</a>
-            </div>
-
-          </div>
-
-          <div class="d-flex justify-content-center" style="width: 20%;">
-            <ul class="navbar-nav">
-              <li class="nav-item">
-                <form class="form-inline d-none d-md-inline">
-                  <div class="input-group">
-                     <input type="text" style="border-radius: 1rem 0 0 1rem;border: none;" class="form-control" placeholder="Search" aria-label="Search" aria-describedby="search-icon">
-                     <div class="input-group-append">
-                        <span class="input-group-text" style="border-radius: 0 1rem 1rem 0; background-color: #fff;" id="search-icon">
-                           <iconify-icon icon="material-symbols:search"></iconify-icon>
-                        </span>
-                     </div>
-                  </div>
-               </form>               
-              </li>
-            </ul>
-          </div>
-
-          <div class="custom-nav d-flex justify-content-end" style="width: 10%; font-size: 1rem;">
-            <% if (content.isLoggedIn === true) { %>
-                <a class="nav-link cartButtom d-flex align-items-center" style="color: #fff; font-size: 1.2rem;" onclick="openCart()">
-                <iconify-icon icon="mdi:cart" style="font-size: 2rem;"></iconify-icon>
-                <span style="margin-left: 5px;"></span>
-                </a>
-                <a class="nav-link d-flex align-items-center" href="/profile" style="color: #fff; font-size: 1.2rem;">
-                <iconify-icon icon="gg:profile" style="font-size: 2rem;"></iconify-icon>
-                <span style="margin-left: 5px;"></span>
-                </a>
-              <% } else { %>
-                <a class="nav-link cartButtom d-flex align-items-center" style="color: #fff; font-size: 1.2rem;" onclick="openCart()">
-                  <iconify-icon icon="mdi:cart" style="font-size: 2rem;"></iconify-icon>
-                   <span style="margin-right: -2vh"></span>
-                </a>
-                <a class="nav-link d-flex align-items-center" href="/profile" style="color: #fff; font-size: 1.2rem;">
-                <iconify-icon icon="gg:profile" style="font-size: 2rem;"></iconify-icon>
-                <span style="margin-left: 5px;"></span>
-                </a>
-              <% } %>
-           </div>
-        </div>
-      </nav> 
-    <%- include('partials/cart') %>
-
-    <div class="card-wrapper mt-4" style="width: 100%;height: max-content;">
-
-        <div class="cardio" style="width: 100%;grid-column-gap: 5vh;height: 100%;">
-            <div class="product-imgs" style="align-self: start;">
-                <div class="additional-images">
-                  <% item.imageLink.forEach((image, index) => { %>
-                      <div class="additional-image" onclick="loadImage('<%= image %>')" style="background-image: url('<%= image %>');" alt="<%= item.name %>">
-                      </div>
-                  <% }); %>
-
-              </div>
-                <div class="main-image" id="mainImageContainer">
-                  <img id="mainProductImage" src='<%= item.imageLink[0] %>' alt="<%= item.name %>">
-                </div>
-
-              </div> 
-              <div class="slider-images" id="imageSlider">
-                <% item.imageLink.forEach((image, index) => { %>
-                        <img src="<%= image %>"  style="width: 100%; height: auto;object-fit:fill;" alt="<%= item.name %>">
-                <% }); %>
-            </div>
-            
-
-            <div class="product-content" style="align-self: start;">
-                <h1 class="product-title" style="color: #fff;"><%= item.name %></h1>
-                
-               <div class="butns">
-                <div>
-                    <p><iconify-icon icon="noto:star"></iconify-icon> 5 | 204 Reviews</p>
-
-                    <p class="last-price">M.R.P. : <strike>&#8377;<%= item.originalPrice%></strike><span> &#8377;<%= item.offeredPrice %></span></p>
-                    <div class="product-price">
-                        <p class="discount-percentage">
-                            <% 
-                                const discountPercentage = ((item.originalPrice - item.offeredPrice) / item.originalPrice) * 100;
-                            %>
-                            <span><%= discountPercentage.toFixed(0) %>% OFF</span> 
-                            </p>
-                    </div>
-                    <p class="tax">₹(Incl. of all taxes). Usually delivered in  3-5 days</p>
-                 </div>
-                <div class="quantity-container" style="display: none;">
-                  <button id="minus-btn" class='decrease<%= item.itemId %>'>-</button>
-                  <input type="button" id="quantity-input" class='itemQuantity<%= item.itemId %>' value="0">
-                  <button id="plus-btn" class='increase<%= item.itemId %>'>+</button>
-                </div>
-
-               </div>
-
-               <div class="purchase-info">
-                    <% if (item.stock > 0 && Date.parse(item.createdAt) < Date.now()) { %>
-                        <button type="button" class="btn addCartButton mb-4">ADD TO CART</button>
-                    <% } else if ( content.isLoggedIn == true ) { %>
-                        <button type="button" class="btn mb-4 text-uppercase">You'll be Notified shortly</button>
-                    <% } else { %>
-
-                        <button onclick="openNotifyModal()" type="button" class="btn mb-4">NOTIFY ME</button>
-
-                        <div id="notifyModal" class="notify">
-                            <div class="notify-content">
-                              <span class="notify-close-btn" onclick="closeNotifyModal()">&times;</span>
-                              <h2>Subscribe for notifications</h2>
-                              <input type="email" class="subEmail" placeholder="Enter your email address:">
-                              <button class="notifySubscribe-btn" onclick="addSub()">Subscribe</button>
-                            </div>
-                        </div>
-
-                        <script>
-                            function openNotifyModal() {
-                              document.getElementById('notifyModal').style.display = 'flex';
-                            }
-
-                            function closeNotifyModal() {
-                              document.getElementById('notifyModal').style.display = 'none';
-                            }
-
-                            async function addSub() {
-                                const itemId = "<%= item.itemId %>"
-                                await axios.post("/subscribe", 
-                                    {
-                                        email: document.querySelector(".subEmail").value,
-                                        item: itemId
-                                    }
-                                )
-                                .then(response => {
-                                    if (response.status === 200 ){
-                                        showAlert("You will be notified via email shortly","success")
-                                        document.getElementById('notifyModal').style.display = 'none';
-                                    } else if (response.status === 201) {
-                                        showAlert("Item already subscribed","success")
-                                        document.getElementById('notifyModal').style.display = 'none';
-                                    }
-                                })
-                                .catch(err => {
-                                    showAlert("Error while adding you","danger")
-                                })
-                            }
-
-                            window.onclick = function(event) {
-                              var modal = document.getElementById('notifyModal');
-                              if (event.target === modal) {
-                                modal.style.display = 'none';
-                              }
-                            }
-                          </script>
-                    <% } %>
-                </div>
-
-                <div class="d-flex mb-5">
-                    <img src="../assets/no hars.png" style="height: 5vh; margin-right: 8vh">
-                    <img src="../assets/animal free.png" style="height: 5vh;">
-                    <img src="../assets/FDA.png" style="height: 5vh;margin-left: 8vh;">
-                </div>
-
-                <div class="social-links d-flex flex-row align-items-center">
-                  <p style="font-size:16px;font-weight: 300;">Share :</p>
-
-                  <a href="https://www.facebook.com/sharer/sharer.php?u%= item.name" target="_blank">
-                      <iconify-icon icon="bi:facebook"></iconify-icon>
-                  </a>
-
-                  <a href="https://twitter.com/intent/tweet?url=your_product_url&text=Your%20Product%20Description" target="_blank">
-                      <iconify-icon icon="pajamas:twitter"></iconify-icon>
-                  </a>
-
-                  <a href="https://www.instagram.com/?url=your_product_url" target="_blank">
-                      <iconify-icon icon="lucide:instagram"></iconify-icon>
-                  </a>
-
-                  <a href="https://api.whatsapp.com/send?text=Your%20Product%20Description%20- %20your_product_url" target="_blank">
-                      <iconify-icon icon="ic:sharp-whatsapp"></iconify-icon>
-                  </a>
-              </div>
-
-            </div>
-
-        </div>
-    </div>
-
-    
-
-    <script>
-     function scrollCustomSlides(direction) {
-    const slider = document.getElementById('imageSlider');
-    const scrollAmount = 100; 
-
-    if (direction === 'left') {
-        slider.scrollLeft -= scrollAmount;
-    } else if (direction === 'right') {
-        slider.scrollLeft += scrollAmount;
-    }
-}
-
+      }
     </script>
 
-<script>
-    const additionalImages = document.querySelectorAll('.slider-images');
-    const mainProductImage = document.getElementById('mainProductImage');
+    <div class="promo-strip">Get 15% Off on YOUR first Purchase</div>
+    <nav
+      class="navbar navbar-expand-lg navbar-dark p-2"
+      style="width: 100%; background-color: #000"
+    >
+      <div class="container-fluid">
+        <div class="text-left" style="width: max-content">
+          <a class="navbar-brand" href="/">
+            <img
+              src="/assets/ww side name logo.png_white@3x.png"
+              style="width: auto; height: 5vh"
+              alt="Logo"
+            />
+          </a>
+        </div>
 
-    additionalImages.forEach((image, index) => {
+        <div
+          class="d-none d-lg-flex justify-content-evenly align-items-center"
+          style="width: 60%; color: #fff"
+        >
+          <div
+            class="d-flex justify-content-evenly align-items-start large-nav text-uppercase"
+            style="
+              width: 90%;
+              text-transform: uppercase;
+              color: #fff !important;
+              text-decoration: none;
+              justify-content: space-around;
+            "
+          >
+            <a href="collections/beard-care" style="color: #fff">Beard Care</a>
+            <a href="/collections/hair-care" style="color: #fff">Hair Care</a>
+            <a href="/collections/skin-care" style="color: #fff">Skin Care</a>
+            <a href="/collections/shave" style="color: #fff">Shave</a>
+            <a href="/collections/fragrance" style="color: #fff">Fragrance</a>
+          </div>
+        </div>
 
-        image.addEventListener('click', () => loadImage(image.style.backgroundImage));
-        image.addEventListener('mouseover', () => loadImage(image.style.backgroundImage));
-    });
+        <div class="d-flex justify-content-center" style="width: 20%">
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <form class="form-inline d-none d-md-inline">
+                <div class="input-group">
+                  <input
+                    type="text"
+                    style="border-radius: 1rem 0 0 1rem; border: none"
+                    class="form-control"
+                    placeholder="Search"
+                    aria-label="Search"
+                    aria-describedby="search-icon"
+                  />
+                  <div class="input-group-append">
+                    <span
+                      class="input-group-text"
+                      style="
+                        border-radius: 0 1rem 1rem 0;
+                        background-color: #fff;
+                      "
+                      id="search-icon"
+                    >
+                      <iconify-icon
+                        icon="material-symbols:search"
+                      ></iconify-icon>
+                    </span>
+                  </div>
+                </div>
+              </form>
+            </li>
+          </ul>
+        </div>
 
-    function loadImage(image) {
+        <div
+          class="custom-nav d-flex justify-content-end"
+          style="width: 10%; font-size: 1rem"
+        >
+          <% if (content.isLoggedIn === true) { %>
+          <a
+            class="nav-link cartButtom d-flex align-items-center"
+            style="color: #fff; font-size: 1.2rem"
+            onclick="openCart()"
+          >
+            <iconify-icon
+              icon="mdi:cart"
+              style="font-size: 2rem"
+            ></iconify-icon>
+            <span style="margin-left: 5px"></span>
+          </a>
+          <a
+            class="nav-link d-flex align-items-center"
+            href="/profile"
+            style="color: #fff; font-size: 1.2rem"
+          >
+            <iconify-icon
+              icon="gg:profile"
+              style="font-size: 2rem"
+            ></iconify-icon>
+            <span style="margin-left: 5px"></span>
+          </a>
+          <% } else { %>
+          <a
+            class="nav-link cartButtom d-flex align-items-center"
+            style="color: #fff; font-size: 1.2rem"
+            onclick="openCart()"
+          >
+            <iconify-icon
+              icon="mdi:cart"
+              style="font-size: 2rem"
+            ></iconify-icon>
+            <span style="margin-right: -2vh"></span>
+          </a>
+          <a
+            class="nav-link d-flex align-items-center"
+            href="/profile"
+            style="color: #fff; font-size: 1.2rem"
+          >
+            <iconify-icon
+              icon="gg:profile"
+              style="font-size: 2rem"
+            ></iconify-icon>
+            <span style="margin-left: 5px"></span>
+          </a>
+          <% } %>
+        </div>
+      </div>
+    </nav>
+    <%- include('partials/cart') %>
 
+    <div class="modal fade" id="notifyModal" tabindex="-1">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" style="color: #000">
+              Subscribe For Notifications
+            </h5>
+            <button
+              type="button"
+              data-dismiss="modal"
+              style="
+                background-color: #fff;
+                border: none;
+                outline: none;
+                font-size: 3vh;
+                cursor: pointer;
+              "
+            >
+              &#10539;
+            </button>
+          </div>
+          <div class="modal-body">
+            <form id="notificationForm">
+              <div class="form-group">
+                <label for="emailInput" class="mb-1" style="color: #000"
+                  >Enter Email Address :</label
+                >
+                <input
+                  type="email"
+                  class="form-control mb-3"
+                  id="subEmail"
+                  placeholder="Enter your email"
+                  required
+                />
+              </div>
+              <button
+                type="submit"
+                onclick="addSub(event)"
+                class="btn btn-dark"
+              >
+                Subscribe
+              </button>
+            </form>
+            <div
+              id="thankYouMessage"
+              class="mt-2 text-success"
+              style="display: none"
+            >
+              Thank you, you'll be notified shortly.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card-wrapper mt-4" style="width: 100%; height: max-content">
+      <div
+        class="cardio"
+        style="width: 100%; grid-column-gap: 5vh; height: 100%"
+      >
+        <div class="product-imgs" style="align-self: start">
+          <div class="additional-images">
+            <% item.imageLink.forEach((image, index) => { %>
+            <div
+              class="additional-image"
+              onclick="loadImage('<%= image %>')"
+              style="background-image: url('<%= image %>')"
+              alt="<%= item.name %>"
+            ></div>
+            <% }); %>
+          </div>
+          <div class="main-image" id="mainImageContainer">
+            <img
+              id="mainProductImage"
+              src="<%= item.imageLink[0] %>"
+              alt="<%= item.name %>"
+            />
+          </div>
+        </div>
+        <div class="slider-images" id="imageSlider">
+          <% item.imageLink.forEach((image, index) => { %>
+          <img
+            src="<%= image %>"
+            style="width: 100%; height: auto; object-fit: fill"
+            alt="<%= item.name %>"
+          />
+          <% }); %>
+        </div>
+
+        <div class="product-content" style="align-self: start">
+          <h1 class="product-title" style="color: #fff"><%= item.name %></h1>
+
+          <div class="butns">
+            <div>
+              <p class="d-flex justify-content-start align-items-center">
+                <iconify-icon icon="noto:star"></iconify-icon>
+                <span class="top-rating ml-1 mr-1"></span> |
+                <span class="top-reviews ml-1 mr-1">0 Reviews</span>
+              </p>
+
+              <p class="last-price">
+                M.R.P. : <strike>&#8377;<%= item.originalPrice%></strike
+                ><span> &#8377;<%= item.offeredPrice %></span>
+              </p>
+              <div class="product-price">
+                <p class="discount-percentage">
+                  <% const discountPercentage = ((item.originalPrice -
+                  item.offeredPrice) / item.originalPrice) * 100; %>
+                  <span><%= discountPercentage.toFixed(0) %>% OFF</span>
+                </p>
+              </div>
+              <p class="tax">
+                ₹(Incl. of all taxes). Usually delivered in 3-5 days
+              </p>
+            </div>
+            <div class="quantity-container" style="display: none">
+              <button id="minus-btn" class="decrease<%= item.itemId %>">
+                -
+              </button>
+              <input
+                type="button"
+                id="quantity-input"
+                class="itemQuantity<%= item.itemId %>"
+                value="0"
+              />
+              <button id="plus-btn" class="increase<%= item.itemId %>">
+                +
+              </button>
+            </div>
+          </div>
+
+          <div class="purchase-info">
+            <% if (item.stock > 0 && Date.parse(item.createdAt) < Date.now()) {
+            %>
+            <button type="button" class="btn addCartButton mb-4">
+              ADD TO CART
+            </button>
+            <% } else if ( content.isLoggedIn == true ) { %>
+            <button
+              onclick="openNotifyModal('<%= item.itemId %>')"
+              type="button"
+              class="btn mb-4 text-uppercase"
+            >
+              NOTIFY ME
+            </button>
+            <% } else { %>
+
+            <button
+              onclick="openNotifyModal('<%= item.itemId %>')"
+              type="button"
+              class="btn mb-4 text-uppercase"
+            >
+              NOTIFY ME
+            </button>
+
+            <script>
+              // function openNotifyModal() {
+              //   document.getElementById('notifyModal').style.display = 'flex';
+              // }
+
+              // function closeNotifyModal() {
+              //   document.getElementById('notifyModal').style.display = 'none';
+              // }
+
+              // async function addSub() {
+              //     const itemId = "<%= item.itemId %>"
+              //     await axios.post("/subscribe",
+              //         {
+              //             email: document.querySelector(".subEmail").value,
+              //             item: itemId
+              //         }
+              //     )
+              //     .then(response => {
+              //         if (response.status === 200 ){
+              //             showAlert("You will be notified via email shortly","success")
+              //             document.getElementById('notifyModal').style.display = 'none';
+              //         } else if (response.status === 201) {
+              //             showAlert("Item already subscribed","success")
+              //             document.getElementById('notifyModal').style.display = 'none';
+              //         }
+              //     })
+              //     .catch(err => {
+              //         showAlert("Error while adding you","danger")
+              //     })
+              // }
+
+              // window.onclick = function(event) {
+              //   var modal = document.getElementById('notifyModal');
+              //   if (event.target === modal) {
+              //     modal.style.display = 'none';
+              //   }
+              // }
+            </script>
+            <% } %>
+          </div>
+
+          <div class="d-flex mb-5">
+            <img
+              src="../assets/no hars.png"
+              style="height: 5vh; margin-right: 8vh"
+            />
+            <img src="../assets/animal free.png" style="height: 5vh" />
+            <img
+              src="../assets/FDA.png"
+              style="height: 5vh; margin-left: 8vh"
+            />
+          </div>
+
+          <div class="social-links d-flex flex-row align-items-center">
+            <p style="font-size: 16px; font-weight: 300">Share :</p>
+
+            <a
+              href="https://www.facebook.com/sharer/sharer.php?u=<%= encodeURIComponent(item.name) %>"
+              target="_blank"
+            >
+              <iconify-icon icon="bi:facebook"></iconify-icon>
+            </a>
+
+            <a
+              href="https://twitter.com/intent/tweet?url=<%= encodeURIComponent(item.name) %>&text=<%= encodeURIComponent(item.meta_description) %>"
+              target="_blank"
+            >
+              <iconify-icon icon="pajamas:twitter"></iconify-icon>
+            </a>
+
+            <a
+              href="https://www.instagram.com/?url=<%= encodeURIComponent(item.name) %>"
+              target="_blank"
+            >
+              <iconify-icon icon="lucide:instagram"></iconify-icon>
+            </a>
+
+            <a
+              href="https://api.whatsapp.com/send?text=<%= encodeURIComponent(item.meta_description) %>%20-%20<%= encodeURIComponent(item.name) %>"
+              target="_blank"
+            >
+              <iconify-icon icon="ic:sharp-whatsapp"></iconify-icon>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      let selectedItemForNotify = "";
+      function openNotifyModal(arg) {
+        selectedItemForNotify = arg;
+        $("#notifyModal").modal("show");
+      }
+
+      async function addSub(event) {
+        event.preventDefault();
+        const itemId = selectedItemForNotify;
+        console.log(selectedItemForNotify);
+        await axios
+          .post("/subscribe", {
+            email: document.querySelector("#subEmail").value,
+            item: itemId,
+          })
+          .then((response) => {
+            if (response.status === 200) {
+              showAlert("You will be notified via email shortly", "success");
+              $("#notifyModal").modal("hide");
+            } else if (response.status === 201) {
+              showAlert("Item already subscribed", "success");
+              $("#notifyModal").modal("hide");
+            }
+          })
+          .catch((err) => {
+            showAlert("Error while adding you", "danger");
+          });
+      }
+    </script>
+
+    <script>
+      function scrollCustomSlides(direction) {
+        const slider = document.getElementById("imageSlider");
+        const scrollAmount = 100;
+
+        if (direction === "left") {
+          slider.scrollLeft -= scrollAmount;
+        } else if (direction === "right") {
+          slider.scrollLeft += scrollAmount;
+        }
+      }
+    </script>
+
+    <script>
+      const additionalImages = document.querySelectorAll(".slider-images");
+      const mainProductImage = document.getElementById("mainProductImage");
+
+      additionalImages.forEach((image, index) => {
+        image.addEventListener("click", () =>
+          loadImage(image.style.backgroundImage)
+        );
+        image.addEventListener("mouseover", () =>
+          loadImage(image.style.backgroundImage)
+        );
+      });
+
+      function loadImage(image) {
         mainProductImage.src = extractImageUrl(image);
-    }
+      }
 
-    function extractImageUrl(backgroundImage) {
-        return backgroundImage.replace(/url\(['"]?(.*?)['"]?\)/, '$1');
-    }
-</script>
-
-
+      function extractImageUrl(backgroundImage) {
+        return backgroundImage.replace(/url\(['"]?(.*?)['"]?\)/, "$1");
+      }
+    </script>
 
     <div class="faq-section mt-1 mb-1">
-        
-        <div class="faq-question" onclick="toggleFAQ(this)">
-            <span><h2>Product Description</h2></span>
-            <span class="icon">&#43;</span>
-        </div>
-        <div class="faq-answer">
-            <p id="description"><%= item.description || "" %></p>
-        </div>
-        
-        <div class="faq-question" onclick="toggleFAQ(this)">
-            <span><h2>Key Features</h2></span>
-            <span class="icon">&#43;</span>
-        </div>
-        <div class="faq-answer">
-            <p id="keyFeaturesText"><%= item.keyFeatures || "" %></p>
-        </div>
-        
-        <div class="faq-question" onclick="toggleFAQ(this)">
-            <span><h2>How To Use?</h2></span>
-            <span class="icon">&#43;</span>
-        </div>
-        <div class="faq-answer">
-            <p id="howtouse"><%= item.how_to_use || "" %></p>
-        </div>
-        
-        <div class="faq-question" onclick="toggleFAQ(this)">
-            <span><h2>FAQ</h2></span>
-            <span class="icon" >&#43;</span>
-        </div>
-        <div class="faq-answer">
-            <p id="itemFAQ"><%= item.FAQ || "" %></p>
-        </div>
-        
+      <div class="faq-question" onclick="toggleFAQ(this)">
+        <span><h2>Product Description</h2></span>
+        <span class="icon">&#43;</span>
+      </div>
+      <div class="faq-answer">
+        <p id="description"><%= item.description || "" %></p>
+      </div>
 
+      <div class="faq-question" onclick="toggleFAQ(this)">
+        <span><h2>Key Features</h2></span>
+        <span class="icon">&#43;</span>
+      </div>
+      <div class="faq-answer">
+        <p id="keyFeaturesText"><%= item.keyFeatures || "" %></p>
+      </div>
+
+      <div class="faq-question" onclick="toggleFAQ(this)">
+        <span><h2>How To Use?</h2></span>
+        <span class="icon">&#43;</span>
+      </div>
+      <div class="faq-answer">
+        <p id="howtouse"><%= item.how_to_use || "" %></p>
+      </div>
+
+      <div class="faq-question" onclick="toggleFAQ(this)">
+        <span><h2>FAQ</h2></span>
+        <span class="icon">&#43;</span>
+      </div>
+      <div class="faq-answer">
+        <p id="itemFAQ"><%= item.FAQ || "" %></p>
+      </div>
     </div>
 
     <div class="parent-container container mt-5 mb-5">
@@ -543,412 +758,467 @@ footer .social a{
     </div>
 
     <div class="review-container container">
-
       <select id="reviewFilter" onchange="filterReviews()">
-          <option value="recent">Most Recent</option>
-          <option value="positive">Positive First</option>
-          <option value="negative">Negative First</option>
+        <option value="recent">Most Recent</option>
+        <option value="positive">Positive First</option>
+        <option value="negative">Negative First</option>
       </select>
 
-      <div class="review-section" id="positiveReviews">
-
-      </div>
+      <div class="review-section" id="positiveReviews"></div>
 
       <script>
-          let reviews = [];
-          const ratingCounts = [1, 1, 1, 1, 1];
+        let reviews = [];
+        const ratingCounts = [1, 1, 1, 1, 1];
 
-          document.addEventListener('DOMContentLoaded', async () => {
-              await axios.get(`/products/<%= item.itemId %>/allReviews`)
-                  .then(response => {
-                      reviews = response.data.review;
-                      console.log(reviews)
+        document.addEventListener("DOMContentLoaded", async () => {
+          await axios
+            .get(`/products/<%= item.itemId %>/allReviews`)
+            .then((response) => {
+              reviews = response.data.review;
+              console.log(reviews);
 
-                      let totalRating = 0;
-                      for (const review of reviews) {
-                          totalRating += review.rating;
-                          ratingCounts[(review.rating - 1)]++;
-                      }
+              let totalRating = 0;
+              for (const review of reviews) {
+                totalRating += review.rating;
+                ratingCounts[review.rating - 1]++;
+              }
 
-                      const averageRating = reviews.length > 0 ? totalRating / reviews.length : 0;
+              const averageRating =
+                reviews.length > 0 ? totalRating / reviews.length : 0;
 
-                      const totalStarsContainer = document.querySelector(".totalStars");
-                      totalStarsContainer.innerHTML = ""; 
+              const totalStarsContainer = document.querySelector(".totalStars");
+              totalStarsContainer.innerHTML = "";
 
-                      for (let i = 0; i < averageRating; i++) {
-                          const starIcon = document.createElement("iconify-icon");
-                          starIcon.setAttribute("icon","material-symbols:star");
-                          totalStarsContainer.append(starIcon);
-                      }
+              for (let i = 0; i < averageRating; i++) {
+                const starIcon = document.createElement("iconify-icon");
+                starIcon.setAttribute("icon", "material-symbols:star");
+                totalStarsContainer.append(starIcon);
+              }
 
-                      drawReviewChart()
-                      document.querySelector(".totalReviews").textContent = `(${reviews.length} Verified Reviews)`
-                      document.querySelector(".averageRating").textContent = averageRating
-                      filterReviews(); 
-                  })
-                  .catch(err => showAlert("Something went wrong loading reviews", "danger"));
-          });
-          function drawReviewChart() {
+              drawReviewChart();
+              // Assuming you have the variables 'reviews' and 'averageRating' defined somewhere in your code.
 
-    const maxRatingCount = Math.max(...ratingCounts);
+              // Update the total reviews count
+              document.querySelector(
+                ".top-reviews"
+              ).textContent = `(${reviews.length} Reviews)`;
 
-    var ctx = document.getElementById('ratingsChart').getContext('2d');
-    var ratingsChart = new Chart(ctx, {
-        type: 'bar',
-        data: {
-            labels: ['1 Star', '2 Stars', '3 Stars', '4 Stars', '5 Stars'],
-            datasets: [{
-                label: '',
-                data: ratingCounts,
-                borderWidth: 2,
-                barThickness: 10,
-                backgroundColor: [
-                    '#FF5733',
-                    '#FFD933',
-                    '#33FF57',
-                    '#33B5FF',
-                    '#8333FF'
-                ],
-                borderColor: [
-                    '#FF5733',
-                    '#FFD933',
-                    '#33FF57',
-                    '#33B5FF',
-                    '#8333FF'
-                ],
-                borderRadius: 5, 
-            }]
-        },
-        options: {
-            indexAxis: 'y',
-            responsive: true,
-            plugins: {
+              // Update the average rating
+              document.querySelector(".top-rating").textContent = averageRating;
+
+              document.querySelector(
+                ".totalReviews"
+              ).textContent = `(${reviews.length} Verified Reviews)`;
+              document.querySelector(".averageRating").textContent =
+                averageRating;
+              filterReviews();
+            })
+            .catch((err) =>
+              showAlert("Something went wrong loading reviews", "danger")
+            );
+        });
+        function drawReviewChart() {
+          const maxRatingCount = Math.max(...ratingCounts);
+
+          var ctx = document.getElementById("ratingsChart").getContext("2d");
+          var ratingsChart = new Chart(ctx, {
+            type: "bar",
+            data: {
+              labels: ["1 Star", "2 Stars", "3 Stars", "4 Stars", "5 Stars"],
+              datasets: [
+                {
+                  label: "",
+                  data: ratingCounts,
+                  borderWidth: 2,
+                  barThickness: 10,
+                  backgroundColor: [
+                    "#FF5733",
+                    "#FFD933",
+                    "#33FF57",
+                    "#33B5FF",
+                    "#8333FF",
+                  ],
+                  borderColor: [
+                    "#FF5733",
+                    "#FFD933",
+                    "#33FF57",
+                    "#33B5FF",
+                    "#8333FF",
+                  ],
+                  borderRadius: 5,
+                },
+              ],
+            },
+            options: {
+              indexAxis: "y",
+              responsive: true,
+              plugins: {
                 legend: {
-                    display: false,
+                  display: false,
                 },
                 title: {
-                    display: false,
-                    text: 'Chart.js Horizontal Bar Chart'
-                }
-            },
-            scales: {
+                  display: false,
+                  text: "Chart.js Horizontal Bar Chart",
+                },
+              },
+              scales: {
                 x: {
-                    display: false,
-                    beginAtZero: true,
-                    max: maxRatingCount + 3
+                  display: false,
+                  beginAtZero: true,
+                  max: maxRatingCount + 3,
                 },
                 y: {
-                    grid: {
-                        display: false
-                    }
-                }
-            }
+                  grid: {
+                    display: false,
+                  },
+                },
+              },
+            },
+          });
         }
-    });
-}
 
-          function filterReviews() {
-              const filterOption = document.getElementById("reviewFilter").value;
-              const positiveReviewsContainer = document.getElementById("positiveReviews");
+        function filterReviews() {
+          const filterOption = document.getElementById("reviewFilter").value;
+          const positiveReviewsContainer =
+            document.getElementById("positiveReviews");
 
-              positiveReviewsContainer.innerHTML = "";
+          positiveReviewsContainer.innerHTML = "";
 
-              const filteredReviews = reviews.filter(review => {
-                  if (filterOption === "positive") {
-                      return review.rating > 0;
-                  } else if (filterOption === "negative") {
-                      return review.rating <= 0;
-                  } else {
-                      return true; 
-                  }
-              });
+          const filteredReviews = reviews.filter((review) => {
+            if (filterOption === "positive") {
+              return review.rating > 0;
+            } else if (filterOption === "negative") {
+              return review.rating <= 0;
+            } else {
+              return true;
+            }
+          });
 
-              filteredReviews.forEach(review => {
-                  const reviewItem = document.createElement("div");
-                  reviewItem.classList.add("review-item");
-                  reviewItem.innerHTML = `
+          filteredReviews.forEach((review) => {
+            const reviewItem = document.createElement("div");
+            reviewItem.classList.add("review-item");
+            reviewItem.innerHTML = `
                       <div class="review-name">${review.email}</div>
-                      <div class="review-date">${formatDate(review.dateAdded)}</div>
+                      <div class="review-date">${formatDate(
+                        review.dateAdded
+                      )}</div>
                       <div class="review-stars">${review.rating}</div>
                       <div class="review-title">${review.title}</div>
                       <div class="review-desc">${review.detail}</div>
                   `;
-                  positiveReviewsContainer.appendChild(reviewItem);
-              });
-          }
-
-          function formatDate(date) {
-              const options = { year: 'numeric', month: 'long', day: 'numeric' };
-              return new Date(date).toLocaleDateString(undefined, options);
-          }
-      </script>
-  </div>
-
-  <h2 class="people m-2 mt-4 mb-3" style="font-size:5vh;">People Also Bought</h2>
-  <div id="productGrid" class="row mb-5 product-grid container-fluid" onmousedown="startScroll(event)" onmouseup="stopScroll()" ontouchstart="startScroll(event)" ontouchend="stopScroll()">
-  </div>
-  <%- include('partials/footer') %>
-
- <%- include('partials/loader') %>
-
- <script>
-    let isScrolling = false;
-
-    function startScroll(event) {
-      isScrolling = true;
-      const scrollContainer = document.getElementById("productGrid");
-      const startX = event.pageX || event.touches[0].pageX;
-      let scrollLeft = scrollContainer.scrollLeft;
-
-      function handleMouseMove(e) {
-        const x = e.pageX || e.touches[0].pageX;
-        const delta = x - startX;
-        scrollContainer.scrollLeft = scrollLeft - delta;
-      }
-
-      function handleMouseUp() {
-        isScrolling = false;
-        document.removeEventListener("mousemove", handleMouseMove);
-        document.removeEventListener("mouseup", handleMouseUp);
-        document.removeEventListener("touchmove", handleMouseMove);
-        document.removeEventListener("touchend", handleMouseUp);
-      }
-
-      document.addEventListener("mousemove", handleMouseMove);
-      document.addEventListener("mouseup", handleMouseUp);
-      document.addEventListener("touchmove", handleMouseMove);
-      document.addEventListener("touchend", handleMouseUp);
-    }
-
-    function stopScroll() {
-      isScrolling = false;
-    }
-
-    let timeoutId;
-
-    function hideScrollbar() {
-      if (!isScrolling) {
-        document.getElementById("productGrid").style.overflow = "hidden";
-      }
-    }
-
-    function showScrollbar() {
-      document.getElementById("productGrid").style.overflow = "auto";
-    }
-
-    document
-      .getElementById("productGrid")
-      .addEventListener("scroll", function () {
-        showScrollbar();
-        clearTimeout(timeoutId);
-        timeoutId = setTimeout(hideScrollbar, 2000);
-      });
-  </script>
-
-    <script>
-        if (document.querySelector(`.addCartButton`)) {
-            document.querySelector(`.addCartButton`).addEventListener('click', async () => {
-                event.preventDefault();
-                try {
-                    const Id = '<%= item.itemId %>';
-                    const response = await axios.post('/addItem', { itemId: Id});
-                    if (response.status === 200) {
-                    console.log(response.data.message);
-                        showAlert('item added to cart','success')
-                        openCart()
-                        let container = document.querySelector('.quantity-container')
-                        container.style.display = 'block'
-                        document.querySelectorAll(`.itemQuantity<%= item.itemId %>`).forEach(item => {item.value = response.data.quantity});
-                    } else {
-                        console.error('Error adding item to cart:', response.data.message);
-
-                    }
-                } catch (err) {
-                window.location.href = "/login"
-                }
-            });
+            positiveReviewsContainer.appendChild(reviewItem);
+          });
         }
 
-        document.addEventListener('DOMContentLoaded', async () => {
-          const response = await axios.get('/getprofile');
-          const userProfile = response.data.userProfile;
-          const itemId = '<%= item.itemId %>';
-          const cartItem = userProfile.cart.find(item => item.itemId === itemId);
-          if (cartItem) {
-            document.querySelector(`.itemQuantity<%= item.itemId %>`).value = cartItem.quantity
-            document.querySelector('.quantity-container').style.display = 'block'
-          } 
-          document.querySelector(`.decrease<%= item.itemId %>`).addEventListener('click', async () => {
-              await axios.post('/decreaseItem', { itemId: '<%= item.itemId %>' })
-              .then(response => {
-                  quantity = response.data.newQuantity;
-                  if (quantity === -1){
-                    document.querySelector('.quantity-container').style.display = 'none'
-                    if (document.querySelector(`.card_<%= item.itemId %>`)) {
-                        document.querySelector(`.card_<%= item.itemId %>`).innerHTML = "";
-                    }
-                      showAlert("Item removed from cart","success")
-                  } else {
-                      document.querySelectorAll(`.itemQuantity<%= item.itemId %>`).forEach(item => {item.value = quantity;}) 
-                      showAlert("Item quantity decreased","success")
-                  }
-              })
-              .catch(err => alert("error " + err))
-          })
-          document.querySelector('.increase<%= item.itemId %>').addEventListener('click', async () => {
-              console.log("triggered")
-              await axios.post('/increaseItem', { itemId: '<%= item.itemId %>' })
-              .then(response => {
-                console.log('quantity increased')
-                  document.querySelectorAll(`.itemQuantity<%= item.itemId %>`).forEach(item => {item.value = response.data.newQuantity;})  
-                  showAlert("Item quantity increased","success")
-              })
-              .catch(err => alert("error " + err))
-          })
-        });
+        function formatDate(date) {
+          const options = { year: "numeric", month: "long", day: "numeric" };
+          return new Date(date).toLocaleDateString(undefined, options);
+        }
+      </script>
+    </div>
 
+    <h2 class="people m-2 mt-4 mb-3" style="font-size: 5vh">
+      People Also Bought
+    </h2>
+    <div
+      id="productGrid"
+      class="row mb-5 product-grid container-fluid"
+      onmousedown="startScroll(event)"
+      onmouseup="stopScroll()"
+      ontouchstart="startScroll(event)"
+      ontouchend="stopScroll()"
+    ></div>
+    <%- include('partials/footer') %> <%- include('partials/loader') %>
+
+    <script>
+      let isScrolling = false;
+
+      function startScroll(event) {
+        isScrolling = true;
+        const scrollContainer = document.getElementById("productGrid");
+        const startX = event.pageX || event.touches[0].pageX;
+        let scrollLeft = scrollContainer.scrollLeft;
+
+        function handleMouseMove(e) {
+          const x = e.pageX || e.touches[0].pageX;
+          const delta = x - startX;
+          scrollContainer.scrollLeft = scrollLeft - delta;
+        }
+
+        function handleMouseUp() {
+          isScrolling = false;
+          document.removeEventListener("mousemove", handleMouseMove);
+          document.removeEventListener("mouseup", handleMouseUp);
+          document.removeEventListener("touchmove", handleMouseMove);
+          document.removeEventListener("touchend", handleMouseUp);
+        }
+
+        document.addEventListener("mousemove", handleMouseMove);
+        document.addEventListener("mouseup", handleMouseUp);
+        document.addEventListener("touchmove", handleMouseMove);
+        document.addEventListener("touchend", handleMouseUp);
+      }
+
+      function stopScroll() {
+        isScrolling = false;
+      }
+
+      let timeoutId;
+
+      function hideScrollbar() {
+        if (!isScrolling) {
+          document.getElementById("productGrid").style.overflow = "hidden";
+        }
+      }
+
+      function showScrollbar() {
+        document.getElementById("productGrid").style.overflow = "auto";
+      }
+
+      document
+        .getElementById("productGrid")
+        .addEventListener("scroll", function () {
+          showScrollbar();
+          clearTimeout(timeoutId);
+          timeoutId = setTimeout(hideScrollbar, 2000);
+        });
     </script>
 
-<script>
-    function splitTextAtPunctuation() {
-        var keyFeaturesText = document.getElementById('keyFeaturesText');
+    <script>
+      if (document.querySelector(`.addCartButton`)) {
+        document
+          .querySelector(`.addCartButton`)
+          .addEventListener("click", async () => {
+            event.preventDefault();
+            try {
+              const Id = "<%= item.itemId %>";
+              const response = await axios.post("/addItem", { itemId: Id });
+              if (response.status === 200) {
+                console.log(response.data.message);
+                showAlert("item added to cart", "success");
+                openCart();
+                let container = document.querySelector(".quantity-container");
+                container.style.display = "block";
+                document
+                  .querySelectorAll(`.itemQuantity<%= item.itemId %>`)
+                  .forEach((item) => {
+                    item.value = response.data.quantity;
+                  });
+              } else {
+                console.error(
+                  "Error adding item to cart:",
+                  response.data.message
+                );
+              }
+            } catch (err) {
+              window.location.href = "/login";
+            }
+          });
+      }
+
+      document.addEventListener("DOMContentLoaded", async () => {
+        const response = await axios.get("/getprofile");
+        const userProfile = response.data.userProfile;
+        const itemId = "<%= item.itemId %>";
+        const cartItem = userProfile.cart.find(
+          (item) => item.itemId === itemId
+        );
+        if (cartItem) {
+          document.querySelector(`.itemQuantity<%= item.itemId %>`).value =
+            cartItem.quantity;
+          document.querySelector(".quantity-container").style.display = "block";
+        }
+        document
+          .querySelector(`.decrease<%= item.itemId %>`)
+          .addEventListener("click", async () => {
+            await axios
+              .post("/decreaseItem", { itemId: "<%= item.itemId %>" })
+              .then((response) => {
+                quantity = response.data.newQuantity;
+                if (quantity === -1) {
+                  document.querySelector(".quantity-container").style.display =
+                    "none";
+                  if (document.querySelector(`.card_<%= item.itemId %>`)) {
+                    document.querySelector(
+                      `.card_<%= item.itemId %>`
+                    ).innerHTML = "";
+                  }
+                  showAlert("Item removed from cart", "success");
+                } else {
+                  document
+                    .querySelectorAll(`.itemQuantity<%= item.itemId %>`)
+                    .forEach((item) => {
+                      item.value = quantity;
+                    });
+                  showAlert("Item quantity decreased", "success");
+                }
+              })
+              .catch((err) => alert("error " + err));
+          });
+        document
+          .querySelector(".increase<%= item.itemId %>")
+          .addEventListener("click", async () => {
+            console.log("triggered");
+            await axios
+              .post("/increaseItem", { itemId: "<%= item.itemId %>" })
+              .then((response) => {
+                console.log("quantity increased");
+                document
+                  .querySelectorAll(`.itemQuantity<%= item.itemId %>`)
+                  .forEach((item) => {
+                    item.value = response.data.newQuantity;
+                  });
+                showAlert("Item quantity increased", "success");
+              })
+              .catch((err) => alert("error " + err));
+          });
+      });
+    </script>
+
+    <script>
+      function splitTextAtPunctuation() {
+        var keyFeaturesText = document.getElementById("keyFeaturesText");
         var text = keyFeaturesText.innerHTML;
 
         var sentences = text.split(/[.?]/);
 
-        keyFeaturesText.innerHTML = sentences.join('.<br><br>'); 
-    }
-    splitTextAtPunctuation();
-</script>
+        keyFeaturesText.innerHTML = sentences.join(".<br><br>");
+      }
+      splitTextAtPunctuation();
+    </script>
 
-<script>
-  function splitHowToUseAtPunctuation() {
-      var howToUseText = document.getElementById('howtouse');
-      var text = howToUseText.innerHTML;
+    <script>
+      function splitHowToUseAtPunctuation() {
+        var howToUseText = document.getElementById("howtouse");
+        var text = howToUseText.innerHTML;
 
-      var sentences = text.split(/[.?]/);
+        var sentences = text.split(/[.?]/);
 
-      howToUseText.innerHTML = sentences.join('.<br><br>'); 
-  }
-  splitHowToUseAtPunctuation();
-</script>
+        howToUseText.innerHTML = sentences.join(".<br><br>");
+      }
+      splitHowToUseAtPunctuation();
+    </script>
 
-<script>
-  function splitItemFAQAtPunctuation() {
-      var itemFAQText = document.getElementById('itemFAQ');
-      var text = itemFAQText.innerHTML;
+    <script>
+      function splitItemFAQAtPunctuation() {
+        var itemFAQText = document.getElementById("itemFAQ");
+        var text = itemFAQText.innerHTML;
 
-      var sentences = text.split(/[.?]/);
+        var sentences = text.split(/[.?]/);
 
-      itemFAQText.innerHTML = sentences.join('.<br><br>'); 
-  }
-  splitItemFAQAtPunctuation();
-</script>
+        itemFAQText.innerHTML = sentences.join(".<br><br>");
+      }
+      splitItemFAQAtPunctuation();
+    </script>
 
+    <script>
+      function splitDescriptionAtPunctuation() {
+        var descriptionText = document.getElementById("description");
+        var text = descriptionText.innerHTML;
 
-<script>
-  function splitDescriptionAtPunctuation() {
-      var descriptionText = document.getElementById('description');
-      var text = descriptionText.innerHTML;
+        var sentences = text.split(/[.?]/);
 
-      var sentences = text.split(/[.?]/);
+        descriptionText.innerHTML = sentences.join(".<br><br>");
+      }
+      splitDescriptionAtPunctuation();
+    </script>
 
-      descriptionText.innerHTML = sentences.join('.<br><br>'); 
-  }
-  splitDescriptionAtPunctuation();
-</script>
+    <script>
+      let products = [];
 
+      document.addEventListener("DOMContentLoaded", async () => {
+        try {
+          const response = await fetchProducts("/api/products");
+          products = response;
+          renderProducts("all");
+        } catch (error) {
+          showAlert("error while fetching the products", "danger");
+        }
+      });
 
-<script>
-  let products = [];
+      async function fetchProducts(apiEndpoint) {
+        const response = await axios.get(apiEndpoint);
+        return response.data;
+      }
 
-  document.addEventListener('DOMContentLoaded', async () => {
-    try {
-        const response = await fetchProducts('/api/products');
-        products = response;
-        renderProducts('all');
-    } catch (error) {
-        showAlert("error while fetching the products","danger")
-    }
-  });
-
-  async function fetchProducts(apiEndpoint) {
-    const response = await axios.get(apiEndpoint);
-    return response.data;
-  }
-
-  function attachAddToCartListeners(products) {
-    products.forEach(product => {
+      function attachAddToCartListeners(products) {
+        products.forEach((product) => {
           const addButton = document.querySelector(`.add${product.itemId}`);
           if (!addButton) return 0;
-          addButton.addEventListener('click', async (event) => {
-              event.preventDefault();
-              try {
-                const response = await addToCart('/addItem', { itemId: product.itemId });
-                if (response.status === 200) {
-                      console.log(response.data.message);
-                      showAlert('item added to cart','success')
-                      openCart()
-
-                } else {
-                      console.error('Error adding item to cart:', response.data.message);
-
-                }
-              } catch (err) {
-                if (err.response.status === 400){
-                    showAlert("Item already in cart","success")
-                    openCart()
-                } else {
-                    window.location.href = "/login"
-                }
+          addButton.addEventListener("click", async (event) => {
+            event.preventDefault();
+            try {
+              const response = await addToCart("/addItem", {
+                itemId: product.itemId,
+              });
+              if (response.status === 200) {
+                console.log(response.data.message);
+                showAlert("item added to cart", "success");
+                openCart();
+              } else {
+                console.error(
+                  "Error adding item to cart:",
+                  response.data.message
+                );
               }
+            } catch (err) {
+              if (err.response.status === 400) {
+                showAlert("Item already in cart", "success");
+                openCart();
+              } else {
+                window.location.href = "/login";
+              }
+            }
           });
-    });
-  }
-  async function addToCart(apiEndpoint, data) {
-    return await axios.post(apiEndpoint, data);
-  }
+        });
+      }
+      async function addToCart(apiEndpoint, data) {
+        return await axios.post(apiEndpoint, data);
+      }
 
-  function renderProducts(categoryFilter) {
-    const productGrid = document.getElementById('productGrid');
-    productGrid.innerHTML = '';
+      function renderProducts(categoryFilter) {
+        const productGrid = document.getElementById("productGrid");
+        productGrid.innerHTML = "";
 
-    const filteredProducts = categoryFilter === 'all' ? products : products.filter(product => product.category === categoryFilter);
+        const filteredProducts =
+          categoryFilter === "all"
+            ? products
+            : products.filter((product) => product.category === categoryFilter);
 
-    filteredProducts.forEach(product => {
+        filteredProducts.forEach((product) => {
           const productCard = createProductCard(product);
           productGrid.appendChild(productCard);
-    });
+        });
 
-    attachAddToCartListeners(filteredProducts);
-  }
-  function createProductCard(product) {
-  const productCard = document.createElement('div');
-  productCard.className = 'col-md-4 product-card product';
+        attachAddToCartListeners(filteredProducts);
+      }
+      function createProductCard(product) {
+        const productCard = document.createElement("div");
+        productCard.className = "col-md-4 product-card product";
 
-  var words = product.description.split(" ");
-          product.description = words.slice(0, 5).join(" ");
-          if (words.length > 5) {
-              product.description += "...";
-          }
+        var words = product.description.split(" ");
+        product.description = words.slice(0, 5).join(" ");
+        if (words.length > 5) {
+          product.description += "...";
+        }
 
-          words = product.name.split(" ");
-          product.name = words.slice(0, 3).join(" ");
-          if (words.length > 3) {
-              product.name += "...";
-          }
-          
+        words = product.name.split(" ");
+        product.name = words.slice(0, 3).join(" ");
+        if (words.length > 3) {
+          product.name += "...";
+        }
+
         let button;
         let isLoggedIn = Boolean("<%= content.isLoggedIn %>");
 
         if (product.stock > 0 && Date.parse(product.createdAt) < Date.now()) {
           button = ` <button class="add-to-cart-btn add${product.itemId}" id="liveToastBtn"><i class="fas fa-cart"></i> Add to Cart</button>`;
         } else if (isLoggedIn == true) {
-          button = `<button class="add-to-cart-btn" id="liveToastBtn"><i class="fas fa-cart"></i>NOTIFY Me</button>`;
+          button = `<button class="add-to-cart-btn" onclick="openNotifyModal('${product.itemId}')"  id="liveToastBtn"><i class="fas fa-cart"></i>NOTIFY Me</button>`;
         } else {
-          button = `<button class="add-to-cart-btn" openSubscribeModal(${product.itemId}) id="liveToastBtn"><i class="fas fa-cart"></i>NOTIFY ME</button> `;
+          button = `<button class="add-to-cart-btn" onclick="openNotifyModal('${product.itemId}')"  id="liveToastBtn"><i class="fas fa-cart"></i>NOTIFY ME</button> `;
         }
-  productCard.innerHTML = `
+        productCard.innerHTML = `
   <a href="/products/${product.itemId}" >
             <div class="product-image-container">
                   <img class="product-image" src="${
@@ -989,65 +1259,66 @@ footer .social a{
                         }
                         </div>
                       <div class="product-discount d-flex justify-content-end text-success text-uppercase"> ${(
-                      ((product.originalPrice - product.offeredPrice) /
-                        product.originalPrice) *
-                      100
+                        ((product.originalPrice - product.offeredPrice) /
+                          product.originalPrice) *
+                        100
                       ).toFixed(0)}% Off
                     </div>
                   </div>
                 </div>
-                <p style="text-align:center;font-weight:300;" class="rws"><iconify-icon icon="noto:star"></iconify-icon> 4.6 | 204 Reviews</p>
+                <p style="text-align:center;font-weight:300;" class="rws"><iconify-icon icon="noto:star"></iconify-icon>0 | 0 Reviews</p>
                   ${button}
             </div>
          </a>
   `;
 
-  const productImageContainer = productCard.querySelector('.product-image-container');
-  const mainImage = productImageContainer.querySelector('.product-image');
-  const hoverImage = productImageContainer.querySelector('.hover-image');
+        const productImageContainer = productCard.querySelector(
+          ".product-image-container"
+        );
+        const mainImage = productImageContainer.querySelector(".product-image");
+        const hoverImage = productImageContainer.querySelector(".hover-image");
 
-  productImageContainer.addEventListener('mouseenter', function () {
-    mainImage.style.display = 'none';
-    hoverImage.style.display = 'block';
-  });
+        productImageContainer.addEventListener("mouseenter", function () {
+          mainImage.style.display = "none";
+          hoverImage.style.display = "block";
+        });
 
-  productImageContainer.addEventListener('mouseleave', function () {
-    mainImage.style.display = 'block';
-    hoverImage.style.display = 'none';
-  });
+        productImageContainer.addEventListener("mouseleave", function () {
+          mainImage.style.display = "block";
+          hoverImage.style.display = "none";
+        });
 
-  return productCard;
-  }
+        return productCard;
+      }
 
-  const container = document.getElementById('productContainer'); 
-  products.forEach(product => {
-  const productCard = createProductCard(product);
-  container.appendChild(productCard);
-  });
-</script>
+      const container = document.getElementById("productContainer");
+      products.forEach((product) => {
+        const productCard = createProductCard(product);
+        container.appendChild(productCard);
+      });
+    </script>
 
-<script>
-    function toggleFAQ(question) {
-        const isActive = question.classList.contains('active');
-        const faqQuestions = document.querySelectorAll('.faq-question');
+    <script>
+      function toggleFAQ(question) {
+        const isActive = question.classList.contains("active");
+        const faqQuestions = document.querySelectorAll(".faq-question");
 
         faqQuestions.forEach((faqQuestion) => {
-            faqQuestion.classList.remove('active');
-            const answer = faqQuestion.nextElementSibling;
-            answer.style.maxHeight = '0';
-            const icon = faqQuestion.querySelector('.icon');
-            icon.innerHTML = '&#43;';
+          faqQuestion.classList.remove("active");
+          const answer = faqQuestion.nextElementSibling;
+          answer.style.maxHeight = "0";
+          const icon = faqQuestion.querySelector(".icon");
+          icon.innerHTML = "&#43;";
         });
 
         if (!isActive) {
-            question.classList.add('active');
-            const answer = question.nextElementSibling;
-            answer.style.maxHeight = answer.scrollHeight + 'px';
-            const icon = question.querySelector('.icon');
-            icon.innerHTML = '&#x292B;';
+          question.classList.add("active");
+          const answer = question.nextElementSibling;
+          answer.style.maxHeight = answer.scrollHeight + "px";
+          const icon = question.querySelector(".icon");
+          icon.innerHTML = "&#x292B;";
         }
-    }
-</script>
-
-</body>
+      }
+    </script>
+  </body>
 </html>

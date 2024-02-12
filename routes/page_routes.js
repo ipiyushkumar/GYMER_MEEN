@@ -118,6 +118,11 @@ router.get("/sitemap.xml", (req, res) => {
   res.sendFile(sitemapPath);
 });
 
+router.get("/robots.txt", (req, res) => {
+  const robotsPath = path.join(__dirname, "../assets/robots.txt");
+  res.sendFile(robotsPath);
+});
+
 router.get("/collections/:page", (req, res) => {
   const { page } = req.params;
   let pageContext = "all";

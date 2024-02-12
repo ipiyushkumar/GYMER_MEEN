@@ -115,7 +115,8 @@ router.post(
       });
       const sanitizedName = name
         .replace(/[#-.]|[[-^]|[?|{}]\s+/g, "-")
-        .replace(/\s+/g, "-");
+        .replace(/\s+/g, "-")
+        .toLowerCase();
       newProduct.itemId = sanitizedName;
 
       console.log("product saved");

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bootstrap Image Carousel</title>
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    @media (max-width: 767.98px) {
+      .carousel-item.first-slide img {
+        content: url("/assets/anti-acne-mb.jpg") !important;
+      }
+  
+      .carousel-item.second-slide img {
+        content: url("/assets/grooming-mb.jpg") !important;
+      }
+  
+      .carousel-item.third-slide img {
+        content: url("/assets/Spray-third-mb.jpg") !important;
+      }
+    }
+  </style>
+  
+</head>
+<body>
+
+<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+  <ol class="carousel-indicators">
+    <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+    <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+    <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+  </ol>
+  <div class="carousel-inner">
+    <div class="carousel-item first-slide active">
+      <img src="/assets/anti-acne-desk.jpg" class="d-block w-100" alt="...">
+    </div>
+    <div class="carousel-item second-slide">
+      <img src="/assets/growth-desk.jpg" class="d-block w-100" alt="...">
+    </div>
+    <div class="carousel-item third-slide">
+      <img src="/assets/bellavita-exp.jpg" class="d-block w-100" alt="...">
+    </div>
+  </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script>
+  $('.carousel').carousel({
+    interval: 2000 // Change the interval here (in milliseconds)
+  });
+</script>
+
+</body>
+</html>
