@@ -1258,12 +1258,18 @@
                 <input
                   type="email"
                   class="form-control mb-3"
-                  id="emailInput"
+                  id="subEmail"
                   placeholder="Enter your email"
                   required
                 />
               </div>
-              <button type="submit" class="btn btn-dark">Subscribe</button>
+              <button
+                type="submit"
+                onclick="addSub(event)"
+                class="btn btn-dark"
+              >
+                Subscribe
+              </button>
             </form>
             <div
               id="thankYouMessage"
@@ -1278,35 +1284,32 @@
     </div>
 
     <script>
-      document
-        .getElementById("notificationForm")
-        .addEventListener("submit", function (event) {
-          event.preventDefault();
-
-          var email = localStorage.getItem("submittedEmail");
-          var inputEmail = document.getElementById("emailInput").value;
-
-          if (email === inputEmail) {
-            alert(
-              "We have already received your request. You'll be notified shortly."
-            );
-            return;
-          }
-
-          document.getElementById("thankYouMessage").style.display = "block";
-
-          localStorage.setItem("submittedEmail", inputEmail);
-
-          setTimeout(function () {
-            location.reload();
-          }, 2000);
-        });
-    </script>
-
-    <script>
-      function openNotifyModal() {
-        console.log("notify me modal");
+      let selectedItemForNotify = "";
+      function openNotifyModal(arg) {
+        selectedItemForNotify = arg;
         $("#notifyModal").modal("show");
+      }
+
+      async function addSub(event) {
+        event.preventDefault();
+        const itemId = selectedItemForNotify;
+        await axios
+          .post("/subscribe", {
+            email: document.querySelector("#subEmail").value,
+            item: itemId,
+          })
+          .then((response) => {
+            if (response.status === 200) {
+              showAlert("You will be notified via email shortly", "success");
+              $("#notifyModal").modal("hide");
+            } else if (response.status === 201) {
+              showAlert("Item already subscribed", "success");
+              $("#notifyModal").modal("hide");
+            }
+          })
+          .catch((err) => {
+            showAlert("Error while adding you", "danger");
+          });
       }
     </script>
 
@@ -2154,9 +2157,9 @@
         if (product.stock > 0 && Date.parse(product.createdAt) < Date.now()) {
           button = ` <button class="add-to-cart-btn add${product.itemId}" id="liveToastBtn"><i class="fas fa-cart"></i> Add to Cart</button>`;
         } else if (isLoggedIn == true) {
-          button = `<button class="add-to-cart-btn" onclick="openNotifyModal()" id="liveToastBtn"><i class="fas fa-cart"></i>NOTIFY ME</button>`;
+          button = `<button class="add-to-cart-btn" onclick="openNotifyModal('${product.itemId}')" id="liveToastBtn"><i class="fas fa-cart"></i>NOTIFY ME</button>`;
         } else {
-          button = `<button class="add-to-cart-btn" onclick="openNotifyModal()" id="liveToastBtn"><i class="fas fa-cart"></i>NOTIFY ME</button> `;
+          button = `<button class="add-to-cart-btn" onclick="openNotifyModal('${product.itemId}')" id="liveToastBtn"><i class="fas fa-cart"></i>NOTIFY ME</button> `;
         }
 
         productCard.innerHTML = `

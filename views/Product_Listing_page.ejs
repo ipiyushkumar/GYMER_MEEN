@@ -192,70 +192,70 @@
         flex-wrap: nowrap;
         justify-content: flex-start;
         grid-row-gap: 20px !important;
-    }    
+      }
 
-    #productGrid {
-      gap: 10px !important;
+      #productGrid {
+        gap: 10px !important;
         overflow: hidden;
-        -ms-overflow-style: none;  
-        scrollbar-width: none;  
-    }
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+      }
 
-    #productGrid::-webkit-scrollbar {
+      #productGrid::-webkit-scrollbar {
         display: none;
-    }
+      }
 
-    .product-card {
+      .product-card {
         width: 31%;
-    cursor: pointer;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap;
-    line-height: 30px;
-    background-color: #000;
-    color: #fff !important;
-    margin: 5px;
-    padding: 0;
-    color: #fff;
-    border-radius: none;
-    transition: transform 0.2s;
-    height: auto;
-    }
+        cursor: pointer;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        line-height: 30px;
+        background-color: #000;
+        color: #fff !important;
+        margin: 5px;
+        padding: 0;
+        color: #fff;
+        border-radius: none;
+        transition: transform 0.2s;
+        height: auto;
+      }
 
-    .product-details{
+      .product-details {
         margin-top: -2vh !important;
-        padding: 0!important;
+        padding: 0 !important;
         text-align: left;
         width: 100%;
         flex-wrap: wrap;
-    }
+      }
 
-    .product-details img{
+      .product-details img {
         width: auto;
         height: 10vh;
         position: absolute;
         top: 0;
         background-color: #fff;
-    }
+      }
 
-    .product-image {
-    width: 100%;
-    height: auto;
-    margin: 0;
-    object-fit: cover;
-    transition: transform 1s ease-in-out;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    overflow: hidden;
-    border-radius: none;
-    }
+      .product-image {
+        width: 100%;
+        height: auto;
+        margin: 0;
+        object-fit: cover;
+        transition: transform 1s ease-in-out;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        overflow: hidden;
+        border-radius: none;
+      }
 
-    .product-image:hover{
-            transition: 1s ease-in-out;
-    }
+      .product-image:hover {
+        transition: 1s ease-in-out;
+      }
 
       .Liked {
         margin-top: 2rem;
@@ -263,26 +263,25 @@
       }
 
       @media (max-width: 576px) {
-
         .accordion {
           margin-top: 0.5rem;
           margin-bottom: 0.5rem;
         }
 
-        .product-title{
-            font-size: 15px !important;
+        .product-title {
+          font-size: 15px !important;
         }
-        .product-price-discount{
-            font-size: 12px !important;
-        }
-
-        .product-price{
+        .product-price-discount {
           font-size: 12px !important;
         }
 
-        .product-card .rws{
-            font-size: 12px !important;
-            margin-top: 4px !important;
+        .product-price {
+          font-size: 12px !important;
+        }
+
+        .product-card .rws {
+          font-size: 12px !important;
+          margin-top: 4px !important;
         }
 
         .banner {
@@ -363,11 +362,11 @@
           width: 100%;
           height: max-content;
         }
-        .product-card{
-        width: 47%;
-        line-height: 20px !important;
-        border-radius: none !important;
-    }
+        .product-card {
+          width: 47%;
+          line-height: 20px !important;
+          border-radius: none !important;
+        }
 
         .slider img {
           height: auto;
@@ -423,7 +422,11 @@
                     Discount
                   </button>
                 </h2>
-                <div id="discountFilterCollapse" class="accordion-collapse collapse" aria-labelledby="discountFilterHeader">
+                <div
+                  id="discountFilterCollapse"
+                  class="accordion-collapse collapse"
+                  aria-labelledby="discountFilterHeader"
+                >
                   <div class="accordion-body">
                     <a class="nav-link" href="#" onclick="setDiscount(10)"
                       >10%</a
@@ -515,56 +518,81 @@
         </div>
       </div>
     </div>
-    <%- include('partials/loader') %> 
-    <%- include('partials/footer') %>
+    <%- include('partials/loader') %> <%- include('partials/footer') %>
 
     <div class="modal fade" id="notifyModal" tabindex="-1">
       <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
           <div class="modal-header">
             <h5 class="modal-title">Subscribe For Notifications</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
           </div>
           <div class="modal-body">
             <form id="notificationForm">
               <div class="form-group">
-                <label for="emailInput" class="mb-1">Enter Email Address :</label>
-                <input type="email" class="form-control mb-3" id="emailInput" placeholder="Enter your email" required>
+                <label for="emailInput" class="mb-1"
+                  >Enter Email Address :</label
+                >
+                <input
+                  type="email"
+                  class="form-control mb-3"
+                  id="subEmail"
+                  placeholder="Enter your email"
+                  required
+                />
               </div>
-              <button type="submit" class="btn btn-dark">Subscribe</button>
+              <button
+                type="submit"
+                onclick="addSub(event)"
+                class="btn btn-dark"
+              >
+                Subscribe
+              </button>
             </form>
-            <div id="thankYouMessage" class="mt-2 text-success" style="display: none;">Thank you, you'll be notified shortly.</div>
+            <div
+              id="thankYouMessage"
+              class="mt-2 text-success"
+              style="display: none"
+            >
+              Thank you, you'll be notified shortly.
+            </div>
           </div>
         </div>
       </div>
     </div>
 
     <script>
-      document.getElementById("notificationForm").addEventListener("submit", function(event) {
-        event.preventDefault(); 
+      let selectedItemForNotify = "";
+      function openNotifyModal(arg) {
+        selectedItemForNotify = arg;
+        $("#notifyModal").modal("show");
+      }
 
-        var email = localStorage.getItem("submittedEmail");
-        var inputEmail = document.getElementById("emailInput").value;
-
-        if (email === inputEmail) {
-          alert("We have already received your request. You'll be notified shortly.");
-          return;
-        }
-
-        document.getElementById("thankYouMessage").style.display = "block";
-
-        localStorage.setItem("submittedEmail", inputEmail);
-
-        setTimeout(function() {
-          location.reload(); 
-        }, 2000); 
-      });
-    </script>
-
-    <script>
-      function openNotifyModal() {
-        console.log("notify me modal");
-        $('#notifyModal').modal('show');
+      async function addSub(event) {
+        event.preventDefault();
+        const itemId = selectedItemForNotify;
+        await axios
+          .post("/subscribe", {
+            email: document.querySelector("#subEmail").value,
+            item: itemId,
+          })
+          .then((response) => {
+            if (response.status === 200) {
+              showAlert("You will be notified via email shortly", "success");
+              $("#notifyModal").modal("hide");
+            } else if (response.status === 201) {
+              showAlert("Item already subscribed", "success");
+              $("#notifyModal").modal("hide");
+            }
+          })
+          .catch((err) => {
+            showAlert("Error while adding you", "danger");
+          });
       }
     </script>
 
@@ -712,15 +740,19 @@
         if (product.stock > 0 && Date.parse(product.createdAt) < Date.now()) {
           button = ` <button class="add-to-cart-btn add${product.itemId}" id="liveToastBtn"><i class="fas fa-cart"></i> Add to Cart</button>`;
         } else if (isLoggedIn == true) {
-          button = `<button class="add-to-cart-btn text-uppercase" onclick="openNotifyModal()" id="liveToastBtn"><i class="fas fa-cart"></i>Notify Me</button>`;
+          button = `<button class="add-to-cart-btn text-uppercase" onclick="openNotifyModal('${product.itemId}')" id="liveToastBtn"><i class="fas fa-cart"></i>Notify Me</button>`;
         } else {
-          button = `<button class="add-to-cart-btn" onclick="openNotifyModal()" id="liveToastBtn"><i class="fas fa-cart"></i>Notify Me</button> `;
+          button = `<button class="add-to-cart-btn" onclick="openNotifyModal('${product.itemId}')" id="liveToastBtn"><i class="fas fa-cart"></i>Notify Me</button> `;
         }
         productCard.innerHTML = `
             <a href="/products/${product.itemId}" >
             <div class="product-image-container">
-              <img class="product-image" src="${product.imageLink[0]}" alt="${product.name}">
-              <img class="product-image hover-image" src="${product.imageLink[1] || product.imageLink[0]}" alt="${product.name}" style="display:none">
+              <img class="product-image" src="${product.imageLink[0]}" alt="${
+          product.name
+        }">
+              <img class="product-image hover-image" src="${
+                product.imageLink[1] || product.imageLink[0]
+              }" alt="${product.name}" style="display:none">
             </div>
             <div class="product-details">
                     ${
@@ -736,7 +768,11 @@
                     <div class="category-badge text-white corner-round p-1" style="display:none;">${
                       product.category
                     }</div>
-                    <div class="product-title"><a href="/products/${product.itemId}" style="text-decoration:none;color:#fff">${product.name}</a></div>
+                    <div class="product-title"><a href="/products/${
+                      product.itemId
+                    }" style="text-decoration:none;color:#fff">${
+          product.name
+        }</a></div>
                     <div class="product-description d-none">${
                       product.description
                     }</div>
@@ -751,9 +787,9 @@
                         }
                         </div>
                       <div class="product-discount d-flex justify-content-end text-success text-uppercase"> ${(
-                      ((product.originalPrice - product.offeredPrice) /
-                        product.originalPrice) *
-                      100
+                        ((product.originalPrice - product.offeredPrice) /
+                          product.originalPrice) *
+                        100
                       ).toFixed(0)}% Off
                     </div>
                   </div>
