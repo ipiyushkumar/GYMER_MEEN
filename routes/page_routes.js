@@ -131,19 +131,19 @@ router.get("/collections/:page", (req, res) => {
   switch (page) {
     case "face-care":
       pageContext = "Face Care";
-      pageMetaTitle = "Face Care - WhiteWolf India";
+      pageMetaTitle = "Face Care";
       pageMetaDesc =
         "Explore our collection of face care products for a healthy and radiant skin.";
       break;
     case "hair-care":
       pageContext = "Hair Care";
-      pageMetaTitle = "Hair Care - WhiteWolf India";
+      pageMetaTitle = "Hair Care";
       pageMetaDesc =
         "Discover the best hair care products for healthy, vibrant locks. Explore a wide range of collection including hair removal spray, hair growth oil, and hair powder wax.";
       break;
     case "beard-care":
       pageContext = "Beard Care";
-      pageMetaTitle = "Beard Care - WhiteWolf India";
+      pageMetaTitle = "Beard Care";
       pageMetaDesc =
         "Level up your beard game! Explore premium beard care products for a groomed and stylish look. Find your grooming essentials now!";
       break;
