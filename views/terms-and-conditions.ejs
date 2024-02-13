@@ -28,23 +28,97 @@
             padding: 20px;
         }
 
-        h1 {
-            font-size: 5vh;
-        }
-
-        h2 {
+        
+        h2{
             font-size: 3vh;
-            margin-top: 20px;
         }
 
         p {
             font-size: 2vh;
             line-height: 1.6;
+            margin-bottom: 20px;
         }
 
-        address {
-            margin-top: 20px;
-            font-style: normal;
+        #roarOfPerfection {
+            font-size: 2vh;
+            font-weight: bold;
+        }
+
+        .sidebar {
+    height: 100%;
+    width: 300px; /* Set the initial width of the sidebar */
+    position: fixed;
+    top: 0;
+    left: -300px; /* Push the sidebar off the screen initially */
+    background-color: #111;
+    overflow-x: hidden;
+    transition: left 0.5s; /* Use left for the transition */
+    padding-top: 60px;
+}
+
+#sidebarCloseButton {
+    border: none;
+    outline: none;
+    color: #fff;
+    background-color: transparent;
+    margin-right: 10px; /* Adjust margin-right to position the close button */
+    position: absolute;
+    top: 10px;
+    right: 0;
+}
+
+#sidebarCloseButton:hover {
+    cursor: pointer;
+}
+
+
+.sidebar a {
+    padding: 10px 15px;
+    text-decoration: none;
+    font-size: 18px;
+    color: #fff;
+    display: block;
+    transition: 0.3s;
+}
+
+.sidebar a:hover {
+    color: #f1f1f1;
+}
+
+#sidebarToggle {
+    font-size: 30px;
+    cursor: pointer;
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 999;
+    background-color: transparent;
+    border: none;
+    color: white;
+}
+
+#content {
+    transition: margin-right 0.5s;
+    padding: 16px;
+}
+
+@media (min-width: 992px) {
+    .sidebar,#sidebarToggle {
+        display: none;
+    }
+}
+
+#content {
+    transition: margin-right 0.5s;
+    padding: 16px;
+}
+
+        .navbar a i{
+            color: #fff !important;
+        }
+
+        .footer li a{
+            text-decoration: none !important;
         }
     </style>
 </head>
@@ -54,8 +128,45 @@
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NQVB53VH"
     height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <!-- End Google Tag Manager (noscript) --> 
+
+    <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #000; position: sticky; top: 0; z-index: 1000;">
+        <div class="container-fluid">
+            <div class="d-flex justify-content-start align-items-center" style="width: 100%;">
+                <div class="navbar-brand d-flex justify-content-center align-items-center">
+                    <a href="/" class="navbar-brand">
+                        <img src="/assets/ww side name logo.png_white@3x.png" alt="Logo" style="width:auto; height: 5vh;">
+                    </a>
+                </div>
+                <div id="sidebar" class="sidebar">
+                    <a href="/collections/beard-care" class="nav-link">Beard Care</a>
+                    <a href="/collections/hair-care" class="nav-link">Hair Care</a>
+                    <a href="/collections/skin-care" class="nav-link">Skin Care</a>
+                    <a href="/pages/coming-soon" class="nav-link">Shave</a>
+                    <a href="/pages/coming-soon" class="nav-link">Fragrance</a>
+                    <button id="sidebarCloseButton">&#9587;</button>
+                </div>
+                
+                <div id="content">
+                    <button id="sidebarToggle">☰</button>
+                </div>                
+                
+                <nav class="navbar navbar-expand-lg  bg-dark d-none d-lg-block" style="background-color: #000 !important;width: 50%;">
+                    <div class="collapse navbar-collapse justify-content-start" id="navbarSupportedContent">
+                        <div class="navbar-nav d-flex justify-content-between align-items-start large-nav text-uppercase" style="width: 100%;">
+                            <a href="/collections/beard-care" class="nav-link" style="color: #fff;">Beard Care</a>
+                            <a href="/collections/hair-care" class="nav-link" style="color: #fff;">Hair Care</a>
+                            <a href="/collections/skin-care" class="nav-link" style="color: #fff;">Skin Care</a>
+                            <a href="/pages/coming-soon" class="nav-link" style="color: #fff;">Shave</a>
+                            <a href="/pages/coming-soon" class="nav-link" style="color: #fff;">Fragrance</a>
+                        </div>
+                    </div>
+                    
+                </nav>
+            </div>
+        </div>
+    </nav>
     
-    <div class="container" style="margin-top: 10vh;margin-bottom: 10vh;">
+    <div class="container" style="margin-top: 6vh;margin-bottom: 6vh;">
         <h1>Terms and Conditions</h1>
 
         <p>Welcome to WhiteWolf India, a brand brought to you by Kushmanda Cosmetics Pvt. Ltd. We're thrilled to have you join us in the journey of personal care for men. Please take a moment to read through our terms and conditions carefully.</p>

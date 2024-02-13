@@ -1,7 +1,6 @@
 const admins = {
     "piyushat115@gmail.com" :true,
     "akshatgarg071@gmail.com" :true,
-    "aami.mohdmedium@gmail.com" :true,
     "chetan@born16.com":true,
 }
 
