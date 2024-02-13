@@ -12,6 +12,12 @@ const isAuthenticated = (req, res, next) => {
 };
 
 router.get("/", (req, res) => {
+  // Check if the request is for the non-www version
+  if (req.headers.host === 'whitewolfindia.com') {
+    // Redirect to the www version with a 301 status code
+    return res.redirect(301, 'https://www.whitewolfindia.com');
+  }
+
   const content = {
     isLoggedIn: req.session.isLoggedIn,
   };
@@ -21,6 +27,7 @@ router.get("/", (req, res) => {
 
   res.render("Home_page", { content });
 });
+
 router.get("/pages/disclaimer", (req, res) => {
   const content = {
     isLoggedIn: req.session.isLoggedIn,
