@@ -125,31 +125,62 @@ router.get("/robots.txt", (req, res) => {
 
 router.get("/collections/:page", (req, res) => {
   const { page } = req.params;
-  let pageContext = "all";
+  let pageContext = "All";
+  let pageMetaTitle, pageMetaDesc;
 
-  if (page === "face-care") {
-    pageContext = "Face Care";
-  } else if (page === "hair-care") {
-    pageContext = "Hair Care";
-  } else if (page === "beard-care") {
-    pageContext = "Beard Care";
-  } else if (page === "body-care") {
-    pageContext = "Body Care";
-  } else if (page === "skin-care") {
-    pageContext = "Skin Care";
-  } else if (page === "shave") {
-    pageContext = "Shave";
-  } else if (page === "fragrance") {
-    pageContext = "Fragrance";
+  switch (page) {
+    case "face-care":
+      pageContext = "Face Care";
+      pageMetaTitle = "Face Care - WhiteWolf India";
+      pageMetaDesc =
+        "Explore our collection of face care products for a healthy and radiant skin.";
+      break;
+    case "hair-care":
+      pageContext = "Hair Care";
+      pageMetaTitle = "Hair Care - WhiteWolf India";
+      pageMetaDesc =
+        "Discover the best hair care products for healthy, vibrant locks. Explore a wide range of collection including hair removal spray, hair growth oil, and hair powder wax.";
+      break;
+    case "beard-care":
+      pageContext = "Beard Care";
+      pageMetaTitle = "Beard Care - WhiteWolf India";
+      pageMetaDesc =
+        "Level up your beard game! Explore premium beard care products for a groomed and stylish look. Find your grooming essentials now!";
+      break;
+    case "body-care":
+      pageContext = "Body Care";
+      pageMetaTitle = "Body Care - WhiteWolf India";
+      pageMetaDesc =
+        "Discover our range of body care products for smooth and nourished skin. Shop now!";
+      break;
+    case "skin-care":
+      pageContext = "Skin Care";
+      pageMetaTitle = "Skin Care - WhiteWolf India";
+      pageMetaDesc =
+        "Take your grooming routine to a whole new level! Discover best-in-class skincare products for men for an exuberant appearance. From face washes to tint moisturizer skin, hydro booster gel, chemical exfoliator peel cleanser and more.";
+      break;
+    case "shave":
+      pageContext = "Shave";
+      pageMetaTitle = "Shave - WhiteWolf India";
+      pageMetaDesc =
+        "Explore our collection of shaving essentials for a smooth and comfortable shave. Find razors, shaving creams, aftershaves, and more.";
+      break;
+    case "fragrance":
+      pageContext = "Fragrance";
+      pageMetaTitle = "Fragrance - WhiteWolf India";
+      pageMetaDesc =
+        "Discover our exclusive collection of fragrances for men. Find your signature scent today!";
+      break;
+    default:
+      break;
   }
-  if (!req.session.userProfile || !req.session.userProfile.cart) {
-    req.session.userProfile = { cart: [] };
-  }
-
   const content = {
     isLoggedIn: req.session.isLoggedIn,
     context: pageContext,
+    metaTitle: pageMetaTitle,
+    metaDescription: pageMetaDesc,
   };
+
   res.render("Product_Listing_page", { content });
 });
 
