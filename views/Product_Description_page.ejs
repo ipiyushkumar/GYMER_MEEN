@@ -178,6 +178,30 @@ document.addEventListener("DOMContentLoaded", function() {
         align-items: center !important;
         margin-left: 5vh;
       }
+
+      @keyframes marqueeAnimation {
+      0% { transform: translateX(100%); }
+      100% { transform: translateX(-100%); }
+    }
+
+    .marquee-container {
+      display: flex;
+      justify-content: space-between;
+      width:100%;
+      background-color: #222;
+      overflow: hidden;
+      padding: 1vh;
+    }
+
+    p.marquee {
+      font-size: 2vh;
+      color: #fff;
+      text-align: center;
+      text-transform: uppercase;
+      margin: 0;
+      white-space: nowrap;
+      animation: marqueeAnimation 20s linear infinite; 
+    }
     </style>
   </head>
   <body>
@@ -219,10 +243,13 @@ document.addEventListener("DOMContentLoaded", function() {
 
 
 
-    <div class="promo-strip">Get 15% Off on YOUR first Purchase</div>
+<div class="marquee-container fixed-top">
+  <p class="marquee" style="margin-right:5vh;">use code firstbuy to get 15% off on your first purchase</p>
+  <p class="marquee">use code firstbuy to get 15% off on your first purchase</p>
+</div>
     <nav
-      class="navbar navbar-expand-lg navbar-dark p-2"
-      style="width: 100%; background-color: #000"
+      class="navbar navbar-expand-lg navbar-dark p-2 fixed-top"
+      style="width: 100%; background-color: #000;margin-top: 5vh;"
     >
       <div class="container-fluid">
         <div class="text-left" style="width: max-content">
@@ -249,7 +276,7 @@ document.addEventListener("DOMContentLoaded", function() {
               justify-content: space-around;
             "
           >
-            <a href="collections/beard-care" style="color: #fff">Beard Care</a>
+            <a href="/collections/beard-care" style="color: #fff">Beard Care</a>
             <a href="/collections/hair-care" style="color: #fff">Hair Care</a>
             <a href="/collections/skin-care" style="color: #fff">Skin Care</a>
             <a href="/collections/shave" style="color: #fff">Shave</a>
@@ -401,12 +428,12 @@ document.addEventListener("DOMContentLoaded", function() {
       </div>
     </div>
 
-    <div class="card-wrapper mt-4" style="width: 100%; height: max-content">
+    <div class="card-wrapper mt-5" style="width: 100%; height: max-content">
       <div
-        class="cardio"
+        class="cardio mt-5"
         style="width: 100%; grid-column-gap: 5vh; height: 100%"
       >
-        <div class="product-imgs" style="align-self: start">
+        <div class="product-imgs mt-3" style="align-self: start">
           <div class="additional-images">
             <% item.imageLink.forEach((image, index) => { %>
             <div
@@ -435,7 +462,7 @@ document.addEventListener("DOMContentLoaded", function() {
           <% }); %>
         </div>
 
-        <div class="product-content" style="align-self: start">
+        <div class="product-content mt-3" style="align-self: start">
           <h1 class="product-title" style="color: #fff"><%= item.name %></h1>
 
           <div class="butns">

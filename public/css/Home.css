@@ -127,6 +127,7 @@ body {
     max-width: 70%;
     }
     }
+   
     .product-grid {
         padding: 0 !important;
         margin: 0 !important;
@@ -134,11 +135,12 @@ body {
         overflow-x: scroll;
         scrollbar-width: 1px;
         display: flex;
-        flex-direction: row-reverse !important;
+        /* flex-direction: row-reverse !important; */
         flex-wrap: nowrap;
-        justify-content: flex-start;
+        /* justify-content:flex-start !important; */
         grid-column-gap: 10px;
-    }    
+    }
+    
 
     #productGrid {
         overflow: hidden;
