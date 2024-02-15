@@ -164,7 +164,7 @@
             font-size: 2rem;
         }
 
-        .proceedToPay {
+        /* .proceedToPay {
             font-size: 1.5rem;
             background-color: #28a745;
             color: #fff;
@@ -173,7 +173,7 @@
             text-transform: uppercase;
             border-radius: 5px;
             cursor: pointer;
-        }
+        } */
 
         .payment-methods {
             margin-top: 20px;
@@ -268,7 +268,7 @@
          <div class="right-side">
             <div class="wrapper pt-2">
                <h4>Summary</h4>
-               <table class="table corner-round p-4 table-striped table-responsive" style="border: none; border-radius: 2vh; overflow: hidden;">
+               <table class="table corner-round p-4 table-striped table-responsive" style="border: none; border-radius: 1vh; overflow: hidden;">
                   <thead>
                       <tr style="display: none;">
                            <th scope="col">Name</th>
@@ -287,31 +287,54 @@
                     <input type="text" class="form-control" id="couponInput" placeholder="Enter Coupon" value="<%= content.code %>">
                 </div>
                 <div class="ml-1">
-                    <button class="btn btn-dark btn-apply-coupon coupon_Button">Apply</button>
+                    <button class="btn btn-dark btn-apply-coupon coupon_Button text-uppercase">Apply</button>
                 </div>
                 <div class="ml-1">
                    <button class="btn btn-dark btn-apply-coupon coupon_remove_Button" style="display: none;">Remove</button>
                 </div>
             </div>
                 <div class="table-responsive mrp" style="height: auto;padding: 0;">
-                   <table class="table table-borderless" >
-                      <thead>
-                         <tr class="text-uppercase text-muted">
-                            <th scope="col"></th>
-                            <th scope="col" class="text-right" style="font-size: 2vh;">Total</th>
+                   <table class="table table-borderless m-0 p-0 mb-4" >
+                      <thead class="p-0 m-0">
+                         <tr class="text-uppercase p-0 m-0 bg-light br-2">
+                            <th scope="col">Amount Payable</th>
+                            <!-- <th scope="col" class="text-right" style="font-size: 2vh;">Amount Payable</th> -->
+                            <td scope="col" class="text-right total" style="font-size: 3vh;font-weight: 300;">&#8377;</td>
                          </tr>
                       </thead>
-                      <tbody style="padding: 0;"> 
+                      <!-- <tbody style="padding: 0;"> 
                          <tr>
                             <td scope="row"></td>
                             <td class="text-right total" style="font-size: 3vh;"><b>&#8377;</b></td>
                          </tr>
-                      </tbody>
+                      </tbody> -->
                    </table>
                 </div>
-                <div class="d-flex align-items-end justify-content-end mb-5">
-                   <button class="btn btn-success proceedToPay" style="font-size: 2.5vh;">Place Order</button>
-                  </div>
+                <div class="d-flex flex-column align-items-start justify-content-center mb-4 mt-0">
+                  <div class="d-flex mb-1">
+                     <h4 class="text-muted text-uppercase" style="font-size: 2vh;">Select Payment Method</h4>
+                   </div>
+                   
+                   <div class="form-check mb-2">
+                     <input class="form-check-input" type="radio" name="paymentMethod" id="prepaidRadio" value="prepaid">
+                     <label class="form-check-label text-right" for="prepaidRadio">
+                       <span class="float-left">UPI,Cards,Wallet Etc.</span>
+                     </label>
+                   </div>
+                   
+                   <div class="form-check mb-2">
+                     <input class="form-check-input" type="radio" name="paymentMethod" id="postpaidRadio" value="postpaid">
+                     <label class="form-check-label text-right" for="postpaidRadio">
+                       <span class="float-left">Cash on Delivery (COD)</span>
+                     </label>
+                   </div>
+                   
+                   
+                   <button class="btn btn-success text-uppercase continueButton" type="button" disabled>Continue</button>
+                   
+                </div>
+                
+                
                   <div class="d-flex flex-column mt-1">
                      <p>We Accept All Payment Methods :</p>
                      <img src="/assets/payments.png" style="height: 3vh;width: max-content;"/>
@@ -370,6 +393,36 @@
             alert.style.display = "none";
          }
          </script>
+
+      <script>
+         document.addEventListener("DOMContentLoaded", function() {
+  const prepaidRadio = document.getElementById('prepaidRadio');
+  const postpaidRadio = document.getElementById('postpaidRadio');
+  const continueButton = document.querySelector('.continueButton');
+
+  document.querySelectorAll('input[name="paymentMethod"]').forEach((radio) => {
+    radio.addEventListener('change', toggleContinueButton);
+  });
+
+  function toggleContinueButton() {
+    if (prepaidRadio.checked) {
+      continueButton.classList.add('proceedToPay');
+      continueButton.classList.remove('PostpaidOrder');
+    } else if (postpaidRadio.checked) {
+      continueButton.classList.add('PostpaidOrder');
+      continueButton.classList.remove('proceedToPay');
+    }
+    
+    if (prepaidRadio.checked || postpaidRadio.checked) {
+      continueButton.disabled = false;
+    } else {
+      continueButton.disabled = true;
+    }
+  }
+});
+
+      </script>
+
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
       <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
       <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
@@ -381,9 +434,9 @@
                   await axios.get(`/coupons/${code}`)
                   .then(response => response.data)
                   .then(coupon => {
-                     showAlert("coupon loaded successfully","success")
+                     showAlert("coupon Applied successfully","success")
                      // Assuming Total is a variable representing the total amount
-                     document.querySelector('.total').innerHTML = `<b>&#8377;<del>${Total}/-</del></b> <br><span class="text-muted" style="font-size:1rem;">${((coupon.discount))}% OFF APPLIED</span> <b> <br><span style="font-size:3vh;"> &#8377;${Math.floor(Total - Total * ((coupon.discount) / 100))}/</span></b>-<br>`;
+                     document.querySelector('.total').innerHTML = `<b>&#8377;<del>${Total}/-</del></b> <br><span class="" style="font-size:1rem;">${((coupon.discount))}% OFF APPLIED</span> <b> <br><span style="font-size:3vh;"> &#8377;${Math.floor(Total - Total * ((coupon.discount) / 100))}/</span></b>-<br>`;
                      document.querySelector('.coupon_remove_Button').style.display = "block"
                      document.querySelector('.coupon_Button').style.display = "none"
                   })
@@ -402,12 +455,25 @@
                item.textContent = content;
                return item
             }
-            function imageCell (link) {
-               var item = document.createElement('td')
-               
-               item.innerHTML = `<img src="../assets/product-imgs/04.jpg" alt="product image" style="height:auto;width:10vh;border-radius:5px;">`;
-               return item
+            function imageCell(link) {
+            var item = document.createElement("td");
+
+            var image = document.createElement("img");
+            image.src = link;
+            image.style.cssText = "height:auto;width:10vh;border-radius:5px;";
+            image.alt = "product image";
+
+            item.append(image);
+            return item;
             }
+            // function imageCell (link) {
+            //    var item = document.createElement('td')
+
+               
+               
+            //    item.innerHTML = `<img src="../assets/product-imgs/04.jpg" alt="product image" style="height:auto;width:10vh;border-radius:5px;">`;
+            //    return item
+            // }
             function addTableRow(imageLink,name, price, quantity) {
                // Get the table body
                var tableBody = document.querySelector('.allItems')
@@ -490,7 +556,7 @@
                   await axios.get(`/coupons/${code}`)
                   .then(response => response.data)
                   .then(coupon => {
-                     showAlert("coupon loaded successfully","success")
+                     showAlert("coupon Applied successfully","success")
                      // Assuming Total is a variable representing the total amount
                      document.querySelector('.total').innerHTML = `<b>&#8377;<del>${Total}/-</del></b> <br><span class="text-muted" style="font-size:1rem;">${((coupon.discount))}% OFF APPLIED</span> <b> <br><span style="font-size:3vh;"> &#8377;${Math.floor(Total - Total * ((coupon.discount) / 100))}/</span></b>-<br>`;
                      document.querySelector('.coupon_remove_Button').style.display = "block"
