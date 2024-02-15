@@ -20,6 +20,7 @@
         .export-btn{
             background-color:green;
             padding: 1vh;
+            font-size: 2vh;
             color: #fff;
             cursor: pointer;
             border-radius: 5px;
@@ -412,17 +413,16 @@
 
         <section class="main" id="analyticsSection" style="display: none;" >
             <section class="main-orders">
-                <h1>User Analytics <button class="export-btn">Export CSV</button></h1>
+                <h1>User Analytics <button class="export-btn">Export CSV <iconify-icon icon="ic:baseline-file-download"></iconify-icon></button></h1>
                 <div class="user-container">
                     <table class="user-table">
                         <thead>
                             <tr>
                                 <th>User Name</th>
-                                <th>email</th>
+                                <th>Email</th>
                                 <th>Phone Number</th>
                                 <th>Pin Code</th>
                                 <th>Account Created</th>
-
                             </tr>
                         </thead>
                         <tbody id="userTableBody">
@@ -430,8 +430,61 @@
                     </table>
                 </div>
             </section>
-            <script>
 
+            <script>
+                document.querySelector('.export-btn').addEventListener('click', function() {
+                    exportToCSV('user-table.csv');
+                });
+            
+                async function exportToCSV(filename) {
+                    const table = document.querySelector('.user-table');
+                    const rows = Array.from(table.querySelectorAll('tr'));
+            
+                    // Create CSV content
+                    let csvContent = "data:text/csv;charset=utf-8,";
+                    csvContent += rows.map(row => {
+                        const rowData = Array.from(row.children).map(cell => cell.textContent).join(',');
+                        return rowData;
+                    }).join('\n');
+            
+                    // Create a CSV file
+                    const encodedUri = encodeURI(csvContent);
+                    const link = document.createElement('a');
+                    link.setAttribute('href', encodedUri);
+                    link.setAttribute('download', filename);
+                    document.body.appendChild(link);
+                    link.click();
+                }
+            
+                document.querySelector('#analyticsTab').addEventListener('click', async () => {
+                    function createTableCell(content) {
+                        let cell = document.createElement('td')
+                        cell.textContent = content;
+                        return cell;
+                    }
+                    document.querySelector('#userTableBody').innerHTML = ''
+                    await axios.get('/api/admin/getAllUsers')
+                    .then(response => response.data)
+                    .then(users => {
+                        users.forEach(user => {
+                            let row = document.createElement('tr')
+                            row.append(createTableCell(user.name || "N/A"))
+                            row.append(createTableCell(user.email || "N/A"))
+                            row.append(createTableCell(user.phone || "N/A"))
+                            row.append(createTableCell(user.pincode || "N/A"))
+            
+                            const dateTime = new Date(user.joinDate || "N/A");
+                            const formattedDateTime = dateTime.toLocaleString();
+                            row.append(createTableCell(formattedDateTime))
+                            document.querySelector('#userTableBody').append(row)
+                            showAlert("All users loaded successfully","success");
+                        })
+                    })
+                    .catch(err => showAlert("Oops, an error occurred while fetching users","danger"))
+                });
+            </script>
+
+            <!-- <script>
                 document.querySelector('#analyticsTab').addEventListener('click',async () => {
                     function createTableCell(content) {
                         let cell = document.createElement('td')
@@ -460,7 +513,7 @@
                     })
                     .catch(err => showAlert("oops, an error occured while fetching users","danger"))
                 })
-            </script>
+            </script> -->
         </section>   
 
         <section class="main" id="ordersSection" style="display: none;" >
@@ -1354,6 +1407,8 @@
             </section>
         </section>
   <%- include('partials/loader') %> 
+  <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+
 
     </div>
     <script>
