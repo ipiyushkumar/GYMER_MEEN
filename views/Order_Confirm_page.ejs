@@ -3,7 +3,7 @@
    <head>
       <meta charset='utf-8'>
       <meta name='viewport' content='width=device-width, initial-scale=1'>
-      <title>Order confirmation Page</title>
+      <title>WhiteWolf - Checkout Page</title>
       <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
       <link href='https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css' rel='stylesheet'>
       <link href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css' rel='stylesheet'>
@@ -17,7 +17,6 @@
             font-family: 'Outfit', sans-serif;
         }
 
-         /* Additional styles to prevent the default arrow appearance in Safari */
          input[type="number"]::-webkit-inner-spin-button,
          input[type="number"]::-webkit-outer-spin-button {
          -webkit-appearance: none;
@@ -152,7 +151,7 @@
 
         .btn-apply-coupon,
         .coupon_remove_Button {
-            font-size: 1.2rem;
+            font-size: 2vh;
         }
 
         .mrp {
@@ -163,17 +162,6 @@
         .total {
             font-size: 2rem;
         }
-
-        /* .proceedToPay {
-            font-size: 1.5rem;
-            background-color: #28a745;
-            color: #fff;
-            border: none;
-            padding: 10px 20px;
-            text-transform: uppercase;
-            border-radius: 5px;
-            cursor: pointer;
-        } */
 
         .payment-methods {
             margin-top: 20px;
@@ -243,7 +231,7 @@
       <script type='text/javascript' src='https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.min.js'></script>
    </head>
    <body oncontextmenu='return false' class='snippet-body'>
-      
+
       <div class="main">
          <div class="left-side">
             <h2><a href="/" style="text-decoration:none;color: #000;">&#8592;</a> Checkout</h2>
@@ -280,21 +268,74 @@
                   </thead>
                   <tbody class="allItems" style="background-color: rgba(255, 255, 255, 0.1);">
                       <!-- ... (your table body content) ... -->
+                       <!-- <button class="btn btn-success proceedToPay" style="font-size: 2.5vh;">Place Order</button> -->
                   </tbody>
               </table>
-             <div class="d-flex discount-field justify-content-between align-items-center mt-2 pb-4">
-                <div class="text-muted discount-input">
-                    <input type="text" class="form-control" id="couponInput" placeholder="Enter Coupon" value="<%= content.code %>">
-                </div>
-                <div class="ml-1">
-                    <button class="btn btn-dark btn-apply-coupon coupon_Button text-uppercase">Apply</button>
-                </div>
-                <div class="ml-1">
-                   <button class="btn btn-dark btn-apply-coupon coupon_remove_Button" style="display: none;">Remove</button>
-                </div>
 
-                <!-- <button class="btn btn-success proceedToPay" style="font-size: 2.5vh;">Place Order</button> -->
-            </div>
+              <div class="d-flex discount-field justify-content-between align-items-center mt-2 pb-4">
+               <div class="text-muted discount-input">
+                   <input type="text" class="form-control" id="couponInput" placeholder="Enter Coupon" value="<%= content.code %>">
+               </div>
+               <div class="ml-1">
+                   <button class="btn btn-warning btn-apply-coupon coupon_Button text-uppercase">
+                       <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true" style="display: none;"></span>
+                       <span class="sr-only">Loading...</span>
+                       Apply
+                   </button>
+               </div>
+               <div class="ml-1">
+                   <button class="btn btn-danger btn-apply-coupon coupon_remove_Button text-uppercase" style="display: none;">
+                       <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true" style="display: none;"></span>
+                       <span class="sr-only">Loading...</span>
+                       Remove
+                   </button>
+               </div>
+           </div>
+
+           <script>
+
+               const applyCouponBtn = document.querySelector('.coupon_Button');
+               const removeCouponBtn = document.querySelector('.coupon_remove_Button');
+               const couponInput = document.getElementById('couponInput');
+
+               applyCouponBtn.addEventListener('click', function() {
+
+                   const spinner = applyCouponBtn.querySelector('.spinner-border');
+                   spinner.style.display = 'inline-block';
+                   applyCouponBtn.disabled = true; 
+
+                   setTimeout(function() {
+
+                       spinner.style.display = 'none';
+                       applyCouponBtn.disabled = false; 
+
+                       applyCouponBtn.style.display = 'none';
+                       removeCouponBtn.style.display = 'inline-block';
+
+                       console.log('Coupon applied:', couponInput.value);
+                   }, 2000); 
+               });
+
+               removeCouponBtn.addEventListener('click', function() {
+
+                   const spinner = removeCouponBtn.querySelector('.spinner-border');
+                   spinner.style.display = 'inline-block';
+                   removeCouponBtn.disabled = true; 
+
+                   setTimeout(function() {
+
+                       spinner.style.display = 'none';
+                       removeCouponBtn.disabled = false; 
+
+                       removeCouponBtn.style.display = 'none';
+                       applyCouponBtn.style.display = 'inline-block';
+
+                       couponInput.value = '';
+                       console.log('Coupon removed');
+                   }, 2000); 
+               });
+           </script>
+
                 <div class="table-responsive mrp" style="height: auto;padding: 0;">
                    <table class="table table-borderless m-0 p-0 mb-4" >
                       <thead class="p-0 m-0">
@@ -316,27 +357,29 @@
                   <div class="d-flex mb-1">
                      <h4 class="text-muted text-uppercase" style="font-size: 2vh;">Select Payment Method</h4>
                    </div>
-                   
+
                    <div class="form-check mb-2">
                      <input class="form-check-input" type="radio" name="paymentMethod" id="prepaidRadio" value="prepaid">
                      <label class="form-check-label text-right" for="prepaidRadio">
                        <span class="float-left">UPI,Cards,Wallet Etc.</span>
                      </label>
                    </div>
-                   
+
                    <div class="form-check mb-2">
                      <input class="form-check-input" type="radio" name="paymentMethod" id="postpaidRadio" value="postpaid">
                      <label class="form-check-label text-right" for="postpaidRadio">
-                       <span class="float-left">Cash on Delivery (COD)</span>
+                       <span class="float-left">Cash on Delivery</span>
                      </label>
                    </div>
-                   
-                   
-                   <button class="btn btn-success text-uppercase continueButton" type="button" disabled>Continue</button>
-                   
+
+                   <button class="btn btn-success text-uppercase continueButton d-flex justify-content-center align-items-center text-center" type="button" disabled>
+                         Continue 
+                         <!-- <span class="ml-1"><iconify-icon icon="emojione-monotone:right-arrow"></iconify-icon></span> -->
+                 </button>
+                 
+
                 </div>
-                
-                
+
                   <div class="d-flex flex-column mt-1">
                      <p>We Accept All Payment Methods :</p>
                      <img src="/assets/payments.png" style="height: 3vh;width: max-content;"/>
@@ -375,21 +418,18 @@
          <script>
          function showAlert(message, type) {
             const alertContainer = document.getElementById("alertContainer");
-         
-            // Create alert element
+
             const alert = document.createElement("div");
             alert.className = `alert ${type}`;
             alert.innerHTML = `${message}<span class="close" onclick="closeAlert(this)">×</span>`;
-         
-            // Append alert to container
+
             alertContainer.appendChild(alert);
-         
-            // Set timeout to remove the alert after 5 seconds
+
             setTimeout(() => {
                closeAlert(alert.querySelector(".close"));
             }, 4000);
          }
-         
+
          function closeAlert(closeButton) {
             const alert = closeButton.parentElement;
             alert.style.display = "none";
@@ -414,7 +454,7 @@
       continueButton.classList.add('PostpaidOrder');
       continueButton.classList.remove('proceedToPay');
     }
-    
+
     if (prepaidRadio.checked || postpaidRadio.checked) {
       continueButton.disabled = false;
     } else {
@@ -437,7 +477,7 @@
                   .then(response => response.data)
                   .then(coupon => {
                      showAlert("coupon Applied successfully","success")
-                     // Assuming Total is a variable representing the total amount
+
                      document.querySelector('.total').innerHTML = `<b>&#8377;<del>${Total}/-</del></b> <br><span class="" style="font-size:1rem;">${((coupon.discount))}% OFF APPLIED</span> <b> <br><span style="font-size:3vh;"> &#8377;${Math.floor(Total - Total * ((coupon.discount) / 100))}/</span></b>-<br>`;
                      document.querySelector('.coupon_remove_Button').style.display = "block"
                      document.querySelector('.coupon_Button').style.display = "none"
@@ -468,16 +508,9 @@
             item.append(image);
             return item;
             }
-            // function imageCell (link) {
-            //    var item = document.createElement('td')
 
-               
-               
-            //    item.innerHTML = `<img src="../assets/product-imgs/04.jpg" alt="product image" style="height:auto;width:10vh;border-radius:5px;">`;
-            //    return item
-            // }
             function addTableRow(imageLink,name, price, quantity) {
-               // Get the table body
+
                var tableBody = document.querySelector('.allItems')
 
                var row = document.createElement('tr')
@@ -486,7 +519,6 @@
                row.append(dataCell(name))
                row.append(dataCell(price))
                row.append(dataCell(quantity))
-               // row.append(dataCell((price*quantity)))
 
                tableBody.append(row)
             }
@@ -494,10 +526,7 @@
             await axios.get('/getprofile')
             .then(response => response.data.userProfile)
             .then(profile => {
-            // name: newUser.name,
-            // email: newUser.email,
-            // phone: newUser.phone,
-            // purchasedProducts: newUser.purchasedProducts
+
                profile.cart.forEach(async cartItem => {
                   await axios.get(`/api/products/${cartItem.itemId}`)
                     .then(response => response.data)
@@ -540,17 +569,9 @@
                      <label for="landmark">landmark</label>
                   <input type="text" id="landmark" class="text-justify" placeholder="Enter Landmark" value="${profile.landmark || ""}">
                   </div>
-                  
+
                `;
 
-                  // // Create a new Date object
-                  // var today = new Date();
-                  // var year = today.getFullYear();
-                  // var month = today.getMonth() + 1;
-                  // var day = today.getDate();
-                  // var formattedDate = year + '/' + (month < 10 ? '0' + month : month) + '/' + (day < 10 ? '0' + day : day);
-
-                  // document.querySelector('.date').textContent = formattedDate;
             })
             .then(async () => {
                const code = document.querySelector('#couponInput').value
@@ -559,7 +580,7 @@
                   .then(response => response.data)
                   .then(coupon => {
                      showAlert("coupon Applied successfully","success")
-                     // Assuming Total is a variable representing the total amount
+
                      document.querySelector('.total').innerHTML = `<b>&#8377;<del>${Total}/-</del></b> <br><span class="text-muted" style="font-size:1rem;">${((coupon.discount))}% OFF APPLIED</span> <b> <br><span style="font-size:3vh;"> &#8377;${Math.floor(Total - Total * ((coupon.discount) / 100))}/</span></b>-<br>`;
                      document.querySelector('.coupon_remove_Button').style.display = "block"
                      document.querySelector('.coupon_Button').style.display = "none"

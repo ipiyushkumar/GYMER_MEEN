@@ -17,6 +17,18 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
     <style>
 
+        .export-btn{
+            background-color:green;
+            padding: 1vh;
+            color: #fff;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        .export-btn:hover{
+            background-color: darkgreen;
+        }
+
         @media only screen and (max-width: 768px) {
             #productsSection {
                 padding: 2rem;
@@ -113,21 +125,18 @@
    <script>
      function showAlert(message, type) {
        const alertContainer = document.getElementById("alertContainer");
-   
-       // Create alert element
+
        const alert = document.createElement("div");
        alert.className = `alert ${type}`;
        alert.innerHTML = `${message}<span class="close" onclick="closeAlert(this)"> &#9587;</span>`;
-   
-       // Append alert to container
+
        alertContainer.appendChild(alert);
-   
-       // Set timeout to remove the alert after 5 seconds
+
        setTimeout(() => {
          closeAlert(alert.querySelector(".close"));
        }, 4000);
      }
-   
+
      function closeAlert(closeButton) {
        const alert = closeButton.parentElement;
        alert.style.display = "none";
@@ -159,18 +168,12 @@
                     <i class="fas fa-shopping-bag"></i>
                     <span class="nav-item">Add Products</span>
                 </a></li>
-                <!-- <li><a href="#" onclick="showCategories()" id="categoriesTab">
-                    <i class="fas fa-chart-line"></i>
-                    <span class="nav-item">Categories</span>
-                </a></li> -->
+
                 <li><a href="#" onclick="showInventory()" id="inventoryTab">
                     <i class="fas fa-warehouse"></i>
                     <span class="nav-item">Inventory</span>
                 </a></li>
-                <!-- <li><a href="#" onclick="showPayments()" id="paymentsTab">
-                    <i class="fas fa-wallet"></i>
-                    <span class="nav-item">Wallet</span>
-                </a></li> -->
+
                 <li><a href="#" onclick="showCoupon()" id="couponTab">
                     <i class="fas fa-gift"></i>
                     <span class="nav-item">Coupons</span>
@@ -182,7 +185,6 @@
             </ul>
         </nav>        
 
-        <!-- completed -->
         <section class="main" id="dashboardSection" >
             <div class="main-top">
                 <h1>Summary</h1>
@@ -213,7 +215,7 @@
             <section class="main-course">
                 <h1>Analytics</h1>
                 <div class="course-box">
-                    
+
                     <div>
                         <select name="graphSelect" id="graphSelect">
                             <option value="7">last 7 days</option>
@@ -233,30 +235,28 @@
                       </div>
                 </div>
             </section>
-            <!-- Add this script to your HTML file -->
+
             <script>
                 let orders = []
                 let users = []
 
                 document.addEventListener('DOMContentLoaded', async () => {
-                    // Fetch orders
+
                     const ordersResponse = await axios.get('/api/admin/getAllOrders');
                     orders = ordersResponse.data;
 
-                    // Fetch users
                     const usersResponse = await axios.get('/api/admin/getAllUsers');
                     users = usersResponse.data;
-                   
+
                     drawGraph(7)
 
-                    // Update the main skills cards
                     updateMainSkills();
 
                     updateTopSellingProducts();
                 });
 
                 function drawGraph(lastDays) {
-                    // Calculate statistics
+
                     const today = new Date();
                     const startDate = new Date();
                     startDate.setDate(today.getDate() - lastDays + 1);
@@ -269,7 +269,6 @@
                         const dayOrders = orders.filter(order => {
                             const orderDate = new Date(order.createdDate);
 
-                            // Compare the year and month without considering the day
                             return orderDate.getFullYear() === date.getFullYear() && orderDate.getMonth() === date.getMonth() && orderDate.getDate() === date.getDate();
 
                         });
@@ -277,7 +276,6 @@
                         return { date, count: dayOrders.length };
                     });
 
-                    // Generate line graph using Chart.js
                     const ctx = document.getElementById('myChart').getContext('2d');
                     const chart = new Chart(ctx, {
                         type: 'line',
@@ -305,14 +303,12 @@
                     drawGraph(event.target.value)
                 });
 
-
                 function updateMainSkills() {
                     const salesToday = calculateSalesToday();
                     const completedOrders = calculateCompletedOrders();
                     const pendingOrders = calculatePendingOrders();
                     const totalSales = calculateTotalSales();
 
-                    // Update the HTML elements with the calculated values
                     document.querySelector('.sales_today').textContent = `Rs ${salesToday}`;
                     document.querySelector('.completed_orders').textContent = completedOrders;
                     document.querySelector('.pending_orders').textContent = pendingOrders;
@@ -320,7 +316,7 @@
                 }
 
                 function calculateSalesToday() {
-                    // Calculate sales for today
+
                     const today = new Date();
                     const todayOrders = orders.filter(order => {
                         const orderDate = new Date(order.Date);
@@ -333,19 +329,19 @@
                 }
 
                 function calculateCompletedOrders() {
-                    // Calculate completed orders count
+
                     const completedOrders = orders.filter(order => order.status === 'Completed');
                     return completedOrders.length;
                 }
 
                 function calculatePendingOrders() {
-                    // Calculate pending orders count
+
                     const pendingOrders = orders.filter(order => order.status === 'Pending');
                     return pendingOrders.length;
                 }
 
                 function calculateTotalSales() {
-                    // Calculate total sales
+
                     const totalSales = orders.reduce((total, order) => total + order.totalPayment, 0);
                     return totalSales;
                 }
@@ -371,7 +367,7 @@
                 }
 
                 async function calculateTopSellingProducts(numProducts) {
-                    // Calculate top-selling products based on units sold
+
                     const productSalesMap = new Map();
 
                     orders.forEach(order => {
@@ -387,12 +383,10 @@
                         });
                     });
 
-                    // Sort products by units sold in descending order
                     const sortedProducts = [...productSalesMap.entries()]
                         .sort((a, b) => b[1] - a[1])
                         .slice(0, numProducts);
 
-                    // Fetch product details from your API and return the results
                     const topSellingProducts = await Promise.all(sortedProducts.map(async ([productId, unitsSold]) => {
                         try {
                             const response = await axios.get(`/api/products/${productId}`);
@@ -405,7 +399,7 @@
                             };
                         } catch (error) {
                             console.error(`Error fetching product details for productId ${productId}:`, error);
-                            // Handle error appropriately
+
                             return {};
                         }
                     }));
@@ -416,10 +410,9 @@
 
         </section>
 
-        <!-- shows all the users : completed -->
         <section class="main" id="analyticsSection" style="display: none;" >
             <section class="main-orders">
-                <h1>User Analytics</h1>
+                <h1>User Analytics <button class="export-btn">Export CSV</button></h1>
                 <div class="user-container">
                     <table class="user-table">
                         <thead>
@@ -429,10 +422,7 @@
                                 <th>Phone Number</th>
                                 <th>Pin Code</th>
                                 <th>Account Created</th>
-                                <!-- <th>Action</th> -->
-                                <!-- <td>
-                                    <button onclick="toggleUserBlock('John Doe')" class="block-button">Block</button>
-                                </td> -->
+
                             </tr>
                         </thead>
                         <tbody id="userTableBody">
@@ -454,12 +444,12 @@
                     .then(users => {
                         users.forEach(user => {
                             let row = document.createElement('tr')
-                            row.append(createTableCell(user.name))
-                            row.append(createTableCell(user.email))
-                            row.append(createTableCell(user.phone))
-                            row.append(createTableCell(user.pincode))
+                            row.append(createTableCell(user.name || "N/A"))
+                            row.append(createTableCell(user.email || "N/A"))
+                            row.append(createTableCell(user.phone || "N/A"))
+                            row.append(createTableCell(user.pincode || "N/A"))
 
-                            const dateTime = new Date(user.joinDate);
+                            const dateTime = new Date(user.joinDate || "N/A");
 
                             const formattedDateTime = dateTime.toLocaleString();
 
@@ -473,7 +463,6 @@
             </script>
         </section>   
 
-        <!-- shows all orders : completed -->
         <section class="main" id="ordersSection" style="display: none;" >
             <section class="main-orders">
                 <h1>Orders</h1>
@@ -611,7 +600,7 @@
 
                                 order.status = selectedValue;
                                 selectedOrdersTab = selectedValue;
-            
+
                                 document.querySelector('#' + selectedOrdersTab).classList.add('active')
 
                                 switch (selectedValue) {
@@ -642,13 +631,10 @@
                 document.querySelector('#ordersTab').addEventListener('click', loadOrders)
             </script>
         </section>
-        
-        <!-- complete -->
+
         <section class="main" id="productsSection" style="display: none;">
             <section class="main-orders">
-                
-            
-                
+
             <h1 style="margin-bottom: 0.3rem;">Add Product</h1>
                     <div class="form-container" style="overflow-y: scroll;">
                         <div>
@@ -715,18 +701,17 @@
                                 <label for="no">No</label>
                             </div>
 
-                            
                             <label for="Image1">Main Image (250x250):</label>
                             <input type="file" value="-1" id="Image1" name="Image1" accept="image/*" required onchange="previewImage('Image1')" style="border: none; padding: 0.5rem; background-color: #f0f0f0;">
                             <img id="Image1Preview" alt="Preview" style="width: 20%; height: 15vh; margin-top: 0rem; margin-bottom: 1rem;border-radius: 1rem;">
-                            
+
                             <div class="addon-images">
                                 <div class="img2">
                                     <label for="Image2">2nd Image (250x250):</label>
                                     <input type="file" value="-1" id="Image2" name="Image2" accept="image/*" required onchange="previewImage('Image2')" style="border: none; padding: 0.5rem; background-color: #f0f0f0;"> 
                                     <img id="Image2Preview" alt="Preview" style="width: 70%; height: auto; margin-top: 0rem; margin-bottom: 1rem;border-radius: 1rem;">
                                 </div>
-        
+
                                 <div class="img2">
                                     <label for="Image3">3rd Image (250x250):</label>
                                     <input type="file" value="-1" id="Image3" name="Image3" accept="image/*" required onchange="previewImage('Image3')" style="border: none; padding: 0.5rem; background-color: #f0f0f0;">
@@ -774,7 +759,7 @@
                                 <input type="time" id="scheduleTime" name="scheduleTime" required>
                                 <span id="scheduleTimeError" class="error-message"></span>
                             </div>
-                           
+
                             <button onclick="addProduct()">Schedule Product</button>
                         </div>
                     </div>                   
@@ -812,7 +797,7 @@
                         }
                     </script>
             </section>
-            
+
             <script>    
                 function previewImage(inputId) {
                     const input = document.getElementById(inputId);
@@ -868,7 +853,7 @@
                     const category = document.getElementById('category').value;
                     const stock = document.getElementById('stock').value;
                     const MainImage = document.getElementById('Image1').files[0];
-                    
+
                     const parsedOriginalPrice = parseInt(originalPrice, 10);
                     const parsedOfferedPrice = parseInt(offeredPrice, 10);
 
@@ -894,7 +879,7 @@
                             createdAt
                         ) {
                             let formData = new FormData();
-                            
+
                             formData.append('name', name);
                             formData.append('description', description);
                             formData.append('FAQ', FAQ);
@@ -941,11 +926,11 @@
                                 resetPreview()
                             })
                             .then (() => {
-                                // Get a reference to the element
+
                                 const myElement = document.getElementById('inventoryTab');
-                                // Create a new event
+
                                 const myEvent = new Event('click');
-                                // Dispatch the event
+
                                 myElement.dispatchEvent(myEvent);
                             })
                             .catch((error) => {
@@ -959,54 +944,6 @@
             </script>
         </section>
 
-        <!-- deprecated -->
-        <!-- <section class="main" id="categoriesSection"style="display: none;">
-            <section class="main-orders">
-                <h1>Add/View Categories</h1>
-                <div class="category-container">
-                    <div class="category-input">
-                        <input type="text" id="categoryName" placeholder="Category Name">
-                        <div id="currentDateTime" style="display: none;"></div>
-                        <button onclick="addCategory()" class="add-category">Add Category</button>
-                    </div>
-
-                    <table class="category-table">
-                        <thead>
-                            <tr>
-                                <th>Serial Number</th>
-                                <th>Category Name</th>
-                                <th>Date of Adding</th>
-                                <th>Action</th>
-                            </tr>
-                        </thead>
-                        <tbody id="categoryTableBody">
-
-                            <tr>
-                                <td>1</td>
-                                <td>Electronics</td>
-                                <td>2023-11-28</td>
-                                <td>
-                                    <button onclick="editCategory(this.parentNode.parentNode)">Edit</button>
-                                    <button onclick="deleteCategory(this.parentNode.parentNode)">Delete</button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>2</td>
-                                <td>Clothing</td>
-                                <td>2023-11-27</td>
-                                <td>
-                                    <button onclick="editCategory(this.parentNode.parentNode)">Edit</button>
-                                    <button onclick="deleteCategory(this.parentNode.parentNode)">Delete</button>
-                                </td>
-                            </tr>
-
-                        </tbody>
-                    </table>
-                </div>
-            </section>
-        </section> -->
-
-        <!-- style for inventory Section -->
         <style>
             .item_edit_modal {
                 display: none;
@@ -1018,7 +955,7 @@
                 background-color: rgba(0, 0, 0, 0.5);
                 justify-content: center;
                 align-items: center;
-                z-index: 1; /* Set z-index to appear above other elements */
+                z-index: 1; 
             }
 
             .item_schedule_modal{
@@ -1033,7 +970,7 @@
                 align-items: center;
                 z-index: 1;
             }
-        
+
             .modal-content {
                 background-color: #fff;
                 padding: 20px;
@@ -1069,7 +1006,7 @@
                 cursor: pointer;
                 border-radius: 5px;
             }
-            
+
             .modal-content div{
                 margin-top: 1vh;
                 display: flex;
@@ -1085,7 +1022,7 @@
             .modal-content .new-addon-images label{
                 font-size: 14px;
             }
-            
+
             .modal-content input{
                 padding:1vh;
                 border-radius: 1vh;
@@ -1114,12 +1051,12 @@
                 width:50%;
             }
         </style>
-        <!-- completed -->
+
         <section class="main" id="inventorySection" style="display: none;">
             <section class="main-orders">
                 <h1>Products Grid</h1>
                 <div class="product-grid" id="productGrid"></div>
-                
+
                 <div id="editModal" class="item_edit_modal" style="display: none;">
                     <div class="modal-content">
                         <span class="close" onclick="closeEditModal()" style="cursor: pointer;position: absolute;top: 1vh;right: 1vh;">&#9587;</span>
@@ -1194,7 +1131,7 @@
                         <button onclick="updateData()">Save Changes</button>
                     </div>
                 </div>
-                
+
             </section>
             <script>
                 let selectedItemId = ''
@@ -1250,7 +1187,7 @@
                     })
                     .catch(err => showAlert("some error occured when removing the product","danger"))
                 }
-                
+
                 async function loadAllProducts () {
                     document.querySelector('.product-grid').innerHTML = ''
                     await axios.get('/api/products')
@@ -1259,7 +1196,6 @@
                         let mainGrid = document.querySelector('.product-grid')
                         products.forEach((product, index) => {
                             let productDiv = document.createElement('div')
-
 
                             var words = product.name.split(" ");
                             product.name = words.slice(0, 3).join(" ");
@@ -1292,110 +1228,10 @@
             </script>
         </section>
 
-        <!-- deprecated -->
-        <!-- <section class="main" id="paymentsSection" style="display: none;">
-            <section class="main-orders">
-                <h1>My Wallet</h1>
-                <div class="wallet">
-                    <div class="wallet-top" style="display:flex;justify-content: space-between;">
-                        <div class="card">
-                            <iconify-icon class="icon" icon="noto:money-bag"></iconify-icon>
-                            <h4>Rs 50,000</h4>
-                            <h5>Total Income</h5>
-                        </div>
-                        <div class="card">
-                            <iconify-icon class="icon" icon="meteocons:clear-day-fill"></iconify-icon>
-                            <h4>Rs 50,000</h4>
-                            <h5>Today's Income</h5>
-                        </div>
-                        <div class="card">
-                            <iconify-icon class="icon" icon="noto-v1:shopping-bags"></iconify-icon>
-                            <h4>Rs 299</h4>
-                            <h5>Average Order Value</h5>
-                        </div>
-
-                    </div>
-                    <br>
-                    <div class="mt-4">
-                        <h3>Weekly Summary</h3>
-                        
-                    </div>
-
-                    <div class="wallet-bottom">
-                        <h3>Recent Transactions</h3>
-
-                        <div style="display: flex;">
-                            <div class="mb-3">
-                                <button class="btn" id="btnToday">Today</button>
-                                <button class="btn" id="btnLast7Days">Last 7 Days</button>
-                                <button class="btn" id="btnLast30Days">Last 30 Days</button>
-                            </div>
-
-                            <div>
-                                <input type="text" class="form-control" id="datePicker">
-                                <button class="btn-show" id="btnShow">Show</button>
-                            </div>
-                        </div>
-
-                        <table class="wallet-table">
-                            <thead>
-                                <tr>
-                                    <th scope="col">#</th>
-                                    <th scope="col">Order ID</th>
-                                    <th scope="col">User Name</th>
-                                    <th scope="col">Pincode</th>
-                                    <th scope="col">Product Name</th>
-                                    <th scope="col">Amount Received</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                
-                                <tr>
-                                    <th scope="row">1</th>
-                                    <td>ORD123456</td>
-                                    <td>John Doe</td>
-                                    <td>123456</td>
-                                    <td>Product XYZ</td>
-                                    <td>$50.00</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">1</th>
-                                    <td>ORD123456</td>
-                                    <td>John Doe</td>
-                                    <td>123456</td>
-                                    <td>Product XYZ</td>
-                                    <td>$50.00</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">1</th>
-                                    <td>ORD123456</td>
-                                    <td>John Doe</td>
-                                    <td>123456</td>
-                                    <td>Product XYZ</td>
-                                    <td>$50.00</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">1</th>
-                                    <td>ORD123456</td>
-                                    <td>John Doe</td>
-                                    <td>123456</td>
-                                    <td>Product XYZ</td>
-                                    <td>$50.00</td>
-                                </tr>
-
-                                
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </section>
-        </section> -->
-
-        <!-- done -->
         <section class="main" id="coupon" style="display: none;">
             <section class="main-orders">
                 <h1>Add/Delete Coupons</h1>
-    
+
                <div class="coupon-container">
                 <form id="couponForm">
                     <table>
@@ -1426,8 +1262,7 @@
                         </tr>
                     </table>
                 </form>
-    
-                <!-- Active Coupons List -->
+
                 <div style="overflow: auto;height: 60vh;">
                     <h2 style="margin-top: 2rem;">Active Coupons</h2>
                     <table id="couponList">
@@ -1443,7 +1278,7 @@
                         <tbody class="couponsTableBody">
 
                         </tbody>
-                        <!-- Coupon items go here -->
+
                     </table>
                 </div>
             </div>
@@ -1519,7 +1354,7 @@
             </section>
         </section>
   <%- include('partials/loader') %> 
-    
+
     </div>
     <script>
         function showDashboard() {

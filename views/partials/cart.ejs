@@ -18,6 +18,30 @@
   #cartSidebar::-webkit-scrollbar-track {
     background-color: #222;
   }
+
+  @keyframes marqueeAnimation {
+      0% { transform: translateX(100%); }
+      100% { transform: translateX(-100%); }
+    }
+
+    .marquee-container {
+      display: flex;
+      justify-content: space-between;
+      width:100%;
+      background-color: #222;
+      overflow: hidden;
+      padding: 1vh;
+    }
+
+    p.marquee {
+      font-size: 2vh;
+      color: #fff;
+      text-align: center;
+      text-transform: uppercase;
+      margin: 0;
+      white-space: nowrap;
+      animation: marqueeAnimation 20s linear infinite; 
+    }
 </style>
 
 <div
@@ -43,6 +67,12 @@
     <span aria-hidden="true" style="font-size: 2vh;cursor: pointer;">&#9587;</span>
     </button>
     <h4 class="mt-3 mb-3">Your Cart</h4>
+  </div>
+
+
+  <div class="marquee-container">
+    <p class="marquee" style="margin-right:5vh;">10% OFF ON ALL PRODUCTS, LIMITED PERIOD OFFER!</p>
+    <p class="marquee">10% OFF ON ALL PRODUCTS, LIMITED PERIOD OFFER!</p>
   </div>
 
   <ul class="list-group mb-3 mt-3" id="cartItemsContainer" style="color: #000">
