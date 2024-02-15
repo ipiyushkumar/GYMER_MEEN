@@ -134,6 +134,7 @@ body {
         overflow-x: scroll;
         scrollbar-width: 1px;
         display: flex;
+        flex-direction: row-reverse !important;
         flex-wrap: nowrap;
         justify-content: flex-start;
         grid-column-gap: 10px;
