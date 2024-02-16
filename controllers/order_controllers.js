@@ -218,7 +218,7 @@ const saveOrder = async (req, res) => {
       phone: userData.phone,
       name: userData.name,
       totalPayment: amount,
-      razorpay_order_id: "order_" + newOrder._id,
+      razorpay_order_id: "",
       address: req.session.userProfile.address,
       locality: req.session.userProfile.locality,
       landmark: req.session.userProfile.landmark,
