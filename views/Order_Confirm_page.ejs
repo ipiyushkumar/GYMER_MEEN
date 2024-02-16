@@ -822,8 +822,8 @@
             if (isLoggedIn) {
               axios
                 .post("/save/order", {
-                  data: response,
-                  couponCode: code,
+                  // data: response,
+                  // couponCode: code,
                 })
                 .then((res) => {
                   window.location.href = "/success";
