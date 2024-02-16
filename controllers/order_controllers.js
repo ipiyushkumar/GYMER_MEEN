@@ -177,6 +177,18 @@ const saveOrder = async (req, res) => {
   } else {
     const userData = await User.findOne({ email: req.session.email });
     const method = "cash on delivery";
+
+    const { name, phone, pincode, address, city, locality, landmark } =
+      req.body.data;
+
+    req.session.userProfile.name = name;
+    req.session.userProfile.phone = phone;
+    req.session.userProfile.pincode = pincode;
+    req.session.userProfile.address = address;
+    req.session.userProfile.city = city;
+    req.session.userProfile.locality = locality;
+    req.session.userProfile.landmark = landmark;
+
     if (!userData) {
       console.log("user not found");
       return res.status(404).json({ message: "User data not found" });
