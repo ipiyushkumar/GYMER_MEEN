@@ -195,7 +195,7 @@ const saveOrder = async (req, res) => {
     }
     let amount = 0;
 
-    for (const product of userData.cart) {
+    for (const product of req.session.userProfile.cart) {
       try {
         const item = await Product.findOne({ itemId: product.itemId });
         amount += product.quantity * item.offeredPrice;
@@ -210,13 +210,14 @@ const saveOrder = async (req, res) => {
     if (coupon) {
       amount = amount - amount * (coupon.discount / 100);
     }
+    console.log(req.session.userProfile.cart);
     amount = Math.floor(amount);
 
     const newOrder = new Orders({
       email: userData.email,
-      products: userData.cart,
+      products: req.session.userProfile.cart,
       phone: userData.phone,
-      name: userData.name,
+      name: req.session.userProfile.name,
       totalPayment: amount,
       razorpay_order_id: "",
       address: req.session.userProfile.address,
