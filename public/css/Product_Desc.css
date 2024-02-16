@@ -13,6 +13,23 @@ body{
     color: #fff;
 }
 
+.product-sliders {
+    display: flex;
+    align-items: center;
+    width: 92%;
+    justify-content:flex-end;
+    z-index: 0;
+  }
+
+  .product-sliders .sliding-buttons{
+    background-color: transparent;
+    border: none;
+    outline: none;
+    color: #fff;
+    cursor: pointer;
+    font-size: 5vh;
+}
+
 .card-wrapper{
     background-color: #000;
     max-width: 90%;
@@ -559,6 +576,10 @@ align-items: center;
 
             .product-price-discount{
                 font-size: 12px !important;
+            }
+
+            .product-sliders{
+                display: none !important;
             }
 
             .product-card .rws{

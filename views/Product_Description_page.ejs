@@ -861,18 +861,18 @@ document.addEventListener("DOMContentLoaded", function() {
       </script>
     </div>
 
-    <h2 class="people m-2 mt-4 mb-3" style="font-size: 5vh">
-      People Also Bought
-    </h2>
-    <div
-      id="productGrid"
-      class="row mb-5 product-grid container-fluid"
-      style="z-index: 0 !important;"
-      onmousedown="startScroll(event)"
-      onmouseup="stopScroll()"
-      ontouchstart="startScroll(event)"
-      ontouchend="stopScroll()"
-    ></div>
+    <h2 class="people m-2 mt-4 mb-3" style="font-size: 5vh">People Also Bought</h2>
+
+    <div class="container-fluid product-sliders mb-0 mt-0">
+        <button class="sliding-buttons mr-2" onclick="slideLeft()">
+          <iconify-icon icon="icon-park-solid:left-c"></iconify-icon>
+        </button>
+        <button class="sliding-buttons" onclick="slideRight()">
+          <iconify-icon icon="icon-park-solid:right-c"></iconify-icon>
+        </button>
+    </div>
+
+    <div id="productGrid" class="row mb-5 product-grid container-fluid" style="z-index: 0 !important;" onmousedown="startScroll(event)" onmouseup="stopScroll()" ontouchstart="startScroll(event)" ontouchend="stopScroll()"></div>
     <%- include('partials/footer') %> <%- include('partials/loader') %>
 
     <script>
@@ -1172,12 +1172,8 @@ document.addEventListener("DOMContentLoaded", function() {
         productCard.innerHTML = `
   <a href="/products/${product.itemId}" >
             <div class="product-image-container">
-                  <img class="product-image" src="${
-                    product.imageLink[0]
-                  }" alt="${product.name}">
-                  <img class="product-image hover-image" src="${
-                    product.imageLink[1] || product.imageLink[0]
-                  }" alt="${product.name}" style="display:none">
+              <img class="product-image" src="${product.imageLink[0]}" alt="${product.name}">
+              <img class="product-image hover-image" src="${product.imageLink[1] || product.imageLink[0]}" alt="${product.name}" style="display:none">
             </div>
             <div class="product-details">
                   ${
@@ -1250,6 +1246,25 @@ document.addEventListener("DOMContentLoaded", function() {
         container.appendChild(productCard);
       });
     </script>
+
+<script>
+  const productGridNew = document.getElementById("productGrid");
+  const scrollStep = 550;
+
+  function slideLeft() {
+    productGridNew.scrollTo({
+      left: productGrid.scrollLeft - scrollStep,
+      behavior: "smooth",
+    });
+  }
+
+  function slideRight() {
+    productGridNew.scrollTo({
+      left: productGrid.scrollLeft + scrollStep,
+      behavior: "smooth",
+    });
+  }
+</script>
 
     <script>
       function toggleFAQ(question) {
