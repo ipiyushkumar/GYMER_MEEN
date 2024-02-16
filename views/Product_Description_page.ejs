@@ -847,7 +847,7 @@ document.addEventListener("DOMContentLoaded", function() {
                       <div class="review-date">${formatDate(
                         review.dateAdded
                       )}</div>
-                      <div class="review-stars">${review.rating}</div>
+                      <div class="review-stars d-flex">${review.rating} <span><iconify-icon icon="noto:star"></iconify-icon></span></div>
                       <div class="review-title">${review.title}</div>
                       <div class="review-desc">${review.detail}</div>
                   `;

@@ -742,6 +742,11 @@ align-items: center;
   }
   
 
+  .review-stars span{
+    margin-top: 2px !important;
+    margin-left: 2px !important;
+  }
+
   .review-container {
       padding: 2vw;
       width: 100%;
