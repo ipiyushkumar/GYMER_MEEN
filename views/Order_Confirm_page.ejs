@@ -820,58 +820,56 @@
           } else if (postpaidRadio.checked) {
             const isLoggedIn = Boolean("<%= content.isLoggedIn %>");
             if (isLoggedIn) {
-              if (prepaidRadio.checked) {
-                const name = document.getElementById("name").value;
-                const phone = document.getElementById("phone").value;
-                const pincode = document.getElementById("pincode").value;
-                const address = document.getElementById("address").value;
-                const city = document.getElementById("city").value;
-                const locality = document.getElementById("locality").value;
-                const landmark = document.getElementById("landmark").value;
-                if (
-                  name &&
-                  phone &&
-                  pincode &&
-                  address &&
-                  city &&
-                  locality &&
-                  landmark
-                ) {
-                  let code = document.querySelector("#couponInput").value;
-                  var formData = {
+              const name = document.getElementById("name").value;
+              const phone = document.getElementById("phone").value;
+              const pincode = document.getElementById("pincode").value;
+              const address = document.getElementById("address").value;
+              const city = document.getElementById("city").value;
+              const locality = document.getElementById("locality").value;
+              const landmark = document.getElementById("landmark").value;
+              if (
+                name &&
+                phone &&
+                pincode &&
+                address &&
+                city &&
+                locality &&
+                landmark
+              ) {
+                let code = document.querySelector("#couponInput").value;
+                var formData = {
+                  couponCode: code,
+                  name,
+                  description: "Payment for White Wolf cart",
+                  phone,
+                  pincode,
+                  address,
+                  city,
+                  locality,
+                  landmark,
+                };
+                axios
+                  .post("/save/order", {
+                    data: {
+                      name,
+                      phone,
+                      pincode,
+                      address,
+                      city,
+                      locality,
+                      landmark,
+                    },
                     couponCode: code,
-                    name,
-                    description: "Payment for White Wolf cart",
-                    phone,
-                    pincode,
-                    address,
-                    city,
-                    locality,
-                    landmark,
-                  };
-                  axios
-                    .post("/save/order", {
-                      data: {
-                        name,
-                        phone,
-                        pincode,
-                        address,
-                        city,
-                        locality,
-                        landmark,
-                      },
-                      couponCode: code,
-                    })
-                    .then((res) => {
-                      window.location.href = "/success";
-                    })
-                    .catch((err) => console.log(err));
-                } else {
-                  showAlert("Please complete address details", "danger");
-                }
+                  })
+                  .then((res) => {
+                    window.location.href = "/success";
+                  })
+                  .catch((err) => console.log(err));
               } else {
-                window.location.href = "/login";
+                showAlert("Please complete address details", "danger");
               }
+            } else {
+              window.location.href = "/login";
             }
           }
         });
