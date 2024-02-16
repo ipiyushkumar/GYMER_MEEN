@@ -624,6 +624,7 @@
                 function loadOrdersTable(orders) {
                     document.querySelector('#OrdersBody').innerHTML = '';
                     orders.forEach(async order => {
+                        console.log(order)
                         let row = document.createElement('tr');
                         row.append(createTableCell(order.razorpay_order_id));
                         row.append(createTableCell(order.email));
