@@ -639,7 +639,7 @@
                         }));
                         row.append(createTableCell(names));
                         row.append(createTableCell('&#8377;' + order.totalPayment));
-                        row.append(createTableCell((order.deliveryMethod) || "Online Payment"));
+                        row.append(createTableCell((order.deliveryMethod) || "Prepaid"));
                         const dateTime = new Date(order.Date);
                         const formattedDateTime = dateTime.toLocaleString();
                         row.append(createTableCell(formattedDateTime));
