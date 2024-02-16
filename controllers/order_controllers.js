@@ -177,6 +177,18 @@ const saveOrder = async (req, res) => {
   } else {
     const userData = await User.findOne({ email: req.session.email });
     const method = "cash on delivery";
+
+    const { name, phone, pincode, address, city, locality, landmark } =
+      req.body.data;
+
+    req.session.userProfile.name = name;
+    req.session.userProfile.phone = phone;
+    req.session.userProfile.pincode = pincode;
+    req.session.userProfile.address = address;
+    req.session.userProfile.city = city;
+    req.session.userProfile.locality = locality;
+    req.session.userProfile.landmark = landmark;
+
     if (!userData) {
       console.log("user not found");
       return res.status(404).json({ message: "User data not found" });
@@ -206,7 +218,7 @@ const saveOrder = async (req, res) => {
       phone: userData.phone,
       name: userData.name,
       totalPayment: amount,
-      razorpay_order_id,
+      razorpay_order_id: "order_" + newOrder._id,
       address: req.session.userProfile.address,
       locality: req.session.userProfile.locality,
       landmark: req.session.userProfile.landmark,
@@ -215,6 +227,8 @@ const saveOrder = async (req, res) => {
       deliveryAddress: `address: ${req.session.userProfile.address}, locality ${req.session.userProfile.locality}, landmark ${req.session.userProfile.landmark}, city, ${req.session.userProfile.city} (Pincode : ${req.session.userProfile.pincode})`,
       deliveryMethod: method,
     });
+
+    newOrder.razorpay_order_id = "order_" + newOrder._id;
     await newOrder.save();
 
     userData.cart = [];

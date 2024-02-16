@@ -820,6 +820,7 @@
           } else if (postpaidRadio.checked) {
             const isLoggedIn = Boolean("<%= content.isLoggedIn %>");
             if (isLoggedIn) {
+<<<<<<< HEAD
               axios
                 .post("/save/order", {
                   // data: response,
@@ -829,6 +830,56 @@
                   window.location.href = "/success";
                 })
                 .catch((err) => console.log(err));
+=======
+              const name = document.getElementById("name").value;
+              const phone = document.getElementById("phone").value;
+              const pincode = document.getElementById("pincode").value;
+              const address = document.getElementById("address").value;
+              const city = document.getElementById("city").value;
+              const locality = document.getElementById("locality").value;
+              const landmark = document.getElementById("landmark").value;
+              if (
+                name &&
+                phone &&
+                pincode &&
+                address &&
+                city &&
+                locality &&
+                landmark
+              ) {
+                let code = document.querySelector("#couponInput").value;
+                var formData = {
+                  couponCode: code,
+                  name,
+                  description: "Payment for White Wolf cart",
+                  phone,
+                  pincode,
+                  address,
+                  city,
+                  locality,
+                  landmark,
+                };
+                axios
+                  .post("/save/order", {
+                    data: {
+                      name,
+                      phone,
+                      pincode,
+                      address,
+                      city,
+                      locality,
+                      landmark,
+                    },
+                    couponCode: code,
+                  })
+                  .then((res) => {
+                    window.location.href = "/success";
+                  })
+                  .catch((err) => console.log(err));
+              } else {
+                showAlert("Please complete address details", "danger");
+              }
+>>>>>>> 25639fd61e36cc41e6c8cdc8d163c596030c38a8
             } else {
               window.location.href = "/login";
             }
