@@ -101,7 +101,7 @@ const saveOrder = async (req, res) => {
   const { razorpay_order_id, razorpay_payment_id, razorpay_signature } =
     req.body.data;
   if (razorpay_order_id && razorpay_payment_id && razorpay_signature) {
-    const method = "Online payment";
+    const method = "prepaid";
     razorpayInstance.payments
       .fetch(razorpay_payment_id)
       .then(async (response) => {
@@ -176,7 +176,7 @@ const saveOrder = async (req, res) => {
       );
   } else {
     const userData = await User.findOne({ email: req.session.email });
-    const method = "cash on delivery";
+    const method = "COD";
 
     const { name, phone, pincode, address, city, locality, landmark } =
       req.body.data;
