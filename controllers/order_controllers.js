@@ -227,6 +227,8 @@ const saveOrder = async (req, res) => {
       deliveryAddress: `address: ${req.session.userProfile.address}, locality ${req.session.userProfile.locality}, landmark ${req.session.userProfile.landmark}, city, ${req.session.userProfile.city} (Pincode : ${req.session.userProfile.pincode})`,
       deliveryMethod: method,
     });
+
+    newOrder.razorpay_order_id = "order_" + newOrder._id;
     await newOrder.save();
 
     userData.cart = [];
