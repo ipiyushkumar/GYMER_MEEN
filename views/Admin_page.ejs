@@ -536,6 +536,7 @@
                                         <th style="width: 15%;">Email</th>
                                         <th style="width: 20%;">Products</th>
                                         <th style="width: 15%;">Price</th>
+                                        <th style="width: 15%;">Method</th>
                                         <th style="width: 15%;">Date</th>
                                         <th style="width: 20%;">Status</th>
                                     </tr>
@@ -637,6 +638,7 @@
                         }));
                         row.append(createTableCell(names));
                         row.append(createTableCell('&#8377;' + order.totalPayment));
+                        row.append(createTableCell('&#8377;' + order.deliveryMethod));
                         const dateTime = new Date(order.Date);
                         const formattedDateTime = dateTime.toLocaleString();
                         row.append(createTableCell(formattedDateTime));
