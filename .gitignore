@@ -1,3 +1,4 @@
 /node_modules
 /.env
 /accessData.csv.log
+/uploads
