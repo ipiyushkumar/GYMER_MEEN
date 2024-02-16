@@ -625,7 +625,7 @@
                     document.querySelector('#OrdersBody').innerHTML = '';
                     orders.forEach(async order => {
                         let row = document.createElement('tr');
-                        row.append(createTableCell(order._id));
+                        row.append(createTableCell(order.razorpay_order_id));
                         row.append(createTableCell(order.email));
                         let names = '';
                         await Promise.all(order.products.map(async product => {
