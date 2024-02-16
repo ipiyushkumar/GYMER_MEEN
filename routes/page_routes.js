@@ -7,9 +7,10 @@ const isAuthenticated = (req, res, next) => {
   if (req.session.isLoggedIn) {
     next();
   } else {
-    res.status(401).json({ message: "Unauthorized" });
+    res.redirect('/login');
   }
 };
+
 
 router.get("/", (req, res) => {
   // Check if the request is for the non-www version
@@ -78,6 +79,10 @@ router.get("/pages/refund-policy", (req, res) => {
 
 router.get("/pages/coming-soon", (req, res) => {
   res.render("coming-soon", {});
+});
+
+router.get("/pages/unauthorized", (req, res) => {
+  res.render("unauthorized", {});
 });
 
 router.get("/pages/blogs", (req, res) => {

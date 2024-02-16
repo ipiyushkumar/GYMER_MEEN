@@ -603,6 +603,18 @@
                     loadOrdersTable(sentOrders);
                 }
 
+                function createTableCell(data, isOrderId = false) {
+    let cell = document.createElement('td');
+    if (isOrderId && data.length > 11) {
+        cell.textContent = data.substring(0, 11) + '..';
+    } else {
+        cell.textContent = data;
+    }
+    return cell;
+}
+
+
+
                 function loadDeliveringOrders() {
                     const deliveringOrders = Orders.filter(order => order.status === 'Delivering');
                     document.querySelector('#' + selectedOrdersTab).classList.remove('active')
@@ -626,7 +638,7 @@
                     orders.forEach(async order => {
                         console.log(order)
                         let row = document.createElement('tr');
-                        row.append(createTableCell(order.razorpay_order_id));
+                        row.append(createTableCell(order.razorpay_order_id, true));
                         row.append(createTableCell(order.email));
                         let names = '';
                         await Promise.all(order.products.map(async product => {
@@ -638,7 +650,7 @@
                             }
                         }));
                         row.append(createTableCell(names));
-                        row.append(createTableCell('&#8377;' + order.totalPayment));
+                        row.append(createTableCell('₹' + order.totalPayment));
                         row.append(createTableCell((order.deliveryMethod) || "Prepaid"));
                         const dateTime = new Date(order.Date);
                         const formattedDateTime = dateTime.toLocaleString();
