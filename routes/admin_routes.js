@@ -10,15 +10,14 @@ const authenticator = require("../adminConfig");
 const isAdminAuthenticated = (req, res, next) => {
   if (req.session.isLoggedIn) {
     if (authenticator.adminAuthenticater(req.session.email)) {
-      next(); // User is authenticated and admin, proceed to the next middleware or route
+      next(); // User is authenticated, proceed to the next middleware or route
     } else {
-      res.redirect('/pages/unauthorized'); // Redirect to an "unauthorized" page
+      res.status(401).json({ message: "Administrator credentials required" });
     }
   } else {
-    res.redirect('/pages/unauthorized'); // Redirect to the login page
+    res.status(401).json({ message: "Unauthorized" });
   }
 };
-
 
 // admin tab
 router.get("/adminwolf", isAdminAuthenticated, (req, res) => {
