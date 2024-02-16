@@ -132,7 +132,7 @@ router.get("/robots.txt", (req, res) => {
 
 router.get("/collections/:page", (req, res) => {
   const { page } = req.params;
-  let pageContext = "All";
+  let pageContext = "all";
   let pageMetaTitle, pageMetaDesc;
 
   switch (page) {
