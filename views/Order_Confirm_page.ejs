@@ -432,7 +432,7 @@
                 value="prepaid"
               />
               <label class="form-check-label text-right" for="prepaidRadio">
-                <span class="float-left">Proceed With Razorpay</span>
+                <span class="float-left">Online Payment (Razorpay)</span>
               </label>
             </div>
 
@@ -524,8 +524,6 @@
         const postpaidRadio = document.getElementById("postpaidRadio");
         const continueButton = document.querySelector(".continueButton");
 
-        continueButton.classList.add("proceedToPay");
-
         document
           .querySelectorAll('input[name="paymentMethod"]')
           .forEach((radio) => {
@@ -533,14 +531,6 @@
           });
 
         function toggleContinueButton() {
-          if (prepaidRadio.checked) {
-            continueButton.classList.add("proceedToPay");
-            continueButton.classList.remove("PostpaidOrder");
-          } else if (postpaidRadio.checked) {
-            continueButton.classList.add("PostpaidOrder");
-            continueButton.classList.remove("proceedToPay");
-          }
-
           if (prepaidRadio.checked || postpaidRadio.checked) {
             continueButton.disabled = false;
           } else {
@@ -732,11 +722,14 @@
           });
       });
 
-      document.addEventListener("DOMContentLoaded", function () {
-        document
-          .querySelector(".proceedToPay")
-          .addEventListener("click", function (e) {
-            e.preventDefault();
+      document
+        .querySelector(".continueButton")
+        .addEventListener("click", function () {
+          const prepaidRadio = document.getElementById("prepaidRadio");
+          const postpaidRadio = document.getElementById("postpaidRadio");
+
+          console.log("triggered");
+          if (prepaidRadio.checked) {
             const name = document.getElementById("name").value;
             const phone = document.getElementById("phone").value;
             const pincode = document.getElementById("pincode").value;
@@ -754,7 +747,6 @@
               landmark
             ) {
               let code = document.querySelector("#couponInput").value;
-
               var formData = {
                 couponCode: code,
                 name,
@@ -766,7 +758,6 @@
                 locality,
                 landmark,
               };
-
               $.ajax({
                 url: "/processPayment",
                 type: "POST",
@@ -826,8 +817,23 @@
             } else {
               showAlert("Please complete address details", "danger");
             }
-          });
-      });
+          } else if (postpaidRadio.checked) {
+            const isLoggedIn = Boolean("<%= content.isLoggedIn %>");
+            if (isLoggedIn) {
+              axios
+                .post("/save/order", {
+                  data: response,
+                  couponCode: code,
+                })
+                .then((res) => {
+                  window.location.href = "/success";
+                })
+                .catch((err) => console.log(err));
+            } else {
+              window.location.href = "/login";
+            }
+          }
+        });
     </script>
   </body>
 </html>

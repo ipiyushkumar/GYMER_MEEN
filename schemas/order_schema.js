@@ -26,6 +26,7 @@ const orderSchema = new mongoose.Schema({
   },
   createdDate: { type: Date, default: Date.now },
   deliveryAddress: { type: String, required: true },
+  deliveryMethod: { type: String, required: true },
 });
 
 const Order = mongoose.model("Order", orderSchema);
