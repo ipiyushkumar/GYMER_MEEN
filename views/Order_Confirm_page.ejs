@@ -1,691 +1,833 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
-   <head>
-      <meta charset='utf-8'>
-      <meta name='viewport' content='width=device-width, initial-scale=1'>
-      <title>WhiteWolf - Checkout Page</title>
-      <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
-      <link href='https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css' rel='stylesheet'>
-      <link href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css' rel='stylesheet'>
-      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@200;400;500&display=swap">
-      <link rel="shortcut icon" type="image/x-icon" href="../assets/whitewolflog.png">
-      <style>
-        * {
-            padding: 0;
-            margin: 0;
-            box-sizing: border-box;
-            font-family: 'Outfit', sans-serif;
-        }
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>WhiteWolf - Checkout Page</title>
+    <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+    <link
+      href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Outfit:wght@200;400;500&display=swap"
+    />
+    <link
+      rel="shortcut icon"
+      type="image/x-icon"
+      href="../assets/whitewolflog.png"
+    />
+    <style>
+      * {
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+        font-family: "Outfit", sans-serif;
+      }
 
-         input[type="number"]::-webkit-inner-spin-button,
-         input[type="number"]::-webkit-outer-spin-button {
-         -webkit-appearance: none;
-         margin: 0;
-         }
+      input[type="number"]::-webkit-inner-spin-button,
+      input[type="number"]::-webkit-outer-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+      }
 
+      body {
+        background-color: #000;
+      }
+
+      .main {
+        max-width: 1200px;
+        margin: 50px auto;
+        background-color: #fff;
+        border-radius: 15px;
+        overflow: hidden;
+        display: flex;
+      }
+
+      .left-side,
+      .right-side {
+        flex: 1;
+        padding: 20px;
+      }
+
+      h2 {
+        font-size: 2.5rem;
+        color: #333;
+        margin-bottom: 20px;
+      }
+
+      .border.rounded.ship {
+        border: 1px solid #ddd;
+        border-radius: 10px;
+        padding: 15px;
+        margin-bottom: 20px;
+      }
+
+      .shipping-address-label {
+        font-size: 1.2rem;
+        font-weight: 600;
+        margin-bottom: 10px;
+        color: #333;
+      }
+
+      .shipping-address-value {
+        font-size: 1.1rem;
+        color: #555;
+        margin-bottom: 15px;
+      }
+
+      .labels {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        width: 100%;
+        margin: 0.2vh;
+        text-transform: capitalize;
+      }
+
+      .labels label {
+        width: 45%;
+        font-size: 2.5vh;
+        margin-bottom: 5px;
+      }
+
+      .labels input {
+        width: 45%;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        padding: 3px;
+        padding-left: 8px;
+        font-size: 2vh;
+        margin-bottom: 10px;
+        box-sizing: border-box;
+      }
+
+      .delivery-info {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-size: 1.2rem;
+        color: #555;
+      }
+
+      .fa-shipping-fast {
+        font-size: 2rem;
+        margin-right: 10px;
+        color: #007bff;
+      }
+
+      .price {
+        color: #5cb99a;
+        font-weight: 700;
+        font-size: 1.5rem;
+      }
+
+      .back-link {
+        font-size: 1.2rem;
+        color: #333;
+        text-decoration: none;
+        display: inline-block;
+        margin-top: 20px;
+      }
+
+      .wrapper {
+        border: 2px solid #000;
+        border-radius: 15px;
+        padding: 20px;
+        margin-top: 20px;
+      }
+
+      .table th,
+      .table td {
+        font-size: 2vh;
+        font-weight: 400;
+        padding: 15px;
+        border-bottom: none;
+      }
+
+      .discount-field {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 20px;
+      }
+
+      .discount-input {
+        flex: 1;
+        margin-right: 10px;
+      }
+
+      .btn-apply-coupon,
+      .coupon_remove_Button {
+        font-size: 2vh;
+      }
+
+      .mrp {
+        padding: 0;
+        height: auto;
+      }
+
+      .total {
+        font-size: 2rem;
+      }
+
+      .payment-methods {
+        margin-top: 20px;
+        text-align: center;
+      }
+
+      .payment-methods img {
+        height: 50px;
+        margin: 0 10px;
+      }
+
+      @media (max-width: 768px) {
         body {
-            background-color: #000;
+          padding: 2vh;
         }
-
         .main {
-            max-width: 1200px;
-            margin: 50px auto;
-            background-color: #fff;
-            border-radius: 15px;
-            overflow: hidden;
-            display: flex;
+          flex-direction: column;
         }
 
         .left-side,
         .right-side {
-            flex: 1;
-            padding: 20px;
+          flex: auto;
+          width: 100%;
+        }
+
+        .right-side {
+          margin-top: -10vh;
         }
 
         h2 {
-            font-size: 2.5rem;
-            color: #333;
-            margin-bottom: 20px;
+          font-size: 2rem;
         }
 
         .border.rounded.ship {
-            border: 1px solid #ddd;
-            border-radius: 10px;
-            padding: 15px;
-            margin-bottom: 20px;
-        }
-
-        .shipping-address-label {
-            font-size: 1.2rem;
-            font-weight: 600;
-            margin-bottom: 10px;
-            color: #333;
-        }
-
-        .shipping-address-value {
-            font-size: 1.1rem;
-            color: #555;
-            margin-bottom: 15px;
-        }
-
-        .labels {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    width: 100%;
-    margin: 0.2vh;
-    text-transform: capitalize;
-}
-
-.labels label {
-    width: 45%;
-    font-size: 2.5vh;
-    margin-bottom: 5px;
-}
-
-.labels input {
-    width: 45%;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    padding: 3px;
-    padding-left: 8px;
-    font-size: 2vh;
-    margin-bottom: 10px;
-    box-sizing: border-box;
-}
-
-        .delivery-info {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-size: 1.2rem;
-            color: #555;
+          border-radius: 0;
         }
 
         .fa-shipping-fast {
-            font-size: 2rem;
-            margin-right: 10px;
-            color: #007bff;
+          font-size: 1.5rem;
         }
 
         .price {
-            color: #5cb99a;
-            font-weight: 700;
-            font-size: 1.5rem;
-        }
-
-        .back-link {
-            font-size: 1.2rem;
-            color: #333;
-            text-decoration: none;
-            display: inline-block;
-            margin-top: 20px;
-        }
-
-        .wrapper {
-            border: 2px solid #000;
-            border-radius: 15px;
-            padding: 20px;
-            margin-top: 20px;
-        }
-
-        .table th,
-        .table td {
-            font-size: 2vh;
-            font-weight: 400;
-            padding: 15px;
-            border-bottom: none;
-        }
-
-        .discount-field {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-top: 20px;
-        }
-
-        .discount-input {
-            flex: 1;
-            margin-right: 10px;
+          font-size: 1.3rem;
         }
 
         .btn-apply-coupon,
         .coupon_remove_Button {
-            font-size: 2vh;
-        }
-
-        .mrp {
-            padding: 0;
-            height: auto;
+          font-size: 1rem;
         }
 
         .total {
-            font-size: 2rem;
+          font-size: 1.5rem;
         }
 
-        .payment-methods {
-            margin-top: 20px;
-            text-align: center;
+        .proceedToPay {
+          font-size: 1.2rem;
         }
 
         .payment-methods img {
-            height: 50px;
-            margin: 0 10px;
+          height: 40px;
+          margin: 0 8px;
         }
-
-        @media (max-width: 768px) {
-            body{
-                padding:2vh;
-            }
-            .main {
-                flex-direction: column;
-            }
-
-            .left-side,
-            .right-side {
-                flex: auto;
-                width: 100%;
-            }
-
-            .right-side{
-                margin-top: -10vh;
-            }
-
-            h2 {
-                font-size: 2rem;
-            }
-
-            .border.rounded.ship {
-                border-radius: 0;
-            }
-
-            .fa-shipping-fast {
-                font-size: 1.5rem;
-            }
-
-            .price {
-                font-size: 1.3rem;
-            }
-
-            .btn-apply-coupon,
-            .coupon_remove_Button {
-                font-size: 1rem;
-            }
-
-            .total {
-                font-size: 1.5rem;
-            }
-
-            .proceedToPay {
-                font-size: 1.2rem;
-            }
-
-            .payment-methods img {
-                height: 40px;
-                margin: 0 8px;
-            }
-        }
+      }
     </style>
-      <script type='text/javascript' src=''></script>
-      <script type='text/javascript' src='https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js'></script>
-      <script type='text/javascript' src='https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.min.js'></script>
-   </head>
-   <body oncontextmenu='return false' class='snippet-body'>
+    <script type="text/javascript" src=""></script>
+    <script
+      type="text/javascript"
+      src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.min.js"
+    ></script>
+  </head>
+  <body oncontextmenu="return false" class="snippet-body">
+    <div class="main">
+      <div class="left-side">
+        <h2>
+          <a href="/" style="text-decoration: none; color: #000">&#8592;</a>
+          Checkout
+        </h2>
+        <div class="border rounded .ship p-2 my-3 w-100">
+          <b>Shipping Address</b>
+          <div class="col-md-12 py-3">
+            <div
+              class="d-flex flex-column align-items start Shipping_Address"
+            ></div>
+          </div>
+        </div>
+        <div
+          class="d-flex align-items-center justify-content-between pb-4 pl-3"
+          style="font-size: 2vh"
+        >
+          <div class="d-flex justify-content-center mt-3">
+            <iconify-icon
+              icon="la:shipping-fast"
+              style="font-size: 3vh; margin-right: 3vh"
+            ></iconify-icon>
+            <p>FREE STANDARD DELIVERY APPLICABLE</p>
+          </div>
+          <div class="d-flex">
+            <p><del>₹99</del></p>
+            <p class="ml-3">₹0</p>
+          </div>
+        </div>
+        <!-- <p><a href="/" style="text-decoration: none;color: #000;">&#8592; Back</a></p> -->
+      </div>
+      <div class="right-side">
+        <div class="wrapper pt-2">
+          <h4>Summary</h4>
+          <table
+            class="table corner-round p-4 table-striped table-responsive"
+            style="border: none; border-radius: 1vh; overflow: hidden"
+          >
+            <thead>
+              <tr style="display: none">
+                <th scope="col">Name</th>
+                <th scope="col">Name</th>
+                <th scope="col">Price</th>
+                <th scope="col">Quantity</th>
+                <!-- <th scope="col">Price (₹)</th> -->
+              </tr>
+            </thead>
+            <tbody
+              class="allItems"
+              style="background-color: rgba(255, 255, 255, 0.1)"
+            >
+              <!-- ... (your table body content) ... -->
+              <!-- <button class="btn btn-success proceedToPay" style="font-size: 2.5vh;">Place Order</button> -->
+            </tbody>
+          </table>
 
-      <div class="main">
-         <div class="left-side">
-            <h2><a href="/" style="text-decoration:none;color: #000;">&#8592;</a> Checkout</h2>
-            <div class="border rounded .ship p-2 my-3 w-100">
-               <b>Shipping Address</b>
-               <div class="col-md-12 py-3">
-                  <div class="d-flex flex-column align-items start Shipping_Address"></div>
-               </div>
+          <div
+            class="d-flex discount-field justify-content-between align-items-center mt-2 pb-4"
+          >
+            <div class="text-muted discount-input">
+              <input
+                type="text"
+                class="form-control"
+                id="couponInput"
+                placeholder="Enter Coupon"
+                value="<%= content.code %>"
+              />
             </div>
-            <div class="d-flex align-items-center justify-content-between pb-4 pl-3" style="font-size: 2vh;">
-               <div class="d-flex justify-content-center mt-3">
-                  <iconify-icon icon="la:shipping-fast"  style="font-size: 3vh;margin-right: 3vh;"></iconify-icon>
-                 <p>FREE STANDARD DELIVERY APPLICABLE</p>
-               </div>
-               <div class="d-flex">
-               <p><del>₹99</del></p>
-                 <p class="ml-3">₹0</p>
-               </div>
+            <div class="ml-1">
+              <button
+                class="btn btn-warning btn-apply-coupon coupon_Button text-uppercase"
+              >
+                <span
+                  class="spinner-border spinner-border-sm"
+                  role="status"
+                  aria-hidden="true"
+                  style="display: none"
+                ></span>
+                <span class="sr-only">Loading...</span>
+                Apply
+              </button>
             </div>
-            <!-- <p><a href="/" style="text-decoration: none;color: #000;">&#8592; Back</a></p> -->
-         </div>
-         <div class="right-side">
-            <div class="wrapper pt-2">
-               <h4>Summary</h4>
-               <table class="table corner-round p-4 table-striped table-responsive" style="border: none; border-radius: 1vh; overflow: hidden;">
-                  <thead>
-                      <tr style="display: none;">
-                           <th scope="col">Name</th>
-                          <th scope="col">Name</th>
-                          <th scope="col">Price</th>
-                          <th scope="col">Quantity</th>
-                          <!-- <th scope="col">Price (₹)</th> -->
-                      </tr>
-                  </thead>
-                  <tbody class="allItems" style="background-color: rgba(255, 255, 255, 0.1);">
-                      <!-- ... (your table body content) ... -->
-                       <!-- <button class="btn btn-success proceedToPay" style="font-size: 2.5vh;">Place Order</button> -->
-                  </tbody>
-              </table>
+            <div class="ml-1">
+              <button
+                class="btn btn-danger btn-apply-coupon coupon_remove_Button text-uppercase"
+                style="display: none"
+              >
+                <span
+                  class="spinner-border spinner-border-sm"
+                  role="status"
+                  aria-hidden="true"
+                  style="display: none"
+                ></span>
+                <span class="sr-only">Loading...</span>
+                Remove
+              </button>
+            </div>
+          </div>
 
-              <div class="d-flex discount-field justify-content-between align-items-center mt-2 pb-4">
-               <div class="text-muted discount-input">
-                   <input type="text" class="form-control" id="couponInput" placeholder="Enter Coupon" value="<%= content.code %>">
-               </div>
-               <div class="ml-1">
-                   <button class="btn btn-warning btn-apply-coupon coupon_Button text-uppercase">
-                       <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true" style="display: none;"></span>
-                       <span class="sr-only">Loading...</span>
-                       Apply
-                   </button>
-               </div>
-               <div class="ml-1">
-                   <button class="btn btn-danger btn-apply-coupon coupon_remove_Button text-uppercase" style="display: none;">
-                       <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true" style="display: none;"></span>
-                       <span class="sr-only">Loading...</span>
-                       Remove
-                   </button>
-               </div>
-           </div>
+          <script>
+            const applyCouponBtn = document.querySelector(".coupon_Button");
+            const removeCouponBtn = document.querySelector(
+              ".coupon_remove_Button"
+            );
+            const couponInput = document.getElementById("couponInput");
 
-           <script>
+            applyCouponBtn.addEventListener("click", function () {
+              const spinner = applyCouponBtn.querySelector(".spinner-border");
+              spinner.style.display = "inline-block";
+              applyCouponBtn.disabled = true;
 
-               const applyCouponBtn = document.querySelector('.coupon_Button');
-               const removeCouponBtn = document.querySelector('.coupon_remove_Button');
-               const couponInput = document.getElementById('couponInput');
+              setTimeout(function () {
+                spinner.style.display = "none";
+                applyCouponBtn.disabled = false;
 
-               applyCouponBtn.addEventListener('click', function() {
+                applyCouponBtn.style.display = "none";
+                removeCouponBtn.style.display = "inline-block";
 
-                   const spinner = applyCouponBtn.querySelector('.spinner-border');
-                   spinner.style.display = 'inline-block';
-                   applyCouponBtn.disabled = true; 
+                console.log("Coupon applied:", couponInput.value);
+              }, 2000);
+            });
 
-                   setTimeout(function() {
+            removeCouponBtn.addEventListener("click", function () {
+              const spinner = removeCouponBtn.querySelector(".spinner-border");
+              spinner.style.display = "inline-block";
+              removeCouponBtn.disabled = true;
 
-                       spinner.style.display = 'none';
-                       applyCouponBtn.disabled = false; 
+              setTimeout(function () {
+                spinner.style.display = "none";
+                removeCouponBtn.disabled = false;
 
-                       applyCouponBtn.style.display = 'none';
-                       removeCouponBtn.style.display = 'inline-block';
+                removeCouponBtn.style.display = "none";
+                applyCouponBtn.style.display = "inline-block";
 
-                       console.log('Coupon applied:', couponInput.value);
-                   }, 2000); 
-               });
+                couponInput.value = "";
+                console.log("Coupon removed");
+              }, 2000);
+            });
+          </script>
 
-               removeCouponBtn.addEventListener('click', function() {
-
-                   const spinner = removeCouponBtn.querySelector('.spinner-border');
-                   spinner.style.display = 'inline-block';
-                   removeCouponBtn.disabled = true; 
-
-                   setTimeout(function() {
-
-                       spinner.style.display = 'none';
-                       removeCouponBtn.disabled = false; 
-
-                       removeCouponBtn.style.display = 'none';
-                       applyCouponBtn.style.display = 'inline-block';
-
-                       couponInput.value = '';
-                       console.log('Coupon removed');
-                   }, 2000); 
-               });
-           </script>
-
-                <div class="table-responsive mrp" style="height: auto;padding: 0;">
-                   <table class="table table-borderless m-0 p-0 mb-4" >
-                      <thead class="p-0 m-0">
-                         <tr class="text-uppercase p-0 m-0 bg-light br-2">
-                            <th scope="col">Amount Payable</th>
-                            <!-- <th scope="col" class="text-right" style="font-size: 2vh;">Amount Payable</th> -->
-                            <td scope="col" class="text-right total" style="font-size: 3vh;font-weight: 300;">&#8377;</td>
-                         </tr>
-                      </thead>
-                      <!-- <tbody style="padding: 0;"> 
+          <div class="table-responsive mrp" style="height: auto; padding: 0">
+            <table class="table table-borderless m-0 p-0 mb-4">
+              <thead class="p-0 m-0">
+                <tr class="text-uppercase p-0 m-0 bg-light br-2">
+                  <th scope="col">Amount Payable</th>
+                  <!-- <th scope="col" class="text-right" style="font-size: 2vh;">Amount Payable</th> -->
+                  <td
+                    scope="col"
+                    class="text-right total"
+                    style="font-size: 3vh; font-weight: 300"
+                  >
+                    &#8377;
+                  </td>
+                </tr>
+              </thead>
+              <!-- <tbody style="padding: 0;"> 
                          <tr>
                             <td scope="row"></td>
                             <td class="text-right total" style="font-size: 3vh;"><b>&#8377;</b></td>
                          </tr>
                       </tbody> -->
-                   </table>
-                </div>
-                <div class="d-flex flex-column align-items-start justify-content-center mb-4 mt-0">
-                  <div class="d-flex mb-1">
-                     <h4 class="text-muted text-uppercase" style="font-size: 2vh;">Select Payment Method</h4>
-                   </div>
+            </table>
+          </div>
+          <div
+            class="d-flex flex-column align-items-start justify-content-center mb-4 mt-0"
+          >
+            <div class="d-flex mb-1">
+              <h4 class="text-muted text-uppercase" style="font-size: 2vh">
+                Select Payment Method
+              </h4>
+            </div>
 
-                   <div class="form-check mb-2">
-                     <input class="form-check-input" type="radio" name="paymentMethod" id="prepaidRadio" value="prepaid">
-                     <label class="form-check-label text-right" for="prepaidRadio">
-                       <span class="float-left">UPI,Cards,Wallet Etc.</span>
-                     </label>
-                   </div>
+            <div class="form-check mb-2">
+              <input
+                class="form-check-input"
+                type="radio"
+                name="paymentMethod"
+                id="prepaidRadio"
+                value="prepaid"
+              />
+              <label class="form-check-label text-right" for="prepaidRadio">
+                <span class="float-left">Proceed With Razorpay</span>
+              </label>
+            </div>
 
-                   <div class="form-check mb-2">
-                     <input class="form-check-input" type="radio" name="paymentMethod" id="postpaidRadio" value="postpaid">
-                     <label class="form-check-label text-right" for="postpaidRadio">
-                       <span class="float-left">Cash on Delivery</span>
-                     </label>
-                   </div>
+            <div class="form-check mb-2">
+              <input
+                class="form-check-input"
+                type="radio"
+                name="paymentMethod"
+                id="postpaidRadio"
+                value="postpaid"
+              />
+              <label class="form-check-label text-right" for="postpaidRadio">
+                <span class="float-left">Cash on Delivery</span>
+              </label>
+            </div>
 
-                   <button class="btn btn-success text-uppercase continueButton d-flex justify-content-center align-items-center text-center" type="button" disabled>
-                         Continue 
-                         <!-- <span class="ml-1"><iconify-icon icon="emojione-monotone:right-arrow"></iconify-icon></span> -->
-                 </button>
-                 
+            <button
+              class="btn btn-success text-uppercase continueButton d-flex justify-content-center align-items-center text-center"
+              type="button"
+              disabled
+            >
+              Continue
+              <!-- <span class="ml-1"><iconify-icon icon="emojione-monotone:right-arrow"></iconify-icon></span> -->
+            </button>
+          </div>
 
-                </div>
-
-                  <div class="d-flex flex-column mt-1">
-                     <p>We Accept All Payment Methods :</p>
-                     <img src="/assets/payments.png" style="height: 3vh;width: max-content;"/>
-                  </div>
-             </div>
-         </div>
+          <div class="d-flex flex-column mt-1">
+            <p>We Accept All Payment Methods :</p>
+            <img
+              src="/assets/payments.png"
+              style="height: 3vh; width: max-content"
+            />
+          </div>
+        </div>
       </div>
-  <%- include('partials/loader') %> 
+    </div>
+    <%- include('partials/loader') %>
 
-      <div id="alertContainer"></div>
-      <style>
-         .alert {
-            position: fixed;
-            top: 1rem;
-            right: 1rem;
-            z-index: 1;
-            padding: 0.75rem 1.25rem;
-            margin-bottom: 1rem;
-            text-transform: capitalize;
-            border: 1px solid transparent;
-            border-radius: 0.25rem;
-            transition: 0.3s ease-in-out;
-         }
+    <div id="alertContainer"></div>
+    <style>
+      .alert {
+        position: fixed;
+        top: 1rem;
+        right: 1rem;
+        z-index: 1;
+        padding: 0.75rem 1.25rem;
+        margin-bottom: 1rem;
+        text-transform: capitalize;
+        border: 1px solid transparent;
+        border-radius: 0.25rem;
+        transition: 0.3s ease-in-out;
+      }
 
-         .alert.success {
-            color: #155724;
-            background-color: #d4edda;
-            border-color: #c3e6cb;
-         }
-         .alert.danger {
-            color: #721c24;
-            background-color: #f8d7da;
-            border-color: #f5c6cb;
-         }
-         </style>
-         <script>
-         function showAlert(message, type) {
-            const alertContainer = document.getElementById("alertContainer");
+      .alert.success {
+        color: #155724;
+        background-color: #d4edda;
+        border-color: #c3e6cb;
+      }
+      .alert.danger {
+        color: #721c24;
+        background-color: #f8d7da;
+        border-color: #f5c6cb;
+      }
+    </style>
+    <script>
+      function showAlert(message, type) {
+        const alertContainer = document.getElementById("alertContainer");
 
-            const alert = document.createElement("div");
-            alert.className = `alert ${type}`;
-            alert.innerHTML = `${message}<span class="close" onclick="closeAlert(this)">×</span>`;
+        const alert = document.createElement("div");
+        alert.className = `alert ${type}`;
+        alert.innerHTML = `${message}<span class="close" onclick="closeAlert(this)">×</span>`;
 
-            alertContainer.appendChild(alert);
+        alertContainer.appendChild(alert);
 
-            setTimeout(() => {
-               closeAlert(alert.querySelector(".close"));
-            }, 4000);
-         }
+        setTimeout(() => {
+          closeAlert(alert.querySelector(".close"));
+        }, 4000);
+      }
 
-         function closeAlert(closeButton) {
-            const alert = closeButton.parentElement;
-            alert.style.display = "none";
-         }
-         </script>
+      function closeAlert(closeButton) {
+        const alert = closeButton.parentElement;
+        alert.style.display = "none";
+      }
+    </script>
 
-      <script>
-         document.addEventListener("DOMContentLoaded", function() {
-  const prepaidRadio = document.getElementById('prepaidRadio');
-  const postpaidRadio = document.getElementById('postpaidRadio');
-  const continueButton = document.querySelector('.continueButton');
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const prepaidRadio = document.getElementById("prepaidRadio");
+        const postpaidRadio = document.getElementById("postpaidRadio");
+        const continueButton = document.querySelector(".continueButton");
 
-  document.querySelectorAll('input[name="paymentMethod"]').forEach((radio) => {
-    radio.addEventListener('change', toggleContinueButton);
-  });
+        continueButton.classList.add("proceedToPay");
 
-  function toggleContinueButton() {
-    if (prepaidRadio.checked) {
-      continueButton.classList.add('proceedToPay');
-      continueButton.classList.remove('PostpaidOrder');
-    } else if (postpaidRadio.checked) {
-      continueButton.classList.add('PostpaidOrder');
-      continueButton.classList.remove('proceedToPay');
-    }
+        document
+          .querySelectorAll('input[name="paymentMethod"]')
+          .forEach((radio) => {
+            radio.addEventListener("change", toggleContinueButton);
+          });
 
-    if (prepaidRadio.checked || postpaidRadio.checked) {
-      continueButton.disabled = false;
-    } else {
-      continueButton.disabled = true;
-    }
-  }
-});
+        function toggleContinueButton() {
+          if (prepaidRadio.checked) {
+            continueButton.classList.add("proceedToPay");
+            continueButton.classList.remove("PostpaidOrder");
+          } else if (postpaidRadio.checked) {
+            continueButton.classList.add("PostpaidOrder");
+            continueButton.classList.remove("proceedToPay");
+          }
 
-      </script>
+          if (prepaidRadio.checked || postpaidRadio.checked) {
+            continueButton.disabled = false;
+          } else {
+            continueButton.disabled = true;
+          }
+        }
+      });
+    </script>
 
-      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
-      <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-      <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
-      <script>
-         let Total = 0;
-            document.querySelector('.coupon_Button').addEventListener('click', async (req, res) => {
-               let code = document.querySelector('#couponInput').value;
-               if (code !== ''){
-                  await axios.get(`/coupons/${code}`)
-                  .then(response => response.data)
-                  .then(coupon => {
-                     showAlert("coupon Applied successfully","success")
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+    <script>
+      let Total = 0;
+      document
+        .querySelector(".coupon_Button")
+        .addEventListener("click", async (req, res) => {
+          let code = document.querySelector("#couponInput").value;
+          if (code !== "") {
+            await axios
+              .get(`/coupons/${code}`)
+              .then((response) => response.data)
+              .then((coupon) => {
+                showAlert("coupon Applied successfully", "success");
 
-                     document.querySelector('.total').innerHTML = `<b>&#8377;<del>${Total}/-</del></b> <br><span class="" style="font-size:1rem;">${((coupon.discount))}% OFF APPLIED</span> <b> <br><span style="font-size:3vh;"> &#8377;${Math.floor(Total - Total * ((coupon.discount) / 100))}/</span></b>-<br>`;
-                     document.querySelector('.coupon_remove_Button').style.display = "block"
-                     document.querySelector('.coupon_Button').style.display = "none"
-                  })
-                  .catch(err => showAlert("coupon is invalid", "danger"))
-               }
-            })
-            document.querySelector('.coupon_remove_Button').addEventListener('click', async (req, res) => {
-               showAlert("coupon removed successfully","success")
-               document.querySelector('#couponInput').value = ''
-               document.querySelector('.total').innerHTML = `<b>&#8377;${Total}</b>`;
-               document.querySelector('.coupon_remove_Button').style.display = "none"
-               document.querySelector('.coupon_Button').style.display = "block"
-            })
-            function dataCell (content) {
-               var item = document.createElement('td')
-               item.textContent = content;
-               return item
-            }
-            function imageCell(link) {
-            var item = document.createElement("td");
+                document.querySelector(
+                  ".total"
+                ).innerHTML = `<b>&#8377;<del>${Total}/-</del></b> <br><span class="" style="font-size:1rem;">${
+                  coupon.discount
+                }% OFF APPLIED</span> <b> <br><span style="font-size:3vh;"> &#8377;${Math.floor(
+                  Total - Total * (coupon.discount / 100)
+                )}/</span></b>-<br>`;
+                document.querySelector(".coupon_remove_Button").style.display =
+                  "block";
+                document.querySelector(".coupon_Button").style.display = "none";
+              })
+              .catch((err) => showAlert("coupon is invalid", "danger"));
+          }
+        });
+      document
+        .querySelector(".coupon_remove_Button")
+        .addEventListener("click", async (req, res) => {
+          showAlert("coupon removed successfully", "success");
+          document.querySelector("#couponInput").value = "";
+          document.querySelector(".total").innerHTML = `<b>&#8377;${Total}</b>`;
+          document.querySelector(".coupon_remove_Button").style.display =
+            "none";
+          document.querySelector(".coupon_Button").style.display = "block";
+        });
+      function dataCell(content) {
+        var item = document.createElement("td");
+        item.textContent = content;
+        return item;
+      }
+      function imageCell(link) {
+        var item = document.createElement("td");
 
-            var image = document.createElement("img");
-            image.src = link;
-            image.style.cssText = "height:auto;width:10vh;border-radius:5px;";
-            image.alt = "product image";
+        var image = document.createElement("img");
+        image.src = link;
+        image.style.cssText = "height:auto;width:10vh;border-radius:5px;";
+        image.alt = "product image";
 
-            item.append(image);
-            return item;
-            }
+        item.append(image);
+        return item;
+      }
 
-            function addTableRow(imageLink,name, price, quantity) {
+      function addTableRow(imageLink, name, price, quantity) {
+        var tableBody = document.querySelector(".allItems");
 
-               var tableBody = document.querySelector('.allItems')
+        var row = document.createElement("tr");
 
-               var row = document.createElement('tr')
+        row.append(imageCell(imageLink));
+        row.append(dataCell(name));
+        row.append(dataCell(price));
+        row.append(dataCell(quantity));
 
-               row.append(imageCell(imageLink))
-               row.append(dataCell(name))
-               row.append(dataCell(price))
-               row.append(dataCell(quantity))
-
-               tableBody.append(row)
-            }
-         document.addEventListener('DOMContentLoaded', async () => {
-            await axios.get('/getprofile')
-            .then(response => response.data.userProfile)
-            .then(profile => {
-
-               profile.cart.forEach(async cartItem => {
-                  await axios.get(`/api/products/${cartItem.itemId}`)
-                    .then(response => response.data)
-                    .then(productDetails => {
-                     addTableRow(productDetails.imageLink[0] , productDetails.name, productDetails.offeredPrice,cartItem.quantity)
-                     Total += productDetails.offeredPrice*cartItem.quantity;
-                     document.querySelector('.total').innerHTML = `<b>&#8377;${Total}</b>`;
-                    })
-                    .catch(err => {
-                     showAlert("Error Fetching from cart","danger")
-                    })
-               })
-               document.querySelector('.Shipping_Address').innerHTML = `
-               <p type="text" class="text-justify mb-3">Your Email : ${profile.email || ""}</p>
+        tableBody.append(row);
+      }
+      document.addEventListener("DOMContentLoaded", async () => {
+        await axios
+          .get("/getprofile")
+          .then((response) => response.data.userProfile)
+          .then((profile) => {
+            profile.cart.forEach(async (cartItem) => {
+              await axios
+                .get(`/api/products/${cartItem.itemId}`)
+                .then((response) => response.data)
+                .then((productDetails) => {
+                  addTableRow(
+                    productDetails.imageLink[0],
+                    productDetails.name,
+                    productDetails.offeredPrice,
+                    cartItem.quantity
+                  );
+                  Total += productDetails.offeredPrice * cartItem.quantity;
+                  document.querySelector(
+                    ".total"
+                  ).innerHTML = `<b>&#8377;${Total}</b>`;
+                })
+                .catch((err) => {
+                  showAlert("Error Fetching from cart", "danger");
+                });
+            });
+            document.querySelector(".Shipping_Address").innerHTML = `
+               <p type="text" class="text-justify mb-3">Your Email : ${
+                 profile.email || ""
+               }</p>
                   <div class="labels">
                      <label for="name"">Full Name</label>
-                     <input type="text" id="name" class="text-justify" placeholder="Enter Name" value="${profile.name || ""}">
+                     <input type="text" id="name" class="text-justify" placeholder="Enter Name" value="${
+                       profile.name || ""
+                     }">
                   </div>
                   <div class="labels">
                      <label for="phone">contact number</label>
-                     <input type="number" id="phone" class="text-justify" placeholder="Enter Phone number" value="${profile.phone || ""}">
+                     <input type="number" id="phone" class="text-justify" placeholder="Enter Phone number" value="${
+                       profile.phone || ""
+                     }">
                   </div>
                  <div class="labels">
                      <label for="pincode">pincode</label>
-                     <input type="number" id="pincode" class="text-justify" placeholder="Enter pincode" value="${profile.pincode || ""}">
+                     <input type="number" id="pincode" class="text-justify" placeholder="Enter pincode" value="${
+                       profile.pincode || ""
+                     }">
                   </div>
                   <div class="labels">
                      <label for="address">address</label>
-                     <input type="text" id="address" class="text-justify" placeholder="Enter address" value="${profile.address || ""}">
+                     <input type="text" id="address" class="text-justify" placeholder="Enter address" value="${
+                       profile.address || ""
+                     }">
                   </div>
                   <div class="labels">
                      <label for="city">city</label>
-                     <input type="text" id="city" class="text-justify" placeholder="Enter City" value="${profile.city || ""}">
+                     <input type="text" id="city" class="text-justify" placeholder="Enter City" value="${
+                       profile.city || ""
+                     }">
                   </div>
                   <div class="labels">
                      <label for="locality">locality</label>
-                  <input type="text" id="locality" class="text-justify" placeholder="Enter Locality" value="${profile.locality || ""}">
+                  <input type="text" id="locality" class="text-justify" placeholder="Enter Locality" value="${
+                    profile.locality || ""
+                  }">
                   </div>
                   <div class="labels">
                      <label for="landmark">landmark</label>
-                  <input type="text" id="landmark" class="text-justify" placeholder="Enter Landmark" value="${profile.landmark || ""}">
+                  <input type="text" id="landmark" class="text-justify" placeholder="Enter Landmark" value="${
+                    profile.landmark || ""
+                  }">
                   </div>
 
                `;
+          })
+          .then(async () => {
+            const code = document.querySelector("#couponInput").value;
+            if (code !== "") {
+              await axios
+                .get(`/coupons/${code}`)
+                .then((response) => response.data)
+                .then((coupon) => {
+                  showAlert("coupon Applied successfully", "success");
 
-            })
-            .then(async () => {
-               const code = document.querySelector('#couponInput').value
-               if (code !== ''){
-                  await axios.get(`/coupons/${code}`)
-                  .then(response => response.data)
-                  .then(coupon => {
-                     showAlert("coupon Applied successfully","success")
+                  document.querySelector(
+                    ".total"
+                  ).innerHTML = `<b>&#8377;<del>${Total}/-</del></b> <br><span class="text-muted" style="font-size:1rem;">${
+                    coupon.discount
+                  }% OFF APPLIED</span> <b> <br><span style="font-size:3vh;"> &#8377;${Math.floor(
+                    Total - Total * (coupon.discount / 100)
+                  )}/</span></b>-<br>`;
+                  document.querySelector(
+                    ".coupon_remove_Button"
+                  ).style.display = "block";
+                  document.querySelector(".coupon_Button").style.display =
+                    "none";
+                })
+                .catch((err) => showAlert("coupon is invalid", "danger"));
+            }
+          })
+          .then(() => {
+            const flow = "<%= content.flow %>";
+            if (flow === "true") {
+              const selectElement = document.querySelector(".proceedToPay");
+              const selectEvent = new Event("click");
+              selectElement.dispatchEvent(selectEvent);
+            }
+          })
+          .catch((err) => {
+            console.log("could not fetch profile\n" + err);
+            showAlert("Error Fetching profile", "danger");
+          });
+      });
 
-                     document.querySelector('.total').innerHTML = `<b>&#8377;<del>${Total}/-</del></b> <br><span class="text-muted" style="font-size:1rem;">${((coupon.discount))}% OFF APPLIED</span> <b> <br><span style="font-size:3vh;"> &#8377;${Math.floor(Total - Total * ((coupon.discount) / 100))}/</span></b>-<br>`;
-                     document.querySelector('.coupon_remove_Button').style.display = "block"
-                     document.querySelector('.coupon_Button').style.display = "none"
-                  })
-                  .catch( err => showAlert("coupon is invalid", "danger"))
-               }
-            })
-            .then(() => {
-               const flow = '<%= content.flow %>'
-               if (flow === 'true') {
-                  const selectElement = document.querySelector('.proceedToPay');
-                  const selectEvent = new Event('click');
-                  selectElement.dispatchEvent(selectEvent);
-               }
-            })
-            .catch(err => {
-               console.log("could not fetch profile\n"+ err)
-               showAlert("Error Fetching profile","danger")
-            })
-         })
+      document.addEventListener("DOMContentLoaded", function () {
+        document
+          .querySelector(".proceedToPay")
+          .addEventListener("click", function (e) {
+            e.preventDefault();
+            const name = document.getElementById("name").value;
+            const phone = document.getElementById("phone").value;
+            const pincode = document.getElementById("pincode").value;
+            const address = document.getElementById("address").value;
+            const city = document.getElementById("city").value;
+            const locality = document.getElementById("locality").value;
+            const landmark = document.getElementById("landmark").value;
+            if (
+              name &&
+              phone &&
+              pincode &&
+              address &&
+              city &&
+              locality &&
+              landmark
+            ) {
+              let code = document.querySelector("#couponInput").value;
 
-         document.addEventListener('DOMContentLoaded', function(){
-            document.querySelector('.proceedToPay').addEventListener('click',function(e){
-               e.preventDefault();
-               const name = document.getElementById("name").value;
-               const phone = document.getElementById("phone").value;
-               const pincode = document.getElementById("pincode").value;
-               const address = document.getElementById("address").value;
-               const city = document.getElementById("city").value;
-               const locality = document.getElementById("locality").value;
-               const landmark = document.getElementById("landmark").value;
-               if (name && phone && pincode && address && city && locality && landmark) {
-                  let code = document.querySelector('#couponInput').value;
+              var formData = {
+                couponCode: code,
+                name,
+                description: "Payment for White Wolf cart",
+                phone,
+                pincode,
+                address,
+                city,
+                locality,
+                landmark,
+              };
 
-                  var formData = {
-                     couponCode: code,
-                     name,
-                     description:"Payment for White Wolf cart",
-                     phone,
-                     pincode,
-                     address,
-                     city,
-                     locality,
-                     landmark
+              $.ajax({
+                url: "/processPayment",
+                type: "POST",
+                data: formData,
+                success: function (res) {
+                  if (res.success) {
+                    var options = {
+                      key: "" + res.key_id + "",
+                      amount: "" + res.amount + "",
+                      currency: "INR",
+                      name: "" + res.product_name + "",
+                      description: "" + res.description + "",
+                      image: "https://dummyimage.com/600x400/000/fff",
+                      order_id: "" + res.order_id + "",
+                      handler: function (response) {
+                        axios
+                          .post("/save/order", {
+                            data: response,
+                            couponCode: code,
+                          })
+                          .then((res) => {
+                            window.location.href = "/success";
+                          })
+                          .catch((err) => console.log(err));
+                      },
+                      prefill: {
+                        contact: "" + res.contact + "",
+                        name: "" + res.name + "",
+                        email: "" + res.email + "",
+                      },
+                      notes: {
+                        description: "" + res.description + "",
+                      },
+                      theme: {
+                        color: "#2300a3",
+                      },
+                    };
+                    var razorpayObject = new Razorpay(options);
+                    razorpayObject.on("payment.failed", function (response) {
+                      showAlert("show Alert");
+                    });
+                    razorpayObject.open();
+                  } else {
+                    alert(res.msg);
                   }
-
-                  $.ajax({
-                     url:"/processPayment",
-                     type:"POST",
-                     data: formData,
-                     success:function(res){
-                        if(res.success){
-                           var options = {
-                              "key": ""+res.key_id+"",
-                              "amount": ""+res.amount+"",
-                              "currency": "INR",
-                              "name": ""+res.product_name+"",
-                              "description": ""+res.description+"",
-                              "image": "https://dummyimage.com/600x400/000/fff",
-                              "order_id": ""+res.order_id+"",
-                              "handler": function (response){
-                                 axios.post('/save/order',{ data : response, couponCode: code})
-                                 .then(res => {
-                                 window.location.href = '/success'; 
-                                 })
-                                 .catch(err => console.log(err))
-                              },
-                              "prefill": {
-                                 "contact":""+res.contact+"",
-                                 "name": ""+res.name+"",
-                                 "email": ""+res.email+""
-                              },
-                              "notes" : {
-                                 "description":""+res.description+""
-                              },
-                              "theme": {
-                                 "color": "#2300a3"
-                              }
-                           };
-                           var razorpayObject = new Razorpay(options);
-                           razorpayObject.on('payment.failed', function (response){
-                                 showAlert("show Alert")
-                           });
-                           razorpayObject.open();
-                        }
-                        else{
-                           alert(res.msg);
-                        }
-                     },
-                     error: function (xhr, textStatus, errorThrown) {
-                        if (xhr.status === 404) {
-                              window.location.href = '/login';
-                        } else if (xhr.status === 400) {
-                              showAlert("rzarpay refused to comply","danger")
-                        } else {
-                              showAlert("Something went wrong with payment", "danger");
-                        }
-                     }
-                  })
-               } else {
-
-                  showAlert("Please complete address details","danger")
-               }
-            });
-         });
-      </script>
-   </body>
+                },
+                error: function (xhr, textStatus, errorThrown) {
+                  if (xhr.status === 404) {
+                    window.location.href = "/login";
+                  } else if (xhr.status === 400) {
+                    showAlert("rzarpay refused to comply", "danger");
+                  } else {
+                    showAlert("Something went wrong with payment", "danger");
+                  }
+                },
+              });
+            } else {
+              showAlert("Please complete address details", "danger");
+            }
+          });
+      });
+    </script>
+  </body>
 </html>
