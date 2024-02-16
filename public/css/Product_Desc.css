@@ -49,7 +49,6 @@ body{
         grid-template-columns: 1fr; 
     }
 
-
     .faq-answer{
         font-size: 14px !important;
     }
@@ -106,17 +105,17 @@ body{
         align-items: center;
         margin-bottom: 3vh;
         overflow-x: scroll;
-        width: 100%; /* Change from 100vh to 100vw for full-width */
+        width: 100%; 
         height: max-content;
-        scroll-snap-type: x mandatory; /* Enable snapping to each image */
+        scroll-snap-type: x mandatory; 
         scrollbar-width: none !important;
     }
     
     .slider-images .new-image {
-        flex: 0 0 95vw; /* Each image takes the full width of the viewport */
+        flex: 0 0 95vw; 
         height: 100%;
         background-size: 100% 100%;
-        scroll-snap-align: start; /* Align images to the start of the viewport */
+        scroll-snap-align: start; 
         background-position: center;
     }
 
@@ -171,7 +170,7 @@ body{
 }
 
 .additional-images::-webkit-scrollbar {
-    width: 0; /* Set the width to 0 to hide the scrollbar */
+    width: 0; 
 }
 
 .additional-images {
@@ -181,7 +180,7 @@ body{
     flex-direction: column;
     justify-content: flex-start;
     overflow-y: scroll;
-    scroll-snap-type: x mandatory; /* Enable snapping to each image */
+    scroll-snap-type: x mandatory; 
     -ms-overflow-style: none;
     gap: 10px;
     padding: 0;
@@ -191,7 +190,6 @@ body{
   .totalStars iconify-icon{
     font-size: 4vh !important;
 }
-
 
   .additional-image {
     width: 100%;
@@ -302,7 +300,6 @@ body{
         margin-bottom: 2vh;
     }
 
-
     .quantity-container{
         width: 100%;
         display: none !important;
@@ -412,7 +409,6 @@ align-items: center;
     font-weight: 500;
 }
 
-
 .product-detail{
     width: 92% !important;
     height: max-content;
@@ -504,7 +500,6 @@ align-items: center;
     cursor: pointer;
     transition: background-color 0.3s;
 }
-
 
 .faq-question h2{
     font-weight: 300 !important;
@@ -611,7 +606,6 @@ align-items: center;
             .product-description{
                 display: none;
             }
-
 
             .product-title{
                 font-size: 20px !important;
@@ -756,19 +750,41 @@ align-items: center;
 
 }
 
+.review-section {
+    overflow: auto;
+    height: 40vh;
+    padding: 10px;
+}
+
+.review-section::-webkit-scrollbar {
+    border-radius: 10px;
+    width: 1vh; 
+}
+
+.review-section::-webkit-scrollbar-track {
+    border-radius: 10px;
+    background: #f1f1f1; 
+}
+
+.review-section::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background: #888; 
+}
+
+.review-section::-webkit-scrollbar-thumb:hover {
+    background: #555; 
+}
+
 .review-section.active {
     display: flex;
     flex-direction: column;
 }
-
 
 .product-details{
     text-align: left;
     width: 100%;
     flex-wrap: wrap;
 }
-
-
 
 .product-grid .product-image {
     width: 100%;
@@ -781,7 +797,6 @@ align-items: center;
     overflow: hidden;
     border-radius: 10px;
 }
-
 
 .product-detail p{
     font-size: 2.5vh !important;
