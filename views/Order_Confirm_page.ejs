@@ -820,17 +820,6 @@
           } else if (postpaidRadio.checked) {
             const isLoggedIn = Boolean("<%= content.isLoggedIn %>");
             if (isLoggedIn) {
-<<<<<<< HEAD
-              axios
-                .post("/save/order", {
-                  // data: response,
-                  // couponCode: code,
-                })
-                .then((res) => {
-                  window.location.href = "/success";
-                })
-                .catch((err) => console.log(err));
-=======
               const name = document.getElementById("name").value;
               const phone = document.getElementById("phone").value;
               const pincode = document.getElementById("pincode").value;
@@ -879,7 +868,6 @@
               } else {
                 showAlert("Please complete address details", "danger");
               }
->>>>>>> 25639fd61e36cc41e6c8cdc8d163c596030c38a8
             } else {
               window.location.href = "/login";
             }
