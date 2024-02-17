@@ -29,12 +29,11 @@
     <link id="canonicalLink" rel="canonical" href="https://www.whitewolfindia.com/" />
 <script>
 document.addEventListener("DOMContentLoaded", function() {
-  // Update the href attribute of the canonical link with the current page's URL
+
   var canonicalLink = document.getElementById('canonicalLink');
   canonicalLink.href = "" + window.location.href;
 });
 </script>
-
 
     <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -626,27 +625,34 @@ document.addEventListener("DOMContentLoaded", function() {
       }
     </script>
 
-    <script>
-      const additionalImages = document.querySelectorAll(".slider-images");
-      const mainProductImage = document.getElementById("mainProductImage");
+<script>
+  const additionalImages = document.querySelectorAll(".slider-images");
+  const mainProductImage = document.getElementById("mainProductImage");
 
-      additionalImages.forEach((image, index) => {
-        image.addEventListener("click", () =>
-          loadImage(image.style.backgroundImage)
-        );
-        image.addEventListener("mouseover", () =>
-          loadImage(image.style.backgroundImage)
-        );
-      });
+  additionalImages.forEach((image, index) => {
+    image.addEventListener("click", () =>
+      loadImage(image.style.backgroundImage)
+    );
+    image.addEventListener("mouseover", () =>
+      loadImage(image.style.backgroundImage)
+    );
+  });
 
-      function loadImage(image) {
-        mainProductImage.src = extractImageUrl(image);
-      }
+  function loadImage(image) {
+    const imageUrl = extractImageUrl(image);
+    mainProductImage.style.opacity = 0; 
+    setTimeout(() => {
+      mainProductImage.src = imageUrl;
+      mainProductImage.onload = () => {
+        mainProductImage.style.opacity = 1; 
+      };
+    }, 300); 
+  }
 
-      function extractImageUrl(backgroundImage) {
-        return backgroundImage.replace(/url\(['"]?(.*?)['"]?\)/, "$1");
-      }
-    </script>
+  function extractImageUrl(backgroundImage) {
+    return backgroundImage.replace(/url\(['"]?(.*?)['"]?\)/, "$1");
+  }
+</script>
 
     <div class="faq-section mt-1 mb-1">
       <div class="faq-question" onclick="toggleFAQ(this)">
@@ -749,7 +755,6 @@ document.addEventListener("DOMContentLoaded", function() {
               ).textContent = `(${reviews.length} Reviews)`;
 
               document.querySelector(".top-rating").textContent = averageRating.toFixed(1);
-
 
               document.querySelector(
                 ".totalReviews"
@@ -995,7 +1000,7 @@ document.addEventListener("DOMContentLoaded", function() {
         } catch (err) {
             alert("Error: " + err);
         } finally {
-            // Hide loading with a delay of 2000 milliseconds (2 seconds)
+
             setTimeout(hideLoading, 500);
         }
     });
@@ -1014,7 +1019,7 @@ document.addEventListener("DOMContentLoaded", function() {
         } catch (err) {
             alert("Error: " + err);
         } finally {
-            // Hide loading with a delay of 2000 milliseconds (2 seconds)
+
             setTimeout(hideLoading, 500);
         }
     });
