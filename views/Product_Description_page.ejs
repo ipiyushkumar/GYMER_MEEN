@@ -441,12 +441,9 @@ document.addEventListener("DOMContentLoaded", function() {
         <div class="product-imgs mt-3" style="align-self: start">
           <div class="additional-images">
             <% item.imageLink.forEach((image, index) => { %>
-            <div
-              class="additional-image"
-              onclick="loadImage('<%= image %>')"
-              style="background-image: url('<%= image %>')"
-              alt="<%= item.name %>"
-            ></div>
+              <div class="additional-image" onclick="loadImage('<%= image %>')" alt="<%= item.name %>">
+                <img src="<%= image %>" alt="<%= item.name %>">
+            </div>
             <% }); %>
           </div>
           <div class="main-image" id="mainImageContainer">
