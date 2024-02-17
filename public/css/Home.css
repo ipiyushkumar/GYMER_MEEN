@@ -18,6 +18,53 @@ body {
     .search-through{
         grid-column-gap: 4vh;
     }
+
+    .grid-container {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+        gap: 20px;
+        padding: 20px;
+        justify-content: space-between;
+    }
+    
+
+      .grid-item video {
+        width: 100%;
+        /* height: auto;
+        position: absolute;
+        top: 50%;
+        left: 50%; */
+        /* transform: translate(-50%, -50%); */
+        object-fit: cover;
+      }
+    
+      .grid-item {
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        overflow: hidden;
+      }
+    
+      .grid-item img {
+        width: 100%;
+        height: auto;
+        display: block;
+      }
+    
+      .button-bar {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        padding: 10px;
+        background-color: transparent;
+      }
+    
+      .button-bar button {
+        border: none;
+        font-size: 3vh;
+        background-color: transparent;
+        color: #fff;
+        cursor: pointer;
+      }
     
     .category-btn{
     background-color: transparent;
@@ -52,6 +99,14 @@ body {
 
     @media (max-width: 767.98px) {
         
+        .grid-container{
+            width: 90%;
+            overflow:auto !important;
+        }
+
+        .grid-container .grid-item{
+            min-width: 200px !important;
+        }
 
         .product-sliders button{
             display: none !important;
@@ -203,6 +258,20 @@ body {
         position: absolute;
         z-index: 1;
     }
+
+  .social-reel {
+    background-color: white;
+    border-radius: 10px;
+    padding: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  .social-reel img {
+    max-width: 100%;
+    max-height: auto; /* Set the maximum height */
+    border-radius: 5px; /* Set border-radius for the image */
+    margin-bottom: 10px; /* Add some margin below the image */
+  }
+
 
     .product-sliders .sliding-buttons{
         background-color: transparent;
