@@ -13,6 +13,7 @@ const productSchema = new mongoose.Schema({
   bestSeller: { type: Boolean, default: true },
   ratings: [
     {
+      name: { type: String },
       email: { type: String },
       orderId: { type: String },
       rating: { type: Number, default: 0 },
