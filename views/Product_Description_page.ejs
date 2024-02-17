@@ -85,10 +85,10 @@ document.addEventListener("DOMContentLoaded", function() {
       }
 
       .alert.success {
-        color: #155724;
-        background-color: #d4edda;
-        border-color: #c3e6cb;
-      }
+       color: #fff;
+       background-color: green;
+       border-color: #fff;
+     }
 
       .alert.danger {
         color: #721c24;
@@ -223,13 +223,13 @@ document.addEventListener("DOMContentLoaded", function() {
 
         const alert = document.createElement("div");
         alert.className = `alert ${type}`;
-        alert.innerHTML = `${message}<span class="close" onclick="closeAlert(this)"> &#10060;</span>`;
+        alert.innerHTML = `${message}<span class="close"  style="margin-left:5px;color:#fff;" onclick="closeAlert(this)">&#x292B;</span>`;
 
         alertContainer.appendChild(alert);
 
         setTimeout(() => {
           closeAlert(alert.querySelector(".close"));
-        }, 4000);
+        }, 3000);
       }
 
       function closeAlert(closeButton) {
@@ -242,7 +242,11 @@ document.addEventListener("DOMContentLoaded", function() {
       }
     </script>
 
+<div class="loading-spinner"></div>
 
+<div class="overlay"></div>
+
+<button id="trigger-loading">Trigger Loading</button>
 
 <div class="marquee-container fixed-top">
   <p class="marquee" style="margin-right:5vh;">use code firstbuy to get 15% off on your first purchase</p>
@@ -486,7 +490,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 </p>
               </div>
               <p class="tax">
-                ₹(Incl. of all taxes). Usually delivered in 3-5 days
+                ₹(Incl. of all taxes). Usually delivered within 7 days
               </p>
             </div>
             <div class="quantity-container" style="display: none">
@@ -508,7 +512,7 @@ document.addEventListener("DOMContentLoaded", function() {
           <div class="purchase-info">
             <% if (item.stock > 0 && Date.parse(item.createdAt) < Date.now()) {
             %>
-            <button type="button" class="btn addCartButton mb-4">
+            <button type="button" class="btn addCartButton mb-4 br-0">
               ADD TO CART
             </button>
             <% } else if ( content.isLoggedIn == true ) { %>
@@ -535,16 +539,15 @@ document.addEventListener("DOMContentLoaded", function() {
             <% } %>
           </div>
 
-          <div class="d-flex mb-5">
-            <img
-              src="../assets/no hars.png"
-              style="height: 5vh; margin-right: 8vh"
+          <div class="d-flex mb-4 justify-content-between align-items-center" >
+            <img src="../assets/no hars.png" style="height: 6vh;border: 1px solid #ffffff50;padding: 1vh;"/>
+            <img src="../assets/animal free.png" style="height: 6vh;border: 1px solid #ffffff50;padding: 1vh;" />
+            <img src="../assets/FDA.png" style="height: 6vh;border: 1px solid #ffffff50;padding: 1vh;"
             />
-            <img src="../assets/animal free.png" style="height: 5vh" />
-            <img
-              src="../assets/FDA.png"
-              style="height: 5vh; margin-left: 8vh"
-            />
+          </div>
+
+          <div class="d-flex mb-4 justify-content-start align-items-center">
+            <img src="../assets/coupon.png" style="height:15vh;width: auto;">
           </div>
 
           <div class="social-links d-flex flex-row align-items-center">
@@ -963,62 +966,73 @@ document.addEventListener("DOMContentLoaded", function() {
       }
 
       document.addEventListener("DOMContentLoaded", async () => {
-        const response = await axios.get("/getprofile");
-        const userProfile = response.data.userProfile;
-        const itemId = "<%= item.itemId %>";
-        const cartItem = userProfile.cart.find(
-          (item) => item.itemId === itemId
-        );
-        if (cartItem) {
-          document.querySelector(`.itemQuantity<%= item.itemId %>`).value =
-            cartItem.quantity;
-          document.querySelector(".quantity-container").style.display = "block";
-        }
-        document
-          .querySelector(`.decrease<%= item.itemId %>`)
-          .addEventListener("click", async () => {
-            await axios
-              .post("/decreaseItem", { itemId: "<%= item.itemId %>" })
-              .then((response) => {
-                quantity = response.data.newQuantity;
-                if (quantity === -1) {
-                  document.querySelector(".quantity-container").style.display =
-                    "none";
-                  if (document.querySelector(`.card_<%= item.itemId %>`)) {
-                    document.querySelector(
-                      `.card_<%= item.itemId %>`
-                    ).innerHTML = "";
-                  }
-                  showAlert("Item removed from cart", "success");
-                } else {
-                  document
-                    .querySelectorAll(`.itemQuantity<%= item.itemId %>`)
-                    .forEach((item) => {
-                      item.value = quantity;
-                    });
-                  showAlert("Item quantity decreased", "success");
+    const response = await axios.get("/getprofile");
+    const userProfile = response.data.userProfile;
+    const itemId = "<%= item.itemId %>";
+    const cartItem = userProfile.cart.find((item) => item.itemId === itemId);
+
+    if (cartItem) {
+        document.querySelector(`.itemQuantity<%= item.itemId %>`).value = cartItem.quantity;
+        document.querySelector(".quantity-container").style.display = "block";
+    }
+
+    document.querySelector(`.decrease<%= item.itemId %>`).addEventListener("click", async () => {
+        try {
+            showLoading();
+
+            const response = await axios.post("/decreaseItem", { itemId: "<%= item.itemId %>" });
+            const quantity = response.data.newQuantity;
+
+            if (quantity === -1) {
+                document.querySelector(".quantity-container").style.display = "none";
+                if (document.querySelector(`.card_<%= item.itemId %>`)) {
+                    document.querySelector(`.card_<%= item.itemId %>`).innerHTML = "";
                 }
-              })
-              .catch((err) => alert("error " + err));
-          });
-        document
-          .querySelector(".increase<%= item.itemId %>")
-          .addEventListener("click", async () => {
-            console.log("triggered");
-            await axios
-              .post("/increaseItem", { itemId: "<%= item.itemId %>" })
-              .then((response) => {
-                console.log("quantity increased");
-                document
-                  .querySelectorAll(`.itemQuantity<%= item.itemId %>`)
-                  .forEach((item) => {
-                    item.value = response.data.newQuantity;
-                  });
-                showAlert("Item quantity increased", "success");
-              })
-              .catch((err) => alert("error " + err));
-          });
-      });
+                showAlert("Item removed from cart", "success");
+            } else {
+                document.querySelectorAll(`.itemQuantity<%= item.itemId %>`).forEach((item) => {
+                    item.value = quantity;
+                });
+                showAlert("Item quantity decreased", "success");
+            }
+        } catch (err) {
+            alert("Error: " + err);
+        } finally {
+            // Hide loading with a delay of 2000 milliseconds (2 seconds)
+            setTimeout(hideLoading, 500);
+        }
+    });
+
+    document.querySelector(`.increase<%= item.itemId %>`).addEventListener("click", async () => {
+        try {
+            showLoading();
+
+            const response = await axios.post("/increaseItem", { itemId: "<%= item.itemId %>" });
+            const quantity = response.data.newQuantity;
+
+            document.querySelectorAll(`.itemQuantity<%= item.itemId %>`).forEach((item) => {
+                item.value = quantity;
+            });
+            showAlert("Item quantity increased", "success");
+        } catch (err) {
+            alert("Error: " + err);
+        } finally {
+            // Hide loading with a delay of 2000 milliseconds (2 seconds)
+            setTimeout(hideLoading, 500);
+        }
+    });
+});
+
+function showLoading() {
+    document.querySelector(".loading-spinner").style.display = "block";
+    document.querySelector(".overlay").style.display = "block";
+}
+
+function hideLoading() {
+    document.querySelector(".loading-spinner").style.display = "none";
+    document.querySelector(".overlay").style.display = "none";
+}
+
     </script>
 
     <script>
