@@ -643,14 +643,14 @@ document.addEventListener("DOMContentLoaded", function() {
 
   function loadImage(image) {
     const imageUrl = extractImageUrl(image);
-    mainProductImage.style.transition = 'transform 0.2s ease-in-out'; // Smooth transition
+    mainProductImage.style.transition = 'transform 0.3s ease-in-out'; // Smooth transition
     mainProductImage.style.transform = 'scale(0.1)'; // Initial scale out
     setTimeout(() => {
         mainProductImage.src = imageUrl;
         mainProductImage.onload = () => {
             mainProductImage.style.transform = 'scale(1)'; // Scale in when the image is loaded
         };
-    },300);
+    }, 300);
 }
 
 
