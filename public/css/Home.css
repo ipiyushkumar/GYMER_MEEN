@@ -58,7 +58,7 @@ body {
         background-color: transparent;
       }
     
-      .button-bar button {
+      .button-bar a {
         border: none;
         font-size: 3vh;
         background-color: transparent;
