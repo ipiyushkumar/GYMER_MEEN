@@ -535,6 +535,18 @@ document.addEventListener("DOMContentLoaded", function() {
             <% } %>
           </div>
 
+          <div class="row justify-content-center mt-0 mb-3">
+            <div class="col-md-12">
+              <div class="input-group mb-1">
+                <input type="text" class="form-control rounded-0" id="pincode-input" placeholder="Enter your pincode">
+                <div class="input-group-append">
+                  <button class="btn btn-dark text-uppercase rounded-0" type="button" onclick="checkPincode()">Check Availability</button>
+                </div>
+              </div>
+              <div id="delivery-info" class="mt-2 mb-1 text-capitalize"></div>
+            </div>
+          </div>
+
          <div class="w-100 mb-4">
           <!-- <p class="text-white text-uppercase bold text-center">Reasons to trust</p> -->
           <div class="d-flex justify-content-between align-items-center" >
@@ -545,7 +557,8 @@ document.addEventListener("DOMContentLoaded", function() {
           </div>
          </div>
 
-          <div class="d-flex mb-4 justify-content-start align-items-center">
+          <div class="d-flex mb-4 justify-content-start align-items-start flex-column">
+            <p class="text-white text-left">BEST OFFERS</p>
             <img src="../assets/coupon.png" style="height:15vh;width: auto;">
           </div>
 
@@ -1088,6 +1101,20 @@ function hideLoading() {
         descriptionText.innerHTML = sentences.join(".<br><br>");
       }
       splitDescriptionAtPunctuation();
+    </script>
+
+    <script>
+          function checkPincode() {
+      const pincode = document.getElementById('pincode-input').value.trim();
+      const availablePincodes = ['123456', '789012', '345678']; // Sample list of available pincodes
+      
+      if (availablePincodes.includes(pincode)) {
+        document.getElementById('delivery-info').innerHTML = '<iconify-icon icon="la:shipping-fast"></iconify-icon> Delivery available for ' + pincode + '.<br><iconify-icon icon="bi:cash"></iconify-icon> Cash On Delivery Available.';
+      } else {
+        document.getElementById('delivery-info').innerHTML = 'Delivery not available for ' + pincode + '.';
+      }
+    }
+
     </script>
 
     <script>
