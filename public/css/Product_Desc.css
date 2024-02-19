@@ -253,7 +253,7 @@ body{
 .product-title {
     font-size: 27px;
     font-weight: 400;
-    text-transform: uppercase;
+    text-transform: capitalize;
     }
     .product-description {
     font-size: 15px;
