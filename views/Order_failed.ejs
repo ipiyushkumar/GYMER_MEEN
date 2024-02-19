@@ -8,7 +8,7 @@
       <link href='https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css' rel='stylesheet'>
       <link href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css' rel='stylesheet'>
       <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@200;400;500&display=swap">
-      <link rel="shortcut icon" type="image/x-icon" href="../assets/WhiteIcon.png">
+      <link rel="shortcut icon" type="image/x-icon" href="../assets/whitewolflog.png"/>
       <style>@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
          * {
          padding: 0;
@@ -22,11 +22,11 @@
          #order-heading {
          background-color: #edf4f7;
          position: relative;
-         border-top-left-radius: 25px;
-         border-top-right-radius: 25px;
+         border-top-left-radius: 1vh;
+         border-top-right-radius: 1vh;
          max-width: 800px;
          padding-top: 20px;
-         margin: 30px auto 0px
+         margin: 10vh auto 0px;
          }
          #order-heading .text-uppercase {
          font-size: 0.9rem;
@@ -59,8 +59,8 @@
          height: max-content;
          max-width: 800px;
          margin: 0px auto 40px;
-         border-bottom-left-radius: 25px;
-         border-bottom-right-radius: 25px
+         border-bottom-left-radius: 1vh;
+         border-bottom-right-radius: 1vh;
          }
          .table th {
          border-top: none
@@ -112,12 +112,14 @@
          margin: 0px
          }
          .subscriptions {
+            text-transform: capitalize;
          border: 1px solid #ddd;
          border-left: 5px solid #ffa500;
+         border-right: 5px solid #ffa500;
          padding: 10px
          }
          .subscriptions div {
-         font-size: 0.9rem
+         font-size: 1.7vh;
          }
          @media(max-width: 425px) {
          .wrapper {
@@ -142,19 +144,22 @@
    <body oncontextmenu='return false' class='snippet-body'>
       <div class="d-flex flex-column justify-content-center align-items-center" id="order-heading">
          <div class="d-flex flex-column justify-content-center align-items-center m-2">
-            <img src="../assets/logo.png" style="height: 5vh;margin-bottom: 1rem;">
-            <h1 style="font-size: 2rem;">WhiteWolf International - Transaction Failure.</h1>
+            <img  src="../assets/whitewolflog.png" style="height: 5vh;margin-bottom: 1rem;">
+            <h1 style="font-size: 2rem;">WhiteWolf India - Transaction Failure.</h1>
          </div>
          <div class="h4 date"><%= new Date().toLocaleDateString() %></div>
          <div class="btn close text-white"> &times; </div>
       </div>
       <div class="wrapper bg-white pt-3 text-center d-flex flex-column align-items-center justify-content-center">
          
-         <iconify-icon icon="gridicons:cross-circle" style="font-size: 6rem;color: maroon;margin:2rem;"></iconify-icon>
+         <img
+         src="../assets/order-faild.gif"
+         style="width: 6rem; margin: 2rem"
+       >
         <h3>Failed to Place your Order!</h3>
         <h3 class="mb-5">Please Retry Again</h3>
          <div class="subscriptions mt-5">
-            <div>Redirecting you to the home screen in 10 seconds.</div>
+            <div>Redirecting you to home screen in 5 seconds.</div>
          </div>
       </div>
   <%- include('partials/loader') %> 
@@ -196,7 +201,7 @@
 
             setTimeout(() => {
                window.location.href = '/';
-            }, 10000); // Redirect after 10 seconds
+            }, 5000); // Redirect after 10 seconds
          })
       </script>
    </body>

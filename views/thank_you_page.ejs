@@ -13,17 +13,12 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
       rel="stylesheet"
     />
-    <link
-      rel="shortcut icon"
-      type="image/x-icon"
-      href="../assets/whitewolflog.png"
-    />
+    <link rel="shortcut icon" type="image/x-icon" href="../assets/whitewolflog.png"/>
     <link
       rel="stylesheet"
       href="https://fonts.googleapis.com/css2?family=Outfit:wght@200;400;500&display=swap"
     />
 
-    <!-- Google Tag Manager -->
     <script>
       (function (w, d, s, l, i) {
         w[l] = w[l] || [];
@@ -36,7 +31,6 @@
         f.parentNode.insertBefore(j, f);
       })(window, document, "script", "dataLayer", "GTM-NQVB53VH");
     </script>
-    <!-- End Google Tag Manager -->
 
     <style>
       @import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
@@ -46,6 +40,27 @@
         box-sizing: border-box;
         font-family: "Outfit", sans-serif;
       }
+
+        .confetti {
+        position: fixed;
+        top:-20px;
+        left: 0;
+        width: 10px;
+        height: 20px; /* Rectangular shape */
+        background-color: transparent; /* Starting point is invisible */
+        animation: fall 4s ease infinite;
+      }
+
+      @keyframes fall {
+        0% {
+          transform: translateY(-100vh) rotate(0deg);
+        }
+        100% {
+          transform: translateY(130vh) rotate(360deg);
+        }
+      }
+
+
       body {
         background-color: #000;
         display: flex;
@@ -56,11 +71,11 @@
       #order-heading {
         background-color: #edf4f7;
         position: relative;
-        border-top-left-radius: 25px;
-        border-top-right-radius: 25px;
+        border-top-left-radius: 1vh;
+        border-top-right-radius: 1vh;
         max-width: 800px;
         padding-top: 20px;
-        margin: 30px auto 0px;
+        margin: 10vh auto 0px;
       }
       #order-heading .text-uppercase {
         font-size: 0.9rem;
@@ -92,9 +107,9 @@
         padding: 20px;
         height: max-content;
         max-width: 800px;
-        /* margin: 0px auto 40px; */
-        border-bottom-left-radius: 25px;
-        border-bottom-right-radius: 25px;
+
+        border-bottom-left-radius: 1vh;
+        border-bottom-right-radius: 1vh;
       }
       .table th {
         border-top: none;
@@ -148,10 +163,12 @@
       .subscriptions {
         border: 1px solid #ddd;
         border-left: 5px solid #ffa500;
+        border-right: 5px solid #ffa500;
+        text-transform: capitalize;
         padding: 10px;
       }
       .subscriptions div {
-        font-size: 0.9rem;
+        font-size: 1.7vh;
       }
       @media (max-width: 425px) {
         .wrapper {
@@ -159,8 +176,13 @@
         }
         body {
           font-size: 0.85rem;
-          padding: 2rem;
+          padding: 1rem;
         }
+
+        #order-heading{
+          margin-top: 3vh !important;
+        }
+
         .subscriptions div {
           padding-left: 5px;
         }
@@ -180,7 +202,6 @@
     ></script>
   </head>
 
-  <!-- Google Tag Manager (noscript) -->
   <noscript
     ><iframe
       src="https://www.googletagmanager.com/ns.html?id=GTM-NQVB53VH"
@@ -189,13 +210,12 @@
       style="display: none; visibility: hidden"
     ></iframe
   ></noscript>
-  <!-- End Google Tag Manager (noscript) -->
 
   <body oncontextmenu="return false" class="snippet-body">
     <div
       class="d-flex flex-column justify-content-center align-items-center"
       id="order-heading"
-      style="width: 100%; max-width: 800px"
+      style="width: 100%; max-width: 800px;"
     >
       <div
         class="d-flex flex-column justify-content-center align-items-center m-2"
@@ -210,19 +230,20 @@
       <div class="btn close text-white">&times;</div>
     </div>
     <div
-      class="wrapper bg-white pt-3 text-center d-flex flex-column align-items-center justify-content-center"
-      style="width: 100%; max-width: 800px"
+    class="wrapper bg-white pt-3 text-center d-flex flex-column align-items-center justify-content-center"
+    style="width: 100%; max-width: 800px"
+  >
+    <img
+      src="../assets/thank-you-gif.gif"
+      style="width: 6rem; margin: 2rem"
     >
-      <iconify-icon
-        icon="lets-icons:check-fill"
-        style="font-size: 6rem; color: rgb(27, 230, 27); margin: 2rem"
-      ></iconify-icon>
-      <h3>Thank you for Ordering!</h3>
-      <h3 class="mb-5">Your Order Id is : <%= content.razorpay_order_id %></h3>
-      <div class="subscriptions mt-5">
-        <div>Redirecting you to the home screen in 10 seconds.</div>
-      </div>
+    <h3>Thank you for Ordering!</h3>
+    <h3 class="mb-5">Your Order Id is : <%= content.razorpay_order_id %></h3>
+    <div class="subscriptions mt-5">
+      <div>Redirecting you to home screen in 5 seconds.</div>
     </div>
+  </div>
+
     <%- include('partials/loader') %>
 
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
@@ -257,7 +278,6 @@
                   <p class="text-justify">${profile.email}</p>
                `;
 
-            // Create a new Date object
             var today = new Date();
             var year = today.getFullYear();
             var month = today.getMonth() + 1;
@@ -277,8 +297,37 @@
 
         setTimeout(() => {
           window.location.href = "/";
-        }, 10000); // Redirect after 10 seconds
+        }, 5000); 
       });
     </script>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const wrapper = document.querySelector('.wrapper');
+
+    // Array of confetti colors
+    const colors = ['#FF5733', '#6C3483', '#1ABC9C', '#F4D03F', '#3498DB', '#9B59B6'];
+
+    // Create confetti elements
+    for (let i = 0; i < 70; i++) {
+      const confetti = document.createElement('div');
+      confetti.classList.add('confetti');
+      
+      // Randomize confetti color
+      const color = colors[Math.floor(Math.random() * colors.length)];
+      confetti.style.backgroundColor = color;
+      
+      wrapper.appendChild(confetti);
+
+      // Randomize confetti position and animation duration
+      const left = Math.random() * 100;
+      const delay = Math.random() * 4;
+
+      confetti.style.left = `${left}%`;
+      confetti.style.animationDelay = `${delay}s`;
+    }
+  });
+</script>
+
   </body>
 </html>
