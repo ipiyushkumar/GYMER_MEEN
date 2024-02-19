@@ -163,6 +163,16 @@ const saveOrder = async (req, res) => {
           await newOrder.save();
           await payment_data.save();
 
+          // Update the user data
+          userData.name = name || userData.name;
+          userData.phone = phone || userData.phone;
+          userData.pincode = pincode || userData.pincode;
+          userData.locality = locality || userData.locality;
+          userData.landmark = landmark || userData.landmark;
+          userData.city = city || userData.city;
+          userData.address = address || userData.address;
+          userData.cart = cart || userData.cart;
+
           userData.cart = [];
           req.session.userProfile.cart = [];
           await userData.save();
@@ -191,11 +201,17 @@ const saveOrder = async (req, res) => {
 
     if (!userData) {
       console.log("user not found");
+      req.session.couponCode = req.body.couponCode;
+      req.session.flow = true;
       return res.status(404).json({ message: "User data not found" });
+    } else {
+      userData.cart = req.session.userProfile.cart;
+      userData.save();
     }
+
     let amount = 0;
 
-    for (const product of req.session.userProfile.cart) {
+    for (const product of userData.cart) {
       try {
         const item = await Product.findOne({ itemId: product.itemId });
         amount += product.quantity * item.offeredPrice;
@@ -210,7 +226,7 @@ const saveOrder = async (req, res) => {
     if (coupon) {
       amount = amount - amount * (coupon.discount / 100);
     }
-    console.log(req.session.userProfile.cart);
+
     amount = Math.floor(amount);
 
     const newOrder = new Orders({
@@ -231,6 +247,16 @@ const saveOrder = async (req, res) => {
 
     newOrder.razorpay_order_id = "order_" + newOrder._id;
     await newOrder.save();
+
+    // Update the user data
+    userData.name = name || userData.name;
+    userData.phone = phone || userData.phone;
+    userData.pincode = pincode || userData.pincode;
+    userData.locality = locality || userData.locality;
+    userData.landmark = landmark || userData.landmark;
+    userData.city = city || userData.city;
+    userData.address = address || userData.address;
+    userData.cart = cart || userData.cart;
 
     userData.cart = [];
     req.session.userProfile.cart = [];
