@@ -127,21 +127,22 @@ const sendOTP = (req, res) => {
   const mailOptions = {
     from: process.env.MAIL_ID,
     to: userEmail,
-    subject: `OTP for Authentication - ${otp} from Whitewolf Internationals 🌐`,
+    subject: `OTP for Authentication - ${otp} from WhiteWolf India 🟢`,
     html: `
           <div style="background-color: #f5f5f5; padding: 20px; text-align: center;">
-            <img src="https://i.ibb.co/0GQgmn7/whitewolflog.png" alt="Whitewolf Internationals Logo" style="width: 50px; height: auto;">
-            <h2 style="color: #333; margin-top: 20px;">Whitewolf Internationals</h2>
+            <img src="https://i.ibb.co/0GQgmn7/whitewolflog.png" alt="Whitewolf India Logo" style="width: 50px; height: auto;">
+            <h2 style="color: #333; margin-top: 20px;">WhiteWolf India</h2>
           </div>
           <div style="background-color: #fff; padding: 20px; border-radius: 8px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); margin-top: 20px;">
             <p style="font-size: 16px; color: #333;">Dear User,</p>
             <p style="font-size: 18px; color: #333;">Your OTP for Authentication is: <strong style="color: #007bff;">${otp}</strong></p>
-            <p style="font-size: 16px; color: #333;">Thank you for choosing Whitewolf Internationals. We appreciate your trust in our service.</p>
-            <p style="font-size: 16px; color: #333;">For any assistance or inquiries, feel free to contact our support team.</p>
+            <p style="font-size: 16px; color: #333;">Thank you for choosing WhiteWolf India. We appreciate your trust in our service.</p>
+            <p style="font-size: 16px; color: #333;">For any assistance or inquiries, feel free to contact our support team - 180021020016</p>
+            <p>care@whitewolfindia.com</p>
           </div>
           <div style="background-color: #f5f5f5; padding: 20px; text-align: center; margin-top: 20px;">
             <p style="font-size: 16px; color: #333;">Best Regards,</p>
-            <p style="font-size: 18px; color: #333;">The Whitewolf Internationals Team</p>
+            <p style="font-size: 18px; color: #333;">WhiteWolf India Team</p>
           </div>
         `,
   };

@@ -329,7 +329,7 @@
 
       .slider {
         width: 100%;
-        margin: 0 auto;
+        margin: 0 0;
         margin-top: 15vh !important;
         background-color: #000;
       }
@@ -402,17 +402,17 @@
     ></noscript>
 
     <%- include('partials/nav') %> <%- include('partials/cart') %>
-    <!-- <div class="slider">
-      <div><img src="../assets/Slider.jpg" alt="Slide 1" /></div>
-      <div><img src="../assets/Slider2.jpg" alt="Slide 2" /></div>
-      <div><img src="../assets/Slider.jpg" alt="Slide 3" /></div>
-      <div><img src="../assets/Slider2.jpg" alt="Slide 4" /></div>
-    </div> -->
+    <div class="slider">
+      <!-- <div><img src="<%= content.imageSrc %>" alt="Slide 1" /></div> -->
+      <!-- <div><img src="../assets/Slider2.jpg" alt="Slide 2" /></div>
+      <div><img src="../assets/Slider.jpg" alt="Slide 3" /></div> 
+      <div><img src="../assets/Slider2.jpg" alt="Slide 4" /></div> -->
+    </div>
 
     <div class="container-fluid page" style="background-color: #000">
       <div class="row">
-        <div class="col-md-3 mr-3 mt-5">
-          <div class="filters mt-5 mb-5">
+        <div class="col-md-3 mr-3 ">
+          <div class="filters mt-1 mb-5">
             <h4 class="text-white">Filter</h4>
 
             <div class="accordion" id="discountFilterAccordion">
@@ -851,7 +851,7 @@
           infinite: true,
           pauseOnHover: true,
           centerMode: true,
-          centerPadding: "5%",
+          centerPadding: "0%",
           arrows: false,
         });
       });

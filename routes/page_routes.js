@@ -153,30 +153,35 @@ router.get("/collections/:page", (req, res) => {
     case "face-care":
       pageContext = "Face Care";
       pageMetaTitle = "Face Care";
+      pageImageSrc = "https://i.ibb.co/WV0sDC1/Slider.jpg";
       pageMetaDesc =
         "Explore our collection of face care products for a healthy and radiant skin.";
       break;
     case "hair-care":
       pageContext = "Hair Care";
       pageMetaTitle = "Hair Care";
+      pageImageSrc = "https://i.ibb.co/XyFQzWy/Slider2.jpg";
       pageMetaDesc =
         "Discover the best hair care products for healthy, vibrant locks. Explore a wide range of collection including hair removal spray, hair growth oil, and hair powder wax.";
       break;
     case "beard-care":
       pageContext = "Beard Care";
       pageMetaTitle = "Beard Care";
+      pageImageSrc = "https://i.ibb.co/WV0sDC1/Slider.jpg";
       pageMetaDesc =
         "Level up your beard game! Explore premium beard care products for a groomed and stylish look. Find your grooming essentials now!";
       break;
     case "body-care":
       pageContext = "Body Care";
       pageMetaTitle = "Body Care - WhiteWolf India";
+      pageImageSrc = "https://i.ibb.co/WV0sDC1/Slider.jpg";
       pageMetaDesc =
         "Discover our range of body care products for smooth and nourished skin. Shop now!";
       break;
     case "skin-care":
       pageContext = "Skin Care";
       pageMetaTitle = "Skin Care - WhiteWolf India";
+      pageImageSrc = "https://i.ibb.co/WV0sDC1/Slider.jpg";
       pageMetaDesc =
         "Take your grooming routine to a whole new level! Discover best-in-class skincare products for men for an exuberant appearance. From face washes to tint moisturizer skin, hydro booster gel, chemical exfoliator peel cleanser and more.";
       break;
@@ -200,6 +205,7 @@ router.get("/collections/:page", (req, res) => {
     context: pageContext,
     metaTitle: pageMetaTitle,
     metaDescription: pageMetaDesc,
+    imageSrc: pageImageSrc 
   };
 
   res.render("Product_Listing_page", { content });

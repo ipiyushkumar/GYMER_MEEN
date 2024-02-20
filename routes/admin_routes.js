@@ -152,7 +152,7 @@ router.put("/api/products", isAdminAuthenticated, async (req, res) => {
     const updateItem = await Product.findOne({ itemId: itemId });
 
     if (!updateItem) {
-      return res.status(404).json({ error: "Product not found" });
+      return res.redirect('/error404');
     }
 
     // Update all product properties
@@ -192,8 +192,9 @@ router.delete(
       });
 
       if (!deletedProduct) {
-        return res.status(404).json({ error: "Product not found" });
+        return res.redirect('/error404');
       }
+      
 
       // Delete images from storage
       if (deletedProduct.imageLink) {
