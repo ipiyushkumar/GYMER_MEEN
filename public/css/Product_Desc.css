@@ -245,6 +245,8 @@ body{
     text-transform: capitalize !important;
 }
 
+
+
 .product-card .product-price{
     font-weight: 500;
     font-size: 27px;
@@ -605,6 +607,10 @@ align-items: center;
         }
 
         @media screen and (max-width: 767px) {
+
+            .side-images img{
+                height: 6vh !important;
+            }
 
             .product-price-discount{
                 font-size: 12px !important;
