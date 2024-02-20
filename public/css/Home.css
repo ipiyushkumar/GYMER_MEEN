@@ -21,7 +21,7 @@ body {
 
     .grid-container {
         display: grid;
-        grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+        grid-template-columns: 1fr 1fr 1fr 1fr;
         gap: 20px;
         padding: 20px;
         justify-content: space-between;
@@ -99,10 +99,15 @@ body {
 
     @media (max-width: 767.98px) {
         
-        .grid-container{
+        .grid-container {
             width: 90%;
-            overflow:auto !important;
+            overflow: auto !important;
         }
+        
+        .grid-container::-webkit-scrollbar {
+            width: 0;  /* hide the scrollbar width */
+        }
+        
 
         .grid-container .grid-item{
             min-width: 200px !important;
