@@ -50,7 +50,7 @@ router.put(
 
       const ledger = new adminHistory({
         email: req.session.email,
-        action: "Updating Order Status Successful",
+        action: `Updating Order Status Successfull (${razorpay_order_id})`,
       });
       ledger.save();
 
@@ -137,7 +137,7 @@ router.post(
 
       const ledger = new adminHistory({
         email: req.session.email,
-        action: "Added New product",
+        action: `Added New product (${sanitizedName})`,
       });
       ledger.save();
 
@@ -196,7 +196,7 @@ router.put("/api/products", isAdminAuthenticated, async (req, res) => {
 
     const ledger = new adminHistory({
       email: req.session.email,
-      action: "Updated product successfully",
+      action: `Updated product successfully (${updateItem.itemId})`,
     });
     ledger.save();
 
@@ -236,7 +236,7 @@ router.delete(
 
       const ledger = new adminHistory({
         email: req.session.email,
-        action: "Product deletion successfull",
+        action: `Product deletion successfull (${deletedProduct.itemId})`,
       });
       ledger.save();
 

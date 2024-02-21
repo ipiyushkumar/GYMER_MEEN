@@ -45,7 +45,7 @@ const addNewCoupon = async (req, res) => {
     const savedCoupon = await newCoupon.save();
     const ledger = new adminHistory({
       email: req.session.email,
-      action: "added new coupon",
+      action: `added new coupon (${newCoupon.code})`,
     });
     ledger.save();
     res.status(201).json({ message: "coupon successfully created" });
@@ -69,7 +69,7 @@ const deleteCouponByCode = async (req, res) => {
     }
     const ledger = new adminHistory({
       email: req.session.email,
-      action: "deleted a coupon successfully",
+      action: `deleted a coupon successfully (${deletedCoupon.code})`,
     });
     ledger.save();
     res.status(200).json({ message: "Coupon deleted successfully" });
