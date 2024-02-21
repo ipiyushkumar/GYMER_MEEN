@@ -1435,120 +1435,42 @@
                 <h1>View History</h1>
 
                <div class="coupon-container" style="padding: 0vh 0vh 0vh 2vh;">
-                <!-- <form id="couponForm">
-                    <table>
-                        <tr>
-                            <th>Coupon Code</th>
-                            <th>Discount Percentage</th>
-                            <th>Validity Start</th>
-                            <th>Validity End</th>
-                            <th>Action</th>
-                        </tr>
-                        <tr>
-                            <td>
-                                <input type="text" id="couponCode" name="couponCode" placeholder="Enter coupon Code" required>
-                            </td>
-                            <td>
-                                <input type="number" id="discountPercentage" name="discountPercentage" placeholder="Enter discount percentage"
-                                    required min="1" max="100" style="width: 15vw;">
-                            </td>
-                            <td>
-                                <input type="datetime-local" id="validityStart" name="validityStart" placeholder="Select validity start" required>
-                            </td>
-                            <td>
-                                <input type="datetime-local" id="validityEnd" name="validityEnd" placeholder="Select validity end" required>
-                            </td>
-                            <td>
-                                <button type="button" onclick="addCoupon()">Add Coupon</button>
-                            </td>
-                        </tr>
-                    </table>
-                </form> -->
 
                 <div style="overflow: auto;height: 100%;overflow-y: scroll;padding-right: 1vh;">
                     <!-- <h2 style="margin-top: 0rem;">Active Coupons</h2> -->
                     <table id="couponList">
                         <thead>
                             <tr>
-                            <th>Name/Email</th>
+                            <th>Email</th>
                             <th>Date</th>
                             <th>Action</th>
-                            <!-- <th>Session End</th>
-                            <th>Action</th> -->
                             </tr>
                         </thead>
-                        <tbody class="couponsTableBody">
-
+                        <tbody class="adminHistoryTableBody">
                         </tbody>
 
                     </table>
                 </div>
             </div>
             <script>
-                async function addCoupon() {
-                    const code = document.querySelector('#couponCode').value;
-                    const discount = document.querySelector('#discountPercentage').value
-                    const validityStart = document.querySelector('#validityStart').value
-                    const validityEnds = document.querySelector('#validityEnd').value
-
-                    if (code && discount && validityStart && validityEnds) {
-                        await axios.post('/coupons',{code, discount, validityStart, validityEnds})
-                        .then(response => {
-                            console.log(response)
-                            let row = document.createElement('tr')
-                            row.classList.add(`code_${coupon.code}`)
-                            row.innerHTML = `
-                            <tr>
-                                <td>${code}</td>
-                                <td>${discount}%</td>
-                                <td>${validityStart}</td>
-                                <td>${validityEnds}</td>
-                                <td><button onclick="deleteCoupon('${code}')">Delete</button></th>
-                            </tr>
-                            `
-                            document.querySelector('.couponsTableBody').append(row)
-
-                            document.querySelector('#couponCode').value = ''
-                            document.querySelector('#discountPercentage').value = ''
-                            document.querySelector('#validityStart').value = ''
-                            document.querySelector('#validityEnd').value = ''
-
-                            showAlert("coupon Added successfully","success")
-
-                        })
-                        .catch(err => showAlert('an error occured creating a coupon',"danger"))
-                    }
+                function addLedgerRow(data){
+                    const {email, dateTime, action} = data
+                    const formattedDateTime = new Date(dateTime).toLocaleString();
+                    let row = document.createElement('tr')
+                    row.innerHTML = `
+                    <tr>
+                        <td>${email}</td>
+                        <td>${formattedDateTime}%</td>
+                        <td>${action}</td>
+                    </tr>
+                    `
+                    document.querySelector('.adminHistoryTableBody').append(row)
                 }
-                async function deleteCoupon(code) {
-                    await axios.delete(`/coupons/${code}`)
-                    .then(response => {
-                        console.log(response.data.message)
-                        document.querySelector(`.code_${code}`).innerHTML = ''
-                        showAlert("coupon deleted successfully","success")
-                    })
-                    .catch(err => showAlert("failed to delete coupon ","danger"))
-                }
-                document.querySelector('#couponTab').addEventListener('click', async () => {
-                    await axios.get('/coupons')
+                document.querySelector('#historyTab').addEventListener('click', async () => {
+                    await axios.get('/adminActionHistory')
                     .then(response => response.data)
-                    .then(coupons => {
-                        let body = document.querySelector('.couponsTableBody')
-                        body.innerHTML = ''
-                        coupons.forEach(coupon => {
-                            let row = document.createElement('tr')
-                            row.classList.add(`code_${coupon.code}`)
-                            row.innerHTML = `
-                            <tr>
-                                <td>${coupon.code}</td>
-                                <td>${coupon.discount}%</td>
-                                <td>${coupon.validityStart}</td>
-                                <td>${coupon.validityEnds}</td>
-                                <td><button onclick="deleteCoupon('${coupon.code}')">Delete</button></th>
-                            </tr>
-                            `
-                            body.append(row)
-                            showAlert("History loaded successfully","success")        
-                        })
+                    .then(ledger => {
+                        ledger.forEach(data => addLedgerRow(data))
                     })
                     .catch(err => showAlert("An error occured while fetching the history","danger"))
                 })
