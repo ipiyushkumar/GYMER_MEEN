@@ -556,7 +556,13 @@
         item.innerHTML = `<img src="${link}" alt="product image" style="height:auto;width:5vh">`;
         return item;
       }
-      function createTableRow(orderId, orderItems, OrderPayment, OrderStatus) {
+      function createTableRow(
+        orderId,
+        orderNumber,
+        orderItems,
+        OrderPayment,
+        OrderStatus
+      ) {
         let row = document.createElement("tr");
 
         // Attach a click event listener to the table row
@@ -565,7 +571,7 @@
           window.location.href = `/order-track/${orderId}`;
         });
 
-        row.append(createTableCell(orderId));
+        row.append(createTableCell(orderNumber));
         row.append(createTableCell(orderItems));
         row.append(createTableCell("&#8377;" + OrderPayment));
         row.append(createTableCell(OrderStatus));
@@ -594,13 +600,17 @@
               .then(async (orders) => {
                 const orderPromises = orders.map(async (order) => {
                   let names = "";
+                  let iconImage = "";
                   await Promise.all(
-                    order.products.map(async (product) => {
+                    order.products.map(async (product, index) => {
                       try {
                         const response = await axios.get(
                           `/api/products/${product.itemId}`
                         );
-                        names += `<a><img src="${response.data.imageLink[0]}" ></img> ${response.data.name}</a>`;
+                        if (index === 0) {
+                          iconImage = response.data.imageLink[0];
+                        }
+                        names += ` ${response.data.name}`;
                       } catch (err) {
                         console.log("error fetching products", err);
                       }
@@ -611,6 +621,11 @@
                     .append(
                       createTableRow(
                         order.razorpay_order_id,
+                        `<img src="${iconImage}"></img> ${
+                          order.razorpay_order_id.length > 15
+                            ? order.razorpay_order_id.slice(0, 15) + "..."
+                            : order.razorpay_order_id
+                        }`,
                         names,
                         order.totalPayment,
                         order.status
