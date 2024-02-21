@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 // Schema and Model definitions here...
+const adminHistory = require("../schemas/admin_his_schema");
 
 const controllers = require("../controllers/admin_controllers");
 
@@ -47,11 +48,22 @@ router.put(
       // Save the updated order
       await order.save();
 
+      const ledger = new adminHistory({
+        email: req.session.email,
+        action: "Updating Order Status Successful",
+      });
+      ledger.save();
+
       return res
         .status(200)
         .json({ message: "Order status updated successfully" });
     } catch (error) {
       console.error("Error updating order status:", error);
+      const ledger = new adminHistory({
+        email: req.session.email,
+        action: "Updating order status failed",
+      });
+      ledger.save();
       return res.status(500).json({ error: "Internal Server Error" });
     }
   }
@@ -123,9 +135,20 @@ router.post(
       // Save the product to the database
       const savedProduct = await newProduct.save();
 
+      const ledger = new adminHistory({
+        email: req.session.email,
+        action: "Added New product",
+      });
+      ledger.save();
+
       res.json(savedProduct);
     } catch (error) {
       console.error("Error adding product:", error);
+      const ledger = new adminHistory({
+        email: req.session.email,
+        action: "Failed adding new product",
+      });
+      ledger.save();
       res.status(500).json({ error: "Internal Server Error" });
     }
   }
@@ -152,7 +175,7 @@ router.put("/api/products", isAdminAuthenticated, async (req, res) => {
     const updateItem = await Product.findOne({ itemId: itemId });
 
     if (!updateItem) {
-      return res.redirect('/error404');
+      return res.redirect("/error404");
     }
 
     // Update all product properties
@@ -171,9 +194,20 @@ router.put("/api/products", isAdminAuthenticated, async (req, res) => {
     // Save the updated product
     await updateItem.save();
 
+    const ledger = new adminHistory({
+      email: req.session.email,
+      action: "Updated product successfully",
+    });
+    ledger.save();
+
     res.status(200).json({ message: "Product updated successfully" });
   } catch (error) {
     console.error("Error updating product:", error);
+    const ledger = new adminHistory({
+      email: req.session.email,
+      action: "product updation failed",
+    });
+    ledger.save();
     res.status(500).json({ error: "Internal Server Error" });
   }
 });
@@ -192,17 +226,27 @@ router.delete(
       });
 
       if (!deletedProduct) {
-        return res.redirect('/error404');
+        return res.redirect("/error404");
       }
-      
 
       // Delete images from storage
       if (deletedProduct.imageLink) {
         await Promise.all(deletedProduct.imageLink.map(deleteImage));
       }
 
+      const ledger = new adminHistory({
+        email: req.session.email,
+        action: "Product deletion successfull",
+      });
+      ledger.save();
+
       res.status(200).json({ message: "Product removed successfully" });
     } catch (error) {
+      const ledger = new adminHistory({
+        email: req.session.email,
+        action: "product deletion failed",
+      });
+      ledger.save();
       console.error(error);
       res.status(500).json({ error: "Internal Server Error" });
     }
@@ -246,5 +290,14 @@ router.delete(
   isAdminAuthenticated,
   controllers.deleteCouponByCode
 );
+
+router.get("/adminActionHistory", isAdminAuthenticated, async (req, res) => {
+  try {
+    const completeLedger = await adminHistory.find();
+    res.json(completeLedger);
+  } catch (error) {
+    res.status(500).json({ error: "No User in server" });
+  }
+});
 
 module.exports = router;
