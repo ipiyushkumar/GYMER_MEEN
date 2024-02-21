@@ -1504,23 +1504,36 @@
       setInterval(autoScroll, 30);
     </script>
     <script>
-      const productGridNew = document.getElementById("productGrid");
+      const slider = document.getElementById("productGrid");
       const scrollStep = 550;
-
+  
       function slideLeft() {
-        productGridNew.scrollTo({
-          left: productGrid.scrollLeft - scrollStep,
-          behavior: "smooth",
-        });
+          const productCards = slider.getElementsByClassName("product-card");
+          const firstCard = productCards[0].cloneNode(true);
+          slider.appendChild(firstCard);
+          slider.scrollTo({
+              left: slider.scrollLeft - scrollStep,
+              behavior: "smooth"
+          });
+          slider.addEventListener('transitionend', function () {
+              slider.removeChild(firstCard);
+          }, { once: true });
       }
-
+  
       function slideRight() {
-        productGridNew.scrollTo({
-          left: productGrid.scrollLeft + scrollStep,
-          behavior: "smooth",
-        });
+          const productCards = slider.getElementsByClassName("product-card");
+          const lastCard = productCards[productCards.length - 1].cloneNode(true);
+          slider.insertBefore(lastCard, slider.firstChild);
+          slider.scrollTo({
+              left: slider.scrollLeft + scrollStep,
+              behavior: "smooth"
+          });
+          slider.addEventListener('transitionend', function () {
+              slider.removeChild(productCards[productCards.length - 1]);
+          }, { once: true });
       }
-    </script>
+  </script>
+  
 
     <script>
       var productGrid = document.getElementById("productGrid");
@@ -1756,10 +1769,10 @@
           object-fit: fill;
           object-position: top;
         "
-        poster="../assets/poster-image.jpg"
+        poster="../assets/video-snap.png"
       >
         <source
-          src="../assets/New arrivals HRS mp4 update.mp4"
+          src="../assets/spray-animation-video.mp4"
           type="video/mp4"
         />
         Your browser does not support the video tag.
@@ -1812,7 +1825,7 @@
     
 
     <div class="container-fluid mt-0 mb-0 m-1 p-0">
-      <img src="../assets/FEATURED COLLECTION.jpg style="width: 100%;height: auto;">
+      <img src="../assets/FEATURED COLLECTION.jpg" style="width: 100%;height: auto;">
       <h2 class="text-center text-white mb-0 home-head d-none">Featured Collection</h2>
       <div id="app" class="container-category">
         <a href="/collections/beard-care" target="_blank">
@@ -2181,21 +2194,24 @@
       }
 
       function renderProducts(categoryFilter) {
-        const productGrid = document.getElementById("productGrid");
-        productGrid.innerHTML = "";
+    const productGrid = document.getElementById("productGrid");
+    productGrid.innerHTML = "";
 
-        const filteredProducts =
-          categoryFilter === "all"
+    const filteredProducts =
+        categoryFilter === "all"
             ? products
             : products.filter((product) => product.category === categoryFilter);
 
-        filteredProducts.forEach((product) => {
-          const productCard = createProductCard(product);
-          productGrid.appendChild(productCard);
-        });
+    filteredProducts.forEach((product) => {
+        const productCard = createProductCard(product);
+        if (!productCard.querySelector('button').textContent.includes('NOTIFY ME')) {
+            productGrid.appendChild(productCard);
+        }
+    });
 
-        attachAddToCartListeners(filteredProducts);
-      }
+    attachAddToCartListeners(filteredProducts);
+}
+
       function createProductCard(product) {
         const productCard = document.createElement("div");
         productCard.className = "col-md-4 product-card product";
