@@ -405,6 +405,7 @@ body{
     padding: 1vh;
     width: 90% !important;
     overflow-x: scroll !important;
+    grid-column-gap: 10px;
     scrollbar-width: 1px;
 display: flex;
 flex-wrap: nowrap;
@@ -906,7 +907,7 @@ background-color: #000;
     width: 90% !important;
     overflow-x: scroll !important;
     padding: 0;
-grid-column-gap: 10px;
+    grid-column-gap: 10px;
     scrollbar-width: 1px;
 display: flex;
 flex-wrap: nowrap;
