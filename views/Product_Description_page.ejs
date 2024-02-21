@@ -106,7 +106,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
       .product-card {
         overflow: hidden;
-        width: 24%;
+        min-width: 24% !important;
         cursor: pointer;
         display: flex;
         flex-direction: column;
@@ -1188,7 +1188,7 @@ function hideLoading() {
       }
       function createProductCard(product) {
         const productCard = document.createElement("div");
-        productCard.className = "col-md-4 product-card product";
+        productCard.className = "product-card product";
 
         var words = product.description.split(" ");
         product.description = words.slice(0, 5).join(" ");
