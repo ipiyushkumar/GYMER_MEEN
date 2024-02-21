@@ -1205,7 +1205,7 @@
         }
 
         .carousel-item.fifth-slide img {
-          content: url("/assets/Peel\ cleanser.jpg_500x500px.jpg") !important;
+          content: url("/assets/Peel\ cleanser.jpg\ 500x500\ px.jpg") !important;
         }
       }
 
@@ -1375,7 +1375,7 @@
 
       <div class="carousel-item fifth-slide">
         <a href="/collections/skin-care">
-            <img src="/assets/Peel cleanser.jpg_1440x425 px.jpg" class="d-block w-100" alt="...">
+            <img src="/assets/Peel cleanser.jpg 1440x425 px.jpg" class="d-block w-100" alt="...">
         </a>
     </div>
   </div>
@@ -1421,7 +1421,11 @@
     </script> -->
 
     <div class="container-fluid d-flex flex-column justify-content-center align-items-center products-bar mt-3">
-      <img src="../assets/BEST SELLERS.jpg" style="width: 100%;height: auto;">
+      <div class="container-fluid m-0 p-0">
+        <a href="/collections/best-sellers">
+          <img src="../assets/BEST SELLERS.jpg" style="width: 100%;height: auto;">
+        </a>
+      </div>
       <div class="mb-2 filters d-flex justify-content-between align-items-center home-head">
         <h2 class="text-light mt-2 d-none">Best Sellers</h2>
       </div>
@@ -1446,18 +1450,14 @@
 
       <div id="productGrid" class="row product-grid"></div>
 
-      <div class="d-flex justify-content-center p-2 mt-0 mb-0">
+      <!-- <div class="d-flex justify-content-center p-2 mt-0 mb-0">
         <button class="show-btn">
           <a href="/collections/All">Show More</a>
         </button>
-      </div>
+      </div> -->
     </div>
 
-    <div class="container-fluid m-0 p-0">
-      <img src="../assets/NEW ARRIVALS.jpg" style="width: 100%;height: auto;">
-    </div>
-
-    <div class="custom-carousel-container mb-5 mt-0">
+    <div class="custom-carousel-container mb-5 mt-5">
       <div class="custom-slides-new mt-0">
         <a href="/products/gray-gaurd-beard-illuminating-serum">
           <div class="custom-slide-new">
@@ -1536,6 +1536,12 @@
         productGrid.scrollLeft += 100;
       }
     </script>
+
+  <div class="container-fluid mt-0 p-0">
+    <a href="/collections/new-arrivals">
+      <img src="../assets/NEW ARRIVALS.jpg" style="width: 100%;height: auto;">
+    </a>
+  </div>
 
     <div class="container-fluid mb-4 mt-0 p-2">
       <video autoplay muted loop class="bg-video p-0">
