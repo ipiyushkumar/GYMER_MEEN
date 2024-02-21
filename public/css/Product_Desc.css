@@ -797,7 +797,7 @@ align-items: center;
 
 .review-section {
     overflow: auto;
-    height: 40vh;
+    max-height: 40vh;
     padding: 10px;
 }
 
