@@ -1504,45 +1504,23 @@
       setInterval(autoScroll, 30);
     </script>
     <script>
-      const slider = document.getElementById("productGrid");
-      const scrollStep = 600;
-      let isSliding = false;
-  
+      const productGridNew = document.getElementById("productGrid");
+      const scrollStep = 550;
+
       function slideLeft() {
-          if (isSliding) return;
-          isSliding = true;
-  
-          const productCards = slider.getElementsByClassName("product-card");
-          const firstCard = productCards[0].cloneNode(true);
-          slider.appendChild(firstCard);
-          slider.scrollTo({
-              left: slider.scrollLeft - scrollStep,
-              behavior: "smooth"
-          });
-          setTimeout(() => {
-              slider.removeChild(firstCard);
-              isSliding = false;
-          }, 500); // Adjust delay as needed
+        productGridNew.scrollTo({
+          left: productGrid.scrollLeft - scrollStep,
+          behavior: "smooth",
+        });
       }
-  
+
       function slideRight() {
-          if (isSliding) return;
-          isSliding = true;
-  
-          const productCards = slider.getElementsByClassName("product-card");
-          const lastCard = productCards[productCards.length - 1].cloneNode(true);
-          slider.insertBefore(lastCard, slider.firstChild);
-          slider.scrollTo({
-              left: slider.scrollLeft + scrollStep,
-              behavior: "smooth"
-          });
-          setTimeout(() => {
-              slider.removeChild(productCards[productCards.length - 1]);
-              isSliding = false;
-          }, 500); // Adjust delay as needed
+        productGridNew.scrollTo({
+          left: productGrid.scrollLeft + scrollStep,
+          behavior: "smooth",
+        });
       }
-  </script>
-  
+    </script>
   
 
     <script>
