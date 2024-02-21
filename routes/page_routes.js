@@ -159,14 +159,14 @@ router.get("/collections/:page", (req, res) => {
       break;
     case "hair-care":
       pageContext = "Hair Care";
-      pageMetaTitle = "Hair Care";
+      pageMetaTitle = "Hair Care - WhiteWolf India";
       pageImageSrc = "https://i.ibb.co/XyFQzWy/Slider2.jpg";
       pageMetaDesc =
         "Discover the best hair care products for healthy, vibrant locks. Explore a wide range of collection including hair removal spray, hair growth oil, and hair powder wax.";
       break;
     case "beard-care":
       pageContext = "Beard Care";
-      pageMetaTitle = "Beard Care";
+      pageMetaTitle = "Beard Care - WhiteWolf India";
       pageImageSrc = "https://i.ibb.co/WV0sDC1/Slider.jpg";
       pageMetaDesc =
         "Level up your beard game! Explore premium beard care products for a groomed and stylish look. Find your grooming essentials now!";
@@ -197,8 +197,23 @@ router.get("/collections/:page", (req, res) => {
       pageMetaDesc =
         "Discover our exclusive collection of fragrances for men. Find your signature scent today!";
       break;
-    default:
-      break;
+    
+      case "new-arrivals":
+        pageContext = "all";
+        pageMetaTitle = "New Arrivals - WhiteWolf India";
+        pageImageSrc = "https://i.ibb.co/WV0sDC1/Slider.jpg";
+        pageMetaDesc =
+          "Discover the latest additions to our collection. Shop now!";
+        break;
+      case "best-sellers":
+        pageContext = "all";
+        pageMetaTitle = "Best Sellers - WhiteWolf India";
+        pageImageSrc = "https://i.ibb.co/WV0sDC1/Slider.jpg";
+        pageMetaDesc =
+          "Explore our top-rated products loved by our customers. Find your favorites!";
+        break;
+      default:
+        break;
   }
   const content = {
     isLoggedIn: req.session.isLoggedIn,
