@@ -1470,6 +1470,8 @@
                     await axios.get('/adminActionHistory')
                     .then(response => response.data)
                     .then(ledger => {
+                        showAlert("Admin history loaded successfully", "success")
+                        document.querySelector('.adminHistoryTableBody').innerHTML=''
                         ledger.forEach(data => addLedgerRow(data))
                     })
                     .catch(err => showAlert("An error occured while fetching the history","danger"))
