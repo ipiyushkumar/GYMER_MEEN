@@ -1506,8 +1506,12 @@
     <script>
       const slider = document.getElementById("productGrid");
       const scrollStep = 550;
+      let isSliding = false;
   
       function slideLeft() {
+          if (isSliding) return;
+          isSliding = true;
+  
           const productCards = slider.getElementsByClassName("product-card");
           const firstCard = productCards[0].cloneNode(true);
           slider.appendChild(firstCard);
@@ -1515,24 +1519,30 @@
               left: slider.scrollLeft - scrollStep,
               behavior: "smooth"
           });
-          slider.addEventListener('transitionend', function () {
+          setTimeout(() => {
               slider.removeChild(firstCard);
-          }, { once: true });
+              isSliding = false;
+          }, 200); // Adjust delay as needed
       }
   
       function slideRight() {
+          if (isSliding) return;
+          isSliding = true;
+  
           const productCards = slider.getElementsByClassName("product-card");
           const lastCard = productCards[productCards.length - 1].cloneNode(true);
           slider.insertBefore(lastCard, slider.firstChild);
-          slider.scrollTo({ 
+          slider.scrollTo({
               left: slider.scrollLeft + scrollStep,
               behavior: "smooth"
           });
-          slider.addEventListener('transitionend', function () {
+          setTimeout(() => {
               slider.removeChild(productCards[productCards.length - 1]);
-          }, { once: true });
+              isSliding = false;
+          }, 200); // Adjust delay as needed
       }
   </script>
+  
   
 
     <script>
