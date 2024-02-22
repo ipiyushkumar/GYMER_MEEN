@@ -1565,14 +1565,61 @@
         />
       </a>
     </div>
+   
+    <script>
+      document.addEventListener("DOMContentLoaded", function() {
+        const newArrivalGrid = document.getElementById("newArrivalGrid");
+        const scrollStep = 550;
+    
+        window.slideLeftNew = function() {
+          newArrivalGrid.scrollBy({
+            left: -scrollStep,
+            behavior: "smooth",
+          });
+        }
+    
+        window.slideRightNew = function() {
+          newArrivalGrid.scrollBy({
+            left: scrollStep,
+            behavior: "smooth",
+          });
+        }
+      });
+    </script>
+    
+    <div class="container-fluid d-flex justify-content-end product-sliders-new mt-2 mb-2">
+      <button class="sliding-buttons" onclick="slideLeftNew()">
+        <iconify-icon icon="icon-park-solid:left-c"></iconify-icon>
+      </button>
+      <button class="sliding-buttons" onclick="slideRightNew()">
+        <iconify-icon icon="icon-park-solid:right-c"></iconify-icon>
+      </button>
+    </div>
+    
     <div
       id="newArrivalGrid"
-      class="row product-grid"
+      class="row product-grid mb-4 mt-2"
       onmousedown="startScroll(event)"
       onmouseup="stopScroll()"
       ontouchstart="startScroll(event)"
       ontouchend="stopScroll()"
-    ></div>
+    >
+    </div>
+
+
+    
+    <!-- <div
+      id="newArrivalGrid"
+      class="row product-grid mb-4 mt-2"
+      onmousedown="startScroll(event)"
+      onmouseup="stopScroll()"
+      ontouchstart="startScroll(event)"
+      ontouchend="stopScroll()"
+    >
+    </div> -->
+    
+    
+    
     <div class="container-fluid mb-4 mt-0 p-2">
       <video autoplay muted loop class="bg-video p-0">
         <source src="../assets/promo-banner-vid.mp4" type="video/mp4" />

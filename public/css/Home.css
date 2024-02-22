@@ -201,6 +201,11 @@ body {
         grid-column-gap: 10px;
     }
     
+    #newArrivalGrid{
+        overflow: hidden;
+        -ms-overflow-style: none;  /* IE and Edge */
+        scrollbar-width: none;  
+    }
 
     #productGrid {
         overflow: hidden;
@@ -279,6 +284,14 @@ body {
 
 
     .product-sliders .sliding-buttons{
+        background-color: transparent;
+        border: none;
+        outline: none;
+        color: #fff;
+        font-size: 5vh;
+    }
+
+    .product-sliders-new button{
         background-color: transparent;
         border: none;
         outline: none;
