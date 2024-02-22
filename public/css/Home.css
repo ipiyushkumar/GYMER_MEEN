@@ -113,6 +113,10 @@ body {
             min-width: 200px !important;
         }
 
+        .product-sliders-new{
+            display: none !important;
+        }
+
         .product-sliders button{
             display: none !important;
         }
