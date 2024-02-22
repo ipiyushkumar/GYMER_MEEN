@@ -26,6 +26,42 @@
       href="https://fonts.googleapis.com/css2?family=Outfit:wght@200;400;500&display=swap"
     />
 
+    <script type="application/ld+json" id="json-ld-script">
+      {
+        "@context": "https://schema.org/",
+        "@type": "ItemList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "<%= item.name %>",
+            "url": ""
+          }
+        ]
+      }
+    </script>
+
+    <script>
+
+      function generateUrlFromName(name) {
+        return name.toLowerCase().split(' ').join('-');
+      }
+
+      var productName = "<%= item.name %>";
+
+      var productUrl = "www.whitewolfindia.com/products/" + generateUrlFromName(productName);
+
+      var jsonLdScript = document.getElementById('json-ld-script');
+      var jsonData = JSON.parse(jsonLdScript.textContent);
+      jsonData.itemListElement[0].url = productUrl;
+
+      jsonLdScript.textContent = JSON.stringify(jsonData, null, 2); 
+
+      console.log(jsonLdScript.textContent);
+    </script>
+    
+    
+
     <link id="canonicalLink" rel="canonical" href="https://www.whitewolfindia.com/" />
 <script>
 document.addEventListener("DOMContentLoaded", function() {
@@ -51,6 +87,8 @@ document.addEventListener("DOMContentLoaded", function() {
         f.parentNode.insertBefore(j, f);
       })(window, document, "script", "dataLayer", "GTM-NQVB53VH");
     </script>
+
+    
 
     <meta property="og:image" content="<%= item.imageLink[0] %>" />
     <meta property="og:image:type" content="image/png" />
