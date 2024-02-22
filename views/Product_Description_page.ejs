@@ -658,12 +658,12 @@ document.addEventListener("DOMContentLoaded", function() {
 
   function loadImage(image) {
     const imageUrl = extractImageUrl(image);
-    mainProductImage.style.transition = 'left 0.3s ease-in-out'; // Smooth transition for left position
-    mainProductImage.style.left = '100%'; // Initial position at 100% (off-screen)
+    mainProductImage.style.transition = 'left 0.3s ease-in-out'; 
+    mainProductImage.style.left = '-100%'; 
     setTimeout(() => {
         mainProductImage.src = imageUrl;
         mainProductImage.onload = () => {
-            mainProductImage.style.left = '0'; // Slide in from the right to the center
+            mainProductImage.style.left = '0'; 
         };
     }, 300);
 }
