@@ -26,40 +26,6 @@
       href="https://fonts.googleapis.com/css2?family=Outfit:wght@200;400;500&display=swap"
     />
 
-    <script type="application/ld+json" id="json-ld-script">
-      {
-        "@context": "https://schema.org/",
-        "@type": "ItemList",
-        "itemListElement": [
-          {
-            "@type": "ListItem",
-            "position": 1,
-            "name": "<%= item.name %>",
-            "url": ""
-          }
-        ]
-      }
-    </script>
-
-    <script>
-
-      function generateUrlFromName(name) {
-        return name.toLowerCase().split(' ').join('-');
-      }
-
-      var productName = "<%= item.name %>";
-
-      var productUrl = "www.whitewolfindia.com/products/" + generateUrlFromName(productName);
-
-      var jsonLdScript = document.getElementById('json-ld-script');
-      var jsonData = JSON.parse(jsonLdScript.textContent);
-      jsonData.itemListElement[0].url = productUrl;
-
-      jsonLdScript.textContent = JSON.stringify(jsonData, null, 2); 
-
-      console.log(jsonLdScript.textContent);
-    </script>
-    
     
 
     <link id="canonicalLink" rel="canonical" href="https://www.whitewolfindia.com/" />
@@ -575,7 +541,7 @@ document.addEventListener("DOMContentLoaded", function() {
             <% } %>
           </div>
 
-          <!-- <div class="row justify-content-center mt-0 mb-3">
+          <div class="row justify-content-center mt-0 mb-3">
             <div class="col-md-12">
               <div class="input-group mb-1">
                 <input type="text" class="form-control rounded-0" id="pincode-input" placeholder="Enter your pincode">
@@ -585,7 +551,7 @@ document.addEventListener("DOMContentLoaded", function() {
               </div>
               <div id="delivery-info" class="mt-2 mb-1 text-capitalize"></div>
             </div>
-          </div> -->
+          </div>
 
          <div class="w-100 mb-4">
           <!-- <p class="text-white text-uppercase bold text-center">Reasons to trust</p> -->
@@ -1144,18 +1110,19 @@ function hideLoading() {
     </script>
 
     <script>
-          function checkPincode() {
-      const pincode = document.getElementById('pincode-input').value.trim();
-      const availablePincodes = ['123456', '789012', '345678']; // Sample list of available pincodes
+      function checkPincode() {
+          const pincode = document.getElementById('pincode-input').value.trim();
+          
+          // Regular expression to match exactly 6 digits
+          const pincodeRegex = /^\d{6}$/;
       
-      if (availablePincodes.includes(pincode)) {
-        document.getElementById('delivery-info').innerHTML = '<iconify-icon icon="la:shipping-fast"></iconify-icon> Delivery available for ' + pincode + '.<br><iconify-icon icon="bi:cash"></iconify-icon> Cash On Delivery Available.';
-      } else {
-        document.getElementById('delivery-info').innerHTML = 'Delivery not available for ' + pincode + '.';
+          if (pincodeRegex.test(pincode)) {
+              document.getElementById('delivery-info').innerHTML = '<iconify-icon icon="la:shipping-fast"></iconify-icon> Delivery available for ' + pincode + '.<br><iconify-icon icon="bi:cash"></iconify-icon> Cash On Delivery Available.';
+          } else {
+              document.getElementById('delivery-info').innerHTML = 'Please enter a valid 6-digit pincode.';
+          }
       }
-    }
-
-    </script>
+      </script>
 
     <script>
       let products = [];

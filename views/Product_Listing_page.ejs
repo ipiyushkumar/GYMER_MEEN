@@ -50,6 +50,60 @@
       })(window, document, "script", "dataLayer", "GTM-NQVB53VH");
     </script>
 
+    <script>
+          document.addEventListener("DOMContentLoaded", async () => {
+      try {
+        const response = await fetch("/api/products");
+        if (!response.ok) {
+          throw new Error("Error fetching products");
+        }
+        const productList = await response.json();
+
+
+        const context = "<%= content.context %>"; 
+        const filteredProductList = productList.filter(product => {
+
+          return product.category === context; 
+        });
+
+        const itemListElements = [];
+
+        filteredProductList.forEach((product, index) => {
+          const itemUrl = `https://www.whitewolfindia.com/products/${product.itemId}`;
+          const item = {
+            "@type": "ListItem",
+            "position": index + 1,
+            "name": product.name,
+            "url": itemUrl
+          };
+          itemListElements.push(item);
+        });
+
+        const jsonLdSchema = {
+          "@context": "https://schema.org/",
+          "@type": "ItemList",
+          "itemListElement": itemListElements
+        };
+
+        const jsonLdString = JSON.stringify(jsonLdSchema, null, 2);
+
+        const scriptElement = document.createElement("script");
+        scriptElement.type = "application/ld+json";
+        scriptElement.textContent = jsonLdString;
+
+        const existingJsonLdScript = document.querySelector("script[type='application/ld+json']");
+        if (existingJsonLdScript) {
+          existingJsonLdScript.remove();
+        }
+
+        document.body.appendChild(scriptElement);
+      } catch (error) {
+        showAlert("Error while fetching products", "danger");
+      }
+    });
+
+    </script>
+
 <title><%= content.metaTitle %></title>
 
 
