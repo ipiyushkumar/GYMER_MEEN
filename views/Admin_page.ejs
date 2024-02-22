@@ -443,19 +443,17 @@
                 document.querySelector('.export-btn').addEventListener('click', function() {
                     exportToCSV('user-table.csv');
                 });
-            
+
                 async function exportToCSV(filename) {
                     const table = document.querySelector('.user-table');
                     const rows = Array.from(table.querySelectorAll('tr'));
-            
-                    // Create CSV content
+
                     let csvContent = "data:text/csv;charset=utf-8,";
                     csvContent += rows.map(row => {
                         const rowData = Array.from(row.children).map(cell => cell.textContent).join(',');
                         return rowData;
                     }).join('\n');
-            
-                    // Create a CSV file
+
                     const encodedUri = encodeURI(csvContent);
                     const link = document.createElement('a');
                     link.setAttribute('href', encodedUri);
@@ -463,7 +461,7 @@
                     document.body.appendChild(link);
                     link.click();
                 }
-            
+
                 document.querySelector('#analyticsTab').addEventListener('click', async () => {
                     function createTableCell(content) {
                         let cell = document.createElement('td')
@@ -480,7 +478,7 @@
                             row.append(createTableCell(user.email || "N/A"))
                             row.append(createTableCell(user.phone || "N/A"))
                             row.append(createTableCell(user.pincode || "N/A"))
-            
+
                             const dateTime = new Date(user.joinDate || "N/A");
                             const formattedDateTime = dateTime.toLocaleString();
                             row.append(createTableCell(formattedDateTime))
@@ -524,9 +522,11 @@
             </script> -->
         </section>   
 
-        <section class="main" id="ordersSection" style="display: none;" >
+        <section class="main" id="ordersSection" style="display: none;">
             <section class="main-orders">
-                <h1>Orders</h1>
+                <h1>Orders  <button class="export-btn ml-2" onclick="exportToCSV()">Export CSV <iconify-icon icon="ic:baseline-file-download"></iconify-icon></button></h1>
+                <!-- Add Export CSV button here -->
+
                 <div class="orders-container">
                     <ul class="list">
                         <li onclick="loadAllOrders()" id="all">All Orders</li>
@@ -540,13 +540,13 @@
                             <table class="table table-bordered table-striped" style="overflow-y: auto;">
                                 <thead>
                                     <tr>
-                                        <th style="width: 15%;">Order Id</th>
-                                        <th style="width: 15%;">Email</th>
-                                        <th style="width: 20%;">Products</th>
-                                        <th style="width: 15%;">Price</th>
-                                        <th style="width: 15%;">Method</th>
+                                        <th style="width: 10%;">Order Id</th>
+                                        <th style="width: 10%;">Email</th>
+                                        <th style="width: 15%;">Products</th>
+                                        <th style="width: 30%;">Address</th>
+                                        <th style="width: 5%;">Price</th>
+                                        <th style="width: 5%;">Method</th>
                                         <th style="width: 15%;">Date</th>
-                                        <th style="width: 20%;">Status</th>
                                     </tr>
                                 </thead>
                                 <tbody id="OrdersBody" style="overflow: hidden;"></tbody>
@@ -555,6 +555,28 @@
                     </div>
                 </div>
             </section>
+        </section>
+
+        <script>
+            function exportToCSV() {
+
+                const rows = document.querySelectorAll("#allOrdersTab tbody tr");
+                const data = Array.from(rows, row => {
+
+                    const columns = row.querySelectorAll("td:not(:last-child)");
+                    return Array.from(columns, column => column.textContent).join(",");
+                }).join("\n");
+
+                const blob = new Blob([data], { type: "text/csv" });
+
+                const link = document.createElement("a");
+                link.href = URL.createObjectURL(blob);
+                link.download = "orders.csv";
+
+                link.click();
+            }
+        </script>
+
             <script>
                 let Orders = []
                 let selectedOrdersTab = 'all'
@@ -621,8 +643,6 @@
     return cell;
 }
 
-
-
                 function loadDeliveringOrders() {
                     const deliveringOrders = Orders.filter(order => order.status === 'Delivering');
                     document.querySelector('#' + selectedOrdersTab).classList.remove('active')
@@ -644,10 +664,10 @@
                 function loadOrdersTable(orders) {
                     document.querySelector('#OrdersBody').innerHTML = '';
                     orders.forEach(async order => {
-                        console.log(order)
+
                         let row = document.createElement('tr');
                         row.append(createTableCell(order.razorpay_order_id, true));
-                        row.append(createTableCell(order.email));
+                        row.append(createTableCell(order.email));   
                         let names = '';
                         await Promise.all(order.products.map(async product => {
                             try {
@@ -658,6 +678,7 @@
                             }
                         }));
                         row.append(createTableCell(names));
+                        row.append(createTableCell(order.locality+", "+order.landmark+", "+order.pincode));
                         row.append(createTableCell('₹' + order.totalPayment));
                         row.append(createTableCell((order.deliveryMethod) || "Prepaid"));
                         const dateTime = new Date(order.Date);
@@ -726,6 +747,9 @@
                             <label for="offeredPrice">Offered Price (₹)<span style="color: #999;">(Amount to be displayed to User)</span>:</label>
                             <input type="number" id="offeredPrice" name="offeredPrice" required>
 
+                            <label for="ProductSKUcode">Product SKU Code:</label>
+                            <input type="text" id="ProductSKUcode" name="ProductSKUcode">
+
                             <label for="category">Category :</label>
 
                             <select id="category" name="category" required>
@@ -737,13 +761,13 @@
                             </select>
 
                             <label for="productFAQ">FAQ :</label>
-                            <textarea id="productFAQ" name="productFAQ" rows="2" required></textarea>
+                            <textarea id="productFAQ" name="productFAQ" rows="3" required></textarea>
 
                             <label for="keyFeatures">Key Features :</label>
-                            <textarea id="keyFeatures" name="keyFeatures" rows="2" required></textarea>
+                            <textarea id="keyFeatures" name="keyFeatures" rows="3" required></textarea>
 
                             <label for="howtouse">How To Use :</label>
-                            <textarea id="howtouse" name="howtouse" rows="2" required></textarea>
+                            <textarea id="howtouse" name="howtouse" rows="3" required></textarea>
 
                             <label for="metaTitle">Meta Title :</label>
                             <textarea id="metaTitle" name="metaTitle" rows="1" required></textarea>
@@ -1482,7 +1506,6 @@
 
   <%- include('partials/loader') %> 
   <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
-
 
     </div>
     <script>

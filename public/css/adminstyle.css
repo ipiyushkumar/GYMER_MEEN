@@ -354,6 +354,14 @@ a:hover {
     border-radius: 1rem;
 }
 
+.order-table tbody{
+    margin-top: 1vh !important;
+}
+
+.order-table tbody td{
+    font-size: 2vh;
+}
+
 .category-container .add-category{
   padding: 0.5rem;
   background-color: slateblue;
