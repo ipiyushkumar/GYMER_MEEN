@@ -1565,29 +1565,31 @@
         />
       </a>
     </div>
-   
+
     <script>
-      document.addEventListener("DOMContentLoaded", function() {
+      document.addEventListener("DOMContentLoaded", function () {
         const newArrivalGrid = document.getElementById("newArrivalGrid");
         const scrollStep = 550;
-    
-        window.slideLeftNew = function() {
+
+        window.slideLeftNew = function () {
           newArrivalGrid.scrollBy({
             left: -scrollStep,
             behavior: "smooth",
           });
-        }
-    
-        window.slideRightNew = function() {
+        };
+
+        window.slideRightNew = function () {
           newArrivalGrid.scrollBy({
             left: scrollStep,
             behavior: "smooth",
           });
-        }
+        };
       });
     </script>
-    
-    <div class="container-fluid d-flex justify-content-end product-sliders-new mt-2 mb-2">
+
+    <div
+      class="container-fluid d-flex justify-content-end product-sliders-new mt-2 mb-2"
+    >
       <button class="sliding-buttons" onclick="slideLeftNew()">
         <iconify-icon icon="icon-park-solid:left-c"></iconify-icon>
       </button>
@@ -1595,7 +1597,7 @@
         <iconify-icon icon="icon-park-solid:right-c"></iconify-icon>
       </button>
     </div>
-    
+
     <div
       id="newArrivalGrid"
       class="row product-grid mb-4 mt-2"
@@ -1603,11 +1605,8 @@
       onmouseup="stopScroll()"
       ontouchstart="startScroll(event)"
       ontouchend="stopScroll()"
-    >
-    </div>
+    ></div>
 
-
-    
     <!-- <div
       id="newArrivalGrid"
       class="row product-grid mb-4 mt-2"
@@ -1617,9 +1616,7 @@
       ontouchend="stopScroll()"
     >
     </div> -->
-    
-    
-    
+
     <div class="container-fluid mb-0 mt-0 p-2">
       <video autoplay muted loop class="bg-video p-0">
         <source src="../assets/promo-banner-vid.mp4" type="video/mp4" />
@@ -1892,10 +1889,7 @@
     </div> -->
 
     <div class="container-fluid mt-0 mb-0 p-0">
-      <img
-        src="../assets/FEATURED COLLECTION.jpg"
-        style="width: 100%;"
-      />
+      <img src="../assets/FEATURED COLLECTION.jpg" style="width: 100%" />
       <h2 class="text-center text-white mb-0 home-head d-none">
         Featured Collection
       </h2>
@@ -2277,10 +2271,10 @@
 
         filteredProducts.forEach((product) => {
           const productCard = createProductCard(product);
-          if (product.newArrival) {
+          if (true) {
             newArrivalGrid.append(createProductCard(product));
           }
-          if (product.bestSeller) {
+          if (product.stock > 0 && Date.parse(product.createdAt) < Date.now()) {
             productGrid.append(createProductCard(product));
           }
         });
