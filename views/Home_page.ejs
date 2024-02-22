@@ -2229,32 +2229,34 @@
 
       function attachAddToCartListeners(products) {
         products.forEach((product) => {
-          const addButton = document.querySelector(`.add${product.itemId}`);
+          const addButton = document.querySelectorAll(`.add${product.itemId}`);
           if (!addButton) return 0;
-          addButton.addEventListener("click", async (event) => {
-            event.preventDefault();
-            try {
-              const response = await addToCart("/addItem", {
-                itemId: product.itemId,
-              });
-              if (response.status === 200) {
-                showAlert("item added to cart", "success");
-                openCart();
-              } else {
-                console.error(
-                  "Error adding item to cart:",
-                  response.data.message
-                );
+          addButton.forEach((element) =>
+            element.addEventListener("click", async (event) => {
+              event.preventDefault();
+              try {
+                const response = await addToCart("/addItem", {
+                  itemId: product.itemId,
+                });
+                if (response.status === 200) {
+                  showAlert("item added to cart", "success");
+                  openCart();
+                } else {
+                  console.error(
+                    "Error adding item to cart:",
+                    response.data.message
+                  );
+                }
+              } catch (err) {
+                if (err.response.status === 400) {
+                  showAlert("Item already in cart", "success");
+                  openCart();
+                } else {
+                  window.location.href = "/login";
+                }
               }
-            } catch (err) {
-              if (err.response.status === 400) {
-                showAlert("Item already in cart", "success");
-                openCart();
-              } else {
-                window.location.href = "/login";
-              }
-            }
-          });
+            })
+          );
         });
       }
       async function addToCart(apiEndpoint, data) {
