@@ -26,7 +26,34 @@
       href="https://fonts.googleapis.com/css2?family=Outfit:wght@200;400;500&display=swap"
     />
 
-    
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org/", 
+        "@type": "Product", 
+        "name": "<%= item.name %>",
+        "image": "${product.imageLink[0]}",
+        "description": "<%= item.description || "" %>",
+        "brand": {
+          "@type": "Brand",
+          "name": "Whitewolf India"
+        },
+        "sku": "KCPL-HS-001",
+        "offers": {
+          "@type": "AggregateOffer",
+          "url": "https://www.whitewolfindia.com/products/<%=item.name%>",
+          "priceCurrency": "INR",
+          "lowPrice": "<%= item.offeredPrice %>",
+          "highPrice": "<%= item.originalPrice%>"
+        },
+        "aggregateRating": {
+          "@type": "AggregateRating",
+          "ratingValue": "4.7",
+          "bestRating": "5",
+          "worstRating": "3",
+          "ratingCount": "3"
+        }
+      }
+      </script>
 
     <link id="canonicalLink" rel="canonical" href="https://www.whitewolfindia.com/" />
 <script>
