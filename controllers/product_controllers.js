@@ -14,8 +14,9 @@ const getProductUsingId = async (req, res) => {
     const itemId = req.params.itemId;
     const item = await Product.findOne({ itemId });
     if (!item) {
-      return res.status(404).json({ error: "Product not found" });
+      return res.status(404).redirect('/error404');
     }
+    
     res.status(200).json(item);
   } catch (error) {
     res.status(500).json({ error: "Internal Server Error" });
@@ -30,7 +31,7 @@ const getItemPage = async (req, res) => {
     const itemId = req.params.itemId;
     const item = await Product.findOne({ itemId });
     if (!item) {
-      return res.status(404).json({ error: "Product not found" });
+      return res.status(404).redirect('/error404');
     }
     const content = {
       isLoggedIn: req.session.isLoggedIn,
@@ -47,7 +48,7 @@ const getAllReviews = async (req, res) => {
     const product = await Product.findOne({ itemId: req.params.itemId });
 
     if (!product) {
-      return res.status(404).json({ message: "Product not found" });
+      return res.status(404).redirect('/error404');
     }
 
     // Extract reviews based on email and exclude orderId
