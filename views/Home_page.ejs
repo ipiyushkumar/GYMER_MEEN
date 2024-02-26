@@ -1622,13 +1622,15 @@
     </div>
 
     <div
-      id="newArrivalGrid"
-      class="row product-grid mb-4 mt-2"
-      onmousedown="startScroll(event)"
-      onmouseup="stopScroll()"
-      ontouchstart="startScroll(event)"
-      ontouchend="stopScroll()"
-    ></div>
+    id="newArrivalGrid"
+    class="row product-grid mb-4 mt-2"
+    onmousedown="startScrollNewArrival(event)"
+    onmouseup="stopScrollNewArrival()"
+    ontouchstart="startScrollNewArrival(event)"
+    ontouchend="stopScrollNewArrival()"
+    onscroll="showScrollbarNewArrival(); clearTimeout(timeoutIdNewArrival); timeoutIdNewArrival = setTimeout(hideScrollbarNewArrival, 2000);"
+  ></div>
+  
 
     <!-- <div
       id="newArrivalGrid"
@@ -2517,6 +2519,62 @@
           timeoutId = setTimeout(hideScrollbar, 2000);
         });
     </script>
+
+<script>
+  let isScrollingNewArrival = false;
+
+  function startScrollNewArrival(event) {
+      isScrollingNewArrival = true;
+      const scrollContainer = document.getElementById("newArrivalGrid");
+      const startX = event.pageX || event.touches[0].pageX;
+      let scrollLeft = scrollContainer.scrollLeft;
+
+      function handleMouseMoveNewArrival(e) {
+          const x = e.pageX || e.touches[0].pageX;
+          const delta = x - startX;
+          scrollContainer.scrollLeft = scrollLeft - delta;
+      }
+
+      function handleMouseUpNewArrival() {
+          isScrollingNewArrival = false;
+          document.removeEventListener("mousemove", handleMouseMoveNewArrival);
+          document.removeEventListener("mouseup", handleMouseUpNewArrival);
+          document.removeEventListener("touchmove", handleMouseMoveNewArrival);
+          document.removeEventListener("touchend", handleMouseUpNewArrival);
+      }
+
+      document.addEventListener("mousemove", handleMouseMoveNewArrival);
+      document.addEventListener("mouseup", handleMouseUpNewArrival);
+      document.addEventListener("touchmove", handleMouseMoveNewArrival);
+      document.addEventListener("touchend", handleMouseUpNewArrival);
+  }
+
+  function stopScrollNewArrival() {
+      isScrollingNewArrival = false;
+  }
+
+  let timeoutIdNewArrival;
+
+  function hideScrollbarNewArrival() {
+      if (!isScrollingNewArrival) {
+          document.getElementById("newArrivalGrid").style.overflow = "hidden";
+      }
+  }
+
+  function showScrollbarNewArrival() {
+      document.getElementById("newArrivalGrid").style.overflow = "auto";
+  }
+
+  document
+      .getElementById("newArrivalGrid")
+      .addEventListener("scroll", function () {
+          showScrollbarNewArrival();
+          clearTimeout(timeoutIdNewArrival);
+          timeoutIdNewArrival = setTimeout(hideScrollbarNewArrival, 2000);
+      });
+</script>
+
+
     <script>
       document.addEventListener("DOMContentLoaded", function () {
         AOS.init();
