@@ -76,13 +76,13 @@ router.post(
   "/api/products",
   isAdminAuthenticated,
   multerMiddleware.array("imageFiles"),
-  multerMiddleware.array("videoFiles"),
+  // multerMiddleware.array("videoFiles"),
   async (req, res) => {
     try {
       console.log("route started");
       // Check if files are present
       if (!req.imageFiles || req.imageFiles.length === 0) {
-        return res.status(400).json({ error: "No files uploaded." });
+        return res.status(400).json({ error: "No image files uploaded." });
       }
 
       // Retrieve other form data
@@ -108,9 +108,9 @@ router.post(
       const imageLink = req.imageFiles.map(
         (file) => `/uploads/${file.filename}`
       );
-      const videoLink = req.videoFiles.map(
-        (file) => `/uploads/${file.filename}`
-      );
+      // const videoLink = req.videoFiles.map(
+      //   (file) => `/uploads/${file.filename}`
+      // );
 
       console.log("loading product");
       // Create a new Product instance
@@ -129,7 +129,7 @@ router.post(
         category,
         stock,
         imageLink,
-        videoLink,
+        // videoLink,
         createdAt,
       });
       const sanitizedName = name

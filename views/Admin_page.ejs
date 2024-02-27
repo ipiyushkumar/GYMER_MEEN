@@ -842,11 +842,11 @@
                                     <img id="Image7Preview" alt="Preview" style="width: 70%; height: auto; margin-top: 0rem; margin-bottom: 1rem;border-radius: 1rem;">
                                 </div>
                             </div>
-                            <div class="vid1">
+                            <!-- <div class="vid1">
                                 <label for="Video1" id="Video1label">Video</label>
                                 <input type="file" value="-1" id="Video1" name="Video1" accept="video/*" required onchange="previewVideo('Video1')" style="border: none; padding: 0.5rem; background-color: #f0f0f0;">  
                                 <iframe id="Video1Preview" src="" alt="Video Preview"></iframe>
-                            </div>
+                            </div> -->
                         </div>
                     </div>
                     <div id="scheduleModal" class="item_schedule_modal" style="display: none;">
@@ -917,14 +917,14 @@
                         reader.readAsDataURL(input.files[0]);
                     }
                 }
-                function previewVideo(inputId) {
-                    const input = document.getElementById(inputId);
-                    const preview = document.getElementById(`${inputId}Preview`);
+                // function previewVideo(inputId) {
+                //     const input = document.getElementById(inputId);
+                //     const preview = document.getElementById(`${inputId}Preview`);
 
-                    if (input.files && input.files[0]) {
-                        preview.src = URL.createObjectURL(input.files[0]);
-                    }
-                }
+                //     if (input.files && input.files[0]) {
+                //         preview.src = URL.createObjectURL(input.files[0]);
+                //     }
+                // }
                 function resetPreview () {
                     document.getElementById('Image1Preview').src = ''
                     document.getElementById('Image2Preview').src = ''
@@ -934,7 +934,7 @@
                     document.getElementById('Image6Preview').src = ''
                     document.getElementById('Image7Preview').src = ''
 
-                    document.getElementById('Video1Preview').src = ''
+                    // document.getElementById('Video1Preview').src = ''
                 }
                 async function addProduct() {
                     let bestSeller = false;
@@ -1015,7 +1015,7 @@
                                     formData.append('imageFiles', document.getElementById(`Image${index+2}`).files[0]);
                                 }
                             }
-                            formData.append('videoFiles', document.getElementById(`Video1`).files[0]);
+                            // formData.append('videoFiles', document.getElementById(`Video1`).files[0]);
 
                             await axios.post('/api/products', formData)
                             .then((response) => {
@@ -1038,7 +1038,7 @@
                                 document.getElementById('Image5').files[0] = '';
                                 document.getElementById('Image6').files[0] = '';
                                 document.getElementById('Image7').files[0] = '';
-                                document.getElementById('Video1').files[0] = '';
+                                // document.getElementById('Video1').files[0] = '';
                                 resetPreview()
                             })
                             .then (() => {

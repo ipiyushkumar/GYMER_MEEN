@@ -27,7 +27,7 @@ const productSchema = new mongoose.Schema({
   category: { type: String, required: true },
   stock: { type: Number, default: 0 },
   imageLink: [{ type: String }],
-  videoLink: [{ type: String }],
+  // videoLink: [{ type: String }],
   createdAt: { type: Date },
 });
 
