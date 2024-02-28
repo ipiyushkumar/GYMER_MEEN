@@ -7,8 +7,12 @@ const MongoStore = require("connect-mongo");
 const env = require("dotenv");
 const path = require("path");
 const helmet = require("helmet");
+const Contlo = require("contlo-web-sdk");
 
 env.config();
+
+Contlo.init(process.env.CONTLO_PUB_KEY, "www.whitewolfindia.com");
+
 const port = process.env.PORT || 3000;
 const app = express();
 
