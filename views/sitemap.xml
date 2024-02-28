@@ -11,6 +11,16 @@
   <priority>1.00</priority>
 </url>
 <url>
+  <loc>https://www.whitewolfindia.com/collections/new-arrivals</loc>
+  <lastmod>2024-02-02T12:45:08+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://www.whitewolfindia.com/collections/best-sellers</loc>
+  <lastmod>2024-02-02T12:45:08+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
   <loc>https://www.whitewolfindia.com/collections/beard-care</loc>
   <lastmod>2024-02-02T12:45:08+00:00</lastmod>
   <priority>0.80</priority>
@@ -81,8 +91,28 @@
   <lastmod>2024-02-02T12:45:08+00:00</lastmod>
   <priority>0.80</priority>
 </url>
+<url>
+  <loc>https://www.whitewolfindia.com/products/hair-removal-spray</loc>
+  <lastmod>2024-02-02T12:45:08+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+    <url>
+        <loc>https://www.whitewolfindia.com/products/hair-styling-wax-powder</loc>
+        <lastmod>2024-02-02T12:45:08+00:00</lastmod>
+        <priority>0.80</priority>
+    </url>
     <url>
         <loc>https://www.whitewolfindia.com/products/anti-acne-face-wash</loc>
+        <lastmod>2024-02-02T12:45:08+00:00</lastmod>
+        <priority>0.80</priority>
+    </url>
+    <url>
+        <loc>https://www.whitewolfindia.com/products/exfoliating-peel-cleanser</loc>
+        <lastmod>2024-02-02T12:45:08+00:00</lastmod>
+        <priority>0.80</priority>
+    </url>
+     <url>
+        <loc>https://www.whitewolfindia.com/products/exfoliating-peel-cleanser</loc>
         <lastmod>2024-02-02T12:45:08+00:00</lastmod>
         <priority>0.80</priority>
     </url>

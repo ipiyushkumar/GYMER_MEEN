@@ -125,12 +125,15 @@ document.addEventListener("DOMContentLoaded", function() {
       })(window, document, "script", "dataLayer", "GTM-NQVB53VH");
     </script>
 
+    <meta property="og:site_name" content="Whitewolf India">
     <meta property="og:image" content="<%= item.imageLink[0] %>" />
+    <meta property="og:url" content="https://www.whitewolfindia.com/products/<%= item.name.toLowerCase().replace(/\s+/g, '-') %>">
     <meta property="og:image:type" content="image/jpg" />
-    <meta property="og:image:width" content="65" />
-    <meta property="og:image:height" content="350" />
+    <meta property="og:image:width" content="500" />
+    <meta property="og:image:height" content="500" />
     <meta property="og:title" content="<%= item.name%>" />
     <meta property="og:description" content="<%= item.meta_description %>" />
+
     <title><%= item.name %> - Whitewolf</title>
     <style>
       .alert {
@@ -615,7 +618,7 @@ document.addEventListener("DOMContentLoaded", function() {
               <div class="input-group mb-1">
                 <input type="text" class="form-control rounded-0" id="pincode-input" placeholder="Enter your pincode">
                 <div class="input-group-append">
-                  <button class="btn btn-dark text-uppercase rounded-0" type="button" onclick="checkPincode()">Check Availability</button>
+                  <button class="btn btn-dark text-uppercase rounded-0" type="button" style="z-index: 0;" onclick="checkPincode()">Check Availability</button>
                 </div>
               </div>
               <div id="delivery-info" class="mt-2 mb-1 text-capitalize"></div>
