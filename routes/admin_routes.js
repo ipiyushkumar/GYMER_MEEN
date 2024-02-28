@@ -81,9 +81,11 @@ router.post(
     try {
       console.log("route started");
       // Check if files are present
-      if (!req.imageFiles || req.imageFiles.length === 0) {
+      if (!req.files || req.files.length === 0) {
         return res.status(400).json({ error: "No image files uploaded." });
       }
+
+      console.log(req.imageFiles);
 
       // Retrieve other form data
       const {
@@ -103,15 +105,12 @@ router.post(
         createdAt,
       } = req.body;
 
-      console.log("creating image link");
-      // Extract file paths from Multer's processed files
-      const imageLink = req.imageFiles.map(
-        (file) => `/uploads/${file.filename}`
-      );
-      // const videoLink = req.videoFiles.map(
-      //   (file) => `/uploads/${file.filename}`
-      // );
-
+      let imageLink = [];
+      req.files.forEach((file) => {
+        if (file.fieldname === "imageFiles") {
+          imageLink.push(`/uploads/${file.filename}`);
+        }
+      });
       console.log("loading product");
       // Create a new Product instance
       const newProduct = new Product({
@@ -238,7 +237,7 @@ router.delete(
 
       // Delete images from storage
       if (deletedProduct.imageLink) {
-        await Promise.all(deletedProduct.imageLink.map(deleteImage));
+        await Promise.all(deletedProduct.imageLink.map(deleteFiles));
       }
 
       const ledger = new adminHistory({
@@ -260,15 +259,15 @@ router.delete(
   }
 );
 
-async function deleteImage(imagePath) {
+async function deleteFiles(path) {
   try {
-    // Assuming imagePath contains the full path to the image
+    // Assuming path contains the full path to the image
     await fs
-      .unlink("./" + imagePath)
-      .then((response) => console.log(`Deleted image: ${imagePath}`))
+      .unlink("./" + path)
+      .then((response) => console.log(`Deleted image: ${path}`))
       .catch((err) => console.log("image not found for deletion " + err));
   } catch (error) {
-    console.error(`Error deleting image ${imagePath}:`, error);
+    console.error(`Error deleting image ${path}:`, error);
     throw error; // Rethrow the error to handle it in the calling function
   }
 }
