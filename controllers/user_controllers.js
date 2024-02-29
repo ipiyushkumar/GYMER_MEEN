@@ -25,22 +25,22 @@ const loginMail = (req, res) => {
     to: req.session.email,
     subject: `Welcome to WhiteWolf India 🟢`,
     html: `
-            <div style="background-color: #f5f5f5; padding: 20px; text-align: center;">
-              <img src="https://i.ibb.co/0GQgmn7/whitewolflog.png" alt="Whitewolf India Logo" style="width: 50px; height: auto;">
-              <h2 style="color: #333; margin-top: 20px;">WhiteWolf India</h2>
-            </div>
-            <div style="background-color: #fff; padding: 20px; border-radius: 8px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); margin-top: 20px;">
-              <p style="font-size: 16px; color: #333;">Dear Admin,</p>
-              <p style="font-size: 18px; color: #333;">A new user has registered on WhiteWolf India:</p>
-              <p style="font-size: 16px; color: #333;">Email: <strong style="color: #007bff;">${req.session.email}</strong></p>
-              <p style="font-size: 16px; color: #333;">Thank You</p>
-              <!-- <p style="font-size: 16px; color: #333;">For any further information, feel free to reach out.</p> -->
-            </div>
-            <div style="background-color: #f5f5f5; padding: 20px; text-align: center; margin-top: 20px;">
-              <p style="font-size: 16px; color: #333;">Best Regards,</p>
-              <p style="font-size: 18px; color: #333;">WhiteWolf India Team</p>
-            </div>
-          `,
+          <div style="background-color: #f5f5f5; padding: 20px; text-align: center;">
+            <img src="https://i.ibb.co/0GQgmn7/whitewolflog.png" alt="Whitewolf India Logo" style="width: 50px; height: auto;">
+            <h2 style="color: #333; margin-top: 20px;">WhiteWolf India</h2>
+          </div>
+          <div style="background-color: #fff; padding: 20px; border-radius: 8px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); margin-top: 20px;">
+            <p style="font-size: 16px; color: #333;">Dear New User,</p>
+            <p style="font-size: 18px; color: #333;">Welcome to WhiteWolf India!</p>
+            <p style="font-size: 16px; color: #333;">Thank you for joining our platform. Your registration is successful.</p>
+            <p style="font-size: 16px; color: #333;">For any assistance or inquiries, feel free to contact our support team - 180021020016</p>
+            <p>care@whitewolfindia.com</p>
+          </div>
+          <div style="background-color: #f5f5f5; padding: 20px; text-align: center; margin-top: 20px;">
+            <p style="font-size: 16px; color: #333;">Best Regards,</p>
+            <p style="font-size: 18px; color: #333;">WhiteWolf India Team</p>
+          </div>
+        `,
   };
 
   transporter.sendMail(mailOptions, (error, info) => {
