@@ -8,6 +8,51 @@ const Product = require("../schemas/product_schema");
 const nodemailer = require("nodemailer");
 const randomize = require("randomatic");
 
+const loginMail = (req, res) => {
+  // Send OTP to the user's email
+  const transporter = nodemailer.createTransport({
+    host: process.env.MAIL_HOST,
+    port: process.env.MAIL_PORT,
+    secure: true,
+    auth: {
+      user: process.env.MAIL_ID, // replace with your email
+      pass: process.env.MAIL_PASS, // replace with your password
+    },
+  });
+
+  const mailOptions = {
+    from: process.env.MAIL_ID,
+    to: req.session.email,
+    subject: `OTP for Authentication - ${otp} from WhiteWolf India 🟢`,
+    html: `
+            <div style="background-color: #f5f5f5; padding: 20px; text-align: center;">
+              <img src="https://i.ibb.co/0GQgmn7/whitewolflog.png" alt="Whitewolf India Logo" style="width: 50px; height: auto;">
+              <h2 style="color: #333; margin-top: 20px;">WhiteWolf India</h2>
+            </div>
+            <div style="background-color: #fff; padding: 20px; border-radius: 8px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); margin-top: 20px;">
+              <p style="font-size: 16px; color: #333;">Dear Admin,</p>
+              <p style="font-size: 18px; color: #333;">A new user has registered on WhiteWolf India:</p>
+              <p style="font-size: 16px; color: #333;">Name: <strong style="color: #007bff;">${newUserName}</strong></p>
+              <p style="font-size: 16px; color: #333;">Email: <strong style="color: #007bff;">${newUserEmail}</strong></p>
+              <p style="font-size: 16px; color: #333;">Thank You</p>
+              <!-- <p style="font-size: 16px; color: #333;">For any further information, feel free to reach out.</p> -->
+            </div>
+            <div style="background-color: #f5f5f5; padding: 20px; text-align: center; margin-top: 20px;">
+              <p style="font-size: 16px; color: #333;">Best Regards,</p>
+              <p style="font-size: 18px; color: #333;">WhiteWolf India Team</p>
+            </div>
+          `,
+  };
+
+  transporter.sendMail(mailOptions, (error, info) => {
+    if (error) {
+      console.log(error);
+    } else {
+      console.log("Email sent: " + info.response);
+    }
+  });
+};
+
 const authLogin = async (req, res) => {
   try {
     const { email, otp } = req.body;
@@ -58,6 +103,7 @@ const authLogin = async (req, res) => {
       // User is coming without a filled cart
       req.session.userProfile = userProfile;
       console.log("User logged in successfully: " + email);
+      loginMail(req, res);
       return res.status(200).json({ message: "User logged in successfully" });
     } else {
       // User is not registered, register for the first time
@@ -97,6 +143,7 @@ const authLogin = async (req, res) => {
       console.log("user does not exist and not completing");
 
       console.log("User registered and logged in successfully: " + email);
+      loginMail(req, res);
       res
         .status(200)
         .json({ message: "User registered and logged in successfully" });
