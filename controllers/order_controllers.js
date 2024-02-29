@@ -245,11 +245,10 @@ const saveOrder = async (req, res) => {
           userData.address = address || userData.address;
           userData.cart = userData.cart;
 
-          orderMail(req, res, orderDetails);
           userData.cart = [];
           req.session.userProfile.cart = [];
           await userData.save();
-
+          orderMail(req, res, orderDetails);
           res.status(200).json({ message: "order successful" });
         } else {
           res.status(400).json({ message: "orderId mismatch" });
@@ -340,10 +339,10 @@ const saveOrder = async (req, res) => {
     userData.address = address || userData.address;
     userData.cart = userData.cart;
 
-    orderMail(req, res, orderDetails);
     userData.cart = [];
     req.session.userProfile.cart = [];
     await userData.save();
+    orderMail(req, res, orderDetails);
     res.status(200).json({ message: "order successful" });
   }
 };
