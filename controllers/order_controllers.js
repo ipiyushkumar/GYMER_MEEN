@@ -97,6 +97,68 @@ const paymentGateway = async (req, res) => {
 };
 const payment = require("../schemas/payment_signatures");
 
+const nodemailer = require("nodemailer");
+
+const orderMail = (req, res, orderDetails) => {
+  // Send OTP to the user's email
+  const transporter = nodemailer.createTransport({
+    host: process.env.MAIL_HOST,
+    port: process.env.MAIL_PORT,
+    secure: true,
+    auth: {
+      user: process.env.MAIL_ID, // replace with your email
+      pass: process.env.MAIL_PASS, // replace with your password
+    },
+  });
+
+  const mailOptions = {
+    from: process.env.MAIL_ID,
+    to: req.session.email,
+    subject: `New Order Placed - WhiteWolf India 🟢`,
+    html: `
+    <div style="background-color: #f5f5f5; padding: 20px; text-align: center;">
+      <img src="https://i.ibb.co/0GQgmn7/whitewolflog.png" alt="Whitewolf India Logo" style="width: 50px; height: auto;">
+      <h2 style="color: #333; margin-top: 20px;">WhiteWolf India</h2>
+    </div>
+    <div style="background-color: #fff; padding: 20px; border-radius: 8px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); margin-top: 20px;">
+      <p style="font-size: 16px; color: #333;">Dear Admin,</p>
+      <p style="font-size: 18px; color: #333;">A new order has been placed on WhiteWolf India:</p>
+      <table style="width:100%; border-collapse: collapse; margin-top: 10px;">
+        <tr style="background-color: #f2f2f2;">
+          <th  style="padding: 10px; text-align: left;">Image</th>
+          <th style="padding: 10px; text-align: left;">Name</th>
+          <th style="padding: 10px; text-align: left;">Price</th>
+        </tr>
+        ${orderDetails
+          .map(
+            (product) => `
+          <tr>
+            <td style="padding: 10px;">${product.itemId}</td>
+            <td style="padding: 10px;">${product.quantity}</td>
+          </tr>
+        `
+          )
+          .join("")}
+      </table>
+      <p style="font-size: 16px; color: #333;">Please proceed with the order processing.</p>
+      <p style="font-size: 16px; color: #333;">Thank You.</p>
+    </div>
+    <div style="background-color: #f5f5f5; padding: 20px; text-align: center; margin-top: 20px;">
+      <p style="font-size: 16px; color: #333;">Best Regards,</p>
+      <p style="font-size: 18px; color: #333;">WhiteWolf India Team</p>
+    </div>
+  `,
+  };
+
+  transporter.sendMail(mailOptions, (error, info) => {
+    if (error) {
+      console.log(error);
+    } else {
+      console.log("Email sent: " + info.response);
+    }
+  });
+};
+
 const saveOrder = async (req, res) => {
   const { razorpay_order_id, razorpay_payment_id, razorpay_signature } =
     req.body.data;
@@ -173,9 +235,11 @@ const saveOrder = async (req, res) => {
           userData.address = address || userData.address;
           userData.cart = cart || userData.cart;
 
+          orderMail(req, res, userData.cart);
           userData.cart = [];
           req.session.userProfile.cart = [];
           await userData.save();
+
           res.status(200).json({ message: "order successful" });
         } else {
           res.status(400).json({ message: "orderId mismatch" });
@@ -258,6 +322,7 @@ const saveOrder = async (req, res) => {
     userData.address = address || userData.address;
     userData.cart = cart || userData.cart;
 
+    orderMail(req, res, userData.cart);
     userData.cart = [];
     req.session.userProfile.cart = [];
     await userData.save();
