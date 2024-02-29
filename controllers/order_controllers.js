@@ -133,8 +133,9 @@ const orderMail = (req, res, orderDetails) => {
           .map(
             (product) => `
           <tr>
-            <td style="padding: 10px;">${product.itemId}</td>
-            <td style="padding: 10px;">${product.quantity}</td>
+            <td style="padding: 10px;"><img src="${product.image}" alt="Product Image" style="max-width: 100px; max-height: 100px;"></td>
+            <td style="padding: 10px;">${product.name}</td>
+            <td style="padding: 10px;">${product.price}</td>
           </tr>
         `
           )
@@ -176,11 +177,20 @@ const saveOrder = async (req, res) => {
           }
           let amount = 0;
 
+          let orderDetails = [];
+
           for (const product of userData.cart) {
             try {
               const item = await Product.findOne({ itemId: product.itemId });
               amount += product.quantity * item.offeredPrice;
               item.stock = item.stock - product.quantity;
+
+              orderDetails.push({
+                name: item.name,
+                image: "https://www.whitewolfindia.com" + item.imageLink[0],
+                price: item.offeredPrice,
+              });
+
               await item.save();
             } catch (error) {
               console.error(error);
@@ -235,7 +245,7 @@ const saveOrder = async (req, res) => {
           userData.address = address || userData.address;
           userData.cart = cart || userData.cart;
 
-          orderMail(req, res, userData.cart);
+          orderMail(req, res, orderDetails);
           userData.cart = [];
           req.session.userProfile.cart = [];
           await userData.save();
@@ -274,12 +284,20 @@ const saveOrder = async (req, res) => {
     }
 
     let amount = 0;
+    let orderDetails = [];
 
     for (const product of userData.cart) {
       try {
         const item = await Product.findOne({ itemId: product.itemId });
         amount += product.quantity * item.offeredPrice;
         item.stock = item.stock - product.quantity;
+
+        orderDetails.push({
+          name: item.name,
+          image: "https://www.whitewolfindia.com" + item.imageLink[0],
+          price: item.offeredPrice,
+        });
+
         await item.save();
       } catch (error) {
         console.error(error);
@@ -322,7 +340,7 @@ const saveOrder = async (req, res) => {
     userData.address = address || userData.address;
     userData.cart = cart || userData.cart;
 
-    orderMail(req, res, userData.cart);
+    orderMail(req, res, orderDetails);
     userData.cart = [];
     req.session.userProfile.cart = [];
     await userData.save();
