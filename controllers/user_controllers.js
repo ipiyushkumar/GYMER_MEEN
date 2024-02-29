@@ -23,7 +23,7 @@ const loginMail = (req, res) => {
   const mailOptions = {
     from: process.env.MAIL_ID,
     to: req.session.email,
-    subject: `OTP for Authentication - ${otp} from WhiteWolf India 🟢`,
+    subject: `Welcome to WhiteWolf India 🟢`,
     html: `
             <div style="background-color: #f5f5f5; padding: 20px; text-align: center;">
               <img src="https://i.ibb.co/0GQgmn7/whitewolflog.png" alt="Whitewolf India Logo" style="width: 50px; height: auto;">
