@@ -243,7 +243,7 @@ const saveOrder = async (req, res) => {
           userData.landmark = landmark || userData.landmark;
           userData.city = city || userData.city;
           userData.address = address || userData.address;
-          userData.cart = cart || userData.cart;
+          userData.cart = userData.cart;
 
           orderMail(req, res, orderDetails);
           userData.cart = [];
@@ -338,7 +338,7 @@ const saveOrder = async (req, res) => {
     userData.landmark = landmark || userData.landmark;
     userData.city = city || userData.city;
     userData.address = address || userData.address;
-    userData.cart = cart || userData.cart;
+    userData.cart = userData.cart;
 
     orderMail(req, res, orderDetails);
     userData.cart = [];
