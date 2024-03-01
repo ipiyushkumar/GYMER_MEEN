@@ -960,6 +960,8 @@
                     const name = document.getElementById('productName').value;
                     const description = document.getElementById('productDescription').value;
 
+                    const skuCode = document.getElementById('ProductSKUcode').value
+
                     const FAQ = document.getElementById("productFAQ").value
                     const metaTitle = document.getElementById("metaTitle").value;
                     const metaDescription = document.getElementById("metaDescription").value;
@@ -984,6 +986,7 @@
                         if (
                             name &&
                             description &&
+                            skuCode &&
                             FAQ &&
                             keyFeatures &&
                             metaTitle &&
@@ -1000,6 +1003,7 @@
 
                             formData.append('name', name);
                             formData.append('description', description);
+                            formData.append('skuCode', skuCode)
                             formData.append('FAQ', FAQ);
                             formData.append('meta_title', metaTitle);
                             formData.append('meta_description', metaDescription);
@@ -1025,6 +1029,7 @@
                             .then((response) => {
                                 showAlert('Product added successfully:',"success");
                                 document.getElementById('productName').value = '';
+                                document.getElementById('ProductSKUcode').value = ''
                                 document.getElementById('productDescription').value = '';
                                 document.getElementById("productFAQ").value = ''
                                 document.getElementById("metaTitle").value = ''
@@ -1193,6 +1198,11 @@
                             <span id="newDescriptionError" class="error-message"></span>
                         </div>
                         <div>
+                            <label for="newProductSKUcode">Product Sku Code:</label>
+                            <input type="text" id="newProductSKUcode" name="newProductSKUcode" required aria-describedby="newNameError">
+                            <span id="newProductSKUcodeError" class="error-message"></span>
+                        </div>
+                        <div>
                             <label for="newStock">New Stock:</label>
                             <input type="number" id="newStock" name="newStock" required aria-describedby="newStockError">
                             <span id="newStockError" class="error-message"></span>
@@ -1260,6 +1270,7 @@
                     let formdata = {
                         itemId: selectedItemId,
                         name : document.querySelector('#newName').value,
+                        skuCode : document.querySelector('#newProductSKUcode').value,
                         description : document.querySelector('#newDescription').value,
                         category : document.querySelector('#newcategory').value,
                         keyFeatures : document.querySelector('#newKeyFeatures').value,
@@ -1281,6 +1292,7 @@
                     .then(response => response.data)
                     .then(product => {
                         document.querySelector('#newName').value = product.name
+                        document.querySelector('#newProductSKUcode').value = product.skuCode
                         document.querySelector('#newDescription').value = product.description
                         document.querySelector('#newcategory').value = product.category
                         document.querySelector('#newUse').value = product.how_to_use
