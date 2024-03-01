@@ -90,6 +90,7 @@ router.post(
       // Retrieve other form data
       const {
         name,
+        skuCode,
         description,
         FAQ,
         meta_title,
@@ -115,6 +116,7 @@ router.post(
       // Create a new Product instance
       const newProduct = new Product({
         name,
+        skuCode,
         description,
         FAQ,
         meta_title,
@@ -165,6 +167,7 @@ router.put("/api/products", isAdminAuthenticated, async (req, res) => {
   const {
     itemId,
     name,
+    skuCode,
     description,
     category,
     keyFeatures,
@@ -188,6 +191,7 @@ router.put("/api/products", isAdminAuthenticated, async (req, res) => {
     updateItem.name = name || updateItem.name;
     updateItem.description = description || updateItem.description;
     updateItem.FAQ = FAQ || updateItem.FAQ;
+    updateItem.skuCode = skuCode || updateItem.skuCode;
     updateItem.meta_title = meta_title || updateItem.meta_title;
     updateItem.meta_description =
       meta_description || updateItem.meta_description;
