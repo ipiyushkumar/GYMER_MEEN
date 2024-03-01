@@ -562,7 +562,6 @@
                     </div>
                 </div>
             </section>
-        </section>
 
         <script>
             function exportToCSV() {
@@ -582,9 +581,7 @@
 
                 link.click();
             }
-        </script>
 
-            <script>
                 let Orders = []
                 let selectedOrdersTab = 'all'
                 function createTableCell(content) {
@@ -641,14 +638,14 @@
                 }
 
                 function createTableCell(data, isOrderId = false) {
-    let cell = document.createElement('td');
-    if (isOrderId && data.length > 11) {
-        cell.textContent = data.substring(0, 11) + '..';
-    } else {
-        cell.textContent = data;
-    }
-    return cell;
-}
+                    let cell = document.createElement('td');
+                    if (isOrderId && data.length > 11) {
+                        cell.textContent = data.substring(0, 11) + '..';
+                    } else {
+                        cell.textContent = data;
+                    }
+                    return cell;
+                }
 
                 function loadDeliveringOrders() {
                     const deliveringOrders = Orders.filter(order => order.status === 'Delivering');
@@ -1534,24 +1531,51 @@
 
                <div class="coupon-container" style="padding: 0vh 0vh 0vh 2vh;">
 
-    <div style="overflow: auto;height: 100%;overflow-y: scroll;padding: 1vh;padding-right: 2vh;padding-top: 3vh;">
-        <div style="display: flex; flex-direction: column; align-items: center; justify-content: space-between; margin-bottom: 1rem; width: 100%;">
+                <div style="overflow: auto;height: 100%;overflow-y: scroll;padding: 1vh;padding-right: 2vh;padding-top: 3vh;">
+                    <div style="display: flex; flex-direction: column; align-items: center; justify-content: space-between; margin-bottom: 1rem; width: 100%;">
 
-            <input type="text" id="collection_id" placeholder="Collection ID" style="flex: 1; margin-bottom: 1rem; padding: 0.5rem; border: 1px solid #ccc; border-radius: 5px; width: 100%;">
-        
-            <input type="text" id="collection_name" placeholder="Collection Name" style="flex: 1; margin-bottom: 1rem; padding: 0.5rem; border: 1px solid #ccc; border-radius: 5px; width: 100%;">
-        
-            <button id="sendButton" style="padding: 0.5rem 1rem; background-color: #4CAF50; color: white; border: none; border-radius: 5px; cursor: pointer; width: 100%;">Create</button>
-        
-        </div>
-        
-        <!-- <h2 style="margin-top: 0rem;">Active Coupons</h2> -->
-        <!-- Removed table and tbody -->
-    </div>
-</div>
+                        <input type="text" id="collection_id" placeholder="Collection ID" style="flex: 1; margin-bottom: 1rem; padding: 0.5rem; border: 1px solid #ccc; border-radius: 5px; width: 100%;">
+                    
+                        <input type="text" id="collection_title" placeholder="Collection Name" style="flex: 1; margin-bottom: 1rem; padding: 0.5rem; border: 1px solid #ccc; border-radius: 5px; width: 100%;">
+                    
+                        <button onclick="addNewContloCollection()" id="sendButton" style="padding: 0.5rem 1rem; background-color: #4CAF50; color: white; border: none; border-radius: 5px; cursor: pointer; width: 100%;">Create</button>
+                    
+                    </div>
+                    
+                    <!-- <h2 style="margin-top: 0rem;">Active Coupons</h2> -->
+                    <!-- Removed table and tbody -->
+                </div>
+            </div>
 
             <script>
+                function addNewContloCollection() {
+                    const id = document.getElementById("collection_id").value
+                    const name = document.getElementById("collection_title").value
 
+                    const url = "https://callback-service.contlo.com/api/collection/create?X-API-KEY=888a1070cd1541e424106639d7b9e4f3";
+
+                    const payload = {
+                        collection_id: id,
+                        title: name
+                    };
+
+                    const config = {
+                        headers: {
+                            accept: "application/json",
+                            "content-type": "application/json"
+                        }
+                    };
+
+                    axios.post(url, payload, config)
+                        .then((response) => {
+                            console.log(response.data);
+                            showAlert("successful","success")
+                        })
+                        .catch((error) => {
+                            console.error(error);
+                            showAlert("failed","danger")
+                        });
+                }
             </script>
             </section>
         </section>
