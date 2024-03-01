@@ -148,6 +148,10 @@
         height: 100%;
       }
 
+      #videoContainer .mob-vid{
+        display: none !important;
+      }
+
       .slide h2 {
         z-index: 1;
         color: #000;
@@ -388,6 +392,8 @@
         color: var(--pr-color);
         text-transform: uppercase;
       }
+
+      
 
       .custom-div {
         display: flex;
@@ -1234,13 +1240,20 @@
           content: url("/assets/Spray-third-mb.jpg") !important;
         }
 
+
         .carousel-item.fourth-slide img {
-          content: url("/assets/beard-mob.jpg") !important;
+          content: url("/assets/peel-cleanser-mob.jpg") !important;
         }
 
-        .carousel-item.fifth-slide img {
-          content: url("/assets/Peel\ cleanser.jpg\ 500x500\ px.jpg") !important;
-        }
+       #videoContainer .desk-vid{
+        display: none !important;
+       }
+
+       #videoContainer .mob-vid{
+        display: block !important;
+       }
+        
+        
       }
 
       .custom-slide {
@@ -1379,14 +1392,21 @@
       </div>
     </div> -->
 
-    <div
-      id="carouselExampleIndicators"
-      class="carousel slide"
-      data-ride="carousel"
-      style="margin-top: 13vh"
-    >
-      <div class="carousel-inner">
-        <div class="carousel-item first-slide active">
+    <div id="videoContainer" style="display: block;margin: 0;margin-top: 13vh;margin-bottom:2vh;width: 100%;height: 100%;padding: 0;">
+      <video id="video1" class="d-block w-100 desk-vid" autoplay muted onended="hideVideo()">
+        <source src="/assets/Banner-teaser-new.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+
+      <video id="video1" class="d-block w-100 mob-vid" autoplay muted onended="hideVideo()">
+        <source src="/assets/mob-top-video.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+    </div>
+    
+    <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel" style="margin-top: 13vh; display: none;">
+      <div class="carousel-inner">      
+        <div class="carousel-item first-slide active ">
           <a href="/products/anti-acne-face-wash">
             <img
               src="/assets/anti-acne-desk.jpg"
@@ -1410,12 +1430,6 @@
           </a>
         </div>
         <div class="carousel-item fourth-slide">
-          <a href="/products/gray-gaurd-beard-illuminating-serum">
-            <img src="/assets/beard-desk.jpg" class="d-block w-100" alt="..." />
-          </a>
-        </div>
-
-        <div class="carousel-item fifth-slide">
           <a href="/collections/skin-care">
             <img
               src="/assets/Peel cleanser.jpg 1440x425 px.jpg"
@@ -1425,7 +1439,7 @@
           </a>
         </div>
       </div>
-
+    
       <ol
         class="carousel-indicators mt-1 mb-1"
         style="position: relative; z-index: 0"
@@ -1438,33 +1452,33 @@
         <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
         <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
         <li data-target="#carouselExampleIndicators" data-slide-to="3"></li>
-        <li data-target="#carouselExampleIndicators" data-slide-to="4"></li>
       </ol>
     </div>
-
+    
     <script>
-      $(".carousel").carousel({
-        interval: 500,
-      });
-    </script>
+      function hideVideo() {
+          var videoContainer = document.getElementById('videoContainer');
+          var carouselContainer = document.getElementById('carouselExampleIndicators');
 
-    <!-- <script>
-      document.addEventListener("DOMContentLoaded", function () {
-        const slides = document.querySelector(".custom-slide");
-        let currentIndex = 0;
+          videoContainer.style.transition = 'opacity 0.5s';
+          videoContainer.style.opacity = '0';
 
-        function scrollToNextSlide() {
-          currentIndex = (currentIndex + 1) % slides.children.length;
-          slides.scrollTo({
-            left: slides.children[currentIndex].offsetLeft,
-            behavior: "smooth",
-          });
-        }
+          setTimeout(function() {
 
-        setInterval(scrollToNextSlide, 3000);
-      });
-    </script> -->
+              videoContainer.style.display = 'none';
 
+              carouselContainer.style.opacity = '0';
+              carouselContainer.style.display = 'block';
+              setTimeout(function() {
+                  carouselContainer.style.opacity = '1';
+              }, 20); 
+
+              $('#carouselExampleIndicators').carousel();
+          }, 1000); 
+      }
+  </script>
+  
+    
     <div
       class="container-fluid d-flex flex-column justify-content-center align-items-center products-bar mt-3"
     >
@@ -2186,6 +2200,8 @@
         </div>
       </div>
     </div>
+
+    
 
     <%- include('partials/loader') %>
     <!-- <script>
