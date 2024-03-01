@@ -187,6 +187,13 @@
                     </a>
                 </li>
 
+                <li>
+                    <a href="#" onclick="showContlo()" id="contloTab">
+                        <i class="fas fa-toolbox"></i>
+                    <span class="nav-item">Contlo Snyc</span>
+                    </a>
+                </li>
+
                 <li><a href="#" onclick="showSettings()" id="settingsTab">
                     <i class="fas fa-sign-out-alt"></i>
                     <span class="nav-item">Log Out</span>
@@ -1521,6 +1528,34 @@
             </section>
         </section>
 
+        <section class="main" id="contlo" style="display: none;">
+            <section class="main-orders">
+                <h1>Contlo Sync</h1>
+
+               <div class="coupon-container" style="padding: 0vh 0vh 0vh 2vh;">
+
+    <div style="overflow: auto;height: 100%;overflow-y: scroll;padding: 1vh;padding-right: 2vh;padding-top: 3vh;">
+        <div style="display: flex; flex-direction: column; align-items: center; justify-content: space-between; margin-bottom: 1rem; width: 100%;">
+
+            <input type="text" id="collection_id" placeholder="Collection ID" style="flex: 1; margin-bottom: 1rem; padding: 0.5rem; border: 1px solid #ccc; border-radius: 5px; width: 100%;">
+        
+            <input type="text" id="collection_name" placeholder="Collection Name" style="flex: 1; margin-bottom: 1rem; padding: 0.5rem; border: 1px solid #ccc; border-radius: 5px; width: 100%;">
+        
+            <button id="sendButton" style="padding: 0.5rem 1rem; background-color: #4CAF50; color: white; border: none; border-radius: 5px; cursor: pointer; width: 100%;">Create</button>
+        
+        </div>
+        
+        <!-- <h2 style="margin-top: 0rem;">Active Coupons</h2> -->
+        <!-- Removed table and tbody -->
+    </div>
+</div>
+
+            <script>
+
+            </script>
+            </section>
+        </section>
+
   <%- include('partials/loader') %> 
   <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
 
@@ -1579,6 +1614,11 @@
     function showHistory() {
         showSection('history');
         setActiveTab('historyTab');
+    }
+
+    function showContlo() {
+        showSection('contlo');
+        setActiveTab('contloTab');
     }
 
     function showSection(sectionId) {
