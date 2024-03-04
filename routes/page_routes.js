@@ -37,6 +37,18 @@ router.get("/", (req, res) => {
   res.render("Home_page", { content });
 });
 
+router.get("/pages/test", (req, res) => {
+  const content = {
+    isLoggedIn: req.session.isLoggedIn,
+  };
+
+  if (!req.session.userProfile || !req.session.userProfile.cart) {
+    req.session.userProfile = { cart: [] };
+  }
+
+  res.render("test", { content });
+});
+
 
 router.get("/pages/disclaimer", (req, res) => {
   const content = {

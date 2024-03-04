@@ -1,0 +1,2760 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>WhiteWolf India</title>
+    <link rel="canonical" href="https://www.whitewolfindia.com" />
+
+    <script type='text/javascript' async='' src='https://marketing.contlo.com/js/contlo_messaging_v3.js?v=3&shop_id=5f2270ca80ad5ed8ff0bfd78ed56f6d8'></script>
+
+    <meta property="og:site_name" content="Whitewolf India">
+    <meta property="og:image" content="https://www.whitewolfindia.com/assets/whitewolfblacklogo.png" />
+    <!-- <meta property="og:url" content="https://www.whitewolfindia.com/"> -->
+    <meta property="og:image:type" content="image/jpg" />
+    <meta property="og:image:width" content="64" />
+    <meta property="og:image:height" content="314" />
+    <meta property="og:title" content="WhiteWolf India" />
+    <meta property="og:description" content="Discover luxury men's grooming essentials with Whitewolf india. Elevate your routine with premium products crafted for the modern gentleman. Shop now!" />
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "Whitewolf India",
+        "url": "https://www.whitewolfindia.com/",
+        "logo": "https://www.whitewolfindia.com/assets/ww%20side%20name%20logo.png_white@3x.png",
+        "contactPoint": {
+          "@type": "ContactPoint",
+          "telephone": "180021020016",
+          "contactType": "customer service",
+          "areaServed": "IN",
+          "availableLanguage": "en"
+        },
+        "sameAs": [
+          "https://www.facebook.com/whitewolfindiaofficial/",
+          "https://www.instagram.com/whitewolfindiaofficial/"
+        ]
+      }
+      </script>
+
+    <meta name="title" content="WhiteWolf India: Where Grooming Meets Luxury" />
+    <meta
+      name="description"
+      content="Discover luxury men's grooming essentials with Whitewolf india. Elevate your routine with premium products crafted for the modern gentleman. Shop now!"
+    />
+
+    <link
+      rel="shortcut icon"
+      type="image/x-icon"
+      href="../assets/whitewolflog.png"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.css"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick-theme.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    />
+    <link rel="stylesheet" href="/css/Home.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://cdn.jsdelivr.net/npm/aos@2.3.1/dist/aos.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Outfit:wght@200;400;500&display=swap"
+    />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <script
+      type="text/javascript"
+      src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.js"
+    ></script>
+    <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/swiper/swiper-bundle.min.css"
+    />
+
+    <script>
+      (function (w, d, s, l, i) {
+        w[l] = w[l] || [];
+        w[l].push({ "gtm.start": new Date().getTime(), event: "gtm.js" });
+        var f = d.getElementsByTagName(s)[0],
+          j = d.createElement(s),
+          dl = l != "dataLayer" ? "&l=" + l : "";
+        j.async = true;
+        j.src = "https://www.googletagmanager.com/gtm.js?id=" + i + dl;
+        f.parentNode.insertBefore(j, f);
+      })(window, document, "script", "dataLayer", "GTM-NQVB53VH");
+    </script>
+
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+  </head>
+  <body>
+    <%- include('partials/nav') %> <%- include('partials/cart') %>
+
+    <div id="alertContainer"></div>
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        background-color: #000;
+        font-family: "Outfit", sans-serif;
+      }
+
+      .slider {
+        width: 100%;
+        height: 80vh;
+        margin: 0;
+        margin-top: 15vh;
+        padding: 0;
+        overflow: hidden;
+        position: relative;
+      }
+
+      .slide {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        align-items: center;
+        position: relative;
+        transition: transform 2s cubic-bezier(1, 0, 0, 1),
+          opacity 3s cubic-bezier(0, 1, 1, 0);
+        transform-origin: center center;
+      }
+
+      .slide img {
+        width: 100%;
+        height: 100%;
+      }
+
+      #videoContainer .mob-vid{
+        display: none !important;
+      }
+
+      .slide h2 {
+        z-index: 1;
+        color: #000;
+        position: absolute;
+        font-size: 10vh;
+        color: #fff;
+      }
+
+      .slide button {
+        margin-top: 10px;
+        cursor: pointer;
+        background-color: #fff;
+        position: absolute;
+      }
+
+      @media (max-width: 768px) {
+        .slider {
+          height: 40vh;
+        }
+
+        .top-slider #slide-2 button {
+          margin-top: 40% !important;
+          margin-left: 22% !important;
+        }
+
+        .top-slider #slide-3 button {
+          margin-bottom: -110% !important;
+          margin-left: 60% !important;
+        }
+
+        .top-slider #slide-4 button {
+          margin-bottom: -110% !important;
+          margin-left: 0% !important;
+        }
+
+        .top-slider #slide-5 button {
+          margin-bottom: -100% !important;
+          margin-left: 0%;
+        }
+
+        .top-slider button {
+          display: none !important;
+        }
+
+        .perf-vid {
+          height: auto !important;
+        }
+
+        .slider .prev {
+          font-size: 5vh !important;
+          left: 2vh !important;
+        }
+
+        .custom-item {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+
+        .custom-item img {
+          width: 10vh !important;
+        }
+      }
+
+      .bg .row {
+        min-height: 400px;
+      }
+
+      .bg-image {
+        height: 100% !important;
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+      }
+
+      .reel-item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        margin-bottom: 20px;
+        border-radius: 10px;
+        background-color: #fff;
+        overflow: hidden;
+        position: relative;
+        height: 40vh;
+      }
+
+      .reel-item img {
+        width: 100%;
+        height: 100%;
+        border-radius: 1vh;
+        object-fit: contain;
+      }
+
+      .reel-caption {
+        background-color: rgba(0, 0, 0, 0.7);
+        border-radius: 0 0 1vh 1vh;
+        padding: 10px;
+        width: 100%;
+        position: absolute;
+        bottom: -1px;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+      }
+
+      .reel-caption button {
+        color: #fff;
+        margin-right: 5px;
+      }
+
+      .reel-caption button:hover {
+        color: #fff;
+      }
+
+      .container-category {
+        font-weight: 500;
+        height: max-content;
+        background-color: #000;
+        padding: 20px 80px;
+        display: flex;
+        overflow: auto;
+        flex-wrap: nowrap;
+        justify-content: space-evenly;
+        -webkit-font-smoothing: antialiased;
+      }
+
+      .card-wrap {
+        margin: 10px;
+        transform: perspective(800px);
+        transform-style: preserve-3d;
+        cursor: pointer;
+      }
+      .card-wrap:hover .card-info {
+        transform: translateY(0);
+      }
+      .card-wrap:hover .card-info p {
+        opacity: 1;
+      }
+      .card-wrap:hover .card-info,
+      .card-wrap:hover .card-info p {
+        transition: 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+      }
+      .card-wrap:hover .card-info:after {
+        transition: 5s cubic-bezier(0.23, 1, 0.32, 1);
+        opacity: 1;
+        transform: translateY(0);
+      }
+      .card-wrap:hover .card-bg {
+        transition: 0.6s cubic-bezier(0.23, 1, 0.32, 1),
+          opacity 5s cubic-bezier(0.23, 1, 0.32, 1);
+        opacity: 0.8;
+      }
+      .card-wrap:hover .card {
+        transition: 0.6s cubic-bezier(0.23, 1, 0.32, 1),
+          box-shadow 2s cubic-bezier(0.23, 1, 0.32, 1);
+        box-shadow: rgba(255, 255, 255, 0.2) 0 0 40px 5px, white 0 0 0 1px,
+          rgba(0, 0, 0, 0.66) 0 30px 60px 0, inset #333 0 0 0 5px,
+          inset white 0 0 0 6px;
+      }
+
+      .card {
+        position: relative;
+        flex: 0 0 240px;
+        width: 240px;
+        height: 320px;
+        background-color: transparent;
+        overflow: hidden;
+        border-radius: 10px;
+        box-shadow: rgba(0, 0, 0, 0.66) 0 30px 60px 0, inset #333 0 0 0 5px,
+          inset rgba(255, 255, 255, 0.5) 0 0 0 6px;
+        transition: 1s cubic-bezier(0.445, 0.05, 0.55, 0.95);
+      }
+
+      .card-bg {
+        opacity: 0.5;
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        width: 100%;
+        height: 100%;
+        padding: 20px;
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: cover;
+        transition: 1s cubic-bezier(0.445, 0.05, 0.55, 0.95),
+          opacity 5s 1s cubic-bezier(0.445, 0.05, 0.55, 0.95);
+        pointer-events: none;
+      }
+
+      .card-info {
+        padding: 20px;
+        position: absolute;
+        bottom: 0;
+        color: #fff;
+        transform: translateY(40%);
+        transition: 0.6s 1.6s cubic-bezier(0.215, 0.61, 0.355, 1);
+      }
+      .card-info p {
+        opacity: 0;
+
+        transition: 0.6s 1.6s cubic-bezier(0.215, 0.61, 0.355, 1);
+      }
+      .card-info * {
+        position: relative;
+        z-index: 1;
+      }
+      .card-info:after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 0;
+        width: 100%;
+        height: 100%;
+        background-image: linear-gradient(
+          to bottom,
+          transparent 0%,
+          rgba(0, 0, 0, 0.6) 100%
+        );
+        background-blend-mode: overlay;
+        opacity: 0;
+        transform: translateY(100%);
+        transition: 5s 1s cubic-bezier(0.445, 0.05, 0.55, 0.95);
+      }
+
+      .card-info h2 {
+        margin-top: -10vh;
+        font-size: 36px;
+        font-weight: 500;
+      }
+
+      .custom-container {
+        font-size: 5vw;
+        color: #fff;
+        letter-spacing: 15px;
+        color: var(--pr-color);
+        text-transform: uppercase;
+      }
+
+      
+
+      .custom-div {
+        display: flex;
+        font-weight: bolder;
+        font-family: "Syne", sans-serif !important;
+        justify-content: center;
+        align-items: center;
+        height: 30vh;
+      }
+
+      .custom-div span {
+        display: inline-block;
+      }
+
+      @media (max-width: 767px) {
+        .custom-carousel-container {
+          margin-top: 5px !important;
+        }
+
+        .engage {
+          font-size: 4vh !important;
+        }
+
+        #myCarousel {
+          margin-bottom: 1vh !important;
+          height: 85vh !important;
+        }
+
+        .bg-image-mobile-1 {
+          background-size: 100% 100%;
+          background-image: url("../assets/mb-2.jpg") !important;
+        }
+
+        .bg-image-mobile-2 {
+          background-size: 100% 100%;
+          background-image: url("../assets/mb-4.jpg") !important;
+        }
+      }
+
+      .container-category::-webkit-scrollbar {
+        display: none;
+      }
+
+      @media only screen and (max-width: 767px) {
+        .slider-navigation {
+          display: flex;
+          justify-content: space-between;
+          margin-top: 10px;
+        }
+
+        .slider-group {
+          gap: 10px;
+        }
+
+        .container-category {
+          justify-content: flex-start;
+          margin-left: -10vh;
+        }
+
+        .container-category .card-wrap {
+          width: 30% !important;
+        }
+
+        .slider-navigation .arrow {
+          font-size: 24px;
+          color: #fff;
+          cursor: pointer;
+        }
+        .head-slider-group::-webkit-scrollbar {
+          display: none;
+        }
+      }
+
+      @media only screen and (min-width: 768px) {
+        .slider-navigation {
+          display: none;
+        }
+
+        .face-moist {
+          width: 90% !important;
+        }
+      }
+
+      @media (max-width: 600px) {
+        .slide-wrapping div {
+          width: 80vw !important;
+          min-width: 80vw !important;
+        }
+
+        .banner-mobile-video {
+          width: 100%;
+          height: 100vh;
+          display: flex !important;
+        }
+      }
+
+      .banner-mobile-video {
+        display: none;
+      }
+
+      .sale-container {
+        width: 95vw;
+        height: 60vh;
+        background-color: #000 !important;
+        position: relative;
+        left: 0;
+        top: 0;
+        cursor: pointer;
+        overflow: hidden;
+        pointer-events: auto;
+      }
+      .center {
+        height: 60vh;
+        position: absolute;
+        left: 50%;
+        top: 3%;
+        transform: translate(-50%);
+      }
+      .items {
+        transform-origin: center 200vh;
+        transform: rotate(0);
+        display: flex;
+      }
+      .item {
+        position: absolute;
+        cursor: pointer;
+        transform: translateX(-50%);
+      }
+      .movie-card {
+        display: block;
+        width: 430px;
+        height: 610px;
+        color: #fff;
+        user-select: none;
+        padding: 1vh;
+        border-radius: 20px;
+        overflow: hidden;
+        position: relative;
+        border: none;
+        cursor: grab;
+      }
+      .image {
+        height: 100%;
+        width: 100%;
+        object-fit: 100%;
+        background-color: #fff;
+        position: absolute;
+        top: 0px;
+        left: 0;
+        pointer-events: none;
+      }
+      @media screen and (max-height: 1000px) {
+        .movie-card {
+          width: 350px;
+          height: 497px;
+        }
+      }
+      @media screen and (max-height: 800px) {
+        .movie-card {
+          width: 300px;
+          height: 400px;
+        }
+      }
+
+      #scrollCardRightButton {
+        position: fixed;
+        right: -50px;
+        top: 10px;
+        background-color: #007bff;
+        color: #fff;
+        padding: 10px;
+        border-radius: 5px;
+        cursor: pointer;
+        opacity: 0;
+        z-index: 3;
+        transition: opacity 0.5s ease;
+      }
+
+      #scrollCardRightButton.show {
+        opacity: 1;
+      }
+
+      @keyframes floatAnimation {
+        0%,
+        100% {
+          transform: translateY(0);
+        }
+        50% {
+          transform: translateY(-10px);
+        }
+      }
+
+      #swipeButton {
+        width: 100%;
+        display: flex;
+        justify-content: flex-end;
+        background-color: transparent;
+      }
+
+      #swipeButton button {
+        border: none;
+        color: #fff;
+        font-weight: 500;
+        position: relative;
+      }
+
+      .loading-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(255, 255, 255, 0.8);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 1000;
+      }
+
+      .loading-message {
+        font-size: 1.2rem;
+        margin-right: 10px;
+      }
+
+      .loading-spinner {
+        border: 4px solid rgba(0, 0, 0, 0.1);
+        border-radius: 50%;
+        border-top: 4px solid #151111;
+        width: 30px;
+        height: 30px;
+        animation: spin 1s linear infinite;
+      }
+
+      @keyframes spin {
+        0% {
+          transform: rotate(0deg);
+        }
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+
+      #saleContainer:hover + #swipeButtons {
+        display: block;
+      }
+
+      @media only screen and (max-width: 768px) {
+        .custom-slides-new .custom-slide-new {
+          min-width: 60vw !important;
+          height: 100%;
+        }
+      }
+
+      @media (max-width: 767px) {
+        .swipe-buttons {
+          display: none;
+        }
+
+        .custom-carousel-controls iconify-icon {
+          display: none;
+        }
+      }
+
+      /* blockquote.instagram-media {
+        max-height: 200px !important;
+      } */
+
+      .loading-container {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100vh;
+        display: flex;
+        z-index: 5;
+        justify-content: center;
+        align-items: center;
+        background-color: #000;
+        transition: all 0.4s ease;
+      }
+
+      .icon {
+        width: 20vh;
+        height: 20vh;
+        position: relative;
+        color: #ffffff;
+      }
+
+      .icon::before {
+        content: "";
+        position: absolute;
+        z-index: 1;
+        left: 0%;
+        top: 0%;
+        transform: translate(-50%, -50%);
+      }
+
+      .icon::after {
+        content: "";
+        position: absolute;
+        left: 0%;
+        top: 0%;
+        width: 100%;
+        height: 100%;
+        box-sizing: border-box;
+        border-radius: 50%;
+        border-left: 1vh dashed;
+        border-bottom: 1vh dashed;
+        animation: rotate 3s linear infinite;
+      }
+
+      .loading-logo {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 8vh;
+        height: auto;
+      }
+
+      @keyframes rotate {
+        0% {
+          transform: rotate(0);
+        }
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+
+      .carousel-item img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      .carousel-container {
+        position: relative;
+      }
+
+      .carousel {
+        position: relative;
+      }
+
+      .arrow {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        font-size: 24px;
+        cursor: pointer;
+        color: white;
+        background-color: rgba(0, 0, 0, 0.5);
+        padding: 8px;
+        border-radius: 50%;
+      }
+
+      .arrow.prev {
+        left: 10px;
+      }
+
+      .arrow.next {
+        right: 10px;
+      }
+
+      .arrow {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 30px;
+        height: 30px;
+        background-color: transparent;
+        color: #fff;
+        text-align: center;
+        cursor: pointer;
+        font-size: 20px;
+        line-height: 30px;
+        user-select: none;
+      }
+
+      .arrow.left {
+        left: 10px;
+      }
+
+      .arrow.right {
+        right: 10px;
+      }
+
+      .bg-video {
+        width: 100%;
+        height: 100%;
+        z-index: -2;
+        border-radius: 2rem;
+      }
+
+      .col-12 {
+        overflow: hidden;
+      }
+
+      #top {
+        position: relative;
+        width: 100%;
+        height: 100vh;
+        overflow: hidden;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      #top::before {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        height: 200px;
+        width: 100%;
+        background: linear-gradient(to top, #fff, transparent);
+        z-index: 1;
+      }
+      #man {
+        top: inherit;
+        bottom: 0;
+      }
+      section img {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        pointer-events: none;
+      }
+      #text {
+        position: relative;
+        color: white;
+        font-size: 15vh;
+      }
+      #sec {
+        width: 100%;
+        background: #fff;
+        padding: 5vw;
+      }
+      #sec h2 {
+        font-weight: 600;
+        font-size: 10vh;
+        margin-bottom: 30px;
+        color: #000;
+      }
+
+      @media (max-width: 767px) {
+        #scrollButton {
+          right: 22% !important;
+        }
+      }
+
+      @media (max-width: 768px) {
+        #sec h2 {
+          font-size: 4vh !important;
+        }
+
+        #sec p {
+          font-size: 3vh !important;
+        }
+      }
+
+      #sec p {
+        text-align: left;
+        text-transform: inherit;
+        font-size: 4vh;
+        font-weight: 300;
+        color: #000;
+      }
+
+      #scrollButton {
+        position: fixed;
+        bottom: 10%;
+        right: 42%;
+        z-index: 2;
+        display: none;
+        background-color: transparent;
+        color: #000;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 3vh;
+        cursor: pointer;
+      }
+
+      @keyframes floatAnimation {
+        0%,
+        100% {
+          transform: translateY(0);
+        }
+        50% {
+          transform: translateY(-10px);
+        }
+      }
+
+      #scrollButton {
+        animation: floatAnimation 2s ease-in-out infinite;
+      }
+
+      .custom-item {
+        width: 33%;
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        align-items: center;
+        cursor: pointer;
+      }
+
+      .custom-item img {
+        width: 15vh;
+        height: auto;
+      }
+
+      .custom-item .text {
+        color: white;
+        font-size: 2vh;
+        text-align: center;
+      }
+    </style>
+
+    <style>
+      @media (max-width: 767px) {
+        .desktop-slider {
+          display: none;
+        }
+
+        .mobile-slider {
+          border-radius: 0 !important;
+          margin-bottom: -7vh;
+          display: block;
+        }
+
+        .mobile-slider .swiper-slide {
+          border-radius: 0 !important;
+        }
+
+        .mobile-slider .swiper-slide:nth-child(1) {
+          display: none;
+        }
+
+        .mobile-slider .swiper-slide:nth-child(2) {
+          background-image: url("../assets/mobile\ banner\ 001.jpg") !important;
+        }
+
+        .mobile-slider .swiper-slide:nth-child(3) {
+          background-image: url("../assets/mobile\ banner\ 02.jpg") !important;
+        }
+
+        .mobile-slider .swiper-slide:nth-child(4) {
+          background-image: url("../assets/Mob\ banner@2x.jpg") !important;
+        }
+
+        .mobile-slider .swiper-slide:nth-child(5) {
+          background-image: url("../assets/Skin-tint-mobile.jpg") !important;
+        }
+
+        .mobile-slider .swiper-slide:nth-child(6) {
+          background-image: url("../assets/cleaner-mobile.jpg") !important;
+        }
+
+        .mobile-slider .swiper-slide {
+          background-size: 100% 100%;
+        }
+      }
+
+      @media (min-width: 768px) {
+        .desktop-slider {
+          display: block;
+        }
+
+        .mobile-slider {
+          display: none;
+        }
+
+        .desktop-slider .swiper-slide:nth-child(1) {
+          display: none;
+        }
+
+        .desktop-slider .swiper-slide:nth-child(2) {
+          background-image: url("../assets/blue-slider.jpg");
+        }
+
+        .desktop-slider .swiper-slide:nth-child(3) {
+          background-image: url("../assets/banner\ 2\ 1500\ x\ 650.jpg");
+        }
+
+        .desktop-slider .swiper-slide:nth-child(4) {
+          background-image: url("../assets/Beard\ banner\ 1500x650px@2x.jpg");
+        }
+
+        .desktop-slider .swiper-slide:nth-child(5) {
+          background-image: url("../assets/skin-tint-desktop.jpg");
+        }
+
+        .desktop-slider .swiper-slide:nth-child(6) {
+          background-image: url("../assets/cleaner-desktop.jpg");
+        }
+
+        .desktop-slider .swiper-slide {
+          height: 100%;
+          width: 100%;
+          border-radius: 0;
+          background-repeat: no-repeat;
+          background-size: 100% 100%;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+        }
+      }
+    </style>
+
+    <noscript
+      ><iframe
+        src="https://www.googletagmanager.com/ns.html?id=GTM-NQVB53VH"
+        height="0"
+        width="0"
+        style="display: none; visibility: hidden"
+      ></iframe
+    ></noscript>
+
+    <style>
+      .custom-carousel-item img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      .custom-carousel-container {
+        padding: 0;
+        width: 100%;
+        overflow: hidden;
+        position: relative;
+        z-index: 0;
+      }
+
+      .custom-slides-new {
+        display: flex;
+        flex-wrap: nowrap;
+        cursor: pointer;
+        gap: 6px;
+        cursor: -webkit-grab;
+        transition: transform 0.5s ease-in-out;
+        overflow-x: scroll;
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+        position: relative;
+        z-index: 0;
+      }
+
+      .top-slider {
+        margin-top: 10vh;
+        width: 100%;
+        margin-bottom: 0;
+        text-align: center;
+        overflow: hidden;
+        position: relative;
+        z-index: 0;
+      }
+
+      .top-slider .slides {
+        width: 100%;
+        display: flex;
+        margin: 0;
+        padding: 0;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        scroll-behavior: smooth;
+        -webkit-overflow-scrolling: touch;
+      }
+
+      .top-slider #slide-1 button {
+        margin-top: 15%;
+        margin-left: 3%;
+      }
+
+      .top-slider #slide-2 button {
+        margin-top: 22%;
+        margin-right: 6%;
+      }
+
+      .top-slider #slide-3 button {
+        margin-top: 17%;
+        margin-right: 2%;
+      }
+
+      .top-slider #slide-4 button {
+        margin-top: 20%;
+        margin-left: 6%;
+      }
+
+      .top-slider #slide-5 button {
+        margin-top: 16%;
+        margin-left: 0%;
+      }
+
+      .custom-slide-new a {
+        text-decoration: none;
+        color: inherit;
+        display: block;
+      }
+
+      .custom-slides-new::-webkit-scrollbar {
+        display: none;
+      }
+
+      .custom-slides-new .custom-slide-new {
+        height: auto;
+        width: 30vw;
+        min-width: 30vw;
+        display: block;
+        object-fit: cover;
+        border-radius: 0;
+      }
+
+      .custom-slides-new .custom-slide-new img {
+        width: 100%;
+        height: 100%;
+        display: block;
+      }
+    </style>
+
+    <style>
+      @media (max-width: 768px) {
+        .top-slider {
+          margin-top: 13vh !important;
+        }
+
+        .top-slider .slide {
+          height: 80vh !important;
+        }
+
+        .top-slider .slides #slide-1 {
+          background-image: url("../assets/blue-mb.jpg") !important;
+        }
+
+        .top-slider .slides #slide-2 {
+          background-image: url("../assets/beard-banner-mob.jpg") !important;
+        }
+
+        .top-slider .slides #slide-3 {
+          background-image: url("../assets/spray-third.jpg") !important;
+        }
+      }
+
+      .top-slider .slide {
+        scroll-snap-align: start;
+        flex-shrink: 0;
+        width: 100%;
+        height: 90vh;
+        margin: 0;
+        padding: 0;
+        background-size: 100% 100%;
+        background-repeat: no-repeat;
+        background-position: center;
+        transform: scale(1);
+        transition: transform 0.5s;
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 100px;
+      }
+
+      .top-slider .author-info {
+        background: rgba(0, 0, 0, 0.75);
+        color: white;
+        padding: 0.75rem;
+        text-align: center;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        margin: 0;
+      }
+
+      .top-slider .author-info a {
+        color: white;
+      }
+
+      .top-slider .slider img {
+        object-fit: cover;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+      }
+
+      .top-slider .slider > a {
+        display: inline-flex;
+        width: 1.5vh;
+        height: 1.5vh;
+        background: rgb(175, 174, 174);
+        text-decoration: none;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        margin-top: -10vh;
+        position: relative;
+      }
+
+      .top-slider .slider > a:focus {
+        background: #000;
+      }
+
+      @supports (scroll-snap-type) {
+        .top-slider .slider > a {
+          display: none;
+        }
+      }
+
+      .top-slider .slides::-webkit-scrollbar {
+        width: 10px;
+        height: 10px;
+      }
+
+      .top-slider .slides::-webkit-scrollbar-thumb,
+      .slides::-webkit-scrollbar-track {
+        background: transparent;
+      }
+
+      .custom-slider {
+        position: relative;
+        overflow: hidden;
+        width: 100%;
+        height: auto;
+        margin-top: 13vh !important;
+      }
+
+      .custom-slides {
+        display: flex;
+        transition: transform 0.5s ease;
+      }
+
+      @media (max-width: 767.98px) {
+        .carousel-item.first-slide img {
+          content: url("/assets/anti-acne-mb.jpg") !important;
+        }
+
+        .carousel-item.second-slide img {
+          content: url("/assets/serum-mob.jpg") !important;
+        }
+
+        .carousel-item.third-slide img {
+          content: url("/assets/Spray-third-mb.jpg") !important;
+        }
+
+
+        .carousel-item.fourth-slide img {
+          content: url("/assets/peel-cleanser-mob.jpg") !important;
+        }
+
+       #videoContainer .desk-vid{
+        display: none !important;
+       }
+
+       #videoContainer .mob-vid{
+        display: block !important;
+       }
+        
+        
+      }
+
+      .custom-slide {
+        width: 100%;
+        flex-shrink: 0;
+      }
+      .product-sliders {
+        display: flex;
+        justify-content: space-between;
+        position: absolute;
+        z-index: 1;
+      }
+
+      @media screen and (max-width: 768px) {
+        .moist-div {
+          height: 30vh !important;
+        }
+
+        .home-head {
+          font-size: 3vh !important;
+        }
+        #custom-slide-1 img {
+          content: url("../assets/anti-acne-mb.jpg");
+        }
+        #custom-slide-2 img {
+          content: url("../assets/growth-mb.jpg") !important;
+        }
+        #custom-slide-3 img {
+          content: url("../assets/Spray-third-mb.jpg");
+        }
+        .productarrow {
+          display: none;
+        }
+      }
+    </style>
+
+    <div class="modal fade" id="notifyModal" tabindex="-1">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Subscribe For Notifications</h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <form id="notificationForm">
+              <div class="form-group">
+                <label for="emailInput" class="mb-1"
+                  >Enter Email Address :</label
+                >
+                <input
+                  type="email"
+                  class="form-control mb-3"
+                  id="subEmail"
+                  placeholder="Enter your email"
+                  required
+                />
+              </div>
+              <button
+                type="submit"
+                onclick="addSub(event)"
+                class="btn btn-dark"
+              >
+                Subscribe
+              </button>
+            </form>
+            <div
+              id="thankYouMessage"
+              class="mt-2 text-success"
+              style="display: none"
+            >
+              Thank you, you'll be notified shortly.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      let selectedItemForNotify = "";
+      function openNotifyModal(arg) {
+        selectedItemForNotify = arg;
+        $("#notifyModal").modal("show");
+      }
+
+      async function addSub(event) {
+        event.preventDefault();
+        const itemId = selectedItemForNotify;
+        await axios
+          .post("/subscribe", {
+            email: document.querySelector("#subEmail").value,
+            item: itemId,
+          })
+          .then((response) => {
+            if (response.status === 200) {
+              showAlert("You will be notified via email shortly", "success");
+              $("#notifyModal").modal("hide");
+            } else if (response.status === 201) {
+              showAlert("Item already subscribed", "success");
+              $("#notifyModal").modal("hide");
+            }
+          })
+          .catch((err) => {
+            showAlert("Error while adding you", "danger");
+          });
+      }
+    </script>
+
+    <!-- <div class="custom-slider">
+      <div class="custom-slides">
+        <div class="custom-slide" id="custom-slide-1">
+          <img
+            src="../assets/anti-acne-desk.jpg"
+            alt="Slide 1"
+            style="width: 100%; height: auto"
+          />
+        </div>
+        <div class="custom-slide" id="custom-slide-2">
+          <img
+            src="../assets/growth-desk.jpg"
+            alt="Slide 2"
+            style="width: 100%; height: auto"
+          />
+        </div>
+        <div class="custom-slide" id="custom-slide-3">
+          <img
+            src="../assets/bellavita-exp.jpg"
+            alt="Slide 3"
+            style="width: 100%; height: auto"
+          />
+        </div>
+      </div>
+    </div> -->
+
+    
+    <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel" style="margin-top: 13vh;">
+      <div class="carousel-inner">    
+        <div class="carousel-item first-slide active ">
+          <a href="/products/anti-acne-face-wash">
+            <img
+              src="/assets/anti-acne-desk.jpg"
+              class="d-block w-100"
+              alt="..."
+            />
+          </a>
+        </div>  
+        <div class="carousel-item second-slide">
+          <a href="/products/gray-gaurd-beard-illuminating-serum">
+            <img src="/assets/serum-desk.jpg" class="d-block w-100" alt="..." />
+          </a>
+        </div>
+        <div class="carousel-item third-slide">
+          <a href="/products/hair-removal-spray">
+            <img
+              src="/assets/bellavita-exp.jpg"
+              class="d-block w-100"
+              alt="..."
+            />
+          </a>
+        </div>
+        <div class="carousel-item fourth-slide">
+          <a href="/collections/skin-care">
+            <img
+              src="/assets/peel-cleanser-desk.jpg"
+              class="d-block w-100"
+              alt="..."
+            />
+          </a>
+        </div>
+      </div>
+    
+      <ol
+        class="carousel-indicators mt-1 mb-1"
+        style="position: relative; z-index: 0"
+      >
+        <li
+          data-target="#carouselExampleIndicators"
+          data-slide-to="0"
+          class="active"
+        ></li>
+        <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+        <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+        <li data-target="#carouselExampleIndicators" data-slide-to="3"></li>
+      </ol>
+    </div>
+    
+    <!-- <script>
+      function hideVideo() {
+          var videoContainer = document.getElementById('videoContainer');
+          var carouselContainer = document.getElementById('carouselExampleIndicators');
+
+          videoContainer.style.transition = 'opacity 0.5s';
+          videoContainer.style.opacity = '0';
+
+          setTimeout(function() {
+
+              videoContainer.style.display = 'none';
+
+              carouselContainer.style.opacity = '0';
+              carouselContainer.style.display = 'block';
+              setTimeout(function() {
+                  carouselContainer.style.opacity = '1';
+              }, 20); 
+
+              $('#carouselExampleIndicators').carousel();
+          }, 1000); 
+      }
+  </script> -->
+  
+
+   <!-- <div id="carouselExampleIndicators" class="carousel slide" data-interval="false" data-ride="carousel" style="margin-top: 13vh;">
+    <div class="carousel-inner">    
+        <div class="carousel-item first-slide active">
+            <video id="video1" class="d-block w-100 desk-vid" autoplay muted onended="showNextSlide()">
+                <source src="/assets/Banner-teaser-new.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </div>  
+        <div class="carousel-item">
+            <a href="/products/anti-acne-face-wash">
+                <img src="/assets/anti-acne-desk.jpg" class="d-block w-100" alt="...">
+            </a>
+        </div>
+        <div class="carousel-item">
+            <a href="/products/gray-gaurd-beard-illuminating-serum">
+                <img src="/assets/serum-desk.jpg" class="d-block w-100" alt="...">
+            </a>
+        </div>
+        <div class="carousel-item">
+            <a href="/products/hair-removal-spray">
+                <img src="/assets/bellavita-exp.jpg" class="d-block w-100" alt="...">
+            </a>
+        </div>
+        <div class="carousel-item">
+            <a href="/collections/skin-care">
+                <img src="/assets/Peel cleanser.jpg 1440x425 px.jpg" class="d-block w-100" alt="...">
+            </a>
+        </div>
+    </div>
+    
+    <ol class="carousel-indicators mt-1 mb-1" style="position: relative; z-index: 0">
+        <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+        <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+        <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+        <li data-target="#carouselExampleIndicators" data-slide-to="3"></li>
+        <li data-target="#carouselExampleIndicators" data-slide-to="4"></li>
+    </ol>
+</div>
+
+<script>
+    // JavaScript to handle carousel slide transitions after the first slide's video ends
+    const video1 = document.getElementById('video1');
+
+    function showNextSlide() {
+        // Pause the video
+        video1.pause();
+        // Move to the next slide after the video ends
+        $('#carouselExampleIndicators').carousel('next');
+    }
+    
+    // JavaScript to control interval for slide transitions for non-first slides
+    $('#carouselExampleIndicators').on('slide.bs.carousel', function (e) {
+        const nextSlideIndex = $(e.relatedTarget).index();
+        const slideDelays = [23000, 4000, 4000, 4000, 4000]; // Delays for each slide in milliseconds
+        const delay = slideDelays[nextSlideIndex];
+        
+        // Set interval for next slide transition
+        setTimeout(function() {
+            $('#carouselExampleIndicators').carousel('next');
+        }, delay);
+    });
+</script> -->
+
+    
+    <div
+      class="container-fluid d-flex flex-column justify-content-center align-items-center products-bar mt-3"
+    >
+      <div class="container-fluid m-0 p-0">
+        <a href="/collections/best-sellers">
+          <img
+            src="../assets/BEST SELLERS.jpg"
+            style="width: 100%; height: auto"
+          />
+        </a>
+      </div>
+      <div
+        class="mb-2 filters d-flex justify-content-between align-items-center home-head"
+      >
+        <h2 class="text-light mt-2 d-none">Best Sellers</h2>
+      </div>
+
+      <div
+        class="container-fluid d-flex justify-content-between product-sliders mb-2"
+      >
+        <button class="sliding-buttons" onclick="slideLeft()">
+          <iconify-icon icon="icon-park-solid:left-c"></iconify-icon>
+        </button>
+        <button class="sliding-buttons" onclick="slideRight()">
+          <iconify-icon icon="icon-park-solid:right-c"></iconify-icon>
+        </button>
+      </div>
+      <div
+        id="productGrid"
+        class="row product-grid"
+        onmousedown="startScroll(event)"
+        onmouseup="stopScroll()"
+        ontouchstart="startScroll(event)"
+        ontouchend="stopScroll()"
+      ></div>
+
+      <div id="productGrid" class="row product-grid mb-3"></div>
+
+      <!-- <div class="d-flex justify-content-center p-2 mt-0 mb-0">
+        <button class="show-btn">
+          <a href="/collections/All">Show More</a>
+        </button>
+      </div> -->
+    </div>
+
+    <div class="custom-carousel-container mb-3 mt-5">
+      <div class="custom-slides-new mt-0">
+        <a href="/products/gray-gaurd-beard-illuminating-serum">
+          <div class="custom-slide-new">
+            <img src="/assets/Sliding1.jpg" alt="Image 1" />
+          </div>
+        </a>
+        <a href="/collections/hair-care">
+          <div class="custom-slide-new">
+            <img src="/assets/Sliding2.jpg" alt="Image 2" />
+          </div>
+        </a>
+        <a href="/products/skin-tint-moisturizer">
+          <div class="custom-slide-new">
+            <img src="/assets/most-mover.jpg" alt="Image 3" />
+          </div>
+        </a>
+        <a href="/collections/skin-care">
+          <div class="custom-slide-new">
+            <img src="/assets/Sliding4.jpg" alt="Image 4" />
+          </div>
+        </a>
+      </div>
+    </div>
+
+    <script>
+      const slideContainer = document.querySelector(".custom-slides-new");
+      const scrollSpeed = 2;
+      let scrollDirection = 1;
+
+      function autoScroll() {
+        slideContainer.scrollLeft += scrollSpeed * scrollDirection;
+
+        if (
+          scrollDirection === 1 &&
+          slideContainer.scrollLeft >=
+            slideContainer.scrollWidth - slideContainer.clientWidth
+        ) {
+          scrollDirection = -1;
+        } else if (scrollDirection === -1 && slideContainer.scrollLeft <= 0) {
+          scrollDirection = 1;
+        }
+      }
+
+      setInterval(autoScroll, 30);
+    </script>
+    <script>
+      const productGridNew = document.getElementById("productGrid");
+      const scrollStep = 550;
+
+      function slideLeft() {
+        productGridNew.scrollTo({
+          left: productGrid.scrollLeft - scrollStep,
+          behavior: "smooth",
+        });
+      }
+
+      function slideRight() {
+        productGridNew.scrollTo({
+          left: productGrid.scrollLeft + scrollStep,
+          behavior: "smooth",
+        });
+      }
+    </script>
+
+    <script>
+      var productGrid = document.getElementById("productGrid");
+      var scrollLeftBtn = document.getElementById("scrollLeftBtn");
+      var scrollRightBtn = document.getElementById("scrollRightBtn");
+
+      function scrollLeft() {
+        productGrid.scrollLeft -= 100;
+      }
+
+      function scrollRight() {
+        productGrid.scrollLeft += 100;
+      }
+    </script>
+
+    <div class="container-fluid mt-0 p-0">
+      <a href="/collections/new-arrivals">
+        <img
+          src="../assets/NEW ARRIVALS.jpg"
+          style="width: 100%; height: auto"
+        />
+      </a>
+    </div>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const newArrivalGrid = document.getElementById("newArrivalGrid");
+        const scrollStep = 550;
+
+        window.slideLeftNew = function () {
+          newArrivalGrid.scrollBy({
+            left: -scrollStep,
+            behavior: "smooth",
+          });
+        };
+
+        window.slideRightNew = function () {
+          newArrivalGrid.scrollBy({
+            left: scrollStep,
+            behavior: "smooth",
+          });
+        };
+      });
+    </script>
+
+    <div
+      class="container-fluid d-flex justify-content-end product-sliders-new mt-0 mb-0"
+    >
+      <button class="sliding-buttons" onclick="slideLeftNew()">
+        <iconify-icon icon="icon-park-solid:left-c"></iconify-icon>
+      </button>
+      <button class="sliding-buttons" onclick="slideRightNew()">
+        <iconify-icon icon="icon-park-solid:right-c"></iconify-icon>
+      </button>
+    </div>
+
+    <div
+    id="newArrivalGrid"
+    class="row product-grid mb-4 mt-2"
+    onmousedown="startScrollNewArrival(event)"
+    onmouseup="stopScrollNewArrival()"
+    ontouchstart="startScrollNewArrival(event)"
+    ontouchend="stopScrollNewArrival()"
+    onscroll="showScrollbarNewArrival(); clearTimeout(timeoutIdNewArrival); timeoutIdNewArrival = setTimeout(hideScrollbarNewArrival, 2000);"
+  ></div>
+  
+
+    <!-- <div
+      id="newArrivalGrid"
+      class="row product-grid mb-4 mt-2"
+      onmousedown="startScroll(event)"
+      onmouseup="stopScroll()"
+      ontouchstart="startScroll(event)"
+      ontouchend="stopScroll()"
+    >
+    </div> -->
+
+    <div class="container-fluid mb-0 mt-0 p-2">
+      <video autoplay muted loop class="bg-video p-0">
+        <source src="../assets/promo-banner-vid.mp4" type="video/mp4" />
+        Your browser does not support the video tag.
+      </video>
+    </div>
+
+    <script>
+      let currentIndex = 0;
+
+      function scrollSlides(direction) {
+        const slider = document.querySelector(".slider-group");
+        const slideWidth = document.querySelector(".custom-item").offsetWidth;
+
+        if (direction === "left") {
+          currentIndex = (currentIndex - 1 + 5) % 5;
+        } else if (direction === "right") {
+          currentIndex = (currentIndex + 1) % 5;
+        }
+
+        const translateValue = -currentIndex * slideWidth;
+        slider.style.transform = `translateX(${translateValue}px)`;
+      }
+    </script>
+
+    <section
+      class="mt-2 mb-2"
+      style="
+        background-color: #000;
+        color: #fff;
+        text-align: center;
+        padding: 2vh;
+        text-transform: uppercase;
+      "
+    >
+      <div style="font-size: 2vh; margin-bottom: 2vh">Meet Dark Ulfgar</div>
+
+      <div
+        style="
+          font-size: 5vw;
+          font-weight: bold;
+          margin-bottom: 2vh;
+          text-transform: uppercase;
+        "
+      >
+        Legacy of Strength Collection
+      </div>
+
+      <div style="font-size: 2vh; margin-bottom: 0vh">
+        This is how WhiteWolf does cologne.<br />
+        Influenced by the vibrant coastal jungles of Bali, Dark Ulfgar was
+        created to inspire wanderlust.
+      </div>
+
+      <div
+        class="perf-vid"
+        style="
+          position: relative;
+          overflow: hidden;
+          width: 100%;
+          height: 80vh;
+          margin-top: 0;
+        "
+      >
+        <video
+          autoplay
+          muted
+          loop
+          class="p-0"
+          style="width: 100%; height: 100%"
+        >
+          <source src="../assets/videoplayback.mp4" type="video/mp4" />
+          Your browser does not support the video tag.
+        </video>
+      </div>
+
+      <div
+        style="
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          gap: 2vh;
+          margin-top: 2vh;
+        "
+      >
+        <button
+          style="
+            padding: 2vh 4vh;
+            border: none;
+            cursor: pointer;
+            font-size: 2vh;
+            font-weight: 400;
+            text-transform: uppercase;
+            border-radius: 0vh;
+            transition: background-color 0.3s ease;
+            background-color: #fff;
+            color: #000;
+          "
+        >
+          COMING SOON
+        </button>
+        <button
+          style="
+            padding: 2vh 4vh;
+            border: none;
+            cursor: pointer;
+            font-size: 2vh;
+            font-weight: 400;
+            text-transform: uppercase;
+            border-radius: 0vh;
+            transition: background-color 0.3s ease;
+            background-color: #000;
+            color: #fff;
+          "
+        >
+          LEARN MORE
+        </button>
+      </div>
+    </section>
+
+    <div id="videoContainer" style="display: block;margin: 0;margin-top: 1vh;margin-bottom:2vh;width: 100%;height: 100%;padding: 0;">
+        <video id="video1" class="d-block w-100 desk-vid" autoplay muted onended="hideVideo()">
+          <source src="/assets/Hero-Banner-Video.webm" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+  
+        <video id="video1" class="d-block w-100 mob-vid" autoplay muted onended="hideVideo()">
+          <source src="/assets/banner-teaser-mob.webm" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+      </div>
+
+    <section
+      class="mt-0 mb-0"
+      style="
+        background-color: #000;
+        color: #fff;
+        text-align: center;
+        padding: 2vh;
+        text-transform: uppercase;
+      "
+    >
+      <div style="font-size: 2vh; margin-bottom: 2vh">Face Moisturizer</div>
+
+      <div style="font-size: 5vw; font-weight: bold; margin-bottom: 2vh">
+        Unveil Natural Radiance
+      </div>
+
+      <div
+        style="font-size: 2vh; margin-bottom: 0vh; text-transform: uppercase"
+      >
+        crafted with unique formula provide a subtle touch of tint for an
+        effortlessly even and revitalize complexion.
+      </div>
+
+      <div
+        class="moist-div"
+        style="
+          position: relative;
+          overflow: hidden;
+          max-width: 100%;
+          height: 50vh;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+        "
+      >
+        <img
+          src="../assets/moisturizer.jpg"
+          alt="Moisturizer"
+          style="max-width: 100%; max-height: 100%; object-fit: contain"
+        />
+      </div>
+
+      <div
+        style="
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          gap: 2vh;
+          margin-top: 1vh;
+        "
+      >
+        <button
+          style="
+            padding: 2vh 4vh;
+            border: none;
+            cursor: pointer;
+            font-size: 2vh;
+            font-weight: 400;
+            text-transform: uppercase;
+            border-radius: 0vh;
+            transition: background-color 0.3s ease;
+            background-color: #fff;
+            color: #000;
+          "
+        >
+          COMING SOON
+        </button>
+        <button
+          style="
+            padding: 2vh 4vh;
+            border: none;
+            cursor: pointer;
+            font-size: 2vh;
+            font-weight: 400;
+            text-transform: uppercase;
+            border-radius: 0vh;
+            transition: background-color 0.3s ease;
+            background-color: #000;
+            color: #fff;
+          "
+        >
+          LEARN MORE
+        </button>
+      </div>
+    </section>
+
+    <div class="container-fluid banner-video mb-3 p-0">
+      <video
+        autoplay
+        muted
+        loop
+        class="p-0"
+        style="
+          width: 100%;
+          height: max-content;
+          object-fit: fill;
+          object-position: center;
+        "
+        poster="../assets/video-snap.png"
+      >
+        <source src="../assets/spray-animation-video.mp4" type="video/mp4" />
+        Your browser does not support the video tag.
+      </video>
+    </div>
+
+    <!-- <h2 class="text-white text-center text-uppercase">watch and shop</h2>
+    <div class="grid-container mb-4">
+      <div class="grid-item">
+        <video src="../assets/reel-1.mp4" autoplay loop muted playsinline poster="../assets/reel-1-snap.png" preload="auto">
+          Your browser does not support the video tag.
+        </video>
+        <div class="button-bar">
+          <a class="like-btn" href="https://www.instagram.com/reel/C3RVFNkPG3l/?utm_source=ig_web_button_share_sheet"><i class="fas fa-heart"></i></a>
+          <a class="share-btn" href="https://www.instagram.com/reel/C3RVFNkPG3l/?utm_source=ig_web_button_share_sheet"><i class="fas fa-share"></i></a>
+        </div>
+      </div>
+
+      <div class="grid-item">
+        <video src="../assets/Beard-gray-gaurd-new.mp4" autoplay loop muted playsinline poster="../assets/reel-2-snap.png" preload="auto">
+          Your browser does not support the video tag.
+        </video>
+        <div class="button-bar">
+          <a class="like-btn" href="https://www.instagram.com/reel/C2co3E9PTt5/?utm_source=ig_web_button_share_sheet"><i class="fas fa-heart"></i></a>
+          <a class="share-btn" href="https://www.instagram.com/reel/C2co3E9PTt5/?utm_source=ig_web_button_share_sheet"><i class="fas fa-share"></i></a>
+        </div>
+      </div>
+
+      
+      <div class="grid-item">
+        <video src="../assets/reel-3.mp4" autoplay loop muted playsinline poster="../assets/reel-2-snap.png" preload="auto">
+          Your browser does not support the video tag.
+        </video>
+        <div class="button-bar">
+          <a class="like-btn" href="https://www.instagram.com/reel/C2co3E9PTt5/?utm_source=ig_web_button_share_sheet"><i class="fas fa-heart"></i></a>
+          <a class="share-btn" href="https://www.instagram.com/reel/C2co3E9PTt5/?utm_source=ig_web_button_share_sheet"><i class="fas fa-share"></i></a>
+        </div>
+      </div>
+
+      <div class="grid-item">
+        <video src="../assets/anti-acne-face-wash.mp4" autoplay loop muted playsinline poster="../assets/reel-2-snap.png" preload="auto">
+          Your browser does not support the video tag.
+        </video>
+        <div class="button-bar">
+          <a class="like-btn" href="https://www.instagram.com/reel/C2co3E9PTt5/?utm_source=ig_web_button_share_sheet"><i class="fas fa-heart"></i></a>
+          <a class="share-btn" href="https://www.instagram.com/reel/C2co3E9PTt5/?utm_source=ig_web_button_share_sheet"><i class="fas fa-share"></i></a>
+        </div>
+      </div>
+    </div> -->
+
+    <div class="container-fluid mt-0 mb-0 p-0">
+      <img src="../assets/FEATURED COLLECTION.jpg" style="width: 100%" />
+      <h2 class="text-center text-white mb-0 home-head d-none">
+        Featured Collection
+      </h2>
+      <div id="app" class="container-category">
+        <a href="/collections/beard-care" target="_blank">
+          <card data-image="https://i.ibb.co/TRZcd6K/berad.png" alt="berad">
+            <h2 slot="header">Beard</h2>
+          </card>
+        </a>
+        <a href="/collections/hair-care" target="_blank">
+          <card data-image="https://i.ibb.co/t27q7zN/hair.png">
+            <h2 slot="header">Hair</h2>
+          </card>
+        </a>
+        <a href="/collections/skin-care" target="_blank">
+          <card data-image="https://i.ibb.co/4NgY8fK/skin.png">
+            <h2 slot="header">Skin</h2>
+          </card>
+        </a>
+
+        <a href="/pages/coming-soon" target="_blank">
+          <card data-image="https://i.ibb.co/qddCnWY/shave.jpg">
+            <h2 slot="header">Shave</h2>
+          </card>
+        </a>
+
+        <a href="/pages/coming-soon" target="_blank">
+          <card data-image="https://i.ibb.co/2hwqz3R/perfume.jpg">
+            <h2 slot="header">Fragrance</h2>
+          </card>
+        </a>
+      </div>
+    </div>
+
+    <h2
+      class="text-center text-white mt-2 mb-0 home-head"
+      style="text-transform: uppercase; font-size: 4vh"
+    >
+      CUSTOMER TESTIMONIALS
+    </h2>
+    <style>
+      .swiper-container {
+        background-color: black;
+        overflow: hidden;
+        padding-bottom: 60px;
+      }
+      .swiper-slide {
+        margin-top: 20px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        text-align: center;
+        width: 450px;
+        height: auto;
+        background-color: #fff;
+        padding: 10px;
+        border-radius: 10px;
+      }
+
+      .swiper-slide .ratings {
+        margin-top: 1vh;
+      }
+
+      .swiper-slide .ratings .rating-number {
+        font-size: 3vh;
+        font-weight: bolder;
+      }
+
+      .swiper-slide .user-info .text-muted {
+        margin-top: 2vh;
+      }
+
+      .swiper-slide .ratings iconify-icon {
+        font-size: 3vh;
+      }
+
+      .swiper-slide p {
+        margin-top: 1vh;
+        font-size: 2vh;
+      }
+
+      .swiper-slide img {
+        width: 10vh;
+        height: 10vh;
+        border-radius: 50%;
+        display: block;
+        margin: 10px auto;
+      }
+
+      .swiper-container-horizontal > .swiper-pagination-bullets {
+        bottom: 0;
+      }
+
+      .swiper-pagination-bullet {
+        margin: 0 8px !important;
+      }
+      .swiper-pagination-bullet {
+        background: #fff;
+        border: 1px solid #fff;
+        border-radius: 100%;
+        display: inline-block;
+        height: 5px;
+        opacity: 1;
+        filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
+        -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
+        width: 5px;
+      }
+      .swiper-pagination-bullet-active {
+        background-color: grey;
+        border: medium none;
+        height: 7px;
+        opacity: 1;
+        filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
+        -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
+        width: 7px;
+      }
+
+      @media screen and (max-width: 767px) {
+        .swiper-slide {
+          width: 300px;
+        }
+      }
+
+      .swiper-button-next,
+      .swiper-button-prev {
+        color: #fff;
+        font-size: 18px;
+        margin: 0 10px;
+      }
+
+      .swiper-button-next:hover,
+      .swiper-button-prev:hover {
+        color: #000;
+      }
+    </style>
+    <%- include('partials/loginModaal') %>
+    <div
+      class="container d-flex flex-column pt-3 pb-3"
+      data-aos="fade-up"
+      data-aos-duration="1000"
+    >
+      <div class="row">
+        <div class="col-12">
+          <div
+            class="swiper-container mySwiper"
+            style="width: 100%; height: 50vh"
+          >
+            <div class="swiper-wrapper">
+              <div class="swiper-slide">
+                <img
+                  src="../assets/re-1.jpeg"
+                  alt="user-profile"
+                  class="img-fluid"
+                />
+                <div class="user-info">
+                  <small class="text-muted">@Prashant</small>
+                  <div
+                    class="ratings d-flex justify-content-center align-items-center"
+                  >
+                    <!-- <span class="rating-number">4.0</span> -->
+                    <iconify-icon icon="emojione:star"></iconify-icon>
+                    <iconify-icon icon="emojione:star"></iconify-icon>
+                    <iconify-icon icon="emojione:star"></iconify-icon>
+                    <iconify-icon icon="emojione:star"></iconify-icon>
+                  </div>
+                  <p>
+                    This spray is a ‘time-saving’ product. It’s easy to use and
+                    I can extend time between reapplications.
+                  </p>
+                </div>
+              </div>
+              <div class="swiper-slide">
+                <img
+                  src="../assets/re-2.jpeg"
+                  alt="User Placeholder"
+                  class="img-fluid"
+                />
+
+                <div class="user-info">
+                  <small class="text-muted">@Tanmay</small>
+                  <div
+                    class="ratings d-flex justify-content-center align-items-center"
+                  >
+                    <!-- <span class="rating-number">5.0</span> -->
+                    <iconify-icon icon="emojione:star"></iconify-icon>
+                    <iconify-icon icon="emojione:star"></iconify-icon>
+                    <iconify-icon icon="emojione:star"></iconify-icon>
+                    <iconify-icon icon="emojione:star"></iconify-icon>
+                    <iconify-icon icon="emojione:star"></iconify-icon>
+                  </div>
+                  <p>
+                    Perfect for busy professionals. Quick application,
+                    longer-lasting results. Ideal for those on the go
+                  </p>
+                </div>
+              </div>
+              <div class="swiper-slide">
+                <img src="../assets/re-3.jpeg" alt="" class="img-fluid" />
+                <div class="user-info">
+                  <small class="text-muted">@Sumit</small>
+                  <div
+                    class="ratings d-flex justify-content-center align-items-center"
+                  >
+                    <!-- <span class="rating-number">4.0</span> -->
+                    <iconify-icon icon="emojione:star"></iconify-icon>
+                    <iconify-icon icon="emojione:star"></iconify-icon>
+                    <iconify-icon icon="emojione:star"></iconify-icon>
+                    <iconify-icon icon="emojione:star"></iconify-icon>
+                  </div>
+                  <p>
+                    Finally found a hair removal product for sensitive skin.
+                    It's gentle and keeps my skin soft. Highly recommend.
+                  </p>
+                </div>
+              </div>
+              <div class="swiper-slide">
+                <img src="../assets/re-4.jpeg" alt="" class="img-fluid" />
+                <div class="user-info">
+                  <small class="text-muted">@Aamir</small>
+                  <div
+                    class="ratings d-flex justify-content-center align-items-center"
+                  >
+                    <!-- <span class="rating-number">4.0</span> -->
+                    <iconify-icon icon="emojione:star"></iconify-icon>
+                    <iconify-icon icon="emojione:star"></iconify-icon>
+                    <iconify-icon icon="emojione:star"></iconify-icon>
+                    <iconify-icon icon="emojione:star"></iconify-icon>
+                  </div>
+                  <p>
+                    After trying multiple brands, this is hands down the best.
+                    It's reliable, doesn't irritate, and keeps me hair-free
+                    longer.
+                  </p>
+                </div>
+              </div>
+              <!-- <div class="swiper-slide">
+                <img
+                  src="../assets/re-5.jpeg"
+                  alt=""
+                  class="img-fluid"
+                />
+                <div class="user-info">
+                  <small class="text-muted">@Manish</small>
+                  <div
+                    class="ratings d-flex justify-content-center align-items-center"
+                  >
+                    <iconify-icon icon="emojione:star"></iconify-icon>
+                    <iconify-icon icon="emojione:star"></iconify-icon>
+                    <iconify-icon icon="emojione:star"></iconify-icon>
+                    <iconify-icon icon="emojione:star"></iconify-icon>
+                  </div>
+                  <p>
+                    Appreciate the minimal odor as compared to other products
+                  </p>
+                </div>
+              </div> -->
+            </div>
+            <div class="swiper-pagination"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    
+
+    <%- include('partials/loader') %>
+    <!-- <script>
+      $(document).ready(function () {
+        $("#imageSlider").carousel();
+
+        $("#imageSlider").carousel({
+          interval: 3000,
+          pause: "hover",
+        });
+
+        $(".carousel-control-prev").click(function () {
+          $("#imageSlider").carousel("prev");
+        });
+
+        $(".carousel-control-next").click(function () {
+          $("#imageSlider").carousel("next");
+        });
+      });
+    </script> -->
+
+    <script>
+      var swiper = new Swiper(".mySwiper", {
+        pagination: {
+          el: ".swiper-pagination",
+          clickable: true,
+        },
+        navigation: {
+          nextEl: null,
+          prevEl: null,
+        },
+        effect: "coverflow",
+        loop: true,
+        centeredSlides: true,
+        slidesPerView: "auto",
+        spaceBetween: 10,
+        coverflowEffect: {
+          rotate: 30,
+          stretch: 10,
+          depth: 300,
+          modifier: 1,
+          slideShadows: true,
+        },
+        autoplay: {
+          delay: 3000,
+          disableOnInteraction: false,
+        },
+      });
+    </script>
+    <%- include('partials/footer') %>
+    <script>
+      let products = [];
+
+      document.addEventListener("DOMContentLoaded", async () => {
+        try {
+          const response = await fetchProducts("/api/products");
+          products = response;
+          renderProducts("all");
+        } catch (error) {
+          console.log(error);
+          showAlert("error while fetching the products", "danger");
+        }
+      });
+
+      async function fetchProducts(apiEndpoint) {
+        const response = await axios.get(apiEndpoint);
+        return response.data;
+      }
+
+      function attachAddToCartListeners(products) {
+        products.forEach((product) => {
+          const addButton = document.querySelectorAll(`.add${product.itemId}`);
+          if (!addButton) return 0;
+          addButton.forEach((element) =>
+            element.addEventListener("click", async (event) => {
+              event.preventDefault();
+              try {
+                const response = await addToCart("/addItem", {
+                  itemId: product.itemId,
+                });
+                if (response.status === 200) {
+                  showAlert("item added to cart", "success");
+                  openCart();
+                } else {
+                  console.error(
+                    "Error adding item to cart:",
+                    response.data.message
+                  );
+                }
+              } catch (err) {
+                if (err.response.status === 400) {
+                  showAlert("Item already in cart", "success");
+                  openCart();
+                } else {
+                  window.location.href = "/login";
+                }
+              }
+            })
+          );
+        });
+      }
+      async function addToCart(apiEndpoint, data) {
+        return await axios.post(apiEndpoint, data);
+      }
+
+      function renderProducts(categoryFilter) {
+        const productGrid = document.getElementById("productGrid");
+        productGrid.innerHTML = "";
+
+        const newArrivalGrid = document.getElementById("newArrivalGrid");
+        newArrivalGrid.innerHTML = "";
+
+        const filteredProducts =
+          categoryFilter === "all"
+            ? products
+            : products.filter((product) => product.category === categoryFilter);
+
+        filteredProducts.forEach((product) => {
+          const productCard = createProductCard(product);
+          if (true) {
+            newArrivalGrid.append(createProductCard(product));
+          }
+          if (product.stock > 0 && Date.parse(product.createdAt) < Date.now()) {
+            productGrid.append(createProductCard(product));
+          }
+        });
+
+        attachAddToCartListeners(filteredProducts);
+      }
+
+      function createProductCard(product) {
+        const productCard = document.createElement("div");
+        productCard.className = "product-card product";
+
+        var words = product.description.split(" ");
+        product.description = words.slice(0, 8).join(" ");
+        if (words.length > 8) {
+          product.description += " ...";
+        }
+
+        words = product.name.split(" ");
+        product.name = words.slice(0, 3).join(" ");
+        if (words.length > 3) {
+          product.name += " ...";
+          let button;
+          let isLoggedIn = Boolean("<%= content.isLoggedIn %>");
+        }
+
+        let button;
+        let isLoggedIn = Boolean("<%= content.isLoggedIn %>");
+
+        if (product.stock > 0 && Date.parse(product.createdAt) < Date.now()) {
+          button = ` <button class="add-to-cart-btn add${product.itemId}" id="liveToastBtn"><i class="fas fa-cart"></i> Add to Cart</button>`;
+        } else if (isLoggedIn == true) {
+          button = `<button class="add-to-cart-btn" onclick="openNotifyModal('${product.itemId}')" id="liveToastBtn"><i class="fas fa-cart"></i>NOTIFY ME</button>`;
+        } else {
+          button = `<button class="add-to-cart-btn" onclick="openNotifyModal('${product.itemId}')" id="liveToastBtn"><i class="fas fa-cart"></i>NOTIFY ME</button> `;
+        }
+
+        let totalRating = 0;
+        for (const review of product.ratings) {
+          totalRating += review.rating;
+        }
+        const averageRating =
+          product.ratings.length > 0 ? totalRating / product.ratings.length : 0;
+
+        productCard.innerHTML = `
+         <a href="/products/${product.itemId}" >
+            <div class="product-image-container">
+                  <img class="product-image" src="${product.imageLink[0]}" alt="${product.name}">
+                  <img class="product-image hover-image" src="${product.imageLink[1] || product.imageLink[0]}" alt="${product.name}" style="display:none">
+            </div>
+
+            <div class="product-details">
+                  ${
+                    product.bestSeller
+                      ? '<img class="best-seller" src="../assets/best-seller.png">'
+                      : ""
+                  }
+                  ${
+                    product.newArrival
+                      ? '<img class="new-arrival" src="../assets/new-arrival.png">'
+                      : ""
+                  }
+                  <div class="category-badge text-white corner-round p-1" style="display:none;">${
+                    product.category
+                  }</div>
+                  <div class="product-title"><a href="/products/${
+                    product.itemId
+                  }" style="text-decoration:none;">${product.name}</a></div>
+                  <div class="product-description" style="font-size:2vh;" >${
+                    product.description
+                  }</div>
+                  <div class="mb-0 p-0">
+                  <div class="d-flex bolder product-price-discount justify-content-center align-items-center">
+                        <div class="original-price">MRP : <span class="text-decoration-line-through">&#8377;${
+                          product.originalPrice || ""
+                        }</span>
+                        </div>
+                        <div class="product-price ml-2 mr-2">&#8377;${
+                          product.offeredPrice
+                        }
+                        </div>
+                      <div class="product-discount d-flex justify-content-end text-success text-uppercase"> ${(
+                        ((product.originalPrice - product.offeredPrice) /
+                          product.originalPrice) *
+                        100
+                      ).toFixed(0)}% Off
+                    </div>
+                  </div>
+                </div>
+                <p style="text-align:center;font-weight:300;" class="rws"><iconify-icon icon="noto:star" class="mr-1"></iconify-icon> ${averageRating.toFixed(
+                  1
+                )} | ${product.ratings.length || 0} Review's</p>
+                  ${button}
+            </div>
+         </a>
+         `;
+
+        const productImageContainer = productCard.querySelector(
+          ".product-image-container"
+        );
+
+        const mainImage = productImageContainer.querySelector(".product-image");
+        const hoverImage = productImageContainer.querySelector(".hover-image");
+
+        productImageContainer.addEventListener("mouseenter", function () {
+          mainImage.style.display = "none";
+          hoverImage.style.display = "block";
+        });
+
+        productImageContainer.addEventListener("mouseleave", function () {
+          mainImage.style.display = "block";
+          hoverImage.style.display = "none";
+        });
+
+        return productCard;
+      }
+
+      const container = document.getElementById("productContainer");
+
+      products.reverse();
+
+      products.forEach((product) => {
+        const productCard = createProductCard(product);
+        container.appendChild(productCard);
+      });
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <script async src="//www.instagram.com/embed.js"></script>
+    <script
+      type="text/javascript"
+      src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.js"
+    ></script>
+
+    <script>
+      $(".review").slick({
+        centerMode: true,
+        centerPadding: "20vw",
+        slidesToShow: 1,
+        autoplay: true,
+        arrows: false,
+        responsive: [
+          {
+            breakpoint: 768,
+            settings: {
+              arrows: false,
+              centerMode: true,
+              centerPadding: "40px",
+              slidesToShow: 3,
+            },
+          },
+          {
+            breakpoint: 480,
+            settings: {
+              arrows: false,
+              centerMode: true,
+              centerPadding: "40px",
+              slidesToShow: 1,
+            },
+          },
+        ],
+      });
+    </script>
+
+    <script>
+      let isScrolling = false;
+
+      function startScroll(event) {
+        isScrolling = true;
+        const scrollContainer = document.getElementById("productGrid");
+        const startX = event.pageX || event.touches[0].pageX;
+        let scrollLeft = scrollContainer.scrollLeft;
+
+        function handleMouseMove(e) {
+          const x = e.pageX || e.touches[0].pageX;
+          const delta = x - startX;
+          scrollContainer.scrollLeft = scrollLeft - delta;
+        }
+
+        function handleMouseUp() {
+          isScrolling = false;
+          document.removeEventListener("mousemove", handleMouseMove);
+          document.removeEventListener("mouseup", handleMouseUp);
+          document.removeEventListener("touchmove", handleMouseMove);
+          document.removeEventListener("touchend", handleMouseUp);
+        }
+
+        document.addEventListener("mousemove", handleMouseMove);
+        document.addEventListener("mouseup", handleMouseUp);
+        document.addEventListener("touchmove", handleMouseMove);
+        document.addEventListener("touchend", handleMouseUp);
+      }
+
+      function stopScroll() {
+        isScrolling = false;
+      }
+
+      let timeoutId;
+
+      function hideScrollbar() {
+        if (!isScrolling) {
+          document.getElementById("productGrid").style.overflow = "hidden";
+        }
+      }
+
+      function showScrollbar() {
+        document.getElementById("productGrid").style.overflow = "auto";
+      }
+
+      document
+        .getElementById("productGrid")
+        .addEventListener("scroll", function () {
+          showScrollbar();
+          clearTimeout(timeoutId);
+          timeoutId = setTimeout(hideScrollbar, 2000);
+        });
+    </script>
+
+<script>
+  let isScrollingNewArrival = false;
+
+  function startScrollNewArrival(event) {
+      isScrollingNewArrival = true;
+      const scrollContainer = document.getElementById("newArrivalGrid");
+      const startX = event.pageX || event.touches[0].pageX;
+      let scrollLeft = scrollContainer.scrollLeft;
+
+      function handleMouseMoveNewArrival(e) {
+          const x = e.pageX || e.touches[0].pageX;
+          const delta = x - startX;
+          scrollContainer.scrollLeft = scrollLeft - delta;
+      }
+
+      function handleMouseUpNewArrival() {
+          isScrollingNewArrival = false;
+          document.removeEventListener("mousemove", handleMouseMoveNewArrival);
+          document.removeEventListener("mouseup", handleMouseUpNewArrival);
+          document.removeEventListener("touchmove", handleMouseMoveNewArrival);
+          document.removeEventListener("touchend", handleMouseUpNewArrival);
+      }
+
+      document.addEventListener("mousemove", handleMouseMoveNewArrival);
+      document.addEventListener("mouseup", handleMouseUpNewArrival);
+      document.addEventListener("touchmove", handleMouseMoveNewArrival);
+      document.addEventListener("touchend", handleMouseUpNewArrival);
+  }
+
+  function stopScrollNewArrival() {
+      isScrollingNewArrival = false;
+  }
+
+  let timeoutIdNewArrival;
+
+  function hideScrollbarNewArrival() {
+      if (!isScrollingNewArrival) {
+          document.getElementById("newArrivalGrid").style.overflow = "hidden";
+      }
+  }
+
+  function showScrollbarNewArrival() {
+      document.getElementById("newArrivalGrid").style.overflow = "auto";
+  }
+
+  document
+      .getElementById("newArrivalGrid")
+      .addEventListener("scroll", function () {
+          showScrollbarNewArrival();
+          clearTimeout(timeoutIdNewArrival);
+          timeoutIdNewArrival = setTimeout(hideScrollbarNewArrival, 2000);
+      });
+</script>
+
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        AOS.init();
+      });
+    </script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.0.1/vue.min.js"></script>
+    <script>
+      Vue.config.devtools = true;
+
+      Vue.component("card", {
+        template: `
+  <div class="card-wrap"
+    @mousemove="handleMouseMove"
+    @mouseenter="handleMouseEnter"
+    @mouseleave="handleMouseLeave"
+    ref="card">
+    <div class="card"
+      :style="cardStyle">
+      <div class="card-bg" :style="[cardBgTransform, cardBgImage]"></div>
+      <div class="card-info">
+        <slot name="header"></slot>
+        <slot name="content"></slot>
+      </div>
+    </div>
+  </div>`,
+        mounted() {
+          this.width = this.$refs.card.offsetWidth;
+          this.height = this.$refs.card.offsetHeight;
+        },
+        props: ["dataImage"],
+        data: () => ({
+          width: 0,
+          height: 0,
+          mouseX: 0,
+          mouseY: 0,
+          mouseLeaveDelay: null,
+        }),
+
+        computed: {
+          mousePX() {
+            return this.mouseX / this.width;
+          },
+          mousePY() {
+            return this.mouseY / this.height;
+          },
+          cardStyle() {
+            const rX = this.mousePX * 30;
+            const rY = this.mousePY * -30;
+            return {
+              transform: `rotateY(${rX}deg) rotateX(${rY}deg)`,
+            };
+          },
+          cardBgTransform() {
+            const tX = this.mousePX * -40;
+            const tY = this.mousePY * -40;
+            return {
+              transform: `translateX(${tX}px) translateY(${tY}px)`,
+            };
+          },
+          cardBgImage() {
+            return {
+              backgroundImage: `url(${this.dataImage})`,
+            };
+          },
+        },
+
+        methods: {
+          handleMouseMove(e) {
+            this.mouseX = e.pageX - this.$refs.card.offsetLeft - this.width / 2;
+            this.mouseY = e.pageY - this.$refs.card.offsetTop - this.height / 2;
+          },
+          handleMouseEnter() {
+            clearTimeout(this.mouseLeaveDelay);
+          },
+          handleMouseLeave() {
+            this.mouseLeaveDelay = setTimeout(() => {
+              this.mouseX = 0;
+              this.mouseY = 0;
+            }, 1000);
+          },
+        },
+      });
+
+      const app = new Vue({
+        el: "#app",
+      });
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  </body>
+</html>
