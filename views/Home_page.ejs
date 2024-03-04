@@ -1394,18 +1394,18 @@
 
     <div id="videoContainer" style="display: block;margin: 0;margin-top: 13vh;margin-bottom:2vh;width: 100%;height: 100%;padding: 0;">
       <video id="video1" class="d-block w-100 desk-vid" autoplay muted onended="hideVideo()">
-        <source src="/assets/Banner-teaser-new.mp4" type="video/mp4">
+        <source src="/assets/Hero-Banner-Video.webm" type="video/mp4">
         Your browser does not support the video tag.
       </video>
 
       <video id="video1" class="d-block w-100 mob-vid" autoplay muted onended="hideVideo()">
-        <source src="/assets/mob-top-video.mp4" type="video/mp4">
+        <source src="/assets/banner-teaser-mob.webm" type="video/mp4">
         Your browser does not support the video tag.
       </video>
     </div>
     
     <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel" style="margin-top: 13vh; display: none;">
-      <div class="carousel-inner">      
+      <div class="carousel-inner">    
         <div class="carousel-item first-slide active ">
           <a href="/products/anti-acne-face-wash">
             <img
@@ -1414,7 +1414,7 @@
               alt="..."
             />
           </a>
-        </div>
+        </div>  
         <div class="carousel-item second-slide">
           <a href="/products/gray-gaurd-beard-illuminating-serum">
             <img src="/assets/serum-desk.jpg" class="d-block w-100" alt="..." />
@@ -1432,7 +1432,7 @@
         <div class="carousel-item fourth-slide">
           <a href="/collections/skin-care">
             <img
-              src="/assets/Peel cleanser.jpg 1440x425 px.jpg"
+              src="/assets/peel-cleanser-desk.jpg"
               class="d-block w-100"
               alt="..."
             />
@@ -1478,6 +1478,70 @@
       }
   </script>
   
+
+   <!-- <div id="carouselExampleIndicators" class="carousel slide" data-interval="false" data-ride="carousel" style="margin-top: 13vh;">
+    <div class="carousel-inner">    
+        <div class="carousel-item first-slide active">
+            <video id="video1" class="d-block w-100 desk-vid" autoplay muted onended="showNextSlide()">
+                <source src="/assets/Banner-teaser-new.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </div>  
+        <div class="carousel-item">
+            <a href="/products/anti-acne-face-wash">
+                <img src="/assets/anti-acne-desk.jpg" class="d-block w-100" alt="...">
+            </a>
+        </div>
+        <div class="carousel-item">
+            <a href="/products/gray-gaurd-beard-illuminating-serum">
+                <img src="/assets/serum-desk.jpg" class="d-block w-100" alt="...">
+            </a>
+        </div>
+        <div class="carousel-item">
+            <a href="/products/hair-removal-spray">
+                <img src="/assets/bellavita-exp.jpg" class="d-block w-100" alt="...">
+            </a>
+        </div>
+        <div class="carousel-item">
+            <a href="/collections/skin-care">
+                <img src="/assets/Peel cleanser.jpg 1440x425 px.jpg" class="d-block w-100" alt="...">
+            </a>
+        </div>
+    </div>
+    
+    <ol class="carousel-indicators mt-1 mb-1" style="position: relative; z-index: 0">
+        <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+        <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+        <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+        <li data-target="#carouselExampleIndicators" data-slide-to="3"></li>
+        <li data-target="#carouselExampleIndicators" data-slide-to="4"></li>
+    </ol>
+</div>
+
+<script>
+    // JavaScript to handle carousel slide transitions after the first slide's video ends
+    const video1 = document.getElementById('video1');
+
+    function showNextSlide() {
+        // Pause the video
+        video1.pause();
+        // Move to the next slide after the video ends
+        $('#carouselExampleIndicators').carousel('next');
+    }
+    
+    // JavaScript to control interval for slide transitions for non-first slides
+    $('#carouselExampleIndicators').on('slide.bs.carousel', function (e) {
+        const nextSlideIndex = $(e.relatedTarget).index();
+        const slideDelays = [23000, 4000, 4000, 4000, 4000]; // Delays for each slide in milliseconds
+        const delay = slideDelays[nextSlideIndex];
+        
+        // Set interval for next slide transition
+        setTimeout(function() {
+            $('#carouselExampleIndicators').carousel('next');
+        }, delay);
+    });
+</script> -->
+
     
     <div
       class="container-fluid d-flex flex-column justify-content-center align-items-center products-bar mt-3"
@@ -1634,7 +1698,7 @@
     </script>
 
     <div
-      class="container-fluid d-flex justify-content-end product-sliders-new mt-2 mb-2"
+      class="container-fluid d-flex justify-content-end product-sliders-new mt-0 mb-0"
     >
       <button class="sliding-buttons" onclick="slideLeftNew()">
         <iconify-icon icon="icon-park-solid:left-c"></iconify-icon>
