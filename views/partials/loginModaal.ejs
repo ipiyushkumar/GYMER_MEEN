@@ -123,10 +123,10 @@
 <% if (!content.isLoggedIn) { %>
 <script>
   document.addEventListener("DOMContentLoaded", function () {
-    setTimeout(function () {
+    setTimeoutNew(function () {
       var myModal = new bootstrap.Modal(document.getElementById("myModal"));
       myModal.show();
-    }, 3000);
+    }, 9000);
   });
 </script>
 <% } %>
@@ -167,7 +167,7 @@
     alertContainer.appendChild(alert);
 
     // Set timeout to remove the alert after 5 seconds
-    setTimeout(() => {
+    setTimeoutNew(() => {
       closeAlert(alert.querySelector(".close"));
     }, 1000);
   }
