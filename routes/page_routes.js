@@ -7,13 +7,16 @@ const isAuthenticated = (req, res, next) => {
   if (req.session.isLoggedIn) {
     next();
   } else {
-    res.redirect('/login');
+    res.redirect("/login");
   }
 };
 
 const redirectToWWW = (req, res, next) => {
   if (req.headers.host === "whitewolfindia.com") {
-    return res.redirect(301, "https://www.whitewolfindia.com" + req.originalUrl);
+    return res.redirect(
+      301,
+      "https://www.whitewolfindia.com" + req.originalUrl
+    );
   }
   next();
 };
@@ -21,7 +24,6 @@ const redirectToWWW = (req, res, next) => {
 router.use(redirectToWWW);
 
 router.get("/", (req, res) => {
-
   // if (req.headers.host === "whitewolfindia.com") {
 
   //   return res.redirect(301, "https://www.whitewolfindia.com");
@@ -48,7 +50,6 @@ router.get("/pages/test", (req, res) => {
 
   res.render("test", { content });
 });
-
 
 router.get("/pages/disclaimer", (req, res) => {
   const content = {
@@ -159,6 +160,7 @@ router.get("/robots.txt", (req, res) => {
 router.get("/collections/:page", (req, res) => {
   const { page } = req.params;
   let pageContext = "all";
+  let pageType = "all";
   let pageMetaTitle, pageMetaDesc;
 
   switch (page) {
@@ -209,30 +211,33 @@ router.get("/collections/:page", (req, res) => {
       pageMetaDesc =
         "Discover our exclusive collection of fragrances for men. Find your signature scent today!";
       break;
-    
-      case "new-arrivals":
-        pageContext = "all";
-        pageMetaTitle = "New Arrivals - WhiteWolf India";
-        pageImageSrc = "https://i.ibb.co/WV0sDC1/Slider.jpg";
-        pageMetaDesc =
-          "Discover the latest additions to our collection. Shop now!";
-        break;
-      case "best-sellers":
-        pageContext = "all";
-        pageMetaTitle = "Best Sellers - WhiteWolf India";
-        pageImageSrc = "https://i.ibb.co/WV0sDC1/Slider.jpg";
-        pageMetaDesc =
-          "Explore our top-rated products loved by our customers. Find your favorites!";
-        break;
-      default:
-        break;
+
+    case "new-arrivals":
+      pageContext = "all";
+      pageType = "newArrival";
+      pageMetaTitle = "New Arrivals - WhiteWolf India";
+      pageImageSrc = "https://i.ibb.co/WV0sDC1/Slider.jpg";
+      pageMetaDesc =
+        "Discover the latest additions to our collection. Shop now!";
+      break;
+    case "best-sellers":
+      pageContext = "all";
+      pageType = "bestSeller";
+      pageMetaTitle = "Best Sellers - WhiteWolf India";
+      pageImageSrc = "https://i.ibb.co/WV0sDC1/Slider.jpg";
+      pageMetaDesc =
+        "Explore our top-rated products loved by our customers. Find your favorites!";
+      break;
+    default:
+      break;
   }
   const content = {
     isLoggedIn: req.session.isLoggedIn,
     context: pageContext,
+    type: pageType,
     metaTitle: pageMetaTitle,
     metaDescription: pageMetaDesc,
-    imageSrc: pageImageSrc 
+    imageSrc: pageImageSrc,
   };
 
   res.render("Product_Listing_page", { content });

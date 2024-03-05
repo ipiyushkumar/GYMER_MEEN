@@ -5,14 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="/css/ProductStyle.css" />
 
-    <link id="canonicalLink" rel="canonical" href="https://www.whitewolfindia.com/" />
-<script>
-document.addEventListener("DOMContentLoaded", function() {
-
-  var canonicalLink = document.getElementById('canonicalLink');
-  canonicalLink.href = "" + window.location.href;
-});
-</script>
+    <link
+      id="canonicalLink"
+      rel="canonical"
+      href="https://www.whitewolfindia.com/"
+    />
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        var canonicalLink = document.getElementById("canonicalLink");
+        canonicalLink.href = "" + window.location.href;
+      });
+    </script>
 
     <link
       rel="stylesheet"
@@ -41,7 +44,11 @@ document.addEventListener("DOMContentLoaded", function() {
       href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css"
     />
 
-    <script type='text/javascript' async='' src='https://marketing.contlo.com/js/contlo_messaging_v3.js?v=3&shop_id=5f2270ca80ad5ed8ff0bfd78ed56f6d8'></script>
+    <script
+      type="text/javascript"
+      async=""
+      src="https://marketing.contlo.com/js/contlo_messaging_v3.js?v=3&shop_id=5f2270ca80ad5ed8ff0bfd78ed56f6d8"
+    ></script>
 
     <link
       rel="shortcut icon"
@@ -63,74 +70,74 @@ document.addEventListener("DOMContentLoaded", function() {
     </script>
 
     <script>
-          document.addEventListener("DOMContentLoaded", async () => {
-      try {
-        const response = await fetch("/api/products");
-        if (!response.ok) {
-          throw new Error("Error fetching products");
-        }
-        const productList = await response.json();
+      document.addEventListener("DOMContentLoaded", async () => {
+        try {
+          const response = await fetch("/api/products");
+          if (!response.ok) {
+            throw new Error("Error fetching products");
+          }
+          const productList = await response.json();
 
+          const context = "<%= content.context %>";
+          const filteredProductList = productList.filter((product) => {
+            return product.category === context;
+          });
 
-        const context = "<%= content.context %>"; 
-        const filteredProductList = productList.filter(product => {
+          const itemListElements = [];
 
-          return product.category === context; 
-        });
+          filteredProductList.forEach((product, index) => {
+            const itemUrl = `https://www.whitewolfindia.com/products/${product.itemId}`;
+            const item = {
+              "@type": "ListItem",
+              position: index + 1,
+              name: product.name,
+              url: itemUrl,
+            };
+            itemListElements.push(item);
+          });
 
-        const itemListElements = [];
-
-        filteredProductList.forEach((product, index) => {
-          const itemUrl = `https://www.whitewolfindia.com/products/${product.itemId}`;
-          const item = {
-            "@type": "ListItem",
-            "position": index + 1,
-            "name": product.name,
-            "url": itemUrl
+          const jsonLdSchema = {
+            "@context": "https://schema.org/",
+            "@type": "ItemList",
+            itemListElement: itemListElements,
           };
-          itemListElements.push(item);
-        });
 
-        const jsonLdSchema = {
-          "@context": "https://schema.org/",
-          "@type": "ItemList",
-          "itemListElement": itemListElements
-        };
+          const jsonLdString = JSON.stringify(jsonLdSchema, null, 2);
 
-        const jsonLdString = JSON.stringify(jsonLdSchema, null, 2);
+          const scriptElement = document.createElement("script");
+          scriptElement.type = "application/ld+json";
+          scriptElement.textContent = jsonLdString;
 
-        const scriptElement = document.createElement("script");
-        scriptElement.type = "application/ld+json";
-        scriptElement.textContent = jsonLdString;
+          const existingJsonLdScript = document.querySelector(
+            "script[type='application/ld+json']"
+          );
+          if (existingJsonLdScript) {
+            existingJsonLdScript.remove();
+          }
 
-        const existingJsonLdScript = document.querySelector("script[type='application/ld+json']");
-        if (existingJsonLdScript) {
-          existingJsonLdScript.remove();
+          document.body.appendChild(scriptElement);
+        } catch (error) {
+          showAlert("Error while fetching products", "danger");
         }
-
-        document.body.appendChild(scriptElement);
-      } catch (error) {
-        showAlert("Error while fetching products", "danger");
-      }
-    });
-
+      });
     </script>
 
-<title><%= content.metaTitle %></title>
+    <title><%= content.metaTitle %></title>
 
+    <meta name="title" content="<%= content.metaTitle %>" />
+    <meta name="description" content="<%=content.metaDescription %>" />
 
-<meta name="title" content="<%= content.metaTitle %>" />
-<meta name="description" content="<%=content.metaDescription %>" />
-
-<meta property="og:site_name" content="Whitewolf India">
-<meta property="og:image" content="https://www.whitewolfindia.com/assets/whitewolfblacklogo.png" />
-<!-- <meta property="og:url" content="https://www.whitewolfindia.com/<% content.context.toLowerCase().replace(/\s+/g, '-')%>"> -->
-<meta property="og:image:type" content="image/jpg" />
-<meta property="og:image:width" content="64" />
-<meta property="og:image:height" content="314" />
-<meta property="og:title" content="<%= content.metaTitle %>" />
-<meta property="og:description"  content="<%=content.metaDescription %>" />
-
+    <meta property="og:site_name" content="Whitewolf India" />
+    <meta
+      property="og:image"
+      content="https://www.whitewolfindia.com/assets/whitewolfblacklogo.png"
+    />
+    <!-- <meta property="og:url" content="https://www.whitewolfindia.com/<% content.context.toLowerCase().replace(/\s+/g, '-')%>"> -->
+    <meta property="og:image:type" content="image/jpg" />
+    <meta property="og:image:width" content="64" />
+    <meta property="og:image:height" content="314" />
+    <meta property="og:title" content="<%= content.metaTitle %>" />
+    <meta property="og:description" content="<%=content.metaDescription %>" />
 
     <style>
       body {
@@ -486,7 +493,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
     <div class="container-fluid page" style="background-color: #000">
       <div class="row">
-        <div class="col-md-3 mr-3 ">
+        <div class="col-md-3 mr-3">
           <div class="filters mt-1 mb-5">
             <h4 class="text-white">Filter</h4>
 
@@ -684,9 +691,14 @@ document.addEventListener("DOMContentLoaded", function() {
     <script>
       let products = [];
       let categoryFilter = "all";
+      let typeFilter = "all";
       let discountFilter = 0;
       let starFilter = 0;
       let totalProducts = 0;
+
+      function setType(arg) {
+        typeFilter = arg;
+      }
       function setCategory(arg) {
         categoryFilter = arg;
         renderProducts();
@@ -704,6 +716,7 @@ document.addEventListener("DOMContentLoaded", function() {
         await fetchProducts("/api/products")
           .then((response) => {
             products = response;
+            setType("<%= content.type %>");
             setCategory("<%= content.context %>");
           })
           .catch((err) =>
@@ -759,6 +772,12 @@ document.addEventListener("DOMContentLoaded", function() {
           categoryFilter === "all"
             ? products
             : products.filter((product) => product.category === categoryFilter);
+        filteredProducts =
+          typeFilter === "all"
+            ? filteredProducts
+            : filteredProducts.filter(
+                (product) => product[typeFilter] === true
+              );
         filteredProducts =
           discountFilter === 0
             ? filteredProducts
@@ -882,9 +901,9 @@ document.addEventListener("DOMContentLoaded", function() {
                     </div>
                   </div>
                 </div>
-                <p style="text-align:center;font-weight:300;" class="rws"><iconify-icon icon="noto:star"></iconify-icon> ${averageRating.toFixed(1)} | ${
-          product.ratings.length || 0
-        } Reviews</p>                    
+                <p style="text-align:center;font-weight:300;" class="rws"><iconify-icon icon="noto:star"></iconify-icon> ${averageRating.toFixed(
+                  1
+                )} | ${product.ratings.length || 0} Reviews</p>
         ${button}
             </div>
             </a>
