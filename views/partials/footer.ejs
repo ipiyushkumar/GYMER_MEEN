@@ -1,92 +1,87 @@
-
 <style>
-   .social ul a:hover {
-    color: #fff;
-    transform: scale(1.5);
-    transition: transform 0.5s ease-in-out;
-}
+    body {
+        font-family: 'Poppins', sans-serif; /* Set the desired Google Font with fallback */
+    }
 
-    @media only screen and (max-width: 768px) {
-            .address p{
-               font-size: 2vh;
-            }
-        }
-    </style>
-    <footer class="d-flex flex-column container-fluid text-white p-4 footer">
-        <div class="text-left p-3" style="background-color: #070707;font-weight: 300;">
-            <div class="row">
-                <div class="col-md-3 col-sm-12 mb-3">
-                    <a href="/"><img src="/assets/newlogo.png" alt="Logo" class="img-fluid mb-3" style="width: auto; height: 7vh;"></a>
-                </div>
-                <div class="col-md-6 col-sm-12 d-flex flex-wrap justify-content-between" style="text-decoration: none;">
-                    <div class="col-md-6 col-sm-6 mb-3 list-unstyled">
-                        <li><a href="/pages/about-us" class="text-white">About us</a></li>
-                        <li><a href="#" class="text-white">FAQ</a></li>
-                        <!-- <li><a href="#" class="text-white">Shipping and Payment</a></li> -->
-                        <li><a href="/pages/shipping-policy" class="text-white">Shipping Policy</a></li>
-                        <li><a href="#" class="text-white">Blog</a></li>
-                        <li><a href="/pages/contact-us" class="text-white">Contact Us</a></li>
-                    </div>
-                    <div class="col-md-6 col-sm-6 mb-3 list-unstyled">
-                        <li><a href="/pages/terms-and-conditions" class="text-white">Terms & Conditions</a></li>
-                        <li><a href="/pages/privacy-policy" class="text-white">Privacy Policy</a></li>
-                        <li><a href="/pages/refund-policy" class="text-white">Refund Policy</a></li>
-                        <li><a href="/pages/disclaimer" class="text-white">Disclaimer</a></li>
-                    </div>                    
-                </div>
-                <div class="col-md-3 col-sm-12 d-flex flex-column align-items-end justify-content-center">
-                    <p class="d-flex align-items-center justify-content-center"><iconify-icon icon="material-symbols:call-outline" style="margin-right: 2px;"></iconify-icon> 180021020016</p>
-                    <p class="d-flex align-items-center justify-content-center"><iconify-icon icon="ic:outline-email" style="margin-right: 2px;margin-top: 3px;"></iconify-icon> care@whitewolfindia.com</p>
-                </div>
-            </div>
-            <div class="row mt-3">
-                <div class="col-md-3 col-sm-12 social">
-                    <ul class="list-unstyled" style="color: #fff;">
-                        <a href="https://www.instagram.com/whitewolfindiaofficial/" class="mr-2" style="font-size: 4vh;"><iconify-icon icon="mdi:instagram"></iconify-icon></a>
-                        <a href="#" class="mr-2" style="font-size: 4vh;"><iconify-icon icon="ic:baseline-whatsapp"></iconify-icon></a>
-                    </ul>
-                </div>
-                <div class="col-md-6 col-sm-12 mb-3 address">
-                    <p>KUSHMANDA COSMETICS PRIVATE LIMITED<br> PLOT NO. 191, 1ST FLOOR, INDUSTRIAL AREA PHASE 2,<br>CHANDIGARH - 160002</p>
-                </div>
-            </div>
+    ul li a {
+        text-decoration: none;
+        color: #fff;
+        text-transform: capitalize;
+    }
+
+    ul li a:hover{
+        color: #fff;
+        text-decoration: underline;
+    }
+
+    ul li a iconify-icon {
+        color: #fff;
+    }
+
+    div h4{
+        font-size: 20px;
+    }
+</style>
+<footer class="container-fluid footer mt-auto text-white text-left p-4" style="background-color: #000;">
+    <div class="container-fluid">
+      <div class="row" >
+        <div class="col-md text-capitalize">
+          <h5>Category</h5>
+          <ul class="list-unstyled text-decoration">
+            <li><a href="/pages/coming-soon">Fragrance</a></li>
+            <li><a href="/collections/beard-care">Beard Care</a></li>
+            <li><a href="/collections/hair-care">Hair Care</a></li>
+            <li><a href="/collections/skin-care">Skin Care</a></li>
+            <li><a href="/pages/coming-soon">Shave</a></li>
+          </ul>
         </div>
-        <div class="container-fluid mt-3 m-0">
-            <div class="row d-flex justify-content-between">
-                <div class="col-md-5 col-sm-12 mb-3">
-                    <h3 style="font-size: 2.7vh; font-weight: 300;">If you didn't find the products you are interested in or have questions?</h3>
-                </div>
-                <div class="col-md-6 col-sm-12 send-your">
-                    <div class="input-group mb-3">
-                        <!-- Add 'ms-auto' class to push the button to the right -->
-                        <button class="btn btn-light d-flex align-items-center justify-content-center gap-2 ms-auto" type="button" id="basic-addon2" onclick="sendSuggestion()">
-                            Send your suggestion's
-                            <iconify-icon icon="gg:arrow-right-o"></iconify-icon>
-                        </button>                                      
-                    </div>
-                </div>            
-            </div>
-            
+        <div class="col-md text-capitalize">
+          <h5>Company</h5>
+          <ul class="list-unstyled">
+              <li><a href="/pages/contact-us">Contact Us</a></li>
+            <li><a href="/pages/about-us">About Us</a></li>
+            <li><a href="#">Blog</a></li>
+            <li><a href="#">FAQ</a></li>
+          </ul>
         </div>
-        <p class="text-center">&#169; 2023 - Copyright, All Rights Reserved.</p>
-      </footer>
-    
-      <script>
-        function sendSuggestion() {
-            const suggestionText = "I want to add a suggestion that...";
-            const email = "info@whitewolf.com";
-            const subject = encodeURIComponent("I want to add a suggestion that...");
-    
-            // Construct the Gmail compose link as a fallback
-            const gmailComposeLink = `https://mail.google.com/mail/u/0/?view=cm&fs=1&to=${email}&su=${subject}&body=${encodeURIComponent(suggestionText)}`;
-    
-            // Try to open the mailto link, if not successful, open the Gmail compose link
-            window.location.href = `mailto:${email}?subject=${subject}&body=${encodeURIComponent(suggestionText)}`;
-            setTimeout(() => {
-                window.location.href = gmailComposeLink;
-            }, 500);
-        }
-    </script>
+        <div class="col-md text-capitalize">
+          <h5>Legal</h5>
+          <ul class="list-unstyled">
+            <li><a href="/pages/shipping-policy">Shipping Policy</a></li>
+            <li><a href="/pages/refund-policy">Refund Policy</a></li>
+          </ul>
+        </div>
+        <div class="col-md text-capitalize">
+          <h5>Contact</h5>
+          <ul class="list-unstyled">
+              <p class="d-flex align-items-center"><iconify-icon icon="material-symbols:call-outline" style="margin-right: 2px;"></iconify-icon> 180021020016</p>
+              <p class="d-flex align-items-center"><iconify-icon icon="ic:outline-email" style="margin-right: 2px;"></iconify-icon> care@whitewolfindia.com</p>
+              <p>PLOT NO. 191, 1ST FLOOR, INDUSTRIAL AREA PHASE 2, CHANDIGARH - 160002</p>
+          </ul>
+        </div>
+      </div>
+      <hr>
+      <div class="container mb-0 d-flex justify-content-center flex-column align-items-center text-center text-capitalize">
+          <a href="/" class="mt-5"><img src="/assets/newlogo.png" alt="Logo" class="img-fluid mb-3" style="width: auto; height: 7vh;"></a>
+          <h4>KUSHMANDA COSMETICS PRIVATE LIMITED</h4>
+          <p>Crafted for the modern man, WhiteWolf offers a premium selection of men's grooming essentials to elevate your daily routine. Discover luxurious hair care, rejuvenating skincare, and top-tier shaving essentials – all designed to help you look and feel your best.</p>
+          <p class="mt-2">#ROAROFPERFECTION</p>
+
+          <ul class="list-inline">
+              <li class="list-inline-item"><a href="https://www.instagram.com/whitewolfindiaofficial/" class="list-inline-item" style="font-size: 4vh;"><iconify-icon icon="mdi:instagram"></iconify-icon></a></li>
+              <li class="list-inline-item"><a href="#" class="list-inline-item" style="font-size: 4vh;"><iconify-icon icon="ic:baseline-whatsapp"></iconify-icon></a></li>
+              <li class="list-inline-item"><a href="#" class="list-inline-item" style="font-size: 4vh;"><li class="list-inline-item"><a href="#" class="mr-2 list-inline-item" style="font-size: 4vh;"><iconify-icon icon="mingcute:linkedin-line"></iconify-icon></a></li>
+            </ul>
+
+            <ul class="list-inline">
+              <li class="list-inline-item"><a href="/pages/disclaimer">Disclaimer</a></li>
+              <li class="list-inline-item"><a href="/pages/terms-and-conditions">Terms & Conditions</a></li>
+              <li class="list-inline-item"><a href="/pages/privacy-policy">Privacy Policy</a></li>
+          </ul>
+          
+        </div>
+    </div>
+  </footer>
     
       
       <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
