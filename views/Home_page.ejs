@@ -1228,20 +1228,17 @@
       }
 
       @media (max-width: 767.98px) {
-        .carousel-item.first-slide img {
-          content: url("/assets/anti-acne-mb.jpg") !important;
-        }
 
-        .carousel-item.second-slide img {
+        .carousel-item.first-slide img {
           content: url("/assets/serum-mob.jpg") !important;
         }
 
-        .carousel-item.third-slide img {
+        .carousel-item.second-slide img {
           content: url("/assets/Spray-third-mb.jpg") !important;
         }
 
 
-        .carousel-item.fourth-slide img {
+        .carousel-item.third-slide img {
           content: url("/assets/peel-cleanser-mob.jpg") !important;
         }
 
@@ -1392,29 +1389,9 @@
       </div>
     </div> -->
 
-    <div id="videoContainer" style="display: block;margin: 0;margin-top: 13vh;margin-bottom:2vh;width: 100%;height: 100%;padding: 0;">
-      <video id="video1" class="d-block w-100 desk-vid" autoplay muted onended="hideVideo()">
-        <source src="/assets/Hero-Banner-Video.webm" type="video/mp4">
-        Your browser does not support the video tag.
-      </video>
-
-      <video id="video1" class="d-block w-100 mob-vid" autoplay muted onended="hideVideo()">
-        <source src="/assets/banner-teaser-mob.webm" type="video/mp4">
-        Your browser does not support the video tag.
-      </video>
-    </div>
     
-    <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel" style="margin-top: 13vh; display: none;">
+    <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel" style="margin-top: 13vh;">
       <div class="carousel-inner">    
-        <!-- <div class="carousel-item first-slide active ">
-          <a href="/products/anti-acne-face-wash">
-            <img
-              src="/assets/anti-acne-desk.jpg"
-              class="d-block w-100"
-              alt="..."
-            />
-          </a>
-        </div>   -->
         <div class="carousel-item first-slide active">
           <a href="/products/gray-gaurd-beard-illuminating-serum">
             <img src="/assets/beard-grey-new.jpg" class="d-block w-100" alt="..." />
@@ -1451,11 +1428,10 @@
         ></li>
         <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
         <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-        <!-- <li data-target="#carouselExampleIndicators" data-slide-to="3"></li> -->
       </ol>
     </div>
     
-    <script>
+    <!-- <script>
       function hideVideo() {
           var videoContainer = document.getElementById('videoContainer');
           var carouselContainer = document.getElementById('carouselExampleIndicators');
@@ -1476,7 +1452,7 @@
               $('#carouselExampleIndicators').carousel();
           }, 1000); 
       }
-  </script>
+  </script> -->
   
 
    <!-- <div id="carouselExampleIndicators" class="carousel slide" data-interval="false" data-ride="carousel" style="margin-top: 13vh;">
@@ -1543,21 +1519,27 @@
 </script> -->
 
     
-  <div class="container-fluid d-flex flex-column justify-content-center align-items-center products-bar mt-3">
-        <div class="container-fluid m-0 p-0">
-          <a href="/collections/best-sellers">
-            <img
-              src="../assets/BEST SELLERS.jpg"
-              style="width: 100%; height: auto"
-            />
-          </a>
+    <div
+      class="container-fluid d-flex flex-column justify-content-center align-items-center products-bar mt-3"
+    >
+      <div class="container-fluid m-0 p-0">
+        <a href="/collections/best-sellers">
+          <img
+            src="../assets/BEST SELLERS.jpg"
+            style="width: 100%; height: auto"
+          />
+        </a>
       </div>
-      
-      <div class="mb-2 filters d-flex justify-content-between align-items-center home-head">
-            <h2 class="text-light mt-2 d-none">Best Sellers</h2>
+      <div
+        class="mb-2 filters d-flex justify-content-between align-items-center home-head"
+      >
+        <h2 class="text-light mt-2 d-none">Best Sellers</h2>
       </div>
 
-      <div class="container-fluid d-flex justify-content-between product-sliders mb-2">
+
+      <div
+        class="container-fluid d-flex justify-content-between product-sliders mb-2"
+      >
         <button class="sliding-buttons" onclick="slideLeft()">
           <iconify-icon icon="icon-park-solid:left-c"></iconify-icon>
         </button>
@@ -1583,7 +1565,20 @@
       </div> -->
     </div>
 
-    <div class="custom-carousel-container mb-3 mt-5">
+    <div id="videoContainer" style="display: block;margin: 0;margin-top: 2vh;margin-bottom:2vh;width: 100%;height: 100%;padding: 0;">
+        <video id="video1" class="d-block w-100 desk-vid" autoplay muted onended="hideVideo()">
+          <source src="/assets/Hero-Banner-Video.webm" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+  
+        <video id="video1" class="d-block w-100 mob-vid" autoplay muted onended="hideVideo()">
+          <source src="/assets/banner-teaser-mob.webm" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+      </div>
+
+
+    <div class="custom-carousel-container mb-3 mt-2">
       <div class="custom-slides-new mt-0">
         <a href="/products/gray-gaurd-beard-illuminating-serum">
           <div class="custom-slide-new">
@@ -1607,6 +1602,7 @@
         </a>
       </div>
     </div>
+
 
     <script>
       const slideContainer = document.querySelector(".custom-slides-new");
@@ -1662,6 +1658,15 @@
       }
     </script>
 
+    <div class="container-fluid mt-0 p-0">
+      <a href="/collections/new-arrivals">
+        <img
+          src="../assets/NEW ARRIVALS.jpg"
+          style="width: 100%; height: auto"
+        />
+      </a>
+    </div>
+
     <script>
       document.addEventListener("DOMContentLoaded", function () {
         const newArrivalGrid = document.getElementById("newArrivalGrid");
@@ -1683,25 +1688,37 @@
       });
     </script>
 
-  <div class="container-fluid d-flex flex-column justify-content-center align-items-center products-bar mt-3">
-      <div class="container-fluid mt-0 p-0">
-        <a href="/collections/new-arrivals">
-            <img src="../assets/NEW ARRIVALS.jpg" style="width: 100%; height: auto" />
-        </a>
-      </div>
-    
-      <div class="container-fluid d-flex justify-content-between product-sliders mb-2">
-          <button class="sliding-buttons" onclick="slideLeftNew()">
-              <iconify-icon icon="icon-park-solid:left-c"></iconify-icon>
-          </button>
-          <button class="sliding-buttons" onclick="slideRightNew()">
-              <iconify-icon icon="icon-park-solid:right-c"></iconify-icon>
-          </button>
-      </div>
-      
-      <div id="newArrivalGrid" class="row product-grid mb-4 mt-2" onmousedown="startScrollNewArrival(event)" onmouseup="stopScrollNewArrival()" ontouchstart="startScrollNewArrival(event)" ontouchend="stopScrollNewArrival()" onscroll="showScrollbarNewArrival(); clearTimeout(timeoutIdNewArrival); timeoutIdNewArrival = setTimeout(hideScrollbarNewArrival, 2000);" style="background-color: transparent;">
-      </div>
-  </div>
+    <div
+      class="container-fluid d-flex justify-content-end product-sliders-new mt-0 mb-0"
+    >
+      <button class="sliding-buttons" onclick="slideLeftNew()">
+        <iconify-icon icon="icon-park-solid:left-c"></iconify-icon>
+      </button>
+      <button class="sliding-buttons" onclick="slideRightNew()">
+        <iconify-icon icon="icon-park-solid:right-c"></iconify-icon>
+      </button>
+    </div>
+
+    <div
+    id="newArrivalGrid"
+    class="row product-grid mb-4 mt-2"
+    onmousedown="startScrollNewArrival(event)"
+    onmouseup="stopScrollNewArrival()"
+    ontouchstart="startScrollNewArrival(event)"
+    ontouchend="stopScrollNewArrival()"
+    onscroll="showScrollbarNewArrival(); clearTimeout(timeoutIdNewArrival); timeoutIdNewArrival = setTimeout(hideScrollbarNewArrival, 2000);"
+  ></div>
+  
+
+    <!-- <div
+      id="newArrivalGrid"
+      class="row product-grid mb-4 mt-2"
+      onmousedown="startScroll(event)"
+      onmouseup="stopScroll()"
+      ontouchstart="startScroll(event)"
+      ontouchend="stopScroll()"
+    >
+    </div> -->
 
     <div class="container-fluid mb-0 mt-0 p-2">
       <video autoplay muted loop class="bg-video p-0">
@@ -2289,7 +2306,7 @@
         },
       });
     </script>
-    <%- include('partials/footer') %>
+    <%- include('partials/footernew') %>
     <script>
       let products = [];
 
