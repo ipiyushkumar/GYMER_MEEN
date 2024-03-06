@@ -163,64 +163,85 @@ router.post(
 );
 
 // PUT route to update an existing product
-router.put("/api/products", isAdminAuthenticated, async (req, res) => {
-  const {
-    itemId,
-    name,
-    skuCode,
-    description,
-    category,
-    keyFeatures,
-    FAQ,
-    meta_title,
-    meta_description,
-    stock,
-    originalPrice,
-    offeredPrice,
-  } = req.body.formdata;
+router.put(
+  "/api/products",
+  isAdminAuthenticated,
+  multerMiddleware.array("imageFiles"),
+  async (req, res) => {
+    const {
+      itemId,
+      name,
+      skuCode,
+      description,
+      category,
+      keyFeatures,
+      FAQ,
+      meta_title,
+      meta_description,
+      stock,
+      originalPrice,
+      offeredPrice,
+      imageFileIndexes,
+    } = req.body;
 
-  try {
-    // Find the product in the database
-    const updateItem = await Product.findOne({ itemId: itemId });
+    try {
+      // Find the product in the database
+      const updateItem = await Product.findOne({ itemId: itemId });
 
-    if (!updateItem) {
-      return res.redirect("/error404");
+      if (!updateItem) {
+        return res.redirect("/error404");
+      }
+
+      let imageLink = [];
+      req.files.forEach((file) => {
+        if (file.fieldname === "imageFiles") {
+          imageLink.push(`/uploads/${file.filename}`);
+        }
+      });
+
+      for (let i = 0; i < imageFileIndexes.length; i++) {
+        const index = parseInt(imageFileIndexes[i]);
+        if (index >= 0 && index < updateItem.imageLink.length) {
+          deleteFiles(updateItem.imageLink[index]);
+          updateItem.imageLink[index] = imageLink[i];
+        }
+      }
+
+      // Update all product properties
+      updateItem.name = name || updateItem.name;
+      updateItem.description = description || updateItem.description;
+      updateItem.FAQ = FAQ || updateItem.FAQ;
+      updateItem.skuCode = skuCode || updateItem.skuCode;
+      updateItem.meta_title = meta_title || updateItem.meta_title;
+      updateItem.meta_description =
+        meta_description || updateItem.meta_description;
+      updateItem.keyFeatures = keyFeatures || updateItem.keyFeatures;
+      updateItem.originalPrice = originalPrice || updateItem.originalPrice;
+      updateItem.offeredPrice = offeredPrice || updateItem.offeredPrice;
+      updateItem.category = category || updateItem.category;
+      updateItem.stock = stock || updateItem.stock;
+
+      // Save the updated product
+      await updateItem.save();
+
+      const ledger = new adminHistory({
+        email: req.session.email,
+        action: `Updated product successfully (${updateItem.itemId})`,
+      });
+      ledger.save();
+
+      res.status(200).json({ message: "Product updated successfully" });
+    } catch (error) {
+      console.error("Error updating product:", error);
+      const ledger = new adminHistory({
+        email: req.session.email,
+        action: "product updation failed",
+      });
+      ledger.save();
+      res.status(500).json({ error: "Internal Server Error" });
     }
-
-    // Update all product properties
-    updateItem.name = name || updateItem.name;
-    updateItem.description = description || updateItem.description;
-    updateItem.FAQ = FAQ || updateItem.FAQ;
-    updateItem.skuCode = skuCode || updateItem.skuCode;
-    updateItem.meta_title = meta_title || updateItem.meta_title;
-    updateItem.meta_description =
-      meta_description || updateItem.meta_description;
-    updateItem.keyFeatures = keyFeatures || updateItem.keyFeatures;
-    updateItem.originalPrice = originalPrice || updateItem.originalPrice;
-    updateItem.offeredPrice = offeredPrice || updateItem.offeredPrice;
-    updateItem.category = category || updateItem.category;
-    updateItem.stock = stock || updateItem.stock;
-
-    // Save the updated product
-    await updateItem.save();
-
-    const ledger = new adminHistory({
-      email: req.session.email,
-      action: `Updated product successfully (${updateItem.itemId})`,
-    });
-    ledger.save();
-
-    res.status(200).json({ message: "Product updated successfully" });
-  } catch (error) {
-    console.error("Error updating product:", error);
-    const ledger = new adminHistory({
-      email: req.session.email,
-      action: "product updation failed",
-    });
-    ledger.save();
-    res.status(500).json({ error: "Internal Server Error" });
   }
-});
+);
 
 module.exports = router;
 
