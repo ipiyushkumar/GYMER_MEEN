@@ -43,9 +43,13 @@ nav ul li a.active {
 }
 
 .logo {
+    background-color: #fff;
     text-align: center;
     display: flex;
-    margin: 10px 0 0 10px;
+    flex-direction: column;
+    margin: 0;
+    padding: 2vh;
+    text-transform: uppercase;
     width: 100%; 
 }
 
@@ -71,9 +75,8 @@ nav ul li a.active {
   }
 
 .logo img {
-    width: 45px;
+    width: 100%;
     height: 45px;
-    border-radius: 50%;
 }
 
 .main h4 {
@@ -108,6 +111,11 @@ nav .fas {
     position: relative;
     top: 12px;
     margin-left: 10px;
+}
+
+.nav-item button:hover{
+    cursor: pointer;
+    color: #000 !important;
 }
 
 a:hover {
@@ -147,19 +155,45 @@ a:hover {
 }
 
 .main-skills {
-    display: flex;
-    margin-top: 20px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+}
+
+.main-skills-report {
+    display: grid;
+    background-color: transparent !important;
+    grid-template-columns: 1fr 1fr 1fr;
 }
 
 .main-skills .card {
-    width: 25%;
     margin: 10px;
     background: #fff;
     text-align: center;
-    border-radius: 1rem;
+    border-radius: 1vh;
     padding: 10px;
     box-shadow: 0 20px 35px rgba(0, 0, 0, 0.1);
 }
+
+.main-skills-report .card {
+    min-height: 200px;
+    overflow: hidden;
+    margin: 1vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    background: #fff;
+    text-align: center;
+    border-radius: 1vh;
+    padding: 10px;
+    box-shadow: 0 20px 35px rgba(0, 0, 0, 0.1);
+}
+
+.main-skills-report .card h4{
+    font-size: 2.5vh !important;
+    text-transform: capitalize;
+}
+
 
 .card .icon{
     font-size: 4rem;
@@ -522,6 +556,47 @@ a:hover {
   border: none;
   border-radius: 3px;
 }
+
+.chart-container {
+    margin-top: 2rem;
+    position: relative;
+    max-width: 308px; /* Ensure the chart container does not exceed specified width */
+    max-height: 200px; /* Ensure the chart container does not exceed specified height */
+    width: 100%; /* Ensure the chart container fills the width of the parent container */
+    height: 100%; /* Ensure the chart container fills the height of the parent container */
+}
+
+.chart-container canvas {
+    position: relative;
+    width: 100%; /* Ensure the canvas fills the width of the chart container */
+    height: 100%; /* Ensure the canvas fills the height of the chart container */
+}
+
+
+.select-button {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-color: #f0f0f0;
+    border: 2px solid #888;
+    border: none;
+    padding: 4px 8px;
+    font-size: 16px;
+    cursor: pointer;
+    outline: none;
+    border-radius: 4px;
+    color: #333;
+    transition: background-color 0.3s ease;
+}
+
+.select-button:hover {
+    background-color: #e0e0e0;
+}
+
+.select-button:focus {
+    background-color: #d0d0d0;
+}
+
 
 .schedule-product {
     padding: 0.5rem;
