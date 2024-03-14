@@ -47,7 +47,7 @@ app.use(
       mongoUrl:
         process.env.MongoDB_URL ||
         "mongodb://127.0.0.1:27017/GYMER?retryWrites=true&w=majority", // Adjust to your MongoDB connection string
-      ttl: 180 * 24 * 60 * 60, // Session TTL in seconds (e.g., 100 days)
+      ttl: 90 * 24 * 60 * 60, // Session TTL in seconds (e.g., 100 days)
     }),
   })
 );
