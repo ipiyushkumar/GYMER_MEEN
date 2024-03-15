@@ -14,15 +14,15 @@ const getProductUsingId = async (req, res) => {
     const itemId = req.params.itemId;
     const item = await Product.findOne({ itemId });
     if (!item) {
-      return res.status(404).redirect('/error404');
+      return res.status(404).redirect("/error404");
     }
-    
+
     res.status(200).json(item);
   } catch (error) {
     res.status(500).json({ error: "Internal Server Error" });
   }
 };
-
+const UserSessionTrack = require("../schemas/user_session_manager");
 const getItemPage = async (req, res) => {
   if (!req.session.userProfile || !req.session.userProfile.cart) {
     req.session.userProfile = { cart: [] };
@@ -31,11 +31,30 @@ const getItemPage = async (req, res) => {
     const itemId = req.params.itemId;
     const item = await Product.findOne({ itemId });
     if (!item) {
-      return res.status(404).redirect('/error404');
+      return res.status(404).redirect("/error404");
     }
     const content = {
       isLoggedIn: req.session.isLoggedIn,
     };
+    UserSessionTrack.findOne({ sessionId: req.sessionID })
+      .then((userSession) => {
+        if (userSession) {
+          userSession.visited += 1;
+          return userSession.save();
+        } else {
+          const newUserSession = new UserSessionTrack({
+            sessionId: req.sessionID,
+            sessionLandingUrl: req.originalUrl,
+          });
+          return newUserSession.save(); // Save new session
+        }
+      })
+      .then((savedSession) => {
+        console.log("Session saved:", savedSession);
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+      });
     res.render("Product_Description_page", { item, content });
   } catch (error) {
     res.status(500).json({ error: "Internal Server Error" });
@@ -48,7 +67,7 @@ const getAllReviews = async (req, res) => {
     const product = await Product.findOne({ itemId: req.params.itemId });
 
     if (!product) {
-      return res.status(404).redirect('/error404');
+      return res.status(404).redirect("/error404");
     }
 
     // Extract reviews based on email and exclude orderId

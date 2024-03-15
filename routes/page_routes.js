@@ -1,5 +1,6 @@
 const express = require("express");
 const path = require("path");
+const UserSessionTrack = require("../schemas/user_session_manager");
 
 const router = express.Router();
 
@@ -21,9 +22,31 @@ const redirectToWWW = (req, res, next) => {
   next();
 };
 
+const pageSessionUpdate = (req, res) => {
+  UserSessionTrack.findOne({ sessionId: req.sessionID })
+    .then((userSession) => {
+      if (userSession) {
+        userSession.visited += 1;
+        return userSession.save();
+      } else {
+        const newUserSession = new UserSessionTrack({
+          sessionId: req.sessionID,
+          sessionLandingUrl: req.originalUrl,
+        });
+        return newUserSession.save(); // Save new session
+      }
+    })
+    .then((savedSession) => {
+      console.log("Session saved:", savedSession);
+    })
+    .catch((error) => {
+      console.error("Error:", error);
+    });
+};
+
 router.use(redirectToWWW);
 
-router.get("/", (req, res) => {
+router.get("/", async (req, res) => {
   // if (req.headers.host === "whitewolfindia.com") {
 
   //   return res.redirect(301, "https://www.whitewolfindia.com");
@@ -35,7 +58,7 @@ router.get("/", (req, res) => {
   if (!req.session.userProfile || !req.session.userProfile.cart) {
     req.session.userProfile = { cart: [] };
   }
-
+  pageSessionUpdate(req, res);
   res.render("Home_page", { content });
 });
 
@@ -47,6 +70,7 @@ router.get("/pages/test", (req, res) => {
   if (!req.session.userProfile || !req.session.userProfile.cart) {
     req.session.userProfile = { cart: [] };
   }
+  pageSessionUpdate(req, res);
 
   res.render("test", { content });
 });
@@ -59,6 +83,7 @@ router.get("/pages/disclaimer", (req, res) => {
   if (!req.session.userProfile || !req.session.userProfile.cart) {
     req.session.userProfile = { cart: [] };
   }
+  pageSessionUpdate(req, res);
 
   res.render("Disclaimer", { content });
 });
@@ -71,6 +96,7 @@ router.get("/pages/privacy-policy", (req, res) => {
   if (!req.session.userProfile || !req.session.userProfile.cart) {
     req.session.userProfile = { cart: [] };
   }
+  pageSessionUpdate(req, res);
 
   res.render("privacy-policy", { content });
 });
@@ -83,6 +109,7 @@ router.get("/pages/about-us", (req, res) => {
   if (!req.session.userProfile || !req.session.userProfile.cart) {
     req.session.userProfile = { cart: [] };
   }
+  pageSessionUpdate(req, res);
 
   res.render("about-us", { content });
 });
@@ -95,19 +122,26 @@ router.get("/pages/refund-policy", (req, res) => {
   if (!req.session.userProfile || !req.session.userProfile.cart) {
     req.session.userProfile = { cart: [] };
   }
+  pageSessionUpdate(req, res);
 
   res.render("refund-policy", { content });
 });
 
 router.get("/pages/coming-soon", (req, res) => {
+  pageSessionUpdate(req, res);
+
   res.render("coming-soon", {});
 });
 
 router.get("/pages/unauthorized", (req, res) => {
+  pageSessionUpdate(req, res);
+
   res.render("unauthorized", {});
 });
 
 router.get("/pages/blogs", (req, res) => {
+  pageSessionUpdate(req, res);
+
   res.render("blogs", {});
 });
 
@@ -119,6 +153,7 @@ router.get("/pages/terms-and-conditions", (req, res) => {
   if (!req.session.userProfile || !req.session.userProfile.cart) {
     req.session.userProfile = { cart: [] };
   }
+  pageSessionUpdate(req, res);
 
   res.render("terms-and-conditions", { content });
 });
@@ -131,6 +166,7 @@ router.get("/pages/contact-us", (req, res) => {
   if (!req.session.userProfile || !req.session.userProfile.cart) {
     req.session.userProfile = { cart: [] };
   }
+  pageSessionUpdate(req, res);
 
   res.render("Contact_Us", { content });
 });
@@ -143,17 +179,20 @@ router.get("/pages/shipping-policy", (req, res) => {
   if (!req.session.userProfile || !req.session.userProfile.cart) {
     req.session.userProfile = { cart: [] };
   }
+  pageSessionUpdate(req, res);
 
   res.render("shipping-policy", { content });
 });
 
 router.get("/sitemap.xml", (req, res) => {
   const sitemapPath = path.join(__dirname, "../views/sitemap.xml");
+  pageSessionUpdate(req, res);
   res.sendFile(sitemapPath);
 });
 
 router.get("/robots.txt", (req, res) => {
   const robotsPath = path.join(__dirname, "../assets/robots.txt");
+  pageSessionUpdate(req, res);
   res.sendFile(robotsPath);
 });
 
@@ -239,6 +278,7 @@ router.get("/collections/:page", (req, res) => {
     metaDescription: pageMetaDesc,
     imageSrc: pageImageSrc,
   };
+  pageSessionUpdate(req, res);
 
   res.render("Product_Listing_page", { content });
 });
@@ -247,6 +287,7 @@ router.get("/login", (req, res) => {
   if (!req.session.userProfile || !req.session.userProfile.cart) {
     req.session.userProfile = { cart: [] };
   }
+  pageSessionUpdate(req, res);
   res.render("Auth_page");
 });
 
@@ -264,6 +305,28 @@ router.get("/confirm", (req, res) => {
   }
   content.isLoggedIn = req.session.isLoggedIn;
   req.session.flow = false;
+
+  UserSessionTrack.findOne({ sessionId: req.sessionID })
+    .then((userSession) => {
+      if (userSession) {
+        userSession.visited += 1;
+        userSession.reachedCheckout += 1;
+        return userSession.save();
+      } else {
+        const newUserSession = new UserSessionTrack({
+          sessionId: req.sessionID,
+          sessionLandingUrl: req.originalUrl,
+          reachedCheckout: 1,
+        });
+        return newUserSession.save(); // Save new session
+      }
+    })
+    .then((savedSession) => {
+      console.log("Session saved:", savedSession);
+    })
+    .catch((error) => {
+      console.error("Error:", error);
+    });
   if (!req.session.userProfile.cart[0]) {
     res.status(502).json({ message: "Please Add Items in cart" });
   } else {
@@ -275,6 +338,8 @@ router.get("/profile", isAuthenticated, (req, res) => {
   const content = {
     isLoggedIn: req.session.isLoggedIn,
   };
+  pageSessionUpdate(req, res);
+
   res.render("User_Profile_page", { content });
 });
 
@@ -282,6 +347,27 @@ router.get("/success", isAuthenticated, (req, res) => {
   const content = {
     orderId: req.session.recentOrder,
   };
+  UserSessionTrack.findOne({ sessionId: req.sessionID })
+    .then((userSession) => {
+      if (userSession) {
+        userSession.visited += 1;
+        userSession.sessionConverted += 1;
+        return userSession.save();
+      } else {
+        const newUserSession = new UserSessionTrack({
+          sessionId: req.sessionID,
+          sessionLandingUrl: req.originalUrl,
+          sessionConverted: 1,
+        });
+        return newUserSession.save(); // Save new session
+      }
+    })
+    .then((savedSession) => {
+      console.log("Session saved:", savedSession);
+    })
+    .catch((error) => {
+      console.error("Error:", error);
+    });
   res.render("thank_you_page", { content });
 });
 router.get("/failure", isAuthenticated, (req, res) => {
