@@ -10,5 +10,5 @@ const UserSessionTrack = new mongoose.Schema({
   createdAt: { type: Date, required: true, default: Date.now },
 });
 
-const user = mongoose.model("UserSessionTrack", userSchema);
+const user = mongoose.model("UserSessionTrack", UserSessionTrack);
 module.exports = user;
