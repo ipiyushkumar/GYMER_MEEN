@@ -19,6 +19,7 @@ const isAdminAuthenticated = (req, res, next) => {
     res.status(401).json({ message: "Unauthorized" });
   }
 };
+const UserSessionTrack = require("../schemas/user_session_manager");
 
 // admin tab
 router.get("/adminwolf", isAdminAuthenticated, (req, res) => {
