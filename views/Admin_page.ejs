@@ -310,7 +310,7 @@
                     </div>
                     <div>
                         <h1>Online Store Sessions</h1>
-                        <h2 class="total_sessions">Total Store Sessions: 0, Sessions Converted: 0</h2>
+                        <h2 class="totalStoreSessions"></h2>
                         <select name="storeSessionsSelect" id="storeSessionsGraphSelect">
                             <option value="7">last 7 days</option>
                             <option value="30">last 30 days</option>
@@ -319,6 +319,23 @@
                             <option value="1780">last 4 years</option>
                         </select>
                         <canvas id="storeSessionsChart" class="chart"></canvas>
+                    </div>
+                </div>
+            </section>
+            <section class="main-course">
+                <div class="course-box">
+                    <div>
+                    <h1>Online Store Conversion Rate</h1>
+                        <h2 class="addedToCart">Added to Cart: 0%</h2>
+                        <h2 class="reachedCheckout">Reached Checkout: 0%</h2>
+                        <h2 class="sessionsConverted">Sessions Converted: 0%</h2>
+                    </div>
+                    <div class="top-selling">
+                        <h2>Top Selling Products</h2>
+                        <table style="width: 100%; border-collapse: collapse; margin-top: 20px;">
+                          <tbody id="topSellingProductsBody">
+                          </tbody>
+                        </table>
                     </div>
                 </div>
             </section>
@@ -340,7 +357,7 @@
                 <h1>User Analytics</h1>
                 <div class="course-box">
                     <div>
-                        <h1>User Login</h1>
+                        <h1>User Registered</h1>
                         <select name="usersGraphSelect" id="usersGraphSelect">
                             <option value="7">last 7 days</option>
                             <option value="30">last 30 days</option>
@@ -350,12 +367,16 @@
                         </select>
                         <canvas id="usersChart" class="chart"></canvas>
                     </div>
-                    <div class="top-selling">
-                        <h2>Top Selling Products</h2>
-                        <table style="width: 100%; border-collapse: collapse; margin-top: 20px;">
-                          <tbody id="topSellingProductsBody">
-                          </tbody>
-                        </table>
+                    <div>
+                        <h1>User Subscribed</h1>
+                        <select name="usersGraphSelect" id="usersGraphSelect">
+                            <option value="7">last 7 days</option>
+                            <option value="30">last 30 days</option>
+                            <option value="100">last 100 days</option>
+                            <option value="365">last 365 days</option>
+                            <option value="1780">last 4 years</option>
+                        </select>
+                        <canvas id="usersChart" class="chart"></canvas>
                     </div>
                 </div>
             </section>
@@ -387,8 +408,16 @@
                     document.querySelector('.total_sales').textContent = `Total Sales Rs ${calculateTotalSales()}, Pending Orders : ${calculatePendingOrders()}`;
                     drawOrdersGraph(7)
 
-                    document.querySelector('.total_sessions').textContent = `Total Store Sessions: ${userSessions.length}, Sessions Converted: ${orders.length}`;
+
+                    document.querySelector('.totalStoreSessions') .textContent = `Total Store Sessions: ${userSessions.length}`
+                    let convertedSessions = userSessions.filter(session => session.sessionConverted > 0);
+                    document.querySelector('.sessionsConverted').textContent = `Sessions Converted: ${(convertedSessions.length/userSessions.length)*100}%`;
+                    let addedToCart = userSessions.filter(session => session.addedToCart > 0);
+                    document.querySelector('.addedToCart') .textContent = `Added to Cart: ${(addedToCart.length/userSessions.length)*100}%,`;
+                    let reachedCheckout = userSessions.filter(session => session.reachedCheckout > 0);
+                    document.querySelector('.reachedCheckout').textContent = `Reached Checkout: ${(reachedCheckout.length/userSessions.length)*100}%`;
                     drawStoreSessionsGraph(7)
+
 
                     document.querySelector('.sales_today').textContent = `Rs ${calculateSalesToday()}`;
                     document.querySelector('.completed_orders').textContent = calculateCompletedOrders();
