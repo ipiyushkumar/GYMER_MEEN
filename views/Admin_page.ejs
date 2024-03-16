@@ -325,7 +325,8 @@
             <section class="main-course">
                 <div class="course-box">
                     <div>
-                    <h1>Online Store Conversion Rate</h1>
+                    <h1>Online Store Conversion Rate<h2 class="averageConvertionRate">0%</h2></h1>
+                    
                         <h2 class="addedToCart">Added to Cart: 0%</h2>
                         <h2 class="reachedCheckout">Reached Checkout: 0%</h2>
                         <h2 class="sessionsConverted">Sessions Converted: 0%</h2>
@@ -416,6 +417,9 @@
                     document.querySelector('.addedToCart') .textContent = `Added to Cart: ${(addedToCart.length/userSessions.length)*100}%,`;
                     let reachedCheckout = userSessions.filter(session => session.reachedCheckout > 0);
                     document.querySelector('.reachedCheckout').textContent = `Reached Checkout: ${(reachedCheckout.length/userSessions.length)*100}%`;
+
+                    let averageConvertionRate = (((convertedSessions.length + addedToCart.length + reachedCheckout.length)/3)/userSessions.length)*100
+                    document.querySelector('.averageConvertionRate').textContent = Math.floor(averageConvertionRate) + "%"
                     drawStoreSessionsGraph(7)
 
 
