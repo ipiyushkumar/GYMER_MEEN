@@ -4,7 +4,6 @@ const userSchema = new mongoose.Schema({
   email: { type: String, required: true, unique: true },
   name: { type: String },
   phone: { type: Number },
-  joinDate: { type: Date, default: Date.now },
   pincode: { type: Number },
   locality: { type: String },
   landmark: { type: String },
@@ -17,7 +16,7 @@ const userSchema = new mongoose.Schema({
       dateAdded: { type: Date, required: true, default: Date.now },
     },
   ],
-  createdAt: { type: Date, required: true, default: Date.now },
+  joinDate: { type: Date, default: Date.now },
 });
 
 const user = mongoose.model("User", userSchema);
