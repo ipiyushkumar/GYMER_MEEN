@@ -154,13 +154,9 @@
                         <img src="/assets/ww side name logo.png" alt="">
                         <span class="nav-item admin">Admin Dashboard</span>
                 </li>
-                <li><a href="#" onclick="selectSection('dashboardSection')" id="dashboardTab">
-                    <i class="fas fa-house-user"></i>
-                    <span class="nav-item">Home</span>
-                </a></li>
                 <li><a href="#" onclick="selectSection('usersSection')" id="usersTab">
                     <i class="fas fa-user"></i>
-                    <span class="nav-item">Users</span>
+                    <span class="nav-item">User Sessions</span>
                 </a></li>
                 <li><a href="#" onclick="selectSection('analyticsSection')" id="analyticsTab">
                     <i class="fas fa-chart-line"></i>
@@ -222,7 +218,81 @@
       }
         </script>
 
-        <section class="main" id="dashboardSection" >
+        <section class="main" id="usersSection" style="display: none;" >
+            <section class="main-orders">
+                <h1>User Analytics <button class="export-btn">Export CSV <iconify-icon icon="ic:baseline-file-download"></iconify-icon></button></h1>
+                <div class="user-container">
+                    <table class="user-table">
+                        <thead>
+                            <tr>
+                                <th>User Name</th>
+                                <th>Email</th>
+                                <th>Phone Number</th>
+                                <th>Pin Code</th>
+                                <th>Account Created</th>
+                            </tr>
+                        </thead>
+                        <tbody id="userTableBody">
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <script>
+                document.querySelector('.export-btn').addEventListener('click', function() {
+                    exportToCSV('user-table.csv');
+                });
+
+                async function exportToCSV(filename) {
+                    const table = document.querySelector('.user-table');
+                    const rows = Array.from(table.querySelectorAll('tr'));
+
+                    let csvContent = "data:text/csv;charset=utf-8,";
+                    csvContent += rows.map(row => {
+                        const rowData = Array.from(row.children).map(cell => cell.textContent).join(',');
+                        return rowData;
+                    }).join('\n');
+
+                    const encodedUri = encodeURI(csvContent);
+                    const link = document.createElement('a');
+                    link.setAttribute('href', encodedUri);
+                    link.setAttribute('download', filename);
+                    document.body.appendChild(link);
+                    link.click();
+                }
+
+                document.querySelector('#usersTab').addEventListener('click', async () => {
+                    function createTableCell(content) {
+                        let cell = document.createElement('td')
+                        cell.textContent = content;
+                        return cell;
+                    }
+                    document.querySelector('#userTableBody').innerHTML = ''
+                    await axios.get('/api/admin/getAllUsers')
+                    .then(response => response.data)
+                    .then(users => {
+                        users.forEach(user => {
+                            let row = document.createElement('tr')
+                            row.append(createTableCell(user.name || "N/A"))
+                            row.append(createTableCell(user.email || "N/A"))
+                            row.append(createTableCell(user.phone || "N/A"))
+                            row.append(createTableCell(user.pincode || "N/A"))
+
+                            const dateTime = new Date(user.joinDate || "N/A");
+                            const formattedDateTime = dateTime.toLocaleString();
+                            row.append(createTableCell(formattedDateTime))
+                            document.querySelector('#userTableBody').append(row)
+                            showAlert("All users loaded successfully","success");
+                        })
+                    })
+                    .catch(err => showAlert("Oops, an error occurred while fetching users","danger"))
+                });
+            </script>
+
+        </section>   
+
+        <section class="main" id="analyticsSection" >
+            
             <div class="main-top">
                 <h1>Summary</h1>
             </div>
@@ -445,491 +515,6 @@
                 }
             </script>
 
-        </section>
-
-        <section class="main" id="usersSection" style="display: none;" >
-            <section class="main-orders">
-                <h1>User Analytics <button class="export-btn">Export CSV <iconify-icon icon="ic:baseline-file-download"></iconify-icon></button></h1>
-                <div class="user-container">
-                    <table class="user-table">
-                        <thead>
-                            <tr>
-                                <th>User Name</th>
-                                <th>Email</th>
-                                <th>Phone Number</th>
-                                <th>Pin Code</th>
-                                <th>Account Created</th>
-                            </tr>
-                        </thead>
-                        <tbody id="userTableBody">
-                        </tbody>
-                    </table>
-                </div>
-            </section>
-
-            <script>
-                document.querySelector('.export-btn').addEventListener('click', function() {
-                    exportToCSV('user-table.csv');
-                });
-
-                async function exportToCSV(filename) {
-                    const table = document.querySelector('.user-table');
-                    const rows = Array.from(table.querySelectorAll('tr'));
-
-                    let csvContent = "data:text/csv;charset=utf-8,";
-                    csvContent += rows.map(row => {
-                        const rowData = Array.from(row.children).map(cell => cell.textContent).join(',');
-                        return rowData;
-                    }).join('\n');
-
-                    const encodedUri = encodeURI(csvContent);
-                    const link = document.createElement('a');
-                    link.setAttribute('href', encodedUri);
-                    link.setAttribute('download', filename);
-                    document.body.appendChild(link);
-                    link.click();
-                }
-
-                document.querySelector('#usersTab').addEventListener('click', async () => {
-                    function createTableCell(content) {
-                        let cell = document.createElement('td')
-                        cell.textContent = content;
-                        return cell;
-                    }
-                    document.querySelector('#userTableBody').innerHTML = ''
-                    await axios.get('/api/admin/getAllUsers')
-                    .then(response => response.data)
-                    .then(users => {
-                        users.forEach(user => {
-                            let row = document.createElement('tr')
-                            row.append(createTableCell(user.name || "N/A"))
-                            row.append(createTableCell(user.email || "N/A"))
-                            row.append(createTableCell(user.phone || "N/A"))
-                            row.append(createTableCell(user.pincode || "N/A"))
-
-                            const dateTime = new Date(user.joinDate || "N/A");
-                            const formattedDateTime = dateTime.toLocaleString();
-                            row.append(createTableCell(formattedDateTime))
-                            document.querySelector('#userTableBody').append(row)
-                            showAlert("All users loaded successfully","success");
-                        })
-                    })
-                    .catch(err => showAlert("Oops, an error occurred while fetching users","danger"))
-                });
-            </script>
-
-        </section>   
-
-        <section class="main" id="analyticsSection" style="display: none;" >
-            <section class="main-orders">
-                <h1>View Analytics</h1>
-                <div class="user-container" style="background-color: transparent !important;border: none;box-shadow: none;padding-right: 1vh;overflow-y: scroll;">
-                    <div class="main-skills-report">
-                        <div class="card">
-                            <div>
-                                <select id="dateRangeSelect" class="select-button">
-                                    <option value="day">Last 7 days</option>
-                                    <option value="month">Last 30 days</option>
-                                    <option value="year">Last 365 days</option>
-                                </select>
-                                <select id="timeIntervalSelect" class="select-button">
-                                    <option value="1">1 hour</option>
-                                    <option value="6">6 hours</option>
-                                    <option value="12">12 hours</option>
-                                    <option value="24">24 hours</option>
-                                </select>
-                            </div>
-                            <div id="totalSalesChartContainer" class="chart-container"></div>
-                            <h4>Total Sales</h4>
-                        </div>
-
-                        <div class="card">
-                            <div>
-                                <select id="orderTimeRangeSelect" class="select-button">
-                                    <option value="today">Today</option>
-                                    <option value="7">Last 7 days</option>
-                                    <option value="30">Last 30 days</option>
-                                    <option value="365">Last 365 days</option>
-                                </select>
-                            </div>
-                            <div id="totalOrdersChartContainer" style="width: 308px; height: 200px;"></div>                            
-                            <h4>Total orders</h4>
-                        </div>                        
-
-                        <div class="card">
-
-                            <div>
-                                <select id="timeRangeSelect" class="select-button">
-                                    <option value="6">0 - 6 hrs</option>
-                                    <option value="12">0 - 12 hrs</option>
-                                    <option value="18">0 - 18 hrs</option>
-                                    <option value="24">0 - 24 hrs</option>
-                                </select>                                
-                            </div>
-                            <div id="userSessionsChart" class="chart-container" style="width: 308px; height: 200px;"></div>
-                            <script src="script.js"></script>
-                            <h4>Online Store Sessions</h4>
-                        </div>
-                        <div class="card">
-                            <h2 style="font-size: 5vh !important;color: #fff;padding: 2vh;background-color: red;border-radius: 5px;cursor: pointer;">200</h2>
-                            <h4>Session by Location</h4>
-                        </div>
-                        <div class="card">
-                            <div>
-                                <select id="dateRangeSelect" class="select-button">
-                                    <option value="today">Today</option>
-                                    <option value="7">Last 7 days</option>
-                                    <option value="30">Last 30 days</option>
-                                    <option value="365">Last year</option>
-                                </select>
-                            </div>
-                            <div id="deviceTypeChartContainer" class="chart-container" style="width: 308px; height: 200px;"></div>
-                            <h4>Session by Device Type</h4>
-                        </div>
-                        
-                        <div class="card">
-                            <h2 style="font-size: 5vh !important;color: #fff;padding: 2vh;background-color: green;border-radius: 5px;cursor: pointer;">60%</h2>
-                            <h4>Conversion Rate</h4>
-                        </div>
-
-                        <div class="card top-selling-product-card">
-                            <div>
-                                <select id="topSellingProductDateRangeSelect" class="select-button">
-                                    <option value="today">Today</option>
-                                    <option value="7">Last 7 days</option>
-                                    <option value="30">Last 30 days</option>
-                                    <option value="365">Last 365 days</option>
-                                </select>
-                            </div>
-                            <div id="topSellingProductChartContainer" class="chart-container" style="width: 308px; height: 200px;"></div>
-                            <h4>Top Selling Product</h4>
-                        </div>
-
-                        <div class="card">
-                            <iconify-icon class="icon" icon="emojione:shopping-cart"></iconify-icon>
-                            <h2 class="total_sales">Rs 0</h2>
-                            <h4>Total Sales</h4>
-                        </div>
-                        <div class="card">
-                            <iconify-icon class="icon" icon="emojione:shopping-cart"></iconify-icon>
-                            <h2 class="total_sales">Rs 0</h2>
-                            <h4>Total Sales</h4>
-                        </div>
-                    </div>
-                </div>
-            </section>
-            <script>
-                window.onload = function () {
-                    var chart;
-                    var initialTimeRange = 6;
-            
-                    function updateChart(timeRange) {
-                        var dataPoints = [];
-                        for (var i = 0; i <= timeRange; i++) {
-                            dataPoints.push({ x: i, y: Math.floor(Math.random() * 100) });
-                        }
-            
-                        chart.options.axisX.maximum = timeRange;
-                        chart.options.data[0].dataPoints = dataPoints;
-                        chart.render();
-                    }
-            
-                    document.getElementById("timeRangeSelect").addEventListener("change", function () {
-                        var selectedTimeRange = parseInt(this.value);
-                        updateChart(selectedTimeRange);
-                    });
-            
-                    chart = new CanvasJS.Chart("userSessionsChart", {
-                        animationEnabled: true,
-                        theme: "light2",
-                        title: {
-                            text: ""
-                        },
-                        axisX: {
-                            title: "Time (Hours)",
-                            interval: 1,
-                            minimum: 0,
-                            maximum: initialTimeRange
-                        },
-                        axisY: {
-                            title: ""
-                        },
-                        data: [{
-                            type: "line",
-                            dataPoints: []
-                        }]
-                    });
-                    updateChart(initialTimeRange);
-            
-                    var totalSalesChart;
-                    var initialDateRange = 1;
-                    var initialTimeInterval = 24;
-            
-                    function updateTotalSalesChart(dateRange, timeInterval) {
-                        var dataPoints = [];
-                        for (var i = 0; i < timeInterval; i++) {
-                            dataPoints.push({ x: i, y: Math.floor(Math.random() * 1000) });
-                        }
-            
-                        totalSalesChart.options.axisX.maximum = timeInterval - 1;
-                        totalSalesChart.options.data[0].dataPoints = dataPoints;
-                        totalSalesChart.render();
-                    }
-            
-                    document.getElementById("dateRangeSelect").addEventListener("change", function () {
-                        var selectedDateRange = parseInt(this.value);
-                        initialDateRange = selectedDateRange;
-                        updateTotalSalesChart(initialDateRange, initialTimeInterval);
-                    });
-            
-                    document.getElementById("timeIntervalSelect").addEventListener("change", function () {
-                        var selectedTimeInterval = parseInt(this.value);
-                        initialTimeInterval = selectedTimeInterval;
-                        updateTotalSalesChart(initialDateRange, initialTimeInterval);
-                    });
-            
-                    totalSalesChart = new CanvasJS.Chart("totalSalesChartContainer", {
-                        animationEnabled: true,
-                        theme: "light2",
-                        title: {
-                            text: ""
-                        },
-                        axisX: {
-                            title: "Time (Hours)",
-                            interval: 1,
-                            minimum: 0,
-                            maximum: initialTimeInterval - 1
-                        },
-                        axisY: {
-                            title: "Total Sales"
-                        },
-                        data: [{
-                            type: "column",
-                            dataPoints: []
-                        }]
-                    });
-            
-                    updateTotalSalesChart(initialDateRange, initialTimeInterval);
-            
-                    var totalOrdersChart;
-                    var initialOrderTimeRange = 'today';
-            
-                    function updateTotalOrdersChart(timeRange) {
-                        var pendingOrders, shippedOrders, deliveredOrders;
-            
-                        // Dummy data for demonstration
-                        switch (timeRange) {
-                            case 'today':
-                                pendingOrders = 20;
-                                shippedOrders = 10;
-                                deliveredOrders = 5;
-                                break;
-                            case '7':
-                                pendingOrders = 150;
-                                shippedOrders = 120;
-                                deliveredOrders = 100;
-                                break;
-                            case '30':
-                                pendingOrders = 600;
-                                shippedOrders = 500;
-                                deliveredOrders = 400;
-                                break;
-                            case '365':
-                                pendingOrders = 5000;
-                                shippedOrders = 4000;
-                                deliveredOrders = 3500;
-                                break;
-                            default:
-                                break;
-                        }
-            
-                        // Update chart data
-                        totalOrdersChart.options.data[0].dataPoints = [
-                            { label: "Pending Orders", y: pendingOrders },
-                            { label: "Shipped Orders", y: shippedOrders },
-                            { label: "Delivered Orders", y: deliveredOrders }
-                        ];
-            
-                        // Re-render the chart
-                        totalOrdersChart.render();
-                    }
-            
-                    // Event listener for dropdown change
-                    document.getElementById("orderTimeRangeSelect").addEventListener("change", function () {
-                        var selectedTimeRange = this.value;
-                        updateTotalOrdersChart(selectedTimeRange);
-                    });
-            
-                    // Initial rendering of the chart
-                    totalOrdersChart = new CanvasJS.Chart("totalOrdersChartContainer", {
-                        animationEnabled: true,
-                        title: {
-                            text: ""
-                        },
-                        axisY: {
-                            title: ""
-                        },
-                        data: [{
-                            type: "column",
-                            dataPoints: []
-                        }]
-                    });
-            
-                    updateTotalOrdersChart(initialOrderTimeRange);
-                }
-            </script>
-            
-            <script>
-                function updateDeviceTypeChart(timeRange) {
-                    var desktopSessions, mobileSessions, tabletSessions;
-            
-                    // Dummy data for demonstration
-                    switch (timeRange) {
-                        case 'today':
-                            desktopSessions = 20;
-                            mobileSessions = 50;
-                            tabletSessions = 20;
-                            break;
-                        case '7':
-                            desktopSessions = 30;
-                            mobileSessions = 60;
-                            tabletSessions = 10;
-                            break;
-                        case '30':
-                            desktopSessions = 10;
-                            mobileSessions = 80;
-                            tabletSessions = 10;
-                            break;
-                        case '365':
-                            desktopSessions = 20;
-                            mobileSessions = 70;
-                            tabletSessions = 10;
-                            break;
-                        default:
-                            break;
-                    }
-            
-                    var deviceTypeChart = new CanvasJS.Chart("deviceTypeChartContainer", {
-                        animationEnabled: true,
-                        title: {
-                            text: ""
-                        },
-                        data: [{
-                            type: "pie",
-                            startAngle: 240,
-                            yValueFormatString: "##0\"%\"",
-                            indexLabel: "{label} {y}",
-                            indexLabelFontColor: "black",
-                            indexLabelFontSize: 14,
-                            indexLabelPlacement: "outside",
-                            toolTipContent: "<b>{label}:</b> {y} sessions",
-                            dataPoints: [
-                                { y: desktopSessions, label: "Desktop",color: "orange"  },
-                                { y: mobileSessions, label: "Mobile" ,color: "red" },
-                                { y: tabletSessions, label: "Tablet",color: "green"  }
-                            ]
-                        }]
-                    });
-            
-                    deviceTypeChart.render();
-                }
-            
-                var orderTimeRangeSelect = document.getElementById("orderTimeRangeSelect");
-                orderTimeRangeSelect.addEventListener("change", function () {
-                    var selectedTimeRange = this.value;
-                    updateDeviceTypeChart(selectedTimeRange);
-                });
-            
-                // Initial rendering of the chart
-                updateDeviceTypeChart('today');
-            </script>
-            
-            <script>
-                function updateTopSellingProductChart(timeRange) {
-                    var productData = [];
-            
-                    // Dummy data for demonstration
-                    switch (timeRange) {
-                        case 'today':
-                            productData = [
-                                { label: "Product A", y: 100, color: "#ff0000" },
-                                { label: "Product B", y: 80, color: "#00ff00" },
-                                { label: "Product C", y: 60, color: "#0000ff" },
-                                { label: "Product D", y: 120, color: "#ff9900" },
-                                { label: "Product E", y: 90, color: "#9900ff" },
-                                { label: "Product F", y: 110, color: "#00ffff" },
-                                { label: "Product G", y: 70, color: "#ffff00" }
-                            ];
-                            break;
-                        case '7':
-                        productData = [
-                                { label: "Product A", y: 100, color: "#ff0000" },
-                                { label: "Product B", y: 80, color: "#00ff00" },
-                                { label: "Product C", y: 60, color: "#0000ff" },
-                                { label: "Product D", y: 120, color: "#ff9900" },
-                                { label: "Product E", y: 90, color: "#9900ff" },
-                                { label: "Product F", y: 110, color: "#00ffff" },
-                                { label: "Product G", y: 70, color: "#ffff00" }
-                            ];
-                            break;
-                        case '30':
-                        productData = [
-                                { label: "Product A", y: 100, color: "#ff0000" },
-                                { label: "Product B", y: 80, color: "#00ff00" },
-                                { label: "Product C", y: 60, color: "#0000ff" },
-                                { label: "Product D", y: 120, color: "#ff9900" },
-                                { label: "Product E", y: 90, color: "#9900ff" },
-                                { label: "Product F", y: 110, color: "#00ffff" },
-                                { label: "Product G", y: 70, color: "#ffff00" }
-                            ];
-                            break;
-                        case '365':
-                        productData = [
-                                { label: "Product A", y: 100, color: "#ff0000" },
-                                { label: "Product B", y: 80, color: "#00ff00" },
-                                { label: "Product C", y: 60, color: "#0000ff" },
-                                { label: "Product D", y: 120, color: "#ff9900" },
-                                { label: "Product E", y: 90, color: "#9900ff" },
-                                { label: "Product F", y: 110, color: "#00ffff" },
-                                { label: "Product G", y: 70, color: "#ffff00" }
-                            ];
-                            break;
-                        default:
-                            break;
-                    }
-            
-                    var topSellingProductChart = new CanvasJS.Chart("topSellingProductChartContainer", {
-                        animationEnabled: true,
-                        theme: "light2",
-                        title: {
-                            text: ""
-                        },
-                        axisX: {
-                            title: ""
-                        },
-                        axisY: {
-                            title: ""
-                        },
-                        data: [{
-                            type: "column",
-                            dataPoints: productData
-                        }]
-                    });
-            
-                    topSellingProductChart.render();
-                }
-            
-                var topSellingProductDateRangeSelect = document.getElementById("topSellingProductDateRangeSelect");
-                topSellingProductDateRangeSelect.addEventListener("change", function () {
-                    var selectedTimeRange = this.value;
-                    updateTopSellingProductChart(selectedTimeRange);
-                });
-            
-                // Initial rendering of the chart
-                updateTopSellingProductChart('today');
-            </script>
-            
-            
         </section>   
 
         <section class="main" id="ordersSection" style="display: none;">
@@ -2041,7 +1626,7 @@
 
     </div>
     <script>
-        let selectedSection = "dashboardSection";
+        let selectedSection = "analyticsSection";
 
         function selectSection(sectionName) {
             document.getElementById(selectedSection).style.display = "none";
