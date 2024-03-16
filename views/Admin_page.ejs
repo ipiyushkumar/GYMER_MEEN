@@ -158,11 +158,11 @@
                     <i class="fas fa-house-user"></i>
                     <span class="nav-item">Home</span>
                 </a></li>
-                <li><a href="#" onclick="selectSection('analyticsSection')" id="analyticsTab">
+                <li><a href="#" onclick="selectSection('usersSection')" id="usersTab">
                     <i class="fas fa-user"></i>
                     <span class="nav-item">Users</span>
                 </a></li>
-                <li><a href="#" onclick="selectSection('ReportSection')" id="reportTab">
+                <li><a href="#" onclick="selectSection('analyticsSection')" id="analyticsTab">
                     <i class="fas fa-chart-line"></i>
                     <span class="nav-item">Analytics</span>
                 </a></li>
@@ -447,7 +447,7 @@
 
         </section>
 
-        <section class="main" id="analyticsSection" style="display: none;" >
+        <section class="main" id="usersSection" style="display: none;" >
             <section class="main-orders">
                 <h1>User Analytics <button class="export-btn">Export CSV <iconify-icon icon="ic:baseline-file-download"></iconify-icon></button></h1>
                 <div class="user-container">
@@ -490,7 +490,7 @@
                     link.click();
                 }
 
-                document.querySelector('#analyticsTab').addEventListener('click', async () => {
+                document.querySelector('#usersTab').addEventListener('click', async () => {
                     function createTableCell(content) {
                         let cell = document.createElement('td')
                         cell.textContent = content;
@@ -520,7 +520,7 @@
 
         </section>   
 
-        <section class="main" id="ReportSection" style="display: none;" >
+        <section class="main" id="analyticsSection" style="display: none;" >
             <section class="main-orders">
                 <h1>View Analytics</h1>
                 <div class="user-container" style="background-color: transparent !important;border: none;box-shadow: none;padding-right: 1vh;overflow-y: scroll;">
