@@ -293,31 +293,36 @@
 
         <section class="main" id="analyticsSection" >
             
-
             <section class="main-course">
-                <h1>Analytics</h1>
+                <h1>Orders Analytics</h1>
                 <div class="course-box">
-
                     <div>
-                        <select name="graphSelect" id="graphSelect">
+                        <h1>Orders per Day</h1>
+                        <h2 class="total_sales">Total Sales Rs 0, Pending Orders 0</h2>
+                        <select name="ordersGraphSelect" id="ordersGraphSelect">
                             <option value="7">last 7 days</option>
                             <option value="30">last 30 days</option>
                             <option value="100">last 100 days</option>
                             <option value="365">last 365 days</option>
                             <option value="1780">last 4 years</option>
                         </select>
-                        <canvas id="myChart" class="chart"></canvas>
+                        <canvas id="ordersChart" class="chart"></canvas>
                     </div>
-                    <div class="top-selling">
-                        <h2>Top Selling Products</h2>
-                        <table style="width: 100%; border-collapse: collapse; margin-top: 20px;">
-                          <tbody id="topSellingProductsBody">
-                          </tbody>
-                        </table>
-                      </div>
+                    <div>
+                        <h1>Online Store Sessions</h1>
+                        <h2 class="total_sessions">Total Store Sessions: 0, Sessions Converted: 0</h2>
+                        <select name="storeSessionsSelect" id="storeSessionsGraphSelect">
+                            <option value="7">last 7 days</option>
+                            <option value="30">last 30 days</option>
+                            <option value="100">last 100 days</option>
+                            <option value="365">last 365 days</option>
+                            <option value="1780">last 4 years</option>
+                        </select>
+                        <canvas id="storeSessionsChart" class="chart"></canvas>
+                    </div>
                 </div>
             </section>
-            
+
             <div class="main-skills">
                 <div class="card">
                     <iconify-icon class="icon" icon="emojione:money-bag"></iconify-icon>
@@ -329,38 +334,71 @@
                     <h2 class="completed_orders">65</h2>
                     <h4>Delivered orders</h4>
                 </div>
-                <div class="card">
-                    <iconify-icon class="icon" icon="openmoji:timer"></iconify-icon>
-                    <h2 class="pending_orders">0</h2>
-                    <h4>Pending Orders</h4>
-                </div>
-                <div class="card">
-                    <iconify-icon class="icon" icon="emojione:shopping-cart"></iconify-icon>
-                    <h2 class="total_sales">Rs 0</h2>
-                    <h4>Total Sales</h4>
-                </div>
             </div>
+
+            <section class="main-course">
+                <h1>User Analytics</h1>
+                <div class="course-box">
+                    <div>
+                        <h1>User Login</h1>
+                        <select name="usersGraphSelect" id="usersGraphSelect">
+                            <option value="7">last 7 days</option>
+                            <option value="30">last 30 days</option>
+                            <option value="100">last 100 days</option>
+                            <option value="365">last 365 days</option>
+                            <option value="1780">last 4 years</option>
+                        </select>
+                        <canvas id="usersChart" class="chart"></canvas>
+                    </div>
+                    <div class="top-selling">
+                        <h2>Top Selling Products</h2>
+                        <table style="width: 100%; border-collapse: collapse; margin-top: 20px;">
+                          <tbody id="topSellingProductsBody">
+                          </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
 
             <script>
                 let orders = []
                 let users = []
+                let userSessions = []
 
                 document.addEventListener('DOMContentLoaded', async () => {
 
-                    const ordersResponse = await axios.get('/api/admin/getAllOrders');
-                    orders = ordersResponse.data;
+                    await axios.get('/api/admin/getAllOrders')
+                    .then(response => response.data)
+                    .then(ordersData => {orders = ordersData})
+                    .catch(err => { showAlert("something went wrong loading Users data", "danger"); console.log(err)})
+                    
+                    await axios.get('/api/admin/getAllUsers')
+                    .then(response => response.data)
+                    .then(usersData => {users = usersData})
+                    .catch(err => { showAlert("something went wrong loading Users data", "danger"); console.log(err)})
 
-                    const usersResponse = await axios.get('/api/admin/getAllUsers');
-                    users = usersResponse.data;
+                    
+                    await axios.get('/api/admin/getAllUserSessions')
+                    .then(response => response.data)
+                    .then(usersSessionData => {userSessions = usersSessionData})
+                    .catch(err => { showAlert("something went wrong loading Users data", "danger"); console.log(err)})
 
-                    drawGraph(7)
+                    document.querySelector('.total_sales').textContent = `Total Sales Rs ${calculateTotalSales()}, Pending Orders : ${calculatePendingOrders()}`;
+                    drawOrdersGraph(7)
 
-                    updateMainSkills();
+                    document.querySelector('.total_sessions').textContent = `Total Store Sessions: ${userSessions.length}, Sessions Converted: ${orders.length}`;
+                    drawStoreSessionsGraph(7)
 
+                    document.querySelector('.sales_today').textContent = `Rs ${calculateSalesToday()}`;
+                    document.querySelector('.completed_orders').textContent = calculateCompletedOrders();
                     updateTopSellingProducts();
                 });
 
-                function drawGraph(lastDays) {
+                document.querySelector(`#ordersGraphSelect`).addEventListener('change', async event => {
+                    drawOrdersGraph(event.target.value)
+                });
+                function drawOrdersGraph(lastDays) {
 
                     const today = new Date();
                     const startDate = new Date();
@@ -381,7 +419,7 @@
                         return { date, count: dayOrders.length };
                     });
 
-                    const ctx = document.getElementById('myChart').getContext('2d');
+                    const ctx = document.getElementById('ordersChart').getContext('2d');
                     const chart = new Chart(ctx, {
                         type: 'line',
                         data: {
@@ -404,24 +442,54 @@
                     });
                 }
 
-                document.querySelector(`#graphSelect`).addEventListener('change', async event => {
-                    drawGraph(event.target.value)
+                document.querySelector(`#storeSessionsGraphSelect`).addEventListener('change', async event => {
+                    drawStoreSessionsGraph(event.target.value)
                 });
+                function drawStoreSessionsGraph(lastDays) {
+                    const today = new Date();
+                    const startDate = new Date();
+                    startDate.setDate(today.getDate() - lastDays + 1);
+                    const endDate = today;
 
-                function updateMainSkills() {
-                    const salesToday = calculateSalesToday();
-                    const completedOrders = calculateCompletedOrders();
-                    const pendingOrders = calculatePendingOrders();
-                    const totalSales = calculateTotalSales();
+                    const storeSessionsPerDay = Array.from({ length: lastDays }, (_, i) => {
+                        const date = new Date(startDate);
+                        date.setDate(startDate.getDate() + i);
 
-                    document.querySelector('.sales_today').textContent = `Rs ${salesToday}`;
-                    document.querySelector('.completed_orders').textContent = completedOrders;
-                    document.querySelector('.pending_orders').textContent = pendingOrders;
-                    document.querySelector('.total_sales').textContent = `Rs ${totalSales}`;
-                }
+                        const daySessions = userSessions.filter(session => {
+                            const sessionDate = new Date(session.createdAt);
+
+                            return sessionDate.getFullYear() === date.getFullYear() && sessionDate.getMonth() === date.getMonth() && sessionDate.getDate() === date.getDate();
+
+                        });
+
+                        return { date, count: daySessions.length };
+                    });
+
+                    const ctx = document.getElementById('storeSessionsChart').getContext('2d');
+                    const chart = new Chart(ctx, {
+                        type: 'line',
+                        data: {
+                            labels: storeSessionsPerDay.map(item => item.date.toDateString()),
+                            datasets: [{
+                                label: 'Orders per Day',
+                                data: storeSessionsPerDay.map(item => item.count),
+                                backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                                borderColor: 'rgba(75, 192, 192, 1)',
+                                borderWidth: 1
+                            }]
+                        },
+                        options: {
+                            scales: {
+                                y: {
+                                    beginAtZero: true
+                                }
+                            }
+                        }
+                    });
+                    }
+
 
                 function calculateSalesToday() {
-
                     const today = new Date();
                     const todayOrders = orders.filter(order => {
                         const orderDate = new Date(order.Date);
