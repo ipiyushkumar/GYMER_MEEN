@@ -460,6 +460,9 @@
                     let totalSales = orders.reduce((total, order) => total + order.totalPayment, 0)
                     document.querySelector('.total_sales').textContent = `Total Sales Rs ${totalSales}`;
                     drawSalesGraph(7);
+                    let averageOrderValue = orders.reduce((total, order) => total + order.totalPayment, 0)/orders.length
+                    document.querySelector('.averageOrderValue').textContent = "Rs " + Math.floor(averageOrderValue);
+                    drawAverageOrderValueGraph(7);
                 });
 
                 document.querySelector(`#ordersGraphSelect`).addEventListener('change', async event => {
@@ -607,6 +610,57 @@
                     });
                 }
 
+                document.querySelector(`#orderValueGraphSelect`).addEventListener('change', async event => {
+                    drawAverageOrderValueGraph(event.target.value)
+                });
+                function drawAverageOrderValueGraph(lastDays) {
+                    const today = new Date();
+                    const startDate = new Date();
+                    startDate.setDate(today.getDate() - lastDays + 1);
+                    const endDate = today;
+
+                    const averageOrderValuePerDay = Array.from({ length: lastDays }, (_, i) => {
+                        const date = new Date(startDate);
+                        date.setDate(startDate.getDate() + i);
+
+                        const dayOrders = orders.filter(order => {
+                            const orderDate = new Date(order.createdDate);
+
+                            return orderDate.getFullYear() === date.getFullYear() && orderDate.getMonth() === date.getMonth() && orderDate.getDate() === date.getDate();
+
+                        });
+                        const averageOrderValue = dayOrders.length > 0 ? dayOrders.reduce((total, order) => total + order.totalPayment, 0) / dayOrders.length : 0;
+
+                        return { date, averageOrderValue };
+                    });
+
+                    const ctx = document.getElementById('orderValueChart').getContext('2d');
+                    const chart = new Chart(ctx, {
+                        type: 'line',
+                        data: {
+                            labels: averageOrderValuePerDay.map(item => item.date.toDateString()),
+                            datasets: [{
+                                label: 'Average Order Value per Day',
+                                data: averageOrderValuePerDay.map(item => item.averageOrderValue),
+                                backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                                borderColor: 'rgba(75, 192, 192, 1)',
+                                borderWidth: 1
+                            }]
+                        },
+                        options: {
+                            scales: {
+                                y: {
+                                    beginAtZero: true,
+                                    ticks: {
+                                        callback: function(value, index, values) {
+                                            return '₹' + value.toFixed(2);
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    });
+                }
 
                 function calculateSalesToday() {
                     const today = new Date();
