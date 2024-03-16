@@ -347,7 +347,7 @@ router.get("/adminActionHistory", isAdminAuthenticated, async (req, res) => {
 
 const Subscriber = require("../schemas/subscriber_schema");
 
-router.get("/subscribe", async (req, res) => {
+router.get("/api/admin/subscribe", isAdminAuthenticated, async (req, res) => {
   try {
     const allSubscribers = await Subscriber.find();
     res.json(allSubscribers);
