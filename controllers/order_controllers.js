@@ -159,6 +159,7 @@ const orderMail = (req, res, orderDetails) => {
     }
   });
 };
+const UserSessionTrack = require("../schemas/user_session_manager");
 
 const saveOrder = async (req, res) => {
   const { razorpay_order_id, razorpay_payment_id, razorpay_signature } =
@@ -245,6 +246,24 @@ const saveOrder = async (req, res) => {
           userData.address = address || userData.address;
           userData.cart = userData.cart;
 
+          UserSessionTrack.findOne({ sessionId: req.sessionID })
+            .then((userSession) => {
+              if (userSession) {
+                userSession.visited += 1;
+                userSession.sessionConverted += 1;
+                return userSession.save();
+              } else {
+                const newUserSession = new UserSessionTrack({
+                  sessionId: req.sessionID,
+                  sessionLandingUrl: req.originalUrl,
+                  sessionConverted: 1,
+                });
+                return newUserSession.save(); // Save new session
+              }
+            })
+            .catch((error) => {
+              console.error("Error:", error);
+            });
           userData.cart = [];
           req.session.userProfile.cart = [];
           await userData.save();
@@ -339,7 +358,26 @@ const saveOrder = async (req, res) => {
     userData.address = address || userData.address;
     userData.cart = userData.cart;
 
+    UserSessionTrack.findOne({ sessionId: req.sessionID })
+      .then((userSession) => {
+        if (userSession) {
+          userSession.visited += 1;
+          userSession.sessionConverted += 1;
+          return userSession.save();
+        } else {
+          const newUserSession = new UserSessionTrack({
+            sessionId: req.sessionID,
+            sessionLandingUrl: req.originalUrl,
+            sessionConverted: 1,
+          });
+          return newUserSession.save(); // Save new session
+        }
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+      });
     userData.cart = [];
+
     req.session.userProfile.cart = [];
     await userData.save();
     orderMail(req, res, orderDetails);

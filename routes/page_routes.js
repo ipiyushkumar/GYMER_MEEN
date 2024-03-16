@@ -341,24 +341,6 @@ router.get("/success", isAuthenticated, (req, res) => {
   const content = {
     orderId: req.session.recentOrder,
   };
-  UserSessionTrack.findOne({ sessionId: req.sessionID })
-    .then((userSession) => {
-      if (userSession) {
-        userSession.visited += 1;
-        userSession.sessionConverted += 1;
-        return userSession.save();
-      } else {
-        const newUserSession = new UserSessionTrack({
-          sessionId: req.sessionID,
-          sessionLandingUrl: req.originalUrl,
-          sessionConverted: 1,
-        });
-        return newUserSession.save(); // Save new session
-      }
-    })
-    .catch((error) => {
-      console.error("Error:", error);
-    });
   res.render("thank_you_page", { content });
 });
 router.get("/failure", isAuthenticated, (req, res) => {
