@@ -104,11 +104,9 @@ router.get(
             console.log("Server shutting down...");
             process.exit(0);
           }, 5000);
-          res
-            .status(200)
-            .json({
-              message: `Folder '${req.params.folder}' has been deleted.`,
-            });
+          res.status(200).json({
+            message: `Folder '${req.params.folder}' has been deleted.`,
+          });
         } else {
           res.status(404).json({ message: "Folder not found." });
         }
