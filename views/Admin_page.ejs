@@ -412,11 +412,11 @@
 
                     document.querySelector('.totalStoreSessions') .textContent = `Total Store Sessions: ${userSessions.length}`
                     let convertedSessions = userSessions.filter(session => session.sessionConverted > 0);
-                    document.querySelector('.sessionsConverted').textContent = `Sessions Converted: ${(convertedSessions.length/userSessions.length)*100}%`;
+                    document.querySelector('.sessionsConverted').textContent = `Sessions Converted: ${Math.floor((convertedSessions.length/userSessions.length)*100)}%`;
                     let addedToCart = userSessions.filter(session => session.addedToCart > 0);
-                    document.querySelector('.addedToCart') .textContent = `Added to Cart: ${(addedToCart.length/userSessions.length)*100}%,`;
+                    document.querySelector('.addedToCart') .textContent = `Added to Cart: ${Math.floor((addedToCart.length/userSessions.length)*100)}%,`;
                     let reachedCheckout = userSessions.filter(session => session.reachedCheckout > 0);
-                    document.querySelector('.reachedCheckout').textContent = `Reached Checkout: ${(reachedCheckout.length/userSessions.length)*100}%`;
+                    document.querySelector('.reachedCheckout').textContent = `Reached Checkout: ${(Math.floor(reachedCheckout.length/userSessions.length)*100)}%`;
 
                     let averageConvertionRate = (((convertedSessions.length + addedToCart.length + reachedCheckout.length)/3)/userSessions.length)*100
                     document.querySelector('.averageConvertionRate').textContent = Math.floor(averageConvertionRate) + "%"
