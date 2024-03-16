@@ -618,6 +618,318 @@
                     </div>
                 </div>
             </section>
+            <script>
+                window.onload = function () {
+                    var chart;
+                    var initialTimeRange = 6;
+            
+                    function updateChart(timeRange) {
+                        var dataPoints = [];
+                        for (var i = 0; i <= timeRange; i++) {
+                            dataPoints.push({ x: i, y: Math.floor(Math.random() * 100) });
+                        }
+            
+                        chart.options.axisX.maximum = timeRange;
+                        chart.options.data[0].dataPoints = dataPoints;
+                        chart.render();
+                    }
+            
+                    document.getElementById("timeRangeSelect").addEventListener("change", function () {
+                        var selectedTimeRange = parseInt(this.value);
+                        updateChart(selectedTimeRange);
+                    });
+            
+                    chart = new CanvasJS.Chart("userSessionsChart", {
+                        animationEnabled: true,
+                        theme: "light2",
+                        title: {
+                            text: ""
+                        },
+                        axisX: {
+                            title: "Time (Hours)",
+                            interval: 1,
+                            minimum: 0,
+                            maximum: initialTimeRange
+                        },
+                        axisY: {
+                            title: ""
+                        },
+                        data: [{
+                            type: "line",
+                            dataPoints: []
+                        }]
+                    });
+                    updateChart(initialTimeRange);
+            
+                    var totalSalesChart;
+                    var initialDateRange = 1;
+                    var initialTimeInterval = 24;
+            
+                    function updateTotalSalesChart(dateRange, timeInterval) {
+                        var dataPoints = [];
+                        for (var i = 0; i < timeInterval; i++) {
+                            dataPoints.push({ x: i, y: Math.floor(Math.random() * 1000) });
+                        }
+            
+                        totalSalesChart.options.axisX.maximum = timeInterval - 1;
+                        totalSalesChart.options.data[0].dataPoints = dataPoints;
+                        totalSalesChart.render();
+                    }
+            
+                    document.getElementById("dateRangeSelect").addEventListener("change", function () {
+                        var selectedDateRange = parseInt(this.value);
+                        initialDateRange = selectedDateRange;
+                        updateTotalSalesChart(initialDateRange, initialTimeInterval);
+                    });
+            
+                    document.getElementById("timeIntervalSelect").addEventListener("change", function () {
+                        var selectedTimeInterval = parseInt(this.value);
+                        initialTimeInterval = selectedTimeInterval;
+                        updateTotalSalesChart(initialDateRange, initialTimeInterval);
+                    });
+            
+                    totalSalesChart = new CanvasJS.Chart("totalSalesChartContainer", {
+                        animationEnabled: true,
+                        theme: "light2",
+                        title: {
+                            text: ""
+                        },
+                        axisX: {
+                            title: "Time (Hours)",
+                            interval: 1,
+                            minimum: 0,
+                            maximum: initialTimeInterval - 1
+                        },
+                        axisY: {
+                            title: "Total Sales"
+                        },
+                        data: [{
+                            type: "column",
+                            dataPoints: []
+                        }]
+                    });
+            
+                    updateTotalSalesChart(initialDateRange, initialTimeInterval);
+            
+                    var totalOrdersChart;
+                    var initialOrderTimeRange = 'today';
+            
+                    function updateTotalOrdersChart(timeRange) {
+                        var pendingOrders, shippedOrders, deliveredOrders;
+            
+                        // Dummy data for demonstration
+                        switch (timeRange) {
+                            case 'today':
+                                pendingOrders = 20;
+                                shippedOrders = 10;
+                                deliveredOrders = 5;
+                                break;
+                            case '7':
+                                pendingOrders = 150;
+                                shippedOrders = 120;
+                                deliveredOrders = 100;
+                                break;
+                            case '30':
+                                pendingOrders = 600;
+                                shippedOrders = 500;
+                                deliveredOrders = 400;
+                                break;
+                            case '365':
+                                pendingOrders = 5000;
+                                shippedOrders = 4000;
+                                deliveredOrders = 3500;
+                                break;
+                            default:
+                                break;
+                        }
+            
+                        // Update chart data
+                        totalOrdersChart.options.data[0].dataPoints = [
+                            { label: "Pending Orders", y: pendingOrders },
+                            { label: "Shipped Orders", y: shippedOrders },
+                            { label: "Delivered Orders", y: deliveredOrders }
+                        ];
+            
+                        // Re-render the chart
+                        totalOrdersChart.render();
+                    }
+            
+                    // Event listener for dropdown change
+                    document.getElementById("orderTimeRangeSelect").addEventListener("change", function () {
+                        var selectedTimeRange = this.value;
+                        updateTotalOrdersChart(selectedTimeRange);
+                    });
+            
+                    // Initial rendering of the chart
+                    totalOrdersChart = new CanvasJS.Chart("totalOrdersChartContainer", {
+                        animationEnabled: true,
+                        title: {
+                            text: ""
+                        },
+                        axisY: {
+                            title: ""
+                        },
+                        data: [{
+                            type: "column",
+                            dataPoints: []
+                        }]
+                    });
+            
+                    updateTotalOrdersChart(initialOrderTimeRange);
+                }
+            </script>
+            
+            <script>
+                function updateDeviceTypeChart(timeRange) {
+                    var desktopSessions, mobileSessions, tabletSessions;
+            
+                    // Dummy data for demonstration
+                    switch (timeRange) {
+                        case 'today':
+                            desktopSessions = 20;
+                            mobileSessions = 50;
+                            tabletSessions = 20;
+                            break;
+                        case '7':
+                            desktopSessions = 30;
+                            mobileSessions = 60;
+                            tabletSessions = 10;
+                            break;
+                        case '30':
+                            desktopSessions = 10;
+                            mobileSessions = 80;
+                            tabletSessions = 10;
+                            break;
+                        case '365':
+                            desktopSessions = 20;
+                            mobileSessions = 70;
+                            tabletSessions = 10;
+                            break;
+                        default:
+                            break;
+                    }
+            
+                    var deviceTypeChart = new CanvasJS.Chart("deviceTypeChartContainer", {
+                        animationEnabled: true,
+                        title: {
+                            text: ""
+                        },
+                        data: [{
+                            type: "pie",
+                            startAngle: 240,
+                            yValueFormatString: "##0\"%\"",
+                            indexLabel: "{label} {y}",
+                            indexLabelFontColor: "black",
+                            indexLabelFontSize: 14,
+                            indexLabelPlacement: "outside",
+                            toolTipContent: "<b>{label}:</b> {y} sessions",
+                            dataPoints: [
+                                { y: desktopSessions, label: "Desktop",color: "orange"  },
+                                { y: mobileSessions, label: "Mobile" ,color: "red" },
+                                { y: tabletSessions, label: "Tablet",color: "green"  }
+                            ]
+                        }]
+                    });
+            
+                    deviceTypeChart.render();
+                }
+            
+                var orderTimeRangeSelect = document.getElementById("orderTimeRangeSelect");
+                orderTimeRangeSelect.addEventListener("change", function () {
+                    var selectedTimeRange = this.value;
+                    updateDeviceTypeChart(selectedTimeRange);
+                });
+            
+                // Initial rendering of the chart
+                updateDeviceTypeChart('today');
+            </script>
+            
+            <script>
+                function updateTopSellingProductChart(timeRange) {
+                    var productData = [];
+            
+                    // Dummy data for demonstration
+                    switch (timeRange) {
+                        case 'today':
+                            productData = [
+                                { label: "Product A", y: 100, color: "#ff0000" },
+                                { label: "Product B", y: 80, color: "#00ff00" },
+                                { label: "Product C", y: 60, color: "#0000ff" },
+                                { label: "Product D", y: 120, color: "#ff9900" },
+                                { label: "Product E", y: 90, color: "#9900ff" },
+                                { label: "Product F", y: 110, color: "#00ffff" },
+                                { label: "Product G", y: 70, color: "#ffff00" }
+                            ];
+                            break;
+                        case '7':
+                        productData = [
+                                { label: "Product A", y: 100, color: "#ff0000" },
+                                { label: "Product B", y: 80, color: "#00ff00" },
+                                { label: "Product C", y: 60, color: "#0000ff" },
+                                { label: "Product D", y: 120, color: "#ff9900" },
+                                { label: "Product E", y: 90, color: "#9900ff" },
+                                { label: "Product F", y: 110, color: "#00ffff" },
+                                { label: "Product G", y: 70, color: "#ffff00" }
+                            ];
+                            break;
+                        case '30':
+                        productData = [
+                                { label: "Product A", y: 100, color: "#ff0000" },
+                                { label: "Product B", y: 80, color: "#00ff00" },
+                                { label: "Product C", y: 60, color: "#0000ff" },
+                                { label: "Product D", y: 120, color: "#ff9900" },
+                                { label: "Product E", y: 90, color: "#9900ff" },
+                                { label: "Product F", y: 110, color: "#00ffff" },
+                                { label: "Product G", y: 70, color: "#ffff00" }
+                            ];
+                            break;
+                        case '365':
+                        productData = [
+                                { label: "Product A", y: 100, color: "#ff0000" },
+                                { label: "Product B", y: 80, color: "#00ff00" },
+                                { label: "Product C", y: 60, color: "#0000ff" },
+                                { label: "Product D", y: 120, color: "#ff9900" },
+                                { label: "Product E", y: 90, color: "#9900ff" },
+                                { label: "Product F", y: 110, color: "#00ffff" },
+                                { label: "Product G", y: 70, color: "#ffff00" }
+                            ];
+                            break;
+                        default:
+                            break;
+                    }
+            
+                    var topSellingProductChart = new CanvasJS.Chart("topSellingProductChartContainer", {
+                        animationEnabled: true,
+                        theme: "light2",
+                        title: {
+                            text: ""
+                        },
+                        axisX: {
+                            title: ""
+                        },
+                        axisY: {
+                            title: ""
+                        },
+                        data: [{
+                            type: "column",
+                            dataPoints: productData
+                        }]
+                    });
+            
+                    topSellingProductChart.render();
+                }
+            
+                var topSellingProductDateRangeSelect = document.getElementById("topSellingProductDateRangeSelect");
+                topSellingProductDateRangeSelect.addEventListener("change", function () {
+                    var selectedTimeRange = this.value;
+                    updateTopSellingProductChart(selectedTimeRange);
+                });
+            
+                // Initial rendering of the chart
+                updateTopSellingProductChart('today');
+            </script>
+            
+            
         </section>   
 
         <section class="main" id="ordersSection" style="display: none;">
@@ -1807,317 +2119,6 @@
             }
         }
     </script>
-
-<script>
-    window.onload = function () {
-        var chart;
-        var initialTimeRange = 6;
-
-        function updateChart(timeRange) {
-            var dataPoints = [];
-            for (var i = 0; i <= timeRange; i++) {
-                dataPoints.push({ x: i, y: Math.floor(Math.random() * 100) });
-            }
-
-            chart.options.axisX.maximum = timeRange;
-            chart.options.data[0].dataPoints = dataPoints;
-            chart.render();
-        }
-
-        document.getElementById("timeRangeSelect").addEventListener("change", function () {
-            var selectedTimeRange = parseInt(this.value);
-            updateChart(selectedTimeRange);
-        });
-
-        chart = new CanvasJS.Chart("userSessionsChart", {
-            animationEnabled: true,
-            theme: "light2",
-            title: {
-                text: ""
-            },
-            axisX: {
-                title: "Time (Hours)",
-                interval: 1,
-                minimum: 0,
-                maximum: initialTimeRange
-            },
-            axisY: {
-                title: ""
-            },
-            data: [{
-                type: "line",
-                dataPoints: []
-            }]
-        });
-        updateChart(initialTimeRange);
-
-        var totalSalesChart;
-        var initialDateRange = 1;
-        var initialTimeInterval = 24;
-
-        function updateTotalSalesChart(dateRange, timeInterval) {
-            var dataPoints = [];
-            for (var i = 0; i < timeInterval; i++) {
-                dataPoints.push({ x: i, y: Math.floor(Math.random() * 1000) });
-            }
-
-            totalSalesChart.options.axisX.maximum = timeInterval - 1;
-            totalSalesChart.options.data[0].dataPoints = dataPoints;
-            totalSalesChart.render();
-        }
-
-        document.getElementById("dateRangeSelect").addEventListener("change", function () {
-            var selectedDateRange = parseInt(this.value);
-            initialDateRange = selectedDateRange;
-            updateTotalSalesChart(initialDateRange, initialTimeInterval);
-        });
-
-        document.getElementById("timeIntervalSelect").addEventListener("change", function () {
-            var selectedTimeInterval = parseInt(this.value);
-            initialTimeInterval = selectedTimeInterval;
-            updateTotalSalesChart(initialDateRange, initialTimeInterval);
-        });
-
-        totalSalesChart = new CanvasJS.Chart("totalSalesChartContainer", {
-            animationEnabled: true,
-            theme: "light2",
-            title: {
-                text: ""
-            },
-            axisX: {
-                title: "Time (Hours)",
-                interval: 1,
-                minimum: 0,
-                maximum: initialTimeInterval - 1
-            },
-            axisY: {
-                title: "Total Sales"
-            },
-            data: [{
-                type: "column",
-                dataPoints: []
-            }]
-        });
-
-        updateTotalSalesChart(initialDateRange, initialTimeInterval);
-
-        var totalOrdersChart;
-        var initialOrderTimeRange = 'today';
-
-        function updateTotalOrdersChart(timeRange) {
-            var pendingOrders, shippedOrders, deliveredOrders;
-
-            // Dummy data for demonstration
-            switch (timeRange) {
-                case 'today':
-                    pendingOrders = 20;
-                    shippedOrders = 10;
-                    deliveredOrders = 5;
-                    break;
-                case '7':
-                    pendingOrders = 150;
-                    shippedOrders = 120;
-                    deliveredOrders = 100;
-                    break;
-                case '30':
-                    pendingOrders = 600;
-                    shippedOrders = 500;
-                    deliveredOrders = 400;
-                    break;
-                case '365':
-                    pendingOrders = 5000;
-                    shippedOrders = 4000;
-                    deliveredOrders = 3500;
-                    break;
-                default:
-                    break;
-            }
-
-            // Update chart data
-            totalOrdersChart.options.data[0].dataPoints = [
-                { label: "Pending Orders", y: pendingOrders },
-                { label: "Shipped Orders", y: shippedOrders },
-                { label: "Delivered Orders", y: deliveredOrders }
-            ];
-
-            // Re-render the chart
-            totalOrdersChart.render();
-        }
-
-        // Event listener for dropdown change
-        document.getElementById("orderTimeRangeSelect").addEventListener("change", function () {
-            var selectedTimeRange = this.value;
-            updateTotalOrdersChart(selectedTimeRange);
-        });
-
-        // Initial rendering of the chart
-        totalOrdersChart = new CanvasJS.Chart("totalOrdersChartContainer", {
-            animationEnabled: true,
-            title: {
-                text: ""
-            },
-            axisY: {
-                title: ""
-            },
-            data: [{
-                type: "column",
-                dataPoints: []
-            }]
-        });
-
-        updateTotalOrdersChart(initialOrderTimeRange);
-    }
-</script>
-
-<script>
-    function updateDeviceTypeChart(timeRange) {
-        var desktopSessions, mobileSessions, tabletSessions;
-
-        // Dummy data for demonstration
-        switch (timeRange) {
-            case 'today':
-                desktopSessions = 20;
-                mobileSessions = 50;
-                tabletSessions = 20;
-                break;
-            case '7':
-                desktopSessions = 30;
-                mobileSessions = 60;
-                tabletSessions = 10;
-                break;
-            case '30':
-                desktopSessions = 10;
-                mobileSessions = 80;
-                tabletSessions = 10;
-                break;
-            case '365':
-                desktopSessions = 20;
-                mobileSessions = 70;
-                tabletSessions = 10;
-                break;
-            default:
-                break;
-        }
-
-        var deviceTypeChart = new CanvasJS.Chart("deviceTypeChartContainer", {
-            animationEnabled: true,
-            title: {
-                text: ""
-            },
-            data: [{
-                type: "pie",
-                startAngle: 240,
-                yValueFormatString: "##0\"%\"",
-                indexLabel: "{label} {y}",
-                indexLabelFontColor: "black",
-                indexLabelFontSize: 14,
-                indexLabelPlacement: "outside",
-                toolTipContent: "<b>{label}:</b> {y} sessions",
-                dataPoints: [
-                    { y: desktopSessions, label: "Desktop",color: "orange"  },
-                    { y: mobileSessions, label: "Mobile" ,color: "red" },
-                    { y: tabletSessions, label: "Tablet",color: "green"  }
-                ]
-            }]
-        });
-
-        deviceTypeChart.render();
-    }
-
-    var orderTimeRangeSelect = document.getElementById("orderTimeRangeSelect");
-    orderTimeRangeSelect.addEventListener("change", function () {
-        var selectedTimeRange = this.value;
-        updateDeviceTypeChart(selectedTimeRange);
-    });
-
-    // Initial rendering of the chart
-    updateDeviceTypeChart('today');
-</script>
-
-<script>
-    function updateTopSellingProductChart(timeRange) {
-        var productData = [];
-
-        // Dummy data for demonstration
-        switch (timeRange) {
-            case 'today':
-                productData = [
-                    { label: "Product A", y: 100, color: "#ff0000" },
-                    { label: "Product B", y: 80, color: "#00ff00" },
-                    { label: "Product C", y: 60, color: "#0000ff" },
-                    { label: "Product D", y: 120, color: "#ff9900" },
-                    { label: "Product E", y: 90, color: "#9900ff" },
-                    { label: "Product F", y: 110, color: "#00ffff" },
-                    { label: "Product G", y: 70, color: "#ffff00" }
-                ];
-                break;
-            case '7':
-            productData = [
-                    { label: "Product A", y: 100, color: "#ff0000" },
-                    { label: "Product B", y: 80, color: "#00ff00" },
-                    { label: "Product C", y: 60, color: "#0000ff" },
-                    { label: "Product D", y: 120, color: "#ff9900" },
-                    { label: "Product E", y: 90, color: "#9900ff" },
-                    { label: "Product F", y: 110, color: "#00ffff" },
-                    { label: "Product G", y: 70, color: "#ffff00" }
-                ];
-                break;
-            case '30':
-            productData = [
-                    { label: "Product A", y: 100, color: "#ff0000" },
-                    { label: "Product B", y: 80, color: "#00ff00" },
-                    { label: "Product C", y: 60, color: "#0000ff" },
-                    { label: "Product D", y: 120, color: "#ff9900" },
-                    { label: "Product E", y: 90, color: "#9900ff" },
-                    { label: "Product F", y: 110, color: "#00ffff" },
-                    { label: "Product G", y: 70, color: "#ffff00" }
-                ];
-                break;
-            case '365':
-            productData = [
-                    { label: "Product A", y: 100, color: "#ff0000" },
-                    { label: "Product B", y: 80, color: "#00ff00" },
-                    { label: "Product C", y: 60, color: "#0000ff" },
-                    { label: "Product D", y: 120, color: "#ff9900" },
-                    { label: "Product E", y: 90, color: "#9900ff" },
-                    { label: "Product F", y: 110, color: "#00ffff" },
-                    { label: "Product G", y: 70, color: "#ffff00" }
-                ];
-                break;
-            default:
-                break;
-        }
-
-        var topSellingProductChart = new CanvasJS.Chart("topSellingProductChartContainer", {
-            animationEnabled: true,
-            theme: "light2",
-            title: {
-                text: ""
-            },
-            axisX: {
-                title: ""
-            },
-            axisY: {
-                title: ""
-            },
-            data: [{
-                type: "column",
-                dataPoints: productData
-            }]
-        });
-
-        topSellingProductChart.render();
-    }
-
-    var topSellingProductDateRangeSelect = document.getElementById("topSellingProductDateRangeSelect");
-    topSellingProductDateRangeSelect.addEventListener("change", function () {
-        var selectedTimeRange = this.value;
-        updateTopSellingProductChart(selectedTimeRange);
-    });
-
-    // Initial rendering of the chart
-    updateTopSellingProductChart('today');
-</script>
 
 
 </body>
