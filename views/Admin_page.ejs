@@ -345,6 +345,8 @@
                 </div>
             </section>
 
+            <!-- total sales and average order value -->
+            <!-- done -->
             <section class="main-course">
                 <div class="course-box">
                     <div>
@@ -374,14 +376,68 @@
                 </div>
             </section>
 
+            <!-- top page rankings -->
+            <!-- on hold -->
             <section class="main-course">
                 <div class="course-box">
                     <div class="top-landing">
                         <h2>Top Landing Pages</h2>
-                        <table style="width: 100%; border-collapse: collapse; margin-top: 20px;">
-                          <tbody id="topLandingPagesBody">
-                          </tbody>
-                        </table>
+                        <div class="landingPageRankings"  style="display: flex; flex-wrap: wrap;">
+                            <p>item</p>
+                            <p>item</p>
+                            <p>item</p>
+                            <p>item</p>
+                            <p>item</p>
+                            <p>item</p>
+                            <p>item</p>
+                            <p>item</p>
+                            <p>item</p>
+                            <p>item</p>
+                            <p>item</p>
+                            <p>item</p>
+                            <p>item</p>
+                            <p>item</p>
+                            <p>item</p>
+                            <p>item</p>
+                            <p>item</p>
+                            <p>item</p>
+                            <p>item</p>
+                            <p>item</p>
+                            <p>item</p>
+                            <p>item</p>
+                            <p>item</p>
+                            <p>item</p>
+                            <p>item</p>
+                            <p>item</p>
+                            <p>item</p>
+                            <p>item</p>
+                            <p>item</p>
+                            <p>item</p>
+                            <p>item</p>
+                            <p>item</p>
+                            <p>item</p>
+                            <p>item</p>
+                            <p>item</p>
+                            <p>item</p>
+                            <p>item</p>
+                            <p>item</p>
+                            <p>item</p>
+                            <p>item</p>
+                            <p>item</p>
+                            <p>item</p>
+                            <p>item</p>
+                            <p>item</p>
+                            <p>item</p>
+                            <p>item</p>
+                            <p>item</p>
+                            <p>item</p>
+                            <p>item</p>
+                            <p>item</p>
+                            <p>item</p>
+                            <p>item</p>
+                            <p>item</p>
+
+                        </div>
                     </div>
                 </div>
             </section>
@@ -391,6 +447,7 @@
                 <div class="course-box">
                     <div>
                         <h1>User Registered</h1>
+                        <h2 class="registered_users">Total Registered Users: 0</h2>
                         <select name="usersGraphSelect" id="usersGraphSelect">
                             <option value="7">last 7 days</option>
                             <option value="30">last 30 days</option>
@@ -463,6 +520,9 @@
                     let averageOrderValue = orders.reduce((total, order) => total + order.totalPayment, 0)/orders.length
                     document.querySelector('.averageOrderValue').textContent = "Rs " + Math.floor(averageOrderValue);
                     drawAverageOrderValueGraph(7);
+
+                    document.querySelector('.registered_users').textContent = "Total Registered Users: " + users.length
+                    usersGraph(7);
                 });
 
                 document.querySelector(`#ordersGraphSelect`).addEventListener('change', async event => {
@@ -662,6 +722,49 @@
                     });
                 }
 
+                document.querySelector(`#usersGraphSelect`).addEventListener('change', async event => {
+                    usersGraph(event.target.value)
+                });
+                function usersGraph(lastDays) {
+                    const today = new Date();
+                    const startDate = new Date();
+                    startDate.setDate(today.getDate() - lastDays + 1);
+                    const endDate = today;
+
+                    const registeredUsersPerDay = Array.from({ length: lastDays }, (_, i) => {
+                        const date = new Date(startDate);
+                        date.setDate(startDate.getDate() + i);
+
+                        const dayUsers = users.filter(user => {
+                            const userDate = new Date(user.joinDate);
+                            return userDate.getFullYear() === date.getFullYear() && userDate.getMonth() === date.getMonth() && userDate.getDate() === date.getDate();
+                        });
+
+                        return { date, count : dayUsers.length };
+                    });
+
+                    const ctx = document.getElementById('usersChart').getContext('2d');
+                    const chart = new Chart(ctx, {
+                        type: 'line',
+                        data: {
+                            labels: registeredUsersPerDay.map(item => item.date.toDateString()),
+                            datasets: [{
+                                label: 'Average Order Value per Day',
+                                data: registeredUsersPerDay.map(item => item.count),
+                                backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                                borderColor: 'rgba(75, 192, 192, 1)',
+                                borderWidth: 1
+                            }]
+                        },
+                        options: {
+                            scales: {
+                                y: {
+                                    beginAtZero: true,
+                                }
+                            }
+                        }
+                    });
+                }
                 function calculateSalesToday() {
                     const today = new Date();
                     const todayOrders = orders.filter(order => {
