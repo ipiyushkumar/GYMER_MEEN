@@ -440,6 +440,24 @@ const increaseCartItemQuantity = (req, res) => {
           console.error("Error saving session:", err);
           return res.status(500).json({ message: "Internal server error" });
         }
+
+        UserSessionTrack.findOne({ sessionId: req.sessionID })
+          .then((userSession) => {
+            if (userSession) {
+              userSession.visited += 1;
+              userSession.addedToCart += 1;
+              return userSession.save();
+            } else {
+              const newUserSession = new UserSessionTrack({
+                sessionId: req.sessionID,
+              });
+              return newUserSession.save(); // Save new session
+            }
+          })
+          .catch((error) => {
+            console.error("Error:", error);
+          });
+
         res.status(200).json({
           message: "Item quantity increased successfully",
           newQuantity: cartItem.quantity,
