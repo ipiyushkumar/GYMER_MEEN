@@ -454,11 +454,12 @@
                     let averageConvertionRate = (((convertedSessions.length + addedToCart.length + reachedCheckout.length)/3)/userSessions.length)*100
                     document.querySelector('.averageConvertionRate').textContent = Math.floor(averageConvertionRate) + "%"
                     drawStoreSessionsGraph(7)
+                    updateTopSellingProducts();
+
 
                     let totalSales = orders.reduce((total, order) => total + order.totalPayment, 0)
                     document.querySelector('.total_sales').textContent = `Total Sales Rs ${totalSales}`;
-
-                    updateTopSellingProducts();
+                    drawSalesGraph(7);
                 });
 
                 document.querySelector(`#ordersGraphSelect`).addEventListener('change', async event => {
@@ -553,6 +554,58 @@
                         }
                     });
                     }
+
+                document.querySelector(`#salesGraphSelect`).addEventListener('change', async event => {
+                    drawSalesGraph(event.target.value)
+                });
+                function drawSalesGraph(lastDays) {
+                    const today = new Date();
+                    const startDate = new Date();
+                    startDate.setDate(today.getDate() - lastDays + 1);
+                    const endDate = today;
+
+                    const salesPerDay = Array.from({ length: lastDays }, (_, i) => {
+                        const date = new Date(startDate);
+                        date.setDate(startDate.getDate() + i);
+
+                        const dayOrders = orders.filter(order => {
+                            const orderDate = new Date(order.createdDate);
+
+                            return orderDate.getFullYear() === date.getFullYear() && orderDate.getMonth() === date.getMonth() && orderDate.getDate() === date.getDate();
+
+                        });
+                        const totalPayment = dayOrders.reduce((total, order) => total + order.totalPayment, 0);
+
+                        return { date, totalPayment };
+                    });
+
+                    const ctx = document.getElementById('salesChart').getContext('2d');
+                    const chart = new Chart(ctx, {
+                        type: 'line',
+                        data: {
+                            labels: salesPerDay.map(item => item.date.toDateString()),
+                            datasets: [{
+                                label: 'Sales per Day',
+                                data: salesPerDay.map(item => item.totalPayment),
+                                backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                                borderColor: 'rgba(75, 192, 192, 1)',
+                                borderWidth: 1
+                            }]
+                        },
+                        options: {
+                            scales: {
+                                y: {
+                                    beginAtZero: true,
+                                    ticks: {
+                                        callback: function(value, index, values) {
+                                            return '₹' + value.toFixed(2);
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    });
+                }
 
 
                 function calculateSalesToday() {
