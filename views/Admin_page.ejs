@@ -298,7 +298,7 @@
                 <div class="course-box">
                     <div>
                         <h1>Orders per Day</h1>
-                        <h2 class="total_sales">Total Sales Rs 0, Pending Orders 0</h2>
+                        <h2 class="total_orders">Total Orders 0, Pending Orders 0</h2>
                         <select name="ordersGraphSelect" id="ordersGraphSelect">
                             <option value="7">last 7 days</option>
                             <option value="30">last 30 days</option>
@@ -341,18 +341,34 @@
                 </div>
             </section>
 
-            <div class="main-skills">
-                <div class="card">
-                    <iconify-icon class="icon" icon="emojione:money-bag"></iconify-icon>
-                    <h2 class="sales_today">Rs 0</h2>
-                    <h4>Sales today</h4>
+            <section class="main-course">
+                <div class="course-box">
+                    <div>
+                        <h1>Total Sales</h1>
+                        <h2 class="total_sales"></h2>
+                        <select name="usersGraphSelect" id="usersGraphSelect">
+                            <option value="7">last 7 days</option>
+                            <option value="30">last 30 days</option>
+                            <option value="100">last 100 days</option>
+                            <option value="365">last 365 days</option>
+                            <option value="1780">last 4 years</option>
+                        </select>
+                        <canvas id="usersChart" class="chart"></canvas>
+                    </div>
+                    <div>
+                        <h1>Average Order Value</h1>
+                        <h2 class="averageOrderValue">Rs 0</h2>
+                        <select name="usersGraphSelect" id="usersGraphSelect">
+                            <option value="7">last 7 days</option>
+                            <option value="30">last 30 days</option>
+                            <option value="100">last 100 days</option>
+                            <option value="365">last 365 days</option>
+                            <option value="1780">last 4 years</option>
+                        </select>
+                        <canvas id="usersChart" class="chart"></canvas>
+                    </div>
                 </div>
-                <div class="card">
-                    <iconify-icon class="icon" icon="emojione-v1:shopping-bags"></iconify-icon>
-                    <h2 class="completed_orders">65</h2>
-                    <h4>Delivered orders</h4>
-                </div>
-            </div>
+            </section>
 
             <section class="main-course">
                 <h1>User Analytics</h1>
@@ -406,7 +422,8 @@
                     .then(usersSessionData => {userSessions = usersSessionData})
                     .catch(err => { showAlert("something went wrong loading Users data", "danger"); console.log(err)})
 
-                    document.querySelector('.total_sales').textContent = `Total Sales Rs ${calculateTotalSales()}, Pending Orders : ${calculatePendingOrders()}`;
+                    let pendingOrders = orders.filter(order => order.status === 'Pending')
+                    document.querySelector('.total_orders').textContent = `Total Orders ${orders.length}, Pending Orders : ${pendingOrders.length}`;
                     drawOrdersGraph(7)
 
 
@@ -422,9 +439,9 @@
                     document.querySelector('.averageConvertionRate').textContent = Math.floor(averageConvertionRate) + "%"
                     drawStoreSessionsGraph(7)
 
+                    let totalSales = orders.reduce((total, order) => total + order.totalPayment, 0)
+                    document.querySelector('.total_sales').textContent = `Total Sales Rs ${totalSales}`;
 
-                    document.querySelector('.sales_today').textContent = `Rs ${calculateSalesToday()}`;
-                    document.querySelector('.completed_orders').textContent = calculateCompletedOrders();
                     updateTopSellingProducts();
                 });
 
@@ -538,18 +555,6 @@
 
                     const completedOrders = orders.filter(order => order.status === 'Delivered');
                     return completedOrders.length;
-                }
-
-                function calculatePendingOrders() {
-
-                    const pendingOrders = orders.filter(order => order.status === 'Pending');
-                    return pendingOrders.length;
-                }
-
-                function calculateTotalSales() {
-
-                    const totalSales = orders.reduce((total, order) => total + order.totalPayment, 0);
-                    return totalSales;
                 }
 
                 async function updateTopSellingProducts() {
