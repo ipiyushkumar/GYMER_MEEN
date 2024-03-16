@@ -36,22 +36,6 @@ router.get(
 
 // admin tab
 router.get("/adminwolf", isAdminAuthenticated, (req, res) => {
-  UserSessionTrack.findOne({ sessionId: req.sessionID })
-    .then((userSession) => {
-      if (userSession) {
-        userSession.visited += 1;
-        return userSession.save();
-      } else {
-        const newUserSession = new UserSessionTrack({
-          sessionId: req.sessionID,
-          sessionLandingUrl: req.originalUrl,
-        });
-        return newUserSession.save(); // Save new session
-      }
-    })
-    .catch((error) => {
-      console.error("Error:", error);
-    });
   res.render("Admin_page");
 });
 
