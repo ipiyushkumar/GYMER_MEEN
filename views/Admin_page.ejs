@@ -156,7 +156,7 @@
                 </li>
                 <li><a href="#" onclick="selectSection('usersSection')" id="usersTab">
                     <i class="fas fa-user"></i>
-                    <span class="nav-item">User Sessions</span>
+                    <span class="nav-item">Registered Users</span>
                 </a></li>
                 <li><a href="#" onclick="selectSection('analyticsSection')" id="analyticsTab">
                     <i class="fas fa-chart-line"></i>
@@ -292,7 +292,8 @@
         </section>   
 
         <section class="main" id="analyticsSection" >
-            
+            <!-- orders analytics -->
+            <!-- done -->
             <section class="main-course">
                 <h1>Orders Analytics</h1>
                 <div class="course-box">
@@ -322,6 +323,9 @@
                     </div>
                 </div>
             </section>
+
+            <!-- convertion rate and top selling products -->
+            <!-- done -->
             <section class="main-course">
                 <div class="course-box">
                     <div>
@@ -346,26 +350,38 @@
                     <div>
                         <h1>Total Sales</h1>
                         <h2 class="total_sales"></h2>
-                        <select name="usersGraphSelect" id="usersGraphSelect">
+                        <select name="salesGraphSelect" id="salesGraphSelect">
                             <option value="7">last 7 days</option>
                             <option value="30">last 30 days</option>
                             <option value="100">last 100 days</option>
                             <option value="365">last 365 days</option>
                             <option value="1780">last 4 years</option>
                         </select>
-                        <canvas id="usersChart" class="chart"></canvas>
+                        <canvas id="salesChart" class="chart"></canvas>
                     </div>
                     <div>
                         <h1>Average Order Value</h1>
                         <h2 class="averageOrderValue">Rs 0</h2>
-                        <select name="usersGraphSelect" id="usersGraphSelect">
+                        <select name="orderValueGraphSelect" id="orderValueGraphSelect">
                             <option value="7">last 7 days</option>
                             <option value="30">last 30 days</option>
                             <option value="100">last 100 days</option>
                             <option value="365">last 365 days</option>
                             <option value="1780">last 4 years</option>
                         </select>
-                        <canvas id="usersChart" class="chart"></canvas>
+                        <canvas id="orderValueChart" class="chart"></canvas>
+                    </div>
+                </div>
+            </section>
+
+            <section class="main-course">
+                <div class="course-box">
+                    <div class="top-landing">
+                        <h2>Top Landing Pages</h2>
+                        <table style="width: 100%; border-collapse: collapse; margin-top: 20px;">
+                          <tbody id="topLandingPagesBody">
+                          </tbody>
+                        </table>
                     </div>
                 </div>
             </section>
@@ -521,7 +537,7 @@
                         data: {
                             labels: storeSessionsPerDay.map(item => item.date.toDateString()),
                             datasets: [{
-                                label: 'Orders per Day',
+                                label: 'Sessions per Day',
                                 data: storeSessionsPerDay.map(item => item.count),
                                 backgroundColor: 'rgba(75, 192, 192, 0.2)',
                                 borderColor: 'rgba(75, 192, 192, 1)',
