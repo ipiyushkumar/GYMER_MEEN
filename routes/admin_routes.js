@@ -345,4 +345,16 @@ router.get("/adminActionHistory", isAdminAuthenticated, async (req, res) => {
   }
 });
 
+const Subscriber = require("../schemas/subscriber_schema");
+
+router.get("/subscribe", async (req, res) => {
+  try {
+    const allSubscribers = await Subscriber.find();
+    res.json(allSubscribers);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Internal Server Error" });
+  }
+});
+
 module.exports = router;
