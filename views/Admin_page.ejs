@@ -154,39 +154,39 @@
                         <img src="/assets/ww side name logo.png" alt="">
                         <span class="nav-item admin">Admin Dashboard</span>
                 </li>
-                <li><a href="#" onclick="showDashboard()" id="dashboardTab">
+                <li><a href="#" onclick="selectSection('dashboardSection')" id="dashboardTab">
                     <i class="fas fa-house-user"></i>
                     <span class="nav-item">Home</span>
                 </a></li>
-                <li><a href="#" onclick="showAnalytics()" id="analyticsTab">
+                <li><a href="#" onclick="selectSection('analyticsSection')" id="analyticsTab">
                     <i class="fas fa-user"></i>
                     <span class="nav-item">Users</span>
                 </a></li>
-                <li><a href="#" onclick="showReport()" id="reportTab">
+                <li><a href="#" onclick="selectSection('ReportSection')" id="reportTab">
                     <i class="fas fa-chart-line"></i>
                     <span class="nav-item">Analytics</span>
                 </a></li>
-                <li><a href="#" onclick="showOrders()" id="ordersTab">
+                <li><a href="#" onclick="selectSection('ordersSection')" id="ordersTab">
                     <i class="fas fa-store"></i>
                     <span class="nav-item">Orders</span>
                 </a></li>
-                <li><a href="#" onclick="showProducts()" id="productsTab">
+                <li><a href="#" onclick="selectSection('productsSection')" id="productsTab">
                     <i class="fas fa-shopping-bag"></i>
                     <span class="nav-item">Add Products</span>
                 </a></li>
 
-                <li><a href="#" onclick="showInventory()" id="inventoryTab">
+                <li><a href="#" onclick="selectSection('inventorySection')" id="inventoryTab">
                     <i class="fas fa-warehouse"></i>
                     <span class="nav-item">Inventory</span>
                 </a></li>
 
-                <li><a href="#" onclick="showCoupon()" id="couponTab">
+                <li><a href="#" onclick="selectSection('couponSection')" id="couponTab">
                     <i class="fas fa-gift"></i>
                     <span class="nav-item">Coupons</span>
                 </a></li>
 
                 <li>
-                    <a href="#" onclick="showHistory()" id="historyTab">
+                    <a href="#" onclick="selectSection('historySection')" id="historyTab">
                         <i class="fas fa-clock"></i>
                     <span class="nav-item">History</span>
                     </a>
@@ -1807,7 +1807,7 @@
             </script>
         </section>
 
-        <section class="main" id="coupon" style="display: none;">
+        <section class="main" id="couponSection" style="display: none;">
             <section class="main-orders">
                 <h1>Add/Delete Coupons</h1>
 
@@ -1933,7 +1933,7 @@
             </section>
         </section>
 
-        <section class="main" id="history" style="display: none;">
+        <section class="main" id="historySection" style="display: none;">
             <section class="main-orders">
                 <h1>View History</h1>
 
@@ -2041,85 +2041,14 @@
 
     </div>
     <script>
-        function showDashboard() {
-        showSection('dashboardSection');
-        setActiveTab('dashboardTab');
-    }
+        let selectedSection = "dashboardSection";
 
-    function showAnalytics() {
-        showSection('analyticsSection');
-        setActiveTab('analyticsTab');
-    }
-
-    function showReport() {
-        showSection('ReportSection');
-        setActiveTab('reportTab');
-    }
-
-    function showOrders() {
-        showSection('ordersSection');
-        setActiveTab('ordersTab');
-    }
-
-    function showProducts() {
-        showSection('productsSection');
-        setActiveTab('productsTab');
-    }
-
-    function showCategories() {
-        showSection('categoriesSection');
-        setActiveTab('categoriesTab');
-    }
-
-    function showInventory() {
-        showSection('inventorySection');
-        setActiveTab('inventoryTab');
-    }
-
-    function showPayments() {
-        showSection('paymentsSection');
-        setActiveTab('paymentsTab');
-    }
-
-    function showSettings() {
-        showSection('settingsSection');
-        setActiveTab('settingsTab');
-    }
-
-    function showLogout() {
-        showSection('logoutSection');
-        setActiveTab('logoutTab');
-    }
-
-    function showCoupon() {
-        showSection('coupon');
-        setActiveTab('couponTab');
-    }
-
-    function showHistory() {
-        showSection('history');
-        setActiveTab('historyTab');
-    }
-
-    function showContlo() {
-        showSection('contlo');
-        setActiveTab('contloTab');
-    }
-
-    function showSection(sectionId) {
-
-            var sections = document.getElementsByClassName('main');
-            for (var i = 0; i < sections.length; i++) {
-                sections[i].style.display = 'none';
-            }
-
-            var selectedSection = document.getElementById(sectionId);
-            if (selectedSection) {
-                selectedSection.style.display = 'block';
-            }
+        function selectSection(sectionName) {
+            document.getElementById(selectedSection).style.display = "none";
+            document.getElementById(sectionName).style.display = "block";
+            selectedSection = sectionName;
         }
     </script>
-
 
 </body>
 
