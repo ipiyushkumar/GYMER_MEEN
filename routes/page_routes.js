@@ -36,9 +36,6 @@ const pageSessionUpdate = (req, res) => {
         return newUserSession.save(); // Save new session
       }
     })
-    .then((savedSession) => {
-      console.log("Session saved:", savedSession);
-    })
     .catch((error) => {
       console.error("Error:", error);
     });
@@ -321,9 +318,6 @@ router.get("/confirm", (req, res) => {
         return newUserSession.save(); // Save new session
       }
     })
-    .then((savedSession) => {
-      console.log("Session saved:", savedSession);
-    })
     .catch((error) => {
       console.error("Error:", error);
     });
@@ -361,9 +355,6 @@ router.get("/success", isAuthenticated, (req, res) => {
         });
         return newUserSession.save(); // Save new session
       }
-    })
-    .then((savedSession) => {
-      console.log("Session saved:", savedSession);
     })
     .catch((error) => {
       console.error("Error:", error);

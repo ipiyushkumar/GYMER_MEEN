@@ -49,9 +49,6 @@ const getItemPage = async (req, res) => {
           return newUserSession.save(); // Save new session
         }
       })
-      .then((savedSession) => {
-        console.log("Session saved:", savedSession);
-      })
       .catch((error) => {
         console.error("Error:", error);
       });
