@@ -8,6 +8,7 @@ const subSchema = new mongoose.Schema({
       dateAdded: { type: Date, required: true, default: Date.now },
     },
   ],
+  createdAt: { type: Date, required: true, default: Date.now },
 });
 
 const subscriber_model = mongoose.model("Subscriber", subSchema);
