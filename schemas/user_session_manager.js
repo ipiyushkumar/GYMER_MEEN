@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 
 const UserSessionTrack = new mongoose.Schema({
-  sessionLandingUrl: { type: Number, default: "https://whitewolfIndia.com" },
+  sessionLandingUrl: { type: String, default: "https://whitewolfIndia.com" },
   sessionId: { type: String }, // client session id
   visited: { type: Number, default: 0 }, // if the website was visited
   addedToCart: { type: Number, default: 0 }, // if any item was added to cart
