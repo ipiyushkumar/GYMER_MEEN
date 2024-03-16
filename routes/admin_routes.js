@@ -21,14 +21,18 @@ const isAdminAuthenticated = (req, res, next) => {
 };
 const UserSessionTrack = require("../schemas/user_session_manager");
 
-router.get("/api/userSessions", isAdminAuthenticated, async (req, res) => {
-  try {
-    const allUserSessions = await UserSessionTrack.find();
-    res.json(allUserSessions);
-  } catch (error) {
-    res.status(500).json({ error: "No User in server" });
+router.get(
+  "/api/admin/getAllUserSessions",
+  isAdminAuthenticated,
+  async (req, res) => {
+    try {
+      const allUserSessions = await UserSessionTrack.find();
+      res.json(allUserSessions);
+    } catch (error) {
+      res.status(500).json({ error: "No User in server" });
+    }
   }
-});
+);
 
 // admin tab
 router.get("/adminwolf", isAdminAuthenticated, (req, res) => {
