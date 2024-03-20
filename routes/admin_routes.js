@@ -212,12 +212,14 @@ router.put(
           imageLink.push(`/uploads/${file.filename}`);
         }
       });
-
-      for (let i = 0; i < imageFileIndexes.length; i++) {
-        const index = parseInt(imageFileIndexes[i]);
-        if (index >= 0 && index < updateItem.imageLink.length) {
-          deleteFiles(updateItem.imageLink[index]);
-          updateItem.imageLink[index] = imageLink[i];
+      console.log(imageFileIndexes);
+      if (imageFileIndexes) {
+        for (let i = 0; i < imageFileIndexes.length; i++) {
+          const index = parseInt(imageFileIndexes[i]);
+          if (index >= 0 && index < updateItem.imageLink.length) {
+            deleteFiles(updateItem.imageLink[index]);
+            updateItem.imageLink[index] = imageLink[i];
+          }
         }
       }
 
