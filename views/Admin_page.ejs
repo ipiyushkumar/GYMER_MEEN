@@ -1587,7 +1587,10 @@
 
                     await axios.put(`/api/products`,formData)
                     .then(response => showAlert("Product data updated successfully","success"))
-                    .catch(err => showAlert("Error updating the product","danger"))
+                    .catch(err => {
+                        console.log(err)
+                        showAlert("Error updating the product","danger")
+                    })
                 }
                 async function openEditModal(itemId) {
                     selectedItemId = itemId;
