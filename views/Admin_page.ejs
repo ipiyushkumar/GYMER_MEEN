@@ -381,62 +381,8 @@
             <section class="main-course">
                 <div class="course-box">
                     <div class="top-landing">
-                        <h2>Top Landing Pages</h2>
+                        <h2>Top 18 Landing Pages</h2>
                         <div class="landingPageRankings"  style="display: flex; flex-wrap: wrap;">
-                            <p>item</p>
-                            <p>item</p>
-                            <p>item</p>
-                            <p>item</p>
-                            <p>item</p>
-                            <p>item</p>
-                            <p>item</p>
-                            <p>item</p>
-                            <p>item</p>
-                            <p>item</p>
-                            <p>item</p>
-                            <p>item</p>
-                            <p>item</p>
-                            <p>item</p>
-                            <p>item</p>
-                            <p>item</p>
-                            <p>item</p>
-                            <p>item</p>
-                            <p>item</p>
-                            <p>item</p>
-                            <p>item</p>
-                            <p>item</p>
-                            <p>item</p>
-                            <p>item</p>
-                            <p>item</p>
-                            <p>item</p>
-                            <p>item</p>
-                            <p>item</p>
-                            <p>item</p>
-                            <p>item</p>
-                            <p>item</p>
-                            <p>item</p>
-                            <p>item</p>
-                            <p>item</p>
-                            <p>item</p>
-                            <p>item</p>
-                            <p>item</p>
-                            <p>item</p>
-                            <p>item</p>
-                            <p>item</p>
-                            <p>item</p>
-                            <p>item</p>
-                            <p>item</p>
-                            <p>item</p>
-                            <p>item</p>
-                            <p>item</p>
-                            <p>item</p>
-                            <p>item</p>
-                            <p>item</p>
-                            <p>item</p>
-                            <p>item</p>
-                            <p>item</p>
-                            <p>item</p>
-
                         </div>
                     </div>
                 </div>
@@ -478,6 +424,7 @@
                 let users = []
                 let subscribers = []
                 let userSessions = []
+                let topPages = {}
 
                 document.addEventListener('DOMContentLoaded', async () => {
 
@@ -532,6 +479,17 @@
                     document.querySelector('.registered_users').textContent = "Total Registered Users: " + users.length
                     usersGraph(7);
                     document.querySelector('.subscribed_users').textContent = "Total Subscribed Users: " + subscribers.length
+                    userSessions.forEach(session => {
+                        if (topPages[session.sessionLandingUrl]){
+                            topPages[session.sessionLandingUrl] += 1;
+                        } else {
+                            topPages[session.sessionLandingUrl] = 1
+                        }
+                    })
+                    const rankedUrls = Object.keys(topPages).map(url => ({ url, count: topPages[url] })).sort((a, b) => b.count - a.count).slice(0, 18)
+                    rankedUrls.forEach(data => {
+                        document.querySelector(".landingPageRankings").innerHTML += `<p>${data.url} [${data.count}]</p>, <br>`
+                    })
                 });
 
                 document.querySelector(`#ordersGraphSelect`).addEventListener('change', async event => {
