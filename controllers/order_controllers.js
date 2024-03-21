@@ -332,7 +332,7 @@ const saveOrder = async (req, res) => {
     const newOrder = new Orders({
       email: userData.email,
       products: req.session.userProfile.cart,
-      phone: userData.phone,
+      phone: req.session.userProfile.phone,
       name: req.session.userProfile.name,
       totalPayment: amount,
       razorpay_order_id: "",
