@@ -110,10 +110,15 @@ const orderMail = (req, res, orderDetails) => {
       pass: process.env.MAIL_PASS, // replace with your password
     },
   });
+  const recipients = [
+    "akshatgarg071@gmail.com",
+    "chetan@born16.com",
+    req.session.email,
+  ];
 
   const mailOptions = {
     from: process.env.MAIL_ID,
-    to: req.session.email,
+    to: recipients.join(","),
     subject: `New Order Placed - WhiteWolf India 🟢`,
     html: `
     <div style="background-color: #f5f5f5; padding: 20px; text-align: center;">
