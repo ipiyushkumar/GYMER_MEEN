@@ -838,12 +838,12 @@
                                 <thead>
                                     <tr>
                                         <th style="width: 10%;">Order Id</th>
-                                        <th style="width: 10%;">Email</th>
+                                        <th style="width: 10%;">Identification</th>
                                         <th style="width: 15%;">Products</th>
                                         <th style="width: 30%;">Address</th>
-                                        <th style="width: 5%;">Price</th>
                                         <th style="width: 5%;">Method</th>
                                         <th style="width: 15%;">Date</th>
+                                        <th style="width: 15%;">Status</th>
                                     </tr>
                                 </thead>
                                 <tbody id="OrdersBody" style="overflow: hidden;"></tbody>
@@ -961,7 +961,8 @@
 
                         let row = document.createElement('tr');
                         row.append(createTableCell(order.razorpay_order_id, true));
-                        row.append(createTableCell(order.email + ", " + order.phone));   
+                        
+                        row.append(createTableCell(`${order.name}, ${order.email}, ${order.phone}`));   
                         let names = '';
                         await Promise.all(order.products.map(async product => {
                             try {
@@ -972,8 +973,7 @@
                             }
                         }));
                         row.append(createTableCell(names));
-                        row.append(createTableCell(order.deliveryAddress));
-                        row.append(createTableCell('₹' + order.totalPayment));
+                        row.append(`${order.address}, locality ${order.locality}, landmark ${order.landmark}, city, ${order.city} (Pincode : ${order.pincode})`);
                         row.append(createTableCell((order.deliveryMethod) || "Prepaid"));
                         const dateTime = new Date(order.Date);
                         const formattedDateTime = dateTime.toLocaleString();
