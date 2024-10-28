@@ -21,49 +21,12 @@ npm run start
 ### .env Structure
 ```code
 MongoDB_URL=
-PORT=
+PORT=3000
 Secret_KEY=
+RAZORPAY_ID_KEY=
+RAZORPAY_SECRET_KEY=
+MAIL_ID=
+MAIL_PASS=# used generated app password with POP IMAP and 2-step authentication activate
+MAIL_HOST=smtp.gmail.com
+MAIL_PORT=465 # 587 TLS 465 SSL
 ```
-## General Schema
-### user
-> name 
-> email
-> password
-> enroll
-> phone
-> role 
-> education
-> department
-> sem
-> gender
-> dob
-
-### Login
->Email : Unique
->Password : Unique
-
-### Feedback
->Student
->department
->sem
->course
->Feedback : [question, answer]
->TImeStamp
-
-### Course
->Course name
->sem
->department
->teacher
-
-### Department
->name
->hod
-
-### Questions
->question
-
-### SEM
-> name 
-> department
-> enabled
